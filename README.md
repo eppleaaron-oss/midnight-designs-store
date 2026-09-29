@@ -1,10 +1,26 @@
 # Midnight Designs
 
-Public storefront for **https://midnight-designs.store**.
+Dark vintage streetwear storefront for GitHub Pages. Public product data lives in `products.json`; Printful credentials never enter the browser or repository.
 
-This repository is separate from the private On Demand creation app.
+## Connect your Printful products
 
-## Publish with GitHub Pages
-Use **Settings → Pages → Deploy from a branch → main / (root)**.
+1. In the Printful developer dashboard, create a private token for the store holding your products with read access to sync products. Prefer a store-level token.
+2. GitHub repository → Settings → Secrets and variables → Actions → New repository secret. Name it `PRINTFUL_TOKEN`; paste the token there, not in chat or a source file.
+3. If using an account-level token, add an Actions variable named `PRINTFUL_STORE_ID` with the intended store ID.
+4. For an API/manual store, use the default `/store/products` endpoint. For an ecommerce integration store, set the Actions variable `PRINTFUL_PRODUCTS_ENDPOINT` to `sync`.
+5. Add any saved Printful product templates to that store first. The importer reads store products, not standalone templates. Set retail prices and currency on all variants.
+6. Actions → Sync Printful catalog → Run workflow. Select the branch containing these changes. This imports names, preview mockups, retail prices, and synced variants. Draft/ignored products and variants without positive retail prices are excluded. After merging, run it on main. Run it again after changing products or prices.
 
-Custom domain: `midnight-designs.store`
+Catalog changes committed by GitHub Actions with its default token do not trigger a branch-based Pages deployment automatically. After syncing on main, rerun the Pages build and deployment workflow in Actions to publish the updated catalog. Do not consider the import live until that deployment succeeds.
+
+The token remains in GitHub Actions secrets. The importer publishes an allowlist of customer-facing fields and does not copy print files or authorization headers. An empty, invalid, or failed import preserves the existing catalog.
+
+## Current scope
+
+- Responsive homepage, searchable/filterable catalog, product image gallery and actual Printful variant selection.
+- Device-local bag using current catalog prices and validated quantities.
+- No sample products, invented reviews, discounts or shipping promises.
+- Checkout is explicitly unavailable. Payment, server-side order validation, shipping/taxes and Printful fulfillment still need to be connected before selling. Never send paid fulfillment orders from browser code.
+
+Local preview: `python -m http.server 8000` from the repository root. Open `http://localhost:8000`.
+Printful API reference: https://developers.printful.com/docs/
