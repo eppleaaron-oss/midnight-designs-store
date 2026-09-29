@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T22:31:15.912Z",
+  "updatedAt": "2026-09-29T22:33:57.235Z",
   "products": [
     {
       "id": "476368665",
@@ -240,7 +240,7 @@
     {
       "id": "476368660",
       "name": "Backpack",
-      "category": "Other pieces",
+      "category": "Accessories",
       "image": "https://files.cdn.printful.com/files/b72/b72c3621c044a282920c14601f61869b_preview.png",
       "images": [
         "https://files.cdn.printful.com/files/b72/b72c3621c044a282920c14601f61869b_preview.png"
@@ -438,7 +438,7 @@
     {
       "id": "476368655",
       "name": "Yoga Leggings",
-      "category": "Other pieces",
+      "category": "Bottoms",
       "image": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
       "images": [
         "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png"
@@ -484,7 +484,7 @@
     {
       "id": "476368653",
       "name": "All-over print bandana",
-      "category": "Other pieces",
+      "category": "Accessories",
       "image": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
       "images": [
         "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png"
