@@ -32,3 +32,27 @@ jobs:
             git commit -m 'Sync Printful product catalog'
             git push
           fi
+
+  browser-check:
+    needs: sync
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Check storefront in Chromium
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-store.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: storefront-previews
+          path: qa-*.png
