@@ -1,6 +1,9 @@
 name: Sync Printful catalog
 on:
   workflow_dispatch:
+  push:
+    branches: [dark-vintage-printful]
+    paths: ['.github/workflows/sync-printful.yml', 'scripts/sync-printful.mjs']
 permissions:
   contents: write
 concurrency:
