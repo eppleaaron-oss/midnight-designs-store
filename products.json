@@ -1,1 +1,93 @@
-{"updatedAt":null,"products":[]}
+{
+  "updatedAt": "2026-09-29T22:22:29.468Z",
+  "products": [
+    {
+      "id": "476363019",
+      "name": "Unisex cotton sweatshirt",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5525492495",
+          "name": "Unisex cotton sweatshirt / 2XS",
+          "price": 54,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492496",
+          "name": "Unisex cotton sweatshirt / XS",
+          "price": 54,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492497",
+          "name": "Unisex cotton sweatshirt / S",
+          "price": 54,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492498",
+          "name": "Unisex cotton sweatshirt / M",
+          "price": 54,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492499",
+          "name": "Unisex cotton sweatshirt / L",
+          "price": 54,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492500",
+          "name": "Unisex cotton sweatshirt / XL",
+          "price": 54,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492501",
+          "name": "Unisex cotton sweatshirt / 2XL",
+          "price": 56.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492502",
+          "name": "Unisex cotton sweatshirt / 3XL",
+          "price": 59.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492503",
+          "name": "Unisex cotton sweatshirt / 4XL",
+          "price": 62,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492504",
+          "name": "Unisex cotton sweatshirt / 5XL",
+          "price": 64.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525492505",
+          "name": "Unisex cotton sweatshirt / 6XL",
+          "price": 67.5,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    }
+  ]
+}
