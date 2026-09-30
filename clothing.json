@@ -185,7 +185,19 @@
     "availability": "Confirm size, region and price before production",
     "catalogProductId": 1628,
     "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
-    "sizes": []
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-11",
@@ -196,7 +208,19 @@
     "availability": "Confirm size, region and price before production",
     "catalogProductId": 1590,
     "catalogTitle": "All-Over Print Oversized Cotton Sweatshirt",
-    "sizes": []
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-12",
@@ -413,7 +437,15 @@
     "availability": "Confirm size, region and price before production",
     "catalogProductId": 791,
     "catalogTitle": "Men's All-Over Print Slim Fit Polo Shirt",
-    "sizes": []
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-23",
@@ -716,7 +748,19 @@
     "availability": "Confirm size, region and price before production",
     "catalogProductId": 784,
     "catalogTitle": "All-Over Print Unisex Wide-Leg Joggers",
-    "sizes": []
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-38",
@@ -1050,7 +1094,19 @@
     "availability": "Confirm size, region and price before production",
     "catalogProductId": 737,
     "catalogTitle": "All-Over Print Flare Leggings",
-    "sizes": []
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-56",
@@ -1779,7 +1835,15 @@
     "availability": "Confirm size, region and price before production",
     "catalogProductId": 1644,
     "catalogTitle": "All-Over Print Youth Recycled Basketball Jersey",
-    "sizes": []
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-93",
