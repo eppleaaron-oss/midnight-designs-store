@@ -5,7 +5,17 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1414,
+    "catalogTitle": "All-Over Print Men\u2019s Cotton Crew Neck T-Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-2",
@@ -13,7 +23,17 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1415,
+    "catalogTitle": "All-Over Print Women\u2019s Cotton Crew Neck T-Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-3",
@@ -21,7 +41,18 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1416,
+    "catalogTitle": "All-Over Print Kids Cotton Crew Neck T-Shirt",
+    "sizes": [
+      "2T",
+      "3T",
+      "4T",
+      "5T",
+      6,
+      "6X",
+      7
+    ]
   },
   {
     "id": "option-4",
@@ -29,7 +60,18 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1417,
+    "catalogTitle": "All-Over Print Youth Cotton Crew Neck T-shirt",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-5",
@@ -37,7 +79,22 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1482,
+    "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-6",
@@ -45,7 +102,16 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1474,
+    "catalogTitle": "All-Over Print Cotton Crop Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-7",
@@ -53,7 +119,16 @@
     "category": "Cotton tops",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1475,
+    "catalogTitle": "All-Over Print Women's Cotton Tank Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-8",
@@ -61,7 +136,22 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1419,
+    "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-9",
@@ -69,7 +159,22 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1418,
+    "catalogTitle": "All-Over Print Unisex Cotton Sweatshirt",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-10",
@@ -77,7 +182,10 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1628,
+    "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+    "sizes": []
   },
   {
     "id": "option-11",
@@ -85,7 +193,10 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1590,
+    "catalogTitle": "All-Over Print Oversized Cotton Sweatshirt",
+    "sizes": []
   },
   {
     "id": "option-12",
@@ -93,7 +204,22 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 388,
+    "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-13",
@@ -101,7 +227,22 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 717,
+    "catalogTitle": "All-Over Print Recycled Unisex Zip Hoodie",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-14",
@@ -109,7 +250,22 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 320,
+    "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-15",
@@ -117,7 +273,19 @@
     "category": "Hoodies & sweatshirts",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 919,
+    "catalogTitle": "All-Over Print Men's Sports Warmup Hoodie",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ]
   },
   {
     "id": "option-16",
@@ -125,7 +293,17 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 257,
+    "catalogTitle": "All-Over Print Men's Crew Neck T-Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-17",
@@ -133,7 +311,17 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 261,
+    "catalogTitle": "All-Over Print Women's Crew Neck T-Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-18",
@@ -141,7 +329,18 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 328,
+    "catalogTitle": "All-Over Print Men's Athletic T-Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-19",
@@ -149,7 +348,18 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 329,
+    "catalogTitle": "All-Over Print Women's Athletic T-Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-20",
@@ -157,7 +367,19 @@
     "category": "Shirts & jerseys",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 920,
+    "catalogTitle": "All-Over Print Men's Long Sleeve Shirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ]
   },
   {
     "id": "option-21",
@@ -165,7 +387,22 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 659,
+    "catalogTitle": "All-Over Print Unisex Button Shirt",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-22",
@@ -173,7 +410,10 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 791,
+    "catalogTitle": "Men's All-Over Print Slim Fit Polo Shirt",
+    "sizes": []
   },
   {
     "id": "option-23",
@@ -181,7 +421,17 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 276,
+    "catalogTitle": "All-Over Print Men's Tank Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-24",
@@ -189,7 +439,16 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 202,
+    "catalogTitle": "All-Over Print Women's Tank Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-25",
@@ -197,7 +456,16 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 200,
+    "catalogTitle": "All-Over Print Crop Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-26",
@@ -205,7 +473,22 @@
     "category": "Shirts & jerseys",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 631,
+    "catalogTitle": "All-Over Print Long Sleeve Crop Top",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-27",
@@ -213,7 +496,22 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 644,
+    "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-28",
@@ -221,7 +519,22 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 676,
+    "catalogTitle": "All-Over Print Recycled Unisex Basketball Jersey",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-29",
@@ -229,7 +542,22 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 730,
+    "catalogTitle": "All-Over Print Recycled Hockey Fan Jersey",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-30",
@@ -237,7 +565,22 @@
     "category": "Shirts & jerseys",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 792,
+    "catalogTitle": "All-Over Print Recycled Unisex Baseball Jersey",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-31",
@@ -245,7 +588,18 @@
     "category": "Jackets",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 390,
+    "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-32",
@@ -253,7 +607,18 @@
     "category": "Jackets",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 615,
+    "catalogTitle": "All-Over Print Men's Windbreaker",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-33",
@@ -261,7 +626,17 @@
     "category": "Jackets",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 619,
+    "catalogTitle": "All-Over Print Women's Cropped Windbreaker",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-34",
@@ -269,7 +644,22 @@
     "category": "Jackets",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 801,
+    "catalogTitle": "All-Over Print Recycled Unisex Track Jacket",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-35",
@@ -277,7 +667,22 @@
     "category": "Pants & joggers",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1479,
+    "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-36",
@@ -285,7 +690,22 @@
     "category": "Pants & joggers",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 604,
+    "catalogTitle": "All-Over Print Unisex Wide-Leg Pants",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-37",
@@ -293,7 +713,10 @@
     "category": "Pants & joggers",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 784,
+    "catalogTitle": "All-Over Print Unisex Wide-Leg Joggers",
+    "sizes": []
   },
   {
     "id": "option-38",
@@ -301,7 +724,18 @@
     "category": "Pants & joggers",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 400,
+    "catalogTitle": "All-Over Print Recycled Men\u2019s Joggers",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-39",
@@ -309,7 +743,18 @@
     "category": "Pants & joggers",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 401,
+    "catalogTitle": "All-Over Print Recycled Women\u2019s Joggers",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-40",
@@ -317,7 +762,18 @@
     "category": "Pants & joggers",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 618,
+    "catalogTitle": "All-Over Print Unisex Track Pants",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-41",
@@ -325,7 +781,18 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1481,
+    "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-42",
@@ -333,7 +800,22 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1480,
+    "catalogTitle": "All-Over Print Unisex Cotton Long Shorts",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-43",
@@ -341,7 +823,18 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 330,
+    "catalogTitle": "All-Over Print Unisex Athletic Shorts",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-44",
@@ -349,7 +842,22 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 332,
+    "catalogTitle": "All-Over Print Unisex Athletic Long Shorts",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-45",
@@ -357,7 +865,22 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 693,
+    "catalogTitle": "All-Over Print Recycled Unisex Mesh Shorts",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-46",
@@ -365,7 +888,18 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 298,
+    "catalogTitle": "All-Over Print Shorts",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-47",
@@ -373,7 +907,16 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 281,
+    "catalogTitle": "All-Over Print Yoga Shorts",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-48",
@@ -381,7 +924,18 @@
     "category": "Shorts",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 507,
+    "catalogTitle": "All-Over Print Biker Shorts",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-49",
@@ -389,7 +943,16 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 189,
+    "catalogTitle": "All-Over Print Leggings",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-50",
@@ -397,7 +960,18 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 288,
+    "catalogTitle": "All-Over Print Men's Leggings",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-51",
@@ -405,7 +979,16 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 334,
+    "catalogTitle": "All-Over Print Plus Size Leggings",
+    "sizes": [
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-52",
@@ -413,7 +996,16 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 221,
+    "catalogTitle": "All-Over Print Capri Leggings",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-53",
@@ -421,7 +1013,16 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 242,
+    "catalogTitle": "All-Over Print Yoga Leggings",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-54",
@@ -429,7 +1030,16 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 280,
+    "catalogTitle": "All-Over Print Yoga Capri Leggings",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-55",
@@ -437,7 +1047,10 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 737,
+    "catalogTitle": "All-Over Print Flare Leggings",
+    "sizes": []
   },
   {
     "id": "option-56",
@@ -445,7 +1058,22 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 559,
+    "catalogTitle": "All-Over Print Leggings with Pockets",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-57",
@@ -453,7 +1081,22 @@
     "category": "Leggings",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 558,
+    "catalogTitle": "All-Over Print Crossover Leggings with Pockets",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-58",
@@ -461,7 +1104,18 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1477,
+    "catalogTitle": "All-Over Print Cotton Skater Dress",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-59",
@@ -469,7 +1123,16 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1478,
+    "catalogTitle": "All-Over Print Cotton Bodycon Dress",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-60",
@@ -477,7 +1140,22 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1476,
+    "catalogTitle": "All-Over Print Cotton T-Shirt Dress",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-61",
@@ -485,7 +1163,18 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 315,
+    "catalogTitle": "All-Over Print Skater Dress",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-62",
@@ -493,7 +1182,16 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 198,
+    "catalogTitle": "All-Over Print Bodycon Dress",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ]
   },
   {
     "id": "option-63",
@@ -501,7 +1199,22 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 514,
+    "catalogTitle": "All-Over Print T-Shirt Dress",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-64",
@@ -509,7 +1222,17 @@
     "category": "Dresses & skirts",
     "shape": "dress",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 896,
+    "catalogTitle": "All-Over Print Slip Dress",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-65",
@@ -517,7 +1240,18 @@
     "category": "Dresses & skirts",
     "shape": "skirt",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 314,
+    "catalogTitle": "All-Over Print Skater Skirt",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-66",
@@ -525,7 +1259,17 @@
     "category": "Sports bras",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 282,
+    "catalogTitle": "All-Over Print Sports Bra",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-67",
@@ -533,7 +1277,17 @@
     "category": "Sports bras",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 387,
+    "catalogTitle": "All-Over Print Padded Sports Bra",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-68",
@@ -541,7 +1295,18 @@
     "category": "Sports bras",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 477,
+    "catalogTitle": "All-Over Print Longline Sports Bra",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-69",
@@ -549,7 +1314,18 @@
     "category": "Swimwear",
     "shape": "swimsuit",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 272,
+    "catalogTitle": "All-Over Print One-Piece Swimsuit",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-70",
@@ -557,7 +1333,22 @@
     "category": "Swimwear",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 571,
+    "catalogTitle": "All-Over Print Recycled Swim Trunks",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-71",
@@ -565,7 +1356,22 @@
     "category": "Swimwear",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 667,
+    "catalogTitle": "All-Over Print String Bikini",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-72",
@@ -573,7 +1379,18 @@
     "category": "Swimwear",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 468,
+    "catalogTitle": "All-Over Print High-Waisted Bikini",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-73",
@@ -581,7 +1398,22 @@
     "category": "Swimwear",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 870,
+    "catalogTitle": "All-Over Print Bandeau Bikini",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-74",
@@ -589,7 +1421,18 @@
     "category": "Swimwear",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 469,
+    "catalogTitle": "All-Over Print Padded Bikini Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-75",
@@ -597,7 +1440,22 @@
     "category": "Swimwear",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 668,
+    "catalogTitle": "All-Over Print Padded String Bikini Top",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-76",
@@ -605,7 +1463,22 @@
     "category": "Swimwear",
     "shape": "bra",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 871,
+    "catalogTitle": "All-Over Print Bandeau Bikini Top",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-77",
@@ -613,7 +1486,18 @@
     "category": "Swimwear",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 470,
+    "catalogTitle": "All-Over Print High-Waisted Bikini Bottom",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-78",
@@ -621,7 +1505,22 @@
     "category": "Swimwear",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 669,
+    "catalogTitle": "All-Over Print String Bikini Bottom",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-79",
@@ -629,7 +1528,22 @@
     "category": "Swimwear",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 872,
+    "catalogTitle": "All-Over Print V-Cut Bikini Bottom",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-80",
@@ -637,7 +1551,18 @@
     "category": "Rash guards",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 301,
+    "catalogTitle": "All-Over Print Men's Rash Guard",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-81",
@@ -645,7 +1570,18 @@
     "category": "Rash guards",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 302,
+    "catalogTitle": "All-Over Print Women's Rash Guard",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-82",
@@ -653,7 +1589,22 @@
     "category": "Rash guards",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 836,
+    "catalogTitle": "All-Over Print Men's Short Sleeve Rash Guard",
+    "sizes": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL",
+      "6XL"
+    ]
   },
   {
     "id": "option-83",
@@ -661,7 +1612,18 @@
     "category": "Underwear & pajamas",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 428,
+    "catalogTitle": "All-Over Print Boxer Briefs",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
   },
   {
     "id": "option-84",
@@ -669,7 +1631,17 @@
     "category": "Underwear & pajamas",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 830,
+    "catalogTitle": "All-Over Print Women's Pajama Shorts",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-85",
@@ -677,7 +1649,17 @@
     "category": "Underwear & pajamas",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 829,
+    "catalogTitle": "All-Over Print Women's Pajama Pants",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-86",
@@ -685,7 +1667,17 @@
     "category": "Underwear & pajamas",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 828,
+    "catalogTitle": "All-Over Print Women's Short Sleeve Pajama Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-87",
@@ -693,7 +1685,17 @@
     "category": "Underwear & pajamas",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 827,
+    "catalogTitle": "All-Over Print Women's Long Sleeve Pajama Top",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
   },
   {
     "id": "option-88",
@@ -701,7 +1703,18 @@
     "category": "Kids & youth",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 384,
+    "catalogTitle": "All-Over Print Kids Crew Neck T-Shirt",
+    "sizes": [
+      "2T",
+      "3T",
+      "4T",
+      "5T",
+      6,
+      "6X",
+      7
+    ]
   },
   {
     "id": "option-89",
@@ -709,7 +1722,18 @@
     "category": "Kids & youth",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 385,
+    "catalogTitle": "All-Over Print Youth Crew Neck T-shirt",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-90",
@@ -717,7 +1741,15 @@
     "category": "Kids & youth",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 944,
+    "catalogTitle": "All-Over Print Kids Sports Jersey",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ]
   },
   {
     "id": "option-91",
@@ -725,7 +1757,18 @@
     "category": "Kids & youth",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1646,
+    "catalogTitle": "All-Over Print Youth Recycled Sports Jersey",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-92",
@@ -733,7 +1776,10 @@
     "category": "Kids & youth",
     "shape": "tee",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1644,
+    "catalogTitle": "All-Over Print Youth Recycled Basketball Jersey",
+    "sizes": []
   },
   {
     "id": "option-93",
@@ -741,7 +1787,18 @@
     "category": "Kids & youth",
     "shape": "shorts",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 1645,
+    "catalogTitle": "All-Over Print Youth Recycled Mesh Shorts",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-94",
@@ -749,7 +1806,18 @@
     "category": "Kids & youth",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 322,
+    "catalogTitle": "All-Over Print Kids Leggings",
+    "sizes": [
+      "2T",
+      "3T",
+      "4T",
+      "5T",
+      6,
+      "6X",
+      7
+    ]
   },
   {
     "id": "option-95",
@@ -757,7 +1825,18 @@
     "category": "Kids & youth",
     "shape": "pants",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 323,
+    "catalogTitle": "All-Over Print Youth Leggings",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-96",
@@ -765,7 +1844,18 @@
     "category": "Kids & youth",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 368,
+    "catalogTitle": "All-Over Print Kids Rash Guard",
+    "sizes": [
+      "2T",
+      "3T",
+      "4T",
+      "5T",
+      6,
+      "6X",
+      7
+    ]
   },
   {
     "id": "option-97",
@@ -773,7 +1863,18 @@
     "category": "Kids & youth",
     "shape": "long",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 369,
+    "catalogTitle": "All-Over Print Youth Rash Guard",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-98",
@@ -781,7 +1882,18 @@
     "category": "Kids & youth",
     "shape": "swimsuit",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 345,
+    "catalogTitle": "All-Over Print Kids Swimsuit",
+    "sizes": [
+      "2T",
+      "3T",
+      "4T",
+      "5T",
+      6,
+      "6X",
+      7
+    ]
   },
   {
     "id": "option-99",
@@ -789,7 +1901,18 @@
     "category": "Kids & youth",
     "shape": "swimsuit",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 346,
+    "catalogTitle": "All-Over Print Youth Swimsuit",
+    "sizes": [
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20
+    ]
   },
   {
     "id": "option-100",
@@ -797,7 +1920,14 @@
     "category": "Accessories",
     "shape": "bandana",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 630,
+    "catalogTitle": "All-Over Print Bandana",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ]
   },
   {
     "id": "option-101",
@@ -805,6 +1935,11 @@
     "category": "Accessories",
     "shape": "bag",
     "technique": "All-over print",
-    "availability": "Confirm size, region and price before production"
+    "availability": "Confirm size, region and price before production",
+    "catalogProductId": 279,
+    "catalogTitle": "All-Over Print Backpack",
+    "sizes": [
+      "One size"
+    ]
   }
 ]
