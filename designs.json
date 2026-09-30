@@ -1,0 +1,26 @@
+[
+  {
+    "id": "blood-moon-reaper",
+    "name": "Blood Moon Reaper",
+    "image": "assets/designs/blood-moon-reaper.jpg",
+    "category": "Gothic"
+  },
+  {
+    "id": "skull-crown",
+    "name": "Skull Crown",
+    "image": "assets/designs/skull-crown.jpg",
+    "category": "Gothic"
+  },
+  {
+    "id": "fallen-angel",
+    "name": "Blood Moon Angel",
+    "image": "assets/designs/fallen-angel.jpg",
+    "category": "Gothic"
+  },
+  {
+    "id": "celestial-garden",
+    "name": "Celestial Garden",
+    "image": "assets/designs/celestial-garden.jpg",
+    "category": "Gothic"
+  }
+]
