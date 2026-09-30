@@ -1,5 +1,301 @@
 [
   {
+    "id": "art-c0fe6a0dee55",
+    "name": "Blood Moon Cathedral of Shadows",
+    "image": "assets/designs/art-c0fe6a0dee55.jpg",
+    "thumbnail": "assets/designs/art-c0fe6a0dee55-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-0963746117f9",
+    "name": "Blood Moon Grim Reaper Cathedral",
+    "image": "assets/designs/art-0963746117f9.jpg",
+    "thumbnail": "assets/designs/art-0963746117f9-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-03b60e4f29fb",
+    "name": "Blood Moon Reaper Cathedral(1)",
+    "image": "assets/designs/art-03b60e4f29fb.jpg",
+    "thumbnail": "assets/designs/art-03b60e4f29fb-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-8559196af3bc",
+    "name": "Blood Moon Reaper Cathedral(2)",
+    "image": "assets/designs/art-8559196af3bc.jpg",
+    "thumbnail": "assets/designs/art-8559196af3bc-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-7b54cc0f0fac",
+    "name": "Blood Moon Reaper Cathedral",
+    "image": "assets/designs/art-7b54cc0f0fac.jpg",
+    "thumbnail": "assets/designs/art-7b54cc0f0fac-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-be2005d11ab5",
+    "name": "Blood Moon Reaper Gothic Cascade",
+    "image": "assets/designs/art-be2005d11ab5.jpg",
+    "thumbnail": "assets/designs/art-be2005d11ab5-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-bd7d23b0c914",
+    "name": "Cathedral Beneath the Blood Moon",
+    "image": "assets/designs/art-bd7d23b0c914.jpg",
+    "thumbnail": "assets/designs/art-bd7d23b0c914-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-a8f5baaa1414",
+    "name": "Celestial Wolf Under a Crimson Moon",
+    "image": "assets/designs/art-a8f5baaa1414.jpg",
+    "thumbnail": "assets/designs/art-a8f5baaa1414-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-aaf940674da7",
+    "name": "Crimson Cathedral of the Wraith King",
+    "image": "assets/designs/art-aaf940674da7.jpg",
+    "thumbnail": "assets/designs/art-aaf940674da7-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-b723601cc2ae",
+    "name": "Crimson Eclipse Cathedral Warden",
+    "image": "assets/designs/art-b723601cc2ae.jpg",
+    "thumbnail": "assets/designs/art-b723601cc2ae-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-aca4aa5d1539",
+    "name": "Crimson Grim Reaper Cathedral",
+    "image": "assets/designs/art-aca4aa5d1539.jpg",
+    "thumbnail": "assets/designs/art-aca4aa5d1539-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-954601ee989c",
+    "name": "Crimson Hooded Skull: Gothic Inferno",
+    "image": "assets/designs/art-954601ee989c.jpg",
+    "thumbnail": "assets/designs/art-954601ee989c-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-270a515a60f0",
+    "name": "Crimson Lantern Reaper Sleeve",
+    "image": "assets/designs/art-270a515a60f0.jpg",
+    "thumbnail": "assets/designs/art-270a515a60f0-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-af0e96f4c5a5",
+    "name": "Crimson Moon Necro-Knight",
+    "image": "assets/designs/art-af0e96f4c5a5.jpg",
+    "thumbnail": "assets/designs/art-af0e96f4c5a5-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-8ab6373bf3fa",
+    "name": "Crimson Moon Reaper Cathedral",
+    "image": "assets/designs/art-8ab6373bf3fa.jpg",
+    "thumbnail": "assets/designs/art-8ab6373bf3fa-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-e55e34739b0e",
+    "name": "Crimson Moon Reaper of the Ruins",
+    "image": "assets/designs/art-e55e34739b0e.jpg",
+    "thumbnail": "assets/designs/art-e55e34739b0e-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-eb1d0afcdc2c",
+    "name": "Crimson Reaper Beneath the Blood Moon",
+    "image": "assets/designs/art-eb1d0afcdc2c.jpg",
+    "thumbnail": "assets/designs/art-eb1d0afcdc2c-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-9761dedd1b7e",
+    "name": "Crimson Reaper Gothic Cathedral",
+    "image": "assets/designs/art-9761dedd1b7e.jpg",
+    "thumbnail": "assets/designs/art-9761dedd1b7e-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-9ba10d37acee",
+    "name": "Crimson Reaper Gothic Nightmare",
+    "image": "assets/designs/art-9ba10d37acee.jpg",
+    "thumbnail": "assets/designs/art-9ba10d37acee-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-3ffa5afe7e51",
+    "name": "Crowned Reaper Beneath the Blood Moon",
+    "image": "assets/designs/art-3ffa5afe7e51.jpg",
+    "thumbnail": "assets/designs/art-3ffa5afe7e51-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-d04588438e51",
+    "name": "Eclipsed stag beneath ruined arches",
+    "image": "assets/designs/art-d04588438e51.jpg",
+    "thumbnail": "assets/designs/art-d04588438e51-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-dfe8db47c434",
+    "name": "Gothic Blood Moon Raven Emblem",
+    "image": "assets/designs/art-dfe8db47c434.jpg",
+    "thumbnail": "assets/designs/art-dfe8db47c434-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-d2c03391a741",
+    "name": "Gothic Cathedral Beneath the Blood Moon(1)",
+    "image": "assets/designs/art-d2c03391a741.jpg",
+    "thumbnail": "assets/designs/art-d2c03391a741-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-b3c6f2d74cca",
+    "name": "Gothic Raven Skull Tattoo Panel",
+    "image": "assets/designs/art-b3c6f2d74cca.jpg",
+    "thumbnail": "assets/designs/art-b3c6f2d74cca-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-2fea3ddfee94",
+    "name": "Gothic Reaper Beneath the Blood Moon(1)",
+    "image": "assets/designs/art-2fea3ddfee94.jpg",
+    "thumbnail": "assets/designs/art-2fea3ddfee94-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-92306fade572",
+    "name": "Gothic Reaper Blood Moon Sleeve",
+    "image": "assets/designs/art-92306fade572.jpg",
+    "thumbnail": "assets/designs/art-92306fade572-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-7f616f7c13c6",
+    "name": "Gothic Reaper Hoodie Collection",
+    "image": "assets/designs/art-7f616f7c13c6.jpg",
+    "thumbnail": "assets/designs/art-7f616f7c13c6-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-4b811efcb15f",
+    "name": "Gothic Reaper Under a Blood Moon",
+    "image": "assets/designs/art-4b811efcb15f.jpg",
+    "thumbnail": "assets/designs/art-4b811efcb15f-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-d7c832d6e3a2",
+    "name": "Hooded Raven Guardian with Crimson Lantern",
+    "image": "assets/designs/art-d7c832d6e3a2.jpg",
+    "thumbnail": "assets/designs/art-d7c832d6e3a2-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-2019180c3b7a",
+    "name": "Hooded Reaper Beneath a Crimson Eclipse",
+    "image": "assets/designs/art-2019180c3b7a.jpg",
+    "thumbnail": "assets/designs/art-2019180c3b7a-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-477c9dfff2d5",
+    "name": "Howling Wolf Gothic Blood Moon",
+    "image": "assets/designs/art-477c9dfff2d5.jpg",
+    "thumbnail": "assets/designs/art-477c9dfff2d5-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-5d0560de8d21",
+    "name": "Howling Wolf Under a Blood Moon(1)",
+    "image": "assets/designs/art-5d0560de8d21.jpg",
+    "thumbnail": "assets/designs/art-5d0560de8d21-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-94b3701c89da",
+    "name": "Howling Wolf Under a Blood Moon",
+    "image": "assets/designs/art-94b3701c89da.jpg",
+    "thumbnail": "assets/designs/art-94b3701c89da-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-cbf69d620a75",
+    "name": "Raven, Skull, and Crimson Gothic Lantern",
+    "image": "assets/designs/art-cbf69d620a75.jpg",
+    "thumbnail": "assets/designs/art-cbf69d620a75-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-8517ba0b2e66",
+    "name": "Reaper Beneath the Blood Moon",
+    "image": "assets/designs/art-8517ba0b2e66.jpg",
+    "thumbnail": "assets/designs/art-8517ba0b2e66-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-19d3473a5839",
+    "name": "Skeletal Knight Beneath the Blood Moon",
+    "image": "assets/designs/art-19d3473a5839.jpg",
+    "thumbnail": "assets/designs/art-19d3473a5839-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-2ed84a541fda",
+    "name": "Winged Skeletal Angel Over a Crimson Cathedral",
+    "image": "assets/designs/art-2ed84a541fda.jpg",
+    "thumbnail": "assets/designs/art-2ed84a541fda-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
     "id": "fallen-angel",
     "name": "Blood Moon Angel Over Gothic Ruins",
     "image": "assets/designs/fallen-angel.jpg",

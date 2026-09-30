@@ -1,6 +1,203 @@
 {
-  "updatedAt": "2026-09-30T20:15:38.548Z",
+  "updatedAt": "2026-09-30T22:23:01.746Z",
   "products": [
+    {
+      "id": "476651184",
+      "catalogProductId": 1419,
+      "name": "Unisex cotton hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5527276114",
+          "name": "Unisex cotton hoodie / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276115",
+          "name": "Unisex cotton hoodie / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276116",
+          "name": "Unisex cotton hoodie / S",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276117",
+          "name": "Unisex cotton hoodie / M",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276120",
+          "name": "Unisex cotton hoodie / L",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276122",
+          "name": "Unisex cotton hoodie / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276123",
+          "name": "Unisex cotton hoodie / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276124",
+          "name": "Unisex cotton hoodie / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276125",
+          "name": "Unisex cotton hoodie / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276126",
+          "name": "Unisex cotton hoodie / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527276127",
+          "name": "Unisex cotton hoodie / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476640417",
+      "catalogProductId": 388,
+      "name": "Unisex Hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5527222746",
+          "name": "Unisex Hoodie / 2XS",
+          "price": 53,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222750",
+          "name": "Unisex Hoodie / XS",
+          "price": 54.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222763",
+          "name": "Unisex Hoodie / S",
+          "price": 54.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222764",
+          "name": "Unisex Hoodie / M",
+          "price": 54.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222765",
+          "name": "Unisex Hoodie / L",
+          "price": 54.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222766",
+          "name": "Unisex Hoodie / XL",
+          "price": 54.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222767",
+          "name": "Unisex Hoodie / 2XL",
+          "price": 57,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222768",
+          "name": "Unisex Hoodie / 3XL",
+          "price": 59.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222769",
+          "name": "Unisex Hoodie / 4XL",
+          "price": 62,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222770",
+          "name": "Unisex Hoodie / 5XL",
+          "price": 64.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5527222771",
+          "name": "Unisex Hoodie / 6XL",
+          "price": 67.5,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476636727",
+      "catalogProductId": 388,
+      "name": "Unisex Hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/6ae/6ae048ddfb583172de195f8fb248c7f5_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/6ae/6ae048ddfb583172de195f8fb248c7f5_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5527191130",
+          "name": "Unisex Hoodie",
+          "price": 53,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
     {
       "id": "476596721",
       "catalogProductId": 388,
