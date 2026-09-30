@@ -1,7 +1,7 @@
 name: Custom studio checks
 on:
   push:
-    branches: [custom-design-studio]
+    branches: [custom-design-studio, complete-design-gallery]
   pull_request:
     paths: ['studio.js', '*html', '*json', 'styles.css', 'scripts/qa-studio.mjs']
 permissions:

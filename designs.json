@@ -1,26 +1,586 @@
 [
   {
-    "id": "blood-moon-reaper",
-    "name": "Blood Moon Reaper",
-    "image": "assets/designs/blood-moon-reaper.jpg",
-    "category": "Gothic"
-  },
-  {
-    "id": "skull-crown",
-    "name": "Skull Crown",
-    "image": "assets/designs/skull-crown.jpg",
-    "category": "Gothic"
-  },
-  {
     "id": "fallen-angel",
-    "name": "Blood Moon Angel",
+    "name": "Blood Moon Angel Over Gothic Ruins",
     "image": "assets/designs/fallen-angel.jpg",
-    "category": "Gothic"
+    "thumbnail": "assets/designs/fallen-angel-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
   },
   {
     "id": "celestial-garden",
-    "name": "Celestial Garden",
+    "name": "Gothic Celestial Garden with Moonlit Butterfly",
     "image": "assets/designs/celestial-garden.jpg",
-    "category": "Gothic"
+    "thumbnail": "assets/designs/celestial-garden-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "blood-moon-reaper",
+    "name": "Gothic Reaper Beneath the Blood Moon",
+    "image": "assets/designs/blood-moon-reaper.jpg",
+    "thumbnail": "assets/designs/blood-moon-reaper-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "skull-crown",
+    "name": "Gothic Skull Crown Beneath the Blood Moon",
+    "image": "assets/designs/skull-crown.jpg",
+    "thumbnail": "assets/designs/skull-crown-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-a461e4eb83a2",
+    "name": "Blood Moon Cabin Stalker",
+    "image": "assets/designs/art-a461e4eb83a2.jpg",
+    "thumbnail": "assets/designs/art-a461e4eb83a2-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-5822e734044e",
+    "name": "Blood Moon Drive-In Horror",
+    "image": "assets/designs/art-5822e734044e.jpg",
+    "thumbnail": "assets/designs/art-5822e734044e-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-ac4acd590ca3",
+    "name": "Blood Moon Skullscape",
+    "image": "assets/designs/art-ac4acd590ca3.jpg",
+    "thumbnail": "assets/designs/art-ac4acd590ca3-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-3764bc31b398",
+    "name": "Bloodied Mask and Autumn Blade",
+    "image": "assets/designs/art-3764bc31b398.jpg",
+    "thumbnail": "assets/designs/art-3764bc31b398-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-2bc5419bd35e",
+    "name": "Celestial Butterfly Garden Panel",
+    "image": "assets/designs/art-2bc5419bd35e.jpg",
+    "thumbnail": "assets/designs/art-2bc5419bd35e-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-23d7ea5dfd42",
+    "name": "Celestial Butterfly Moonlit Fantasy",
+    "image": "assets/designs/art-23d7ea5dfd42.jpg",
+    "thumbnail": "assets/designs/art-23d7ea5dfd42-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-01b022dcd10f",
+    "name": "Celestial Crescent Garden",
+    "image": "assets/designs/art-01b022dcd10f.jpg",
+    "thumbnail": "assets/designs/art-01b022dcd10f-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-19702452ad72",
+    "name": "Crimson Reaper Gothic Tattoo Sleeve",
+    "image": "assets/designs/art-19702452ad72.jpg",
+    "thumbnail": "assets/designs/art-19702452ad72-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-298121064e1b",
+    "name": "Distressed Gothic Cathedral Hoodie",
+    "image": "assets/designs/art-298121064e1b.jpg",
+    "thumbnail": "assets/designs/art-298121064e1b-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-0978df275d64",
+    "name": "Distressed Gothic Winged Cross Emblem",
+    "image": "assets/designs/art-0978df275d64.jpg",
+    "thumbnail": "assets/designs/art-0978df275d64-thumb.jpg",
+    "category": "Pocket & emblems",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-931fd835210d",
+    "name": "Distressed Orange Jack-o\u2019-Lantern Emblem",
+    "image": "assets/designs/art-931fd835210d.jpg",
+    "thumbnail": "assets/designs/art-931fd835210d-thumb.jpg",
+    "category": "Pocket & emblems",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-af6b5569e4d2",
+    "name": "Ember-framed jack-o'-lantern badge",
+    "image": "assets/designs/art-af6b5569e4d2.jpg",
+    "thumbnail": "assets/designs/art-af6b5569e4d2-thumb.jpg",
+    "category": "Pocket & emblems",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-55967f5d2c8f",
+    "name": "Final Cut: Haunted Theater",
+    "image": "assets/designs/art-55967f5d2c8f.jpg",
+    "thumbnail": "assets/designs/art-55967f5d2c8f-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-a7f685aa5fea",
+    "name": "Gothic Blood Moon Reverie",
+    "image": "assets/designs/art-a7f685aa5fea.jpg",
+    "thumbnail": "assets/designs/art-a7f685aa5fea-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-7f543a83d427",
+    "name": "Gothic Cathedral Beneath the Blood Moon",
+    "image": "assets/designs/art-7f543a83d427.jpg",
+    "thumbnail": "assets/designs/art-7f543a83d427-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-dd3449d535c7",
+    "name": "Gothic Cathedral Bloodstained Pocket Art",
+    "image": "assets/designs/art-dd3449d535c7.jpg",
+    "thumbnail": "assets/designs/art-dd3449d535c7-thumb.jpg",
+    "category": "Pocket & emblems",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-78c3d3d37096",
+    "name": "Gothic Cathedral Guardian Pocket Art",
+    "image": "assets/designs/art-78c3d3d37096.jpg",
+    "thumbnail": "assets/designs/art-78c3d3d37096-thumb.jpg",
+    "category": "Pocket & emblems",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-81047a0c765c",
+    "name": "Gothic Cathedral Reaper Backpack",
+    "image": "assets/designs/art-81047a0c765c.jpg",
+    "thumbnail": "assets/designs/art-81047a0c765c-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-941d0d2d0504",
+    "name": "Gothic Celestial Butterfly Tapestry",
+    "image": "assets/designs/art-941d0d2d0504.jpg",
+    "thumbnail": "assets/designs/art-941d0d2d0504-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-59db8c6b4c37",
+    "name": "Gothic Halloween Tee Mockup Showcase",
+    "image": "assets/designs/art-59db8c6b4c37.jpg",
+    "thumbnail": "assets/designs/art-59db8c6b4c37-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-3f9412e00893",
+    "name": "Gothic Hood Panels with Moonlit Reapers",
+    "image": "assets/designs/art-3f9412e00893.jpg",
+    "thumbnail": "assets/designs/art-3f9412e00893-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-0c794abce982",
+    "name": "Gothic Moon Butterfly Sweatshirt",
+    "image": "assets/designs/art-0c794abce982.jpg",
+    "thumbnail": "assets/designs/art-0c794abce982-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-b67d9cabeea8",
+    "name": "Gothic Moonlit Reaper Hood Graphic",
+    "image": "assets/designs/art-b67d9cabeea8.jpg",
+    "thumbnail": "assets/designs/art-b67d9cabeea8-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-ffe65fbd1243",
+    "name": "Gothic Moonlit Skull and Roses",
+    "image": "assets/designs/art-ffe65fbd1243.jpg",
+    "thumbnail": "assets/designs/art-ffe65fbd1243-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-3f315dc305b7",
+    "name": "Gothic Moonlit Waterfall Garden",
+    "image": "assets/designs/art-3f315dc305b7.jpg",
+    "thumbnail": "assets/designs/art-3f315dc305b7-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-e834f17ab829",
+    "name": "Gothic Raven Cathedral Hoodie Showcase",
+    "image": "assets/designs/art-e834f17ab829.jpg",
+    "thumbnail": "assets/designs/art-e834f17ab829-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-1ea91b38738e",
+    "name": "Gothic Raven Moon Hood Design",
+    "image": "assets/designs/art-1ea91b38738e.jpg",
+    "thumbnail": "assets/designs/art-1ea91b38738e-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-19b6647be2e7",
+    "name": "Gothic Raven Moon Hood Design(1)",
+    "image": "assets/designs/art-19b6647be2e7.jpg",
+    "thumbnail": "assets/designs/art-19b6647be2e7-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-cfc34aef1bb1",
+    "name": "Gothic Raven Moon Hood Half",
+    "image": "assets/designs/art-cfc34aef1bb1.jpg",
+    "thumbnail": "assets/designs/art-cfc34aef1bb1-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-8c9b949c43de",
+    "name": "Gothic Raven Moon Hood Mockup",
+    "image": "assets/designs/art-8c9b949c43de.jpg",
+    "thumbnail": "assets/designs/art-8c9b949c43de-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-a1bad341cdc3",
+    "name": "Gothic Raven Moon Hood Panel",
+    "image": "assets/designs/art-a1bad341cdc3.jpg",
+    "thumbnail": "assets/designs/art-a1bad341cdc3-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-aa3fbf7b1c0c",
+    "name": "Gothic Reaper Blood Moon Hood Design",
+    "image": "assets/designs/art-aa3fbf7b1c0c.jpg",
+    "thumbnail": "assets/designs/art-aa3fbf7b1c0c-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-e169f52ece18",
+    "name": "Gothic Reaper Cathedral Panel",
+    "image": "assets/designs/art-e169f52ece18.jpg",
+    "thumbnail": "assets/designs/art-e169f52ece18-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-2b4811ab0ef8",
+    "name": "Gothic Reaper Hood Panel with Moonlit Cathedral",
+    "image": "assets/designs/art-2b4811ab0ef8.jpg",
+    "thumbnail": "assets/designs/art-2b4811ab0ef8-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-675a8c814903",
+    "name": "Gothic Reaper Hoodie Mockup Collection",
+    "image": "assets/designs/art-675a8c814903.jpg",
+    "thumbnail": "assets/designs/art-675a8c814903-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-60e82862dddf",
+    "name": "Gothic Reaper Lantern Sleeve Design",
+    "image": "assets/designs/art-60e82862dddf.jpg",
+    "thumbnail": "assets/designs/art-60e82862dddf-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-8d0e10cd78f8",
+    "name": "Gothic Reaper Moonlit Hood Panel",
+    "image": "assets/designs/art-8d0e10cd78f8.jpg",
+    "thumbnail": "assets/designs/art-8d0e10cd78f8-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-dfa7dd469349",
+    "name": "Gothic Skull and Blood Moon Sleeve",
+    "image": "assets/designs/art-dfa7dd469349.jpg",
+    "thumbnail": "assets/designs/art-dfa7dd469349-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-1cf3ea30a8a0",
+    "name": "Gothic Skull and Jack-o\u2019-Lantern Totem",
+    "image": "assets/designs/art-1cf3ea30a8a0.jpg",
+    "thumbnail": "assets/designs/art-1cf3ea30a8a0-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-362b4d3beca9",
+    "name": "Grim Reaper Beneath the Gothic Moon",
+    "image": "assets/designs/art-362b4d3beca9.jpg",
+    "thumbnail": "assets/designs/art-362b4d3beca9-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-0693f21364cc",
+    "name": "Grungy Haunted Mansion Under a Blood Moon",
+    "image": "assets/designs/art-0693f21364cc.jpg",
+    "thumbnail": "assets/designs/art-0693f21364cc-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-28d9007cc6f4",
+    "name": "Grungy Orange Bat Flight",
+    "image": "assets/designs/art-28d9007cc6f4.jpg",
+    "thumbnail": "assets/designs/art-28d9007cc6f4-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-9bbe6966ac39",
+    "name": "Halloween Reaper T-Shirt Mockup Guide",
+    "image": "assets/designs/art-9bbe6966ac39.jpg",
+    "thumbnail": "assets/designs/art-9bbe6966ac39-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-c82796a39437",
+    "name": "Haunted Mansion Beneath the Blood Moon",
+    "image": "assets/designs/art-c82796a39437.jpg",
+    "thumbnail": "assets/designs/art-c82796a39437-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-0ddcd0ac933a",
+    "name": "Haunted Mansion Beneath the Blood Moon(1)",
+    "image": "assets/designs/art-0ddcd0ac933a.jpg",
+    "thumbnail": "assets/designs/art-0ddcd0ac933a-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-bc8c8f2b7e17",
+    "name": "Haunted Moonlit Gate and Mansion",
+    "image": "assets/designs/art-bc8c8f2b7e17.jpg",
+    "thumbnail": "assets/designs/art-bc8c8f2b7e17-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-b36f76d9a18b",
+    "name": "Haunted Moonlit Pumpkin Manor",
+    "image": "assets/designs/art-b36f76d9a18b.jpg",
+    "thumbnail": "assets/designs/art-b36f76d9a18b-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-6039295fe2d4",
+    "name": "Hooded Reaper Beneath the Blood Moon",
+    "image": "assets/designs/art-6039295fe2d4.jpg",
+    "thumbnail": "assets/designs/art-6039295fe2d4-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-bd20e882efdd",
+    "name": "Hooded Reaper and Glowing Jack-o'-Lantern",
+    "image": "assets/designs/art-bd20e882efdd.jpg",
+    "thumbnail": "assets/designs/art-bd20e882efdd-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-901503b27de5",
+    "name": "Hooded Skullblade Horror Montage",
+    "image": "assets/designs/art-901503b27de5.jpg",
+    "thumbnail": "assets/designs/art-901503b27de5-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-a47dd33852f2",
+    "name": "Midnight Cinema Massacre",
+    "image": "assets/designs/art-a47dd33852f2.jpg",
+    "thumbnail": "assets/designs/art-a47dd33852f2-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-48f8bdcd64d7",
+    "name": "Midnight Exit: Final Reel",
+    "image": "assets/designs/art-48f8bdcd64d7.jpg",
+    "thumbnail": "assets/designs/art-48f8bdcd64d7-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-a27fab82d306",
+    "name": "Midnight Mountain T-Shirt Mockup Guide",
+    "image": "assets/designs/art-a27fab82d306.jpg",
+    "thumbnail": "assets/designs/art-a27fab82d306-thumb.jpg",
+    "category": "Mockups & references",
+    "kind": "reference"
+  },
+  {
+    "id": "art-e2f9ba2aa7a5",
+    "name": "Midnight Movie Massacre Drive-In",
+    "image": "assets/designs/art-e2f9ba2aa7a5.jpg",
+    "thumbnail": "assets/designs/art-e2f9ba2aa7a5-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-dfd258e47873",
+    "name": "Midnight Movie Mayhem Projector",
+    "image": "assets/designs/art-dfd258e47873.jpg",
+    "thumbnail": "assets/designs/art-dfd258e47873-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-f42c57c54925",
+    "name": "Midnight October 31 Horror Poster",
+    "image": "assets/designs/art-f42c57c54925.jpg",
+    "thumbnail": "assets/designs/art-f42c57c54925-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-bc3576cdf946",
+    "name": "Midnight Scream at the Haunted Cinema",
+    "image": "assets/designs/art-bc3576cdf946.jpg",
+    "thumbnail": "assets/designs/art-bc3576cdf946-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-16d75538d47d",
+    "name": "Midnight Terror: Haunted Moonlit Horror",
+    "image": "assets/designs/art-16d75538d47d.jpg",
+    "thumbnail": "assets/designs/art-16d75538d47d-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-e616a63e4b3f",
+    "name": "Mirrored Gothic Moon Hood Design",
+    "image": "assets/designs/art-e616a63e4b3f.jpg",
+    "thumbnail": "assets/designs/art-e616a63e4b3f-thumb.jpg",
+    "category": "Hood panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-4500801aa0bb",
+    "name": "Moonlit Gothic Cathedral of the Fallen Angel",
+    "image": "assets/designs/art-4500801aa0bb.jpg",
+    "thumbnail": "assets/designs/art-4500801aa0bb-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-812cdbbaf172",
+    "name": "Moonlit Gothic Reaper Cathedral",
+    "image": "assets/designs/art-812cdbbaf172.jpg",
+    "thumbnail": "assets/designs/art-812cdbbaf172-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-da3a8d4bed02",
+    "name": "Moonlit Haunted Mansion and Jack-o\u2019-Lanterns",
+    "image": "assets/designs/art-da3a8d4bed02.jpg",
+    "thumbnail": "assets/designs/art-da3a8d4bed02-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-7642e6642a46",
+    "name": "Neon Blood Moon Graveyard",
+    "image": "assets/designs/art-7642e6642a46.jpg",
+    "thumbnail": "assets/designs/art-7642e6642a46-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-e555eca8ff89",
+    "name": "Pumpkin Reaper Beneath the Blood Moon",
+    "image": "assets/designs/art-e555eca8ff89.jpg",
+    "thumbnail": "assets/designs/art-e555eca8ff89-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-351d2138769e",
+    "name": "Pumpkin Reaper at Rivervale Theater",
+    "image": "assets/designs/art-351d2138769e.jpg",
+    "thumbnail": "assets/designs/art-351d2138769e-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-5bf077d8547a",
+    "name": "Raven Gothic Cathedral Relic",
+    "image": "assets/designs/art-5bf077d8547a.jpg",
+    "thumbnail": "assets/designs/art-5bf077d8547a-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-e0442968fba4",
+    "name": "Ravens Over the Haunted Cathedral",
+    "image": "assets/designs/art-e0442968fba4.jpg",
+    "thumbnail": "assets/designs/art-e0442968fba4-thumb.jpg",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-a1942fc2693a",
+    "name": "Screaming Skull Midnight Movie Poster",
+    "image": "assets/designs/art-a1942fc2693a.jpg",
+    "thumbnail": "assets/designs/art-a1942fc2693a-thumb.jpg",
+    "category": "Halloween & horror",
+    "kind": "artwork"
+  },
+  {
+    "id": "art-9e3ab2375cd8",
+    "name": "Terror Tapes: Haunted Midnight VHS",
+    "image": "assets/designs/art-9e3ab2375cd8.jpg",
+    "thumbnail": "assets/designs/art-9e3ab2375cd8-thumb.jpg",
+    "category": "Sleeve panels",
+    "kind": "artwork"
   }
 ]
