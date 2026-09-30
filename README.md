@@ -24,3 +24,12 @@ The token remains in GitHub Actions secrets. The importer publishes an allowlist
 
 Local preview: `python -m http.server 8000` from the repository root. Open `http://localhost:8000`.
 Printful API reference: https://developers.printful.com/docs/
+
+## Custom studio
+- `catalog.html`: 101 curated AOP clothing/item options from the reviewed Printful catalog. Garment illustrations are concepts, not supplier mockups. Availability and prices must be confirmed; this is separate from the 10 purchasable synced products.
+- `designs.html`: four original Midnight artwork images, device-local like/dislike preferences, Choose design flow.
+- `custom.html`: gallery or local PNG/JPG/WebP upload (20 MB max), garment selection, placement/size/color concept, quantity/size notes, IndexedDB draft persistence, and downloadable JSON brief with artwork and preview.
+- Uploads remain on the customer's device. Drafts are NOT orders; there is no server submission or payment. Never use a generic illustrated concept as a manufacturing file.
+- To enable orders: add authenticated server storage, artwork validation, confirmed Printful catalog variant mappings, panel-specific print files and supplier mockup generation, shipping/tax quotes, payment webhook verification and server-side fulfillment. Keep API tokens server-side. Display a final price and exact approved mockup before payment.
+- Clothing catalog reference: https://www.printful.com/custom/collections/all-over-print (reviewed September 2026; regional availability changes).
+- Run `node scripts/qa-studio.mjs` with Playwright and the static server on port 8000. GitHub Actions checks studio and existing storefront.

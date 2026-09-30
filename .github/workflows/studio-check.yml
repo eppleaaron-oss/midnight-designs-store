@@ -1,0 +1,28 @@
+name: Custom studio checks
+on:
+  push:
+    branches: [custom-design-studio]
+  pull_request:
+    paths: ['studio.js', '*html', '*json', 'styles.css', 'scripts/qa-studio.mjs']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Check storefront and custom studio
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-store.mjs
+          node scripts/qa-studio.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: custom-studio-previews
+          path: qa-*.png

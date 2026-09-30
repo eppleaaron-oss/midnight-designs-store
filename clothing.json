@@ -1,0 +1,810 @@
+[
+  {
+    "id": "option-1",
+    "name": "Men\u2019s cotton crewneck tee",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-2",
+    "name": "Women\u2019s cotton crewneck tee",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-3",
+    "name": "Kids cotton crewneck tee",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-4",
+    "name": "Youth cotton crewneck tee",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-5",
+    "name": "Oversized cotton tee",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-6",
+    "name": "Cotton crop top",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-7",
+    "name": "Women\u2019s cotton tank top",
+    "category": "Cotton tops",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-8",
+    "name": "Unisex cotton hoodie",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-9",
+    "name": "Unisex cotton sweatshirt",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-10",
+    "name": "Oversized cotton hoodie",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-11",
+    "name": "Oversized cotton sweatshirt",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-12",
+    "name": "Recycled unisex hoodie",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-13",
+    "name": "Recycled unisex zip hoodie",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-14",
+    "name": "Recycled unisex sweatshirt",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-15",
+    "name": "Men\u2019s sports warmup hoodie",
+    "category": "Hoodies & sweatshirts",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-16",
+    "name": "Men\u2019s crewneck tee",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-17",
+    "name": "Women\u2019s crewneck tee",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-18",
+    "name": "Men\u2019s athletic tee",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-19",
+    "name": "Women\u2019s athletic tee",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-20",
+    "name": "Men\u2019s long-sleeve shirt",
+    "category": "Shirts & jerseys",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-21",
+    "name": "Unisex button shirt",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-22",
+    "name": "Men\u2019s slim-fit polo",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-23",
+    "name": "Men\u2019s tank top",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-24",
+    "name": "Women\u2019s tank top",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-25",
+    "name": "Crop top",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-26",
+    "name": "Recycled long-sleeve crop top",
+    "category": "Shirts & jerseys",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-27",
+    "name": "Recycled sports jersey",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-28",
+    "name": "Recycled basketball jersey",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-29",
+    "name": "Recycled hockey fan jersey",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-30",
+    "name": "Recycled baseball jersey",
+    "category": "Shirts & jerseys",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-31",
+    "name": "Unisex bomber jacket",
+    "category": "Jackets",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-32",
+    "name": "Men\u2019s windbreaker",
+    "category": "Jackets",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-33",
+    "name": "Women\u2019s cropped windbreaker",
+    "category": "Jackets",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-34",
+    "name": "Recycled unisex track jacket",
+    "category": "Jackets",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-35",
+    "name": "Cotton wide-leg pants",
+    "category": "Pants & joggers",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-36",
+    "name": "Unisex wide-leg pants",
+    "category": "Pants & joggers",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-37",
+    "name": "Unisex wide-leg joggers",
+    "category": "Pants & joggers",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-38",
+    "name": "Recycled men\u2019s joggers",
+    "category": "Pants & joggers",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-39",
+    "name": "Recycled women\u2019s joggers",
+    "category": "Pants & joggers",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-40",
+    "name": "Unisex track pants",
+    "category": "Pants & joggers",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-41",
+    "name": "Cotton shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-42",
+    "name": "Cotton long shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-43",
+    "name": "Unisex athletic shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-44",
+    "name": "Unisex athletic long shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-45",
+    "name": "Recycled unisex mesh shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-46",
+    "name": "Shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-47",
+    "name": "Yoga shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-48",
+    "name": "Biker shorts",
+    "category": "Shorts",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-49",
+    "name": "Leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-50",
+    "name": "Men\u2019s leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-51",
+    "name": "Plus-size leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-52",
+    "name": "Capri leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-53",
+    "name": "Yoga leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-54",
+    "name": "Yoga capri leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-55",
+    "name": "Flare leggings",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-56",
+    "name": "Recycled leggings with pockets",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-57",
+    "name": "Recycled crossover leggings with pockets",
+    "category": "Leggings",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-58",
+    "name": "Cotton skater dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-59",
+    "name": "Cotton bodycon dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-60",
+    "name": "Cotton T-shirt dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-61",
+    "name": "Skater dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-62",
+    "name": "Bodycon dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-63",
+    "name": "T-shirt dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-64",
+    "name": "Slip dress",
+    "category": "Dresses & skirts",
+    "shape": "dress",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-65",
+    "name": "Skater skirt",
+    "category": "Dresses & skirts",
+    "shape": "skirt",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-66",
+    "name": "Sports bra",
+    "category": "Sports bras",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-67",
+    "name": "Padded sports bra",
+    "category": "Sports bras",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-68",
+    "name": "Recycled longline sports bra",
+    "category": "Sports bras",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-69",
+    "name": "One-piece swimsuit",
+    "category": "Swimwear",
+    "shape": "swimsuit",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-70",
+    "name": "Recycled swim trunks",
+    "category": "Swimwear",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-71",
+    "name": "Recycled string bikini",
+    "category": "Swimwear",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-72",
+    "name": "Recycled high-waisted bikini",
+    "category": "Swimwear",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-73",
+    "name": "Recycled bandeau bikini",
+    "category": "Swimwear",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-74",
+    "name": "Recycled padded bikini top",
+    "category": "Swimwear",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-75",
+    "name": "Recycled padded string bikini top",
+    "category": "Swimwear",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-76",
+    "name": "Recycled bandeau bikini top",
+    "category": "Swimwear",
+    "shape": "bra",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-77",
+    "name": "Recycled high-waisted bikini bottom",
+    "category": "Swimwear",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-78",
+    "name": "Recycled string bikini bottom",
+    "category": "Swimwear",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-79",
+    "name": "Recycled V-cut bikini bottom",
+    "category": "Swimwear",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-80",
+    "name": "Men\u2019s rash guard",
+    "category": "Rash guards",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-81",
+    "name": "Women\u2019s rash guard",
+    "category": "Rash guards",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-82",
+    "name": "Men\u2019s recycled short-sleeve rash guard",
+    "category": "Rash guards",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-83",
+    "name": "Boxer briefs",
+    "category": "Underwear & pajamas",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-84",
+    "name": "Women\u2019s pajama shorts",
+    "category": "Underwear & pajamas",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-85",
+    "name": "Women\u2019s pajama pants",
+    "category": "Underwear & pajamas",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-86",
+    "name": "Women\u2019s short-sleeve pajama top",
+    "category": "Underwear & pajamas",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-87",
+    "name": "Women\u2019s long-sleeve pajama top",
+    "category": "Underwear & pajamas",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-88",
+    "name": "Kids crewneck tee",
+    "category": "Kids & youth",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-89",
+    "name": "Youth crewneck tee",
+    "category": "Kids & youth",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-90",
+    "name": "Kids sports jersey",
+    "category": "Kids & youth",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-91",
+    "name": "Youth recycled sports jersey",
+    "category": "Kids & youth",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-92",
+    "name": "Youth recycled basketball jersey",
+    "category": "Kids & youth",
+    "shape": "tee",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-93",
+    "name": "Youth recycled mesh shorts",
+    "category": "Kids & youth",
+    "shape": "shorts",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-94",
+    "name": "Kids leggings",
+    "category": "Kids & youth",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-95",
+    "name": "Youth leggings",
+    "category": "Kids & youth",
+    "shape": "pants",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-96",
+    "name": "Kids rash guard",
+    "category": "Kids & youth",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-97",
+    "name": "Youth rash guard",
+    "category": "Kids & youth",
+    "shape": "long",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-98",
+    "name": "Kids swimsuit",
+    "category": "Kids & youth",
+    "shape": "swimsuit",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-99",
+    "name": "Youth swimsuit",
+    "category": "Kids & youth",
+    "shape": "swimsuit",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-100",
+    "name": "All-over print bandana",
+    "category": "Accessories",
+    "shape": "bandana",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  },
+  {
+    "id": "option-101",
+    "name": "Backpack",
+    "category": "Accessories",
+    "shape": "bag",
+    "technique": "All-over print",
+    "availability": "Confirm size, region and price before production"
+  }
+]
