@@ -15,7 +15,7 @@ await page.goto('http://127.0.0.1:8000/shop.html');
 await page.waitForSelector('.product-card');
 const count=await page.locator('.product-card').count();assert(count>0);
 await page.locator('.product-image').first().click();
-await page.waitForSelector('#add:not([disabled])');await page.waitForSelector('#sizeGuide table');await page.locator('#measurementUnits').selectOption('cm');assert.match(await page.locator('#sizeGuide').innerText(),/\(cm\)/);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+await page.waitForSelector('#add:not([disabled])');await page.waitForSelector('#sizeGuide details[open] table');await page.locator('#measurementUnits').selectOption('cm');assert.match(await page.locator('#sizeGuide').innerText(),/\(cm\)/);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
 const unitPrice=Number((await page.locator('#price').innerText()).replace(/[^0-9.]/g,''));
 await page.locator('#add').click();
 await page.goto('http://127.0.0.1:8000/cart.html');
