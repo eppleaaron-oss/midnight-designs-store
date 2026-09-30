@@ -1,9 +1,9 @@
 name: Custom studio checks
 on:
   push:
-    branches: [custom-design-studio, complete-design-gallery]
+    branches: [custom-design-studio, complete-design-gallery, garment-placement-map]
   pull_request:
-    paths: ['studio.js', '*html', '*json', 'styles.css', 'scripts/qa-studio.mjs']
+    paths: ['studio.js', '*html', '*json', 'styles.css', 'scripts/qa-studio.mjs', 'garment-map.js', 'scripts/qa-map.mjs']
 permissions:
   contents: read
 jobs:
@@ -20,7 +20,7 @@ jobs:
         run: |
           python3 -m http.server 8000 &
           node scripts/qa-store.mjs
-          node scripts/qa-studio.mjs
+          node scripts/qa-map.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
