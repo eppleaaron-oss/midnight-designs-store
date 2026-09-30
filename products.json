@@ -1,8 +1,28 @@
 {
-  "updatedAt": "2026-09-30T18:15:47.286Z",
+  "updatedAt": "2026-09-30T20:15:38.548Z",
   "products": [
     {
+      "id": "476596721",
+      "catalogProductId": 388,
+      "name": "Unisex Hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/c6f/c6ff9772ed83e56ca4931cc136360624_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/c6f/c6ff9772ed83e56ca4931cc136360624_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5526949202",
+          "name": "Unisex Hoodie",
+          "price": 53,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
       "id": "476580639",
+      "catalogProductId": 1419,
       "name": "Unisex cotton hoodie",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/57d/57d7a98bbe8895abaee3ff7c4fd0fe39_preview.png",
@@ -91,6 +111,7 @@
     },
     {
       "id": "476570540",
+      "catalogProductId": 1628,
       "name": "Oversized Cotton Hoodie",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/d99/d99f73f75ee041207f6b0194fc0c086a_preview.png",
@@ -179,6 +200,7 @@
     },
     {
       "id": "476559553",
+      "catalogProductId": 1628,
       "name": "Oversized Cotton Hoodie",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/fbd/fbd7852d826b2e79f7ca2b62daa1de2a_preview.png",
@@ -267,6 +289,7 @@
     },
     {
       "id": "476553400",
+      "catalogProductId": 1628,
       "name": "Oversized Cotton Hoodie",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/b55/b5547d90770c7eee01fc3b8eb803b456_preview.png",
@@ -355,6 +378,7 @@
     },
     {
       "id": "476397566",
+      "catalogProductId": 350,
       "name": "Fanny Pack",
       "category": "Other pieces",
       "image": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png",
@@ -380,6 +404,7 @@
     },
     {
       "id": "476395722",
+      "catalogProductId": 420,
       "name": "Neck Gaiter",
       "category": "Other pieces",
       "image": "https://files.cdn.printful.com/files/cee/cee2e975030cfc11e67ed82acc92bfed_preview.png",
@@ -398,6 +423,7 @@
     },
     {
       "id": "476394293",
+      "catalogProductId": 963,
       "name": "Utility backpack",
       "category": "Accessories",
       "image": "https://files.cdn.printful.com/files/5bf/5bf947675adf57cf6f46d042dfd794bb_preview.png",
@@ -416,6 +442,7 @@
     },
     {
       "id": "476368665",
+      "catalogProductId": 1419,
       "name": "Unisex cotton hoodie",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/c5a/c5a439e32c6ae85f5fb22421561f7790_preview.png",
@@ -504,6 +531,7 @@
     },
     {
       "id": "476368662",
+      "catalogProductId": 1419,
       "name": "Unisex cotton hoodie",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/ab2/ab227f79d65bc4c4fd55d73f9eaed107_preview.png",
@@ -592,6 +620,7 @@
     },
     {
       "id": "476368661",
+      "catalogProductId": 328,
       "name": "Men's athletic t-shirt",
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/907/907ed07dd3068dc5034d52e8ad72a8aa_preview.png",
@@ -652,11 +681,12 @@
     },
     {
       "id": "476368660",
+      "catalogProductId": 279,
       "name": "Backpack",
       "category": "Accessories",
-      "image": "https://files.cdn.printful.com/files/b72/b72c3621c044a282920c14601f61869b_preview.png",
+      "image": "https://files.cdn.printful.com/files/53f/53fccade605735d6cc40d7f31203f057_preview.png",
       "images": [
-        "https://files.cdn.printful.com/files/b72/b72c3621c044a282920c14601f61869b_preview.png"
+        "https://files.cdn.printful.com/files/53f/53fccade605735d6cc40d7f31203f057_preview.png"
       ],
       "variants": [
         {
@@ -670,6 +700,7 @@
     },
     {
       "id": "476368659",
+      "catalogProductId": 328,
       "name": "Men's athletic t-shirt",
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/0e3/0e3955cd70f1f48ed6b9faba2a2fce4c_preview.png",
@@ -730,6 +761,7 @@
     },
     {
       "id": "476368658",
+      "catalogProductId": 328,
       "name": "Men's athletic t-shirt",
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/5ce/5ce375676b8400776a9ce7a09991eafc_preview.png",
@@ -790,6 +822,7 @@
     },
     {
       "id": "476368657",
+      "catalogProductId": 328,
       "name": "Men's athletic t-shirt",
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/426/426f2210f4f9d71a5229dc595342b18c_preview.png",
@@ -850,6 +883,7 @@
     },
     {
       "id": "476368655",
+      "catalogProductId": 242,
       "name": "Yoga Leggings",
       "category": "Bottoms",
       "image": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
@@ -896,6 +930,7 @@
     },
     {
       "id": "476368653",
+      "catalogProductId": 630,
       "name": "All-over print bandana",
       "category": "Accessories",
       "image": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
@@ -928,6 +963,7 @@
     },
     {
       "id": "476363019",
+      "catalogProductId": 1418,
       "name": "Unisex cotton sweatshirt",
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png",
