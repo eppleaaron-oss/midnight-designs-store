@@ -8,7 +8,7 @@ export function normalize(detail){
  const previews=(detail.sync_variants||[]).flatMap(v=>(v.files||[]).filter(f=>f.type==='preview').map(f=>f.preview_url||f.url)).filter(u=>typeof u==='string'&&u.startsWith('https://'));
  const name=p.name||'Midnight Designs';let category=/hoodie|sweatshirt|crewneck/i.test(name)?'Hoodies & sweatshirts':/jacket|coat/i.test(name)?'Outerwear':/shirt|tee/i.test(name)?'Tees':/leggings|pants|shorts|joggers/i.test(name)?'Bottoms':/backpack|bag|bandana|hat|beanie/i.test(name)?'Accessories':'Other pieces';
  const image=previews[0]||p.thumbnail_url||'';
- return {id:String(p.id),name,category,image,images:[...new Set(previews)].slice(0,12),variants};
+ const catalogProductId=(detail.sync_variants||[]).find(v=>v.product?.product_id)?.product.product_id;return {id:String(p.id),catalogProductId,name,category,image,images:[...new Set(previews)].slice(0,12),variants};
 }
 export async function sync({token=process.env.PRINTFUL_TOKEN,storeId=process.env.PRINTFUL_STORE_ID,endpoint=process.env.PRINTFUL_PRODUCTS_ENDPOINT||'store',output='products.json',fetcher=fetch}={}){
  if(!token)throw Error('Configure the PRINTFUL_TOKEN GitHub Actions secret before syncing.');
