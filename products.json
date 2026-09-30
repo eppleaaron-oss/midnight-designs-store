@@ -1,6 +1,419 @@
 {
-  "updatedAt": "2026-09-29T22:33:57.235Z",
+  "updatedAt": "2026-09-30T18:15:47.286Z",
   "products": [
+    {
+      "id": "476580639",
+      "name": "Unisex cotton hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/57d/57d7a98bbe8895abaee3ff7c4fd0fe39_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/57d/57d7a98bbe8895abaee3ff7c4fd0fe39_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5526859205",
+          "name": "Unisex cotton hoodie / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859206",
+          "name": "Unisex cotton hoodie / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859207",
+          "name": "Unisex cotton hoodie / S",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859208",
+          "name": "Unisex cotton hoodie / M",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859209",
+          "name": "Unisex cotton hoodie / L",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859210",
+          "name": "Unisex cotton hoodie / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859211",
+          "name": "Unisex cotton hoodie / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859212",
+          "name": "Unisex cotton hoodie / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859213",
+          "name": "Unisex cotton hoodie / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859214",
+          "name": "Unisex cotton hoodie / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526859215",
+          "name": "Unisex cotton hoodie / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476570540",
+      "name": "Oversized Cotton Hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/d99/d99f73f75ee041207f6b0194fc0c086a_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/d99/d99f73f75ee041207f6b0194fc0c086a_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5526789932",
+          "name": "Oversized Cotton Hoodie / 2XS",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789933",
+          "name": "Oversized Cotton Hoodie / XS",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789934",
+          "name": "Oversized Cotton Hoodie / S",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789935",
+          "name": "Oversized Cotton Hoodie / M",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789936",
+          "name": "Oversized Cotton Hoodie / L",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789937",
+          "name": "Oversized Cotton Hoodie / XL",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789938",
+          "name": "Oversized Cotton Hoodie / 2XL",
+          "price": 76,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789939",
+          "name": "Oversized Cotton Hoodie / 3XL",
+          "price": 78.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789940",
+          "name": "Oversized Cotton Hoodie / 4XL",
+          "price": 81,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789941",
+          "name": "Oversized Cotton Hoodie / 5XL",
+          "price": 83.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526789942",
+          "name": "Oversized Cotton Hoodie / 6XL",
+          "price": 86,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476559553",
+      "name": "Oversized Cotton Hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/fbd/fbd7852d826b2e79f7ca2b62daa1de2a_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/fbd/fbd7852d826b2e79f7ca2b62daa1de2a_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5526694168",
+          "name": "Oversized Cotton Hoodie / 2XS",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694169",
+          "name": "Oversized Cotton Hoodie / XS",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694170",
+          "name": "Oversized Cotton Hoodie / S",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694171",
+          "name": "Oversized Cotton Hoodie / M",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694172",
+          "name": "Oversized Cotton Hoodie / L",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694173",
+          "name": "Oversized Cotton Hoodie / XL",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694174",
+          "name": "Oversized Cotton Hoodie / 2XL",
+          "price": 76,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694175",
+          "name": "Oversized Cotton Hoodie / 3XL",
+          "price": 78.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694177",
+          "name": "Oversized Cotton Hoodie / 4XL",
+          "price": 81,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694178",
+          "name": "Oversized Cotton Hoodie / 5XL",
+          "price": 83.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526694179",
+          "name": "Oversized Cotton Hoodie / 6XL",
+          "price": 86,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476553400",
+      "name": "Oversized Cotton Hoodie",
+      "category": "Hoodies & sweatshirts",
+      "image": "https://files.cdn.printful.com/files/b55/b5547d90770c7eee01fc3b8eb803b456_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/b55/b5547d90770c7eee01fc3b8eb803b456_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5526647533",
+          "name": "Oversized Cotton Hoodie / 2XS",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647534",
+          "name": "Oversized Cotton Hoodie / XS",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647535",
+          "name": "Oversized Cotton Hoodie / S",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647536",
+          "name": "Oversized Cotton Hoodie / M",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647537",
+          "name": "Oversized Cotton Hoodie / L",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647538",
+          "name": "Oversized Cotton Hoodie / XL",
+          "price": 73,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647539",
+          "name": "Oversized Cotton Hoodie / 2XL",
+          "price": 76,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647540",
+          "name": "Oversized Cotton Hoodie / 3XL",
+          "price": 78.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647541",
+          "name": "Oversized Cotton Hoodie / 4XL",
+          "price": 81,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647542",
+          "name": "Oversized Cotton Hoodie / 5XL",
+          "price": 83.5,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5526647543",
+          "name": "Oversized Cotton Hoodie / 6XL",
+          "price": 86,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476397566",
+      "name": "Fanny Pack",
+      "category": "Other pieces",
+      "image": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5525670040",
+          "name": "Fanny Pack / S/M",
+          "price": 33,
+          "currency": "USD",
+          "availability": "active"
+        },
+        {
+          "id": "5525670041",
+          "name": "Fanny Pack / M/L",
+          "price": 33,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476395722",
+      "name": "Neck Gaiter",
+      "category": "Other pieces",
+      "image": "https://files.cdn.printful.com/files/cee/cee2e975030cfc11e67ed82acc92bfed_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/cee/cee2e975030cfc11e67ed82acc92bfed_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5525663057",
+          "name": "Neck Gaiter",
+          "price": 13.5,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
+    {
+      "id": "476394293",
+      "name": "Utility backpack",
+      "category": "Accessories",
+      "image": "https://files.cdn.printful.com/files/5bf/5bf947675adf57cf6f46d042dfd794bb_preview.png",
+      "images": [
+        "https://files.cdn.printful.com/files/5bf/5bf947675adf57cf6f46d042dfd794bb_preview.png"
+      ],
+      "variants": [
+        {
+          "id": "5525656013",
+          "name": "Utility backpack",
+          "price": 60,
+          "currency": "USD",
+          "availability": "active"
+        }
+      ]
+    },
     {
       "id": "476368665",
       "name": "Unisex cotton hoodie",
