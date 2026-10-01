@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {chromium} from 'playwright';
+import {calculatePrice} from '../pricing-math.mjs';
+import {applyPrices,validateChanges} from './pricing.mjs';
+assert.equal(calculatePrice(20,5,3,0.3,40,'margin'),44.39);
+assert.equal(calculatePrice(20,0,0,0,50,'markup'),30);
+assert.equal(calculatePrice(20,0,0,0,10,'fixed'),30);
+assert.throws(()=>calculatePrice(20,0,3,0,98,'margin'));
+const products=[{variants:[{id:'v',price:60}]}];
+assert.throws(()=>validateChanges({version:1,prices:{z:30}},products));
+assert.throws(()=>validateChanges({version:1,prices:{v:-1}},products));
+assert.throws(()=>validateChanges({version:1,prices:{v:1.111}},products));
+applyPrices(products,{prices:{v:30}});assert.equal(products[0].variants[0].price,30);
+const b=await chromium.launch({headless:true}),p=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];
+p.on('pageerror',e=>errors.push(e.message));
+await p.goto('http://localhost:8000/pricing.html');await p.locator('#rows tr').first().waitFor();
+assert.ok(await p.locator('#rows tr').count()>100);
+await p.locator('#rows tr').first().locator('input').nth(0).fill('20');
+await p.locator('#rows tr').first().locator('input').nth(0).press('Tab');
+await p.locator('#calculate').click();await p.locator('#prepare').click();
+const changes=JSON.parse(await p.locator('#changes').inputValue());
+assert.ok(Object.values(changes.prices).includes(33.34));
+await p.reload();await p.locator('#rows tr').first().waitFor();assert.equal(await p.locator('#rows tr').first().locator('input').nth(2).inputValue(),'33.34');
+for(const width of [1440,390]){await p.setViewportSize({width,height:1000});assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await p.screenshot({path:'qa-pricing-'+width+'.png'});}
+assert.deepEqual(errors,[]);await b.close();console.log('Pricing math, validation, draft persistence and responsive browser checks passed');

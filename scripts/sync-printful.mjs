@@ -1,5 +1,6 @@
 import {writeFile,mkdir,rename,readFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
+import {applyPrices} from './pricing.mjs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 export function normalize(detail){
  const p=detail.sync_product;if(!p||p.is_ignored)return null;
@@ -17,6 +18,7 @@ export async function sync({token=process.env.PRINTFUL_TOKEN,storeId=process.env
  let excluded=[];try{const data=JSON.parse(await readFile('catalog-exclusions.json','utf8'));if(!Array.isArray(data.productIds))throw Error('Invalid exclusions');excluded=data.productIds;}catch(error){if(error.code!=='ENOENT')throw error;}const products=[];let offset=0;
  while(true){const page=await get(endpoint+'/products?limit=100&offset='+offset);if(!Array.isArray(page.result))throw Error('Unexpected Printful product list.');for(const summary of page.result){if(summary.is_ignored)continue;const detail=await get(endpoint+'/products/'+encodeURIComponent(summary.id));const product=normalize(detail.result);if(product&&!excluded.includes(product.id))products.push(product);await sleep(150)}offset+=page.result.length;if(!page.result.length||offset>=(page.paging?.total??offset))break}
  if(!products.length&&!excluded.length)throw Error('No publishable store products were found. Add product templates to the selected Printful store and set positive retail prices/currencies, then retry. Existing catalog was preserved.');
+ let overrides={prices:{}};try{overrides=JSON.parse(await readFile('pricing-overrides.json','utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}applyPrices(products,overrides);
  const currencies=new Set(products.flatMap(p=>p.variants.map(v=>v.currency)));if(currencies.size>1)throw Error('The store needs one retail currency. Existing catalog was preserved.');
  await mkdir(new URL('../',pathToFileURL(output)),{recursive:true});await writeFile(output+'.tmp',JSON.stringify({updatedAt:new Date().toISOString(),products},null,2)+'\n');await rename(output+'.tmp',output);console.log('Imported '+products.length+' products.');return products;
 }
