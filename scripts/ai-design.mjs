@@ -1,0 +1,20 @@
+import fs from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+export async function generate({key,prompt,name,placement,fetcher=fetch}){
+ if(!key)throw Error('Add OPENAI_API_KEY in GitHub Actions secrets.');
+ if(!prompt?.trim()||prompt.length>4000||!name?.trim()||name.length>100)throw Error('Provide a design name and a prompt of at most 4000 characters.');
+ if(!['Front','Back','Left sleeve','Right sleeve','Full coverage'].includes(placement))throw Error('Unsupported placement.');
+ const response=await fetcher('https://api.openai.com/v1/images/generations',{method:'POST',headers:{Authorization:'Bearer '+key,'Content-Type':'application/json'},body:JSON.stringify({model:'gpt-image-2',n:1,size:'1024x1536',quality:'high',output_format:'png',prompt:'Create standalone '+placement.toLowerCase()+' apparel artwork for Midnight Designs dark vintage streetwear. '+prompt+'. Artwork only, no garment mockup. Pure black background, complete composition with generous margins. '+(placement.includes('sleeve')?'Tall narrow composition.':'Strong readable composition.')}),signal:AbortSignal.timeout(300000)});
+ if(!response.ok)throw Error('Image generation failed (HTTP '+response.status+'). Check API billing, model access, or request limits.');
+ const data=await response.json(),b64=data.data?.[0]?.b64_json;if(!b64)throw Error('Image generation returned no image.');
+ const bytes=Buffer.from(b64,'base64');if(bytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw Error('Generated file is not PNG.');return bytes;
+}
+export async function upload({token,storeId,url,filename,fetcher=fetch}){
+ if(!token)throw Error('Configure PRINTFUL_TOKEN with file-upload access.');if(!url.startsWith('https://raw.githubusercontent.com/eppleaaron-oss/midnight-designs-store/'))throw Error('Only this store’s committed artwork can be uploaded.');
+ const r=await fetcher('https://api.printful.com/files',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',...(storeId?{'X-PF-Store-Id':storeId}:{})},body:JSON.stringify({type:'default',url,filename,visible:true}),signal:AbortSignal.timeout(60000)});
+ if(!r.ok)throw Error('Printful upload failed (HTTP '+r.status+'). Check file-upload permission and store ID. Artwork remains saved in the gallery.');const d=await r.json();if(d.code!==200||!d.result?.id)throw Error('Printful did not accept the file.');return {id:d.result.id,status:d.result.status};
+}
+async function main(){const mode=process.argv[2],id='ai-'+process.env.GITHUB_RUN_ID;if(!/^ai-\d+$/.test(id))throw Error('Run this from the protected GitHub workflow.');const image='assets/designs/'+id+'.png';if(mode==='generate'){const bytes=await generate({key:process.env.OPENAI_API_KEY,prompt:process.env.DESIGN_PROMPT,name:process.env.DESIGN_NAME,placement:process.env.DESIGN_PLACEMENT});await fs.mkdir('assets/designs',{recursive:true});await fs.writeFile(image,bytes);const sharp=(await import('sharp')).default;await sharp(bytes).resize({width:460,height:460,fit:'inside'}).jpeg({quality:85}).toFile('assets/designs/'+id+'-thumb.jpg');const designs=JSON.parse(await fs.readFile('designs.json','utf8'));designs.unshift({id,name:process.env.DESIGN_NAME.trim(),image,thumbnail:'assets/designs/'+id+'-thumb.jpg',category:process.env.DESIGN_PLACEMENT.includes('sleeve')?'Sleeve panels':'Celestial & gothic',kind:'artwork'});await fs.writeFile('designs.json',JSON.stringify(designs,null,2)+'\n');}
+ else if(mode==='upload'){const result=await upload({token:process.env.PRINTFUL_TOKEN,storeId:process.env.PRINTFUL_STORE_ID,url:'https://raw.githubusercontent.com/eppleaaron-oss/midnight-designs-store/'+process.env.ART_COMMIT+'/'+image,filename:id+'.png'});await fs.appendFile(process.env.GITHUB_STEP_SUMMARY,'\nPrintful accepted artwork file **'+result.id+'** (status: '+result.status+'). Review placement and resolution in Printful before publishing a garment.\n');}
+ else throw Error('Unknown operation');}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)main().catch(e=>{console.error(e.message);process.exitCode=1;});

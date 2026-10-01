@@ -1,0 +1,77 @@
+name: Create AI clothing artwork
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Design name
+        required: true
+        type: string
+      prompt:
+        description: Describe artwork, colors, style and garment
+        required: true
+        type: string
+      placement:
+        description: Intended print placement
+        required: true
+        type: choice
+        options: [Front, Back, Left sleeve, Right sleeve, Full coverage]
+      send_to_printful:
+        description: Upload artwork into Printful file library
+        type: boolean
+        default: true
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  create:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate connections
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          SEND_TO_PRINTFUL: ${{ inputs.send_to_printful }}
+        run: |
+          test -n "$OPENAI_API_KEY" || { echo 'Add OPENAI_API_KEY in repository Actions secrets.'; exit 1; }
+          if [ "$SEND_TO_PRINTFUL" = 'true' ]; then
+            test -n "$PRINTFUL_TOKEN" || { echo 'Add PRINTFUL_TOKEN with file-upload access.'; exit 1; }
+          fi
+      - run: npm install --no-save sharp@0.34.5
+      - name: Generate artwork
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DESIGN_NAME: ${{ inputs.name }}
+          DESIGN_PROMPT: ${{ inputs.prompt }}
+          DESIGN_PLACEMENT: ${{ inputs.placement }}
+        run: node scripts/ai-design.mjs generate
+      - name: Save artwork and publish gallery
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/designs designs.json
+          git commit -m 'Add owner-generated AI artwork'
+          git push
+          echo "ART_COMMIT=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          gh api --method POST repos/${{ github.repository }}/pages/builds
+      - name: Upload art to Printful
+        if: inputs.send_to_printful
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+        run: node scripts/ai-design.mjs upload
+      - name: Job summary
+        if: always()
+        run: echo 'Generated artwork appears in the Designs gallery after deployment. This workflow does not create orders or automatically publish garment products.' >> "$GITHUB_STEP_SUMMARY"
