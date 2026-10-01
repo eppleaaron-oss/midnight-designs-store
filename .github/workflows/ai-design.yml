@@ -15,6 +15,12 @@ on:
         required: true
         type: choice
         options: [Front, Back, Left sleeve, Right sleeve, Full coverage]
+      reference_design_ids:
+        description: Up to three picture IDs, comma separated, from AI desk
+        type: string
+      garment_map_json:
+        description: Paste captured garment map JSON from AI desk
+        type: string
       send_to_printful:
         description: Upload artwork into Printful file library
         type: boolean
@@ -54,6 +60,8 @@ jobs:
           DESIGN_NAME: ${{ inputs.name }}
           DESIGN_PROMPT: ${{ inputs.prompt }}
           DESIGN_PLACEMENT: ${{ inputs.placement }}
+          REFERENCE_DESIGN_IDS: ${{ inputs.reference_design_ids }}
+          GARMENT_MAP_JSON: ${{ inputs.garment_map_json }}
         run: node scripts/ai-design.mjs generate
       - name: Save artwork and publish gallery
         env:

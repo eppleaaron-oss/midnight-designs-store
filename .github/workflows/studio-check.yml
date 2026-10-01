@@ -1,7 +1,7 @@
 name: Custom studio checks
 on:
   push:
-    branches: [custom-design-studio, complete-design-gallery, garment-placement-map, master-dashboard, ai-printful-artwork]
+    branches: [custom-design-studio, complete-design-gallery, garment-placement-map, master-dashboard, ai-printful-artwork, visual-ai-mapping]
   pull_request:
     paths: ['studio.js', '*html', '*json', 'styles.css', 'scripts/qa-studio.mjs', 'garment-map.js', 'scripts/qa-map.mjs']
 permissions:
@@ -23,6 +23,7 @@ jobs:
           node scripts/qa-map.mjs
           node scripts/qa-master.mjs
           node scripts/qa-ai.mjs
+          node scripts/qa-ai-map.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
