@@ -1,0 +1,53 @@
+name: Manage store catalog
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Catalog action
+        required: true
+        type: choice
+        options: [hide-product, restore-product, delete-design]
+      item_id:
+        description: Exact item ID from master dashboard
+        required: true
+        type: string
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  manage:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply catalog change
+        env:
+          CATALOG_ACTION: ${{ inputs.action }}
+          CATALOG_ITEM_ID: ${{ inputs.item_id }}
+        run: node scripts/manage-catalog.mjs
+      - name: Restore product from Printful
+        if: inputs.action == 'restore-product'
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+          PRINTFUL_PRODUCTS_ENDPOINT: ${{ vars.PRINTFUL_PRODUCTS_ENDPOINT }}
+        run: node scripts/sync-printful.mjs
+      - name: Commit and publish
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add designs.json products.json catalog-exclusions.json
+          git commit -m 'Apply owner catalog change'
+          git push
+      - name: Deploy updated store
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds
