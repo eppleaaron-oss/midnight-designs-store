@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+const token=process.env.PRINTFUL_TOKEN;if(!token)throw Error('PRINTFUL_TOKEN is required');
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+async function get(path){for(let i=0;i<5;i++){const r=await fetch('https://api.printful.com/'+path,{headers:{Authorization:'Bearer '+token,...(process.env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':process.env.PRINTFUL_STORE_ID}:{})},signal:AbortSignal.timeout(30000)});if(r.status===429||r.status>=500){await pause(15000);continue;}if(!r.ok)throw Error('Printful HTTP '+r.status);const j=await r.json();if(j.code!==200)throw Error('Unexpected Printful response');return j.result;}throw Error('Printful rate limit or service unavailable');}
+const clothing=JSON.parse(fs.readFileSync('clothing.json','utf8')),store=JSON.parse(fs.readFileSync('products.json','utf8')).products,ids=[...new Set([...store,...clothing].map(p=>p.catalogProductId).filter(Boolean))];
+let previous={products:{}};if(fs.existsSync('printful-plans.json'))previous=JSON.parse(fs.readFileSync('printful-plans.json','utf8'));
+const data={updatedAt:new Date().toISOString(),products:{},errors:[]};
+for(const id of ids){try{const catalog=await get('products/'+id);await pause(650);const printfiles=await get('mockup-generator/printfiles/'+id);await pause(650);const layouts=await get('mockup-generator/templates/'+id);await pause(650);data.products[id]={catalogProductId:id,name:catalog.product.title,variants:catalog.variants.map(v=>({id:v.id,size:v.size,color:v.color,color_code:v.color_code,name:v.name})),printfiles,layouts,fetchedAt:new Date().toISOString()};console.log('Imported Printful plan '+id);}catch(e){if(previous.products[id])data.products[id]=previous.products[id];data.errors.push({catalogProductId:id,error:e.message});console.log('Plan unavailable '+id+': '+e.message);}}
+if(!Object.keys(data.products).length)throw Error('No verified Printful plans imported. Existing file preserved.');
+fs.writeFileSync('printful-plans.json',JSON.stringify(data,null,2)+'\n');console.log('Imported '+Object.keys(data.products).length+' product plans; '+data.errors.length+' unavailable.');
