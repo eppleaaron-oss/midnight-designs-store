@@ -1,961 +1,434 @@
 {
-  "mockup-generator/printfiles/1419": {
+  "store/products/476640417": {
     "http": 200,
     "data": {
       "code": 200,
       "result": {
-        "product_id": 1419,
-        "available_placements": {
-          "front_dtfabric": "Front print",
-          "back_dtfabric": "Back print",
-          "sleeve_left_dtfabric": "Left sleeve",
-          "sleeve_right_dtfabric": "Right sleeve",
-          "pocket_dtfabric": "Pocket",
-          "hood_dtfabric": "Hood",
-          "label_panel_dtfabric": "Label panel",
-          "label_inside_dtfabric": "Inside label"
+        "sync_product": {
+          "id": 476640417,
+          "external_id": "6abd842fbfd876",
+          "name": "Unisex Hoodie",
+          "variants": 11,
+          "synced": 11,
+          "thumbnail_url": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
+          "is_ignored": false
         },
-        "printfiles": [
+        "sync_variants": [
           {
-            "printfile_id": 1329,
-            "width": 6000,
-            "height": 6000,
-            "dpi": 150,
-            "fill_mode": "cover",
-            "can_rotate": false
-          },
-          {
-            "printfile_id": 1331,
-            "width": 375,
-            "height": 150,
-            "dpi": 150,
-            "fill_mode": "fit",
-            "can_rotate": false
+            "id": 5527222764,
+            "external_id": "6abd842fbfd972",
+            "sync_product_id": 476640417,
+            "name": "Unisex Hoodie / M",
+            "synced": true,
+            "variant_id": 10871,
+            "main_category_id": 28,
+            "warehouse_product_id": null,
+            "warehouse_product_variant_id": null,
+            "retail_price": "54.50",
+            "sku": "6ABD842FBF392_M",
+            "currency": "USD",
+            "product": {
+              "variant_id": 10871,
+              "product_id": 388,
+              "image": "https://files.cdn.printful.com/products/388/10871_1582103273.jpg",
+              "name": "All-Over Print Unisex Hoodie (M)"
+            },
+            "files": [
+              {
+                "id": 1076820050,
+                "type": "default",
+                "hash": null,
+                "url": null,
+                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790805033,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820050/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820050/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076820047,
+                "type": "back",
+                "hash": null,
+                "url": null,
+                "filename": "7aadade702a21fd0fd240be692b1d69a.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790805032,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820047/7aadade702a21fd0fd240be692b1d69a_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820047/7aadade702a21fd0fd240be692b1d69a_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076820056,
+                "type": "sleeve_right",
+                "hash": null,
+                "url": null,
+                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790805033,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820056/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820056/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076820052,
+                "type": "sleeve_left",
+                "hash": null,
+                "url": null,
+                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790805033,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820052/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820052/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076820048,
+                "type": "pocket",
+                "hash": null,
+                "url": null,
+                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790805033,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820048/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820048/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076705726,
+                "type": "hood",
+                "hash": null,
+                "url": null,
+                "filename": "ebd023c714088fd3c48f2a774e082f92.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790795123,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076705726/ebd023c714088fd3c48f2a774e082f92_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076705726/ebd023c714088fd3c48f2a774e082f92_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076705727,
+                "type": "label_panel",
+                "hash": null,
+                "url": null,
+                "filename": "ebd023c714088fd3c48f2a774e082f92.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 6000,
+                "height": 6000,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790795123,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076705727/ebd023c714088fd3c48f2a774e082f92_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076705727/ebd023c714088fd3c48f2a774e082f92_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076820101,
+                "type": "preview",
+                "hash": "e2f2581e698601057b428310b6b39941",
+                "url": null,
+                "filename": "all-over-print-recycled-unisex-hoodie-white-front-6abd8429be9e3.jpg",
+                "mime_type": "image/jpeg",
+                "size": 258125,
+                "width": 1000,
+                "height": 1000,
+                "dpi": null,
+                "status": "ok",
+                "created": 1790805039,
+                "thumbnail_url": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
+                "visible": false,
+                "is_temporary": false,
+                "message": "",
+                "stitch_count_tier": null
+              }
+            ],
+            "options": [
+              {
+                "id": "stitch_color",
+                "value": ""
+              },
+              {
+                "id": "license_type",
+                "value": []
+              }
+            ],
+            "is_ignored": false,
+            "size": "M",
+            "color": "White",
+            "availability_status": "active"
           }
-        ],
-        "variant_printfiles": [
-          {
-            "variant_id": 33974,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33975,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33976,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33977,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33978,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33979,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33980,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33981,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33982,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33983,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          },
-          {
-            "variant_id": 33984,
-            "placements": {
-              "front_dtfabric": 1329,
-              "back_dtfabric": 1329,
-              "sleeve_left_dtfabric": 1329,
-              "sleeve_right_dtfabric": 1329,
-              "pocket_dtfabric": 1329,
-              "hood_dtfabric": 1329,
-              "label_panel_dtfabric": 1329,
-              "label_inside_dtfabric": 1331
-            }
-          }
-        ],
-        "option_groups": [
-          "Duet",
-          "Flat",
-          "Ghost",
-          "Men's",
-          "Templates",
-          "Women's"
-        ],
-        "options": [
-          "Back",
-          "Front",
-          "Hood",
-          "Inside Label",
-          "Label Panel",
-          "Left Front",
-          "Left Sleeve",
-          "Pocket",
-          "Right Back",
-          "Right Sleeve"
         ]
       },
       "extra": []
     }
   },
-  "files/1076841518": {
+  "store/products/476368655": {
     "http": 200,
     "data": {
       "code": 200,
       "result": {
-        "id": 1076841518,
-        "type": "default",
-        "hash": null,
-        "url": null,
-        "filename": "239d211a81e18c6f49188b9de0455193.png",
-        "mime_type": "image/png",
-        "size": 0,
-        "width": 6000,
-        "height": 6000,
-        "dpi": 150,
-        "status": "ok",
-        "created": 1790806867,
-        "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-        "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-        "visible": false,
-        "is_temporary": true,
-        "message": ""
+        "sync_product": {
+          "id": 476368655,
+          "external_id": "6abc3b15a53383",
+          "name": "Yoga Leggings",
+          "variants": 5,
+          "synced": 5,
+          "thumbnail_url": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
+          "is_ignored": false
+        },
+        "sync_variants": [
+          {
+            "id": 5525525455,
+            "external_id": "6abc3b15a53447",
+            "sync_product_id": 476368655,
+            "name": "Yoga Leggings / M",
+            "synced": true,
+            "variant_id": 8355,
+            "main_category_id": 10,
+            "warehouse_product_id": null,
+            "warehouse_product_variant_id": null,
+            "retail_price": "39.16",
+            "sku": "6ABC3B15A4DE6_M",
+            "currency": "USD",
+            "product": {
+              "variant_id": 8355,
+              "product_id": 242,
+              "image": "https://files.cdn.printful.com/products/242/8355_1582108192.jpg",
+              "name": "All-Over Print Yoga Leggings (White / M)"
+            },
+            "files": [
+              {
+                "id": 1076161643,
+                "type": "default",
+                "hash": null,
+                "url": null,
+                "filename": "b408b37ed57cdce799f02fe58c9d6c59.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 7050,
+                "height": 6150,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790720783,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076161643/b408b37ed57cdce799f02fe58c9d6c59_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076161643/b408b37ed57cdce799f02fe58c9d6c59_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076161648,
+                "type": "belt_front",
+                "hash": null,
+                "url": null,
+                "filename": "cd86345cb62b839369c14af91bab66a7.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 3000,
+                "height": 1050,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790720784,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076161648/cd86345cb62b839369c14af91bab66a7_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076161648/cd86345cb62b839369c14af91bab66a7_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076056506,
+                "type": "belt_back",
+                "hash": "492beaad9a9e0d4f47626ab3b5c8987c",
+                "url": null,
+                "filename": "ChatGPT-Image-Sep-29,-2026,-01_23_13-PM.png",
+                "mime_type": "image/png",
+                "size": 2672821,
+                "width": 1254,
+                "height": 1254,
+                "dpi": null,
+                "status": "ok",
+                "created": 1790709880,
+                "thumbnail_url": "https://files.cdn.printful.com/files/492/492beaad9a9e0d4f47626ab3b5c8987c_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/files/492/492beaad9a9e0d4f47626ab3b5c8987c_preview.png",
+                "visible": true,
+                "is_temporary": false,
+                "message": "",
+                "stitch_count_tier": null
+              },
+              {
+                "id": 1076161714,
+                "type": "preview",
+                "hash": "6de03895eff25085f8e659c8dd616851",
+                "url": null,
+                "filename": "all-over-print-yoga-leggings-white-front-6abc3b1024517.jpg",
+                "mime_type": "image/jpeg",
+                "size": 141979,
+                "width": 1000,
+                "height": 1000,
+                "dpi": null,
+                "status": "ok",
+                "created": 1790720789,
+                "thumbnail_url": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
+                "visible": false,
+                "is_temporary": false,
+                "message": "",
+                "stitch_count_tier": null
+              }
+            ],
+            "options": [
+              {
+                "id": "stitch_color",
+                "value": "black"
+              },
+              {
+                "id": "inside_pocket",
+                "value": "0"
+              },
+              {
+                "id": "license_type",
+                "value": []
+              }
+            ],
+            "is_ignored": false,
+            "size": "M",
+            "color": "White",
+            "availability_status": "active"
+          }
+        ]
       },
       "extra": []
     }
   },
-  "v2/catalog-products/1419/mockup-styles?limit=100": {
+  "store/products/476368653": {
     "http": 200,
     "data": {
-      "data": [
-        {
-          "placement": "front_dtfabric",
-          "display_name": "Front print",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
+      "code": 200,
+      "result": {
+        "sync_product": {
+          "id": 476368653,
+          "external_id": "6abc3b15235ab6",
+          "name": "All-over print bandana",
+          "variants": 3,
+          "synced": 3,
+          "thumbnail_url": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
+          "is_ignored": false
         },
-        {
-          "placement": "back_dtfabric",
-          "display_name": "Back print",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        },
-        {
-          "placement": "sleeve_left_dtfabric",
-          "display_name": "Left sleeve",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        },
-        {
-          "placement": "sleeve_right_dtfabric",
-          "display_name": "Right sleeve",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        },
-        {
-          "placement": "pocket_dtfabric",
-          "display_name": "Pocket",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        },
-        {
-          "placement": "hood_dtfabric",
-          "display_name": "Hood",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        },
-        {
-          "placement": "label_panel_dtfabric",
-          "display_name": "Label panel",
-          "technique": "direct-to-fabric",
-          "print_area_width": 40,
-          "print_area_height": 40,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        },
-        {
-          "placement": "label_inside_dtfabric",
-          "display_name": "Inside label",
-          "technique": "direct-to-fabric",
-          "print_area_width": 2.5,
-          "print_area_height": 1,
-          "print_area_type": "simple",
-          "dpi": 150,
-          "mockup_styles": [
-            {
-              "id": 28748,
-              "category_name": "Flat",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28749,
-              "category_name": "Flat",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28759,
-              "category_name": "Ghost",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28760,
-              "category_name": "Ghost",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28761,
-              "category_name": "Ghost",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28762,
-              "category_name": "Ghost",
-              "view_name": "Right Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28959,
-              "category_name": "Duet",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28960,
-              "category_name": "Men's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28961,
-              "category_name": "Women's",
-              "view_name": "Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28962,
-              "category_name": "Men's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28963,
-              "category_name": "Women's",
-              "view_name": "Back",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28964,
-              "category_name": "Men's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            },
-            {
-              "id": 28965,
-              "category_name": "Women's",
-              "view_name": "Left Front",
-              "restricted_to_variants": null
-            }
-          ]
-        }
-      ],
-      "extra": [],
-      "paging": {
-        "total": 8,
-        "limit": 100,
-        "offset": 0
+        "sync_variants": [
+          {
+            "id": 5525525447,
+            "external_id": "6abc3b15235b59",
+            "sync_product_id": 476368653,
+            "name": "All-over print bandana / M",
+            "synced": true,
+            "variant_id": 16032,
+            "main_category_id": 217,
+            "warehouse_product_id": null,
+            "warehouse_product_variant_id": null,
+            "retail_price": "13.46",
+            "sku": "6ABC3B15230AC_M",
+            "currency": "USD",
+            "product": {
+              "variant_id": 16032,
+              "product_id": 630,
+              "image": "https://files.cdn.printful.com/products/630/16032_1660914152.jpg",
+              "name": "All-Over Print Bandana (White / M)"
+            },
+            "files": [
+              {
+                "id": 1076161653,
+                "type": "default",
+                "hash": null,
+                "url": null,
+                "filename": "a53c39730ef17d7adbec173ad2d5619d.png",
+                "mime_type": "image/png",
+                "size": 0,
+                "width": 4125,
+                "height": 4125,
+                "dpi": 150,
+                "status": "ok",
+                "created": 1790720784,
+                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076161653/a53c39730ef17d7adbec173ad2d5619d_thumb.png",
+                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076161653/a53c39730ef17d7adbec173ad2d5619d_preview.png",
+                "visible": false,
+                "is_temporary": true,
+                "message": "",
+                "stitch_count_tier": null
+              }
+            ],
+            "options": [
+              {
+                "id": "stitch_color",
+                "value": "black"
+              },
+              {
+                "id": "license_type",
+                "value": []
+              }
+            ],
+            "is_ignored": false,
+            "size": "M",
+            "color": "White",
+            "availability_status": "active"
+          }
+        ]
       },
-      "_links": {
-        "self": {
-          "href": "https://api.printful.com/v2/catalog-products/1419/mockup-styles?limit=100"
-        }
-      }
+      "extra": []
     }
   }
 }
