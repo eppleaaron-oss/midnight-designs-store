@@ -1,431 +1,617 @@
 {
-  "store/products/476640417": {
+  "mockup-generator/printfiles/388": {
     "http": 200,
     "data": {
       "code": 200,
       "result": {
-        "sync_product": {
-          "id": 476640417,
-          "external_id": "6abd842fbfd876",
-          "name": "Unisex Hoodie",
-          "variants": 11,
-          "synced": 11,
-          "thumbnail_url": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
-          "is_ignored": false
+        "product_id": 388,
+        "available_placements": {
+          "front": "Front print",
+          "back": "Back print",
+          "sleeve_right": "Right sleeve",
+          "sleeve_left": "Left sleeve",
+          "pocket": "Pocket",
+          "hood": "Hood",
+          "label_panel": "Label panel",
+          "label_inside": "Inside label"
         },
-        "sync_variants": [
+        "printfiles": [
           {
-            "id": 5527222764,
-            "external_id": "6abd842fbfd972",
-            "sync_product_id": 476640417,
-            "name": "Unisex Hoodie / M",
-            "synced": true,
-            "variant_id": 10871,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "54.50",
-            "sku": "6ABD842FBF392_M",
-            "currency": "USD",
-            "product": {
-              "variant_id": 10871,
-              "product_id": 388,
-              "image": "https://files.cdn.printful.com/products/388/10871_1582103273.jpg",
-              "name": "All-Over Print Unisex Hoodie (M)"
-            },
-            "files": [
-              {
-                "id": 1076820050,
-                "type": "default",
-                "hash": null,
-                "url": null,
-                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790805033,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820050/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820050/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076820047,
-                "type": "back",
-                "hash": null,
-                "url": null,
-                "filename": "7aadade702a21fd0fd240be692b1d69a.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790805032,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820047/7aadade702a21fd0fd240be692b1d69a_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820047/7aadade702a21fd0fd240be692b1d69a_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076820056,
-                "type": "sleeve_right",
-                "hash": null,
-                "url": null,
-                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790805033,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820056/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820056/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076820052,
-                "type": "sleeve_left",
-                "hash": null,
-                "url": null,
-                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790805033,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820052/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820052/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076820048,
-                "type": "pocket",
-                "hash": null,
-                "url": null,
-                "filename": "c268e5a2a0cdfc2e4e7bd59ff3d3bf15.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790805033,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076820048/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076820048/c268e5a2a0cdfc2e4e7bd59ff3d3bf15_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076705726,
-                "type": "hood",
-                "hash": null,
-                "url": null,
-                "filename": "ebd023c714088fd3c48f2a774e082f92.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790795123,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076705726/ebd023c714088fd3c48f2a774e082f92_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076705726/ebd023c714088fd3c48f2a774e082f92_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076705727,
-                "type": "label_panel",
-                "hash": null,
-                "url": null,
-                "filename": "ebd023c714088fd3c48f2a774e082f92.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790795123,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076705727/ebd023c714088fd3c48f2a774e082f92_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076705727/ebd023c714088fd3c48f2a774e082f92_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076820101,
-                "type": "preview",
-                "hash": "e2f2581e698601057b428310b6b39941",
-                "url": null,
-                "filename": "all-over-print-recycled-unisex-hoodie-white-front-6abd8429be9e3.jpg",
-                "mime_type": "image/jpeg",
-                "size": 258125,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790805039,
-                "thumbnail_url": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": ""
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "M",
-            "color": "White",
-            "availability_status": "active"
+            "printfile_id": 64,
+            "width": 375,
+            "height": 150,
+            "dpi": 150,
+            "fill_mode": "fit",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 200,
+            "width": 6000,
+            "height": 6000,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
           }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 18730,
+            "placements": {
+              "front": 200,
+              "back": 200,
+              "sleeve_right": 200,
+              "sleeve_left": 200,
+              "pocket": 200,
+              "hood": 200,
+              "label_panel": 200,
+              "label_inside": 64
+            }
+          },
+          {
+            "variant_id": 10869,
+            "placements": {
+              "front": 200,
+              "back": 200,
+              "sleeve_right": 200,
+              "sleeve_left": 200,
+              "pocket": 200,
+              "hood": 200,
+              "label_panel": 200,
+              "label_inside": 64
+            }
+          }
+        ],
+        "option_groups": [
+          "Couples",
+          "Default",
+          "Flat",
+          "Flat 2",
+          "Ghost",
+          "Halloween",
+          "Holiday season",
+          "Labels",
+          "Men's",
+          "Men's 2",
+          "Men's 3",
+          "Men's 4",
+          "Men's Lifestyle",
+          "Men's Lifestyle 2",
+          "On Hanger",
+          "Product details",
+          "Product specs",
+          "Women's",
+          "Women's 2",
+          "Women's 3",
+          "Women's Lifestyle",
+          "Women's Lifestyle 2"
+        ],
+        "options": [
+          "Back",
+          "Back 2",
+          "Front",
+          "Hood",
+          "Inside label",
+          "Label panel",
+          "Left",
+          "Left Front",
+          "Left sleeve",
+          "Pocket",
+          "Product details 2",
+          "Right",
+          "Right Back",
+          "Right sleeve"
         ]
       },
       "extra": []
     }
   },
-  "store/products/476368655": {
+  "mockup-generator/printfiles/328": {
     "http": 200,
     "data": {
       "code": 200,
       "result": {
-        "sync_product": {
-          "id": 476368655,
-          "external_id": "6abc3b15a53383",
-          "name": "Yoga Leggings",
-          "variants": 5,
-          "synced": 5,
-          "thumbnail_url": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
-          "is_ignored": false
+        "product_id": 328,
+        "available_placements": {
+          "front": "Front print",
+          "back": "Back print",
+          "sleeve_right": "Right sleeve",
+          "sleeve_left": "Left sleeve"
         },
-        "sync_variants": [
+        "printfiles": [
           {
-            "id": 5525525455,
-            "external_id": "6abc3b15a53447",
-            "sync_product_id": 476368655,
-            "name": "Yoga Leggings / M",
-            "synced": true,
-            "variant_id": 8355,
-            "main_category_id": 10,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "39.16",
-            "sku": "6ABC3B15A4DE6_M",
-            "currency": "USD",
-            "product": {
-              "variant_id": 8355,
-              "product_id": 242,
-              "image": "https://files.cdn.printful.com/products/242/8355_1582108192.jpg",
-              "name": "All-Over Print Yoga Leggings (White / M)"
-            },
-            "files": [
-              {
-                "id": 1076161643,
-                "type": "default",
-                "hash": null,
-                "url": null,
-                "filename": "b408b37ed57cdce799f02fe58c9d6c59.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 7050,
-                "height": 6150,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790720783,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076161643/b408b37ed57cdce799f02fe58c9d6c59_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076161643/b408b37ed57cdce799f02fe58c9d6c59_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076161648,
-                "type": "belt_front",
-                "hash": null,
-                "url": null,
-                "filename": "cd86345cb62b839369c14af91bab66a7.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 3000,
-                "height": 1050,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790720784,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076161648/cd86345cb62b839369c14af91bab66a7_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076161648/cd86345cb62b839369c14af91bab66a7_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076056506,
-                "type": "belt_back",
-                "hash": "492beaad9a9e0d4f47626ab3b5c8987c",
-                "url": null,
-                "filename": "ChatGPT-Image-Sep-29,-2026,-01_23_13-PM.png",
-                "mime_type": "image/png",
-                "size": 2672821,
-                "width": 1254,
-                "height": 1254,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790709880,
-                "thumbnail_url": "https://files.cdn.printful.com/files/492/492beaad9a9e0d4f47626ab3b5c8987c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/492/492beaad9a9e0d4f47626ab3b5c8987c_preview.png",
-                "visible": true,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076161714,
-                "type": "preview",
-                "hash": "6de03895eff25085f8e659c8dd616851",
-                "url": null,
-                "filename": "all-over-print-yoga-leggings-white-front-6abc3b1024517.jpg",
-                "mime_type": "image/jpeg",
-                "size": 141979,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790720789,
-                "thumbnail_url": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "black"
-              },
-              {
-                "id": "inside_pocket",
-                "value": "0"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "M",
-            "color": "White",
-            "availability_status": "active"
+            "printfile_id": 143,
+            "width": 3300,
+            "height": 1800,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 168,
+            "width": 4200,
+            "height": 5400,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
           }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 9952,
+            "placements": {
+              "front": 168,
+              "back": 168,
+              "sleeve_right": 143,
+              "sleeve_left": 143
+            }
+          },
+          {
+            "variant_id": 9953,
+            "placements": {
+              "front": 168,
+              "back": 168,
+              "sleeve_right": 143,
+              "sleeve_left": 143
+            }
+          }
+        ],
+        "option_groups": [
+          "Default",
+          "Flat",
+          "Flat 2",
+          "Men's",
+          "Men's 2",
+          "Men's 3",
+          "Men's Lifestyle",
+          "On Hanger"
+        ],
+        "options": [
+          "Back",
+          "Front",
+          "Left",
+          "Left Sleeve",
+          "Right",
+          "Right Sleeve"
         ]
       },
       "extra": []
     }
   },
-  "store/products/476368653": {
+  "mockup-generator/printfiles/350": {
     "http": 200,
     "data": {
       "code": 200,
       "result": {
-        "sync_product": {
-          "id": 476368653,
-          "external_id": "6abc3b15235ab6",
-          "name": "All-over print bandana",
-          "variants": 3,
-          "synced": 3,
-          "thumbnail_url": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
-          "is_ignored": false
+        "product_id": 350,
+        "available_placements": {
+          "front": "Front print",
+          "top": "Top print",
+          "back": "Back print",
+          "pocket": "Inside Pocket",
+          "label_inside": "Inside label"
         },
-        "sync_variants": [
+        "printfiles": [
           {
-            "id": 5525525447,
-            "external_id": "6abc3b15235b59",
-            "sync_product_id": 476368653,
-            "name": "All-over print bandana / M",
-            "synced": true,
+            "printfile_id": 64,
+            "width": 375,
+            "height": 150,
+            "dpi": 150,
+            "fill_mode": "fit",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 179,
+            "width": 2850,
+            "height": 1050,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 180,
+            "width": 1350,
+            "height": 1500,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 9986,
+            "placements": {
+              "front": 179,
+              "top": 179,
+              "back": 179,
+              "pocket": 180,
+              "label_inside": 64
+            }
+          },
+          {
+            "variant_id": 9987,
+            "placements": {
+              "front": 179,
+              "top": 179,
+              "back": 179,
+              "pocket": 180,
+              "label_inside": 64
+            }
+          }
+        ],
+        "option_groups": [
+          "Default",
+          "Holiday season",
+          "Labels",
+          "Lifestyle",
+          "Men's Lifestyle",
+          "Men's Lifestyle 2",
+          "Spring/summer vibes",
+          "Women's",
+          "Women's 2",
+          "Women's 3",
+          "Women's Lifestyle"
+        ],
+        "options": [
+          "Back",
+          "Front",
+          "Front 2",
+          "Front Left",
+          "Inside label",
+          "Inside pocket",
+          "Lifestyle 1",
+          "Lifestyle 2",
+          "Pocket",
+          "Top"
+        ]
+      },
+      "extra": []
+    }
+  },
+  "mockup-generator/printfiles/279": {
+    "http": 200,
+    "data": {
+      "code": 200,
+      "result": {
+        "product_id": 279,
+        "available_placements": {
+          "front": "Front & Pocket",
+          "top": "Top panel",
+          "bottom": "Bottom panel",
+          "pocket": "Inside Pocket"
+        },
+        "printfiles": [
+          {
+            "printfile_id": 126,
+            "width": 2175,
+            "height": 3075,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 127,
+            "width": 1950,
+            "height": 1200,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 128,
+            "width": 4200,
+            "height": 1200,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 129,
+            "width": 4200,
+            "height": 750,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 9063,
+            "placements": {
+              "front": 126,
+              "top": 128,
+              "bottom": 129,
+              "pocket": 127
+            }
+          }
+        ],
+        "option_groups": [
+          "Boy's",
+          "Default",
+          "Flat Lifestyle",
+          "Girl's",
+          "Girl's 2",
+          "Lifestyle",
+          "Men's",
+          "Men's Lifestyle",
+          "Product details",
+          "Women's",
+          "Women's Lifestyle"
+        ],
+        "options": [
+          "Back",
+          "Bottom",
+          "Bottom panel",
+          "Front",
+          "Front & Pocket",
+          "Front 2",
+          "Inside pocket print",
+          "Left",
+          "Product details",
+          "Product details 2",
+          "Right",
+          "Top panel"
+        ]
+      },
+      "extra": []
+    }
+  },
+  "mockup-generator/printfiles/963": {
+    "http": 200,
+    "data": {
+      "code": 200,
+      "result": {
+        "product_id": 963,
+        "available_placements": {
+          "front": "Front print",
+          "top": "Top print",
+          "bottom": "Bottom print",
+          "label_inside": "Branding"
+        },
+        "printfiles": [
+          {
+            "printfile_id": 356,
+            "width": 1050,
+            "height": 600,
+            "dpi": 150,
+            "fill_mode": "fit",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 1342,
+            "width": 2754,
+            "height": 4340,
+            "dpi": 216,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 1343,
+            "width": 2929,
+            "height": 1633,
+            "dpi": 216,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 1344,
+            "width": 5998,
+            "height": 1508,
+            "dpi": 216,
+            "fill_mode": "cover",
+            "can_rotate": false
+          }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 24563,
+            "placements": {
+              "front": 1342,
+              "top": 1344,
+              "bottom": 1343,
+              "label_inside": 356
+            }
+          },
+          {
+            "variant_id": 24564,
+            "placements": {
+              "front": 1342,
+              "top": 1344,
+              "bottom": 1343,
+              "label_inside": 356
+            }
+          }
+        ],
+        "option_groups": [
+          "Flat",
+          "Men's",
+          "Product details",
+          "Template",
+          "Women's"
+        ],
+        "options": [
+          "Back",
+          "Bottom",
+          "Branding",
+          "Front",
+          "Front 2",
+          "Left",
+          "Left Front",
+          "Product details",
+          "Product details 2",
+          "Right",
+          "Right Front",
+          "Top"
+        ]
+      },
+      "extra": []
+    }
+  },
+  "mockup-generator/printfiles/242": {
+    "http": 200,
+    "data": {
+      "code": 200,
+      "result": {
+        "product_id": 242,
+        "available_placements": {
+          "default": "Print file",
+          "belt_front": "Front waist",
+          "belt_back": "Back waist",
+          "label_inside": "Inside label"
+        },
+        "printfiles": [
+          {
+            "printfile_id": 64,
+            "width": 375,
+            "height": 150,
+            "dpi": 150,
+            "fill_mode": "fit",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 81,
+            "width": 7050,
+            "height": 6150,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 82,
+            "width": 3000,
+            "height": 1050,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 83,
+            "width": 2400,
+            "height": 900,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 8353,
+            "placements": {
+              "default": 81,
+              "belt_front": 82,
+              "belt_back": 83,
+              "label_inside": 64
+            }
+          },
+          {
+            "variant_id": 8354,
+            "placements": {
+              "default": 81,
+              "belt_front": 82,
+              "belt_back": 83,
+              "label_inside": 64
+            }
+          }
+        ],
+        "option_groups": [
+          "Barefoot",
+          "Barefoot 2",
+          "Default",
+          "Fitness Barefoot",
+          "Fitness Sneakers",
+          "Flat",
+          "Halloween",
+          "Holiday season",
+          "Labels",
+          "Lifestyle",
+          "Lifestyle 2",
+          "Lifestyle 3",
+          "Lifestyle 4",
+          "Lifestyle 5",
+          "Lifestyle 6",
+          "Lifestyle 7",
+          "Product details",
+          "Spring/summer vibes",
+          "Women's",
+          "Women's 2"
+        ],
+        "options": [
+          "Back",
+          "Back 2",
+          "Back waist",
+          "Front",
+          "Front 2",
+          "Front waist",
+          "Inside label",
+          "Left",
+          "Left Back",
+          "Left Front",
+          "Legs",
+          "Product details",
+          "Product details 2",
+          "Right",
+          "Right Back",
+          "Right Front"
+        ]
+      },
+      "extra": []
+    }
+  },
+  "mockup-generator/printfiles/630": {
+    "http": 200,
+    "data": {
+      "code": 200,
+      "result": {
+        "product_id": 630,
+        "available_placements": {
+          "front": "Front print",
+          "label_inside": "Branding"
+        },
+        "printfiles": [
+          {
+            "printfile_id": 64,
+            "width": 375,
+            "height": 150,
+            "dpi": 150,
+            "fill_mode": "fit",
+            "can_rotate": false
+          },
+          {
+            "printfile_id": 380,
+            "width": 4125,
+            "height": 4125,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
+          }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 16031,
+            "placements": {
+              "front": 380,
+              "label_inside": 64
+            }
+          },
+          {
             "variant_id": 16032,
-            "main_category_id": 217,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "13.46",
-            "sku": "6ABC3B15230AC_M",
-            "currency": "USD",
-            "product": {
-              "variant_id": 16032,
-              "product_id": 630,
-              "image": "https://files.cdn.printful.com/products/630/16032_1660914152.jpg",
-              "name": "All-Over Print Bandana (White / M)"
-            },
-            "files": [
-              {
-                "id": 1076161653,
-                "type": "default",
-                "hash": null,
-                "url": null,
-                "filename": "a53c39730ef17d7adbec173ad2d5619d.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 4125,
-                "height": 4125,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790720784,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076161653/a53c39730ef17d7adbec173ad2d5619d_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076161653/a53c39730ef17d7adbec173ad2d5619d_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "black"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "M",
-            "color": "White",
-            "availability_status": "active"
+            "placements": {
+              "front": 380,
+              "label_inside": 64
+            }
           }
+        ],
+        "option_groups": [
+          "Flat",
+          "Lifestyle 1",
+          "Lifestyle 2",
+          "Lifestyle 3",
+          "Product details",
+          "Template"
+        ],
+        "options": [
+          "Branding",
+          "Front",
+          "Product details"
         ]
       },
       "extra": []
