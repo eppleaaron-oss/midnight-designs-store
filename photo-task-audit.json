@@ -1,1972 +1,961 @@
 {
-  "v2/products?limit=20": {
-    "error": "The operation was aborted due to timeout"
-  },
-  "product-templates?limit=20": {
-    "http": 403,
-    "data": {
-      "code": 403,
-      "result": "This endpoint requires any of the following scopes granted: product_templates/read!",
-      "error": {
-        "reason": 403,
-        "message": "This endpoint requires any of the following scopes granted: product_templates/read!"
-      }
-    }
-  },
-  "store/products/476651184": {
+  "mockup-generator/printfiles/1419": {
     "http": 200,
     "data": {
       "code": 200,
       "result": {
-        "sync_product": {
-          "id": 476651184,
-          "external_id": "6abd8b6384a821",
-          "name": "Unisex cotton hoodie",
-          "variants": 11,
-          "synced": 11,
-          "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-          "is_ignored": false
+        "product_id": 1419,
+        "available_placements": {
+          "front_dtfabric": "Front print",
+          "back_dtfabric": "Back print",
+          "sleeve_left_dtfabric": "Left sleeve",
+          "sleeve_right_dtfabric": "Right sleeve",
+          "pocket_dtfabric": "Pocket",
+          "hood_dtfabric": "Hood",
+          "label_panel_dtfabric": "Label panel",
+          "label_inside_dtfabric": "Inside label"
         },
-        "sync_variants": [
+        "printfiles": [
           {
-            "id": 5527276114,
-            "external_id": "6abd8b6384a8a3",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / 2XS",
-            "synced": true,
-            "variant_id": 33974,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "60.50",
-            "sku": "6ABD8B6384370_2XS",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33974,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / 2XS)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "2XS",
-            "color": "White",
-            "availability_status": "active"
+            "printfile_id": 1329,
+            "width": 6000,
+            "height": 6000,
+            "dpi": 150,
+            "fill_mode": "cover",
+            "can_rotate": false
           },
           {
-            "id": 5527276115,
-            "external_id": "6abd8b6384a8c4",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / XS",
-            "synced": true,
-            "variant_id": 33975,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "60.50",
-            "sku": "6ABD8B6384370_XS",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33975,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / XS)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "XS",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276116,
-            "external_id": "6abd8b6384a8d8",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / S",
-            "synced": true,
-            "variant_id": 33976,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "60.50",
-            "sku": "6ABD8B6384370_S",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33976,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / S)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "S",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276117,
-            "external_id": "6abd8b6384a8f8",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / M",
-            "synced": true,
-            "variant_id": 33977,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "60.50",
-            "sku": "6ABD8B6384370_M",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33977,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / M)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "M",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276120,
-            "external_id": "6abd8b6384a909",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / L",
-            "synced": true,
-            "variant_id": 33978,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "60.50",
-            "sku": "6ABD8B6384370_L",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33978,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / L)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "L",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276122,
-            "external_id": "6abd8b6384a918",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / XL",
-            "synced": true,
-            "variant_id": 33979,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "60.50",
-            "sku": "6ABD8B6384370_XL",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33979,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / XL)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "XL",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276123,
-            "external_id": "6abd8b6384a927",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / 2XL",
-            "synced": true,
-            "variant_id": 33980,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "63.00",
-            "sku": "6ABD8B6384370_2XL",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33980,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / 2XL)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "2XL",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276124,
-            "external_id": "6abd8b6384a936",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / 3XL",
-            "synced": true,
-            "variant_id": 33981,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "66.00",
-            "sku": "6ABD8B6384370_3XL",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33981,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / 3XL)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "3XL",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276125,
-            "external_id": "6abd8b6384a946",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / 4XL",
-            "synced": true,
-            "variant_id": 33982,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "68.50",
-            "sku": "6ABD8B6384370_4XL",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33982,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / 4XL)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "4XL",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276126,
-            "external_id": "6abd8b6384a955",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / 5XL",
-            "synced": true,
-            "variant_id": 33983,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "71.00",
-            "sku": "6ABD8B6384370_5XL",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33983,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / 5XL)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "5XL",
-            "color": "White",
-            "availability_status": "active"
-          },
-          {
-            "id": 5527276127,
-            "external_id": "6abd8b6384a965",
-            "sync_product_id": 476651184,
-            "name": "Unisex cotton hoodie / 6XL",
-            "synced": true,
-            "variant_id": 33984,
-            "main_category_id": 28,
-            "warehouse_product_id": null,
-            "warehouse_product_variant_id": null,
-            "retail_price": "73.50",
-            "sku": "6ABD8B6384370_6XL",
-            "currency": "USD",
-            "product": {
-              "variant_id": 33984,
-              "product_id": 1419,
-              "image": "https://files.cdn.printful.com/products/1419/33974_1761804892.jpg",
-              "name": "All-Over Print Unisex Cotton Hoodie (White / 6XL)"
-            },
-            "files": [
-              {
-                "id": 1076841518,
-                "type": "front_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841515,
-                "type": "back_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841515/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841522,
-                "type": "sleeve_left_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "4c56d3c2adbd977c5efc6c61035ac2e6.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806868,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841522/4c56d3c2adbd977c5efc6c61035ac2e6_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841520,
-                "type": "sleeve_right_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841520/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841511,
-                "type": "pocket_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "239d211a81e18c6f49188b9de0455193.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790806867,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841511/239d211a81e18c6f49188b9de0455193_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076662143,
-                "type": "hood_dtfabric",
-                "hash": null,
-                "url": null,
-                "filename": "fec9d568ed264087d4de05b83ba5531c.png",
-                "mime_type": "image/png",
-                "size": 0,
-                "width": 6000,
-                "height": 6000,
-                "dpi": 150,
-                "status": "ok",
-                "created": 1790791237,
-                "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/printfile-preview/1076662143/fec9d568ed264087d4de05b83ba5531c_preview.png",
-                "visible": false,
-                "is_temporary": true,
-                "message": "",
-                "stitch_count_tier": null
-              },
-              {
-                "id": 1076841672,
-                "type": "preview",
-                "hash": "48c457327ffe3c23f5102ae25be1d755",
-                "url": null,
-                "filename": "all-over-print-unisex-cotton-hoodie-white-front-6abd8b542cfa7.jpg",
-                "mime_type": "image/jpeg",
-                "size": 186236,
-                "width": 1000,
-                "height": 1000,
-                "dpi": null,
-                "status": "ok",
-                "created": 1790806883,
-                "thumbnail_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_thumb.png",
-                "preview_url": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-                "visible": false,
-                "is_temporary": false,
-                "message": "",
-                "stitch_count_tier": null
-              }
-            ],
-            "options": [
-              {
-                "id": "stitch_color",
-                "value": "white"
-              },
-              {
-                "id": "license_type",
-                "value": []
-              }
-            ],
-            "is_ignored": false,
-            "size": "6XL",
-            "color": "White",
-            "availability_status": "active"
+            "printfile_id": 1331,
+            "width": 375,
+            "height": 150,
+            "dpi": 150,
+            "fill_mode": "fit",
+            "can_rotate": false
           }
+        ],
+        "variant_printfiles": [
+          {
+            "variant_id": 33974,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33975,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33976,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33977,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33978,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33979,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33980,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33981,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33982,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33983,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          },
+          {
+            "variant_id": 33984,
+            "placements": {
+              "front_dtfabric": 1329,
+              "back_dtfabric": 1329,
+              "sleeve_left_dtfabric": 1329,
+              "sleeve_right_dtfabric": 1329,
+              "pocket_dtfabric": 1329,
+              "hood_dtfabric": 1329,
+              "label_panel_dtfabric": 1329,
+              "label_inside_dtfabric": 1331
+            }
+          }
+        ],
+        "option_groups": [
+          "Duet",
+          "Flat",
+          "Ghost",
+          "Men's",
+          "Templates",
+          "Women's"
+        ],
+        "options": [
+          "Back",
+          "Front",
+          "Hood",
+          "Inside Label",
+          "Label Panel",
+          "Left Front",
+          "Left Sleeve",
+          "Pocket",
+          "Right Back",
+          "Right Sleeve"
         ]
       },
       "extra": []
+    }
+  },
+  "files/1076841518": {
+    "http": 200,
+    "data": {
+      "code": 200,
+      "result": {
+        "id": 1076841518,
+        "type": "default",
+        "hash": null,
+        "url": null,
+        "filename": "239d211a81e18c6f49188b9de0455193.png",
+        "mime_type": "image/png",
+        "size": 0,
+        "width": 6000,
+        "height": 6000,
+        "dpi": 150,
+        "status": "ok",
+        "created": 1790806867,
+        "thumbnail_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_thumb.png",
+        "preview_url": "https://files.cdn.printful.com/printfile-preview/1076841518/239d211a81e18c6f49188b9de0455193_preview.png",
+        "visible": false,
+        "is_temporary": true,
+        "message": ""
+      },
+      "extra": []
+    }
+  },
+  "v2/catalog-products/1419/mockup-styles?limit=100": {
+    "http": 200,
+    "data": {
+      "data": [
+        {
+          "placement": "front_dtfabric",
+          "display_name": "Front print",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "back_dtfabric",
+          "display_name": "Back print",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "sleeve_left_dtfabric",
+          "display_name": "Left sleeve",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "sleeve_right_dtfabric",
+          "display_name": "Right sleeve",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "pocket_dtfabric",
+          "display_name": "Pocket",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "hood_dtfabric",
+          "display_name": "Hood",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "label_panel_dtfabric",
+          "display_name": "Label panel",
+          "technique": "direct-to-fabric",
+          "print_area_width": 40,
+          "print_area_height": 40,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        },
+        {
+          "placement": "label_inside_dtfabric",
+          "display_name": "Inside label",
+          "technique": "direct-to-fabric",
+          "print_area_width": 2.5,
+          "print_area_height": 1,
+          "print_area_type": "simple",
+          "dpi": 150,
+          "mockup_styles": [
+            {
+              "id": 28748,
+              "category_name": "Flat",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28749,
+              "category_name": "Flat",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28759,
+              "category_name": "Ghost",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28760,
+              "category_name": "Ghost",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28761,
+              "category_name": "Ghost",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28762,
+              "category_name": "Ghost",
+              "view_name": "Right Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28959,
+              "category_name": "Duet",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28960,
+              "category_name": "Men's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28961,
+              "category_name": "Women's",
+              "view_name": "Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28962,
+              "category_name": "Men's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28963,
+              "category_name": "Women's",
+              "view_name": "Back",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28964,
+              "category_name": "Men's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            },
+            {
+              "id": 28965,
+              "category_name": "Women's",
+              "view_name": "Left Front",
+              "restricted_to_variants": null
+            }
+          ]
+        }
+      ],
+      "extra": [],
+      "paging": {
+        "total": 8,
+        "limit": 100,
+        "offset": 0
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.printful.com/v2/catalog-products/1419/mockup-styles?limit=100"
+        }
+      }
     }
   }
 }
