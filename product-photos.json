@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T19:01:11.990Z",
+  "updatedAt": "2026-10-02T19:12:10.403Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -200,6 +200,542 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "476368653": {
+      "name": "All-over print bandana",
+      "originalImage": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
+      "catalogProductId": 630,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368653-16032-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5525525446",
+            "5525525447",
+            "5525525448"
+          ],
+          "alt": "All-over print bandana · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476368657": {
+      "name": "Men's athletic t-shirt",
+      "originalImage": "https://files.cdn.printful.com/files/426/426f2210f4f9d71a5229dc595342b18c_preview.png",
+      "catalogProductId": 328,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368657-9954-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525465",
+            "5525525466",
+            "5525525467",
+            "5525525468",
+            "5525525469",
+            "5525525470",
+            "5525525471"
+          ],
+          "alt": "Men's athletic t-shirt · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368657-9954-1.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525465",
+            "5525525466",
+            "5525525467",
+            "5525525468",
+            "5525525469",
+            "5525525470",
+            "5525525471"
+          ],
+          "alt": "Men's athletic t-shirt · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368657-9954-2.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525465",
+            "5525525466",
+            "5525525467",
+            "5525525468",
+            "5525525469",
+            "5525525470",
+            "5525525471"
+          ],
+          "alt": "Men's athletic t-shirt · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368657-9954-3.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525465",
+            "5525525466",
+            "5525525467",
+            "5525525468",
+            "5525525469",
+            "5525525470",
+            "5525525471"
+          ],
+          "alt": "Men's athletic t-shirt · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368657-9954-4.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525465",
+            "5525525466",
+            "5525525467",
+            "5525525468",
+            "5525525469",
+            "5525525470",
+            "5525525471"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368657-9954-5.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525465",
+            "5525525466",
+            "5525525467",
+            "5525525468",
+            "5525525469",
+            "5525525470",
+            "5525525471"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476368658": {
+      "name": "Men's athletic t-shirt",
+      "originalImage": "https://files.cdn.printful.com/files/5ce/5ce375676b8400776a9ce7a09991eafc_preview.png",
+      "catalogProductId": 328,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368658-9954-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525472",
+            "5525525473",
+            "5525525474",
+            "5525525475",
+            "5525525476",
+            "5525525477",
+            "5525525478"
+          ],
+          "alt": "Men's athletic t-shirt · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368658-9954-1.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525472",
+            "5525525473",
+            "5525525474",
+            "5525525475",
+            "5525525476",
+            "5525525477",
+            "5525525478"
+          ],
+          "alt": "Men's athletic t-shirt · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368658-9954-2.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525472",
+            "5525525473",
+            "5525525474",
+            "5525525475",
+            "5525525476",
+            "5525525477",
+            "5525525478"
+          ],
+          "alt": "Men's athletic t-shirt · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368658-9954-3.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525472",
+            "5525525473",
+            "5525525474",
+            "5525525475",
+            "5525525476",
+            "5525525477",
+            "5525525478"
+          ],
+          "alt": "Men's athletic t-shirt · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368658-9954-4.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525472",
+            "5525525473",
+            "5525525474",
+            "5525525475",
+            "5525525476",
+            "5525525477",
+            "5525525478"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368658-9954-5.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525472",
+            "5525525473",
+            "5525525474",
+            "5525525475",
+            "5525525476",
+            "5525525477",
+            "5525525478"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476368659": {
+      "name": "Men's athletic t-shirt",
+      "originalImage": "https://files.cdn.printful.com/files/0e3/0e3955cd70f1f48ed6b9faba2a2fce4c_preview.png",
+      "catalogProductId": 328,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368659-9954-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525479",
+            "5525525480",
+            "5525525481",
+            "5525525482",
+            "5525525483",
+            "5525525484",
+            "5525525485"
+          ],
+          "alt": "Men's athletic t-shirt · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368659-9954-1.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525479",
+            "5525525480",
+            "5525525481",
+            "5525525482",
+            "5525525483",
+            "5525525484",
+            "5525525485"
+          ],
+          "alt": "Men's athletic t-shirt · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368659-9954-2.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525479",
+            "5525525480",
+            "5525525481",
+            "5525525482",
+            "5525525483",
+            "5525525484",
+            "5525525485"
+          ],
+          "alt": "Men's athletic t-shirt · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368659-9954-3.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525479",
+            "5525525480",
+            "5525525481",
+            "5525525482",
+            "5525525483",
+            "5525525484",
+            "5525525485"
+          ],
+          "alt": "Men's athletic t-shirt · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368659-9954-4.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525479",
+            "5525525480",
+            "5525525481",
+            "5525525482",
+            "5525525483",
+            "5525525484",
+            "5525525485"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368659-9954-5.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525479",
+            "5525525480",
+            "5525525481",
+            "5525525482",
+            "5525525483",
+            "5525525484",
+            "5525525485"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476368661": {
+      "name": "Men's athletic t-shirt",
+      "originalImage": "https://files.cdn.printful.com/files/907/907ed07dd3068dc5034d52e8ad72a8aa_preview.png",
+      "catalogProductId": 328,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368661-9954-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525487",
+            "5525525488",
+            "5525525489",
+            "5525525490",
+            "5525525491",
+            "5525525492",
+            "5525525493"
+          ],
+          "alt": "Men's athletic t-shirt · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368661-9954-1.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525487",
+            "5525525488",
+            "5525525489",
+            "5525525490",
+            "5525525491",
+            "5525525492",
+            "5525525493"
+          ],
+          "alt": "Men's athletic t-shirt · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368661-9954-2.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525487",
+            "5525525488",
+            "5525525489",
+            "5525525490",
+            "5525525491",
+            "5525525492",
+            "5525525493"
+          ],
+          "alt": "Men's athletic t-shirt · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368661-9954-3.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525487",
+            "5525525488",
+            "5525525489",
+            "5525525490",
+            "5525525491",
+            "5525525492",
+            "5525525493"
+          ],
+          "alt": "Men's athletic t-shirt · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368661-9954-4.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525487",
+            "5525525488",
+            "5525525489",
+            "5525525490",
+            "5525525491",
+            "5525525492",
+            "5525525493"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368661-9954-5.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5525525487",
+            "5525525488",
+            "5525525489",
+            "5525525490",
+            "5525525491",
+            "5525525492",
+            "5525525493"
+          ],
+          "alt": "Men's athletic t-shirt · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
     },
     "476368662": {
       "name": "Unisex cotton hoodie",
@@ -793,6 +1329,154 @@
       ],
       "source": "Verified finished production canvases"
     },
+    "476394293": {
+      "name": "Utility backpack",
+      "originalImage": "https://files.cdn.printful.com/files/5bf/5bf947675adf57cf6f46d042dfd794bb_preview.png",
+      "catalogProductId": 963,
+      "photos": [
+        {
+          "image": "assets/product-photos/476394293-24564-0.jpg",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · top · product mockup",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-2.jpg",
+          "view": "Left",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Left · product mockup",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-3.jpg",
+          "view": "Left Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Left Front · product mockup",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-4.jpg",
+          "view": "Right",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Right · product mockup",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-5.jpg",
+          "view": "Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-6.jpg",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-7.jpg",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-8.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476394293-24564-9.jpg",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5525656013"
+          ],
+          "alt": "Utility backpack · Right · on-person mockup",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
     "476395722": {
       "name": "Neck Gaiter",
       "originalImage": "https://files.cdn.printful.com/files/cee/cee2e975030cfc11e67ed82acc92bfed_preview.png",
@@ -1376,6 +2060,758 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "476596721": {
+      "name": "Unisex Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/c6f/c6ff9772ed83e56ca4931cc136360624_preview.png",
+      "catalogProductId": 388,
+      "photos": [
+        {
+          "image": "assets/product-photos/476596721-18730-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-1.jpg",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-2.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-3.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-4.jpg",
+          "view": "Left Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Left Front · product mockup",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-5.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-6.jpg",
+          "view": "Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-7.jpg",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-8.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-9.jpg",
+          "view": "Right Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Right Back · product mockup",
+          "label": "Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-10.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-11.jpg",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Right · on-person mockup",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-12.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476596721-18730-13.jpg",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · Left · on-person mockup",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476636727": {
+      "name": "Unisex Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/6ae/6ae048ddfb583172de195f8fb248c7f5_preview.png",
+      "catalogProductId": 388,
+      "photos": [
+        {
+          "image": "assets/product-photos/476636727-18730-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-1.jpg",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-2.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-3.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-4.jpg",
+          "view": "Left Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Left Front · product mockup",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-5.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-6.jpg",
+          "view": "Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-7.jpg",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-8.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-9.jpg",
+          "view": "Right Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Right Back · product mockup",
+          "label": "Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-10.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-11.jpg",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Right · on-person mockup",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-12.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476636727-18730-13.jpg",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · Left · on-person mockup",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476640417": {
+      "name": "Unisex Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
+      "catalogProductId": 388,
+      "photos": [
+        {
+          "image": "assets/product-photos/476640417-10871-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-1.jpg",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-2.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-3.jpg",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Front · product mockup",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-4.jpg",
+          "view": "Left Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Left Front · product mockup",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-5.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-6.jpg",
+          "view": "Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-7.jpg",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-8.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-9.jpg",
+          "view": "Right Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Right Back · product mockup",
+          "label": "Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-10.jpg",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · sleeve_right · product mockup",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-11.jpg",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Right · on-person mockup",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-12.jpg",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · sleeve_left · product mockup",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476640417-10871-13.jpg",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 10871,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · Left · on-person mockup",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
     },
     "476651184": {
       "name": "Unisex cotton hoodie",
