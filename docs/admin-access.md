@@ -3,7 +3,7 @@
 ## Enforced now
 - Customer navigation is Store / Designs / Create yours, plus Bag and support links. No public customer page links to Master, Pricing, Layout or AI owner controls.
 - _config.yml excludes owner HTML, JavaScript, CSS, AI endpoint configuration, email drafts, owner previews and scripts/docs from the GitHub Pages build. Direct owner-page requests return HTTP 404. Removing links alone is not protection.
-- Catalog mutation, price publishing and paid AI workflows run only on main and only when github.actor equals github.repository_owner. GitHub itself requires repository write permission for manual workflow dispatch.
+- Catalog mutation, price publishing and paid AI workflows run only on main and only when both github.actor and github.triggering_actor equal github.repository_owner (including reruns). GitHub itself requires repository write permission for manual workflow dispatch.
 - /admin.html is a public explanation and link to GitHub Actions, not a login implementation. It does not unlock screens, read private records or collect credentials.
 - Customer manual garment editing, uploads and saved drafts remain available. They do not grant access to paid AI or order administration.
 

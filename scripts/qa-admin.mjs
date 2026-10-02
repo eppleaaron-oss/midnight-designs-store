@@ -1,7 +1,7 @@
 import {chromium} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs';
 const excluded=fs.readFileSync('_config.yml','utf8').split('\n').filter(l=>l.startsWith('  - ')).map(l=>l.slice(4));
 for(const path of excluded)assert.equal(fs.existsSync('_site/'+path),false,'Excluded asset leaked: '+path);
-for(const file of ['ai-design','pricing','manage-catalog']){const text=fs.readFileSync('.github/workflows/'+file+'.yml','utf8');assert.ok(text.includes("if: github.ref == 'refs/heads/main' && github.actor == github.repository_owner"));assert.ok(text.includes('workflow_dispatch:'));assert.ok(!text.includes('pull_request_target:'));}
+for(const file of ['ai-design','pricing','manage-catalog']){const text=fs.readFileSync('.github/workflows/'+file+'.yml','utf8');assert.ok(text.includes("if: github.ref == 'refs/heads/main' && github.actor == github.repository_owner"));assert.ok(text.includes('github.triggering_actor == github.repository_owner'));assert.ok(text.includes('workflow_dispatch:'));assert.ok(!text.includes('pull_request_target:'));}
 const browser=await chromium.launch(),page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 const root='http://localhost:8001';
 for(const path of ['master.html','pricing.html','layout.html','ai-designer.html','master.js','pricing.js','ai-designer.js','ai-preview-config.json','order-email-templates.json','assets/layout-preview/master.png','docs/admin-access.md','scripts/ai-design.mjs']){const r=await page.request.get(root+'/'+path);assert.equal(r.status(),404,'Direct access allowed: '+path);}
