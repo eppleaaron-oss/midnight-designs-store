@@ -1,0 +1,43 @@
+name: Search visibility and analytics checks
+on:
+  push:
+    branches: [search-analytics]
+  pull_request:
+    paths: ['products/**', 'catalog-copy.json', 'analytics*', 'app.js', '*html', 'product-photos.js', 'product-information.js', 'size-guide.js', 'shipping-product.js', 'scripts/build-search-pages.mjs', 'scripts/qa-search.mjs', 'scripts/qa-analytics.mjs', '.github/workflows/search-check.yml']
+permissions:
+  contents: read
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify generated search pages are current
+        run: |
+          node scripts/build-search-pages.mjs
+          git diff --exit-code -- products sitemap.xml shop.html
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Verify search, analytics and store behavior
+        run: |
+          python3 -m http.server 8000 &
+          python3 -m http.server 8001 --directory _site &
+          node scripts/qa-search.mjs
+          node scripts/qa-analytics.mjs
+          node scripts/qa-admin.mjs
+          node scripts/qa-cart.mjs
+          node scripts/qa-catalog.mjs
+          node scripts/qa-home.mjs
+          node scripts/qa-product-information.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: search-analytics-previews
+          path: qa-*.png

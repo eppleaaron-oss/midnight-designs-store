@@ -25,11 +25,12 @@ jobs:
         run: |
           node scripts/sync-printful.mjs
           node scripts/sync-product-information.mjs
+          node scripts/build-search-pages.mjs
       - name: Save catalog
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add products.json product-information.json
+          git add products.json product-information.json products sitemap.xml shop.html
           if ! git diff --cached --quiet; then
             git commit -m 'Sync Printful product catalog'
             git push

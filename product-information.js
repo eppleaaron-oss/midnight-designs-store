@@ -2,7 +2,7 @@
 (async()=>{
  const $=id=>document.getElementById(id);if(!$('productDetails'))return;
  const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n};
- const id=new URLSearchParams(location.search).get('id');let catalog,metadata;
+ const id=(document.body.dataset.productId||new URLSearchParams(location.search).get('id'));let catalog,metadata;
  try{[catalog,metadata]=await Promise.all(['products.json','product-information.json'].map(async path=>{const r=await fetch(path,{cache:'no-cache'});if(!r.ok)throw Error();return r.json()}))}catch{$('productDetails').replaceChildren(node('p','Product specifications could not load. Refresh to try again.','notice'));return}
  const p=catalog.products.find(p=>p.id===id);if(!p){$('productDetails').hidden=true;return}const info=metadata.products[p.catalogProductId];if(!info){$('productDetails').replaceChildren(node('p','Detailed specifications are being confirmed for this item.','notice'));return}
  function section(title,values,missing){const box=node(title==='Details'?'details':'section',undefined,'product-spec-section');box.append(node(title==='Details'?'summary':'h2',title));if(values?.length){const ul=node('ul');for(const value of values)ul.append(node('li',value));box.append(ul)}else box.append(node('p',missing,'notice'));$('productDetails').append(box);return box}
@@ -18,6 +18,6 @@
  const picker=node('div',undefined,'variant-buttons');picker.setAttribute('role','group');picker.setAttribute('aria-label','Available size and color combinations');for(const v of p.variants){const button=node('button',[v.size,v.color].filter(Boolean).join(' · ')||v.name,'variant-button');button.type='button';button.dataset.variant=String(v.id);button.addEventListener('click',()=>{if($('variant').disabled)return;$('variant').value=String(v.id);$('variant').dispatchEvent(new Event('change',{bubbles:true}));update()});picker.append(button)}options.append(picker);$('variant').addEventListener('change',update);update();if($('variant').disabled){const observer=new MutationObserver(()=>{if(!$('variant').disabled){update();observer.disconnect()}});observer.observe($('variant'),{attributes:true,childList:true})}
  // Main description replaces the generic placeholder without competing with app initialization.
  const descriptionNode=$('description');const applyIntro=()=>{descriptionNode.textContent=info.description.split(/\n\n/)[0]};applyIntro();if($('name').textContent==='Loading product…'){const observer=new MutationObserver(()=>{if($('name').textContent!=='Loading product…'){applyIntro();observer.disconnect()}});observer.observe($('name'),{childList:true})}
- document.querySelector('meta[name="description"]').content=info.description.split(/\n\n/)[0];
+ document.querySelector('meta[name="description"]').content=p.description||info.description.split(/\n\n/)[0];
  $('productDetails').dataset.ready='true';
 })();

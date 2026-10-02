@@ -44,7 +44,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add designs.json products.json catalog-exclusions.json
+          node scripts/build-search-pages.mjs
+          git add designs.json products.json catalog-exclusions.json products sitemap.xml shop.html
           git commit -m 'Apply owner catalog change'
           git push
       - name: Deploy updated store
