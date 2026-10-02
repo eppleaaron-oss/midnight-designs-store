@@ -1,0 +1,90 @@
+{
+  "updatedAt": "2026-10-02T18:28:42.054Z",
+  "prepared": 0,
+  "errors": [
+    {
+      "productId": "476651184",
+      "error": "Photo API HTTP 404: {\"reason\":\"NotFound\",\"message\":\"Page not found.\"}"
+    },
+    {
+      "productId": "476640417",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476636727",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476596721",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476580639",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476570540",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476559553",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476553400",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476397566",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476395722",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476394293",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368665",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368662",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368661",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368660",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368659",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368658",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368657",
+      "error": "Photo API HTTP 404: {\"reason\":\"NotFound\",\"message\":\"Page not found.\"}"
+    },
+    {
+      "productId": "476368655",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476368653",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "productId": "476363019",
+      "error": "The operation was aborted due to timeout"
+    }
+  ]
+}
