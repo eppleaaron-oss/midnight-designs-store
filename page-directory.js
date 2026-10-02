@@ -9,6 +9,7 @@ const pages=[
 ['catalog','Clothing options','Explore clothing available for custom builds.',['Browse all custom clothing options','Review available sizes and printing techniques','Choose an item for Create yours']],
 ['product','Product details','Product photos, variants and sizing.',['Review product photos','Choose a variant','Add an available variant to the bag']],
 ['cart','Bag','Review your selected retail items.',['Review quantities and totals','Remove items','Checkout is currently unavailable']],
+['shipping','Shipping','Production, delivery, costs and destination guidance.',['Review production and transit estimates','Read shipping cost and customs information','Check general and product-specific destination restrictions','Orders and shipping quotes are currently unavailable']],
 ['layout','Layout','A visual directory of every app page.',['Visit any page','Inspect page content, headers, colors and available data']]
 ].map(([id,name,intro,features])=>({id,name,intro,features,url:id+'.html'}));
 const $=id=>document.getElementById(id);let data={},selected=null;
