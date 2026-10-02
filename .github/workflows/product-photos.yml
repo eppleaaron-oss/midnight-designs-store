@@ -1,0 +1,36 @@
+name: Generate accurate product photo galleries
+on:
+  workflow_dispatch:
+  push:
+    branches: [product-photo-gallery]
+    paths: ['scripts/sync-product-photos.mjs', '.github/workflows/product-photos.yml']
+permissions:
+  contents: write
+concurrency:
+  group: product-photos
+  cancel-in-progress: false
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Render mockups from original saved designs
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+        run: node scripts/sync-product-photos.mjs
+      - name: Save accurate product photos and report
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for path in product-photos.json product-photo-report.json assets/product-photos; do
+            if test -e "$path"; then git add "$path"; fi
+          done
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Save production mockup galleries and coverage report'
+          git push
