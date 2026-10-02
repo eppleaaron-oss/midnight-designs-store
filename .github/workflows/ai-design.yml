@@ -33,7 +33,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   create:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.actor == github.repository_owner
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

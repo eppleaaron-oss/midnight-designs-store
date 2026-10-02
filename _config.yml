@@ -1,0 +1,31 @@
+# Publish customer pages only. Source is public; this is deployment isolation, not repository secrecy.
+exclude:
+  - master.html
+  - master.js
+  - master.css
+  - pricing.html
+  - pricing.js
+  - pricing-math.mjs
+  - pricing-overrides.json
+  - layout.html
+  - page-directory.js
+  - page-directory.css
+  - ai-designer.html
+  - ai-designer.js
+  - ai-designer.css
+  - ai-mapping.js
+  - ai-mapping.css
+  - ai-preview-config.json
+  - order-communication.js
+  - order-messages.mjs
+  - order-email-templates.json
+  - assets/layout-preview
+  - docs
+  - scripts
+  - README.md
+  - node_modules
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - vendor
