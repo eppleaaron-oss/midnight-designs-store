@@ -1,0 +1,41 @@
+name: Publish storefront layout
+on:
+  workflow_dispatch:
+    inputs:
+      layout_settings:
+        description: Layout settings copied from the master Layout page
+        required: true
+        type: string
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  layout:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate layout settings
+        env:
+          LAYOUT_SETTINGS: ${{ inputs.layout_settings }}
+        run: node scripts/layout.mjs
+      - name: Save layout
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add store-layout.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish owner storefront layout'
+          git push
+      - name: Deploy storefront
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds
