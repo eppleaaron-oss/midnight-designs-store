@@ -1,0 +1,41 @@
+name: Homepage shopping checks
+on:
+  push:
+    branches: [stronger-homepage]
+    paths: ['index.html', 'homepage.css', 'app.js', 'scripts/qa-home.mjs', '.github/workflows/home-check.yml']
+  pull_request:
+    paths: ['index.html', 'homepage.css', 'app.js', 'scripts/qa-home.mjs']
+permissions:
+  contents: write
+jobs:
+  homepage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Check homepage and shopping features
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-home.mjs
+          node scripts/qa-mobile.mjs
+          node scripts/qa-cart.mjs
+          node scripts/qa-store.mjs
+          node scripts/qa-directory.mjs
+      - name: Refresh actual Layout previews
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/layout-preview
+          git diff --cached --quiet || git commit -m 'Refresh homepage and Layout previews'
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: homepage-previews
+          path: qa-*.png
