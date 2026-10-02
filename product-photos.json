@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T19:12:10.403Z",
+  "updatedAt": "2026-10-02T19:22:56.053Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -220,6 +220,156 @@
           ],
           "alt": "All-over print bandana · front · product mockup",
           "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368653-16032-1.jpg",
+          "view": "Front",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5525525446",
+            "5525525447",
+            "5525525448"
+          ],
+          "alt": "All-over print bandana · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476368655": {
+      "name": "Yoga Leggings",
+      "originalImage": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
+      "catalogProductId": 242,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368655-8355-0.jpg",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · default · product mockup",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368655-8355-1.jpg",
+          "view": "Left",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · Left · product mockup",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368655-8355-2.jpg",
+          "view": "Right",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · Right · product mockup",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368655-8355-3.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368655-8355-4.jpg",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368655-8355-5.jpg",
+          "view": "belt_front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · belt_front · product mockup",
+          "label": "belt_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368655-8355-6.jpg",
+          "view": "belt_back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5525525453",
+            "5525525454",
+            "5525525455",
+            "5525525456",
+            "5525525457"
+          ],
+          "alt": "Yoga Leggings · belt_back · product mockup",
+          "label": "belt_back",
           "kind": "production-mockup"
         }
       ],
@@ -604,6 +754,126 @@
           ],
           "alt": "Men's athletic t-shirt · sleeve_left · product mockup",
           "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
+    },
+    "476368660": {
+      "name": "Backpack",
+      "originalImage": "https://files.cdn.printful.com/files/53f/53fccade605735d6cc40d7f31203f057_preview.png",
+      "catalogProductId": 279,
+      "photos": [
+        {
+          "image": "assets/product-photos/476368660-9063-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-1.jpg",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-2.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-3.jpg",
+          "view": "Back",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Back · on-person mockup",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-4.jpg",
+          "view": "Left",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Left · on-person mockup",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-5.jpg",
+          "view": "Right",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Right · on-person mockup",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-6.jpg",
+          "view": "Back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Back · product mockup",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476368660-9063-7.jpg",
+          "view": "Right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5525525486"
+          ],
+          "alt": "Backpack · Right · product mockup",
+          "label": "Right",
           "kind": "production-mockup"
         }
       ],
@@ -1596,6 +1866,59 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "476397566": {
+      "name": "Fanny Pack",
+      "originalImage": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png",
+      "catalogProductId": 350,
+      "photos": [
+        {
+          "image": "assets/product-photos/476397566-9986-0.jpg",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9986,
+          "storeVariantIds": [
+            "5525670040",
+            "5525670041"
+          ],
+          "alt": "Fanny Pack · front · product mockup",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476397566-9986-1.jpg",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9986,
+          "storeVariantIds": [
+            "5525670040",
+            "5525670041"
+          ],
+          "alt": "Fanny Pack · Front · on-person mockup",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/476397566-9986-2.jpg",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9986,
+          "storeVariantIds": [
+            "5525670040",
+            "5525670041"
+          ],
+          "alt": "Fanny Pack · back · product mockup",
+          "label": "back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Verified saved production print files"
     },
     "476553400": {
       "name": "Oversized Cotton Hoodie",
