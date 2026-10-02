@@ -1,14 +1,106 @@
 {
-  "updatedAt": "2026-10-02T18:58:59.927Z",
-  "errors": [],
+  "updatedAt": "2026-10-02T19:01:11.990Z",
+  "errors": [
+    {
+      "productId": "476640417",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476636727",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476596721",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476397566",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476394293",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476368661",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476368660",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476368659",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476368658",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476368657",
+      "error": "A finished production canvas is unavailable for default"
+    },
+    {
+      "productId": "476368655",
+      "error": "A finished production canvas is unavailable for belt_back"
+    },
+    {
+      "productId": "476368653",
+      "error": "A finished production canvas is unavailable for default"
+    }
+  ],
   "tasks": [
     {
-      "productId": "476651184",
-      "key": "gt-977705541",
+      "productId": "476580639",
+      "key": "gt-977706517",
+      "status": "completed"
+    },
+    {
+      "productId": "476570540",
+      "key": "gt-977706712",
+      "status": "completed"
+    },
+    {
+      "productId": "476559553",
+      "key": "gt-977707102",
+      "status": "completed"
+    },
+    {
+      "productId": "476553400",
+      "key": "gt-977707106",
+      "status": "completed"
+    },
+    {
+      "productId": "476395722",
+      "key": "gt-977707472",
+      "status": "completed"
+    },
+    {
+      "productId": "476368665",
+      "key": "gt-977707473",
+      "status": "completed"
+    },
+    {
+      "productId": "476368662",
+      "key": "gt-977707937",
+      "status": "completed"
+    },
+    {
+      "productId": "476363019",
+      "key": "gt-977707943",
       "status": "completed"
     }
   ],
   "coverage": {
+    "476363019": 8,
+    "476368662": 12,
+    "476368665": 12,
+    "476395722": 8,
+    "476553400": 2,
+    "476559553": 2,
+    "476570540": 2,
+    "476580639": 12,
     "476651184": 12
   }
 }
