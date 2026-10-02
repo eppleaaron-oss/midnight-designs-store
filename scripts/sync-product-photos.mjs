@@ -35,10 +35,12 @@ for(const p of products.slice(0,Number(process.env.PHOTO_PRODUCT_LIMIT)||product
      return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width:area.width,height:area.height,top:0,left:0}};
     }
     if(f.is_temporary||!f.hash||!f.width||!f.height)throw Error('Unedited saved production file unavailable for '+placement);
-    return {placement,image_url:f.preview_url};
+    const scale=area.fill_mode==='fit'?Math.min(area.width/f.width,area.height/f.height):Math.max(area.width/f.width,area.height/f.height);
+    const width=Math.round(f.width*scale),height=Math.round(f.height*scale);
+    return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width,height,top:Math.round((area.height-height)/2),left:Math.round((area.width-width)/2)}};
    });
    if(!files.length)throw Error('Finished production canvases unavailable.');
-   const groups=mapping.option_groups.filter(g=>/^(Flat|Ghost|Default|Product|Men's|Women's|Lifestyle)$/i.test(g));
+   const groups=mapping.option_groups.filter(g=>/^(Flat|Ghost|Default|Product|Men's|Women's|Lifestyle(?: 1)?)$/i.test(g));
    const options=mapping.options.filter(o=>/^(Front|Back|Left Front|Right Back|Left|Right|Side)$/i.test(o));
    jobs.push({p,color,variant:retail,request:{variant_ids:[retail.catalogVariantId],format:'jpg',width:2000,files,product_options:Object.fromEntries(source.options.filter(o=>o.id!=='license_type').map(o=>[o.id,o.value])),...(groups.length?{option_groups:groups}:{}),...(options.length?{options}: {})}});
   }
