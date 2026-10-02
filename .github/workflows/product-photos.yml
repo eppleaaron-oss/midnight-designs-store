@@ -27,11 +27,13 @@ jobs:
       - name: Save accurate product photos and report
         if: always()
         run: |
+          node scripts/build-search-pages.mjs
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           for path in product-photos.json product-photo-report.json assets/product-photos; do
             if test -e "$path"; then git add "$path"; fi
           done
-          if git diff --cached --quiet; then exit 0; fi
+          if git add products sitemap.xml shop.html
+          git diff --cached --quiet; then exit 0; fi
           git commit -m 'Save production mockup galleries and coverage report'
           git push
