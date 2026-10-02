@@ -1,0 +1,32 @@
+name: Reliable cart checks
+on:
+  push:
+    branches: [reliable-cart]
+    paths: ['app.js', 'cart.html', 'scripts/qa-cart.mjs', '.github/workflows/cart-check.yml']
+  pull_request:
+    paths: ['app.js', 'cart.html', 'scripts/qa-cart.mjs']
+permissions:
+  contents: read
+jobs:
+  cart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Verify cart and product behavior
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-cart.mjs
+          node scripts/qa-store.mjs
+          node scripts/qa-product-information.mjs
+          node scripts/qa-product-photos.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reliable-cart-previews
+          path: qa-*.png
