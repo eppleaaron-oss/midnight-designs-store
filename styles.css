@@ -62,7 +62,11 @@ h1,h2{font-family:var(--font-display)}
 .page-title,.directory-heading h1{text-transform:uppercase;letter-spacing:-.02em}
 .product-image,.visual{background:var(--photo-bg);border-color:var(--sand)}
 .product-image img,.visual img{mix-blend-mode:multiply}
-.item img,.gallery .photo-thumbnail img,.photo-dialog img{background:var(--photo-bg);mix-blend-mode:multiply}
+.item img,.gallery .photo-thumbnail img,.photo-dialog img{background:var(--photo-bg);mix-blend-mode:normal}
+.item img{padding:4px}
+.gallery .photo-thumbnail{background:var(--photo-bg)}
+.gallery .photo-thumbnail img{mix-blend-mode:multiply}
+.gallery .photo-thumbnail span{background:var(--panel)}
 .story,.drop-zone,.designer-ai{background:var(--panel)}
 .panel,.product-image,.visual,.btn,.pill,input,select,textarea{border-radius:0}
 .product-body h3{line-height:1.5}
