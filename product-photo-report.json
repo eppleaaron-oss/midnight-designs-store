@@ -1,5 +1,14 @@
 {
-  "updatedAt": "2026-10-02T18:52:13.286Z",
-  "prepared": 1,
-  "errors": []
+  "updatedAt": "2026-10-02T18:58:59.927Z",
+  "errors": [],
+  "tasks": [
+    {
+      "productId": "476651184",
+      "key": "gt-977705541",
+      "status": "completed"
+    }
+  ],
+  "coverage": {
+    "476651184": 12
+  }
 }
