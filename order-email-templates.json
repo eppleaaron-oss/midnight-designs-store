@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "status": "draft",
+  "templates": [
+    {
+      "id": "confirmation",
+      "label": "Order confirmation",
+      "trigger": "Verified successful payment and saved order",
+      "subject": "Midnight Designs — order {{orderNumber}} confirmed",
+      "body": "Thanks for your order, {{customerName}}.\n\nOrder: {{orderNumber}}\n{{items}}\n\nItems: {{subtotal}}\nShipping: {{shipping}}\nTax: {{tax}}\nTotal paid: {{total}}\n\nDelivery address:\n{{deliveryAddress}}\n\nEstimated production: {{productionEstimate}}\nEstimated delivery: {{deliveryEstimate}}\nThese are estimates, not guaranteed arrival dates. Tracking follows when a package ships.\n\nOrder help: https://midnight-designs.store/order-help.html\nContact: {{supportEmail}}\nPlease include your order number when contacting us."
+    },
+    {
+      "id": "shipped",
+      "label": "Package shipped / tracking",
+      "trigger": "Verified shipment for a paid store order; once per package",
+      "subject": "Midnight Designs — tracking for order {{orderNumber}}",
+      "body": "Your package is on its way, {{customerName}}.\n\nOrder: {{orderNumber}}\nPackage: {{packageNumber}}\nItems in this package:\n{{items}}\n\nCarrier: {{carrier}}\nTracking number: {{trackingNumber}}\nTrack package: {{trackingUrl}}\nEstimated delivery: {{deliveryEstimate}}\n\nA new tracking label may not show a carrier scan yet. If your order has more than one package, each has its own tracking update.\n\nOrder help: https://midnight-designs.store/order-help.html\nContact: {{supportEmail}}"
+    },
+    {
+      "id": "delay",
+      "label": "Delay / order update",
+      "trigger": "Owner-reviewed change to a verified order estimate",
+      "subject": "Midnight Designs — update for order {{orderNumber}}",
+      "body": "An update on your order, {{customerName}}.\n\nOrder: {{orderNumber}}\n{{updateMessage}}\n\nUpdated delivery estimate: {{deliveryEstimate}}\nWe will contact you again when more information is available. This estimate is not a guaranteed arrival date.\n\nOrder help: https://midnight-designs.store/order-help.html\nContact: {{supportEmail}}"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ const pages=[
 ['designs','Designs','All artwork and design references.',['Browse design pictures','Like or dislike artwork','Choose artwork for a custom build']],
 ['custom','Create yours','Build and map your own clothing.',['Choose a clothing option and size','Use gallery artwork or upload your own images','Edit front, back and supported sleeve placements','Adjust layers, scale, position, rotation, opacity and patterns','Use verified Printful variant templates','Download the design map and print-area files']],
 ['ai-designer','AI designer','Plan a garment with artwork and a preview.',['Choose gallery artwork or personal uploads','Build a placement map manually','Provide an idea and up to three reference images','Send the idea, artwork and Printful production map to a configured AI preview service']],
-['master','Master','Your owner dashboard and management tools.',['View product and design counts','Access protected product hide/restore and design deletion workflows','Open pricing, layout and AI tools']],
+['master','Master','Your owner dashboard and management tools.',['View product and design counts','Access protected product hide/restore and design deletion workflows','Open pricing, layout and AI tools','Preview draft order emails and review connection requirements']],
 ['pricing','Pricing','Review prices, costs and estimated profit.',['Review every retail variant','Enter production costs and fees','Use recommended prices as a local draft','Export approved price changes for the protected publishing workflow']],
 ['index','Home','Your brand introduction and featured collection.',['Discover the Midnight Designs story','Browse featured products','Open the store']],
 ['catalog','Clothing options','Explore clothing available for custom builds.',['Browse all custom clothing options','Review available sizes and printing techniques','Choose an item for Create yours']],
@@ -12,6 +12,7 @@ const pages=[
 ['shipping','Shipping','Production, delivery, costs and destination guidance.',['Review production and transit estimates','Read shipping cost and customs information','Check general and product-specific destination restrictions','Orders and shipping quotes are currently unavailable']],
 ['returns','Returns','Sizing, product problems, cancellations and legal returns.',['Review planned returns and cancellation policy','Read product issue evidence and remedy guidance','Review applicable consumer rights','Prepare a customer support message']],
 ['contact','Customer support','Prepare and review a support email.',['Choose a support topic','Add order information and a message','Copy the message or open a configured support inbox in your email app','Nothing is sent or stored by this page; email contact requires an inbox']],
+['order-help','Order help','Confirmation, shipment tracking and customer help guidance.',['Read planned confirmation and per-package tracking information','Prepare confirmation, delivery or cancellation questions','Order emails and live tracking are not connected']],
 ['layout','Layout','A visual directory of every app page.',['Visit any page','Inspect page content, headers, colors and available data']]
 ].map(([id,name,intro,features])=>({id,name,intro,features,url:id+'.html'}));
 const $=id=>document.getElementById(id);let data={},selected=null;
