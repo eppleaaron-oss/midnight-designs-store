@@ -1,0 +1,945 @@
+{
+  "updatedAt": "2026-10-02T16:36:12.251Z",
+  "products": {
+    "242": {
+      "catalogProductId": 242,
+      "title": "All-Over Print Yoga Leggings",
+      "description": "Stretchy yoga leggings with a raised waistband and smooth microfiber fabric. Four-way stretch supports movement, while all-over artwork completes the look.",
+      "materials": [
+        "78% polyester, 22% elastane for fulfillment in the US",
+        "84% polyester, 16% elastane for fulfillment in EU",
+        "Fabric weight: 8.56 oz./yd.² (290 g/m²) in the US",
+        "Fabric weight: 6.78 oz./yd.² (230 g/m²) in EU"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Four-way stretch, which means fabric stretches and recovers on the cross and lengthwise grains.",
+        "Raised waistband"
+      ],
+      "features": [
+        "78% polyester, 22% elastane for fulfillment in the US",
+        "84% polyester, 16% elastane for fulfillment in EU",
+        "Fabric weight: 8.56 oz./yd.² (290 g/m²) in the US",
+        "Fabric weight: 6.78 oz./yd.² (230 g/m²) in EU",
+        "Four-way stretch, which means fabric stretches and recovers on the cross and lengthwise grains.",
+        "Made with a smooth, comfortable microfiber yarn",
+        "Raised waistband",
+        "Precision-cut and hand-sewn after printing",
+        "Blank product components sourced from Mexico and China"
+      ],
+      "notes": [
+        "In areas where the fabric is double-layered (like pockets), details from the inner fabric layer may subtly show through, especially with lighter designs.",
+        "Please note that contact with rough surfaces should be avoided since they can pull out the white fibers in the fabric, damaging the leggings."
+      ],
+      "fabricNote": "US-produced batches from September 14, 2026 use 78% polyester / 22% elastane, 290 g/m². Other production regions retain their existing fabric. Composition and weight can differ by region and batch.",
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": "https://help.printful.com/hc/en-us/articles/50263298123409-What-should-I-know-about-the-2026-All-Over-Print-fabric-change",
+      "catalogVariants": [
+        {
+          "id": 8356,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Yoga Leggings (White / L)"
+        },
+        {
+          "id": 8355,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Yoga Leggings (White / M)"
+        },
+        {
+          "id": 8354,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Yoga Leggings (White / S)"
+        },
+        {
+          "id": 8357,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Yoga Leggings (White / XL)"
+        },
+        {
+          "id": 8353,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Yoga Leggings (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:10.191Z"
+    },
+    "279": {
+      "catalogProductId": 279,
+      "title": "All-Over Print Backpack",
+      "description": "A polyester backpack for daily essentials, with padded adjustable straps, a 15-inch laptop compartment and a water-resistant outer fabric.",
+      "materials": [
+        "Made from 100% polyester",
+        "Fabric weight: 9 oz./yd.² (305 g/m²)",
+        "Silky lining, piped inside hems, and a soft mesh back"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Dimensions: H 16⅛\" (41cm), W 12¼\" (31cm), D 3⅞\" (10cm)",
+        "Padded ergonomic bag straps from polyester with plastic strap regulators"
+      ],
+      "features": [
+        "Made from 100% polyester",
+        "Dimensions: H 16⅛\" (41cm), W 12¼\" (31cm), D 3⅞\" (10cm)",
+        "Fabric weight: 9 oz./yd.² (305 g/m²)",
+        "Maximum weight limit: 44lbs (20kg)",
+        "Water-resistant material",
+        "Large inside pocket with a separate compartment for a 15” laptop, front pocket with a zipper, and a hidden pocket with zipper on the back of the bag",
+        "Top zipper has 2 sliders with zipper pullers",
+        "Silky lining, piped inside hems, and a soft mesh back",
+        "Padded ergonomic bag straps from polyester with plastic strap regulators",
+        "Blank product components sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Gently clean by hand; do not machine-wash.",
+        "Avoid bleach, dry-cleaning and tumble-drying.",
+        "Check the item’s care label before applying heat."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 9063,
+          "size": "One size",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Backpack"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:07.734Z"
+    },
+    "328": {
+      "catalogProductId": 328,
+      "title": "All-Over Print Men's Athletic T-Shirt",
+      "description": "A lightweight athletic tee made from soft, four-way-stretch sports mesh. Designed for comfortable movement, with the Midnight Designs print shown in the photos.",
+      "materials": [
+        "92% polyester, 8% spandex (in the US)",
+        "90% polyester, 10% elastane (in the EU)",
+        "Fabric weight: 4.42 oz/yd² (150 g/m²), weight may vary by 5%"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Very soft four-way stretch sports mesh fabric",
+        "Comfortable fit"
+      ],
+      "features": [
+        "92% polyester, 8% spandex (in the US)",
+        "90% polyester, 10% elastane (in the EU)",
+        "Fabric weight: 4.42 oz/yd² (150 g/m²), weight may vary by 5%",
+        "Very soft four-way stretch sports mesh fabric",
+        "Comfortable fit",
+        "Overlock and coverstitch",
+        "UPF 50+ protection",
+        "Blank product components sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 9957,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (2XL)"
+        },
+        {
+          "id": 9958,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (3XL)"
+        },
+        {
+          "id": 9955,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (L)"
+        },
+        {
+          "id": 9954,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (M)"
+        },
+        {
+          "id": 9953,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (S)"
+        },
+        {
+          "id": 9956,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (XL)"
+        },
+        {
+          "id": 9952,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Athletic T-Shirt (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:06.725Z"
+    },
+    "350": {
+      "catalogProductId": 350,
+      "title": "All-Over Print Fanny Pack",
+      "description": "A compact waist bag with adjustable straps, water-resistant fabric and an inside pocket. The printed design is shown in the product photos.",
+      "materials": [
+        "100% polyester",
+        "Fabric weight: 9 oz./yd.² (305 g/m²)",
+        "Silky lining, piped inside hems"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Dimensions: 6.5″ (16 cm) in height, 13″ (33 cm) in width, and 2¾″ (7 cm) in diameter",
+        "Capacity: 0.37 gallons (1.4 l)",
+        "1¼″ (2.54 cm) wide adjustable straps with plastic strap regulators"
+      ],
+      "features": [
+        "100% polyester",
+        "Fabric weight: 9 oz./yd.² (305 g/m²)",
+        "Dimensions: 6.5″ (16 cm) in height, 13″ (33 cm) in width, and 2¾″ (7 cm) in diameter",
+        "Capacity: 0.37 gallons (1.4 l)",
+        "Water-resistant material",
+        "Top zipper with 2 sliders",
+        "Small, customizable inner pocket without zipper",
+        "Silky lining, piped inside hems",
+        "1¼″ (2.54 cm) wide adjustable straps with plastic strap regulators",
+        "Blank product components sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Gently clean by hand; do not machine-wash.",
+        "Avoid bleach, dry-cleaning and tumble-drying.",
+        "Check the item’s care label before applying heat."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 9987,
+          "size": "M/L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Fanny Pack (M/L)"
+        },
+        {
+          "id": 9986,
+          "size": "S/M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Fanny Pack (S/M)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:02.695Z"
+    },
+    "388": {
+      "catalogProductId": 388,
+      "title": "All-Over Print Recycled Unisex Hoodie",
+      "description": "A relaxed unisex hoodie with a soft fabric face, brushed fleece inside and a double-lined hood. Finished with the printed design shown in the photos.",
+      "materials": [
+        "96% recycled polyester, 4% elastane for manufacturing in the US/Mexico",
+        "95% recycled polyester, 5% elastane for manufacturing in Latvia",
+        "Fabric weight (may vary by 5%): 9.08 oz./yd.² (308 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Comes with drawstrings",
+        "The hoodie has a relaxed fit, and it’s perfect for wrapping yourself into on a chilly evening."
+      ],
+      "features": [
+        "96% recycled polyester, 4% elastane for manufacturing in the US/Mexico",
+        "95% recycled polyester, 5% elastane for manufacturing in Latvia",
+        "Fabric weight (may vary by 5%): 9.08 oz./yd.² (308 g/m²)",
+        "Soft cotton-feel fabric face",
+        "Brushed fleece fabric inside",
+        "Double-lined hood with design on both sides",
+        "Unisex style",
+        "Comes with drawstrings",
+        "Overlock seams",
+        "Blank product components in Mexico sourced from Poland and Mexico",
+        "Blank product components in the EU sourced from China and Poland"
+      ],
+      "notes": [
+        "Disclaimer: In areas where the fabric is double-layered (like pockets), details from the inner fabric layer may subtly show through, especially with lighter designs."
+      ],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 18730,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Hoodie (White / 2XS)"
+        },
+        {
+          "id": 18731,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Hoodie (White / 4XL)"
+        },
+        {
+          "id": 18732,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Hoodie (White / 5XL)"
+        },
+        {
+          "id": 18733,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Hoodie (White / 6XL)"
+        },
+        {
+          "id": 10874,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (2XL)"
+        },
+        {
+          "id": 10875,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (3XL)"
+        },
+        {
+          "id": 10872,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (L)"
+        },
+        {
+          "id": 10871,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (M)"
+        },
+        {
+          "id": 10870,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (S)"
+        },
+        {
+          "id": 10873,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (XL)"
+        },
+        {
+          "id": 10869,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Hoodie (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:35:58.036Z"
+    },
+    "420": {
+      "catalogProductId": 420,
+      "title": "All-Over Print Neck Gaiter",
+      "description": "A reusable, stretchy neck gaiter that can also be worn as a headband or wristband. Printed on one side with an unprinted reverse.",
+      "materials": [
+        "Fabric composition in the EU: 96% polyester, 4% spandex",
+        "Fabric composition in the US: 93% polyester, 7% spandex",
+        "Fabric weight in the EU: 6.34 oz./yd.² (215 g/m²)",
+        "Fabric weight in the US: 7.08 oz./yd.² (240 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Smooth, comfortable 2-way stretch fabric that stretches and recovers on the cross and lengthwise grains"
+      ],
+      "features": [
+        "Fabric composition in the EU: 96% polyester, 4% spandex",
+        "Fabric composition in the US: 93% polyester, 7% spandex",
+        "Fabric weight in the EU: 6.34 oz./yd.² (215 g/m²)",
+        "Fabric weight in the US: 7.08 oz./yd.² (240 g/m²)",
+        "Breathable fabric",
+        "Smooth, comfortable 2-way stretch fabric that stretches and recovers on the cross and lengthwise grains",
+        "Washable and reusable",
+        "One size",
+        "Printed on one side, the reverse side is left blank",
+        "Blank product components in the EU sourced from Lithuania",
+        "Blank product components in the US sourced from Mexico"
+      ],
+      "notes": [],
+      "fabricNote": "Fabric update from October 5, 2026: 93% polyester / 7% elastane, 240 g/m². Earlier batches may use 96% polyester / 4% elastane, 215 g/m².",
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": "https://help.printful.com/hc/en-us/articles/50263298123409-What-should-I-know-about-the-2026-All-Over-Print-fabric-change",
+      "catalogVariants": [
+        {
+          "id": 11414,
+          "size": "One size",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Neck Gaiter"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:03.620Z"
+    },
+    "630": {
+      "catalogProductId": 630,
+      "title": "All-Over Print Bandana",
+      "description": "A lightweight, single-sided printed bandana with double-folded edges. Wear it as a headband, necktie or armband; check the size notes before choosing.",
+      "materials": [
+        "Fabric composition in the EU: 65% recycled polyester, 35% polyester",
+        "Fabric composition in the US: 100% recycled polyester",
+        "Fabric weight in the EU: 2.95 oz./yd.² (100 g/m²)",
+        "Fabric weight in the US: 3.24 oz./yd.² (110 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [],
+      "features": [
+        "Fabric composition in the EU: 65% recycled polyester, 35% polyester",
+        "Fabric composition in the US: 100% recycled polyester",
+        "Fabric weight in the EU: 2.95 oz./yd.² (100 g/m²)",
+        "Fabric weight in the US: 3.24 oz./yd.² (110 g/m²)",
+        "Fabric specifications in the EU: Breathable; moisture-wicking material with UPF50+ protection",
+        "Lightweight and soft to the touch",
+        "Double-folded edges",
+        "Single-sided print",
+        "Multifunctional",
+        "The fabric is OEKO-TEX 100 standard certified",
+        "The recycled content of this product is certified under GRS (Global Recycled Standard)",
+        "Blank product components sourced from China/Mexico"
+      ],
+      "notes": [
+        "Important sizing information: the smallest bandana size is made for small pets and won’t fit a grown-up. Please choose the medium or large size if you’re ordering for a grown-up."
+      ],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 16033,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Bandana (White / L)"
+        },
+        {
+          "id": 16032,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Bandana (White / M)"
+        },
+        {
+          "id": 16031,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Bandana (White / S)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:10.922Z"
+    },
+    "963": {
+      "catalogProductId": 963,
+      "title": "All-Over Print Utility Backpack",
+      "description": "A utility backpack with a 16.1-liter capacity, a zippered laptop pocket, multiple storage compartments and adjustable straps.",
+      "materials": [
+        "100% polyester",
+        "Fabric weight: 9.73 oz./yd.² (330 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Capacity: 4.3 gallons (16.1 l)",
+        "Adjustable straps"
+      ],
+      "features": [
+        "100% polyester",
+        "Fabric weight: 9.73 oz./yd.² (330 g/m²)",
+        "Capacity: 4.3 gallons (16.1 l)",
+        "Maximum weight limit: 11.02 lbs (5 kg)",
+        "Spacious main compartment with multiple pockets",
+        "2 front pockets",
+        "Mesh pockets on both sides",
+        "Hidden back pocket",
+        "Zippered laptop pocket",
+        "Adjustable straps",
+        "Blank product sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Gently clean by hand; do not machine-wash.",
+        "Avoid bleach, dry-cleaning and tumble-drying.",
+        "Check the item’s care label before applying heat."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 24563,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Utility Backpack (Black)"
+        },
+        {
+          "id": 24564,
+          "size": "One size",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Utility Backpack (White)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:04.531Z"
+    },
+    "1418": {
+      "catalogProductId": 1418,
+      "title": "All-Over Print Unisex Cotton Sweatshirt",
+      "description": "A soft, slightly stretchy cotton-blend sweatshirt with a relaxed fit and dropped shoulders, finished with Midnight Designs artwork.",
+      "materials": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 7.8 oz./yd.² (265 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Relaxed fit with drop shoulder",
+        "Slight stretch for comfort and shape retention"
+      ],
+      "features": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 7.8 oz./yd.² (265 g/m²)",
+        "Relaxed fit with drop shoulder",
+        "Slight stretch for comfort and shape retention",
+        "Pilling-resistant and durable after multiple washes",
+        "Blank product sourced from Mexico"
+      ],
+      "notes": [],
+      "fabricNote": "Fabric update: US-produced batches from October 5, 2026 use 90% cotton / 10% elastane, 330 g/m². Other production regions retain their existing fabric. The composition and weight can differ by production region and batch.",
+      "dimensions": null,
+      "techniques": [
+        "All-over cotton"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": "https://help.printful.com/hc/en-us/articles/50263298123409-What-should-I-know-about-the-2026-All-Over-Print-fabric-change",
+      "catalogVariants": [
+        {
+          "id": 33969,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / 2XL)"
+        },
+        {
+          "id": 33963,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / 2XS)"
+        },
+        {
+          "id": 33970,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / 3XL)"
+        },
+        {
+          "id": 33971,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / 4XL)"
+        },
+        {
+          "id": 33972,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / 5XL)"
+        },
+        {
+          "id": 33973,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / 6XL)"
+        },
+        {
+          "id": 33967,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / L)"
+        },
+        {
+          "id": 33966,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / M)"
+        },
+        {
+          "id": 33965,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / S)"
+        },
+        {
+          "id": 33968,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / XL)"
+        },
+        {
+          "id": 33964,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Sweatshirt (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:11.852Z"
+    },
+    "1419": {
+      "catalogProductId": 1419,
+      "title": "All-Over Print Unisex Cotton Hoodie",
+      "description": "A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "materials": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 7.8 oz./yd.² (265 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Relaxed unisex fit with drop shoulders",
+        "Double-layer hood with drawstrings"
+      ],
+      "features": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 7.8 oz./yd.² (265 g/m²)",
+        "Relaxed unisex fit with drop shoulders",
+        "Double-layer hood with drawstrings",
+        "Spacious front pocket",
+        "Self-fabric collar and cuffs",
+        "Blank product sourced from Mexico"
+      ],
+      "notes": [],
+      "fabricNote": "Fabric update: US-produced batches from October 5, 2026 use 90% cotton / 10% elastane, 330 g/m². Other production regions retain their existing fabric. The composition and weight can differ by production region and batch.",
+      "dimensions": null,
+      "techniques": [
+        "All-over cotton"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": "https://help.printful.com/hc/en-us/articles/50263298123409-What-should-I-know-about-the-2026-All-Over-Print-fabric-change",
+      "catalogVariants": [
+        {
+          "id": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / 2XL)"
+        },
+        {
+          "id": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / 2XS)"
+        },
+        {
+          "id": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / 3XL)"
+        },
+        {
+          "id": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / 4XL)"
+        },
+        {
+          "id": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / 5XL)"
+        },
+        {
+          "id": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / 6XL)"
+        },
+        {
+          "id": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / L)"
+        },
+        {
+          "id": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / M)"
+        },
+        {
+          "id": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / S)"
+        },
+        {
+          "id": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / XL)"
+        },
+        {
+          "id": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Hoodie (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:35:57.150Z"
+    },
+    "1628": {
+      "catalogProductId": 1628,
+      "title": "All-Over Print Oversized Cotton Hoodie",
+      "description": "A heavyweight cotton-blend hoodie with an oversized shape, dropped shoulders and a soft-touch finish. Bold all-over artwork brings the Midnight Designs look to an everyday layer.",
+      "materials": [
+        "Heavyweight cotton-blend fabric"
+      ],
+      "materialsNote": "Exact fiber percentages have not been published for this item.",
+      "fit": [
+        "Oversized fit",
+        "Drop shoulders"
+      ],
+      "features": [
+        "Heavyweight cotton-blend fabric",
+        "Oversized fit",
+        "Drop shoulders",
+        "All-over print design",
+        "Soft-touch finish",
+        "Durable construction"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over cotton"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 51475,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / 2XL)"
+        },
+        {
+          "id": 51469,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / 2XS)"
+        },
+        {
+          "id": 51476,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / 3XL)"
+        },
+        {
+          "id": 51477,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / 4XL)"
+        },
+        {
+          "id": 51478,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / 5XL)"
+        },
+        {
+          "id": 51479,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / 6XL)"
+        },
+        {
+          "id": 51473,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / L)"
+        },
+        {
+          "id": 51472,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / M)"
+        },
+        {
+          "id": 51471,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / S)"
+        },
+        {
+          "id": 51474,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / XL)"
+        },
+        {
+          "id": 51470,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Oversized Cotton Hoodie (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-02T16:36:00.682Z"
+    }
+  }
+}
