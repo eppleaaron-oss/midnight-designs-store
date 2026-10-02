@@ -26,12 +26,21 @@ for(const p of products.slice(0,Number(process.env.PHOTO_PRODUCT_LIMIT)||product
    if(!source||source.product.product_id!==p.catalogProductId)throw Error('Saved retail variant does not match catalog.');
    const map=mapping.variant_printfiles.find(v=>v.variant_id===retail.catalogVariantId);
    const files=source.files.filter(f=>f.type!=='preview').map(f=>{
-    const area=mapping.printfiles.find(a=>a.printfile_id===map?.placements[f.type]);
-    if(!area||f.width!==area.width||f.height!==area.height||!f.preview_url?.includes('/printfile-preview/')||f.status!=='ok')throw Error('A finished production canvas is unavailable for '+f.type);
-    return {placement:f.type,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width:area.width,height:area.height,top:0,left:0}};
+    const placement=f.type==='default'&&!map?.placements.default&&map?.placements.front?'front':f.type;
+    const area=mapping.printfiles.find(a=>a.printfile_id===map?.placements[placement]);
+    if(!area||!f.preview_url?.startsWith('https://files.cdn.printful.com/')||f.status!=='ok')throw Error('Saved production print file unavailable for '+f.type);
+    // Flattened production canvases retain the exact full-area placement. Unedited saved files use the catalog fill_mode, as fulfillment does.
+    if(f.is_temporary&&f.preview_url.includes('/printfile-preview/')){
+     if(f.width!==area.width||f.height!==area.height)throw Error('Saved canvas dimensions do not match production area for '+placement);
+     return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width:area.width,height:area.height,top:0,left:0}};
+    }
+    if(f.is_temporary||!f.hash||!f.width||!f.height)throw Error('Unedited saved production file unavailable for '+placement);
+    const scale=area.fill_mode==='fit'?Math.min(area.width/f.width,area.height/f.height):Math.max(area.width/f.width,area.height/f.height);
+    const width=Math.round(f.width*scale),height=Math.round(f.height*scale);
+    return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width,height,top:Math.round((area.height-height)/2),left:Math.round((area.width-width)/2)}};
    });
    if(!files.length)throw Error('Finished production canvases unavailable.');
-   const groups=mapping.option_groups.filter(g=>/^(Flat|Ghost|Default|Product|Men's|Women's|Lifestyle)$/i.test(g));
+   const groups=mapping.option_groups.filter(g=>/^(Flat|Ghost|Default|Product|Men's|Women's|Lifestyle(?: 1)?)$/i.test(g));
    const options=mapping.options.filter(o=>/^(Front|Back|Left Front|Right Back|Left|Right|Side)$/i.test(o));
    jobs.push({p,color,variant:retail,request:{variant_ids:[retail.catalogVariantId],format:'jpg',width:2000,files,product_options:Object.fromEntries(source.options.filter(o=>o.id!=='license_type').map(o=>[o.id,o.value])),...(groups.length?{option_groups:groups}:{}),...(options.length?{options}: {})}});
   }
@@ -42,7 +51,7 @@ await save();await fs.mkdir('assets/product-photos',{recursive:true});let lastRe
 for(const job of work){
  try{
   await pause(Math.max(0,32000-(Date.now()-lastRequest)));lastRequest=Date.now();
-  const task=await api('mockup-generator/create-task/'+job.p.catalogProductId,job.request);report.tasks.push({productId:job.p.id,key:task.task_key,status:task.status});await save();console.log('Created mockup task '+task.task_key+' for '+job.p.id);
+  const task=await api('mockup-generator/create-task/'+job.p.catalogProductId,job.request);lastRequest=Date.now();report.tasks.push({productId:job.p.id,key:task.task_key,status:task.status});await save();console.log('Created mockup task '+task.task_key+' for '+job.p.id);
   job.task=task;
  }catch(e){report.errors.push({productId:job.p.id,error:e.message});await save();}
 }
@@ -63,7 +72,7 @@ for(const job of work.filter(j=>j.task)){
    photos.push({image:path,view:c.view,style:c.style,category,color:job.color,catalogVariantId:job.variant.catalogVariantId,storeVariantIds:job.p.variants.filter(v=>v.color===job.color).map(v=>v.id),alt:job.p.name+' · '+c.view+' · '+(category==='fit'?'on-person mockup':'product mockup'),label:category==='fit'?'On-person · '+c.view:c.view,kind:'production-mockup'});
   }
   if(!photos.length)throw Error('No supported product photos returned.');
-  output.products[job.p.id]={name:job.p.name,originalImage:job.p.image,catalogProductId:job.p.catalogProductId,photos,source:'Verified finished production canvases'};await save();console.log('Saved '+photos.length+' accurate mockups for '+job.p.id);
+  output.products[job.p.id]={name:job.p.name,originalImage:job.p.image,catalogProductId:job.p.catalogProductId,photos,source:'Verified saved production print files'};await save();console.log('Saved '+photos.length+' accurate mockups for '+job.p.id);
  }catch(e){report.errors.push({productId:job.p.id,error:e.message});await save();}
 }
 await save();if(!Object.values(output.products).some(p=>p.photos.length>1))throw Error('No additional mockups generated. Existing catalog preserved.');console.log('Photo generation complete: '+report.errors.length+' products require review.');
