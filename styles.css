@@ -16,3 +16,42 @@
 
 /* Keep the selected product option readable on its dark background. */
 .variant-button[aria-pressed=true]{color:var(--white)}
+
+/* Mobile shopping: readable copy, visible navigation and comfortable touch targets. */
+@media(max-width:800px){
+ .nav{padding:16px 20px;gap:12px}.nav .brand{font-size:23px}.nav .brand small{font-size:9px;letter-spacing:.25em}
+ .nav .pill{min-height:44px;display:inline-flex;align-items:center;font-size:14px;padding:10px 14px}
+ .nav .links{order:3;display:flex;width:100%;gap:8px;flex-wrap:nowrap;justify-content:stretch;font-size:14px}
+ .nav .links a,.nav .links a:last-child{display:flex;align-items:center;justify-content:center;flex:1;min-width:0;min-height:48px;padding:10px 6px;border:1px solid var(--line);background:var(--panel);text-align:center}
+ .section{padding:40px 20px}.wrap{padding:28px 20px;gap:28px}.cart-wrap{padding:40px 20px}
+ body .notice,body .catalog-status,body .photo-caption{font-size:14px;line-height:1.75}
+ body .info p,body .hero p,body .story p,body .product-spec-section p,body .product-spec-section li,body #availableOptions p{font-size:16px;line-height:1.75}
+ body label,body .info label{font-size:14px}body input:not([type=range]):not([type=color]),body select,body textarea{font-size:16px;min-height:48px}
+ body .btn,body .studio .btn,body .map-controls .btn{min-height:48px;font-size:13px;padding:14px 18px;line-height:1.4}
+ body .text-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;line-height:1.6;padding:8px 0;max-width:100%}
+ body .price{font-size:18px}.product-body h3{font-size:18px;line-height:1.5}.product-meta{flex-wrap:wrap}
+ .filters{gap:12px}.filters input{flex-basis:100%;min-width:0}.filters select{flex:1;min-width:0}
+ body .info h1{font-size:clamp(34px,8vw,48px);overflow-wrap:anywhere}
+ body h1.page-title{font-size:clamp(42px,10vw,60px);line-height:1.05;overflow-wrap:anywhere}
+ body .hero h1{font-size:clamp(58px,17vw,88px)}.hero-copy{padding:45px 20px 32px}.hero-art{margin:0 20px 30px;min-height:340px}
+ .hero-product{height:340px;max-height:65svh}.hero-art:before,.hero-art:after{max-width:90%}
+ .visual{max-width:100%;max-height:70svh}.visual img{max-width:100%;object-fit:contain}
+ .visual.is-artwork-detail img{max-width:none}
+ body .photo-filters button,body .variant-button{min-height:48px;font-size:14px;padding:12px 14px}
+ body .photo-enlarge{min-height:48px;font-size:14px;padding:12px 0}
+ body .photo-thumbnail span{font-size:12px;line-height:1.5}.gallery{padding-bottom:8px}
+ .footer{padding:28px 20px;flex-wrap:wrap;font-size:12px;line-height:1.7;gap:12px 20px}
+ .footer a{min-height:44px;display:inline-flex;align-items:center}
+ .item{grid-template-columns:70px minmax(0,1fr);gap:14px;align-items:start}.item>div:last-child{grid-column:2;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+ .item img{width:70px;height:90px}.item small{font-size:14px;line-height:1.6}.item b{font-size:16px;line-height:1.5}
+ .item button{font-size:14px;min-height:44px;padding:10px 8px}.item input{width:76px}.row{gap:20px;flex-wrap:wrap}
+ .size-guide summary,body .advanced-tools summary{min-height:44px;padding:12px 0;line-height:1.6;font-size:16px}
+}
+@media(max-width:600px){
+ .grid{grid-template-columns:1fr}.hero-actions .btn{width:100%}.nav .brand{font-size:21px}
+ .nav .links{font-size:13px}.nav .links a{padding-inline:4px}.filters select{flex-basis:100%}
+ .cart-wrap .panel{padding:18px}.product-image{max-height:65svh}
+ .footer{flex-direction:column;align-items:flex-start}.footer a{width:100%}
+}
+
+@media(max-width:800px){body #clothingGrid .btn{font-size:13px;min-height:48px}body .studio input:not([type=range]):not([type=color]),body .studio select,body .studio textarea{font-size:16px}}
