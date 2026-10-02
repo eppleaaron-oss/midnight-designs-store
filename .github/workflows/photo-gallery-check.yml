@@ -1,0 +1,47 @@
+name: Product photo gallery checks
+on:
+  push:
+    branches: [product-photo-gallery-ui]
+    paths: ['product-photos.json', 'product-photos.js', 'catalog-photos.js', 'product-photos.css', '*html', 'scripts/qa-product-photos.mjs', '.github/workflows/photo-gallery-check.yml']
+  pull_request:
+    paths: ['product-photos.json', 'product-photos.js', 'catalog-photos.js', 'product-photos.css', 'scripts/qa-product-photos.mjs']
+permissions:
+  contents: write
+jobs:
+  gallery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Verify accurate galleries, product selections and studio features
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-store.mjs
+          node scripts/qa-map.mjs
+          node scripts/qa-master.mjs
+          node scripts/qa-ai.mjs
+          node scripts/qa-ai-map.mjs
+          node scripts/qa-designer.mjs
+          node scripts/qa-pricing.mjs
+          node scripts/qa-printful-plans.mjs
+          node scripts/qa-product-information.mjs
+          node scripts/qa-product-photos.mjs
+          node scripts/qa-directory.mjs
+      - name: Refresh Layout page previews
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/layout-preview
+          git diff --cached --quiet || git commit -m 'Refresh page previews with improved product galleries'
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: product-gallery-previews
+          path: qa-*.png
