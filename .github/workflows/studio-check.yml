@@ -1,11 +1,11 @@
 name: Custom studio checks
 on:
   push:
-    branches: [custom-design-studio, complete-design-gallery, garment-placement-map, master-dashboard, ai-printful-artwork, visual-ai-mapping, standalone-ai-designer, owner-pricing, printful-template-studio]
+    branches: [custom-design-studio, complete-design-gallery, garment-placement-map, master-dashboard, ai-printful-artwork, visual-ai-mapping, standalone-ai-designer, owner-pricing, printful-template-studio, page-layout-directory]
   pull_request:
     paths: ['studio.js', '*html', '*json', 'styles.css', 'scripts/qa-studio.mjs', 'garment-map.js', 'scripts/qa-map.mjs']
 permissions:
-  contents: read
+  contents: write
 jobs:
   browser:
     runs-on: ubuntu-latest
@@ -27,8 +27,18 @@ jobs:
           node scripts/qa-designer.mjs
           node scripts/qa-pricing.mjs
           node scripts/qa-printful-plans.mjs
+          node scripts/qa-directory.mjs
+      - name: Save page preview photos
+        if: github.event_name == 'push' && github.ref == 'refs/heads/page-layout-directory'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/layout-preview
+          git diff --cached --quiet || git commit -m "Generate actual page preview photos"
+          git push
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: custom-studio-previews
           path: qa-*.png
+
