@@ -20,7 +20,7 @@ jobs:
           node-version: '22'
       - name: Render mockups from original saved designs
         env:
-          PHOTO_PRODUCT_LIMIT: 1
+          PHOTO_PRODUCT_LIMIT: 0
           PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
           PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
         run: node scripts/sync-product-photos.mjs
