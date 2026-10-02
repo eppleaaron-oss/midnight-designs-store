@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 const catalog=JSON.parse(await fs.readFile('products.json','utf8')),info=JSON.parse(await fs.readFile('product-information.json','utf8')).products;let photos={products:{}};try{photos=JSON.parse(await fs.readFile('product-photos.json','utf8'))}catch{}
-const template=await fs.readFile('product.html','utf8'),origin='https://midnight-designs.store/';
+const template=(await fs.readFile('product.html','utf8')).trimEnd()+'\n',origin='https://midnight-designs.store/';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const json=x=>JSON.stringify(x).replaceAll('<','\\u003c');
 await fs.mkdir('products',{recursive:true});const desired=new Set();
