@@ -16,77 +16,121 @@
           "name": "Unisex cotton hoodie / 2XS",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276115",
           "name": "Unisex cotton hoodie / XS",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276116",
           "name": "Unisex cotton hoodie / S",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276117",
           "name": "Unisex cotton hoodie / M",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276120",
           "name": "Unisex cotton hoodie / L",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276122",
           "name": "Unisex cotton hoodie / XL",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276123",
           "name": "Unisex cotton hoodie / 2XL",
           "price": 63,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276124",
           "name": "Unisex cotton hoodie / 3XL",
           "price": 66,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276125",
           "name": "Unisex cotton hoodie / 4XL",
           "price": 68.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276126",
           "name": "Unisex cotton hoodie / 5XL",
           "price": 71,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527276127",
           "name": "Unisex cotton hoodie / 6XL",
           "price": 73.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -105,77 +149,121 @@
           "name": "Unisex Hoodie / 2XS",
           "price": 53,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 18730,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222750",
           "name": "Unisex Hoodie / XS",
           "price": 54.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10869,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222763",
           "name": "Unisex Hoodie / S",
           "price": 54.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10870,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222764",
           "name": "Unisex Hoodie / M",
           "price": 54.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10871,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222765",
           "name": "Unisex Hoodie / L",
           "price": 54.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10872,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222766",
           "name": "Unisex Hoodie / XL",
           "price": 54.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10873,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222767",
           "name": "Unisex Hoodie / 2XL",
           "price": 57,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10874,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222768",
           "name": "Unisex Hoodie / 3XL",
           "price": 59.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 10875,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222769",
           "name": "Unisex Hoodie / 4XL",
           "price": 62,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 18731,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222770",
           "name": "Unisex Hoodie / 5XL",
           "price": 64.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 18732,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5527222771",
           "name": "Unisex Hoodie / 6XL",
           "price": 67.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 18733,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -194,7 +282,11 @@
           "name": "Unisex Hoodie",
           "price": 53,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 18730,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -213,7 +305,11 @@
           "name": "Unisex Hoodie",
           "price": 53,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 18730,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -232,77 +328,121 @@
           "name": "Unisex cotton hoodie / 2XS",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859206",
           "name": "Unisex cotton hoodie / XS",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859207",
           "name": "Unisex cotton hoodie / S",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859208",
           "name": "Unisex cotton hoodie / M",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859209",
           "name": "Unisex cotton hoodie / L",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859210",
           "name": "Unisex cotton hoodie / XL",
           "price": 60.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859211",
           "name": "Unisex cotton hoodie / 2XL",
           "price": 63,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859212",
           "name": "Unisex cotton hoodie / 3XL",
           "price": 66,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859213",
           "name": "Unisex cotton hoodie / 4XL",
           "price": 68.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859214",
           "name": "Unisex cotton hoodie / 5XL",
           "price": 71,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526859215",
           "name": "Unisex cotton hoodie / 6XL",
           "price": 73.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -321,77 +461,121 @@
           "name": "Oversized Cotton Hoodie / 2XS",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51469,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789933",
           "name": "Oversized Cotton Hoodie / XS",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51470,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789934",
           "name": "Oversized Cotton Hoodie / S",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51471,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789935",
           "name": "Oversized Cotton Hoodie / M",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51472,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789936",
           "name": "Oversized Cotton Hoodie / L",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51473,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789937",
           "name": "Oversized Cotton Hoodie / XL",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51474,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789938",
           "name": "Oversized Cotton Hoodie / 2XL",
           "price": 76,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51475,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789939",
           "name": "Oversized Cotton Hoodie / 3XL",
           "price": 78.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51476,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789940",
           "name": "Oversized Cotton Hoodie / 4XL",
           "price": 81,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51477,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789941",
           "name": "Oversized Cotton Hoodie / 5XL",
           "price": 83.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51478,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526789942",
           "name": "Oversized Cotton Hoodie / 6XL",
           "price": 86,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51479,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -410,77 +594,121 @@
           "name": "Oversized Cotton Hoodie / 2XS",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51469,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694169",
           "name": "Oversized Cotton Hoodie / XS",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51470,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694170",
           "name": "Oversized Cotton Hoodie / S",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51471,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694171",
           "name": "Oversized Cotton Hoodie / M",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51472,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694172",
           "name": "Oversized Cotton Hoodie / L",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51473,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694173",
           "name": "Oversized Cotton Hoodie / XL",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51474,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694174",
           "name": "Oversized Cotton Hoodie / 2XL",
           "price": 76,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51475,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694175",
           "name": "Oversized Cotton Hoodie / 3XL",
           "price": 78.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51476,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694177",
           "name": "Oversized Cotton Hoodie / 4XL",
           "price": 81,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51477,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694178",
           "name": "Oversized Cotton Hoodie / 5XL",
           "price": 83.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51478,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526694179",
           "name": "Oversized Cotton Hoodie / 6XL",
           "price": 86,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51479,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -499,77 +727,121 @@
           "name": "Oversized Cotton Hoodie / 2XS",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51469,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647534",
           "name": "Oversized Cotton Hoodie / XS",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51470,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647535",
           "name": "Oversized Cotton Hoodie / S",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51471,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647536",
           "name": "Oversized Cotton Hoodie / M",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51472,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647537",
           "name": "Oversized Cotton Hoodie / L",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51473,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647538",
           "name": "Oversized Cotton Hoodie / XL",
           "price": 73,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51474,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647539",
           "name": "Oversized Cotton Hoodie / 2XL",
           "price": 76,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51475,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647540",
           "name": "Oversized Cotton Hoodie / 3XL",
           "price": 78.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51476,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647541",
           "name": "Oversized Cotton Hoodie / 4XL",
           "price": 81,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51477,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647542",
           "name": "Oversized Cotton Hoodie / 5XL",
           "price": 83.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51478,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5526647543",
           "name": "Oversized Cotton Hoodie / 6XL",
           "price": 86,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 51479,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -588,14 +860,22 @@
           "name": "Fanny Pack / S/M",
           "price": 33,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9986,
+          "size": "S/M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525670041",
           "name": "Fanny Pack / M/L",
           "price": 33,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9987,
+          "size": "M/L",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -614,7 +894,11 @@
           "name": "Neck Gaiter",
           "price": 13.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 11414,
+          "size": "One size",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -633,7 +917,11 @@
           "name": "Utility backpack",
           "price": 60,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 24564,
+          "size": "One size",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -652,77 +940,121 @@
           "name": "Unisex cotton hoodie / 2XS",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525508",
           "name": "Unisex cotton hoodie / XS",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525509",
           "name": "Unisex cotton hoodie / S",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525510",
           "name": "Unisex cotton hoodie / M",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525511",
           "name": "Unisex cotton hoodie / L",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525512",
           "name": "Unisex cotton hoodie / XL",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525513",
           "name": "Unisex cotton hoodie / 2XL",
           "price": 62.92,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525514",
           "name": "Unisex cotton hoodie / 3XL",
           "price": 65.52,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525515",
           "name": "Unisex cotton hoodie / 4XL",
           "price": 68.12,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525516",
           "name": "Unisex cotton hoodie / 5XL",
           "price": 70.72,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525517",
           "name": "Unisex cotton hoodie / 6XL",
           "price": 73.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -741,77 +1073,121 @@
           "name": "Unisex cotton hoodie / 2XS",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525495",
           "name": "Unisex cotton hoodie / XS",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525496",
           "name": "Unisex cotton hoodie / S",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525497",
           "name": "Unisex cotton hoodie / M",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525498",
           "name": "Unisex cotton hoodie / L",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525499",
           "name": "Unisex cotton hoodie / XL",
           "price": 60.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525500",
           "name": "Unisex cotton hoodie / 2XL",
           "price": 62.92,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525501",
           "name": "Unisex cotton hoodie / 3XL",
           "price": 65.52,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525502",
           "name": "Unisex cotton hoodie / 4XL",
           "price": 68.12,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525503",
           "name": "Unisex cotton hoodie / 5XL",
           "price": 70.72,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525504",
           "name": "Unisex cotton hoodie / 6XL",
           "price": 73.32,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -830,49 +1206,77 @@
           "name": "Men's athletic t-shirt / XS",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9952,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525488",
           "name": "Men's athletic t-shirt / S",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9953,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525489",
           "name": "Men's athletic t-shirt / M",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9954,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525490",
           "name": "Men's athletic t-shirt / L",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9955,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525491",
           "name": "Men's athletic t-shirt / XL",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9956,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525492",
           "name": "Men's athletic t-shirt / 2XL",
           "price": 45.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9957,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525493",
           "name": "Men's athletic t-shirt / 3XL",
           "price": 48.1,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9958,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -891,7 +1295,11 @@
           "name": "Backpack",
           "price": 48.84,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -910,49 +1318,77 @@
           "name": "Men's athletic t-shirt / XS",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9952,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525480",
           "name": "Men's athletic t-shirt / S",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9953,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525481",
           "name": "Men's athletic t-shirt / M",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9954,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525482",
           "name": "Men's athletic t-shirt / L",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9955,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525483",
           "name": "Men's athletic t-shirt / XL",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9956,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525484",
           "name": "Men's athletic t-shirt / 2XL",
           "price": 45.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9957,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525485",
           "name": "Men's athletic t-shirt / 3XL",
           "price": 48.1,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9958,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -971,49 +1407,77 @@
           "name": "Men's athletic t-shirt / XS",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9952,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525473",
           "name": "Men's athletic t-shirt / S",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9953,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525474",
           "name": "Men's athletic t-shirt / M",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9954,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525475",
           "name": "Men's athletic t-shirt / L",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9955,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525476",
           "name": "Men's athletic t-shirt / XL",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9956,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525477",
           "name": "Men's athletic t-shirt / 2XL",
           "price": 45.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9957,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525478",
           "name": "Men's athletic t-shirt / 3XL",
           "price": 48.1,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9958,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -1032,49 +1496,77 @@
           "name": "Men's athletic t-shirt / XS",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9952,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525466",
           "name": "Men's athletic t-shirt / S",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9953,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525467",
           "name": "Men's athletic t-shirt / M",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9954,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525468",
           "name": "Men's athletic t-shirt / L",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9955,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525469",
           "name": "Men's athletic t-shirt / XL",
           "price": 42.9,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9956,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525470",
           "name": "Men's athletic t-shirt / 2XL",
           "price": 45.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9957,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525471",
           "name": "Men's athletic t-shirt / 3XL",
           "price": 48.1,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 9958,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -1093,35 +1585,55 @@
           "name": "Yoga Leggings / XS",
           "price": 39.16,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 8353,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525454",
           "name": "Yoga Leggings / S",
           "price": 39.16,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 8354,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525455",
           "name": "Yoga Leggings / M",
           "price": 39.16,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 8355,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525456",
           "name": "Yoga Leggings / L",
           "price": 39.16,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 8356,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525457",
           "name": "Yoga Leggings / XL",
           "price": 39.16,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 8357,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -1140,21 +1652,33 @@
           "name": "All-over print bandana / S",
           "price": 13.46,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 16031,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525447",
           "name": "All-over print bandana / M",
           "price": 13.46,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 16032,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525525448",
           "name": "All-over print bandana / L",
           "price": 13.46,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 16033,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     },
@@ -1173,77 +1697,121 @@
           "name": "Unisex cotton sweatshirt / 2XS",
           "price": 54,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33963,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492496",
           "name": "Unisex cotton sweatshirt / XS",
           "price": 54,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33964,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492497",
           "name": "Unisex cotton sweatshirt / S",
           "price": 54,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33965,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492498",
           "name": "Unisex cotton sweatshirt / M",
           "price": 54,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33966,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492499",
           "name": "Unisex cotton sweatshirt / L",
           "price": 54,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33967,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492500",
           "name": "Unisex cotton sweatshirt / XL",
           "price": 54,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33968,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492501",
           "name": "Unisex cotton sweatshirt / 2XL",
           "price": 56.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33969,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492502",
           "name": "Unisex cotton sweatshirt / 3XL",
           "price": 59.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33970,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492503",
           "name": "Unisex cotton sweatshirt / 4XL",
           "price": 62,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33971,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492504",
           "name": "Unisex cotton sweatshirt / 5XL",
           "price": 64.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33972,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         },
         {
           "id": "5525492505",
           "name": "Unisex cotton sweatshirt / 6XL",
           "price": 67.5,
           "currency": "USD",
-          "availability": "active"
+          "availability": "active",
+          "catalogVariantId": 33973,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff"
         }
       ]
     }
