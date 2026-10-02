@@ -10,6 +10,8 @@ const pages=[
 ['product','Product details','Product photos, variants and sizing.',['Review product photos','Choose a variant','Add an available variant to the bag']],
 ['cart','Bag','Review your selected retail items.',['Review quantities and totals','Remove items','Checkout is currently unavailable']],
 ['shipping','Shipping','Production, delivery, costs and destination guidance.',['Review production and transit estimates','Read shipping cost and customs information','Check general and product-specific destination restrictions','Orders and shipping quotes are currently unavailable']],
+['returns','Returns','Sizing, product problems, cancellations and legal returns.',['Review planned returns and cancellation policy','Read product issue evidence and remedy guidance','Review applicable consumer rights','Prepare a customer support message']],
+['contact','Customer support','Prepare and review a support email.',['Choose a support topic','Add order information and a message','Copy the message or open a configured support inbox in your email app','Nothing is sent or stored by this page; email contact requires an inbox']],
 ['layout','Layout','A visual directory of every app page.',['Visit any page','Inspect page content, headers, colors and available data']]
 ].map(([id,name,intro,features])=>({id,name,intro,features,url:id+'.html'}));
 const $=id=>document.getElementById(id);let data={},selected=null;
