@@ -1,0 +1,42 @@
+name: Clean catalog checks
+on:
+  push:
+    branches: [cleaner-catalog]
+    paths: ['app.js', 'shop.html', 'catalog.css', 'scripts/qa-catalog.mjs', '.github/workflows/catalog-check.yml']
+  pull_request:
+    paths: ['app.js', 'shop.html', 'catalog.css', 'scripts/qa-catalog.mjs']
+permissions:
+  contents: write
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Check catalog and shopping flows
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-catalog.mjs
+          node scripts/qa-mobile.mjs
+          node scripts/qa-cart.mjs
+          node scripts/qa-home.mjs
+          node scripts/qa-store.mjs
+          node scripts/qa-directory.mjs
+      - name: Refresh actual Layout previews
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/layout-preview
+          git diff --cached --quiet || git commit -m 'Refresh catalog page previews'
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catalog-previews
+          path: qa-*.png
