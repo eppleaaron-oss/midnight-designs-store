@@ -1,0 +1,16 @@
+name: Catalog importer checks
+on:
+  pull_request:
+    paths: ['scripts/sync-printful.mjs', 'scripts/qa-sync.mjs', 'scripts/publish-catalog.mjs', '.github/workflows/sync-printful.yml', '.github/workflows/sync-check.yml']
+permissions:
+  contents: read
+jobs:
+  importer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check scripts/publish-catalog.mjs
+      - run: node scripts/qa-sync.mjs
