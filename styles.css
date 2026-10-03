@@ -93,3 +93,5 @@ select,textarea,input:not([type=range]):not([type=color]){background:var(--panel
 .footer-support strong{font-family:var(--font-display);font-size:22px;color:var(--white);letter-spacing:.04em;margin-right:auto}
 .footer .footer-support a{font-size:14px;color:var(--white);min-height:48px}
 @media(max-width:800px){.nav .links{order:3;width:calc(100% - 80px);flex:1 1 calc(100% - 80px)}.support-menu{order:4;flex:0 0 64px}.support-menu summary{padding:10px 6px}.footer-support strong{flex-basis:100%;margin:0}.footer-support{gap:8px 20px}}
+
+.theme-collections{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.theme-collections>.eyebrow{flex-basis:100%;margin-bottom:4px}.theme-collections a{display:inline-flex;align-items:center;min-height:48px;padding:10px 14px;border:1px solid var(--line);font-size:14px;background:var(--panel);color:var(--white)}.theme-collections a:hover,.theme-collections a[aria-current=true]{border-color:var(--sand);color:var(--sand)}.theme-collections a:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
