@@ -1,22 +1,31 @@
 name: Sync Printful catalog
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
   push:
-    branches: [dark-vintage-printful, refresh-printful-20260930, garment-size-guides, refresh-all-20260930]
-    paths: ['.github/workflows/sync-printful.yml', 'scripts/sync-printful.mjs']
+    branches: [main]
+    paths: ['.github/workflows/sync-printful.yml', 'scripts/sync-printful.mjs', 'scripts/sync-product-information.mjs']
 permissions:
   contents: write
+  pages: write
 concurrency:
   group: printful-catalog
   cancel-in-progress: false
 jobs:
   sync:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || (github.actor == github.repository_owner && github.triggering_actor == github.repository_owner))
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Check importer failure and update behavior
+        run: node scripts/qa-sync.mjs
       - name: Import public product data
         env:
           PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
@@ -26,37 +35,34 @@ jobs:
           node scripts/sync-printful.mjs
           node scripts/sync-product-information.mjs
           node scripts/build-search-pages.mjs
-      - name: Save catalog
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Validate refreshed storefront before publishing
+        run: |
+          python3 -m http.server 8000 &
+          python3 -m http.server 8001 --directory _site &
+          node scripts/qa-store.mjs
+          node scripts/qa-cart.mjs
+          node scripts/qa-admin.mjs
+      - name: Save verified catalog
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add products.json product-information.json products sitemap.xml shop.html
           if ! git diff --cached --quiet; then
             git commit -m 'Sync Printful product catalog'
-            git push
+            git push origin HEAD:main
           fi
-
-  browser-check:
-    needs: sync
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm install --no-save playwright@1.58.2
-      - run: npx playwright install --with-deps chromium
-      - name: Check storefront in Chromium
-        run: |
-          python3 -m http.server 8000 &
-          node scripts/qa-store.mjs
+      - name: Publish catalog and verify deployed data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/publish-catalog.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: storefront-previews
+          name: refreshed-storefront-previews
           path: qa-*.png
-

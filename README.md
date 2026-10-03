@@ -11,7 +11,7 @@ Dark vintage streetwear storefront for GitHub Pages. Public product data lives i
 5. Add any saved Printful product templates to that store first. The importer reads store products, not standalone templates. Set retail prices and currency on all variants.
 6. Actions → Sync Printful catalog → Run workflow. Select the branch containing these changes. This imports names, preview mockups, retail prices, and synced variants. Draft/ignored products and variants without positive retail prices are excluded. After merging, run it on main. Run it again after changing products or prices.
 
-Catalog changes committed by GitHub Actions with its default token do not trigger a branch-based Pages deployment automatically. After syncing on main, rerun the Pages build and deployment workflow in Actions to publish the updated catalog. Do not consider the import live until that deployment succeeds.
+The catalog refreshes approximately every six hours and can be refreshed manually on main. It imports and enriches product data, regenerates product pages, checks the refreshed storefront before committing, explicitly requests a Pages build, and verifies the live products.json matches the saved catalog. Failed imports or checks preserve the committed catalog and timestamp. GitHub schedules may be delayed. lastSyncedAt records the last successful supplier fetch; updatedAt also covers local catalog edits. Owner retail pricing overrides remain authoritative over imported supplier retail prices.
 
 The token remains in GitHub Actions secrets. The importer publishes an allowlist of customer-facing fields and does not copy print files or authorization headers. An empty, invalid, or failed import preserves the existing catalog.
 
