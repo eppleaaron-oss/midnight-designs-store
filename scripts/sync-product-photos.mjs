@@ -68,7 +68,7 @@ for(const job of work.filter(j=>j.task)){
   const photos=[],seen=new Set();for(const c of candidates){if(!c.url?.startsWith('https://')||seen.has(c.url))continue;seen.add(c.url);
    const r=await fetch(c.url,{signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('Generated photo download failed.');
    const path='assets/product-photos/'+job.p.id+'-'+job.variant.catalogVariantId+'-'+photos.length+'.jpg';await fs.writeFile(path,new Uint8Array(await r.arrayBuffer()));
-   const category=/lifestyle|men|women|male|female|model|person|child|kid/i.test(c.style)?'fit':'product';
+   const category=(Number(job.p.catalogProductId)===328&&c.style==='Default')||/lifestyle|men|women|male|female|model|person|child|kid/i.test(c.style)?'fit':'product';
    photos.push({image:path,view:c.view,style:c.style,category,color:job.color,catalogVariantId:job.variant.catalogVariantId,storeVariantIds:job.p.variants.filter(v=>v.color===job.color).map(v=>v.id),alt:job.p.name+' · '+c.view+' · '+(category==='fit'?'on-person mockup':'product mockup'),label:category==='fit'?'On-person · '+c.view:c.view,kind:'production-mockup'});
   }
   if(!photos.length)throw Error('No supported product photos returned.');
