@@ -4,7 +4,7 @@ import {applyPrices} from './pricing.mjs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 export function normalize(detail){
  const p=detail.sync_product;if(!p||p.is_ignored)return null;
- const variants=(detail.sync_variants||[]).filter(v=>v.synced&&!v.is_ignored&&v.availability_status!=='discontinued'&&Number(v.retail_price)>0&&v.currency).map(v=>({id:String(v.id),name:v.name,price:Number(v.retail_price),currency:v.currency,availability:v.availability_status||'unknown'}));
+ const variants=(detail.sync_variants||[]).filter(v=>v.synced&&!v.is_ignored&&v.availability_status!=='discontinued'&&Number(v.retail_price)>0&&v.currency).map(v=>({id:String(v.id),name:v.name,price:Number(v.retail_price),currency:v.currency,catalogVariantId:v.variant_id||null,size:typeof v.size==='string'&&v.size.trim()?v.size:null,color:v.color||null,colorCode:v.color_code||null,availability:v.availability_status||'unknown'}));
  if(!variants.length)return null;
  const previews=(detail.sync_variants||[]).flatMap(v=>(v.files||[]).filter(f=>f.type==='preview').map(f=>f.preview_url||f.url)).filter(u=>typeof u==='string'&&u.startsWith('https://'));
  const name=p.name||'Midnight Designs';let category=/hoodie|sweatshirt|crewneck/i.test(name)?'Hoodies & sweatshirts':/jacket|coat/i.test(name)?'Outerwear':/shirt|tee/i.test(name)?'Tees':/leggings|pants|shorts|joggers/i.test(name)?'Bottoms':/backpack|bag|bandana|hat|beanie/i.test(name)?'Accessories':'Other pieces';
