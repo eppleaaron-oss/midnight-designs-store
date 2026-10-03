@@ -78,3 +78,18 @@ body .gallery .photo-thumbnail,body .gallery .photo-thumbnail[aria-pressed=true]
 @media(prefers-reduced-motion:reduce){.btn{transition:none}}
 
 select,textarea,input:not([type=range]):not([type=color]){background:var(--panel);color:var(--white);border:1px solid var(--line);color-scheme:dark}
+
+/* Customer support stays reachable from every shopping page. */
+.support-menu{position:relative;flex-shrink:0}
+.support-menu summary{list-style:none;cursor:pointer;min-height:48px;display:flex;align-items:center;justify-content:center;padding:10px 16px;border:1px solid var(--line);background:var(--panel);font-size:14px;color:var(--white)}
+.support-menu summary::-webkit-details-marker{display:none}
+.support-menu summary::after{content:"⌄";margin-left:8px}
+.support-menu[open] summary{border-color:var(--sand);color:var(--sand)}
+.support-menu nav{position:absolute;right:0;top:calc(100% + 8px);z-index:30;width:250px;max-width:calc(100vw - 40px);padding:8px;background:var(--panel);border:1px solid var(--sand);box-shadow:0 12px 32px #0008}
+.support-menu nav a{display:flex;align-items:center;min-height:48px;padding:12px;font-size:14px}
+.support-menu nav a:hover,.support-menu nav a:focus-visible{background:var(--night);color:var(--sand)}
+.support-menu summary:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+.footer-support{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;flex:1 1 100%;width:100%;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.footer-support strong{font-family:var(--font-display);font-size:22px;color:var(--white);letter-spacing:.04em;margin-right:auto}
+.footer .footer-support a{font-size:14px;color:var(--white);min-height:48px}
+@media(max-width:800px){.nav .links{order:3;width:calc(100% - 80px);flex:1 1 calc(100% - 80px)}.support-menu{order:4;flex:0 0 64px}.support-menu summary{padding:10px 6px}.footer-support strong{flex-basis:100%;margin:0}.footer-support{gap:8px 20px}}
