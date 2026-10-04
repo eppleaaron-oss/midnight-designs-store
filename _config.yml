@@ -36,3 +36,5 @@ exclude:
   - requests.html
   - requests.js
   - requests.css
+
+  - request-service

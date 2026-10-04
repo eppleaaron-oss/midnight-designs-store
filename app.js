@@ -53,3 +53,5 @@ init();
 
 // Keep bespoke artwork requests discoverable without mixing owner controls into shopping.
 for(const nav of document.querySelectorAll('nav[aria-label="Help navigation"],nav.footer-support')){if(!nav.querySelector('a[href="request-design.html"]')){const a=document.createElement('a');a.href='request-design.html';a.textContent='Request a custom design';nav.append(a);}}
+
+if(['request-design.html','contact.html','custom.html'].some(path=>location.pathname.endsWith('/'+path))){const script=document.createElement('script');script.src='request-portal-link.js';document.body.append(script);}

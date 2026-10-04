@@ -1,0 +1,6 @@
+private-data
+*.sqlite*
+node_modules
+*.png
+*.zip
+.env*
