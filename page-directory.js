@@ -1,4 +1,5 @@
 const pages=[
+['requests','Requests','One owner workspace for requests and production readiness.',['Track six request types and eight workflow statuses','Import emailed request files or Create yours garment maps','Add questions and revisions manually','Filter, search and update local records with status history','Export private backups; automatic intake and fulfillment are not connected']],
 ['request-design','Request a design','Ask Midnight Designs to create original artwork.',['Choose a garment, style, colors and print placements','Describe the design and exact text','Preview reference images locally','Set budget and preferred deadline','Review a brief and send through an email app; server submission is not connected']],
 ['shop','Store','The full retail collection.',['Browse products','Filter the collection','Choose a product and available variant']],
 ['designs','Designs','All artwork and design references.',['Browse design pictures','Like or dislike artwork','Choose artwork for a custom build']],
