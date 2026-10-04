@@ -1,0 +1,30 @@
+
+/* Owner screens are excluded from the public Pages build. */
+.owner-menu-toggle{margin:16px 0;position:relative;z-index:1}
+.owner-dashboard .master-tabs{display:none}
+.owner-dashboard.owner-menu-open .master-tabs{display:grid;grid-template-columns:1fr;margin:0 0 24px}
+.master-tabs a[aria-current]{background:var(--panel);border-color:var(--sand)}
+.master-row .btn{font-size:13px}
+.master-row:has(>div:first-child){grid-template-columns:minmax(0,1fr) auto}
+.owner-pagination{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.owner-pagination p{flex:1;min-width:140px}
+.owner-pricing .pricing-controls label{flex:1 1 180px;min-width:0}
+.owner-pricing .pricing-controls input,.owner-pricing .pricing-controls select{width:100%;min-height:44px;font-size:16px}
+.owner-pricing td input{max-width:100%;font-size:16px;min-height:44px}
+.owner-pricing td:first-child{min-width:180px}
+.owner-pricing td img{display:block;margin-bottom:8px}
+@media(min-width:1200px){
+ .owner-dashboard.owner-menu-open main.section{padding-left:280px}
+ .owner-dashboard.owner-menu-open .master-tabs{position:fixed;left:20px;top:160px;width:220px;max-height:calc(100svh - 180px);overflow:auto;z-index:2;background:var(--bg,#101010);padding:8px}
+}
+@media(max-width:850px){
+ .owner-pricing .pricing-table{overflow:visible}
+ .owner-pricing table,.owner-pricing tbody{display:block;width:100%}
+ .owner-pricing thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .owner-pricing tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border:1px solid var(--line);padding:16px;margin-bottom:16px}
+ .owner-pricing td{display:block;min-width:0!important;padding:0;border:0;overflow-wrap:anywhere}
+ .owner-pricing td:first-child{grid-column:1/-1}
+ .owner-pricing td::before{content:attr(data-label);display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+ .owner-pricing td input{width:100%}
+}
+@media(max-width:360px){.owner-pricing tr{grid-template-columns:1fr}}
