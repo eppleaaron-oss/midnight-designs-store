@@ -14,7 +14,7 @@ applyPrices(products,{prices:{v:30}});assert.equal(products[0].variants[0].price
 const b=await chromium.launch({headless:true}),p=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];
 p.on('pageerror',e=>errors.push(e.message));
 await p.goto('http://localhost:8000/pricing.html');await p.locator('#rows tr').first().waitFor();
-assert.ok(await p.locator('#rows tr').count()>100);
+assert.equal(await p.locator('#rows tr').count(),20);assert.match(await p.locator('#count').innerText(),/variants/);
 await p.locator('#rows tr').first().locator('input').nth(0).fill('20');
 await p.locator('#rows tr').first().locator('input').nth(0).press('Tab');
 await p.locator('#calculate').click();await p.locator('#prepare').click();

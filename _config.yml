@@ -29,3 +29,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+
+  - owner-ui.js
+  - owner-ui.css
