@@ -1,0 +1,40 @@
+name: Full responsive checks
+on:
+  push:
+    branches: [responsive-all-devices]
+  pull_request:
+    paths: ['styles.css', 'cart.html', 'scripts/qa-responsive.mjs', '.github/workflows/responsive-check.yml']
+permissions:
+  contents: read
+jobs:
+  responsive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Test all layouts and shopping behavior
+        run: |
+          python3 -m http.server 8000 &
+          python3 -m http.server 8001 --directory _site &
+          node scripts/qa-responsive.mjs
+          node scripts/qa-cart.mjs
+          node scripts/qa-mobile.mjs
+          node scripts/qa-support.mjs
+          node scripts/qa-admin.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: responsive-previews
+          path: |
+            qa-responsive-*.png
+            qa-responsive-report.json
+            qa-cart-*.png
