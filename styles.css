@@ -172,3 +172,5 @@ body .cart-wrap{max-width:1200px}
  body .analytics-panel{inset:auto 12px 12px auto;max-height:calc(100svh - 24px)}
  body .page-inspector{position:static;max-height:none}
 }
+
+.cart-quantity{display:grid;gap:6px;font-size:14px;color:var(--muted);margin:0}.cart-quantity span{display:block}.cart-items #cartStatus:empty{display:none}
