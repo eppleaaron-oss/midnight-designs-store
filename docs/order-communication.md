@@ -1,6 +1,6 @@
 # Order communication — prepared, not activated
 
-The public order-help page, support topic handoffs and owner message previews are implemented. No order emails are sent, no order lookup exists, and no customer information belongs in this public repository. Checkout remains disabled. support-config.json currently has no inbox.
+The public order-help page, support topic handoffs and owner message previews are implemented. No order emails are sent, no order lookup exists, and no customer information belongs in this public repository. Checkout remains disabled. support-config.json publishes the owner-supplied midnightdesign107@gmail.com inbox.
 
 ## Connect before accepting orders
 
@@ -28,3 +28,5 @@ Primary references:
 - GitHub Pages hosting: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
 - Hosting limits: https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits
 - Printful v1 webhook payloads and package_shipped: https://developers.printful.com/docs/#tag/Webhook-API
+
+Support and reply-to address supplied by the owner: midnightdesign107@gmail.com. Draft owner previews resolve the shared support configuration; templates record replyTo. This does not authorize an automated sender or activate delivery: a connected email provider, verified sending identity, order backend and delivery checks are still required.

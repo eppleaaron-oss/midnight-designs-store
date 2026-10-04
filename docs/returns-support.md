@@ -1,7 +1,7 @@
 # Returns and support
-Prepared 2026-10-02, prelaunch. The site does not take orders. support-config.json intentionally has email:null until the owner supplies an existing monitored inbox. Do not invent a support@ address or publish a personal inbox inferred from repository metadata.
+Prepared 2026-10-02, prelaunch. The site does not take orders. The owner supplied midnightdesign107@gmail.com on October 4, 2026; support-config.json publishes it for customer support and custom-design review. Do not invent a support@ address or publish a personal inbox inferred from repository metadata.
 
-Contact is a local message composer, not a ticket service. Configuration makes mailto links available. The customer must press Send in their own email app and attach photos there. No server delivery, attachments, ticket ID, storage or response SLA is represented. A real incoming/outgoing email test is required to confirm the owner's inbox before launch; browser tests use example.test only.
+Contact is a local message composer, not a ticket service. Configuration makes mailto links available. The customer must press Send in their own email app and attach photos there. No server delivery, attachments, ticket ID, storage or response SLA is represented. A real incoming/outgoing email test is required to confirm the owner's inbox before launch; browser tests check the published address and use example.test fixtures without sending mail.
 
 Fulfillment references:
 https://help.printful.com/hc/en-us/articles/50263870468753-What-is-Printful-s-return-and-refund-policy
