@@ -1,4 +1,5 @@
 const pages=[
+['request-design','Request a design','Ask Midnight Designs to create original artwork.',['Choose a garment, style, colors and print placements','Describe the design and exact text','Preview reference images locally','Set budget and preferred deadline','Review a brief and send through an email app; server submission is not connected']],
 ['shop','Store','The full retail collection.',['Browse products','Filter the collection','Choose a product and available variant']],
 ['designs','Designs','All artwork and design references.',['Browse design pictures','Like or dislike artwork','Choose artwork for a custom build']],
 ['custom','Create yours','Build and map your own clothing.',['Choose a clothing option and size','Use gallery artwork or upload your own images','Edit front, back and supported sleeve placements','Adjust layers, scale, position, rotation, opacity and patterns','Use verified Printful variant templates','Download the design map and print-area files']],

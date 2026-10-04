@@ -26,7 +26,7 @@ for(const p of catalog.products){
  await fs.writeFile(path,html);
 }
 for(const name of await fs.readdir('products'))if(/^\d+\.html$/.test(name)&&!desired.has(name))await fs.unlink('products/'+name);
-const pages=['','shop.html','designs.html','shipping.html','returns.html','contact.html','order-help.html',...catalog.products.map(p=>'products/'+p.id+'.html')];
+const pages=['','shop.html','designs.html','shipping.html','returns.html','contact.html','request-design.html','order-help.html',...catalog.products.map(p=>'products/'+p.id+'.html')];
 await fs.writeFile('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+pages.map(path=>'<url><loc>'+origin+path+'</loc></url>').join('')+'</urlset>\n');
 let shop=await fs.readFile('shop.html','utf8');shop=shop.replace(/<!-- SEARCH_LINKS_START -->[\s\S]*?<!-- SEARCH_LINKS_END -->/,'');
 shop=shop.replace('</main>','<!-- SEARCH_LINKS_START --><noscript><section><h2>The full collection</h2><ul>'+catalog.products.map(p=>'<li><a href="'+esc(p.url||('products/'+p.id+'.html'))+'">'+esc(p.name)+'</a></li>').join('')+'</ul></section></noscript><!-- SEARCH_LINKS_END --></main>');await fs.writeFile('shop.html',shop);
