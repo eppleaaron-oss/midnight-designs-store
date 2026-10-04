@@ -1,0 +1,32 @@
+name: Custom design request checks
+on:
+  push:
+    branches: [custom-design-requests]
+  pull_request:
+    paths: ['request-design.*', 'scripts/qa-design-request.mjs', '.github/workflows/design-request-check.yml']
+permissions:
+  contents: read
+jobs:
+  requests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Test requests, existing support and directory
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-design-request.mjs
+          node scripts/qa-support.mjs
+          node scripts/qa-directory.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: custom-request-previews
+          path: |
+            qa-request-*.png
+            assets/layout-preview/request-design.png
