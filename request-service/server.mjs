@@ -1,0 +1,73 @@
+import http from 'node:http';
+import {DatabaseSync} from 'node:sqlite';
+import {randomBytes,randomUUID,createHash,scryptSync,timingSafeEqual} from 'node:crypto';
+import {readFileSync,mkdirSync} from 'node:fs';
+import {dirname,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+export const TYPES=['Custom design request','Customer-uploaded design','Create Your Own submission','Custom clothing request','Question / comment','Revision request'];
+export const STATUSES=['New','Reviewing','Designing','Customer Review','Revision Requested','Approved','Ready for Production','Completed'];
+const hash=s=>createHash('sha256').update(s).digest('hex'),token=()=>randomBytes(32).toString('hex'),now=()=>new Date().toISOString();
+const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
+const str=(v,max=6000,required=false)=>{if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Invalid or missing field.');return v.trim();};
+export function createService({dbPath,origin,passwordHash,secure=true}){
+ const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
+ if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
+ if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
+ if(dbPath!==':memory:')mkdirSync(dirname(dbPath),{recursive:true,mode:0o700});
+ const db=new DatabaseSync(dbPath);db.exec(`PRAGMA foreign_keys=ON;PRAGMA journal_mode=WAL;
+ CREATE TABLE IF NOT EXISTS requests(id TEXT PRIMARY KEY,type TEXT NOT NULL,title TEXT NOT NULL,name TEXT NOT NULL,email TEXT NOT NULL,brief TEXT NOT NULL,status TEXT NOT NULL,created TEXT NOT NULL,updated TEXT NOT NULL,revision TEXT,design TEXT,approved TEXT);
+ CREATE TABLE IF NOT EXISTS messages(id TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),role TEXT NOT NULL,kind TEXT NOT NULL,body TEXT NOT NULL,created TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS attachments(id TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),name TEXT NOT NULL,mime TEXT NOT NULL,data BLOB NOT NULL,created TEXT NOT NULL,role TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY,role TEXT NOT NULL,request TEXT,expires INTEGER NOT NULL);
+ CREATE TABLE IF NOT EXISTS invites(hash TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),expires INTEGER NOT NULL);
+ CREATE INDEX IF NOT EXISTS message_request ON messages(request,created);`);
+ const run=(sql,...args)=>db.prepare(sql).run(...args),get=(sql,...args)=>db.prepare(sql).get(...args),all=(sql,...args)=>db.prepare(sql).all(...args);
+ const tx=fn=>{db.exec('BEGIN IMMEDIATE');try{const result=fn();db.exec('COMMIT');return result;}catch(e){db.exec('ROLLBACK');throw e;}};
+ const event=(id,role,kind,body)=>{run('INSERT INTO messages VALUES(?,?,?,?,?,?)',randomUUID(),id,role,kind,body,now());run('UPDATE requests SET updated=? WHERE id=?',now(),id);};
+ const rates=new Map();function limit(req,key,max){const ip=req.socket.remoteAddress||'unknown',k=ip+':'+key,t=Date.now();let r=rates.get(k);if(!r||r.reset<t)r={count:0,reset:t+60000};if(++r.count>max)fail(429,'Too many attempts. Please wait a minute.');rates.set(k,r);if(rates.size>10000)for(const [key,value]of rates)if(value.reset<t)rates.delete(key);}
+ const cookie=(res,value,age=604800)=>res.setHeader('Set-Cookie','midnight_session='+value+'; Path=/; HttpOnly; SameSite=Strict; Max-Age='+age+(secure?'; Secure':''));
+ function session(req){const raw=req.headers.cookie?.split(';').map(x=>x.trim()).find(x=>x.startsWith('midnight_session='))?.slice(17);return raw?get('SELECT * FROM sessions WHERE hash=? AND expires>?',hash(raw),Date.now()):null;}
+ function auth(req,id,owner=false){const s=session(req);if(!s)fail(401,'Sign in or reopen your private request link.');if(owner&&s.role!=='owner')fail(403,'Owner access required.');if(id&&s.role!=='owner'&&s.request!==id)fail(404,'Request not found.');return s;}
+ function newSession(res,role,id){const t=token(),age=role==='owner'?28800:604800;run('DELETE FROM sessions WHERE expires<?',Date.now());run('INSERT INTO sessions VALUES(?,?,?,?)',hash(t),role,id||null,Date.now()+age*1000);cookie(res,t,age);}
+ function issue(id){run('DELETE FROM invites WHERE request=?',id);run('DELETE FROM sessions WHERE request=? AND role=?',id,'customer');const t=token();run('INSERT INTO invites VALUES(?,?,?)',hash(t),id,Date.now()+7*86400000);return origin+'/#access='+t;}
+ function view(id){const r=get('SELECT * FROM requests WHERE id=?',id);if(!r)fail(404,'Request not found.');return {...r,messages:all('SELECT * FROM messages WHERE request=? ORDER BY created,rowid',id),attachments:all('SELECT id,name,mime,created,role FROM attachments WHERE request=? ORDER BY created',id)};}
+ async function body(req){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Use JSON.');let size=0,chunks=[];for await(const c of req){size+=c.length;if(size>12*1024*1024)fail(413,'Upload too large.');chunks.push(c);}try{return JSON.parse(Buffer.concat(chunks));}catch{fail(400,'Invalid JSON.');}}
+ const send=(res,status,data)=>{res.writeHead(status,{'Content-Type':'application/json'});res.end(JSON.stringify(data));};
+ const root=join(dirname(fileURLToPath(import.meta.url)),'public');
+ const server=http.createServer(async(req,res)=>{
+  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
+  try{
+   const url=new URL(req.url,origin),path=url.pathname,method=req.method;
+   if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
+   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/portal.js':'portal.js','/portal.css':'portal.css'};if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(method!=='GET'){if(req.headers.origin!==origin)fail(403,'Request origin rejected.');limit(req,'write',100);}
+   if(path==='/api/owner/login'&&method==='POST'){limit(req,'login',5);const b=await body(req),pw=str(b.password,200,true),[salt,wanted]=passwordHash.split(':');const actual=scryptSync(pw,salt,64);if(!timingSafeEqual(actual,Buffer.from(wanted,'hex')))fail(401,'Sign-in failed.');newSession(res,'owner');return send(res,200,{ok:true});}
+   if(path==='/api/access'&&method==='POST'){limit(req,'access',10);const b=await body(req),key=str(b.token,64,true);if(!/^[a-f0-9]{64}$/.test(key))fail(401,'Link expired or invalid.');const invite=get('SELECT * FROM invites WHERE hash=? AND expires>?',hash(key),Date.now());if(!invite)fail(401,'Link expired or invalid.');newSession(res,'customer',invite.request);return send(res,200,{id:invite.request});}
+   if(path==='/api/logout'&&method==='POST'){const s=session(req);if(s)run('DELETE FROM sessions WHERE hash=?',s.hash);cookie(res,'',0);return send(res,200,{ok:true});}
+   if(path==='/api/session'&&method==='GET'){const s=session(req);return send(res,200,s?{role:s.role,request:s.request}:{role:null});}
+   if(path==='/api/requests'&&method==='POST'){limit(req,'create',5);const b=await body(req);if(!TYPES.includes(b.type))fail(400,'Choose a request type.');const title=str(b.title,200,true),name=str(b.name,100,true),email=str(b.email,254,true),brief=str(b.brief,12000,true);if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))fail(400,'Enter your email.');const id=randomUUID(),t=now();const link=tx(()=>{run('INSERT INTO requests(id,type,title,name,email,brief,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?)',id,b.type,title,name,email,brief,'New',t,t);event(id,session(req)?.role==='owner'?'owner':'customer','created',brief);return issue(id);});return send(res,201,{id,link});}
+   if(path==='/api/requests'&&method==='GET'){auth(req,null,true);return send(res,200,all('SELECT id,type,title,name,email,status,updated FROM requests ORDER BY updated DESC LIMIT 500'));}
+   if(path==='/api/owner/export'&&method==='GET'){auth(req,null,true);return send(res,200,{version:1,requests:all('SELECT id FROM requests').map(r=>view(r.id)),attachments:all('SELECT * FROM attachments').map(a=>({...a,data:Buffer.from(a.data).toString('base64')}))});}
+   const match=path.match(/^\/api\/requests\/([a-f0-9-]{36})(?:\/(messages|attachments|design|approve|revision|status|invite))?$/);
+   if(match){const [,id,action]=match;let s=auth(req,id),r=get('SELECT * FROM requests WHERE id=?',id);if(!r)fail(404,'Request not found.');if(!action&&method==='GET')return send(res,200,view(id));if(method!=='POST')fail(405,'Method not allowed.');const b=await body(req);s=auth(req,id);r=get('SELECT * FROM requests WHERE id=?',id);
+    if(['design','status','invite'].includes(action)&&s.role!=='owner')fail(403,'Owner access required.');
+    if(['approve','revision'].includes(action)&&s.role!=='customer')fail(403,'Customer action required.');
+    if(action==='messages'){const message=str(b.body,6000,true);tx(()=>event(id,s.role,'message',message));return send(res,201,{ok:true});}
+    if(action==='attachments'){limit(req,'upload',20);const name=str(b.name,200,true),mime=str(b.mime,30,true),encoded=str(b.data,11*1024*1024,true);if(!['image/png','image/jpeg','image/webp'].includes(mime)||!/^[A-Za-z0-9+/]*={0,2}$/.test(encoded))fail(400,'Use PNG, JPG or WebP.');const data=Buffer.from(encoded,'base64');if(data.length>8*1024*1024||data.length<12)fail(400,'Image must be between 12 bytes and 8 MB.');const valid=mime==='image/png'?data.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])):mime==='image/jpeg'?data[0]===255&&data[1]===216&&data[2]===255:data.toString('ascii',0,4)==='RIFF'&&data.toString('ascii',8,12)==='WEBP';if(!valid)fail(400,'File content does not match its image type.');if(get('SELECT count(*) AS n FROM attachments WHERE request=?',id).n>=30)fail(400,'This request already has 30 images.');const fileId=randomUUID();tx(()=>{run('INSERT INTO attachments VALUES(?,?,?,?,?,?,?)',fileId,id,name,mime,data,now(),s.role);event(id,s.role,'attachment','Added image: '+name);});return send(res,201,{id:fileId});}
+    if(action==='design'){const file=str(b.attachment,36,true),note=str(b.note||'',2000);if(!get('SELECT id FROM attachments WHERE id=? AND request=? AND role=?',file,id,'owner'))fail(400,'Upload your design image first.');const revision=randomUUID();tx(()=>{run('UPDATE requests SET revision=?,design=?,approved=NULL,status=? WHERE id=?',revision,file,'Customer Review',id);event(id,'owner','design','New design for review'+(note?': '+note:''));});return send(res,200,{revision});}
+    if(action==='approve'){if(r.status!=='Customer Review'||!r.revision||b.revision!==r.revision)fail(409,'This design changed. Refresh and review the latest version.');if(b.confirm!==true)fail(400,'Confirm you approve this design version.');tx(()=>{run('UPDATE requests SET approved=?,status=? WHERE id=?',r.revision,'Approved',id);event(id,'customer','approval','Approved design version '+r.revision);});return send(res,200,{ok:true});}
+    if(action==='revision'){if(['Completed','Ready for Production'].includes(r.status))fail(409,'Contact Midnight Designs before changing a production-ready or completed request.');const message=str(b.body,6000,true);tx(()=>{run('UPDATE requests SET approved=NULL,status=? WHERE id=?','Revision Requested',id);event(id,'customer','revision',message);});return send(res,200,{ok:true});}
+    if(action==='status'){if(!STATUSES.includes(b.status)||b.status==='Approved'||b.status==='Customer Review')fail(400,'Use design review and customer approval actions for those statuses.');if(b.status==='Ready for Production'&&(r.status!=='Approved'||r.approved!==r.revision||!r.revision||b.productionChecked!==true))fail(409,'Confirm the current design approval, agreed quote, payment and production files first.');if(b.status==='Completed'&&r.status!=='Ready for Production')fail(409,'Only production-ready requests can be completed.');tx(()=>{const invalidate=!['Ready for Production','Completed'].includes(b.status);run('UPDATE requests SET status=?,approved=? WHERE id=?',b.status,invalidate?null:r.approved,id);event(id,'owner','status','Status updated: '+b.status);});return send(res,200,{ok:true});}
+    if(action==='invite')return send(res,200,{link:tx(()=>issue(id))});
+   }
+   const image=path.match(/^\/api\/attachments\/([a-f0-9-]{36})$/);if(image&&method==='GET'){const a=get('SELECT * FROM attachments WHERE id=?',image[1]);if(!a)fail(404,'Image not found.');auth(req,a.request);res.setHeader('Content-Type',a.mime);return res.end(Buffer.from(a.data));}
+   fail(404,'Not found.');
+  }catch(e){if(res.headersSent)return res.end();send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
+ });
+ server.on('close',()=>db.close());return {server,db};
+}
+if(process.argv[1]===fileURLToPath(import.meta.url)){
+ const {server}=createService({dbPath:process.env.DATA_PATH||'./private-data/requests.sqlite',origin:process.env.APP_ORIGIN,passwordHash:process.env.OWNER_PASSWORD_HASH,secure:process.env.DEV_HTTP!=='1'});
+ server.listen(Number(process.env.PORT||3000),'0.0.0.0',()=>console.log('Midnight Designs request service started.'));
+}
