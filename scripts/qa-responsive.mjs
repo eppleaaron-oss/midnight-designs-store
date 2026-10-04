@@ -24,7 +24,7 @@ for(const [width,height] of viewports){
   if(id==='product')await page.waitForSelector('#variant:not([disabled])');
   if(id==='cart')await page.waitForSelector('.item');
   if(id==='shop')await page.waitForSelector('.product-card');
-  if(id==='custom')await page.waitForSelector('#itemSelect option',{state:'attached'});
+  if(id==='custom'){await page.waitForSelector('#itemSelect option',{state:'attached'});if([390,844,1024].includes(width)){await page.locator('#galleryArtwork').selectOption('blood-moon-reaper');await page.waitForSelector('#selectedArtwork img');await page.locator('#conceptCanvas').scrollIntoViewIfNeeded();const b=await page.locator('#conceptCanvas').boundingBox();const before=await page.locator('#artX').inputValue();await page.mouse.move(b.x+b.width*.5,b.y+b.height*.5);await page.mouse.down();await page.mouse.move(b.x+b.width*.6,b.y+b.height*.55);await page.mouse.up();assert.notEqual(await page.locator('#artX').inputValue(),before,'Studio drag works at '+width+'x'+height);}}
   if(id==='layout')await page.waitForSelector('.page-card');
   await page.waitForTimeout(120);
   await inspect(id+' '+width+'x'+height);
