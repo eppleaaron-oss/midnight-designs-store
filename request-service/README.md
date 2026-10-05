@@ -35,3 +35,11 @@ Existing device-local owner records do not sync into this service automatically.
 The storefront records Like / Not for me on standalone artwork. Once its service URL is connected, customer clicks POST only a design ID, preference and random browser ID to /api/design-votes. One preference per artwork/browser is updated or removed; identifiers are hashed in storage. Cross-origin access is limited to this vote endpoint and the configured storefront origin. Owner sign-in is required for aggregate rankings; identifiers are never returned with totals. These are browser preferences, not verified unique shoppers or sales.
 
 The server validates IDs against design-catalog.json. Refresh that snapshot from the current designs.json and redeploy when artwork is added or removed. Reference mockups do not receive votes. Until hosting is connected, choices stay on the device and do not create shared totals. The existing request and messaging service hosting requirements still apply.
+
+## Detailed artwork ratings
+
+The storefront's `design-ratings.js` collects Overall, Artwork, Colors and Style (integer 1–5), wear intent (Yes/No), purchase intent (Yes/Maybe/No) and complexity (Too simple/Just right/Too busy). It uses the existing HTTPS `request-service-config.json` connection. Until hosted and configured, ratings remain browser-local. Updates replace one rating per artwork/browser identity; removal deletes that rating. Like/Not for me votes remain independent.
+
+`POST /api/design-ratings` accepts `{designId,voterId,rating}` with all seven fields, or `rating:null` for deletion, only from the configured storefront or service origin. Reference mockups are excluded. `GET /api/design-ratings` requires owner authentication and returns response counts, separate averages (null with no responses) and answer distributions without browser IDs. The owner portal displays these separately from Like/Not for me totals. Browser identities are not verified unique customers; purchase intent is not revenue.
+
+The SQLite volume backup includes rating and vote tables. The existing conversation JSON export does not include them. Refresh `design-catalog.json` and redeploy when adding standalone artwork.
