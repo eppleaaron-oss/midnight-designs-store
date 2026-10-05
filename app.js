@@ -58,3 +58,5 @@ if(['request-design.html','contact.html','custom.html'].some(path=>location.path
 
 if(/\/(?:index\.html|shop\.html|cart\.html|product\.html|designs\.html|products\/\d+\.html)?$/.test(location.pathname)){const designEvents=document.createElement('script');designEvents.src=new URL('design-events.js',document.baseURI).href;designEvents.defer=true;document.head.append(designEvents);}
 
+
+for(const target of document.querySelectorAll('.support-menu nav,.footer-support')){if(!target.querySelector('a[href="feedback.html"]')){const link=document.createElement('a');link.href=new URL('feedback.html',document.baseURI).href;link.textContent='Feedback & suggestions';if(location.pathname.endsWith('/feedback.html'))link.setAttribute('aria-current','page');target.append(link);}}
