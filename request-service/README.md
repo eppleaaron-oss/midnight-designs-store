@@ -43,3 +43,14 @@ The storefront's `design-ratings.js` collects Overall, Artwork, Colors and Style
 `POST /api/design-ratings` accepts `{designId,voterId,rating}` with all seven fields, or `rating:null` for deletion, only from the configured storefront or service origin. Reference mockups are excluded. `GET /api/design-ratings` requires owner authentication and returns response counts, separate averages (null with no responses) and answer distributions without browser IDs. The owner portal displays these separately from Like/Not for me totals. Browser identities are not verified unique customers; purchase intent is not revenue.
 
 The SQLite volume backup includes rating and vote tables. The existing conversation JSON export does not include them. Refresh `design-catalog.json` and redeploy when adding standalone artwork.
+
+## Product reviews
+
+Product reviews are independent of artwork feedback. `product-reviews.js` collects seven required scores (product quality, print quality, fit, comfort, value, shipping and overall), written text, public display name, optional size/color worn and up to three customer photos. Photos are resized to JPEG in the browser. IndexedDB keeps a local draft and photo copies. Until the existing HTTPS backend configuration is hosted and connected, saving is device-only, not submission or publication.
+
+`POST /api/product-reviews` accepts `{productId,voterId,review}` from the storefront or service origin. All seven integers must be 1–5; written text, display name, photo array and `consent:true` are required. `review:null` removes that browser identity's review. Identities are hashed; repeating a submission replaces its review rather than creating a second one. There is no purchase verification while checkout/order integration is unavailable. Public copy explicitly states that reviews are not verified purchases.
+
+`GET /api/product-reviews?productId=...` returns only approved reviews (latest 50), plus counts and seven averages across all approved reviews. Photo URLs load separately; pending/rejected photos require owner access. `GET /api/owner/product-reviews` requires owner authentication and returns the latest 100 submissions. Owner `POST` requires the current review revision and an approved/rejected status. Updates return to pending and stale owner decisions return 409. Moderate authenticity, privacy and inappropriate content consistently, without hiding legitimate negative reviews merely for their score.
+
+Refresh `product-catalog.json` from the synchronized storefront product IDs/names when deploying new products. The SQLite volume backup includes reviews/photos; the conversation JSON export does not. Browser identities are not verified people and can be reset. Hosting abuse protection and owner moderation remain necessary before opening shared submissions.
+
