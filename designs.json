@@ -1,5 +1,13 @@
 [
   {
+    "id": "art-7d5ff833db11",
+    "name": "Midnight Design Gothic Crescent Logo",
+    "image": "assets/designs/art-7d5ff833db11.png",
+    "thumbnail": "assets/designs/art-7d5ff833db11.png",
+    "category": "Celestial & gothic",
+    "kind": "artwork"
+  },
+  {
     "id": "art-c0fe6a0dee55",
     "name": "Blood Moon Cathedral of Shadows",
     "image": "assets/designs/art-c0fe6a0dee55.jpg",
@@ -409,7 +417,7 @@
   },
   {
     "id": "art-931fd835210d",
-    "name": "Distressed Orange Jack-o\u2019-Lantern Emblem",
+    "name": "Distressed Orange Jack-o’-Lantern Emblem",
     "image": "assets/designs/art-931fd835210d.jpg",
     "thumbnail": "assets/designs/art-931fd835210d-thumb.jpg",
     "category": "Pocket & emblems",
@@ -633,7 +641,7 @@
   },
   {
     "id": "art-1cf3ea30a8a0",
-    "name": "Gothic Skull and Jack-o\u2019-Lantern Totem",
+    "name": "Gothic Skull and Jack-o’-Lantern Totem",
     "image": "assets/designs/art-1cf3ea30a8a0.jpg",
     "thumbnail": "assets/designs/art-1cf3ea30a8a0-thumb.jpg",
     "category": "Sleeve panels",
@@ -817,7 +825,7 @@
   },
   {
     "id": "art-da3a8d4bed02",
-    "name": "Moonlit Haunted Mansion and Jack-o\u2019-Lanterns",
+    "name": "Moonlit Haunted Mansion and Jack-o’-Lanterns",
     "image": "assets/designs/art-da3a8d4bed02.jpg",
     "thumbnail": "assets/designs/art-da3a8d4bed02-thumb.jpg",
     "category": "Sleeve panels",
