@@ -54,3 +54,16 @@ Product reviews are independent of artwork feedback. `product-reviews.js` collec
 
 Refresh `product-catalog.json` from the synchronized storefront product IDs/names when deploying new products. The SQLite volume backup includes reviews/photos; the conversation JSON export does not. Browser identities are not verified people and can be reset. Hosting abuse protection and owner moderation remain necessary before opening shared submissions.
 
+
+## Owner Design Analytics
+
+The owner dashboard links to `/analytics.html`. Anonymous/customer sessions are redirected to sign-in and all report/link APIs require owner authentication. `/api/owner/design-analytics?period=7|30|90|all&device=all|phone|tablet|desktop|unknown` returns aggregate data without visitor IDs, contact details, uploads or message text. Current likes/dislikes are explicitly all-time/all-screen rankings. Current editable ratings are selected by their last update time and coarse viewport category, with response counts. Legacy ratings have unknown screen size. Verified customer-type segmentation is unavailable.
+
+`design-events.js` is a separate first-party, optional collection path independent of the unconfigured Google Analytics measurement ID. It runs on shopping/design pages only after consent and an HTTPS backend connection, respects Global Privacy Control/Do Not Track, and removes its browser ID when disabled. `POST /api/design-events` accepts only view/like/cart signals, known product/artwork IDs, random event/browser IDs and coarse viewport size. The server hashes browser IDs, stamps receipt time, deduplicates event IDs and retains events for 180 days. It rejects client purchase events. IDs are anonymous browser identities, not verified people; blocked/unconsented traffic is absent.
+
+Owner-confirmed product/artwork links (`/api/owner/design-links`) determine attribution at event receipt time. Product events without an association remain unattributed; adding/removing a link never changes past rows. A product can use several artworks, so the aggregate strict funnel counts browser+design pairs rather than unique people. Viewed → Liked → Cart stages must occur in that order during the selected period and screen cohort. Independent cart rankings include direct shoppers who skipped Like. The dashboard never claims cart conversion is sales conversion. Purchased counts/revenue/conversion remain null until verified payment and order attribution exist.
+
+Optional structured preferences on request creation (`preferences:{style,colors,placements,productId,designId}`) feed request trends. Validation and insertion are inside the request transaction. Trends exclude owner-created requests and unstructured legacy briefs, and include all screen sizes. Multi-selected colors/placements can total more than the request count. Requested placement popularity is not proven placement sales performance. Refresh both catalog snapshots when deploying new items/artwork.
+
+SQLite volume backups include events, associations, request traits and rating screen-size metadata. The conversation JSON export excludes these tables. Aggregate analytics JSON downloads contain no browser or customer identities. Protect the single-instance persistent Node service with HTTPS and hosting-level abuse controls before connecting it to the storefront.
+

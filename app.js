@@ -55,3 +55,6 @@ init();
 for(const nav of document.querySelectorAll('nav[aria-label="Help navigation"],nav.footer-support')){if(!nav.querySelector('a[href="request-design.html"]')){const a=document.createElement('a');a.href='request-design.html';a.textContent='Request a custom design';nav.append(a);}}
 
 if(['request-design.html','contact.html','custom.html'].some(path=>location.pathname.endsWith('/'+path))){const script=document.createElement('script');script.src='request-portal-link.js';document.body.append(script);}
+
+if(/\/(?:index\.html|shop\.html|cart\.html|product\.html|designs\.html|products\/\d+\.html)?$/.test(location.pathname)){const designEvents=document.createElement('script');designEvents.src=new URL('design-events.js',document.baseURI).href;designEvents.defer=true;document.head.append(designEvents);}
+

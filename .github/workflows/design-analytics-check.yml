@@ -1,0 +1,38 @@
+name: Design analytics checks
+on:
+  push:
+    branches: [design-analytics-dashboard]
+  pull_request:
+    paths: ['design-events.js', 'design-votes.js', 'design-ratings.js', 'studio.js', 'app.js', 'master.html', 'master-analytics-link.js', 'request-service/**', 'scripts/qa-design-events.mjs', '.github/workflows/design-analytics-check.yml']
+permissions:
+  contents: read
+jobs:
+  analytics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Verify owner analytics and optional event collection
+        run: |
+          python3 -m http.server 8000 &
+          node --test request-service/design-analytics-test.mjs request-service/test.mjs request-service/ratings-test.mjs request-service/product-reviews-test.mjs
+          node request-service/analytics-browser-test.mjs
+          node scripts/qa-design-events.mjs
+          node request-service/browser-test.mjs
+          node scripts/qa-design-votes.mjs
+          node scripts/qa-design-ratings.mjs
+          node scripts/qa-product-reviews.mjs
+          node scripts/qa-owner-ui.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: design-analytics-previews
+          path: |
+            qa-design-analytics-*.png
+            qa-conversation-*.png
+            qa-product-reviews-*.png
