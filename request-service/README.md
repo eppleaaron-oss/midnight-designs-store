@@ -74,3 +74,10 @@ SQLite volume backups include events, associations, request traits and rating sc
 The public POST /api/requests permits only the configured storefront origin or service origin. Owner reads remain authenticated. An optional UUID submissionId is hashed in request_intake alongside a payload digest. Retrying identical details returns the same request and rotates its private access link; changed details with the same key return 409. SQLite volume backups include this table. Never share private access links.
 
 The service is not yet hosted or connected. With a null service URL, feedback stays on the device until the customer prepares an email to midnightdesign107@gmail.com or downloads a request file for manual owner import. Preparing email does not send it or confirm delivery. No automatic email confirmations are configured.
+
+
+## Unified Request Center filters
+
+Both owner queues offer quick views for New, Custom Design, Uploaded Design, Create Your Own, Custom Clothing, Revision (type or status), Feedback, Problem (site problems and complaints), High Priority, Awaiting Customer (Customer Review), Approved and Completed. Customer/email and product search combine with inclusive original creation-date filters in UTC. Clear filters resets all controls. The private queue loads the latest 500; exports contain all requests.
+
+Priority defaults to Normal, including migrated records. Only an authenticated owner can update priority/product using POST /api/requests/:id/metadata. Customer input cannot mark itself high priority. Product labels on legacy requests must be entered by the owner; brief text is not guessed. These organization changes do not charge, publish a product, create an order or trigger fulfillment. The private service remains unhosted; local queues require manual import and device backups. Ratings and Analytics remain beside the Request Center.
