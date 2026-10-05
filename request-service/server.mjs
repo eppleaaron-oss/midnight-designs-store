@@ -10,8 +10,8 @@ export const STATUSES=['New','Reviewing','Designing','Customer Review','Revision
 const hash=s=>createHash('sha256').update(s).digest('hex'),token=()=>randomBytes(32).toString('hex'),now=()=>new Date().toISOString();
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 const str=(v,max=6000,required=false)=>{if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Invalid or missing field.');return v.trim();};
-export function createService({dbPath,origin,passwordHash,secure=true}){
- const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
+export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store'}){
+ const designs=new Map(designCatalog.filter(d=>d.kind!=='reference').map(d=>[d.id,d]));const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
  if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
  if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
  if(dbPath!==':memory:')mkdirSync(dirname(dbPath),{recursive:true,mode:0o700});
@@ -20,6 +20,7 @@ export function createService({dbPath,origin,passwordHash,secure=true}){
  CREATE TABLE IF NOT EXISTS messages(id TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),role TEXT NOT NULL,kind TEXT NOT NULL,body TEXT NOT NULL,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS attachments(id TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),name TEXT NOT NULL,mime TEXT NOT NULL,data BLOB NOT NULL,created TEXT NOT NULL,role TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY,role TEXT NOT NULL,request TEXT,expires INTEGER NOT NULL);
+ CREATE TABLE IF NOT EXISTS design_votes(design TEXT NOT NULL,voter TEXT NOT NULL,choice TEXT NOT NULL CHECK(choice IN ('like','dislike')),updated TEXT NOT NULL,PRIMARY KEY(design,voter));
  CREATE TABLE IF NOT EXISTS invites(hash TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),expires INTEGER NOT NULL);
  CREATE INDEX IF NOT EXISTS message_request ON messages(request,created);`);
  const run=(sql,...args)=>db.prepare(sql).run(...args),get=(sql,...args)=>db.prepare(sql).get(...args),all=(sql,...args)=>db.prepare(sql).all(...args);
@@ -41,6 +42,12 @@ export function createService({dbPath,origin,passwordHash,secure=true}){
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
    if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
    if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/portal.js':'portal.js','/portal.css':'portal.css'};if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(path==='/api/design-votes'){
+ const allowed=req.headers.origin===storefrontOrigin||req.headers.origin===origin;
+ if(method==='OPTIONS'){if(!allowed)fail(403,'Origin rejected.');res.setHeader('Access-Control-Allow-Origin',req.headers.origin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Methods','POST');res.setHeader('Access-Control-Allow-Headers','Content-Type');res.writeHead(204);return res.end();}
+ if(method==='GET'){auth(req,null,true);const totals=all("SELECT design,sum(choice='like') AS likes,sum(choice='dislike') AS dislikes FROM design_votes GROUP BY design");const counts=new Map(totals.map(t=>[t.design,t]));return send(res,200,[...designs.values()].map(d=>({id:d.id,name:d.name,...(counts.get(d.id)||{likes:0,dislikes:0})})).sort((a,b)=>b.likes-a.likes||a.name.localeCompare(b.name)));}
+ if(method!=='POST'||!allowed)fail(403,'Origin rejected.');res.setHeader('Access-Control-Allow-Origin',req.headers.origin);res.setHeader('Vary','Origin');limit(req,'design-vote',60);const b=await body(req);if(!designs.has(b.designId)||!['like','dislike',null].includes(b.choice)||!/^([a-f0-9-]{36})$/.test(b.voterId||''))fail(400,'Invalid design feedback.');const voter=hash(b.voterId);if(b.choice===null)run('DELETE FROM design_votes WHERE design=? AND voter=?',b.designId,voter);else run('INSERT INTO design_votes VALUES(?,?,?,?) ON CONFLICT(design,voter) DO UPDATE SET choice=excluded.choice,updated=excluded.updated',b.designId,voter,b.choice,now());return send(res,200,{ok:true});
+}
    if(method!=='GET'){if(req.headers.origin!==origin)fail(403,'Request origin rejected.');limit(req,'write',100);}
    if(path==='/api/owner/login'&&method==='POST'){limit(req,'login',5);const b=await body(req),pw=str(b.password,200,true),[salt,wanted]=passwordHash.split(':');const actual=scryptSync(pw,salt,64);if(!timingSafeEqual(actual,Buffer.from(wanted,'hex')))fail(401,'Sign-in failed.');newSession(res,'owner');return send(res,200,{ok:true});}
    if(path==='/api/access'&&method==='POST'){limit(req,'access',10);const b=await body(req),key=str(b.token,64,true);if(!/^[a-f0-9]{64}$/.test(key))fail(401,'Link expired or invalid.');const invite=get('SELECT * FROM invites WHERE hash=? AND expires>?',hash(key),Date.now());if(!invite)fail(401,'Link expired or invalid.');newSession(res,'customer',invite.request);return send(res,200,{id:invite.request});}
