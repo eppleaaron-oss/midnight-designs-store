@@ -38,3 +38,5 @@ exclude:
   - requests.css
 
   - request-service
+
+  - master-analytics-link.js
