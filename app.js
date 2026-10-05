@@ -60,3 +60,5 @@ if(/\/(?:index\.html|shop\.html|cart\.html|product\.html|designs\.html|products\
 
 
 for(const target of document.querySelectorAll('.support-menu nav,.footer-support')){if(!target.querySelector('a[href="feedback.html"]')){const link=document.createElement('a');link.href=new URL('feedback.html',document.baseURI).href;link.textContent='Feedback & suggestions';if(location.pathname.endsWith('/feedback.html'))link.setAttribute('aria-current','page');target.append(link);}}
+
+for(const nav of document.querySelectorAll('.support-menu nav,.footer-support')){if(!nav.querySelector('a[data-login]')){const link=document.createElement('a');link.href=new URL('login.html',document.baseURI).href;link.textContent='Login';link.dataset.login='true';nav.append(link);}}
