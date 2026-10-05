@@ -62,3 +62,14 @@ if(/\/(?:index\.html|shop\.html|cart\.html|product\.html|designs\.html|products\
 for(const target of document.querySelectorAll('.support-menu nav,.footer-support')){if(!target.querySelector('a[href="feedback.html"]')){const link=document.createElement('a');link.href=new URL('feedback.html',document.baseURI).href;link.textContent='Feedback & suggestions';if(location.pathname.endsWith('/feedback.html'))link.setAttribute('aria-current','page');target.append(link);}}
 
 for(const nav of document.querySelectorAll('.support-menu nav,.footer-support')){if(!nav.querySelector('a[data-login]')){const link=document.createElement('a');link.href=new URL('login.html',document.baseURI).href;link.textContent='Login';link.dataset.login='true';nav.append(link);}}
+
+// Display the shared Midnight Designs logo in existing header links.
+for(const brand of document.querySelectorAll('.nav a.brand')){
+ if(brand.querySelector('.brand-logo'))continue;
+ const name=document.createElement('span');name.className='brand-name';
+ while(brand.firstChild)name.append(brand.firstChild);
+ const logo=document.createElement('img');logo.className='brand-logo';
+ logo.src=new URL('assets/midnight-logo.webp',document.currentScript.src).href;
+ logo.alt='';logo.width=72;logo.height=72;
+ brand.append(logo,name);
+}

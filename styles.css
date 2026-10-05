@@ -174,3 +174,9 @@ body .cart-wrap{max-width:1200px}
 }
 
 .cart-quantity{display:grid;gap:6px;font-size:14px;color:var(--muted);margin:0}.cart-quantity span{display:block}.cart-items #cartStatus:empty{display:none}
+
+/* Shared Midnight Designs brand mark. */
+body .nav .brand{display:flex;align-items:center;gap:12px;min-width:0;letter-spacing:.03em}
+body .nav .brand-logo{display:block;width:72px;height:72px;flex:0 0 72px;object-fit:contain;border-radius:4px}
+body .nav .brand-name{display:block}
+@media(max-width:600px){body .nav .brand{gap:8px;font-size:20px}body .nav .brand-logo{width:52px;height:52px;flex-basis:52px}body .nav .brand small{font-size:8px;letter-spacing:.12em}}
