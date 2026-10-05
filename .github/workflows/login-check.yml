@@ -1,0 +1,22 @@
+name: Login checks
+on:
+  push:
+    branches: [neutral-login]
+  pull_request:
+    paths: ['login.*', 'app.js', 'master.html', 'request-service/**', '.github/workflows/login-check.yml']
+permissions:
+  contents: read
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8000 &
+          node --test request-service/test.mjs
+          node request-service/login-browser-test.mjs
