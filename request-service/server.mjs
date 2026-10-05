@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {productReviews} from './product-reviews.mjs';
 import {DatabaseSync} from 'node:sqlite';
 import {randomBytes,randomUUID,createHash,scryptSync,timingSafeEqual} from 'node:crypto';
 import {readFileSync,mkdirSync} from 'node:fs';
@@ -36,13 +37,15 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  function view(id){const r=get('SELECT * FROM requests WHERE id=?',id);if(!r)fail(404,'Request not found.');return {...r,designVersion:get('SELECT count(*) AS n FROM messages WHERE request=? AND kind=?',id,'design').n,messages:all('SELECT * FROM messages WHERE request=? ORDER BY created,rowid',id),attachments:all('SELECT id,name,mime,created,role FROM attachments WHERE request=? ORDER BY created',id)};}
  async function body(req){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Use JSON.');let size=0,chunks=[];for await(const c of req){size+=c.length;if(size>12*1024*1024)fail(413,'Upload too large.');chunks.push(c);}try{return JSON.parse(Buffer.concat(chunks));}catch{fail(400,'Invalid JSON.');}}
  const send=(res,status,data)=>{res.writeHead(status,{'Content-Type':'application/json'});res.end(JSON.stringify(data));};
+ const reviewHandler=productReviews({db,products:JSON.parse(readFileSync(new URL('./product-catalog.json',import.meta.url),'utf8')),auth,body,send,fail,limit,origin,storefrontOrigin});
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
  const server=http.createServer(async(req,res)=>{
-  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
+  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
    if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
    if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/portal.js':'portal.js','/portal.css':'portal.css'};if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(await reviewHandler(req,res,path,method,url))return;
    if(path==='/api/design-ratings'){
  const allowed=req.headers.origin===storefrontOrigin||req.headers.origin===origin;
  if(method==='OPTIONS'){if(!allowed)fail(403,'Origin rejected.');res.setHeader('Access-Control-Allow-Origin',req.headers.origin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Methods','POST');res.setHeader('Access-Control-Allow-Headers','Content-Type');res.writeHead(204);return res.end();}
