@@ -1,9 +1,10 @@
 'use strict';
 (()=>{
+const newVoterId=()=>typeof crypto.randomUUID==='function'?crypto.randomUUID():[...crypto.getRandomValues(new Uint8Array(16))].map((n,i)=>([4,6,8,10].includes(i)?'-':'')+n.toString(16).padStart(2,'0')).join('');
 const form=document.getElementById('designRatingForm');if(!form)return;
 const $=id=>document.getElementById(id),key='midnightDesignRatings',pendingKey=key+'Pending',fields=['overall','artwork','colors','style','wear','buy','complexity'];
 let ratings={},pending={},active=null,storage=true,voter;const queues=new Map(),versions={};
-try{ratings=JSON.parse(localStorage.getItem(key)||'{}');pending=JSON.parse(localStorage.getItem(pendingKey)||'{}');if(!ratings||Array.isArray(ratings)||typeof ratings!=='object')ratings={};if(!pending||Array.isArray(pending)||typeof pending!=='object')pending={};voter=localStorage.getItem('midnightDesignVoterId');if(!/^[a-f0-9-]{36}$/.test(voter||'')){voter=crypto.randomUUID();localStorage.setItem('midnightDesignVoterId',voter);}}catch{storage=false;voter=crypto.randomUUID();}
+try{ratings=JSON.parse(localStorage.getItem(key)||'{}');pending=JSON.parse(localStorage.getItem(pendingKey)||'{}');if(!ratings||Array.isArray(ratings)||typeof ratings!=='object')ratings={};if(!pending||Array.isArray(pending)||typeof pending!=='object')pending={};voter=localStorage.getItem('midnightDesignVoterId');if(!/^[a-f0-9-]{36}$/.test(voter||'')){voter=newVoterId();localStorage.setItem('midnightDesignVoterId',voter);}}catch{storage=false;voter=newVoterId();}
 const service=fetch('request-service-config.json',{cache:'no-store'}).then(r=>r.json()).then(c=>{if(!c.url)return null;const u=new URL(c.url);if(u.protocol!=='https:'||u.username||u.password||u.pathname!=='/'||u.search||u.hash)return null;return u.origin;}).catch(()=>null);
 function save(){try{localStorage.setItem(key,JSON.stringify(ratings));localStorage.setItem(pendingKey,JSON.stringify(pending));}catch{storage=false;}}
 function report(id,text,retry=false){if(active?.id!==id)return;$('designRatingStatus').textContent=text;$('retryDesignRating').hidden=!retry;}
