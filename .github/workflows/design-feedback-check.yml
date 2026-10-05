@@ -1,9 +1,9 @@
 name: Design feedback checks
 on:
   push:
-    branches: [design-feedback]
+    branches: [design-feedback, detailed-design-ratings]
   pull_request:
-    paths: ['design-votes.*', 'designs.html', 'studio.js', 'request-service/**', 'scripts/qa-design-votes.mjs', '.github/workflows/design-feedback-check.yml']
+    paths: ['design-ratings.*', 'scripts/qa-design-ratings.mjs', 'design-votes.*', 'designs.html', 'studio.js', 'request-service/**', 'scripts/qa-design-votes.mjs', '.github/workflows/design-feedback-check.yml']
 permissions:
   contents: read
 jobs:
@@ -25,8 +25,9 @@ jobs:
         run: |
           python3 -m http.server 8000 &
           python3 -m http.server 8001 --directory _site &
-          node --test request-service/votes-test.mjs
+          node --test request-service/votes-test.mjs request-service/ratings-test.mjs
           node scripts/qa-design-votes.mjs
+          node scripts/qa-design-ratings.mjs
           node request-service/test.mjs
           node request-service/browser-test.mjs
           node scripts/qa-requests.mjs
@@ -40,6 +41,7 @@ jobs:
           name: design-feedback-previews
           path: |
             qa-design-votes-*.png
+            qa-design-ratings-*.png
             qa-conversation-*.png
             qa-requests-*.png
             assets/layout-preview/requests.png
