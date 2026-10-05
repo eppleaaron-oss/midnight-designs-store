@@ -67,3 +67,10 @@ Optional structured preferences on request creation (`preferences:{style,colors,
 
 SQLite volume backups include events, associations, request traits and rating screen-size metadata. The conversation JSON export excludes these tables. Aggregate analytics JSON downloads contain no browser or customer identities. Protect the single-instance persistent Node service with HTTPS and hosting-level abuse controls before connecting it to the storefront.
 
+## Customer feedback and suggestions
+
+`feedback.html` collects Design idea, Product request, Clothing request, Site problem, Feature suggestion, Complaint and General comment. Connected submissions create New records in the same private Requests queue and conversation system; owner filters include every intake type. Feedback and Question / comment can be marked Completed directly and cannot become Ready for Production. Clothing/design production requests retain their approval safeguards.
+
+The public POST /api/requests permits only the configured storefront origin or service origin. Owner reads remain authenticated. An optional UUID submissionId is hashed in request_intake alongside a payload digest. Retrying identical details returns the same request and rotates its private access link; changed details with the same key return 409. SQLite volume backups include this table. Never share private access links.
+
+The service is not yet hosted or connected. With a null service URL, feedback stays on the device until the customer prepares an email to midnightdesign107@gmail.com or downloads a request file for manual owner import. Preparing email does not send it or confirm delivery. No automatic email confirmations are configured.
