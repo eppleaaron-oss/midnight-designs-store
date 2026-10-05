@@ -29,3 +29,9 @@ Email addresses are customer-supplied, not verified identities. Verify the custo
 Use host-level monitoring and backups. JSON export is a private data export, not an automatic restore mechanism. For disaster recovery, snapshot the persistent volume consistently, including SQLite WAL files, or use SQLite's online backup tooling. Test restoration before launch. Do not place exports/DBs in the public repository. Set a retention policy before using real customer data. Public intake has basic request/login/upload rate limits; add host-level abuse controls for advertising-scale traffic.
 
 Existing device-local owner records do not sync into this service automatically. Add their briefs manually using Add customer request; do not treat locally edited approval statuses as verified customer approvals. Customer artwork uploads here are images; keep full garment maps and production files in your private order storage.
+
+## Design feedback
+
+The storefront records Like / Not for me on standalone artwork. Once its service URL is connected, customer clicks POST only a design ID, preference and random browser ID to /api/design-votes. One preference per artwork/browser is updated or removed; identifiers are hashed in storage. Cross-origin access is limited to this vote endpoint and the configured storefront origin. Owner sign-in is required for aggregate rankings; identifiers are never returned with totals. These are browser preferences, not verified unique shoppers or sales.
+
+The server validates IDs against design-catalog.json. Refresh that snapshot from the current designs.json and redeploy when artwork is added or removed. Reference mockups do not receive votes. Until hosting is connected, choices stay on the device and do not create shared totals. The existing request and messaging service hosting requirements still apply.

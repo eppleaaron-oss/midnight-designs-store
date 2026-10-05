@@ -1,0 +1,45 @@
+name: Design feedback checks
+on:
+  push:
+    branches: [design-feedback]
+  pull_request:
+    paths: ['design-votes.*', 'designs.html', 'studio.js', 'request-service/**', 'scripts/qa-design-votes.mjs', '.github/workflows/design-feedback-check.yml']
+permissions:
+  contents: read
+jobs:
+  requests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Check request management and customer flows
+        run: |
+          python3 -m http.server 8000 &
+          python3 -m http.server 8001 --directory _site &
+          node --test request-service/votes-test.mjs
+          node scripts/qa-design-votes.mjs
+          node request-service/test.mjs
+          node request-service/browser-test.mjs
+          node scripts/qa-requests.mjs
+          node scripts/qa-design-request.mjs
+          node scripts/qa-support.mjs
+          node scripts/qa-admin.mjs
+          node scripts/qa-directory.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: design-feedback-previews
+          path: |
+            qa-design-votes-*.png
+            qa-conversation-*.png
+            qa-requests-*.png
+            assets/layout-preview/requests.png
