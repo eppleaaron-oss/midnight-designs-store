@@ -10,8 +10,10 @@ if [ ! -f "$owner_root/master.html" ]; then
   exit 1
 fi
 exec python3 - "$owner_root" <<'PY'
-import http.server, os, pathlib, subprocess, sys, urllib.parse
+import http.server, os, pathlib, subprocess, sys, urllib.parse, json, secrets, threading, tempfile, time
 root = pathlib.Path(sys.argv[1]).resolve()
+owner_token = secrets.token_hex(32)
+catalog_lock = threading.Lock()
 class OwnerHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(root), **kwargs)
@@ -23,8 +25,48 @@ class OwnerHandler(http.server.SimpleHTTPRequestHandler):
             self.send_error(404)
             return False
         return True
+    def respond(self, status, data):
+        payload = json.dumps(data).encode()
+        self.send_response(status)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', str(len(payload)))
+        self.end_headers()
+        self.wfile.write(payload)
+    def trusted(self):
+        expected = 'http://127.0.0.1:%s' % self.server.server_port
+        return self.headers.get('Host') == expected[7:] and self.headers.get('Origin', expected) == expected and self.headers.get('Sec-Fetch-Site', 'same-origin') in ('same-origin', 'none')
     def do_GET(self):
+        if urllib.parse.urlsplit(self.path).path == '/api/local-owner/session':
+            if not self.trusted(): return self.respond(403, {'error':'Origin rejected.'})
+            return self.respond(200, {'token':owner_token})
         if self.allowed(): super().do_GET()
+    def do_POST(self):
+        if self.path != '/api/owner/delete-design': return self.respond(404, {'error':'Not found.'})
+        expected = 'http://127.0.0.1:%s' % self.server.server_port
+        if not self.trusted() or self.headers.get('Origin') != expected or self.headers.get('Authorization') != 'Bearer '+owner_token:
+            return self.respond(403, {'error':'Owner session rejected. Reopen the dashboard.'})
+        try:
+            length = int(self.headers.get('Content-Length', '0'))
+            if not 0 < length <= 4096: return self.respond(400, {'error':'Invalid deletion request.'})
+            data = json.loads(self.rfile.read(length))
+            if data.get('confirm') is not True or not isinstance(data.get('designId'), str):
+                return self.respond(400, {'error':'Confirm the design to delete.'})
+            with catalog_lock:
+                catalog_file = root / 'designs.json'
+                before = catalog_file.read_bytes()
+                catalog = json.loads(before)
+                if not isinstance(catalog, list): raise ValueError('Invalid catalog')
+                after = [d for d in catalog if d['id'] != data['designId']]
+                if len(after) == len(catalog): return self.respond(404, {'error':'Design already removed. Refresh the page.'})
+                backups = root / '.catalog-backups'
+                backups.mkdir(exist_ok=True, mode=0o700)
+                (backups / ('designs-'+str(time.time_ns())+'.json')).write_bytes(before)
+                with tempfile.NamedTemporaryFile(mode='w', dir=root, prefix='.designs-', delete=False) as output:
+                    json.dump(after, output, indent=2); output.write('\n'); output.flush(); os.fsync(output.fileno()); temp_path=output.name
+                os.replace(temp_path, catalog_file)
+            return self.respond(200, {'ok':True,'designId':data['designId'],'deploymentPending':False})
+        except (ValueError, KeyError, OSError):
+            return self.respond(500, {'error':'Could not save the deletion. Your design has not been removed.'})
     def do_HEAD(self):
         if self.allowed(): super().do_HEAD()
     def end_headers(self):
