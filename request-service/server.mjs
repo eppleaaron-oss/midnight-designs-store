@@ -18,7 +18,7 @@ export const STATUSES=['New','Reviewing','Designing','Customer Review','Revision
 const hash=s=>createHash('sha256').update(s).digest('hex'),token=()=>randomBytes(32).toString('hex'),now=()=>new Date().toISOString();
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 const str=(v,max=6000,required=false)=>{if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Invalid or missing field.');return v.trim();};
-export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={}}){
+export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={}}){
  const designs=new Map(designCatalog.filter(d=>d.kind!=='reference').map(d=>[d.id,d]));const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
  if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
  if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
@@ -52,7 +52,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
  const blueprintHandler=factoryBlueprints({...blueprintSettings,db,auth,body,send,fail,limit,origin});
  const artworkHandler=factoryArtwork({db,auth,body,send,fail,limit,origin});
- const factoryHandler=factoryManager({db,auth,body,send,fail,limit,origin});
+ const factoryHandler=factoryManager({...factorySettings,db,auth,body,send,fail,limit,origin});
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
  const server=http.createServer(async(req,res)=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
