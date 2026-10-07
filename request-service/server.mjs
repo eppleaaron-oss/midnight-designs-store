@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {factoryManager} from './factory-manager.mjs';
 import {paymentSystem} from './payments.mjs';
 import {catalogManagement} from './catalog-management.mjs';
 import {designAnalytics} from './design-analytics.mjs';
@@ -47,16 +48,17 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const reviewHandler=productReviews({db,products:JSON.parse(readFileSync(new URL('./product-catalog.json',import.meta.url),'utf8')),auth,body,send,fail,limit,origin,storefrontOrigin});
  const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader});
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
+ const factoryHandler=factoryManager({db,auth,body,send,fail,limit,origin});
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
  const server=http.createServer(async(req,res)=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
-   if(path.startsWith('/api/owner/ai-factory/')){auth(req,null,true);fail(503,'AI Factory production pipeline is not connected yet.');}
+   if(await factoryHandler.handle(req,res,path,method))return;
    if(await payments.handle(req,res,path,method))return;
    if(await catalogHandler.handle(req,res,path,method))return;
    if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
-   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/ai-factory','/ai-factory.html','/ai-factory.js'].includes(path)&&session(req)?.role!=='owner'){if(path.endsWith('.js'))fail(401,'Owner access required.');res.writeHead(302,{Location:'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/ai-factory','/ai-factory.html','/ai-factory.js','/ai-factory.css'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
    if(await designStats.handle(req,res,path,method,url))return;
    if(await reviewHandler(req,res,path,method,url))return;
    if(path==='/api/design-ratings'){
