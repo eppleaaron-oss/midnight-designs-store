@@ -1,0 +1,17 @@
+name: Payment integrity
+on:
+  push:
+    paths: ['request-service/**', 'checkout.js', 'master-payments.js', '.github/workflows/payments-check.yml']
+  pull_request:
+    paths: ['request-service/**', 'checkout.js', 'master-payments.js', '.github/workflows/payments-check.yml']
+jobs:
+  payments:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --check checkout.js && node --check master-payments.js
+      - run: npm test
+        working-directory: request-service
