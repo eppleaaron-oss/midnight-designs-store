@@ -1,0 +1,16 @@
+/* Checkout address fields stay readable at every viewport size. */
+.cart-summary{position:static;min-width:0}
+#checkoutTitle{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+#shippingForm:not([hidden]){display:grid;grid-template-columns:1fr;gap:8px}
+#shippingForm label{display:block;font-size:13px;margin-top:8px;color:var(--white)}
+#shippingForm input,#shippingForm select,#shippingOptions{display:block;width:100%;min-width:0;min-height:46px;padding:12px;background:var(--panel);color:var(--white);border:1px solid var(--line);border-radius:4px}
+#shippingForm input:focus,#shippingForm select:focus{border-color:var(--sand)}
+#calculateShipping{width:100%;margin-top:16px;min-height:48px}
+#shippingSelection{margin-top:24px}
+#shippingSelection label{display:block;font-size:13px;margin-bottom:8px}
+#shippingOptions{white-space:normal}
+#checkoutStatus{padding:12px;border-left:3px solid var(--sand);background:var(--panel);overflow-wrap:anywhere}
+#checkoutStatus.error{border-color:var(--red);color:#edaa9f}
+#payNow{min-height:52px;white-space:normal;line-height:1.5}
+@media(min-width:901px){.cart-layout{grid-template-columns:minmax(0,1fr) minmax(360px,440px)}}
+@media(max-width:600px){#shippingForm input,#shippingForm select,#shippingOptions{font-size:16px}.cart-wrap h1.page-title{font-size:52px}}

@@ -24,7 +24,7 @@ test('Payment integrity: server prices, shipping, capabilities, signed verificat
  assert.equal((await call('/api/checkout/session',{...checkout,shippingId:'FREE'})).status,400);
  product.variants[0].price=26;assert.equal((await call('/api/checkout/session',checkout)).status,409);product.variants[0].price=25;
  assert.equal((await call('/api/checkout/session',checkout)).status,200);assert.equal((await call('/api/checkout/session',checkout)).status,200);
- const creates=requests.filter(x=>x.url.endsWith('/checkout/sessions')&&x.options.method==='POST');assert.equal(String(creates[0].options.body),String(creates[1].options.body));assert.equal(new URLSearchParams(creates[0].options.body).get('line_items[0][price_data][unit_amount]'),'2500');
+ const creates=requests.filter(x=>x.url.endsWith('/checkout/sessions')&&x.options.method==='POST');assert.equal(String(creates[0].options.body),String(creates[1].options.body));assert.equal(new URLSearchParams(creates[0].options.body).get('line_items[0][price_data][unit_amount]'),'2500');assert.equal(new URLSearchParams(creates[0].options.body).get('customer_update[address]'),'auto');
  const receipt={orderId:session.id,receiptToken:quote.receiptToken};assert.equal((await call('/api/checkout/status',{...receipt,receiptToken:'0'.repeat(48)})).status,404);
  assert.equal(await webhook('evt_forged',false),400);assert.equal(await webhook('evt_unpaid'),200);assert.equal((await call('/api/checkout/status',receipt)).data.status,'pending');
  session.payment_status='paid';session.amount_total=1;assert.equal(await webhook('evt_wrong_amount'),400);session.amount_total=5499;session.livemode=true;assert.equal(await webhook('evt_wrong_mode'),400);session.livemode=false;
