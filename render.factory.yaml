@@ -1,0 +1,21 @@
+# Activation creates a paid worker. Upgrade the existing backend and attach its disk first.
+# Existing backend: midnight-designs-backend (srv-db39ivqd0e5s73fioc10).
+# Backend env: DATA_PATH=/var/data/requests.sqlite, FACTORY_DISK_MOUNT=/var/data,
+# FACTORY_WORKER_TOKEN=<same random backend-only secret as worker>.
+services:
+  - type: worker
+    name: midnight-designs-factory-worker
+    runtime: node
+    region: oregon
+    plan: starter
+    repo: https://github.com/eppleaaron-oss/midnight-designs-store
+    branch: main
+    buildCommand: npm test --prefix request-service
+    startCommand: node request-service/factory-worker.mjs
+    maxShutdownDelaySeconds: 90
+    autoDeployTrigger: off
+    envVars:
+      - key: FACTORY_BACKEND_URL
+        value: https://midnight-designs-backend.onrender.com
+      - key: FACTORY_WORKER_TOKEN
+        sync: false

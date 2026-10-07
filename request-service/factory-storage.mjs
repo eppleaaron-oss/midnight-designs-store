@@ -1,0 +1,2 @@
+import {readFileSync,realpathSync} from 'node:fs';import {dirname,resolve,sep} from 'node:path';
+export function durableQueueStorage(dbPath,mountPath=process.env.FACTORY_DISK_MOUNT){if(!mountPath||dbPath===':memory:')return false;try{const mount=realpathSync(mountPath),folder=realpathSync(dirname(resolve(dbPath)));if(folder!==mount&&!folder.startsWith(mount+sep))return false;return readFileSync('/proc/self/mountinfo','utf8').split('\n').some(line=>line.split(' ')[4]?.replace(/\\040/g,' ')===mount&&mount!=='/');}catch{return false;}}
