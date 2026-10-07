@@ -73,3 +73,5 @@ for(const brand of document.querySelectorAll('.nav a.brand')){
  logo.alt='';logo.width=72;logo.height=72;
  brand.append(logo,name);
 }
+
+if(/\/(?:shop\.html|product\.html|products\/\d+\.html)$/.test(location.pathname)){const outfitStyle=document.createElement('link');outfitStyle.rel='stylesheet';outfitStyle.href=new URL('outfit-sections.css',document.baseURI).href;document.head.append(outfitStyle);const outfitScript=document.createElement('script');outfitScript.src=new URL('outfit-sections.js',document.baseURI).href;document.head.append(outfitScript);}
