@@ -14,11 +14,12 @@ test('Private conversations, access isolation, exact approvals, revocation and p
   await boot();assert.equal((await call('requests')).status,401);
   assert.equal((await call('owner/login',{body:{password:'wrong'}})).status,401);
   assert.equal((await call('owner/login',{body:{password},originHeader:'https://evil.example'})).status,403);
-  const owner=(await call('owner/login',{body:{password}})).cookie;assert.ok(owner);
+  const denied=await fetch(url+'/ai-factory',{redirect:'manual'});assert.equal(denied.status,302);assert.equal(denied.headers.get('location'),'/login?next=ai-factory');assert.equal((await fetch(url+'/ai-factory.js')).status,401);assert.equal((await call('owner/ai-factory/jobs')).status,401);
+  const owner=(await call('owner/login',{body:{password}})).cookie;assert.ok(owner);assert.equal((await fetch(url+'/ai-factory',{headers:{Cookie:owner}})).status,200);assert.equal((await call('owner/ai-factory/jobs',{cookie:owner})).status,503);
   const brief={type:'Custom design request',title:'Raven hoodie',name:'Customer',email:'customer@example.test',brief:'Original back raven; red and bone white',status:'Completed'};
   const a=(await call('requests',{body:brief})).data,b=(await call('requests',{body:{...brief,title:'Second private request'}})).data;
   const access=async link=>await call('access',{body:{token:new URL(link).hash.slice(8)}});
-  const customer=(await access(a.link)).cookie,other=(await access(b.link)).cookie;
+  const customer=(await access(a.link)).cookie,other=(await access(b.link)).cookie;assert.equal((await fetch(url+'/ai-factory',{headers:{Cookie:customer},redirect:'manual'})).status,302);assert.equal((await call('owner/ai-factory/jobs',{cookie:customer})).status,403);
   assert.equal((await call('requests/'+a.id,{cookie:customer})).data.status,'New');
   assert.equal((await call('requests/'+b.id,{cookie:customer})).status,404);
   assert.equal((await call('requests',{cookie:customer})).status,403);

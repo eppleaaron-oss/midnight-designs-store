@@ -1,0 +1,1 @@
+'use strict';document.getElementById('factoryLogout').onclick=async()=>{const r=await fetch('/api/logout',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});if(r.ok)location.replace('/login?next=ai-factory');else document.getElementById('factoryStatus').textContent='Sign-out failed. Try again.';};
