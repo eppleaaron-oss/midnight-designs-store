@@ -33,5 +33,6 @@ try{
  failure=true;await assert.rejects(sync({token:'fixture',fetcher}),/HTTP 401/);assert.equal(await readFile('products.json','utf8'),good);
  failure=false;dataset=[];await assert.rejects(sync({token:'fixture',fetcher}),/No publishable/);assert.equal(await readFile('products.json','utf8'),good);
  await assert.rejects(sync({token:'',fetcher}),/Configure/);assert.equal(await readFile('products.json','utf8'),good);
+ dataset=[detail(3,[variant(31)])];dataset[0].sync_product.external_id='midnight-factory-test';await writeFile('factory-listings.json',JSON.stringify({products:{},withdrawn:['3']}));await sync({token:'fixture',fetcher});assert.deepEqual(JSON.parse(await readFile('products.json','utf8')).products,[]);
  console.log('PASS: new products, changed prices/availability, protected variants, retail overrides, honest sync timestamps, failure preservation.');
 }finally{process.chdir(cwd);await rm(dir,{recursive:true,force:true});}

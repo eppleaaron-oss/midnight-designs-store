@@ -45,8 +45,13 @@ jobs:
         run: |
           python3 -m http.server 8000 &
           python3 -m http.server 8001 --directory _site &
-          node scripts/qa-store.mjs
-          node scripts/qa-cart.mjs
+          if node -e "process.exit(JSON.parse(require('fs').readFileSync('products.json')).products.length ? 0 : 1)"; then
+            node scripts/qa-store.mjs
+          fi
+          if node -e "const p=JSON.parse(require('fs').readFileSync('products.json')).products;process.exit(p.length>=2 && p[0].variants.length>=2 ? 0 : 1)"; then
+            node scripts/qa-cart.mjs
+          fi
+          node scripts/qa-withdrawal.mjs
           node scripts/qa-admin.mjs
       - name: Save verified catalog
         run: |

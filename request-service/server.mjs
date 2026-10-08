@@ -1,3 +1,4 @@
+import {factoryHistory} from './factory-history.mjs';
 import {factoryEmployees} from './factory-employees.mjs';
 import {factoryPublishing} from './factory-publishing.mjs';
 import {factoryPricing} from './factory-pricing.mjs';
@@ -30,7 +31,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
  if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
  if(dbPath!==':memory:')mkdirSync(dirname(dbPath),{recursive:true,mode:0o700});
- const db=new DatabaseSync(dbPath);db.exec(`PRAGMA foreign_keys=ON;PRAGMA journal_mode=WAL;
+ const db=new DatabaseSync(dbPath);db.function('factory_history_actor',()=>'{"type":"system","name":"Backend startup"}');db.exec(`PRAGMA foreign_keys=ON;PRAGMA journal_mode=WAL;
  CREATE TABLE IF NOT EXISTS requests(id TEXT PRIMARY KEY,type TEXT NOT NULL,title TEXT NOT NULL,name TEXT NOT NULL,email TEXT NOT NULL,brief TEXT NOT NULL,status TEXT NOT NULL,created TEXT NOT NULL,updated TEXT NOT NULL,revision TEXT,design TEXT,approved TEXT);
  CREATE TABLE IF NOT EXISTS messages(id TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),role TEXT NOT NULL,kind TEXT NOT NULL,body TEXT NOT NULL,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS attachments(id TEXT PRIMARY KEY,request TEXT NOT NULL REFERENCES requests(id),name TEXT NOT NULL,mime TEXT NOT NULL,data BLOB NOT NULL,created TEXT NOT NULL,role TEXT NOT NULL);
@@ -66,11 +67,13 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const publishingHandler=factoryPublishing({storageDurable:durableQueueStorage(dbPath),...publishingSettings,db,auth,body,send,fail,limit,origin,manager:factoryHandler,pricing:pricingHandler});productionHandler.setPublishing(publishingHandler);
  const employeeHandler=factoryEmployees({db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setEmployees(employeeHandler);supportHandler.setEmployees(employeeHandler);productionHandler.setEmployees(employeeHandler);
  const outfitHandler=factoryOutfits({...outfitSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin,storefrontOrigin});
+ const historyHandler=factoryHistory({db,auth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler});
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
- const server=http.createServer(async(req,res)=>{
+ const server=http.createServer((req,res)=>historyHandler.scope(req,new URL(req.url,origin).pathname,req.method,async()=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data: https://*.printful.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
+   if(await historyHandler.handle(req,res,path,method,url))return;
    if(await employeeHandler.handle(req,res,path,method))return;
    if(await publishingHandler.handle(req,res,path,method))return;
    if(await pricingHandler.handle(req,res,path,method))return;
@@ -83,7 +86,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    if(await payments.handle(req,res,path,method))return;
    if(await catalogHandler.handle(req,res,path,method))return;
    if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
-   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/factory-uploads.js':'factory-uploads.js','/factory-blueprints.js':'factory-blueprints.js','/factory-outfits.js':'factory-outfits.js','/ai-employees':'factory-employees.html','/factory-employees.js':'factory-employees.js','/factory-publishing.js':'factory-publishing.js','/factory-pricing.js':'factory-pricing.js','/factory-support.js':'factory-support.js','/factory-production.js':'factory-production.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/ai-employees','/factory-employees.js','/ai-factory','/ai-factory.html','/ai-factory.js','/ai-factory.css','/factory-uploads.js','/factory-blueprints.js','/factory-outfits.js','/factory-publishing.js','/factory-pricing.js','/factory-support.js','/factory-production.js'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:path==='/ai-employees'?'/login?next=ai-employees':'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/factory-uploads.js':'factory-uploads.js','/factory-blueprints.js':'factory-blueprints.js','/factory-outfits.js':'factory-outfits.js','/ai-history':'factory-history.html','/factory-history.js':'factory-history.js','/ai-employees':'factory-employees.html','/factory-employees.js':'factory-employees.js','/factory-publishing.js':'factory-publishing.js','/factory-pricing.js':'factory-pricing.js','/factory-support.js':'factory-support.js','/factory-production.js':'factory-production.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/ai-history','/factory-history.js','/ai-employees','/factory-employees.js','/ai-factory','/ai-factory.html','/ai-factory.js','/ai-factory.css','/factory-uploads.js','/factory-blueprints.js','/factory-outfits.js','/factory-publishing.js','/factory-pricing.js','/factory-support.js','/factory-production.js'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:path==='/ai-history'?'/login?next=ai-history':path==='/ai-employees'?'/login?next=ai-employees':'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
    if(await designStats.handle(req,res,path,method,url))return;
    if(await reviewHandler(req,res,path,method,url))return;
    if(path==='/api/design-ratings'){
@@ -129,7 +132,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    const image=path.match(/^\/api\/attachments\/([a-f0-9-]{36})$/);if(image&&method==='GET'){const a=get('SELECT * FROM attachments WHERE id=?',image[1]);if(!a)fail(404,'Image not found.');auth(req,a.request);res.setHeader('Content-Type',a.mime);return res.end(Buffer.from(a.data));}
    fail(404,'Not found.');
   }catch(e){if(res.headersSent)return res.end();send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
- });
+ }));
  server.on('close',()=>db.close());return {server,db};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){

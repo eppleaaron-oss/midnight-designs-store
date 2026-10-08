@@ -9,7 +9,7 @@ for(const path of ['index.html','shop.html','designs.html','custom.html','catalo
  await page.goto(root+'/'+path);const nav=page.locator('nav[aria-label="Main navigation"]');assert.deepEqual(await nav.locator('a').allTextContents(),['Store','Designs','Create yours']);const support=page.locator('.support-menu');await support.locator('summary').click();for(const href of ['shipping.html','returns.html','contact.html']){assert.equal(await support.locator('a[href="'+href+'"]').isVisible(),true);assert.equal(await page.locator('.footer-support a[href="'+href+'"]').isVisible(),true);}await support.locator('summary').click();
  assert.equal(await page.locator('a[href*="master.html"],a[href*="pricing.html"],a[href*="layout.html"],a[href*="ai-designer.html"]').count(),0,path+' owner link');
  assert.equal(await page.locator('script[src*="ai-designer"],script[src*="master.js"],script[src*="pricing.js"]').count(),0);
- if(path==='shop.html'){await page.waitForSelector('.product-card');assert.equal(await page.locator('.product-card').count(),catalogCount);}
+ if(path==='shop.html'){await page.waitForSelector(catalogCount?'.product-card':'#grid .empty');assert.equal(await page.locator('.product-card').count(),catalogCount);}
  if(path==='custom.html'){await page.waitForSelector('#itemSelect option',{state:'attached'});assert.ok(await page.locator('#itemSelect option').count()>0);assert.equal(await page.locator('#artUpload').count(),1);assert.ok(await page.locator('canvas').count()>0);assert.equal(await page.locator('#createAiPreview').count(),0);}
  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,path);await page.setViewportSize({width:1440,height:1000});
 }
