@@ -97,7 +97,7 @@ export function brief(c,slot,art){
  ].filter(Boolean).join('\n');
 }
 
-export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
+export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,brain=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  db.exec(`CREATE TABLE IF NOT EXISTS factory_runs(id TEXT PRIMARY KEY,number INTEGER NOT NULL UNIQUE,name TEXT NOT NULL,config TEXT NOT NULL,plan TEXT NOT NULL,status TEXT NOT NULL,cycle INTEGER NOT NULL DEFAULT 0,message TEXT NOT NULL DEFAULT '',started INTEGER,ends INTEGER,created TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_run_slots(run TEXT NOT NULL,seq INTEGER NOT NULL,cycle INTEGER NOT NULL,garment TEXT NOT NULL,design TEXT,outfit TEXT,color TEXT NOT NULL,job TEXT,error TEXT NOT NULL DEFAULT '',PRIMARY KEY(run,seq));
@@ -123,7 +123,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
   for(const s of pending.slice(0,Math.max(0,room))){
    const g=garment(s.garment),a=s.design?art.get(s.design):null,label=g.single;
    const title=(s.outfit?s.outfit+' · ':'')+label+(a?' · '+a.name:'');
-   try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:brief(c,s,a),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:a?[a.id]:[]}});
+   try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:[brief(c,s,a),brain?.knowledge(s.garment)].filter(Boolean).join('\n\n').slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:a?[a.id]:[]}});
     db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
    catch(e){if(e.status===409&&/queue is full/i.test(e.message))break;run('UPDATE factory_run_slots SET error=? WHERE run=? AND seq=?',String(e.message).slice(0,300),r.id,s.seq);}
   }

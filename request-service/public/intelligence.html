@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Intelligence | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"></head><body class="factory-page">
+<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a>
+<nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory">Command Center</a><a href="/ai-intelligence" aria-current="page">AI Intelligence</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="/ai-factory#queueTitle">Production Queue</a><a href="/ai-factory#reviewTitle">Review &amp; Publish</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav>
+<button id="logout" type="button">Sign out</button></header>
+<main class="fx-main">
+
+<section class="fx-summary" aria-labelledby="title">
+ <div class="fx-summary-head"><h1 id="title">Midnight Intelligence</h1><span id="brainVersion" class="fx-state" data-state="running"></span></div>
+ <div id="alerts"></div>
+ <ul id="components" class="ix-components"></ul>
+ <dl id="counts" class="fx-stats ix-counts"></dl>
+ <p id="deploy" class="fx-meta"></p>
+</section>
+
+<section class="fx-panel" aria-labelledby="diagTitle">
+ <div class="fx-row"><h2 id="diagTitle">Connection diagnostics</h2><button id="diagnose" type="button" class="fx-btn fx-go">Run full factory diagnostic</button></div>
+ <p id="diagSummary" class="fx-note">Tests the AI provider, worker, queue, storage, Printful and publishing one by one and shows exactly where it fails.</p>
+ <div class="fx-table-wrap"><table class="fx-table" id="diagTable" hidden><thead><tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Details</th><th scope="col">What to do</th></tr></thead><tbody id="diagRows"></tbody></table></div>
+</section>
+
+<section class="fx-panel" aria-labelledby="brainTitle">
+ <div class="fx-row"><h2 id="brainTitle">Midnight Brain</h2><span class="fx-note">Locked rules can't be changed by AI workers. Every production brief includes this knowledge.</span></div>
+ <div class="fx-tabs" role="tablist" aria-label="Brain sections" id="sectionTabs"></div>
+ <div id="rules" class="ix-rules"></div>
+ <form id="ruleForm" class="ix-form"><h3 id="ruleFormTitle">Add a rule</h3><input type="hidden" id="ruleId">
+  <label for="ruleTitle">Rule name</label><input id="ruleTitle" maxlength="100" required>
+  <label for="ruleBody">Rule</label><textarea id="ruleBody" rows="3" maxlength="2000" required></textarea>
+  <label class="check fx-check"><input id="ruleLocked" type="checkbox"><span>Lock this rule</span></label>
+  <div class="fx-actions"><button type="submit" class="fx-btn fx-go">Save rule</button><button id="ruleCancel" type="button" class="fx-btn fx-quiet" hidden>Cancel edit</button></div>
+ </form>
+</section>
+
+<section class="fx-panel" aria-labelledby="garmentTitle">
+ <div class="fx-row"><h2 id="garmentTitle">Garment intelligence</h2><label for="garmentSelect" class="fx-sr">Garment</label><select id="garmentSelect" class="ix-select"></select></div>
+ <form id="garmentForm" class="ix-form">
+  <div class="fx-two"><div><label for="gMin">Fewest design elements</label><input id="gMin" type="number" min="0" max="12"></div><div><label for="gMax">Most design elements</label><input id="gMax" type="number" min="0" max="12"></div></div>
+  <label for="gHierarchy">Typical hierarchy</label><input id="gHierarchy" maxlength="300">
+  <label for="gColor">Default color</label><input id="gColor" maxlength="40">
+  <p class="fx-sublabel">Placement roles</p><div id="gZones" class="fx-number-grid"></div>
+  <div class="fx-actions"><button type="submit" class="fx-btn fx-go">Save profile</button><button id="gLock" type="button" class="fx-btn fx-quiet"></button></div>
+  <p id="gNote" class="fx-note" role="status" aria-live="polite"></p>
+ </form>
+ <details class="fx-advanced"><summary>What Midnight believes about this garment</summary><pre id="knowledge" class="ix-pre"></pre></details>
+</section>
+
+<section class="fx-panel" aria-labelledby="memTitle">
+ <div class="fx-row"><h2 id="memTitle">Brain memory</h2><label for="memFilter" class="fx-sr">Memory type</label><select id="memFilter" class="ix-select"><option value="">All memories</option></select></div>
+ <p class="fx-note">Owner feedback on products lands here. These are notes fed into future briefs; no model is retrained. Delete anything wrong.</p>
+ <div id="memories" class="ix-rules"></div>
+ <form id="memForm" class="ix-form ix-inline"><label for="memKind" class="fx-sr">Type</label><select id="memKind"></select><label for="memText" class="fx-sr">Memory</label><input id="memText" maxlength="1000" placeholder="Add something Midnight should remember" required><button type="submit" class="fx-btn">Add</button></form>
+</section>
+
+<section class="fx-panel" aria-labelledby="testTitle">
+ <h2 id="testTitle">Test Midnight Brain</h2>
+ <p class="fx-note">A sandbox. Nothing is queued or published.</p>
+ <form id="testForm" class="ix-form">
+  <label for="testPrompt">Test request</label><textarea id="testPrompt" rows="2" maxlength="2000" placeholder="Design a black zip jacket using this raven artwork."></textarea>
+  <div class="fx-two"><div><label for="testGarment">Garment</label><select id="testGarment"></select></div><div><label for="testArt">Artwork (hold Ctrl to pick several)</label><select id="testArt" multiple size="4"></select></div></div>
+  <div class="fx-actions"><button type="submit" class="fx-btn fx-go">Plan test design</button><button id="testRun" type="button" class="fx-btn" disabled>Run test design</button></div>
+ </form>
+ <div id="testOut" hidden><dl id="testPlan" class="fx-plan"></dl><div class="fx-table-wrap"><table class="fx-table"><thead><tr><th scope="col">Zone</th><th scope="col">Role</th><th scope="col">Artwork</th></tr></thead><tbody id="testZones"></tbody></table></div><details class="fx-advanced"><summary>Brief the worker would receive</summary><pre id="testKnowledge" class="ix-pre"></pre></details></div>
+</section>
+
+<section class="fx-panel" aria-labelledby="jobTitle">
+ <div class="fx-row"><h2 id="jobTitle">Job inspector</h2><label for="jobSelect" class="fx-sr">Job</label><select id="jobSelect" class="ix-select"><option value="">Choose a job…</option></select></div>
+ <ol id="pipeline" class="ix-pipeline"></ol>
+ <div id="jobDetail" hidden><p id="jobMeta" class="fx-meta"></p><h3>Decision log</h3><ol id="jobLog" class="ix-log"></ol><details class="fx-advanced"><summary>Production brief</summary><pre id="jobBrief" class="ix-pre"></pre></details></div>
+</section>
+
+<div id="toast" class="fx-toast" role="status" aria-live="polite" hidden></div>
+</main>
+<script src="/intelligence.js" defer></script>
+</body></html>

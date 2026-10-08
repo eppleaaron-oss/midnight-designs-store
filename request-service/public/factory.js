@@ -207,14 +207,17 @@ function reviewCard(j){
  btn('Reject','fx-quiet',async()=>{await api('history',{job:j.id,action:'archive'});toast('Rejected and archived. You can restore it from production history.');await refresh();});
  const edit=node('a','Edit manually','fx-btn fx-quiet');edit.href='/ai-factory/tools#blueprintPanel';actions.append(edit);
  const show=btn('Show previews','fx-quiet',async()=>{const d=await api('publishing/export/'+j.id);previews.replaceChildren(...(d.files.length?d.files.map(f=>{const fig=node('figure'),img=node('img');img.src=f.url;img.alt=f.placement;img.loading='lazy';fig.append(img,node('figcaption',f.placement.replace(/_/g,' ')));return fig;}):[node('p','No print files saved for this product yet.','fx-note')]));show.hidden=true;});
- card.append(previews,actions);return card;
+ const fb=node('div','', 'fx-feedback');for(const [kind,label] of [['good','👍 Good'],['excellent','❤️ Excellent'],['bad','👎 Bad'],['never','Never do this again'],['style','Save style'],['placement','Save placement'],['color','Save colors'],['reference','Save as reference']]){const b=node('button',label,'fx-chip');b.type='button';b.onclick=()=>guard(b,async()=>{await api('intelligence/feedback',{job:j.id,kind});toast('Saved to Brain memory.');});fb.append(b);}
+ const inspect=node('a','Inspect job','fx-btn fx-quiet');inspect.href='/ai-intelligence#job-'+j.id;actions.append(inspect);
+ card.append(previews,actions,fb);return card;
 }
 function renderRuns(){
  $('runList').replaceChildren(...(snap.runs.length?snap.runs.map(r=>{const row=node('div','', 'fx-run-row');row.append(node('strong',`#${r.number} ${r.name}`),node('span',`${r.status} · ${num(r.completed)} of ${num(r.slots)} products · ${new Date(r.created).toLocaleDateString()}`,'fx-sublabel'));const b=node('button','Run again','fx-btn fx-quiet');b.type='button';b.onclick=()=>guard(b,async()=>{const {config:c}=await api('runs/duplicate',{id:r.id});applyConfig({...c,name:c.name?c.name+' (again)':''});$('setupTitle').scrollIntoView({behavior:'smooth'});toast('Settings loaded from run #'+r.number+'. Review them, then start.');});row.append(b);return row;}):[node('p','No production runs yet.','fx-note')]));
  const current=$('presetSelect').value;$('presetSelect').replaceChildren(node('option','Load a preset…'),...snap.presets.map(p=>{const o=node('option',p.name);o.value=p.id;return o;}));$('presetSelect').options[0].value='';$('presetSelect').value=snap.presets.some(p=>p.id===current)?current:'';$('presetDelete').hidden=!$('presetSelect').value;
 }
+async function health(){try{const d=await api('intelligence');$('health').replaceChildren(...d.components.filter(c=>['brain','provider','worker','printful','storage','publishing'].includes(c.id)).map(c=>{const li=node('li');li.dataset.ok=String(c.ok);li.title=c.detail;const a=node('a',c.label+': '+c.state);a.href='/ai-intelligence';li.append(node('span','', 'ix-light'),a);return li;}));}catch{}}
 async function refresh(){
- snap=await api('runs');renderSummary();renderRun();renderQueue();renderReview();renderRuns();renderControls();
+ snap=await api('runs');if(!refresh.health||Date.now()-refresh.health>60000){refresh.health=Date.now();health();}renderSummary();renderRun();renderQueue();renderReview();renderRuns();renderControls();
  if(!refresh.done){refresh.done=true;renderSetup();}
 }
 
