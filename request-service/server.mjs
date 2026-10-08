@@ -1,3 +1,4 @@
+import {factoryPublishing} from './factory-publishing.mjs';
 import {factoryPricing} from './factory-pricing.mjs';
 import {factorySupport} from './factory-support.mjs';
 import {durableQueueStorage} from './factory-storage.mjs';
@@ -23,7 +24,7 @@ export const STATUSES=['New','Reviewing','Designing','Customer Review','Revision
 const hash=s=>createHash('sha256').update(s).digest('hex'),token=()=>randomBytes(32).toString('hex'),now=()=>new Date().toISOString();
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 const str=(v,max=6000,required=false)=>{if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Invalid or missing field.');return v.trim();};
-export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={},outfitSettings={},productionSettings={}}){
+export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={},outfitSettings={},productionSettings={},publishingSettings={}}){
  const designs=new Map(designCatalog.filter(d=>d.kind!=='reference').map(d=>[d.id,d]));const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
  if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
  if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
@@ -61,12 +62,14 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const productionHandler=factoryProduction({storageDurable:durableQueueStorage(dbPath),...productionSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setProduction(productionHandler);
  const supportHandler=factorySupport({db,auth,body,send,fail,limit,origin});factoryHandler.setSupport(supportHandler);productionHandler.setSupport(supportHandler);
  const pricingHandler=factoryPricing({db,auth,body,send,fail,limit,origin});productionHandler.setPricing(pricingHandler);supportHandler.setPricing(pricingHandler);
+ const publishingHandler=factoryPublishing({storageDurable:durableQueueStorage(dbPath),...publishingSettings,db,auth,body,send,fail,limit,origin,manager:factoryHandler,pricing:pricingHandler});productionHandler.setPublishing(publishingHandler);
  const outfitHandler=factoryOutfits({...outfitSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin,storefrontOrigin});
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
  const server=http.createServer(async(req,res)=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data: https://*.printful.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
+   if(await publishingHandler.handle(req,res,path,method))return;
    if(await pricingHandler.handle(req,res,path,method))return;
    if(await supportHandler.handle(req,res,path,method))return;
    if(await productionHandler.handle(req,res,path,method))return;
@@ -77,7 +80,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    if(await payments.handle(req,res,path,method))return;
    if(await catalogHandler.handle(req,res,path,method))return;
    if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
-   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/factory-uploads.js':'factory-uploads.js','/factory-blueprints.js':'factory-blueprints.js','/factory-outfits.js':'factory-outfits.js','/factory-pricing.js':'factory-pricing.js','/factory-support.js':'factory-support.js','/factory-production.js':'factory-production.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/ai-factory','/ai-factory.html','/ai-factory.js','/ai-factory.css','/factory-uploads.js','/factory-blueprints.js','/factory-outfits.js','/factory-pricing.js','/factory-support.js','/factory-production.js'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/factory-uploads.js':'factory-uploads.js','/factory-blueprints.js':'factory-blueprints.js','/factory-outfits.js':'factory-outfits.js','/factory-publishing.js':'factory-publishing.js','/factory-pricing.js':'factory-pricing.js','/factory-support.js':'factory-support.js','/factory-production.js':'factory-production.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/ai-factory','/ai-factory.html','/ai-factory.js','/ai-factory.css','/factory-uploads.js','/factory-blueprints.js','/factory-outfits.js','/factory-publishing.js','/factory-pricing.js','/factory-support.js','/factory-production.js'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
    if(await designStats.handle(req,res,path,method,url))return;
    if(await reviewHandler(req,res,path,method,url))return;
    if(path==='/api/design-ratings'){

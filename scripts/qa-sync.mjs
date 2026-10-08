@@ -27,6 +27,8 @@ try{
  assert(second.lastSyncedAt>first.lastSyncedAt);
  await writeFile('pricing-overrides.json',JSON.stringify({prices:{11:55}}));
  await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products[0].variants[0].price,55);
+ const factoryDetail=detail(3,[variant(31,39.99)]);factoryDetail.sync_product.external_id='midnight-factory-test';dataset.push(factoryDetail);await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products.some(p=>p.id==='3'),false,'Unapproved supplier drafts stay private');
+ await writeFile('factory-listings.json',JSON.stringify({products:{3:{id:'3',name:'Approved factory tee',description:'Approved description',factoryExternalId:'midnight-factory-test',image:'https://example.com/mockup.png',images:['https://example.com/mockup.png'],variants:[{id:'31',catalogVariantId:131,size:'M',color:'White',currency:'USD',price:39.99,availability:'active'}]}}}));await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products.find(p=>p.id==='3').description,'Approved description');
  const good=await readFile('products.json','utf8');
  failure=true;await assert.rejects(sync({token:'fixture',fetcher}),/HTTP 401/);assert.equal(await readFile('products.json','utf8'),good);
  failure=false;dataset=[];await assert.rejects(sync({token:'fixture',fetcher}),/No publishable/);assert.equal(await readFile('products.json','utf8'),good);
