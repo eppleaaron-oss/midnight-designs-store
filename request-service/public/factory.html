@@ -28,19 +28,18 @@
 </section>
 
 <section class="fx-panel" aria-labelledby="setupTitle">
- <div class="fx-row"><h2 id="setupTitle">New production run</h2>
-  <div class="fx-presets"><label for="presetSelect" class="fx-inline-label">Preset</label><select id="presetSelect"><option value="">Load a preset…</option></select><button id="presetDelete" type="button" class="fx-btn fx-quiet" hidden>Delete</button></div>
- </div>
 
+ <div class="fx-row"><h2 id="setupTitle">Quick production</h2></div>
+ <p class="fx-note fx-lead">Add your designs, pick the clothing, set your workers and press Start. The AI handles placement, color fill and quality checks using the Midnight Brain.</p>
  <ol class="fx-steps">
   <li class="fx-step" id="stepDesigns">
-   <div class="fx-step-head"><h3>Select designs</h3><span id="designCount" class="fx-pill">0 selected</span></div>
+   <div class="fx-step-head"><h3>Add designs</h3><span id="designCount" class="fx-pill">0 selected</span></div>
    <div class="fx-tabs" role="tablist" aria-label="Design sources">
-    <button type="button" role="tab" id="tabFactory" aria-selected="true" aria-controls="paneFactory">Factory designs</button>
-    <button type="button" role="tab" id="tabLibrary" aria-selected="false" aria-controls="paneLibrary">Midnight Designs library</button>
-    <button type="button" role="tab" id="tabUpload" aria-selected="false" aria-controls="paneUpload">Upload</button>
+    <button type="button" role="tab" id="tabUpload" aria-selected="true" aria-controls="paneUpload">Upload pictures</button>
+    <button type="button" role="tab" id="tabFactory" aria-selected="false" aria-controls="paneFactory">My uploaded designs</button>
+    <button type="button" role="tab" id="tabLibrary" aria-selected="false" aria-controls="paneLibrary">Designs already on my store</button>
    </div>
-   <div id="paneFactory" role="tabpanel" aria-labelledby="tabFactory">
+   <div id="paneFactory" role="tabpanel" aria-labelledby="tabFactory" hidden>
     <div class="fx-filter"><label for="designSearch" class="fx-sr">Search designs</label><input id="designSearch" type="search" placeholder="Search designs"><label for="designCollection" class="fx-sr">Collection</label><select id="designCollection"><option value="">All collections</option></select><button id="selectVisible" type="button" class="fx-btn fx-quiet">Select shown</button><button id="clearDesigns" type="button" class="fx-btn fx-quiet">Clear</button></div>
     <div id="designGrid" class="fx-grid"></div>
    </div>
@@ -49,44 +48,23 @@
     <p id="libraryNote" class="fx-note" role="status" aria-live="polite"></p>
     <div id="libraryGrid" class="fx-grid"></div>
    </div>
-   <div id="paneUpload" role="tabpanel" aria-labelledby="tabUpload" hidden>
-    <label for="uploadCollection">Collection name</label><input id="uploadCollection" maxlength="100" value="New uploads">
-    <div id="dropZone" class="fx-drop" tabindex="0"><p><strong>Drop designs here</strong> or choose files. PNG, JPEG or WebP, up to 5 MB each.</p><label for="uploadFiles" class="fx-btn">Choose files</label><input id="uploadFiles" type="file" accept="image/png,image/jpeg,image/webp" multiple class="fx-sr"></div>
+   <div id="paneUpload" role="tabpanel" aria-labelledby="tabUpload">
+    <div id="dropZone" class="fx-drop" tabindex="0"><p><strong>Drop as many pictures as you want here</strong><br>PNG, JPEG or WebP, up to 5 MB each. They upload in batches and are picked for this run automatically.</p><label for="uploadFiles" class="fx-btn fx-go">Choose pictures</label><input id="uploadFiles" type="file" accept="image/png,image/jpeg,image/webp" multiple class="fx-sr"></div>
     <p id="uploadNote" class="fx-note" role="status" aria-live="polite"></p>
    </div>
   </li>
 
   <li class="fx-step" id="stepClothing">
-   <div class="fx-step-head"><h3>Select clothing</h3><span id="garmentCount" class="fx-pill">0 selected</span></div>
+   <div class="fx-step-head"><h3>Pick clothing</h3><span id="garmentCount" class="fx-pill">0 selected</span></div>
    <div id="garmentCards" class="fx-cards"></div>
-   <fieldset class="fx-seg"><legend>Make</legend>
-    <label><input type="radio" name="output" value="products" checked> Individual products</label>
-    <label><input type="radio" name="output" value="outfits"> Complete outfits</label>
-    <label><input type="radio" name="output" value="mix"> Mix both</label>
-   </fieldset>
   </li>
 
-  <li class="fx-step" id="stepQuantity">
-   <div class="fx-step-head"><h3>Set production quantity</h3></div>
-   <fieldset class="fx-seg"><legend class="fx-sr">Quantity mode</legend>
-    <label><input type="radio" name="qtyMode" value="total" checked> Total products</label>
-    <label><input type="radio" name="qtyMode" value="each"> Per product</label>
-    <label><input type="radio" name="qtyMode" value="unlimited"> Keep producing until I stop</label>
-   </fieldset>
-   <div id="qtyTotalBox"><label for="qtyTotal">Total products</label><input id="qtyTotal" type="number" min="1" max="10000" value="100" inputmode="numeric"></div>
-   <div id="qtyEachBox" class="fx-number-grid" hidden></div>
-  </li>
 
-  <li class="fx-step" id="stepColor">
-   <div class="fx-step-head"><h3>Set base garment color</h3></div>
-   <div id="colorSwatches" class="fx-swatches" role="radiogroup" aria-label="Base garment color"></div>
-   <p class="fx-note">Every garment in this run is made in this color. The fabric itself is set to the color; artwork is placed on top of it.</p>
-  </li>
 
   <li class="fx-step" id="stepWorkers">
-   <div class="fx-step-head"><h3>Set AI workers and duration</h3></div>
+   <div class="fx-step-head"><h3>Set AI workers</h3></div>
    <div class="fx-two">
-    <div><label for="workerTotal">AI workers</label><input id="workerTotal" type="number" min="1" max="100" value="20" inputmode="numeric"><label class="check fx-check"><input id="workerAuto" type="checkbox" checked><span>Auto assign roles</span></label></div>
+    <div><label for="workerTotal">AI workers</label><div class="fx-slider"><input id="workerSlider" type="range" min="1" max="100" value="20" aria-label="AI workers slider"><input id="workerTotal" type="number" min="1" max="100" value="20" inputmode="numeric"></div><label class="check fx-check"><input id="workerAuto" type="checkbox" checked><span>Auto assign roles</span></label></div>
     <div><label for="duration">Run for</label><select id="duration"><option value="15m">15 minutes</option><option value="30m">30 minutes</option><option value="1h">1 hour</option><option value="2h">2 hours</option><option value="4h">4 hours</option><option value="8h">8 hours</option><option value="custom">Custom duration</option><option value="count">Until a number of products is done</option><option value="queue" selected>Until the design queue is empty</option><option value="unlimited">Continuously (until I stop it)</option></select>
      <div id="durationCustomBox" hidden><label for="durationMinutes">Minutes</label><input id="durationMinutes" type="number" min="5" max="10080" value="90"></div>
      <div id="durationCountBox" hidden><label for="durationCount">Stop after this many products</label><input id="durationCount" type="number" min="1" max="10000" value="50"></div>
@@ -95,8 +73,38 @@
   </li>
  </ol>
 
- <details id="advanced" class="fx-advanced"><summary>Advanced settings</summary>
+ <details id="advanced" class="fx-advanced"><summary>Advanced settings (optional)</summary>
   <div class="fx-adv-grid">
+<fieldset id="stepQuantity"><legend>How many products</legend>
+   <fieldset class="fx-seg"><legend class="fx-sr">Quantity mode</legend>
+    <label><input type="radio" name="qtyMode" value="auto" checked> One of each design on each clothing type</label>
+    <label><input type="radio" name="qtyMode" value="total"> Total products</label>
+    <label><input type="radio" name="qtyMode" value="each"> Per product</label>
+    <label><input type="radio" name="qtyMode" value="unlimited"> Keep producing until I stop</label>
+   </fieldset>
+   <div id="qtyTotalBox" hidden><label for="qtyTotal">Total products</label><input id="qtyTotal" type="number" min="1" max="10000" value="100" inputmode="numeric"></div>
+   <div id="qtyEachBox" class="fx-number-grid" hidden></div>
+  </fieldset>
+<fieldset id="stepColor"><legend>Main garment color</legend>
+   <div id="colorSwatches" class="fx-swatches" role="radiogroup" aria-label="Base garment color"></div>
+   <p class="fx-note">Black by default. Any color other than white is made with the fill option.</p>
+  </fieldset>
+<fieldset><legend>Products or outfits</legend>
+   <div class="fx-seg">
+    <label><input type="radio" name="output" value="products" checked> Individual products</label>
+    <label><input type="radio" name="output" value="outfits"> Complete outfits</label>
+    <label><input type="radio" name="output" value="mix"> Mix both</label>
+   </div>
+</fieldset>
+<fieldset><legend>Presets and run name</legend>
+  <div class="fx-presets"><label for="presetSelect" class="fx-inline-label">Preset</label><select id="presetSelect"><option value="">Load a preset…</option></select><button id="presetDelete" type="button" class="fx-btn fx-quiet" hidden>Delete</button></div>
+ 
+<label for="runName">Run name (optional)</label><input id="runName" maxlength="80" placeholder="Midnight Jacket Run">
+<button id="presetSave" type="button" class="fx-btn fx-quiet">Save as preset</button>
+<label class="check fx-check"><input id="presetDesigns" type="checkbox"><span>Include selected designs in the preset</span></label>
+    <label for="uploadCollection">Collection name</label><input id="uploadCollection" maxlength="100" value="New uploads">
+</fieldset>
+
    <fieldset><legend>Production mix</legend>
     <select id="mixMode" aria-label="Production mix"><option value="auto">AI optimize production mix</option><option value="count">Exact counts</option><option value="percent">Percentages</option></select>
     <div id="mixBox" class="fx-number-grid" hidden></div>
@@ -161,10 +169,7 @@
  <div class="fx-launch">
   <div><h3>Ready to run</h3><dl id="planSummary" class="fx-plan"></dl><p id="planNote" class="fx-note" role="status" aria-live="polite"></p></div>
   <div class="fx-launch-actions">
-   <label for="runName" class="fx-inline-label">Run name</label><input id="runName" maxlength="80" placeholder="Midnight Jacket Run">
-   <button id="launch" type="button" class="fx-btn fx-go fx-big">Start factory</button>
-   <button id="presetSave" type="button" class="fx-btn fx-quiet">Save as preset</button>
-   <label class="check fx-check"><input id="presetDesigns" type="checkbox"><span>Include selected designs in the preset</span></label>
+   <button id="launch" type="button" class="fx-btn fx-go fx-big">Start production</button>
   </div>
  </div>
 </section>

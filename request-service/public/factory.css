@@ -144,3 +144,6 @@ progress{accent-color:var(--fx-go);height:8px;vertical-align:middle}
 .ix-ref select,.ix-ref input{width:100%;margin-top:8px}
 #testZones tr[data-empty="true"] td{color:var(--fx-muted,#9c9284)}
 @media (max-width:520px){.ix-ref{grid-template-columns:1fr}.ix-ref img{width:100%;height:auto;aspect-ratio:1}}
+.fx-slider{display:grid;grid-template-columns:1fr 90px;gap:12px;align-items:center}.fx-slider input[type=range]{accent-color:var(--fx-go);min-height:auto}
+.fx-lead{font-size:16px;margin:4px 0 14px}
+.fx-drop{padding:36px 20px;text-align:center}

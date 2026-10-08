@@ -15,11 +15,13 @@ async function guard(button,work){if(busy)return;busy=true;if(button)button.disa
 // ---------- configuration ----------
 const dollars=id=>Math.round((Number($(id).value)||0)*100);
 const intOf=(id,fallback)=>{const v=Math.round(Number($(id).value));return Number.isFinite(v)?v:fallback;};
+// "One of each" = every selected design on every selected clothing type.
+function qty(g,pick){const mode=document.querySelector('input[name=qtyMode]:checked').value;return mode==='auto'?{mode:'each',total:0,each:Object.fromEntries(g.map(id=>[id,Math.min(10000,Math.max(1,selected.size))]))}:{mode,total:intOf('qtyTotal',0),each:pick(each)};}
 function config(){
  const g=[...garments],pick=o=>Object.fromEntries(g.map(id=>[id,o[id]||0]));
  const dm=$('densityMode').value;
  return {name:$('runName').value.trim(),artworkIds:[...selected],garments:g,
-  quantity:{mode:document.querySelector('input[name=qtyMode]:checked').value,total:intOf('qtyTotal',0),each:pick(each)},
+  quantity:qty(g,pick),
   mix:{mode:$('mixMode').value,values:pick(mix)},
   color:{base:baseColor,mode:$('colorMode').value,perGarment:Object.fromEntries(g.filter(id=>perColor[id]?.length).map(id=>[id,perColor[id]])),exclude:[...exclude],lock:$('colorLock').checked},
   workers:{total:intOf('workerTotal',1),mode:$('workerAuto').checked?'auto':'manual',roles:Object.fromEntries([...g,'qc'].map(id=>[id,roles[id]||0]))},
@@ -135,7 +137,7 @@ async function plan(){
   const products=c.garments.map(id=>`${garment(id).label} ${p.unlimited&&c.quantity.mode!=='each'?'':num(p.quantities[id])}`.trim()).join(' + ');
   const workers=Object.entries(p.workers).filter(([,n])=>n>0).map(([id,n])=>`${n} ${id==='qc'?'QC':garment(id).label.toLowerCase()}`).join(', ');
   const dur=$('duration').selectedOptions[0].textContent;
-  const rows=[['Designs',`${selected.size} selected`],['Products',products+(p.unlimited?' (repeats until stopped)':'')],['Total',p.unlimited?'Unlimited':num(p.total)],['Base color',c.color.mode==='global'?c.color.base:c.color.mode==='ai'?'AI chooses':'Per product'],['Workers',`${c.workers.total} (${workers})`],['Duration',dur],['QC',c.qc.automatic?'Automatic':'Manual'],['Estimated cost',p.estimatedCostCents===null?money(p.batchCostCents)+' per batch':money(p.estimatedCostCents)]];
+  const rows=[['Designs',`${selected.size} selected`],['Products',products+(p.unlimited?' (repeats until stopped)':'')],['Total',p.unlimited?'Unlimited':num(p.total)],['Color',c.color.mode==='global'?c.color.base+(/^white$/i.test(c.color.base)?'':' (fill option on)'):c.color.mode==='ai'?'AI chooses':'Per product'],['Workers',`${c.workers.total} (${workers})`],['Runs for',dur]];
   box.replaceChildren(...rows.flatMap(([k,v])=>[node('dt',k),node('dd',v)]));
   $('planNote').textContent=!selected.size?'Select at least one design.':!c.limits.costPerProductCents?'No AI image provider is connected, so production currently has no AI cost.':'';
  }catch(e){box.replaceChildren();$('planNote').textContent=e.message;lastPlan=null;}
@@ -153,7 +155,7 @@ async function launch(){
 }
 async function control(action){
  const run=snap?.active;
- if(action==='start'&&!run){$('stepDesigns').scrollIntoView({behavior:'smooth'});return toast('Set up a production run below, then press Start factory.');}
+ if(action==='start'&&!run){$('stepDesigns').scrollIntoView({behavior:'smooth'});return toast('Add designs and pick clothing below, then press Start production.');}
  const blocked=await factory(action==='start'&&snap.factory.state==='paused'?'resume':action);
  if(run)snap=await api('runs/control',{id:run.id,action:action==='start'?'resume':action});
  await refresh();$('controlNote').textContent=blocked?`The factory didn't ${action.replace('-',' ')}: ${blocked}`:{start:'Factory started.',resume:'Factory resumed.',pause:'Factory paused. Work in progress keeps its place.',stop:'Factory stopped. Finished products are kept.','emergency-stop':'Emergency stop. Queued and running work was cancelled; finished products are kept.'}[action];
@@ -236,6 +238,7 @@ const drop=$('dropZone');['dragenter','dragover'].forEach(t=>drop.addEventListen
 document.querySelectorAll('input[name=qtyMode],input[name=output]').forEach(r=>r.onchange=renderSetup);
 ['mixMode','colorMode','densityMode','assignment','duration','workerAuto','creativity'].forEach(id=>$(id).addEventListener('input',renderSetup));
 ['qtyTotal','workerTotal','durationMinutes','durationCount','placeFill','placePanels','placeMirror','placeTile','styleNote','qcAuto','qcThreshold','qcRevisions','qcApproval','limSimultaneous','limBatch','limPerWorker','limCostPer','limRun','audience','colorLock','runName'].forEach(id=>$(id).addEventListener('input',schedulePlan));
+$('workerSlider').oninput=()=>{$('workerTotal').value=$('workerSlider').value;$('workerTotal').dispatchEvent(new Event('input'));};$('workerTotal').addEventListener('input',()=>{$('workerSlider').value=$('workerTotal').value;});
 $('launch').onclick=()=>guard($('launch'),launch);
 $('ctlStart').onclick=()=>guard($('ctlStart'),()=>control('start'));$('ctlPause').onclick=()=>guard($('ctlPause'),()=>control('pause'));$('ctlResume').onclick=()=>guard($('ctlResume'),()=>control('resume'));$('ctlStop').onclick=()=>guard($('ctlStop'),()=>control('stop'));$('ctlEmergency').onclick=emergency;
 $('recoveryResume').onclick=()=>guard($('recoveryResume'),()=>control(snap.factory.state==='paused'?'resume':'start'));
