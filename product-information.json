@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T23:09:35.451Z",
+  "updatedAt": "2026-10-08T00:52:17.791Z",
   "products": {
     "242": {
       "catalogProductId": 242,
@@ -82,7 +82,7 @@
           "name": "All-Over Print Yoga Leggings (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:32.788Z"
+      "verifiedAt": "2026-10-08T00:52:15.482Z"
     },
     "279": {
       "catalogProductId": 279,
@@ -133,7 +133,7 @@
           "name": "All-Over Print Backpack"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:28.978Z"
+      "verifiedAt": "2026-10-08T00:52:12.971Z"
     },
     "328": {
       "catalogProductId": 328,
@@ -225,7 +225,7 @@
           "name": "All-Over Print Men's Athletic T-Shirt (XS)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:28.001Z"
+      "verifiedAt": "2026-10-08T00:52:12.012Z"
     },
     "350": {
       "catalogProductId": 350,
@@ -284,7 +284,7 @@
           "name": "All-Over Print Fanny Pack (S/M)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:23.564Z"
+      "verifiedAt": "2026-10-08T00:52:07.545Z"
     },
     "388": {
       "catalogProductId": 388,
@@ -409,7 +409,7 @@
           "name": "All-Over Print Unisex Hoodie (XS)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:17.047Z"
+      "verifiedAt": "2026-10-08T00:52:01.273Z"
     },
     "420": {
       "catalogProductId": 420,
@@ -462,7 +462,7 @@
           "name": "All-Over Print Neck Gaiter"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:24.576Z"
+      "verifiedAt": "2026-10-08T00:52:08.290Z"
     },
     "630": {
       "catalogProductId": 630,
@@ -530,7 +530,7 @@
           "name": "All-Over Print Bandana (White / S)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:33.660Z"
+      "verifiedAt": "2026-10-08T00:52:16.254Z"
     },
     "963": {
       "catalogProductId": 963,
@@ -588,15 +588,15 @@
           "name": "All-Over Print Utility Backpack (White)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:25.460Z"
+      "verifiedAt": "2026-10-08T00:52:09.340Z"
     },
     "1418": {
       "catalogProductId": 1418,
       "title": "All-Over Print Unisex Cotton Sweatshirt",
       "description": "A soft, slightly stretchy cotton-blend sweatshirt with a relaxed fit and dropped shoulders, finished with Midnight Designs artwork.",
       "materials": [
-        "95% cotton, 5% elastane",
-        "Fabric weight: 7.8 oz./yd.² (265 g/m²)"
+        "90% cotton, 10% elastane",
+        "Fabric weight: 9.7 oz./yd.² (330 g/m²)"
       ],
       "materialsNote": null,
       "fit": [
@@ -604,8 +604,8 @@
         "Slight stretch for comfort and shape retention"
       ],
       "features": [
-        "95% cotton, 5% elastane",
-        "Fabric weight: 7.8 oz./yd.² (265 g/m²)",
+        "90% cotton, 10% elastane",
+        "Fabric weight: 9.7 oz./yd.² (330 g/m²)",
         "Relaxed fit with drop shoulder",
         "Slight stretch for comfort and shape retention",
         "Pilling-resistant and durable after multiple washes",
@@ -705,15 +705,15 @@
           "name": "All-Over Print Unisex Cotton Sweatshirt (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:35.051Z"
+      "verifiedAt": "2026-10-08T00:52:17.391Z"
     },
     "1419": {
       "catalogProductId": 1419,
       "title": "All-Over Print Unisex Cotton Hoodie",
       "description": "A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
       "materials": [
-        "95% cotton, 5% elastane",
-        "Fabric weight: 7.8 oz./yd.² (265 g/m²)"
+        "90% cotton, 10% elastane",
+        "Fabric weight: 9.7 oz./yd.² (330 g/m²)"
       ],
       "materialsNote": null,
       "fit": [
@@ -721,8 +721,8 @@
         "Double-layer hood with drawstrings"
       ],
       "features": [
-        "95% cotton, 5% elastane",
-        "Fabric weight: 7.8 oz./yd.² (265 g/m²)",
+        "90% cotton, 10% elastane",
+        "Fabric weight: 9.7 oz./yd.² (330 g/m²)",
         "Relaxed unisex fit with drop shoulders",
         "Double-layer hood with drawstrings",
         "Spacious front pocket",
@@ -823,7 +823,7 @@
           "name": "All-Over Print Unisex Cotton Hoodie (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:15.878Z"
+      "verifiedAt": "2026-10-08T00:52:00.357Z"
     },
     "1628": {
       "catalogProductId": 1628,
@@ -939,7 +939,7 @@
           "name": "All-Over Print Oversized Cotton Hoodie (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-07T23:09:21.485Z"
+      "verifiedAt": "2026-10-08T00:52:05.479Z"
     }
   }
 }
