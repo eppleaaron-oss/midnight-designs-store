@@ -82,14 +82,18 @@ export function buildSlots(c,plan,artwork,cycle=0){
  return slots.filter(s=>!s.design||artwork.has(s.design));
 }
 
+// The blank garment is white. Any other main color only exists if the fill option is switched on for every print area.
+export function fillInstruction(color){
+ return /^white$/i.test(color)?'Base garment color: White. Use the plain white garment with the fill option OFF.':`Base garment color: ${color}. FILL OPTION REQUIRED: switch on the fill option in ${color} for every print area, edge to edge, before placing any artwork. The blank garment is white, so without the fill the product comes out white. Never fake the color with a pasted solid-color image.`;
+}
 export function brief(c,slot,art){
  const g=garment(slot.garment),[lo,hi]=c.density.values[slot.garment],creative=c.creativity<34?'Strict: follow the uploaded design closely; only adapt scale and placement.':c.creativity<67?'Balanced: improve placement and composition while preserving the design.':'Experimental: variations, complementary graphics, alternate placements and matching sleeve graphics are allowed.';
  return [
   `${g.single} for production run "${c.name||'Untitled run'}".`,
-  `Base garment color: ${slot.color}. Fill or dye the garment itself in this color; do not place a large ${slot.color.toLowerCase()} image over the artwork.${c.color.lock?' Color is locked.':''}`,
+  fillInstruction(slot.color)+(c.color.lock?' Color is locked.':''),
   art?`Primary artwork: ${art.name} (${art.collection}).`:'No artwork selected; wait for owner input.',
   `Design elements: ${lo===hi?lo:lo+'–'+hi} across ${g.zones.join(', ')}. Use the garment's real supplier blueprint, print areas, safe zones, bleed and seams.`,
-  `Placement: ${c.placement.fill}; ${c.placement.continueAcrossPanels?'continue artwork across panels where it reads well':'keep each panel self-contained'}; ${c.placement.mirrorSleeves?'mirror sleeve graphics':'sleeves may differ'}; ${c.placement.allowTile?'tiling allowed':'no tiling'}. Never cut off faces or text at seams, distort artwork or leave accidental empty areas.`,
+  `Placement: ${c.placement.fill}; ${c.placement.continueAcrossPanels?'continue artwork across panels where it reads well':'keep each panel self-contained'}; ${c.placement.mirrorSleeves?'mirror sleeve graphics':'sleeves may differ'}; ${c.placement.allowTile?'tiling allowed':'no tiling'}. Never cut off faces or text at seams or distort artwork. Empty placements must be deliberate, never accidental.`,
   slot.outfit?`Part of ${slot.outfit}: coordinate theme, colors, typography and placement with the other pieces.`:'',
   `Creativity: ${creative}`,
   c.style?`Style: ${c.style}`:'',
@@ -120,10 +124,12 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
   const inFlight=get("SELECT count(*) n FROM factory_run_slots s JOIN factory_jobs j ON j.id=s.job WHERE s.run=? AND j.status IN ('queued','running','retry_wait')",r.id).n;
   const room=Math.min(100-get("SELECT count(*) n FROM factory_jobs WHERE status='queued'").n,c.limits.batch-inFlight);
   const art=artworkMap();
+  // The slot's own design leads; the run's other designs (rotated per slot) are offered for secondary and accent placements.
+  const support=(c,s,a)=>{const rest=c.artworkIds.filter(id=>id!==a?.id&&art.has(id)),k=rest.length?s.seq%rest.length:0;return [...(a?[a]:[]),...[...rest.slice(k),...rest.slice(0,k)].map(id=>art.get(id))];};
   for(const s of pending.slice(0,Math.max(0,room))){
    const g=garment(s.garment),a=s.design?art.get(s.design):null,label=g.single;
    const title=(s.outfit?s.outfit+' · ':'')+label+(a?' · '+a.name:'');
-   try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:[brief(c,s,a),brain?.knowledge(s.garment)].filter(Boolean).join('\n\n').slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:a?[a.id]:[]}});
+   try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:[brief(c,s,a),brain?.production(s.garment,support(c,s,a)),brain?.knowledge(s.garment)].filter(Boolean).join('\n\n').slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:support(c,s,a).map(x=>x.id).slice(0,12)}});
     db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
    catch(e){if(e.status===409&&/queue is full/i.test(e.message))break;run('UPDATE factory_run_slots SET error=? WHERE run=? AND seq=?',String(e.message).slice(0,300),r.id,s.seq);}
   }

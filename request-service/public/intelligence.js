@@ -1,7 +1,7 @@
 'use strict';
 (()=>{
 const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined&&text!==null)e.textContent=text;if(cls)e.className=cls;return e;};
-let data=null,section='brand-dna';
+let data=null,section='brand-dna',store=null;
 async function api(path,body){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(70000)});if(r.status===401){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Request failed.');return d;}
 function toast(t){const e=$('toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,6000);}
 const guard=(b,fn)=>async(...a)=>{if(b)b.disabled=true;try{await fn(...a);}catch(e){toast(e.message);}finally{if(b)b.disabled=false;}};
@@ -36,6 +36,28 @@ function renderMemories(){
  const kind=$('memFilter').value,list=data.memories.filter(m=>!kind||m.kind===kind),label=Object.fromEntries(data.memoryKinds);
  $('memories').replaceChildren(...(list.length?list.map(m=>{const card=node('article','', 'ix-rule');const head=node('div','', 'fx-row');head.append(node('span',label[m.kind]||m.kind,'fx-pill'),node('span',new Date(m.created).toLocaleString(),'fx-sublabel'));card.append(head,node('p',m.text));const b=node('button','Delete','fx-btn fx-quiet');b.type='button';b.onclick=guard(b,async()=>{await api('intelligence/memory',{id:m.id,delete:true});await load();});card.append(b);return card;}):[node('p','No memories yet. Feedback buttons on finished products add them.','fx-note')]));
 }
+
+const KIND={product:'Store product',design:'Store design',mockup:'Mockup'};
+function renderStore(){
+ if(!store)return;const kind=$('refKind').value,q=$('refSearch').value.trim().toLowerCase(),pinned=new Set(data.references.map(r=>r.id));
+ const shown=store.filter(x=>(!kind||x.kind===kind)&&(!q||(x.name+' '+x.category).toLowerCase().includes(q)));
+ $('storeGrid').replaceChildren(...shown.map(x=>{const l=node('label','', 'fx-tile'),c=node('input'),img=node('img');c.type='checkbox';c.checked=pinned.has(x.id);img.src=x.thumbnail;img.alt='';img.loading='lazy';
+  c.onchange=guard(c,async()=>{await api('intelligence/reference',c.checked?{add:[x.id]}:{id:x.id,delete:true});await load();});
+  l.append(c,img,node('span',x.name,'fx-tile-name'),node('span',KIND[x.kind]+(x.garment?' · '+(data.garments.find(g=>g.id===x.garment)?.label||''):''),'fx-sublabel'));return l;}));
+ $('storeNote').textContent=shown.length?`${shown.length} shown. ${pinned.size} pinned.`:'Nothing on the store matches.';
+}
+function renderRefs(){
+ $('refCount').textContent=String(data.references.length);
+ $('refList').replaceChildren(...(data.references.length?data.references.map(r=>{const card=node('article','', 'ix-rule ix-ref'),img=node('img');img.src=r.image;img.alt='';img.loading='lazy';
+  const body=node('div'),head=node('div','', 'fx-row');head.append(node('strong',r.name),node('span',KIND[r.kind]||r.kind,'fx-pill'));
+  const g=node('select'),n=node('input');g.setAttribute('aria-label','Use for garment');n.setAttribute('aria-label','What to learn from it');n.maxLength=300;n.placeholder='What should the AI learn from this? (optional)';n.value=r.note||'';
+  g.append(...[['','All garments'],...data.garments.map(x=>[x.id,x.label])].map(([v,t])=>{const o=node('option',t);o.value=v;return o;}));g.value=r.garment||'';
+  const act=node('div','', 'fx-actions'),save=node('button','Save','fx-btn fx-quiet'),del=node('button','Remove','fx-btn fx-quiet');save.type=del.type='button';
+  save.onclick=guard(save,async()=>{await api('intelligence/reference',{id:r.id,garment:g.value||null,note:n.value});await load();toast('Reference saved.');});
+  del.onclick=guard(del,async()=>{await api('intelligence/reference',{id:r.id,delete:true});await load();});
+  act.append(save,del);body.append(head,g,n,act);card.append(img,body);return card;}):[node('p','No references pinned yet. Tick store products or designs above.','fx-note')]));
+}
+async function loadStore(){if(store)return renderStore();$('storeNote').textContent='Loading your store…';try{store=(await api('intelligence/store')).items;renderStore();}catch(e){$('storeNote').textContent=e.message;}}
 async function inspect(id){
  if(!id){$('jobDetail').hidden=true;$('pipeline').replaceChildren();return;}
  const d=await api('intelligence/job/'+id);
@@ -45,7 +67,7 @@ async function inspect(id){
  $('jobBrief').textContent=d.brief;$('jobDetail').hidden=false;
 }
 async function load(){
- data=await api('intelligence');renderStatus();renderRules();renderMemories();
+ data=await api('intelligence');renderStatus();renderRules();renderMemories();renderRefs();renderStore();
  if(!$('garmentSelect').options.length){options($('garmentSelect'),data.garments.map(g=>[g.id,g.label]));$('garmentSelect').value='jacket';options($('testGarment'),data.garments.map(g=>[g.id,g.label]));$('testGarment').value='ziphoodie';
   options($('memFilter'),[['','All memories'],...data.memoryKinds]);options($('memKind'),data.memoryKinds);}
  renderGarment();
@@ -60,15 +82,17 @@ $('garmentSelect').onchange=renderGarment;
 $('garmentForm').onsubmit=e=>{e.preventDefault();guard(null,async()=>{const g=data.garments.find(x=>x.id===$('garmentSelect').value);const placement={};g.zones.forEach(z=>{const v=$('zone-'+z).value.trim();if(v)placement[z]=v;});await api('intelligence/garment',{garment:g.id,profile:{density:[Number($('gMin').value),Number($('gMax').value)],hierarchy:$('gHierarchy').value,color:$('gColor').value,placement}});await load();toast(g.label+' profile saved.');})();};
 $('gLock').onclick=guard($('gLock'),async()=>{const g=data.garments.find(x=>x.id===$('garmentSelect').value);await api('intelligence/garment',{garment:g.id,locked:!g.profile?.locked});await load();});
 $('memFilter').onchange=renderMemories;
+$('refKind').onchange=renderStore;$('refSearch').oninput=renderStore;
+$('refPinProducts').onclick=guard($('refPinProducts'),async()=>{await loadStore();const ids=(store||[]).filter(x=>x.kind==='product').map(x=>x.id);if(!ids.length)return toast('No store products found.');await api('intelligence/reference',{add:ids});await load();toast(ids.length+' store products pinned as references.');});
 $('memForm').onsubmit=e=>{e.preventDefault();guard(null,async()=>{await api('intelligence/memory',{kind:$('memKind').value,text:$('memText').value});$('memText').value='';await load();})();};
 $('testForm').onsubmit=e=>{e.preventDefault();guard(null,async()=>{const d=await api('intelligence/test',{prompt:$('testPrompt').value||'Test design',garment:$('testGarment').value,artworkIds:[...$('testArt').selectedOptions].map(o=>o.value)});
  $('testPlan').replaceChildren(...[['Garment',d.garment],['Artwork',d.artwork.join(', ')||'None selected'],['Blueprint',d.blueprint||'None saved'],['',d.blueprintNote],['Color plan',d.colorPlan],['Reasoning',d.reasoning.join(' ')],['Expected score',d.expectedScore??d.scoreNote]].flatMap(([a,b])=>[node('dt',a),node('dd',b)]));
- $('testZones').replaceChildren(...d.placement.map(z=>{const tr=node('tr');tr.append(node('td',z.zone),node('td',z.role),node('td',z.artwork));return tr;}));
+ $('testZones').replaceChildren(...d.placement.map(z=>{const tr=node('tr');tr.append(node('td',z.zone),node('td',z.role),node('td',z.artwork||z.reason));tr.dataset.empty=String(!z.artwork);return tr;}));
  $('testKnowledge').textContent=d.knowledge;$('testOut').hidden=false;$('testRun').disabled=!d.canRun;$('testRun').title=d.canRun?'':'Needs a connected AI provider';})();};
 $('testRun').onclick=()=>toast('Test generation runs once the AI provider is connected.');
 $('jobSelect').onchange=()=>guard(null,()=>inspect($('jobSelect').value))();
 $('logout').onclick=async()=>{await fetch('/api/logout',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'}).catch(()=>{});location.replace('/login?next=ai-factory');};
 const deep=()=>{const m=/^#job-([\w-]{1,64})$/.exec(location.hash);if(!m)return;$('jobSelect').value=m[1];inspect(m[1]).then(()=>$('jobTitle').scrollIntoView()).catch(e=>toast(e.message));};
 addEventListener('hashchange',deep);
-load().then(deep).catch(e=>toast(e.message));
+load().then(()=>{loadStore();deep();}).catch(e=>toast(e.message));
 })();

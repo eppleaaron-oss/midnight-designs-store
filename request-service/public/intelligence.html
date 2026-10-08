@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Intelligence | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"></head><body class="factory-page">
 <header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a>
-<nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory">Command Center</a><a href="/ai-intelligence" aria-current="page">AI Intelligence</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="/ai-factory#queueTitle">Production Queue</a><a href="/ai-factory#reviewTitle">Review &amp; Publish</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav>
+<nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory">Command Center</a><a href="/ai-intelligence" aria-current="page">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="/ai-factory#queueTitle">Production Queue</a><a href="/ai-factory#reviewTitle">Review &amp; Publish</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav>
 <button id="logout" type="button">Sign out</button></header>
 <main class="fx-main">
 
@@ -50,6 +50,15 @@
  <form id="memForm" class="ix-form ix-inline"><label for="memKind" class="fx-sr">Type</label><select id="memKind"></select><label for="memText" class="fx-sr">Memory</label><input id="memText" maxlength="1000" placeholder="Add something Midnight should remember" required><button type="submit" class="fx-btn">Add</button></form>
 </section>
 
+<section class="fx-panel" aria-labelledby="refTitle" id="references">
+ <div class="fx-row"><h2 id="refTitle">Reference library</h2><span class="fx-note">Products and designs already on your store. Tick one to pin it; pinned references go into every matching production brief so the AI sees what good looks like.</span></div>
+ <div class="ix-form ix-inline"><label for="refKind" class="fx-sr">Show</label><select id="refKind"><option value="">Everything on the store</option><option value="product">Store products</option><option value="design">Store designs</option><option value="mockup">Mockups and references</option></select><label for="refSearch" class="fx-sr">Search</label><input id="refSearch" type="search" placeholder="Search the store"><button id="refPinProducts" type="button" class="fx-btn">Pin all store products</button></div>
+ <p id="storeNote" class="fx-note" role="status" aria-live="polite"></p>
+ <div id="storeGrid" class="fx-grid"></div>
+ <h3>Pinned references <span id="refCount" class="fx-pill">0</span></h3>
+ <div id="refList" class="ix-rules"></div>
+</section>
+
 <section class="fx-panel" aria-labelledby="testTitle">
  <h2 id="testTitle">Test Midnight Brain</h2>
  <p class="fx-note">A sandbox. Nothing is queued or published.</p>
@@ -58,7 +67,7 @@
   <div class="fx-two"><div><label for="testGarment">Garment</label><select id="testGarment"></select></div><div><label for="testArt">Artwork (hold Ctrl to pick several)</label><select id="testArt" multiple size="4"></select></div></div>
   <div class="fx-actions"><button type="submit" class="fx-btn fx-go">Plan test design</button><button id="testRun" type="button" class="fx-btn" disabled>Run test design</button></div>
  </form>
- <div id="testOut" hidden><dl id="testPlan" class="fx-plan"></dl><div class="fx-table-wrap"><table class="fx-table"><thead><tr><th scope="col">Zone</th><th scope="col">Role</th><th scope="col">Artwork</th></tr></thead><tbody id="testZones"></tbody></table></div><details class="fx-advanced"><summary>Brief the worker would receive</summary><pre id="testKnowledge" class="ix-pre"></pre></details></div>
+ <div id="testOut" hidden><dl id="testPlan" class="fx-plan"></dl><div class="fx-table-wrap"><table class="fx-table"><thead><tr><th scope="col">Zone</th><th scope="col">Role</th><th scope="col">Design</th></tr></thead><tbody id="testZones"></tbody></table></div><details class="fx-advanced"><summary>Brief the worker would receive</summary><pre id="testKnowledge" class="ix-pre"></pre></details></div>
 </section>
 
 <section class="fx-panel" aria-labelledby="jobTitle">

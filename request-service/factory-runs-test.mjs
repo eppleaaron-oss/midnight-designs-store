@@ -48,7 +48,7 @@ test('owner production runs import library art, queue jobs in batches, save pres
   snap=started.data;assert.equal(snap.active.number,1);assert.equal(snap.active.name,'Midnight Jacket Run');
   assert.equal(snap.jobs.length,5,'only one batch is queued at a time');assert.equal(snap.active.counts.planned,4);
   assert.ok(snap.jobs.every(j=>j.color==='Black'&&j.number===1&&j.stage==='Queued'));
-  const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.match(jobs[0].brief,/Base garment color: Black\. Fill or dye the garment itself/);assert.ok(jobs.every(j=>['jackets','pants'].includes(j.employee)));
+  const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.match(jobs[0].brief,/Base garment color: Black\. FILL OPTION REQUIRED/);assert.ok(jobs.every(j=>['jackets','pants'].includes(j.employee)));
   assert.equal((await call('/api/owner/ai-factory/runs/start',{config})).status,409,'one active run at a time');
   assert.equal(snap.interrupted,null);
 

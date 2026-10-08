@@ -8,7 +8,7 @@ test('owner login health never exposes the hash, and the Brain feeds every produ
  const env={OPENAI_API_KEY:'sk-test-not-real',PRINTFUL_TOKEN:'pf-test-not-real'};
  const service=createService({dbPath:':memory:',origin,storefrontOrigin,secure:false,passwordHash:salt+':'+hash,
   runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(png,{headers:{'Content-Type':'image/png'}})},
-  intelligenceSettings:{env,fetchImpl:async(url,o)=>{probed.push([url,o.headers.Authorization]);return url.includes('openai')?new Response(JSON.stringify({data:[{id:'gpt-image-1'},{id:'gpt-4o'}]})):new Response('{}',{status:401});}}});
+  intelligenceSettings:{env,fetchImpl:async(url,o)=>{if(url===storefrontOrigin+'/products.json')return new Response(JSON.stringify({products:[{id:'p1',name:'Unisex zip hoodie',category:'Hoodies',image:'https://files.cdn.printful.com/p1.png'},{id:'p2',name:'Classic tee',category:'T-shirts',image:'https://files.cdn.printful.com/p2.png'}]}));if(url===storefrontOrigin+'/designs.json')return new Response(JSON.stringify([...designs,{id:'ref-1',name:'Reaper jacket mockup',category:'Mockups',image:'assets/designs/ref-1.jpg',kind:'reference'}]));probed.push([url,o.headers.Authorization]);return url.includes('openai')?new Response(JSON.stringify({data:[{id:'gpt-image-1'},{id:'gpt-4o'}]})):new Response('{}',{status:401});}}});
  await new Promise(r=>service.server.listen(0,'127.0.0.1',r));const root='http://127.0.0.1:'+service.server.address().port;let cookie;
  async function call(path,b,source=origin){const r=await fetch(root+path,{method:b?'POST':'GET',headers:{Origin:source,...(cookie?{Cookie:cookie}:{}),...(b?{'Content-Type':'application/json'}:{})},body:b?JSON.stringify(b):undefined});const text=await r.text();return {status:r.status,text,data:JSON.parse(text),cookie:r.headers.get('set-cookie')?.split(';')[0]};}
  try{
@@ -56,12 +56,30 @@ test('owner login health never exposes the hash, and the Brain feeds every produ
   await call('/api/owner/ai-factory/runs/import',{ids:['art-1','art-2']});
   const artworkIds=(await call('/api/owner/ai-factory/runs')).data.artwork.map(a=>a.id);
   const sandbox=(await call('/api/owner/ai-factory/intelligence/test',{prompt:'Design a charcoal jacket with this raven.',garment:'jacket',artworkIds})).data;
-  assert.equal(sandbox.garment,'Jackets');assert.match(sandbox.colorPlan,/Charcoal/);assert.equal(sandbox.placement.find(z=>z.zone==='back')?.artwork,sandbox.artwork[0]);
+  assert.equal(sandbox.garment,'Jackets');assert.match(sandbox.colorPlan,/Charcoal\. FILL OPTION REQUIRED/);assert.equal(new Set(sandbox.placement.filter(z=>z.artwork).map(z=>z.zone)).size,sandbox.placement.filter(z=>z.artwork).length);assert.equal(sandbox.placement.find(z=>z.zone==='back')?.artwork,sandbox.artwork[0]);
   assert.equal((await call('/api/owner/ai-factory/runs')).data.jobs.length,0,'the sandbox never queues work');
 
-  const started=await call('/api/owner/ai-factory/runs/start',{config:{name:'Brain Run',artworkIds,garments:['jacket'],quantity:{mode:'total',total:2},workers:{total:4,mode:'auto'},color:{base:'Black'}}});assert.equal(started.status,200,started.text);
+  const store=(await call('/api/owner/ai-factory/intelligence/store')).data.items;
+  assert.deepEqual(store.map(x=>[x.id,x.kind,x.garment]),[['product:p1','product','ziphoodie'],['product:p2','product','tshirt'],['design:art-1','design',null],['design:art-2','design',null],['design:ref-1','mockup','jacket']]);
+  assert.equal(store[4].image,storefrontOrigin+'/assets/designs/ref-1.jpg');
+  assert.equal((await call('/api/owner/ai-factory/intelligence/reference',{add:['product:nope']})).status,404);
+  assert.equal((await call('/api/owner/ai-factory/intelligence/reference',{add:['product:p1','design:ref-1','product:p2']})).status,200);
+  assert.equal((await call('/api/owner/ai-factory/intelligence/reference',{id:'product:p2',delete:true})).status,200);
+  assert.equal((await call('/api/owner/ai-factory/intelligence/reference',{id:'design:ref-1',garment:'jacket',note:'Big back hero, small chest mark.'})).status,200);
+  brain=(await call('/api/owner/ai-factory/intelligence')).data;assert.deepEqual(brain.references.map(r=>r.id).sort(),['design:ref-1','product:p1']);assert.equal(brain.counts.references,2);
+  assert.ok((await call('/api/owner/ai-factory/intelligence/store')).data.items.find(x=>x.id==='design:ref-1').pinned);
+  const jacketKnow=(await call('/api/owner/ai-factory/intelligence/knowledge/jacket')).data.text;assert.match(jacketKnow,/Reaper jacket mockup \(mockup\): Big back hero/);assert.ok(!jacketKnow.includes('Unisex zip hoodie'),'references for other garments stay out');
+  assert.match(jacketKnow,/One design per placement/);assert.match(jacketKnow,/When to place a design/);assert.match(jacketKnow,/fill option/);
+
+  const white=(await call('/api/owner/ai-factory/intelligence/test',{prompt:'A white jacket.',garment:'jacket',artworkIds:artworkIds.slice(0,1)})).data;
+  assert.match(white.colorPlan,/White\. Use the plain white garment with the fill option OFF/);
+  const named=white.placement.filter(z=>z.artwork);assert.equal(named.length,1,'one design means one placement, no filler repeats');assert.equal(named[0].zone,'back');
+  assert.ok(white.placement.filter(z=>!z.artwork).every(z=>/^Leave empty/.test(z.reason)));
+
+  const started=await call('/api/owner/ai-factory/runs/start',{config:{name:'Brain Run',artworkIds,garments:['ziphoodie'],quantity:{mode:'total',total:2},workers:{total:4,mode:'auto'},color:{base:'Black'}}});assert.equal(started.status,200,started.text);
   const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.equal(jobs.length,2);
-  assert.match(jobs[0].brief,/Base garment color: Black/);assert.match(jobs[0].brief,/Skulls/);assert.match(jobs[0].brief,/Hero on the back/);
+  assert.match(jobs[0].brief,/Base garment color: Black/);assert.match(jobs[0].brief,/FILL OPTION REQUIRED: switch on the fill option in Black/);assert.match(jobs[0].brief,/Placement plan \(one design per placement\):\n- back \(Hero\): /);assert.match(jobs[0].brief,/Unisex zip hoodie \(store product\)/);assert.ok(!jobs[0].brief.includes('Reaper jacket mockup'));assert.equal(jobs[0].brief.match(/FILL OPTION REQUIRED/g).length,1);assert.ok(jobs.every(j=>j.brief.length<6000),'brief fits without truncation');
+  const backs=jobs.map(j=>/- back \(Hero\): (.*)/.exec(j.brief)[1]),fronts=jobs.map(j=>/- front-left \(Secondary\): (.*)/.exec(j.brief)[1]);assert.notEqual(backs[0],fronts[0],'hero and secondary are different designs');assert.match(jobs[0].brief,/Skulls/);
 
   assert.equal((await call('/api/owner/ai-factory/intelligence/feedback',{job:jobs[0].id,kind:'never'})).status,200);
   assert.equal((await call('/api/owner/ai-factory/intelligence/feedback',{job:'missing',kind:'good'})).status,404);
