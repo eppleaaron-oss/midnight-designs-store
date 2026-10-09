@@ -15,6 +15,12 @@ const RULES_V2=[
  ['placement','When to place a design','Place a design only when the placement is in the garment profile, the print area is big enough for the design to read clearly, and it supports the hero. Leave a placement empty when the design would be shrunk until unreadable, cut by a seam, zipper or pocket, compete with the hero, repeat with no purpose, or go past the most design elements for the garment. An empty placement is better than filler.',1],
  ['artwork','Use references','Study the reference products and designs from the Midnight Designs store before designing. Match their quality, darkness, placement scale and finish. Never copy a reference onto the new product unless it is the selected design.',0]
 ];
+// Industry knowledge added with the idea team: how big brands place graphics, and how design shapes map to placements.
+const RULES_V3=[
+ ['fashion','Industry placement playbook','Common layouts from major streetwear and sportswear brands: left-chest logo about 3.5 to 4 inches wide; full-front graphic 10 to 12 inches wide; oversized back print up to 14 by 16 inches; sleeve run down the outer sleeve seam; small sleeve hit near the cuff or shoulder; leg run down the outer leg seam; small hip mark high on the thigh; hat front mark about 2 to 2.5 inches tall; nape print under the collar. A strong back with a small chest mark is the most common premium layout.',0],
+ ['artwork','Design shapes','Strips (long, thin designs) go on sleeves, legs and shoe side panels. Full designs lead on fronts, backs, hats, masks and accessories. Emblems (small logos and marks) go on chests, hat fronts, hoods and sleeve hits. Never stretch a full design down a sleeve or squash a strip onto a chest.',1],
+ ['composition','Full outfits','An outfit is headwear, face wear, a top, bottoms and shoes built around one hero design. Every piece uses the hero or a design from the same collection, shares the palette and keeps a similar wear and texture so the pieces read as one set.',0]
+];
 const DEFAULT_RULES=[
  ['brand-dna','Primary style','Dark vintage streetwear.',1],
  ['brand-dna','Default garment color','Black.',1],
@@ -39,7 +45,9 @@ const DEFAULT_PROFILES={
  joggers:{density:[1,2],hierarchy:'1–2 vertical leg graphics',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
  shorts:{density:[1,2],hierarchy:'1 small leg graphic, optional accent',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
  hat:{density:[1,1],hierarchy:'1 front mark',placement:{front:'Brand / secondary'},color:'Black'},
- accessory:{density:[1,2],hierarchy:'1 main graphic, optional back accent',placement:{front:'Hero',back:'Accent'},color:'Black'}
+ accessory:{density:[1,2],hierarchy:'1 main graphic, optional back accent',placement:{front:'Hero',back:'Accent'},color:'Black'},
+ facemask:{density:[1,1],hierarchy:'1 print across the mask face',placement:{front:'Hero'},color:'Black'},
+ shoes:{density:[1,3],hierarchy:'Strip runs on the side panels, optional tongue mark',placement:{'left-side':'Secondary','right-side':'Accent',tongue:'Brand / secondary'},color:'Black'}
 };
 
 export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwordHash,storageDurable=false,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now}){
@@ -53,6 +61,8 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  if(!get('SELECT 1 x FROM brain_seeded')){const t=now();for(const [section,title,text,locked] of DEFAULT_RULES)run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);for(const [g,p] of Object.entries(DEFAULT_PROFILES))run('INSERT OR IGNORE INTO brain_garments VALUES(?,?,0,?)',g,JSON.stringify(p),t);run('INSERT INTO brain_seeded VALUES(1,?)',t);}
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v2'")){const t=now();for(const [section,title,text,locked] of RULES_V2)if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
   run("UPDATE brain_rules SET body=?,updated=? WHERE title='Garment fill' AND body LIKE 'The base color is the fabric itself.%'",FILL_RULE,t);run("INSERT INTO brain_migrations VALUES('rules-v2',?)",t);}
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v3'")){const t=now();for(const [section,title,text,locked] of RULES_V3)if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
+  for(const [g,p] of Object.entries(DEFAULT_PROFILES))run('INSERT OR IGNORE INTO brain_garments VALUES(?,?,0,?)',g,JSON.stringify(p),t);run("INSERT INTO brain_migrations VALUES('rules-v3',?)",t);}
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;

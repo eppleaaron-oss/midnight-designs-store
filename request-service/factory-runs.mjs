@@ -13,7 +13,9 @@ export const GARMENTS=[
  {id:'joggers',single:'Joggers',label:'Joggers',role:'pants',zones:['left-leg','right-leg'],density:[1,2]},
  {id:'shorts',single:'Shorts',label:'Shorts',role:'shorts',zones:['left-leg','right-leg'],density:[1,2]},
  {id:'hat',single:'Hat',label:'Hats',role:'headwear',zones:['front'],density:[1,1]},
- {id:'accessory',single:'Accessory',label:'Accessories',role:'accessories',zones:['front','back'],density:[1,2]}
+ {id:'accessory',single:'Accessory',label:'Accessories',role:'accessories',zones:['front','back'],density:[1,2]},
+ {id:'facemask',single:'Face mask',label:'Face masks',role:'facewear',zones:['front'],density:[1,1]},
+ {id:'shoes',single:'Shoes',label:'Shoes',role:'footwear',zones:['left-side','right-side','tongue'],density:[1,3]}
 ];
 export const COLORS=['Black','Charcoal','Heather grey','White','Cream','Navy','Forest green','Maroon','Red','Purple'];
 export const DURATIONS={'15m':15,'30m':30,'1h':60,'2h':120,'4h':240,'8h':480};
