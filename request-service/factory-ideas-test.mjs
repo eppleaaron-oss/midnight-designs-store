@@ -21,44 +21,50 @@ test('design shapes come from the visible pixels, not the canvas',()=>{
  assert.equal(classify(null).shape,'full');
 });
 
-test('the idea team drafts outfits and items, and approved ideas become factory jobs',async()=>{
+test('outfits reuse one design set from the store jackets, mapped onto real all-over-print areas',async()=>{
  const origin='http://localhost:3000',storefrontOrigin='https://midnight-designs.store',salt='ab'.repeat(16),password='ideas-test-password-1';
- const files={'a/hero1.png':full,'a/hero2.png':full,'a/strip1.png':strip,'a/strip2.png':strip,'a/mark.png':emblem};
- const designs=[['h1','Blood Moon','a/hero1.png'],['h2','Raven Gate','a/hero2.png'],['s1','Thorn Vine','a/strip1.png'],['s2','Chain Line','a/strip2.png'],['m1','Crescent Sigil','a/mark.png']].map(([id,name,image])=>({id,name,category:'Gothic',image,kind:'artwork'}));
+ const files={'a/back.png':full,'a/front.png':full,'a/sleeve.png':strip,'a/mark.png':emblem};
+ const designs=[['r1','Raven Back','a/back.png'],['r2','Raven Front','a/front.png'],['r3','Raven Vine','a/sleeve.png'],['r4','Raven Sigil','a/mark.png'],['x1','Loose Sleeve Panel','a/sleeve.png']].map(([id,name,image],k)=>({id,name,category:k<4?'Raven Set':'Sleeve panels',image,kind:'artwork'}));
+ const cdn=n=>`https://files.cdn.printful.com/files/${n}.png`;
+ const file=(type,n)=>({type,url:cdn(n),preview_url:cdn(n+'-p'),thumbnail_url:cdn(n+'-t'),filename:n+'.png'});
+ const products={1:{sync_product:{id:1,name:'Blood Moon Reaper Bomber Jacket'},sync_variants:[{product:{product_id:390},files:[file('front','jf'),file('back','jb'),file('sleeve_left','jsl'),file('sleeve_right','jsr'),file('preview','jprev')]}]},
+  2:{sync_product:{id:2,name:'Crimson Throne Recycled Fleece Hoodie'},sync_variants:[{product:{product_id:388},files:[file('front','hf'),file('back','hb'),file('hood','hh')]}]},
+  3:{sync_product:{id:3,name:'Mockup only'},sync_variants:[{product:{product_id:328},files:[file('preview','only')]}]}};
+ const pfCalls=[];
  const service=createService({dbPath:':memory:',origin,storefrontOrigin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),
-  runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(files[url.slice(storefrontOrigin.length+1)],{headers:{'Content-Type':'image/png'}})}});
+  runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(files[url.slice(storefrontOrigin.length+1)],{headers:{'Content-Type':'image/png'}})},
+  ideaSettings:{env:{PRINTFUL_TOKEN:'pf-test',PRINTFUL_STORE_ID:'77'},fetchImpl:async(url,o)=>{pfCalls.push([url,o.headers.Authorization,o.headers['X-PF-Store-Id']]);const m=/store\/products\/(\d+)$/.exec(url);return new Response(JSON.stringify({result:m?products[m[1]]:Object.values(products).map(p=>({id:p.sync_product.id,name:p.sync_product.name}))}));}}});
  await new Promise(r=>service.server.listen(0,'127.0.0.1',r));const root='http://127.0.0.1:'+service.server.address().port;let cookie;
  async function call(path,b,source=origin){const r=await fetch(root+path,{method:b?'POST':'GET',headers:{Origin:source,...(cookie?{Cookie:cookie}:{}),...(b?{'Content-Type':'application/json'}:{})},body:b?JSON.stringify(b):undefined});return {status:r.status,data:await r.json(),cookie:r.headers.get('set-cookie')?.split(';')[0]};}
  try{
   assert.equal((await call('/api/owner/ai-factory/ideas')).status,401);
   cookie=(await call('/api/owner/login',{password})).cookie;
   assert.equal((await call('/api/owner/ai-factory/runs/import',{ids:designs.map(d=>d.id)})).data.imported.length,5);
-  let snap=(await call('/api/owner/ai-factory/ideas')).data;
-  const shape=Object.fromEntries(snap.designs.map(d=>[d.name,d.shape]));
-  assert.deepEqual(shape,{'Blood Moon':'full','Raven Gate':'full','Thorn Vine':'strip','Chain Line':'strip','Crescent Sigil':'emblem'});
-
   assert.equal((await call('/api/owner/ai-factory/ideas/settings',{team:12,pool:30,autoMake:false})).status,200);
-  snap=(await call('/api/owner/ai-factory/ideas/generate',{})).data;
-  assert.ok(snap.counts.new>=8,'the team drafts a batch of ideas');assert.ok(snap.counts.new<=12,'one idea per worker per cycle');
-  const ideas=snap.ideas,outfit=ideas.find(i=>i.kind==='outfit');assert.ok(outfit,'full outfits are drafted');assert.ok(ideas.some(i=>i.kind==='product'));
-  assert.ok(outfit.pieces.length>=3);assert.ok(outfit.pieces.some(p=>p.garment==='hat'));assert.ok(outfit.pieces.some(p=>['pants','joggers','shorts'].includes(p.garment)));
-  const byId=Object.fromEntries(snap.designs.map(d=>[d.id,d.shape]));
-  for(const i of ideas)for(const p of i.pieces)for(const x of p.placements){
-   if(/sleeve|leg|side/.test(x.zone)&&x.role==='strip')assert.equal(byId[x.artwork],'strip',`${x.zone} must hold a strip`);
-   if(x.role==='hero')assert.equal(byId[x.artwork],'full','heroes are full designs');
-   assert.notEqual(byId[x.artwork]==='strip'&&/^(back|front|front-left|hood|tongue)$/.test(x.zone),true,'strips never go on fronts or backs');
-   assert.equal(new Set(p.placements.map(y=>y.zone)).size,p.placements.length,'one design per placement');
-  }
-  assert.equal((await call('/api/owner/ai-factory/ideas/approve',{ids:[outfit.id]},'https://evil.example')).status,403);
+  let snap=(await call('/api/owner/ai-factory/ideas/printful',{})).data;
+  assert.equal(snap.printful.state,'connected');assert.ok(pfCalls.every(([,a,s])=>a==='Bearer pf-test'&&s==='77'));
+  assert.deepEqual(snap.sets.map(s=>[s.name,s.jacket,s.source]),[['Blood Moon Reaper',true,'printful'],['Crimson Throne',false,'printful'],['Raven Set',false,'upload']]);
+  assert.deepEqual(Object.keys(snap.sets[0].parts).sort(),['back','front','sleeve_left','sleeve_right']);
+  assert.deepEqual(Object.keys(snap.sets[2].parts).sort(),['back','front','pocket','sleeve_left','sleeve_right'],'an uploaded collection splits into parts by shape');
+  assert.ok(!snap.sets.some(s=>s.name==='Sleeve panels'),'library categories are not sets');
+
+  const sets=new Map(snap.sets.map(s=>[s.id,s]));assert.ok(snap.counts.new>=10);
+  for(const i of snap.ideas)for(const p of i.pieces)for(const x of p.placements)assert.ok(sets.get(i.set).parts[x.part],'every part comes from the idea\'s own set');
+  const outfit=snap.ideas.find(i=>i.kind==='outfit'&&sets.get(i.set).jacket);assert.ok(outfit,'jacket sets get full outfits');
+  assert.equal(outfit.pieces[0].catalog,390,'the outfit starts from the jacket the set came from');
+  assert.ok(outfit.pieces.some(p=>p.group==='bottom'&&p.placements.some(x=>/leg/.test(x.area)&&/sleeve/.test(x.part))),'sleeve art runs down the legs');
+  assert.ok(outfit.pieces.some(p=>p.group==='face'));
+  assert.ok(snap.ideas.some(i=>i.kind==='product'&&i.pieces[0].catalog!==390));
+
   snap=(await call('/api/owner/ai-factory/ideas/approve',{ids:[outfit.id]})).data;
   const made=snap.ideas.find(i=>i.id===outfit.id);assert.equal(made.status,'made',made.error||'');assert.equal(made.jobs,outfit.pieces.length);
   const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.equal(jobs.length,outfit.pieces.length);
-  const hatJob=jobs.find(j=>j.employee==='headwear');assert.ok(hatJob);assert.match(hatJob.brief,/FILL OPTION REQUIRED|fill option OFF/);assert.match(hatJob.brief,/Placement plan \(one design per placement\)/);assert.match(hatJob.brief,/Part of a full outfit/);assert.match(hatJob.brief,/Industry placement playbook/);
+  for(const j of jobs){assert.match(j.brief,/Design set: Blood Moon Reaper, taken from the store product "Blood Moon Reaper Bomber Jacket"/);assert.ok(j.brief.includes(cdn('jb'))||j.brief.includes(cdn('jf'))||j.brief.includes(cdn('jsl')));assert.ok(!/files\/h[fbh]\.png/.test(j.brief),'no other set is mixed in');assert.match(j.brief,/FILL OPTION REQUIRED/);}
+  assert.ok(jobs.some(j=>/no part of this set fits here, so fill it with the base color only/.test(j.brief)),'print areas the set has no part for get the base color');
 
-  const other=snap.ideas.find(i=>i.status==='new');snap=(await call('/api/owner/ai-factory/ideas/dismiss',{ids:[other.id]})).data;assert.ok(!snap.ideas.some(i=>i.id===other.id));
-  const sigil=snap.designs.find(d=>d.name==='Crescent Sigil');snap=(await call('/api/owner/ai-factory/ideas/shape',{artwork:sigil.id,shape:'full'})).data;
-  assert.equal(snap.designs.find(d=>d.id===sigil.id).shape,'full');assert.equal(snap.designs.find(d=>d.id===sigil.id).override,true);
-  assert.equal((await call('/api/owner/ai-factory/ideas/shape',{artwork:sigil.id,shape:'banana'})).status,400);
+  const raven=snap.sets.find(s=>s.source==='upload');snap=(await call('/api/owner/ai-factory/ideas/set',{id:raven.id,enabled:false})).data;
+  assert.ok(!snap.sets.some(s=>s.id===raven.id));assert.ok(!snap.ideas.some(i=>i.set===raven.id&&i.status==='new'));
+  assert.equal((await call('/api/owner/ai-factory/ideas/shape',{artwork:'nope',shape:'full'})).status,404);
   snap=(await call('/api/owner/ai-factory/ideas/settings',{team:5,pool:30,autoMake:true})).data;assert.equal(snap.counts.new||0,0,'trusting the team approves what is waiting');
  }finally{await new Promise(r=>service.server.close(r));}
 });

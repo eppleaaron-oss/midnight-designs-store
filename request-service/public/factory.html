@@ -29,19 +29,19 @@
 
 <section class="fx-panel" id="ideas" aria-labelledby="ideasTitle">
  <div class="fx-row"><h2 id="ideasTitle">Idea Room</h2><span id="ideaBadge" class="fx-pill">Idea team working</span></div>
- <p class="fx-note fx-lead">Your idea team keeps drafting products and full outfits from every design in the factory. Tick the ones you like and press Make. Strips go on sleeves and legs, full designs on fronts and backs, emblems on chests and hats.</p>
+ <p class="fx-note fx-lead">Your idea team takes each design set (the front, back, sleeves, hood and pocket of one design, starting with your jackets) and puts that same set onto other all-over-print items and full outfits. Nothing from another design gets mixed in. Tick the ideas you like and press Make.</p>
+ <div id="ideaSets" class="ix-sets"></div>
  <div class="ix-team">
   <div><label for="ideaTeam">Idea workers</label><div class="fx-slider"><input id="ideaTeamSlider" type="range" min="1" max="100" value="20" aria-label="Idea workers slider"><input id="ideaTeam" type="number" min="1" max="100" value="20"></div></div>
   <div><label for="ideaPool">Ideas to keep waiting for me</label><input id="ideaPool" type="number" min="5" max="500" value="40"></div>
   <label class="check fx-check"><input id="ideaAuto" type="checkbox"><span>Send new ideas straight to production (I trust the team)</span></label>
  </div>
- <p id="ideaShapes" class="fx-meta"></p>
+ <p id="ideaShapes" class="fx-meta"></p><div class="fx-actions"><button id="ideaPrintful" type="button" class="fx-btn fx-quiet">Read my Printful products again</button></div>
  <div class="fx-tabs" role="tablist" aria-label="Idea filter" id="ideaTabs"><button type="button" role="tab" data-filter="new" aria-selected="true">New ideas</button><button type="button" role="tab" data-filter="outfit" aria-selected="false">Full outfits</button><button type="button" role="tab" data-filter="product" aria-selected="false">Single items</button><button type="button" role="tab" data-filter="approved" aria-selected="false">Approved</button><button type="button" role="tab" data-filter="made" aria-selected="false">Made</button></div>
  <div class="fx-actions ix-ideabar"><button id="ideaMake" type="button" class="fx-btn fx-go">Make selected</button><button id="ideaAll" type="button" class="fx-btn fx-quiet">Select all shown</button><button id="ideaDismiss" type="button" class="fx-btn fx-quiet">Dismiss selected</button><button id="ideaMore" type="button" class="fx-btn fx-quiet">Get more ideas now</button><span id="ideaNote" class="fx-note" role="status" aria-live="polite"></span></div>
  <div id="ideaGrid" class="ix-ideas"></div>
- <details class="fx-advanced"><summary>Check how designs are sorted</summary>
-  <p class="fx-note">The team sorts each design by its shape. Change any it got wrong; its waiting ideas are redrawn.</p>
-  <div class="fx-actions"><button id="ideaStore" type="button" class="fx-btn fx-quiet">Bring in every design from my store</button></div>
+ <details class="fx-advanced"><summary>Uploaded sets: check how each picture is used</summary>
+  <p class="fx-note">Upload a set as one collection (name it in Advanced settings below). The team uses full designs for the back and front, strips for sleeves and legs, an emblem for the pocket, and anything named "hood" for the hood. Fix any picture it sorted wrong.</p>
   <div id="ideaDesigns" class="fx-grid"></div>
  </details>
 </section>
