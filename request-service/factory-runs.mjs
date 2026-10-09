@@ -138,7 +138,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
   for(const s of pending.slice(0,Math.max(0,room))){
    const g=garment(s.garment),a=s.design?art.get(s.design):null,label=g.single;
    const title=(s.outfit?s.outfit+' · ':'')+label+(a?' · '+a.name:'');
-   try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:[brief(c,s,a),brain?.production(s.garment,support(c,s,a)),brain?.knowledge(s.garment)].filter(Boolean).join('\n\n').slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:support(c,s,a).map(x=>x.id).slice(0,12)}});
+   try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:(head=>[head,brain?.knowledge(s.garment,5990-head.length)].filter(Boolean).join('\n\n'))([brief(c,s,a),brain?.production(s.garment,support(c,s,a))].filter(Boolean).join('\n\n')).slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:support(c,s,a).map(x=>x.id).slice(0,12)}});
     db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
    catch(e){if(e.status===409&&/queue is full/i.test(e.message))break;run('UPDATE factory_run_slots SET error=? WHERE run=? AND seq=?',String(e.message).slice(0,300),r.id,s.seq);}
   }

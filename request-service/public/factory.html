@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Factory | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"></head><body class="factory-page">
-<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav><button id="logout" type="button">Sign out</button></header>
+<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav><button id="logout" type="button">Sign out</button></header>
 <main class="fx-main">
 
 <section class="fx-summary" aria-labelledby="summaryTitle">
@@ -37,14 +37,27 @@
   <div><label for="ideaOutfit">Items per full outfit</label><input id="ideaOutfit" type="number" min="3" max="20" value="14"></div>
   <label class="check fx-check"><input id="ideaAuto" type="checkbox"><span>Send new ideas straight to production (I trust the team)</span></label>
  </div>
+ <div class="ix-autopilot">
+  <label class="check fx-check"><input id="ideaAutopilot" type="checkbox"><span><strong>Autopilot:</strong> publish the best outfits to my store by itself</span></label>
+  <div><label for="ideaPerDay">Outfits to publish per day</label><input id="ideaPerDay" type="number" min="1" max="50" value="2"></div>
+  <p class="fx-note">Only items that are complete get published: every print area filled from the same design, the pocket lined up with the front, and the logo on the tag. Everything appears in AI Made for you to rate, and on the store after the next catalog sync.</p>
+ </div>
  <p id="ideaShapes" class="fx-meta"></p><div class="fx-actions"><button id="ideaPrintful" type="button" class="fx-btn fx-quiet">Read my Printful products again</button></div>
  <div class="fx-tabs" role="tablist" aria-label="Idea filter" id="ideaTabs"><button type="button" role="tab" data-filter="new" aria-selected="true">New ideas</button><button type="button" role="tab" data-filter="outfit" aria-selected="false">Full outfits</button><button type="button" role="tab" data-filter="product" aria-selected="false">Single items</button><button type="button" role="tab" data-filter="approved" aria-selected="false">Approved</button><button type="button" role="tab" data-filter="made" aria-selected="false">Made</button></div>
- <div class="fx-actions ix-ideabar"><button id="ideaMake" type="button" class="fx-btn fx-go">Make selected</button><button id="ideaAll" type="button" class="fx-btn fx-quiet">Select all shown</button><button id="ideaDismiss" type="button" class="fx-btn fx-quiet">Dismiss selected</button><button id="ideaMore" type="button" class="fx-btn fx-quiet">Get more ideas now</button><span id="ideaNote" class="fx-note" role="status" aria-live="polite"></span></div>
+ <div class="fx-actions ix-ideabar"><button id="ideaPublish" type="button" class="fx-btn fx-go">Publish selected to store</button><button id="ideaMake" type="button" class="fx-btn fx-quiet">Send to AI workers</button><button id="ideaAll" type="button" class="fx-btn fx-quiet">Select all shown</button><button id="ideaDismiss" type="button" class="fx-btn fx-quiet">Dismiss selected</button><button id="ideaMore" type="button" class="fx-btn fx-quiet">Get more ideas now</button><span id="ideaNote" class="fx-note" role="status" aria-live="polite"></span></div>
  <div id="ideaGrid" class="ix-ideas"></div>
  <details class="fx-advanced"><summary>Uploaded sets: check how each picture is used</summary>
   <p class="fx-note">Upload a set as one collection (name it in Advanced settings below). The team uses full designs for the back and front, strips for sleeves and legs, an emblem for the pocket, and anything named "hood" for the hood. Fix any picture it sorted wrong.</p>
   <div id="ideaDesigns" class="fx-grid"></div>
  </details>
+</section>
+
+<section class="fx-panel" id="aiMade" aria-labelledby="aiMadeTitle">
+ <div class="fx-row"><h2 id="aiMadeTitle">AI Made</h2><span id="madeBadge" class="fx-pill">Nothing yet</span></div>
+ <p class="fx-note fx-lead">Everything the AI published to your store. Rate each one: 4 or 5 stars tells the team to make more like it, 1 or 2 stars tells it to stop. Designs and item types you rate low stop getting ideas.</p>
+ <div class="fx-tabs" role="tablist" aria-label="AI made filter" id="madeTabs"><button type="button" role="tab" data-filter="unrated" aria-selected="true">Needs a rating</button><button type="button" role="tab" data-filter="rated" aria-selected="false">Rated</button><button type="button" role="tab" data-filter="failed" aria-selected="false">Problems</button></div>
+ <span id="madeNote" class="fx-note" role="status" aria-live="polite"></span>
+ <div id="madeGrid" class="mx-grid"></div>
 </section>
 
 <section class="fx-panel" id="storeCheck" aria-labelledby="storeCheckTitle">

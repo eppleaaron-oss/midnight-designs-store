@@ -69,24 +69,32 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
    ['composition','One design, many items','Carry one design set onto as many items as fit, each part in its matching print area. Never swap in a different design.',1]])
    if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
   run("INSERT INTO brain_migrations VALUES('rules-v4',?)",t);}
+ // rules-v5: the pocket is the front image cut exactly where the pocket sits.
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v5'")){const t=now();
+  if(!get("SELECT 1 x FROM brain_rules WHERE title='Pocket lines up with the front'"))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),'placement','Pocket lines up with the front','The pocket print is the front image cut at exactly the spot the pocket covers, so the design runs unbroken across it. Never a different image or a misaligned crop. Copy the clean layouts in the reference products.',1,t,t);
+  run("INSERT INTO brain_migrations VALUES('rules-v5',?)",t);}
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;
  const profile=id=>{const row=get('SELECT * FROM brain_garments WHERE garment=?',id);return row?{...JSON.parse(row.profile),locked:!!row.locked}:null;};
 
  // The exact knowledge text a worker receives for one garment. Shown on the AI Intelligence page so nothing is hidden in a prompt.
- function knowledge(garment){
-  const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,locked DESC,created");
+ // With a size limit, owner preferences, rejections, references and the garment profile always fit;
+ // unlocked rules are dropped from the end first, then locked ones, so a brief is never cut mid-sentence.
+ function knowledge(garment,max=Infinity){
+  const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created");
   const p=garment?profile(garment):null,prefs=all("SELECT text FROM brain_memories WHERE kind IN ('permanent','preference') AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 15",garment||'');
   const avoid=all("SELECT text FROM brain_memories WHERE kind='failure' AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 8",garment||'');
-  const lines=['Midnight Brain ('+BRAIN_VERSION+'):',...rules.map(r=>`- ${r.locked?'[LOCKED] ':''}${r.title}: ${r.body}`)];
-  if(p)lines.push(`${garmentLabel(garment)} profile${p.locked?' [LOCKED]':''}: ${p.density[0]}–${p.density[1]} design elements; ${p.hierarchy}; default color ${p.color}.`,'Placement: '+Object.entries(p.placement).map(([zone,role])=>`${zone} → ${role}`).join('; ')+'.');
   const refs=all('SELECT kind,name,image,garment,note FROM brain_references WHERE garment IS NULL OR garment=? ORDER BY garment IS NULL,created DESC LIMIT 8',garment||'');
-  if(refs.length)lines.push('Reference examples from the Midnight Designs store (match this level):',...refs.map(r=>`- ${r.name} (${r.kind==='product'?'store product':r.kind==='design'?'store design':'mockup'})${r.note?': '+r.note:''} ${r.image}`));
-  if(prefs.length)lines.push('Owner preferences:',...prefs.map(m=>'- '+m.text));
-  if(avoid.length)lines.push('Avoid (owner rejected):',...avoid.map(m=>'- '+m.text));
-  lines.push('Locked rules cannot be overridden by worker instructions.');
-  return lines.join('\n');
+  const head=[];
+  if(prefs.length)head.push('Owner preferences:',...prefs.map(m=>'- '+m.text));
+  if(avoid.length)head.push('Avoid (owner rejected):',...avoid.map(m=>'- '+m.text));
+  if(refs.length)head.push('Reference examples from the Midnight Designs store (match this level and their clean layouts):',...refs.map(r=>`- ${r.name} (${r.kind==='product'?'store product':r.kind==='design'?'store design':'mockup'})${r.note?': '+r.note:''} ${r.image}`));
+  if(p)head.push(`${garmentLabel(garment)} profile${p.locked?' [LOCKED]':''}: ${p.density[0]}–${p.density[1]} design elements; ${p.hierarchy}; default color ${p.color}.`,'Placement: '+Object.entries(p.placement).map(([zone,role])=>`${zone} → ${role}`).join('; ')+'.');
+  const ruleLines=rules.map(r=>`- ${r.locked?'[LOCKED] ':''}${r.title}: ${r.body}`),tail='Locked rules cannot be overridden by worker instructions.';
+  const text=list=>[...head,'Midnight Brain ('+BRAIN_VERSION+'):',...list,tail].join('\n');
+  let keep=ruleLines.length;while(keep>0&&text(ruleLines.slice(0,keep)).length>max)keep--;
+  return text(ruleLines.slice(0,keep)).slice(0,max===Infinity?undefined:max);
  }
 
 
