@@ -206,7 +206,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
 
  return {tick,generate,make,analyze,refreshPrintful,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/ideas'))return false;auth(req,null,true);const p=path.slice('/api/owner/ai-factory/ideas'.length);
-  if(method==='GET'){if(p!=='')fail(404,'Not found.');analyze(25);uploadSets();send(res,200,snapshot());return true;}
+  if(method==='GET'){if(p!=='')fail(404,'Not found.');if(!printful.checked)await refreshPrintful();analyze(25);uploadSets();if(!get("SELECT 1 x FROM idea_set_ideas WHERE status='new'"))generate();send(res,200,snapshot());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-ideas',120);const b=await body(req);
   const ids=()=>Array.isArray(b.ids)&&b.ids.length&&b.ids.length<=300&&b.ids.every(x=>typeof x==='string')?b.ids:fail(400,'Choose at least one idea.');
   if(p==='/generate'){generate({force:true});}
