@@ -1,5 +1,5 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {scryptSync} from 'node:crypto';import {deflateSync} from 'node:zlib';
-import {createService} from './server.mjs';import {imageInfo,classify} from './factory-ideas.mjs';
+import {createService} from './server.mjs';import {imageInfo,classify,PLANS} from './factory-ideas.mjs';import {storeAudit} from './factory-audit.mjs';
 
 // Minimal RGBA PNG: an opaque rectangle (x,y,w,h) on a transparent canvas, optionally with holes every few pixels.
 function png(W,H,[x,y,w,h],sparse=false){
@@ -52,7 +52,13 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   for(const i of snap.ideas)for(const p of i.pieces)for(const x of p.placements)assert.ok(sets.get(i.set).parts[x.part],'every part comes from the idea\'s own set');
   const outfit=snap.ideas.find(i=>i.kind==='outfit'&&sets.get(i.set).jacket);assert.ok(outfit,'jacket sets get full outfits');
   assert.equal(outfit.pieces[0].catalog,390,'the outfit starts from the jacket the set came from');
-  assert.ok(outfit.pieces.some(p=>p.group==='bottom'&&p.placements.some(x=>/leg/.test(x.area)&&/sleeve/.test(x.part))),'sleeve art runs down the legs');
+  const jacketOutfits=snap.ideas.filter(i=>i.kind==='outfit'&&sets.get(i.set).jacket);
+  assert.ok(jacketOutfits.some(o=>o.pieces.some(p=>p.group==='bottom'&&p.placements.some(x=>/leg/.test(x.area)&&/sleeve/.test(x.part)))),'sleeve art runs down the legs');
+  assert.equal(outfit.pieces.length,14,'one jacket set goes onto as many items as the owner allows');assert.equal(new Set(outfit.pieces.map(p=>p.category)).size,14,'one item per category');
+  assert.ok(outfit.pieces.find(p=>p.catalog===390).tag,'pieces with a tag print area carry the logo on the tag');
+  snap=(await call('/api/owner/ai-factory/ideas/piece',{id:outfit.id,catalog:outfit.pieces[1].catalog})).data;
+  const trimmed=snap.ideas.find(i=>i.id===outfit.id);assert.equal(trimmed.pieces.length,13);assert.match(trimmed.title,/\(13 items\)$/);
+  outfit.pieces=trimmed.pieces;
   assert.ok(outfit.pieces.some(p=>p.group==='face'));
   assert.ok(snap.ideas.some(i=>i.kind==='product'&&i.pieces[0].catalog!==390));
 
@@ -60,6 +66,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   const made=snap.ideas.find(i=>i.id===outfit.id);assert.equal(made.status,'made',made.error||'');assert.equal(made.jobs,outfit.pieces.length);
   const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.equal(jobs.length,outfit.pieces.length);
   for(const j of jobs){assert.match(j.brief,/Design set: Blood Moon Reaper, taken from the store product "Blood Moon Reaper Bomber Jacket"/);assert.ok(j.brief.includes(cdn('jb'))||j.brief.includes(cdn('jf'))||j.brief.includes(cdn('jsl')));assert.ok(!/files\/h[fbh]\.png/.test(j.brief),'no other set is mixed in');assert.match(j.brief,/FILL OPTION REQUIRED/);}
+  assert.ok(jobs.every(j=>/Midnight Design logo/.test(j.brief)),'every job puts the logo on the tag');
   assert.ok(jobs.some(j=>/no part of this set fits here, so fill it with the base color only/.test(j.brief)),'print areas the set has no part for get the base color');
 
   const raven=snap.sets.find(s=>s.source==='upload');snap=(await call('/api/owner/ai-factory/ideas/set',{id:raven.id,enabled:false})).data;
@@ -67,4 +74,19 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   assert.equal((await call('/api/owner/ai-factory/ideas/shape',{artwork:'nope',shape:'full'})).status,404);
   snap=(await call('/api/owner/ai-factory/ideas/settings',{team:5,pool:30,autoMake:true})).data;assert.equal(snap.counts.new||0,0,'trusting the team approves what is waiting');
  }finally{await new Promise(r=>service.server.close(r));}
+});
+
+test('store check lists what needs fixing on live products',()=>{
+ const v=(size,price,availability='active')=>({size,price,availability});
+ const products=[{id:'1',catalogProductId:388,name:'Crimson Throne Recycled Fleece Hoodie',category:'Hoodies',images:Array(15).fill('a.jpg'),variants:['S','M','L'].map(s=>v(s,55))},
+  {id:'2',catalogProductId:388,name:'Unisex Hoodie',category:'Hoodies',images:['p.png'],variants:[v('M',60)]},
+  {id:'3',catalogProductId:328,name:'Terror Tapes Athletic T-Shirt',category:'Tees',images:Array(7).fill('a.jpg'),variants:[v('S',30),v('M',30,'discontinued')]}];
+ const copy={1:{description:'x'.repeat(120)},3:{description:'x'.repeat(120)}};
+ const printful=[{id:'1',name:'Unisex Hoodie',catalog:388,ignored:false,files:['front','back','sleeve_left','sleeve_right','hood','pocket','label_inside']},
+  {id:'2',name:'Unisex Hoodie',catalog:388,ignored:false,files:['front']},{id:'9',name:'Test product',catalog:328,ignored:false,files:['front']}];
+ const issues=storeAudit({products,copy,printful,plans:PLANS}),of=id=>issues.filter(i=>i.product===id).map(i=>i.title);
+ assert.deepEqual(of('1').filter(t=>t!=='Price differs from the same item'),[],'a finished product passes');
+ for(const t of ['No design name','Only one photo','No product description','Missing sizes','Print areas left blank','No logo on the tag','Price differs from the same item'])assert.ok(of('2').includes(t),t);
+ assert.ok(of('3').includes('Sizes out of stock'));assert.ok(of('3').includes('Not found in Printful'));assert.ok(of('9').includes('In Printful but not on the store'));
+ assert.equal(issues[0].severity,'high','urgent problems first');
 });

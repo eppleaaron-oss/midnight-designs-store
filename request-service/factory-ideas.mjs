@@ -1,5 +1,5 @@
 import {randomUUID,createHash} from 'node:crypto';import {inflateSync} from 'node:zlib';import {readFileSync} from 'node:fs';
-import {fillInstruction} from './factory-runs.mjs';
+import {fillInstruction,labelInstruction} from './factory-runs.mjs';
 
 // The idea team: finds the design sets behind the store's products (jackets first) and uploaded collections,
 // then keeps a pool of single-item and full-outfit ideas that put ONE set onto the real print areas of the
@@ -57,14 +57,22 @@ const GROUPS=[['jacket',/jacket|windbreaker|bomber|zip hoodie/i,'jackets'],['top
  ['bottom',/shorts|trunks/i,'shorts'],['bottom',/leggings|joggers|pants|skirt/i,'pants'],['swim',/bikini|swimsuit|boxer|bra\b/i,'underwear'],['dress',/dress/i,'shirts'],['top',/./,'shirts']];
 // Most-wanted items first; kids and youth sizes last.
 const PRIORITY=[390,615,801,717,619,388,1419,1628,919,328,1414,1482,257,320,1418,1590,644,792,400,618,784,604,298,330,332,1481,420,630,279,963,350];
+// The tag print area the brand logo goes on: inside label first, then the outside label.
+const TAGS=['label_inside','label_inside_dtfabric','label_outside','label_outside_dtfabric','label_outside_back','label_panel','label_panel_dtfabric'];
+export const tagArea=areas=>TAGS.find(t=>areas.includes(t))||null;
 export function loadCatalog(plans){
  const list=Object.values(plans?.products||{}).map(p=>{const [group,,role]=GROUPS.find(([,re])=>re.test(p.name));
   return {id:p.catalogProductId,name:p.name.replace(/^All-Over Print /,'').replace(/^Men's All-Over Print /,"Men's "),group,role,adult:!/kids|youth/i.test(p.name),
-   areas:Object.keys(p.printfiles?.available_placements||{}).filter(a=>!SKIP_AREA.test(a))};}).filter(p=>p.areas.length);
+   areas:Object.keys(p.printfiles?.available_placements||{}).filter(a=>!SKIP_AREA.test(a)),label:tagArea(Object.keys(p.printfiles?.available_placements||{}))};}).filter(p=>p.areas.length);
  const rank=p=>{const i=PRIORITY.indexOf(p.id);return i>=0?i:p.adult?100:200;};
  return list.sort((a,b)=>rank(a)-rank(b)||a.name.localeCompare(b.name));
 }
-let CATALOG=[];try{CATALOG=loadCatalog(JSON.parse(readFileSync(new URL('../printful-plans.json',import.meta.url),'utf8')));}catch{}
+// What a full outfit can hold, one item per category, in wearing order. Each outfit rotates through the choices
+// in a category, so different ideas show different hoodies, tees and pants with the same design set.
+export const OUTFIT_CATEGORIES=[['Jacket',[390,615,801,619]],['Zip hoodie',[717]],['Hoodie',[388,1419,1628,919]],['Sweatshirt',[320,1418,1590]],['T-shirt',[328,1414,1482,257,329,1415,261]],
+ ['Long sleeve',[920,631]],['Jersey',[644,792,730,676]],['Tank top',[276,1475,202]],['Button shirt',[659,791]],['Joggers',[400,784,401]],['Pants',[618,604,1479]],['Shorts',[330,332,1481,298,693,1480]],
+ ['Leggings',[242,189,288,559]],['Neck gaiter',[420]],['Bandana',[630]],['Backpack',[279,963]],['Fanny pack',[350]],['Crop top',[1474,200]],['Dress',[514,1476,315]],['Swim trunks',[571]]];
+export let PLANS={};let CATALOG=[];try{PLANS=JSON.parse(readFileSync(new URL('../printful-plans.json',import.meta.url),'utf8'));CATALOG=loadCatalog(PLANS);}catch{}
 
 // ---------- design sets ----------
 // A set is one finished design split into parts: back, front, sleeves, hood, pocket (or one all-over "default" print).
@@ -81,23 +89,26 @@ export function partFor(area,parts){
 }
 const FILE_TYPES=/^(front|back|default|sleeve_left|sleeve_right|leg_left|leg_right|hood|right_hood|left_hood|pocket|top_front|top_back)(_dtfabric)?$/;
 const JACKETS=new Set([390,615,619,717,801]);
-export function setFromPrintful(detail){
+export function setFromPrintful(detail,storeNames={}){
  const p=detail?.sync_product;if(!p||p.is_ignored)return null;const parts={};let catalog=null;
  for(const v of detail.sync_variants||[]){catalog??=v.product?.product_id||null;for(const f of v.files||[]){const t=String(f.type||'');if(!FILE_TYPES.test(t))continue;const k=PART(t),url=f.url||f.preview_url;if(!parts[k]&&typeof url==='string'&&url.startsWith('https://'))parts[k]={url,thumb:f.thumbnail_url||f.preview_url||url,name:f.filename||k};}}
  if(!parts.front&&!parts.back&&!parts.default)return null;
- const name=String(p.name||'Untitled').replace(/\b(all-over print|recycled|unisex|men'?s|women'?s|cotton-blend|cotton|oversized|fleece|bomber|windbreaker|track|zip|hoodie|jacket|sweatshirt|t-shirt|athletic|joggers|leggings|backpack|fanny pack|neck gaiter|bandana|utility|yoga)\b/gi,'').replace(/\s+/g,' ').trim()||p.name;
- return {id:'pf:'+p.id,source:'printful',name,product:p.name,catalog,jacket:JACKETS.has(catalog)||/jacket|windbreaker|bomber/i.test(p.name),parts};
+ const main=parts.back||parts.front||parts.default,fileName=String(main.name||'').replace(/\.[a-z0-9]+$/i,'').replace(/[-_]+/g,' ').replace(/\b(front|back|default|preview|print|file|dtfabric|\d{3,})\b/gi,'').replace(/\s+/g,' ').trim();
+ const name=String(storeNames[String(p.id)]||p.name||'Untitled').replace(/\b(all-over print|recycled|unisex|men'?s|women'?s|cotton-blend|cotton|oversized|fleece|bomber|windbreaker|track|zip|hoodie|jacket|sweatshirt|t-shirt|athletic|joggers|leggings|backpack|fanny pack|neck gaiter|bandana|utility|yoga)\b/gi,'').replace(/\s+/g,' ').trim()||(fileName.length>=3?fileName:`Unnamed ${String(p.name||'product').toLowerCase()} #${p.id}`);
+ const files=[...new Set((detail.sync_variants||[]).flatMap(v=>(v.files||[]).map(f=>String(f.type||''))))];
+ return {id:'pf:'+p.id,printfulId:String(p.id),files,source:'printful',name,product:p.name,catalog,jacket:JACKETS.has(catalog)||/jacket|windbreaker|bomber/i.test(p.name),parts};
 }
 
-export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=null,catalog=CATALOG,fetchImpl=fetch,env=process.env,clock=Date.now}){
+export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=null,catalog=CATALOG,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now}){
  db.exec(`CREATE TABLE IF NOT EXISTS idea_artwork(artwork TEXT PRIMARY KEY,width INTEGER,height INTEGER,shape TEXT NOT NULL,reason TEXT NOT NULL,override TEXT,analyzed TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS idea_sets(id TEXT PRIMARY KEY,source TEXT NOT NULL,name TEXT NOT NULL,product TEXT,catalog INTEGER,jacket INTEGER NOT NULL,parts TEXT NOT NULL,enabled INTEGER NOT NULL DEFAULT 1,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS idea_set_ideas(id TEXT PRIMARY KEY,signature TEXT NOT NULL UNIQUE,set_id TEXT NOT NULL,kind TEXT NOT NULL,title TEXT NOT NULL,pieces TEXT NOT NULL,reason TEXT NOT NULL,status TEXT NOT NULL,jobs TEXT NOT NULL DEFAULT '[]',error TEXT,created TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS idea_settings(id INTEGER PRIMARY KEY CHECK(id=1),team INTEGER NOT NULL,pool INTEGER NOT NULL,auto_make INTEGER NOT NULL);
- INSERT OR IGNORE INTO idea_settings VALUES(1,20,40,0);
+ INSERT OR IGNORE INTO idea_settings(id,team,pool,auto_make) VALUES(1,20,40,0);
  DROP TABLE IF EXISTS idea_ideas;`);
+ if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='outfit_size')){db.exec('ALTER TABLE idea_settings ADD COLUMN outfit_size INTEGER NOT NULL DEFAULT 14');db.exec("DELETE FROM idea_set_ideas WHERE status='new'");}
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
- const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make};};
+ const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make,outfitSize:s.outfit_size};};
  const item=id=>catalog.find(c=>c.id===id);
 
  // Shape sorting for uploaded designs, used to split an uploaded collection into parts.
@@ -123,17 +134,22 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   for(const s of all("SELECT id FROM idea_sets WHERE source='upload'"))if(!seen.has(s.id))run('DELETE FROM idea_sets WHERE id=?',s.id);
  }
  // Read every product in the Printful store and keep the design set behind it. Jackets lead.
+ let pfProducts=null;
  let printful={state:env.PRINTFUL_TOKEN?'waiting':'not_connected',error:null,checked:0};
  async function refreshPrintful(){
   if(!env.PRINTFUL_TOKEN){printful={state:'not_connected',error:null,checked:clock()};return;}
   const headers={Authorization:'Bearer '+env.PRINTFUL_TOKEN,...(env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':env.PRINTFUL_STORE_ID}:{})};
   const pf=async path=>{const r=await fetchImpl('https://api.printful.com/'+path,{headers,signal:AbortSignal.timeout(25000)});if(!r.ok)throw Error('Printful answered '+r.status+'.');return (await r.json()).result;};
+  let storeNames={};try{const r=await fetchImpl(storefrontOrigin+'/products.json',{signal:AbortSignal.timeout(10000)});if(r.ok){const d=await r.json();for(const x of d.products||[])if(x&&x.id&&x.name)storeNames[String(x.id)]=String(x.name);}}catch{}
   try{const list=[];for(let offset=0;offset<1000;offset+=100){const page=await pf(`store/products?limit=100&offset=${offset}`);list.push(...page);if(page.length<100)break;}
-   const t=now(),seen=new Set();
-   for(const p of list){const s=setFromPrintful(await pf('store/products/'+p.id));if(!s)continue;seen.add(s.id);
+   const t=now(),seen=new Set(),found=[];
+   for(const p of list){const detail=await pf('store/products/'+p.id);
+    found.push({id:String(p.id),name:String(detail?.sync_product?.name||p.name||''),ignored:!!detail?.sync_product?.is_ignored,catalog:(detail?.sync_variants||[]).find(v=>v.product?.product_id)?.product?.product_id||null,
+     variants:(detail?.sync_variants||[]).length,files:[...new Set((detail?.sync_variants||[]).flatMap(v=>(v.files||[]).map(f=>String(f.type||''))))]});
+    const s=setFromPrintful(detail,storeNames);if(!s)continue;seen.add(s.id);
     run('INSERT INTO idea_sets(id,source,name,product,catalog,jacket,parts,updated) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name,product=excluded.product,catalog=excluded.catalog,jacket=excluded.jacket,parts=excluded.parts,updated=excluded.updated',s.id,s.source,s.name,s.product,s.catalog,s.jacket?1:0,JSON.stringify(s.parts),t);}
    for(const s of all("SELECT id FROM idea_sets WHERE source='printful'"))if(!seen.has(s.id))run('DELETE FROM idea_sets WHERE id=?',s.id);
-   printful={state:'connected',error:null,checked:clock(),products:list.length};}
+   printful={state:'connected',error:null,checked:clock(),products:list.length};pfProducts=found;}
   catch(e){printful={state:'error',error:e.message||'Printful could not be reached.',checked:clock()};}
  }
  const sets=()=>all('SELECT * FROM idea_sets WHERE enabled=1 ORDER BY jacket DESC,source,name').map(s=>({...s,jacket:!!s.jacket,parts:JSON.parse(s.parts)}));
@@ -141,15 +157,19 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  // One piece: a catalog item with every print area filled from the same set, or the base color where the set has nothing for it.
  function piece(set,c,color){
   const placements=[],empty=[];for(const area of c.areas){const p=partFor(area,set.parts);p?placements.push({area,part:Object.keys(set.parts).find(k=>set.parts[k]===p),name:p.name,url:p.url,thumb:p.thumb,artwork:p.artwork||null}):empty.push(area);}
-  return placements.length?{catalog:c.id,label:c.name,group:c.group,role:c.role,color,placements,empty}:null;
+  return placements.length?{catalog:c.id,label:c.name,group:c.group,role:c.role,color,placements,empty,tag:c.label||null}:null;
  }
- const OUTFITS=[[['jacket',390],['top',388],['bottom',400],['face',420],['bag',279]],[['jacket',615],['top',328],['bottom',618],['face',630],['bag',350]],[['jacket',801],['top',1419],['bottom',784],['face',420],['bag',963]],[['jacket',717],['top',1482],['bottom',330],['face',630],['bag',279]]];
+ // A full outfit carries one set onto as many items as the owner allows, one per category, jacket first.
+ function outfit(set,n,size){
+  const pieces=[];
+  for(const [name,ids] of OUTFIT_CATEGORIES){if(pieces.length>=size)break;
+   const id=name==='Jacket'&&set.jacket&&set.catalog?set.catalog:ids[n%ids.length],c=item(id),p=c&&piece(set,c,'Black');if(p)pieces.push({...p,category:name});}
+  if(pieces.length<3)return null;
+  return {kind:'outfit',title:`${set.name} full outfit (${pieces.length} items)`,pieces,reason:`Every piece is cut from the ${set.name} set${set.product?` (${set.product})`:''}: front, back, sleeves, hood and pocket go to the matching print area on each item, so the whole outfit reads as one design. Remove any item you don't want before making it.`};
+ }
  function compose(set,n){
-  if(n%4===0){const look=OUTFITS[(n/4)%OUTFITS.length],pieces=[];
-   for(const [,id] of look){const c=item(id===390&&set.jacket&&set.catalog?set.catalog:id);const p=c&&piece(set,c,'Black');if(p)pieces.push(p);}
-   if(pieces.length<3)return null;
-   return {kind:'outfit',title:`${set.name} full outfit`,pieces,reason:`Every piece is cut from the ${set.name} set${set.product?` (${set.product})`:''}: front, back, sleeves, hood and pocket go to the matching print area on each item, so the outfit reads as one design.`};}
-  const c=catalog[(n-1-Math.floor(n/4))%catalog.length];if(!c)return null;const p=piece(set,c,'Black');
+  if(n%3===0)return outfit(set,n/3,settings().outfitSize);
+  const c=catalog[(n-1-Math.floor(n/3))%catalog.length];if(!c)return null;const p=piece(set,c,'Black');
   return p&&{kind:'product',title:`${set.name} ${c.name}`,pieces:[p],reason:`The ${set.name} set mapped onto the ${c.name}'s real print areas.`};
  }
  const signature=(set,idea)=>createHash('sha256').update(JSON.stringify([set.id,idea.pieces.map(p=>[p.catalog,p.color,p.placements.map(x=>[x.area,x.url])])])).digest('hex');
@@ -173,6 +193,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
    `Design set: ${set.name}${set.product?`, taken from the store product "${set.product}"`:''}. Use only this set's files. Do not add or mix in any other design.`,
    'Print areas (one design per print area):',...p.placements.map(x=>`- ${x.area}: ${x.part} part of the set (${x.name}) ${x.url.startsWith('/')?'factory file '+(x.artwork||''):x.url}`),
    ...p.empty.map(a=>`- ${a}: no part of this set fits here, so fill it with the base color only.`),
+   labelInstruction(storefrontOrigin,p.tag),
    'Scale each part to the print area the way it sits on the original product; continue artwork across seams where the original does.',
    idea.kind==='outfit'?`Part of the ${set.name} outfit (${JSON.parse(idea.pieces).map(q=>q.label).join(', ')}). Every piece must look like the same design.`:'',
    brain?.knowledge(null)||''].filter(Boolean).join('\n').slice(0,6000);
@@ -198,13 +219,13 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  function snapshot(){
   const ideas=all("SELECT * FROM idea_set_ideas WHERE status IN ('new','approved','failed') ORDER BY created DESC LIMIT 300").concat(all("SELECT * FROM idea_set_ideas WHERE status='made' ORDER BY updated DESC LIMIT 60"));
   const counts=Object.fromEntries(all('SELECT status,count(*) n FROM idea_set_ideas GROUP BY status').map(r=>[r.status,r.n]));
-  return {settings:settings(),counts,shapes:SHAPES,printful:{state:printful.state,error:printful.error,products:printful.products||0},catalog:catalog.length,
+  return {settings:settings(),counts,categories:OUTFIT_CATEGORIES.map(([n])=>n),shapes:SHAPES,printful:{state:printful.state,error:printful.error,products:printful.products||0},catalog:catalog.length,
    sets:sets().map(s=>({id:s.id,source:s.source,name:s.name,product:s.product,jacket:s.jacket,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{thumb:v.thumb,name:v.name}]))})),
    designs:designs().map(d=>({id:d.id,name:d.name,collection:d.collection,shape:d.shape,detected:d.detected,override:!!d.override,reason:d.reason,url:'/api/owner/ai-factory/artwork/'+d.id+'/file'})),
    ideas:ideas.map(i=>({id:i.id,set:i.set_id,kind:i.kind,title:i.title,pieces:JSON.parse(i.pieces).map(p=>({...p,placements:p.placements.map(({url,...x})=>x)})),reason:i.reason,status:i.status,error:i.error,jobs:JSON.parse(i.jobs).filter(Boolean).length,created:i.created}))};
  }
 
- return {tick,generate,make,analyze,refreshPrintful,async handle(req,res,path,method){
+ return {tick,generate,make,analyze,refreshPrintful,printfulProducts:()=>pfProducts,printfulState:()=>printful,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/ideas'))return false;auth(req,null,true);const p=path.slice('/api/owner/ai-factory/ideas'.length);
   if(method==='GET'){if(p!=='')fail(404,'Not found.');if(!printful.checked)await refreshPrintful();analyze(25);uploadSets();if(!get("SELECT 1 x FROM idea_set_ideas WHERE status='new'"))generate();send(res,200,snapshot());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-ideas',120);const b=await body(req);
@@ -215,7 +236,12 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   else if(p==='/dismiss'){for(const id of ids())run("UPDATE idea_set_ideas SET status='dismissed',updated=? WHERE id=? AND status IN ('new','failed','approved')",now(),id);}
   else if(p==='/set'){if(typeof b.id!=='string'||!get('SELECT 1 x FROM idea_sets WHERE id=?',b.id))fail(404,'Design set not found.');run('UPDATE idea_sets SET enabled=? WHERE id=?',b.enabled?1:0,b.id);if(!b.enabled)run("DELETE FROM idea_set_ideas WHERE set_id=? AND status='new'",b.id);}
   else if(p==='/settings'){const n=(v,lo,hi,label)=>Number.isSafeInteger(v)&&v>=lo&&v<=hi?v:fail(400,`${label} must be between ${lo} and ${hi}.`);
-   run('UPDATE idea_settings SET team=?,pool=?,auto_make=? WHERE id=1',n(b.team,1,100,'Idea workers'),n(b.pool,5,500,'Ideas to keep waiting'),b.autoMake?1:0);if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
+   const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,OUTFIT_CATEGORIES.length,'Items per outfit'),grew=size!==settings().outfitSize;
+   run('UPDATE idea_settings SET team=?,pool=?,auto_make=?,outfit_size=? WHERE id=1',n(b.team,1,100,'Idea workers'),n(b.pool,5,500,'Ideas to keep waiting'),b.autoMake?1:0,size);
+   if(grew){run("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");generate();}if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
+  else if(p==='/piece'){const idea=typeof b.id==='string'&&get("SELECT * FROM idea_set_ideas WHERE id=? AND status IN ('new','failed')",b.id);if(!idea)fail(404,'Idea not found.');
+   const pieces=JSON.parse(idea.pieces),left=pieces.filter(x=>x.catalog!==b.catalog);if(left.length===pieces.length)fail(404,'That item is not in this idea.');if(!left.length)fail(400,'An idea needs at least one item. Dismiss it instead.');
+   run("UPDATE idea_set_ideas SET pieces=?,title=?,updated=? WHERE id=?",JSON.stringify(left),idea.kind==='outfit'?idea.title.replace(/\(\d+ items\)$/,`(${left.length} items)`):idea.title,now(),idea.id);}
   else if(p==='/shape'){if(typeof b.artwork!=='string'||!get('SELECT 1 x FROM idea_artwork WHERE artwork=?',b.artwork))fail(404,'Design not found.');if(b.shape!==null&&!SHAPES.some(([id])=>id===b.shape))fail(400,'Choose a design shape.');
    run('UPDATE idea_artwork SET override=? WHERE artwork=?',b.shape,b.artwork);uploadSets();run("DELETE FROM idea_set_ideas WHERE status='new' AND pieces LIKE ?",'%'+b.artwork+'%');}
   else fail(404,'Unknown idea action.');

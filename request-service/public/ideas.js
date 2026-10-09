@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const e=document.c
 let data=null,filter='new';const picked=new Set();
 async function api(path,body){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(180000)});if(r.status===401){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Request failed.');return d;}
 const note=t=>{$('ideaNote').textContent=t;};
-const guard=(b,fn)=>async()=>{if(b)b.disabled=true;try{await fn();}catch(e){note(e.message);}finally{if(b)b.disabled=false;}};
+const guard=(b,fn)=>async ev=>{if(b?.classList?.contains('ix-drop'))ev?.preventDefault();if(b)b.disabled=true;try{await fn(ev);}catch(e){note(e.message);}finally{if(b)b.disabled=false;}};
 const PART={back:'Back',front:'Front',default:'All-over',sleeve_left:'Left sleeve',sleeve_right:'Right sleeve',leg_left:'Left leg',leg_right:'Right leg',hood:'Hood',pocket:'Pocket'};
 const area=a=>a.replace(/_dtfabric$/,'').replace(/_/g,' ');
 function thumbs(parts,max=6){const t=node('div','', 'ix-thumbs');for(const [k,v] of Object.entries(parts).slice(0,max)){const img=node('img');img.src=v.thumb;img.alt=PART[k]||k;img.title=(PART[k]||k)+': '+v.name;img.loading='lazy';img.referrerPolicy='no-referrer';t.append(img);}return t;}
@@ -18,8 +18,8 @@ function render(){
  const c=data.counts,s=data.settings,sets=new Map(data.sets.map(x=>[x.id,x])),jackets=data.sets.filter(x=>x.jacket).length;
  $('ideaBadge').textContent=`${c.new||0} new · ${c.approved||0} approved · ${c.made||0} made`;
  const pf=data.printful;
- $('ideaShapes').textContent=`${data.sets.length} design sets (${jackets} from jackets) across ${data.catalog} all-over-print items. `+(pf.state==='connected'?`Read ${pf.products} Printful products.`:pf.state==='not_connected'?'Printful isn\'t connected on the backend, so only uploaded sets are used.':pf.state==='error'?'Printful: '+pf.error:'Reading your Printful products…');
- if(document.activeElement?.closest?.('.ix-team')==null){$('ideaTeam').value=$('ideaTeamSlider').value=s.team;$('ideaPool').value=s.pool;$('ideaAuto').checked=s.autoMake;}
+ $('ideaShapes').textContent=`${data.sets.length} design sets (${jackets} from jackets) across ${data.catalog} all-over-print items. `+(pf.state==='connected'?`Read ${pf.products} Printful products.`:pf.state==='not_connected'?'Printful isn\'t connected on the backend, so only uploaded sets are used.':pf.state==='error'?'Printful: '+pf.error:'Reading your Printful products…')+(pf.state==='connected'&&!jackets?' Your Printful store has no jackets yet, so hoodie sets lead.':'');
+ if(document.activeElement?.closest?.('.ix-team')==null){$('ideaTeam').value=$('ideaTeamSlider').value=s.team;$('ideaPool').value=s.pool;$('ideaOutfit').value=s.outfitSize;$('ideaAuto').checked=s.autoMake;}
  $('ideaSets').replaceChildren(...data.sets.map(x=>{const d=node('div','', 'ix-set');d.dataset.jacket=String(x.jacket);
   const off=node('label'),cb=node('input');cb.type='checkbox';cb.checked=true;cb.onchange=guard(cb,async()=>{data=await api('ideas/set',{id:x.id,enabled:false});render();note(`${x.name} won't be used for ideas.`);});off.append(cb,document.createTextNode('Use this set'));
   d.append(node('strong',x.name),node('span',x.jacket?'Jacket set':x.source==='printful'?'From '+x.product:'Your upload: '+x.name,'fx-sublabel'),thumbs(x.parts),off);return d;}));
@@ -31,7 +31,9 @@ function render(){
   const head=node('div','', 'fx-row');head.append(node('strong',i.title),node('span',i.kind==='outfit'?'Outfit':'Item','fx-pill'));card.append(head);
   if(set)card.append(thumbs(set.parts));
   const pieces=node('ul','', 'ix-pieces');
-  for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')));pieces.append(li);}
+  for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.category?p.category+': ':''}${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')),node('span',p.tag?`Tag: Midnight Design logo`:'Tag: logo small at the inside back neck (no tag print area)','ix-tag'));
+   if(open&&i.pieces.length>1){const x=node('button','Remove','ix-drop');x.type='button';x.setAttribute('aria-label',`Remove ${p.label} from ${i.title}`);x.onclick=guard(x,async ev=>{ev?.preventDefault?.();data=await api('ideas/piece',{id:i.id,catalog:p.catalog});render();note(`${p.label} removed from ${i.title}.`);});li.append(x);}
+   pieces.append(li);}
   card.append(pieces,node('p',i.reason,'fx-sublabel'));
   if(i.status==='made')card.append(node('p',`In production: ${i.jobs} job${i.jobs===1?'':'s'} queued.`,'fx-note'));
   if(i.status==='approved')card.append(node('p',`Approved. ${i.jobs} of ${i.pieces.length} pieces queued; the rest go in as the queue frees up.`,'fx-note'));
@@ -52,9 +54,9 @@ $('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=awa
 $('ideaDismiss').onclick=guard($('ideaDismiss'),async()=>{const n=picked.size;data=await api('ideas/dismiss',{ids:[...picked]});picked.clear();render();note(`${n} dismissed. The team will draft new ones.`);});
 $('ideaMore').onclick=guard($('ideaMore'),async()=>{const before=data.counts.new||0;data=await api('ideas/generate',{});render();note(`${Math.max(0,(data.counts.new||0)-before)} new ideas drafted.`);});
 $('ideaPrintful').onclick=guard($('ideaPrintful'),async()=>{note('Reading your Printful products…');data=await api('ideas/printful',{});render();note(data.printful.state==='connected'?`Found ${data.sets.filter(x=>x.source==='printful').length} design sets in ${data.printful.products} Printful products.`:$('ideaShapes').textContent);});
-const saveSettings=guard(null,async()=>{data=await api('ideas/settings',{team:Number($('ideaTeam').value),pool:Number($('ideaPool').value),autoMake:$('ideaAuto').checked});render();note($('ideaAuto').checked?'The team now sends ideas straight to production.':'Settings saved.');});
+const saveSettings=guard(null,async()=>{data=await api('ideas/settings',{team:Number($('ideaTeam').value),pool:Number($('ideaPool').value),outfitSize:Number($('ideaOutfit').value),autoMake:$('ideaAuto').checked});render();note($('ideaAuto').checked?'The team now sends ideas straight to production.':'Settings saved.');});
 $('ideaTeamSlider').oninput=()=>{$('ideaTeam').value=$('ideaTeamSlider').value;};$('ideaTeamSlider').onchange=saveSettings;
-$('ideaTeam').onchange=()=>{$('ideaTeamSlider').value=$('ideaTeam').value;saveSettings();};$('ideaPool').onchange=saveSettings;$('ideaAuto').onchange=saveSettings;
+$('ideaTeam').onchange=()=>{$('ideaTeamSlider').value=$('ideaTeam').value;saveSettings();};$('ideaPool').onchange=saveSettings;$('ideaOutfit').onchange=saveSettings;$('ideaAuto').onchange=saveSettings;
 setInterval(()=>{if(!document.hidden)load().catch(()=>{});},20000);
 load().catch(e=>note(e.message));
 })();

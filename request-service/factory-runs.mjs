@@ -88,6 +88,13 @@ export function buildSlots(c,plan,artwork,cycle=0){
 export function fillInstruction(color){
  return /^white$/i.test(color)?'Base garment color: White. Use the plain white garment with the fill option OFF.':`Base garment color: ${color}. FILL OPTION REQUIRED: switch on the fill option in ${color} for every print area, edge to edge, before placing any artwork. The blank garment is white, so without the fill the product comes out white. Never fake the color with a pasted solid-color image.`;
 }
+// Permanent brand rule: the Midnight Design logo goes on the clothing tag so buyers remember where it came from.
+export const LABEL_LOGO_PATH='/assets/designs/art-7d5ff833db11.png';
+export function labelInstruction(storefrontOrigin='https://midnight-designs.store',area=undefined){
+ const file=storefrontOrigin+LABEL_LOGO_PATH;
+ if(area===null)return `BRAND TAG: this item has no tag print area, so add the Midnight Design logo (${file}) small, about 1.5 inches wide, at the inside back neck or another discreet edge where it never competes with the main design.`;
+ return `BRAND TAG (permanent rule): print the Midnight Design logo (${file}) on the clothing tag${area?` (print area ${area})`:', using the inside label print area (label_inside), or the outside label if there is no inside one'}. Center it, keep it fully inside the tag's safe area, on the garment's base color. This is required on every product.`;
+}
 export function brief(c,slot,art){
  const g=garment(slot.garment),[lo,hi]=c.density.values[slot.garment],creative=c.creativity<34?'Strict: follow the uploaded design closely; only adapt scale and placement.':c.creativity<67?'Balanced: improve placement and composition while preserving the design.':'Experimental: variations, complementary graphics, alternate placements and matching sleeve graphics are allowed.';
  return [

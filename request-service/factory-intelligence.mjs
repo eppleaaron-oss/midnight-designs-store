@@ -1,5 +1,5 @@
 import {randomUUID,createHash} from 'node:crypto';
-import {GARMENTS,fillInstruction} from './factory-runs.mjs';
+import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 
 // The Midnight Brain: owner-editable knowledge that every production brief is built from, plus factory diagnostics.
 // Nothing here pretends a model was trained; rules, profiles and memories are plain records that get written into briefs.
@@ -63,6 +63,12 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   run("UPDATE brain_rules SET body=?,updated=? WHERE title='Garment fill' AND body LIKE 'The base color is the fabric itself.%'",FILL_RULE,t);run("INSERT INTO brain_migrations VALUES('rules-v2',?)",t);}
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v3'")){const t=now();for(const [section,title,text,locked] of RULES_V3)if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
   for(const [g,p] of Object.entries(DEFAULT_PROFILES))run('INSERT OR IGNORE INTO brain_garments VALUES(?,?,0,?)',g,JSON.stringify(p),t);run("INSERT INTO brain_migrations VALUES('rules-v3',?)",t);}
+ // rules-v4: the owner's permanent logo-on-the-tag rule, plus one jacket design carried across a whole outfit.
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v4'")){const t=now();
+  for(const [section,title,text,locked] of [['brand-dna','Logo on the tag',`Every product carries the Midnight Design logo (${storefrontOrigin+LABEL_LOGO_PATH}) on its tag: the inside label print area, else the outside label, else small at the inside back neck. Never skip it.`,1],
+   ['composition','One design, many items','Carry one design set onto as many items as fit, each part in its matching print area. Never swap in a different design.',1]])
+   if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
+  run("INSERT INTO brain_migrations VALUES('rules-v4',?)",t);}
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;

@@ -147,7 +147,7 @@ progress{accent-color:var(--fx-go);height:8px;vertical-align:middle}
 .fx-slider{display:grid;grid-template-columns:1fr 90px;gap:12px;align-items:center}.fx-slider input[type=range]{accent-color:var(--fx-go);min-height:auto}
 .fx-lead{font-size:16px;margin:4px 0 14px}
 .fx-drop{padding:36px 20px;text-align:center}
-.ix-team{display:grid;grid-template-columns:2fr 1fr 2fr;gap:16px;align-items:end;margin:8px 0 12px}
+.ix-team{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:16px;align-items:end;margin:8px 0 12px}
 .ix-ideabar{align-items:center;margin:12px 0}
 .ix-ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;max-height:900px;overflow:auto;padding:2px}
 .ix-idea{position:relative;display:grid;gap:8px;margin:0;padding:14px 14px 14px 46px;border:1px solid var(--fx-line);background:var(--fx-raise);cursor:pointer}
@@ -165,3 +165,16 @@ progress{accent-color:var(--fx-go);height:8px;vertical-align:middle}
 .ix-set .ix-thumbs img{width:44px;height:44px}
 .ix-set label{display:flex;gap:8px;align-items:center;font-size:13px}
 .ix-set label input{width:18px;height:18px;min-height:18px;margin:0;accent-color:var(--fx-go)}
+
+/* Idea Room pieces you can remove, and the Store Check list */
+.ix-pieces li{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:start}.ix-pieces li span{grid-column:1}
+.ix-drop{grid-column:2;grid-row:1/span 3;min-height:28px;padding:2px 10px;font-size:12px;background:transparent;border:1px solid var(--fx-line);color:var(--fx-muted);cursor:pointer}.ix-drop:hover{border-color:var(--fx-red);color:var(--fx-fg)}
+.ix-tag{color:var(--fx-gold)!important}
+.sc-list{display:grid;gap:10px;max-height:820px;overflow:auto}
+.sc-item{display:grid;grid-template-columns:64px 1fr auto;grid-template-areas:"img head hide" "img name hide" "img detail detail" "img fix fix";gap:4px 14px;align-items:start;padding:12px 14px;border:1px solid var(--fx-line);border-left:4px solid var(--fx-line);background:var(--fx-raise)}
+.sc-item[data-severity=high]{border-left-color:var(--fx-red)}.sc-item[data-severity=medium]{border-left-color:var(--fx-warn)}.sc-item[data-severity=low]{border-left-color:var(--fx-muted)}
+.sc-item>img,.sc-item>.sc-blank{grid-area:img;width:64px;height:64px;object-fit:cover;background:var(--fx-panel)}
+.sc-item p{margin:0;font-size:14px}.sc-head{grid-area:head}.sc-name{grid-area:name}.sc-detail{grid-area:detail}.sc-item .sc-fix{grid-area:fix;color:var(--fx-ok)}
+.sc-item>button{grid-area:hide;min-height:30px;padding:2px 12px;font-size:12px;width:auto}
+.sc-sev{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fx-muted);margin-left:8px}.sc-item[data-severity=high] .sc-sev{color:#e08a7a}
+@media (max-width:760px){.sc-item{grid-template-columns:48px 1fr;grid-template-areas:"img head" "img name" "detail detail" "fix fix" "hide hide"}.sc-item>img,.sc-item>.sc-blank{width:48px;height:48px}.sc-item>button{justify-self:start}}

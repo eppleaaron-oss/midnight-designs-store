@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Factory | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"></head><body class="factory-page">
-<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav><button id="logout" type="button">Sign out</button></header>
+<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav><button id="logout" type="button">Sign out</button></header>
 <main class="fx-main">
 
 <section class="fx-summary" aria-labelledby="summaryTitle">
@@ -29,11 +29,12 @@
 
 <section class="fx-panel" id="ideas" aria-labelledby="ideasTitle">
  <div class="fx-row"><h2 id="ideasTitle">Idea Room</h2><span id="ideaBadge" class="fx-pill">Idea team working</span></div>
- <p class="fx-note fx-lead">Your idea team takes each design set (the front, back, sleeves, hood and pocket of one design, starting with your jackets) and puts that same set onto other all-over-print items and full outfits. Nothing from another design gets mixed in. Tick the ideas you like and press Make.</p>
+ <p class="fx-note fx-lead">Your idea team takes each design set (the front, back, sleeves, hood and pocket of one design, jackets first) and puts that same set onto as many all-over-print items as you allow: jackets, hoodies, tees, jerseys, pants, shorts, leggings, face wear and bags. Nothing from another design gets mixed in, and every piece gets the Midnight Design logo on its tag. Tick the ideas you like, remove any item you don't want, and press Make.</p>
  <div id="ideaSets" class="ix-sets"></div>
  <div class="ix-team">
   <div><label for="ideaTeam">Idea workers</label><div class="fx-slider"><input id="ideaTeamSlider" type="range" min="1" max="100" value="20" aria-label="Idea workers slider"><input id="ideaTeam" type="number" min="1" max="100" value="20"></div></div>
   <div><label for="ideaPool">Ideas to keep waiting for me</label><input id="ideaPool" type="number" min="5" max="500" value="40"></div>
+  <div><label for="ideaOutfit">Items per full outfit</label><input id="ideaOutfit" type="number" min="3" max="20" value="14"></div>
   <label class="check fx-check"><input id="ideaAuto" type="checkbox"><span>Send new ideas straight to production (I trust the team)</span></label>
  </div>
  <p id="ideaShapes" class="fx-meta"></p><div class="fx-actions"><button id="ideaPrintful" type="button" class="fx-btn fx-quiet">Read my Printful products again</button></div>
@@ -44,6 +45,14 @@
   <p class="fx-note">Upload a set as one collection (name it in Advanced settings below). The team uses full designs for the back and front, strips for sleeves and legs, an emblem for the pocket, and anything named "hood" for the hood. Fix any picture it sorted wrong.</p>
   <div id="ideaDesigns" class="fx-grid"></div>
  </details>
+</section>
+
+<section class="fx-panel" id="storeCheck" aria-labelledby="storeCheckTitle">
+ <div class="fx-row"><h2 id="storeCheckTitle">Store Check</h2><span id="checkBadge" class="fx-pill">Checking</span></div>
+ <p class="fx-note fx-lead">Goes through every product on midnight-designs.store and its Printful product, and lists what needs fixing: missing names, photos, sizes and descriptions, blank print areas, missing tag logos and price mismatches. Biggest problems first.</p>
+ <div class="fx-actions"><button id="checkRun" type="button" class="fx-btn fx-quiet">Check the store again</button><button id="checkRestore" type="button" class="fx-btn fx-quiet">Show hidden issues</button><span id="checkNote" class="fx-note" role="status" aria-live="polite"></span></div>
+ <p id="checkMeta" class="fx-meta"></p>
+ <div id="checkList" class="sc-list"></div>
 </section>
 
 <section class="fx-panel" aria-labelledby="setupTitle">
@@ -214,5 +223,5 @@
 
 <div id="toast" class="fx-toast" role="status" aria-live="polite" hidden></div>
 </main>
-<script src="/factory.js" defer></script><script src="/ideas.js" defer></script>
+<script src="/factory.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
 </body></html>
