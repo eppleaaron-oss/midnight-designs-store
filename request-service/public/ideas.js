@@ -12,7 +12,7 @@ function thumbs(parts,max=6){const t=node('div','', 'ix-thumbs');for(const [k,v]
 
 function shown(){
  const open=i=>i.status==='new'||i.status==='failed';
- return data.ideas.filter(i=>filter==='new'?open(i):filter==='outfit'||filter==='product'?i.kind===filter&&open(i):filter==='made'?i.status==='made'||i.status==='published':i.status===filter).sort((a,b)=>(b.kind==='outfit')-(a.kind==='outfit'));
+ return data.ideas.filter(i=>filter==='new'?open(i):filter==='outfit'||filter==='product'?i.kind===filter&&open(i):filter==='made'?['made','published','queued','publishing'].includes(i.status):i.status===filter).sort((a,b)=>(b.kind==='outfit')-(a.kind==='outfit'));
 }
 function render(){
  const c=data.counts,s=data.settings,sets=new Map(data.sets.map(x=>[x.id,x])),jackets=data.sets.filter(x=>x.jacket).length;
@@ -32,8 +32,7 @@ function render(){
   const head=node('div','', 'fx-row');head.append(node('strong',i.title),node('span',i.kind==='outfit'?'Outfit':'Item','fx-pill'));card.append(head);
   const ready=i.pieces.filter(p=>p.ready).length;
   if(open&&ready&&data.canPublish){const go=node('button',`Publish ${ready} ready item${ready===1?'':'s'} now`,'fx-btn fx-go ix-now');go.type='button';
-   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();go.textContent='Publishing…';note(`Publishing ${i.title}…`);data=await api('ideas/publish',{ids:[i.id]});picked.delete(i.id);render();const r=data.ideas.find(x=>x.id===i.id);
-    note(r?.status==='published'?`${i.title} is published. Rate it in AI Made below.${r.error?' '+r.error:''}`:`${i.title} was not published: ${r?.error||'Printful did not accept it.'}`);document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth'});});card.append(go);}
+   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();data=await api('ideas/publish',{ids:[i.id]});picked.delete(i.id);started(1);});card.append(go);}
   if(set)card.append(thumbs(set.parts));
   const pieces=node('ul','', 'ix-pieces');
   for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.category?p.category+': ':''}${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')),node('span',p.tag?`Tag: Midnight Design logo`:'Tag: logo small at the inside back neck (no tag print area)','ix-tag'));
@@ -43,6 +42,7 @@ function render(){
   card.append(pieces,node('p',i.reason,'fx-sublabel'));
   if(i.status==='published')card.append(node('p','Published to your store. Rate it in AI Made.','fx-note'));
   if(i.status==='publishing')card.append(node('p','Publishing to your store now…','fx-note'));
+  if(i.status==='queued')card.append(node('p','Waiting its turn to publish.','fx-note'));
   if(i.status==='made')card.append(node('p',`In production: ${i.jobs} job${i.jobs===1?'':'s'} queued.`,'fx-note'));
   if(i.status==='approved')card.append(node('p',`Approved. ${i.jobs} of ${i.pieces.length} pieces queued; the rest go in as the queue frees up.`,'fx-note'));
   if(i.error)card.append(node('p',i.error,'fx-warn'));
@@ -58,6 +58,9 @@ function bar(){$('ideaPublish').textContent=picked.size?`Publish selected to sto
 function renderMade(){
  const list=data.made||[],unrated=list.filter(m=>m.status==='published'&&!m.rating).length,r=data.ratings;
  $('madeBadge').textContent=list.length?`${list.filter(m=>m.status==='published').length} published · ${unrated} to rate`+(r.count?` · average ${r.avg.toFixed(1)}★`:''):'Nothing yet';
+ const busy=data.ideas.filter(i=>i.status==='queued'||i.status==='publishing').length;
+ if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done so far.`;
+ else if(/^Publishing in the background/.test($('madeNote').textContent))$('madeNote').textContent='Publishing finished. Rate what came out.';
  const shown=list.filter(m=>madeFilter==='unrated'?m.status!=='failed'&&!m.rating:madeFilter==='rated'?!!m.rating:m.status==='failed');
  $('madeGrid').replaceChildren(...(shown.length?shown.map(m=>{const card=node('article','', 'mx-card');card.dataset.status=m.status;
   if(m.thumb){const img=node('img');img.src=m.thumb;img.alt=m.name;img.loading='lazy';img.referrerPolicy='no-referrer';card.append(img);}else card.append(node('div',m.status==='failed'?'Not published':m.status==='creating'?'Publishing…':'Printful is making the mockup. It shows here in a minute or two.','mx-wait'));
@@ -78,7 +81,9 @@ async function load(){data=await api('ideas');render();}
 
 document.querySelectorAll('#ideaTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#ideaTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));filter=t.dataset.filter;render();});
 $('ideaAll').onclick=()=>{for(const i of shown())if(i.status==='new'||i.status==='failed')picked.add(i.id);render();};
-$('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;note(`Publishing ${n} idea${n===1?'':'s'} to your store…`);data=await api('ideas/publish',{ids:[...picked]});picked.clear();render();const fails=data.ideas.filter(i=>i.status==='failed'&&i.error).length;note(`Done. See them in AI Made below.${fails?' Some items could not be published; their cards say why.':''}`);});
+// Publishing runs on the server in the background; the page jumps to AI Made and refreshes every few seconds as products arrive.
+function started(n){render();note(`${n} idea${n===1?'':'s'} sent to your store. Watch them arrive in AI Made.`);$('madeNote').textContent=`Publishing ${n} idea${n===1?'':'s'} in the background. Products appear below one by one, and you can leave this page open or come back later.`;document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
+$('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked]});picked.clear();started(n);});
 document.querySelectorAll('#madeTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#madeTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));madeFilter=t.dataset.filter;renderMade();});
 $('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=await api('ideas/approve',{ids:[...picked]});picked.clear();render();note(`${n} idea${n===1?'':'s'} sent to production. Jobs appear in the live queue below.`);});
 $('ideaDismiss').onclick=guard($('ideaDismiss'),async()=>{const n=picked.size;data=await api('ideas/dismiss',{ids:[...picked]});picked.clear();render();note(`${n} dismissed. The team will draft new ones.`);});
@@ -87,6 +92,6 @@ $('ideaPrintful').onclick=guard($('ideaPrintful'),async()=>{note('Reading your P
 const saveSettings=guard(null,async()=>{data=await api('ideas/settings',{team:Number($('ideaTeam').value),pool:Number($('ideaPool').value),outfitSize:Number($('ideaOutfit').value),autopilot:$('ideaAutopilot').checked,perDay:Number($('ideaPerDay').value),autoMake:$('ideaAuto').checked});render();note($('ideaAutopilot').checked?`Autopilot is on: up to ${$('ideaPerDay').value} outfits a day go to your store.`:$('ideaAuto').checked?'The team now sends ideas straight to production.':'Settings saved.');});
 $('ideaTeamSlider').oninput=()=>{$('ideaTeam').value=$('ideaTeamSlider').value;};$('ideaTeamSlider').onchange=saveSettings;
 $('ideaTeam').onchange=()=>{$('ideaTeamSlider').value=$('ideaTeam').value;saveSettings();};$('ideaPool').onchange=saveSettings;$('ideaOutfit').onchange=saveSettings;$('ideaAutopilot').onchange=saveSettings;$('ideaPerDay').onchange=saveSettings;$('ideaAuto').onchange=saveSettings;
-setInterval(()=>{if(!document.hidden&&!document.activeElement?.closest?.('#madeGrid,.ix-team,.ix-autopilot'))load().catch(()=>{});},20000);
+let last=0;setInterval(()=>{const busy=data?.ideas?.some(i=>i.status==='queued'||i.status==='publishing');if(document.hidden||Date.now()-last<(busy?5000:20000)||document.activeElement?.closest?.('#madeGrid,.ix-team,.ix-autopilot'))return;last=Date.now();load().catch(()=>{});},2500);
 load().catch(e=>note(e.message));
 })();

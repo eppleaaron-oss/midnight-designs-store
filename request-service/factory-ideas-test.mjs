@@ -33,7 +33,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
  const pfCalls=[],created=[],deleted=[];
  const service=createService({dbPath:':memory:',origin,storefrontOrigin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),
   runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(files[url.slice(storefrontOrigin.length+1)],{headers:{'Content-Type':'image/png'}})},
-  ideaSettings:{env:{PRINTFUL_TOKEN:'pf-test',PRINTFUL_STORE_ID:'77'},fetchImpl:async(url,o)=>{if(url.includes('api.printful.com'))pfCalls.push([url,o.headers?.Authorization,o.headers?.['X-PF-Store-Id']]);
+  ideaSettings:{pace:0,env:{PRINTFUL_TOKEN:'pf-test',PRINTFUL_STORE_ID:'77'},fetchImpl:async(url,o)=>{if(url.includes('api.printful.com'))pfCalls.push([url,o.headers?.Authorization,o.headers?.['X-PF-Store-Id']]);
   if(url.endsWith('/products.json'))return new Response(JSON.stringify({products:[{id:'55',catalogProductId:328,name:'Other Tee',variants:[{size:'M',price:44.5}]}]}));
   if(/store\/products\/@/.test(url))return new Response('{}',{status:404});
   const cat=/api\.printful\.com\/products\/(\d+)$/.exec(url);if(cat)return new Response(JSON.stringify({result:{variants:['S','M','L'].map((size,k)=>({id:Number(cat[1])*10+k,size,color:'White',price:'20.00',in_stock:true}))}}));
@@ -79,7 +79,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   // Publishing straight to the store: only pieces that are complete go to Printful, with the logo on the tag.
   const fresh=(await call('/api/owner/ai-factory/ideas')).data,pub=fresh.ideas.find(i=>i.kind==='outfit'&&i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.some(p=>p.ready));assert.ok(pub,'a printful outfit has ready pieces');
   assert.ok(pub.pieces.every(p=>p.ready||p.why),'every skipped piece says why');
-  snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[pub.id]})).data;const ready=pub.pieces.filter(p=>p.ready);
+  snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[pub.id],wait:true})).data;snap=(await call('/api/owner/ai-factory/ideas')).data;const ready=pub.pieces.filter(p=>p.ready);
   assert.equal(created.length,ready.length);assert.equal(snap.made.filter(m=>m.status==='published').length,ready.length);
   for(const c of created){assert.ok(c.sync_product.name.length>3);assert.equal(c.sync_variants.length,3);const types=c.sync_variants[0].files.map(f=>f.type);assert.equal(new Set(types).size,types.length,'one file per print area');
    assert.ok(c.sync_variants[0].files.every(f=>/^https:\/\//.test(f.url)));}
