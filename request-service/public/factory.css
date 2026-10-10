@@ -190,3 +190,6 @@ progress{accent-color:var(--fx-go);height:8px;vertical-align:middle}
 .mx-card input[type=text]{width:100%;min-height:36px}
 .mx-actions{display:flex;gap:8px;flex-wrap:wrap}.mx-actions button{min-height:32px;padding:2px 10px;font-size:12px}
 @media (max-width:760px){.ix-autopilot{grid-template-columns:1fr}.mx-grid{grid-template-columns:1fr 1fr}}
+
+.ix-ideabar{position:sticky;top:0;z-index:5;background:var(--fx-panel);padding:10px 0;border-bottom:1px solid var(--fx-line)}
+.ix-now{justify-self:start;min-height:40px}

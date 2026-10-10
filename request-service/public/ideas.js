@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const e=document.c
 let data=null,filter='new',madeFilter='unrated';const notes=new Map();const picked=new Set();
 async function api(path,body){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(180000)});if(r.status===401){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Request failed.');return d;}
 const note=t=>{$('ideaNote').textContent=t;};
-const guard=(b,fn)=>async ev=>{if(b?.classList?.contains('ix-drop'))ev?.preventDefault();if(b)b.disabled=true;try{await fn(ev);}catch(e){note(e.message);}finally{if(b)b.disabled=false;}};
+const guard=(b,fn)=>async ev=>{if(b?.classList?.contains('ix-drop')||b?.classList?.contains('ix-now'))ev?.preventDefault();if(b)b.disabled=true;try{await fn(ev);}catch(e){note(e.message);}finally{if(b)b.disabled=false;}};
 const PART={back:'Back',front:'Front',default:'All-over',sleeve_left:'Left sleeve',sleeve_right:'Right sleeve',leg_left:'Left leg',leg_right:'Right leg',hood:'Hood',pocket:'Pocket'};
 const area=a=>a.replace(/_dtfabric$/,'').replace(/_/g,' ');
 function thumbs(parts,max=6){const t=node('div','', 'ix-thumbs');for(const [k,v] of Object.entries(parts).slice(0,max)){const img=node('img');img.src=v.thumb;img.alt=PART[k]||k;img.title=(PART[k]||k)+': '+v.name;img.loading='lazy';img.referrerPolicy='no-referrer';t.append(img);}return t;}
@@ -30,6 +30,10 @@ function render(){
   const open=i.status==='new'||i.status==='failed',card=node(open?'label':'article','', 'ix-idea'),set=sets.get(i.set);card.dataset.status=i.status;
   if(open){const cb=node('input');cb.type='checkbox';cb.checked=picked.has(i.id);cb.setAttribute('aria-label','Select '+i.title);cb.onchange=()=>{cb.checked?picked.add(i.id):picked.delete(i.id);bar();};card.append(cb);}
   const head=node('div','', 'fx-row');head.append(node('strong',i.title),node('span',i.kind==='outfit'?'Outfit':'Item','fx-pill'));card.append(head);
+  const ready=i.pieces.filter(p=>p.ready).length;
+  if(open&&ready&&data.canPublish){const go=node('button',`Publish ${ready} ready item${ready===1?'':'s'} now`,'fx-btn fx-go ix-now');go.type='button';
+   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();go.textContent='Publishing…';note(`Publishing ${i.title}…`);data=await api('ideas/publish',{ids:[i.id]});picked.delete(i.id);render();const r=data.ideas.find(x=>x.id===i.id);
+    note(r?.status==='published'?`${i.title} is published. Rate it in AI Made below.${r.error?' '+r.error:''}`:`${i.title} was not published: ${r?.error||'Printful did not accept it.'}`);document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth'});});card.append(go);}
   if(set)card.append(thumbs(set.parts));
   const pieces=node('ul','', 'ix-pieces');
   for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.category?p.category+': ':''}${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')),node('span',p.tag?`Tag: Midnight Design logo`:'Tag: logo small at the inside back neck (no tag print area)','ix-tag'));
