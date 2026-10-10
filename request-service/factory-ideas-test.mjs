@@ -30,13 +30,14 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
  const products={1:{sync_product:{id:1,name:'Blood Moon Reaper Bomber Jacket'},sync_variants:[{product:{product_id:390},files:[file('front','jf'),file('back','jb'),file('sleeve_left','jsl'),file('sleeve_right','jsr'),file('preview','jprev')]}]},
   2:{sync_product:{id:2,name:'Crimson Throne Recycled Fleece Hoodie'},sync_variants:[{product:{product_id:388},files:[file('front','hf'),file('back','hb'),file('hood','hh')]}]},
   3:{sync_product:{id:3,name:'Mockup only'},sync_variants:[{product:{product_id:328},files:[file('preview','only')]}]}};
- const pfCalls=[],created=[],deleted=[];let hang=0;
+ const pfCalls=[],created=[],deleted=[];let hang=0,noScope=false;
  const service=createService({dbPath:':memory:',origin,storefrontOrigin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),
   runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(files[url.slice(storefrontOrigin.length+1)],{headers:{'Content-Type':'image/png'}})},
   ideaSettings:{pace:0,env:{PRINTFUL_TOKEN:'pf-test',PRINTFUL_STORE_ID:'77'},fetchImpl:async(url,o)=>{if(url.includes('api.printful.com'))pfCalls.push([url,o.headers?.Authorization,o.headers?.['X-PF-Store-Id']]);
   if(url.endsWith('/products.json'))return new Response(JSON.stringify({products:[{id:'55',catalogProductId:328,name:'Other Tee',variants:[{size:'M',price:44.5}]}]}));
   if(/store\/products\/@/.test(url))return new Response('{}',{status:404});
   const cat=/api\.printful\.com\/products\/(\d+)$/.exec(url);if(cat)return new Response(JSON.stringify({result:{variants:['S','M','L'].map((size,k)=>({id:Number(cat[1])*10+k,size,color:'White',price:'20.00',in_stock:true}))}}));
+  if(o.method==='POST'&&url.endsWith('/store/products')&&noScope)return new Response(JSON.stringify({code:401,result:'This endpoint requires any of the following scopes granted: sync_products/write!',error:{message:'This endpoint requires any of the following scopes granted: sync_products/write!'}}),{status:401});
   if(o.method==='POST'&&url.endsWith('/store/products')&&hang){hang--;return new Promise(()=>{});}
   if(o.method==='POST'&&url.endsWith('/store/products')){created.push(JSON.parse(o.body));return new Response(JSON.stringify({result:{id:9000+created.length}}));}
   if(o.method==='DELETE'){deleted.push(url);return new Response('{}');}
@@ -94,6 +95,11 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   hang=1;const before=created.length;snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[next.id],wait:true})).data;snap=(await call('/api/owner/ai-factory/ideas')).data;
   const stuck=snap.made.filter(m=>m.status==='failed'&&/did not answer in time/.test(m.error||''));assert.equal(stuck.length,1,'the hung item times out');
   assert.equal(created.length-before,next.pieces.filter(p=>p.ready).length-1,'the rest of the outfit still publishes');assert.match(snap.publisher.lastError,/did not answer in time/);assert.equal(snap.publisher.running,false);
+  // A token without write access stops publishing after the first refusal and keeps the outfit in line.
+  const third=snap.ideas.find(i=>i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.filter(p=>p.ready).length>1);assert.ok(third,'a third outfit');
+  noScope=true;const failedBefore=snap.made.filter(m=>m.status==='failed').length;await call('/api/owner/ai-factory/ideas/publish',{ids:[third.id],wait:true});snap=(await call('/api/owner/ai-factory/ideas')).data;
+  assert.equal(snap.made.filter(m=>m.status==='failed').length-failedBefore,1,'only one item tries before it stops');assert.match(snap.publisher.blocked,/View and manage store products/);
+  assert.equal(snap.ideas.find(i=>i.id===third.id).status,'queued','the outfit waits for a working token');
 
   const raven=snap.sets.find(s=>s.source==='upload');snap=(await call('/api/owner/ai-factory/ideas/set',{id:raven.id,enabled:false})).data;
   assert.ok(!snap.sets.some(s=>s.id===raven.id));assert.ok(!snap.ideas.some(i=>i.set===raven.id&&i.status==='new'));

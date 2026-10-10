@@ -60,7 +60,7 @@ function renderMade(){
  $('madeBadge').textContent=list.length?`${list.filter(m=>m.status==='published').length} published · ${unrated} to rate`+(r.count?` · average ${r.avg.toFixed(1)}★`:''):'Nothing yet';
  const busy=data.ideas.filter(i=>i.status==='queued'||i.status==='publishing').length;
  const pub=data.publisher||{},failed=list.filter(m=>m.status==='failed').length;
- if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done, ${failed} failed. `+(pub.running&&pub.name?`Now ${pub.step} for ${pub.name} (${pub.seconds}s).`:'Waiting for the publisher to start, it checks every 30 seconds.')+(pub.lastError?` Last problem: ${pub.lastError}`:'');
+ if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done, ${failed} failed. `+(pub.blocked?`Stopped: ${pub.blocked} It starts again by itself after that.`:pub.running&&pub.name?`Now ${pub.step} for ${pub.name} (${pub.seconds}s).`:'Waiting for the publisher to start, it checks every 30 seconds.')+(pub.lastError?` Last problem: ${pub.lastError}`:'');
  else if(/^Publishing in the background/.test($('madeNote').textContent))$('madeNote').textContent='Publishing finished. Rate what came out.';
  const shown=list.filter(m=>madeFilter==='unrated'?m.status!=='failed'&&!m.rating:madeFilter==='rated'?!!m.rating:m.status==='failed');
  $('madeGrid').replaceChildren(...(shown.length?shown.map(m=>{const card=node('article','', 'mx-card');card.dataset.status=m.status;
