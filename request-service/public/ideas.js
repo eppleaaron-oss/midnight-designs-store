@@ -83,6 +83,10 @@ document.querySelectorAll('#ideaTabs [role=tab]').forEach(t=>t.onclick=()=>{docu
 $('ideaAll').onclick=()=>{for(const i of shown())if(i.status==='new'||i.status==='failed')picked.add(i.id);render();};
 // Publishing runs on the server in the background; the page jumps to AI Made and refreshes every few seconds as products arrive.
 function started(n){render();note(`${n} idea${n===1?'':'s'} sent to your store. Watch them arrive in AI Made.`);$('madeNote').textContent=`Publishing ${n} idea${n===1?'':'s'} in the background. Products appear below one by one, and you can leave this page open or come back later.`;document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
+// Used by Start Factory: publishes the ticked ideas, or every waiting outfit that has ready items when none are ticked.
+window.mdIdeas={async start(){if(!data)await load();if(!data.canPublish)throw Error('Printful is not connected on the backend, so nothing can be published.');
+ const ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.some(p=>p.ready)).map(i=>i.id);if(!ids.length)return 0;
+ data=await api('ideas/publish',{ids});picked.clear();started(ids.length);return ids.length;}};
 $('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked]});picked.clear();started(n);});
 document.querySelectorAll('#madeTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#madeTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));madeFilter=t.dataset.filter;renderMade();});
 $('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=await api('ideas/approve',{ids:[...picked]});picked.clear();render();note(`${n} idea${n===1?'':'s'} sent to production. Jobs appear in the live queue below.`);});
