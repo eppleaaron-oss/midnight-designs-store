@@ -189,24 +189,33 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   if(pieces.length<3)return null;
   return {kind:'outfit',title:`${set.name} full outfit (${pieces.filter(p=>!strict||p.ready).length} items)`,pieces,reason:`Every piece is cut from the ${set.name} set${set.product?` (${set.product})`:''}: front, back, sleeves, hood and pocket go to the matching print area on each item, so the whole outfit reads as one design. Remove any item you don't want before making it.`};
  }
- function compose(set,n){
-  if(n%3===0)return outfit(set,n/3,settings().outfitSize);
-  const c=catalog[(n-1-Math.floor(n/3))%catalog.length];if(!c||c.id===set.catalog)return null;const p=piece(set,c,set.source==='printful'?'White':'Black');
-  return p&&{kind:'product',title:`${set.name} ${c.name}`,pieces:[p],reason:`The ${set.name} set mapped onto the ${c.name}'s real print areas.`};
+ // Single items spread over the whole catalog: each set starts at a different item, and Printful sets only get items they print cleanly on.
+ function single(set,n){
+  const off=parseInt(createHash('sha256').update(set.id).digest('hex').slice(0,6),16);
+  for(let k=0;k<catalog.length;k++){const c=catalog[(off+n*7+k)%catalog.length];if(c.id===set.catalog)continue;const p=piece(set,c,set.source==='printful'?'White':'Black');
+   if(p&&(set.source!=='printful'||p.ready))return {kind:'product',title:`${set.name} ${c.name}`,pieces:[p],reason:`The ${set.name} set mapped onto the ${c.name}'s real print areas.`};}
+  return null;
  }
  const signature=(set,idea)=>createHash('sha256').update(JSON.stringify([set.id,idea.pieces.map(p=>[p.catalog,p.color,p.placements.map(x=>[x.area,x.url])])])).digest('hex');
 
  // One working cycle: each idea worker drafts one idea, jacket sets first, until enough are waiting.
+ // One working cycle. Full outfits come first: every design set keeps at least one outfit waiting (two when there
+ // is room), then single items fill the rest of the pool. Outfits push out the oldest waiting single items.
  function generate({force=false}={}){
   analyze();uploadSets();const s=settings(),list=sets();if(!list.length)return 0;
-  let room=Math.min(s.team,force?s.team:s.pool-get("SELECT count(*) n FROM idea_set_ideas WHERE status='new'").n),made=0;
-  const counts=new Map(all('SELECT set_id,count(*) n FROM idea_set_ideas GROUP BY set_id').map(r=>[r.set_id,r.n]));
+  const rated=new Map(list.map(x=>[x.id,score('set',x.id)])),usable=list.filter(x=>!rated.get(x.id).low).sort((a,b)=>rated.get(b.id).avg-rated.get(a.id).avg||b.jacket-a.jacket);
+  const waiting=()=>get("SELECT count(*) n FROM idea_set_ideas WHERE status='new'").n,t=now(),status=s.autoMake?'approved':'new';let made=0;
+  const insert=(set,idea)=>run('INSERT OR IGNORE INTO idea_set_ideas(id,signature,set_id,kind,title,pieces,reason,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?)',randomUUID(),signature(set,idea),set.id,idea.kind,idea.title.slice(0,160),JSON.stringify(idea.pieces),idea.reason,status,t,t).changes;
+  const outfits=new Map(all('SELECT set_id,count(*) n FROM idea_set_ideas WHERE kind=\'outfit\' GROUP BY set_id').map(r=>[r.set_id,r.n]));
+  const waitingOutfits=id=>get("SELECT count(*) n FROM idea_set_ideas WHERE set_id=? AND kind='outfit' AND status='new'",id).n;
+  for(const want of [1,2])for(const set of usable){if(want===2&&waiting()>=Math.floor(s.pool*0.75))break;
+   for(let k=0;waitingOutfits(set.id)<want&&k<12;k++){const n=(outfits.get(set.id)||0)+k,idea=outfit(set,n,s.outfitSize);if(idea&&insert(set,idea)){made++;outfits.set(set.id,n+1);
+     const extra=waiting()-s.pool;if(extra>0)run("DELETE FROM idea_set_ideas WHERE id IN (SELECT id FROM idea_set_ideas WHERE status='new' AND kind='product' ORDER BY created LIMIT ?)",extra);}}}
+  let room=Math.min(s.team,force?s.team:s.pool-waiting());
+  const counts=new Map(all("SELECT set_id,count(*) n FROM idea_set_ideas WHERE kind='product' GROUP BY set_id").map(r=>[r.set_id,r.n]));
   for(let tries=0;room>0&&tries<s.team*8;tries++){
-   const rated=new Map(list.map(x=>[x.id,score('set',x.id)])),usable=list.filter(x=>!rated.get(x.id).low);if(!usable.length)break;
-   const order=[...usable].sort((a,b)=>(counts.get(a.id)||0)-(counts.get(b.id)||0)-((rated.get(a.id).avg-rated.get(b.id).avg)*2)||b.jacket-a.jacket),set=order[0],n=counts.get(set.id)||0;counts.set(set.id,n+1);
-   const idea=compose(set,n);if(!idea)continue;const t=now();
-   const r=run('INSERT OR IGNORE INTO idea_set_ideas(id,signature,set_id,kind,title,pieces,reason,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?)',randomUUID(),signature(set,idea),set.id,idea.kind,idea.title.slice(0,160),JSON.stringify(idea.pieces),idea.reason,s.autoMake?'approved':'new',t,t);
-   if(r.changes){made++;room--;}
+   const set=[...usable].sort((a,b)=>(counts.get(a.id)||0)-(counts.get(b.id)||0))[0],n=counts.get(set.id)||0;counts.set(set.id,n+1);
+   const idea=single(set,n);if(idea&&insert(set,idea)){made++;room--;}
   }
   return made;
  }

@@ -12,7 +12,7 @@ function thumbs(parts,max=6){const t=node('div','', 'ix-thumbs');for(const [k,v]
 
 function shown(){
  const open=i=>i.status==='new'||i.status==='failed';
- return data.ideas.filter(i=>filter==='new'?open(i):filter==='outfit'||filter==='product'?i.kind===filter&&open(i):filter==='made'?i.status==='made'||i.status==='published':i.status===filter);
+ return data.ideas.filter(i=>filter==='new'?open(i):filter==='outfit'||filter==='product'?i.kind===filter&&open(i):filter==='made'?i.status==='made'||i.status==='published':i.status===filter).sort((a,b)=>(b.kind==='outfit')-(a.kind==='outfit'));
 }
 function render(){
  const c=data.counts,s=data.settings,sets=new Map(data.sets.map(x=>[x.id,x])),jackets=data.sets.filter(x=>x.jacket).length;
