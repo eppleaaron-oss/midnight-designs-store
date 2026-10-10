@@ -110,6 +110,8 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  db.exec(`CREATE TABLE IF NOT EXISTS idea_made(id TEXT PRIMARY KEY,idea TEXT NOT NULL,set_id TEXT NOT NULL,set_name TEXT NOT NULL,catalog INTEGER NOT NULL,category TEXT,name TEXT NOT NULL,printful_id TEXT,status TEXT NOT NULL,error TEXT,prices TEXT,thumb TEXT,rating INTEGER,note TEXT NOT NULL DEFAULT '',created TEXT NOT NULL,updated TEXT NOT NULL,UNIQUE(idea,catalog))`);
  if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='autopilot')){db.exec('ALTER TABLE idea_settings ADD COLUMN autopilot INTEGER NOT NULL DEFAULT 1');db.exec('ALTER TABLE idea_settings ADD COLUMN per_day INTEGER NOT NULL DEFAULT 2');db.exec("DELETE FROM idea_set_ideas WHERE status='new'");}
  db.exec("UPDATE idea_set_ideas SET status='new' WHERE status='publishing'");
+ db.exec('CREATE TABLE IF NOT EXISTS idea_migrations(name TEXT PRIMARY KEY)');
+ if(!db.prepare("SELECT 1 x FROM idea_migrations WHERE name='outfit-rounds'").get()){db.exec("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");db.exec("INSERT INTO idea_migrations VALUES('outfit-rounds')");}
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make,outfitSize:s.outfit_size,autopilot:!!s.autopilot,perDay:s.per_day};};
  const item=id=>catalog.find(c=>c.id===id);
@@ -171,16 +173,21 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  // Owner ratings steer the team: low-rated sets and item types (average 2 or less over 2+ ratings) are dropped,
  // high-rated sets get ideas first.
  function score(kind,key){const r=get(`SELECT avg(rating) a,count(rating) n FROM idea_made WHERE rating IS NOT NULL AND ${kind==='set'?'set_id':'category'}=?`,key);return {avg:r?.a||0,n:r?.n||0,low:(r?.n||0)>=2&&r.a<=2};}
+ // Items are taken round by round: one per category first, then a second tee, hoodie or pants style, and so on,
+ // until the outfit holds as many items as the owner asked for. For Printful sets only items that can be
+ // published cleanly count, so asking for 20 gives 20 publishable items when the catalog has them.
  function outfit(set,n,size){
-  const pieces=[];
-  for(const [name,ids] of OUTFIT_CATEGORIES){if(pieces.length>=size)break;
-   if(score('category',name).low)continue;
-   // The set's own product leads a jacket outfit; other categories skip the exact item the set came from.
-   const choices=ids.filter(id=>id!==set.catalog);if(!choices.length&&!(name==='Jacket'&&set.jacket))continue;
-   const id=name==='Jacket'&&set.jacket&&set.catalog?set.catalog:choices[n%choices.length];
-   const c=item(id),p=c&&piece(set,c,set.source==='printful'?'White':'Black');if(p)pieces.push({...p,category:name});}
+  const color=set.source==='printful'?'White':'Black',strict=set.source==='printful',pieces=[],used=new Set();
+  if(set.jacket&&set.catalog&&item(set.catalog)){const p=piece(set,item(set.catalog),color);if(p){pieces.push({...p,category:'Jacket'});used.add(set.catalog);}}
+  const lists=OUTFIT_CATEGORIES.filter(([name])=>!score('category',name).low).map(([name,ids])=>{
+   const rot=ids.filter(id=>id!==set.catalog).map((_,k,a)=>a[(k+n)%a.length]);
+   const cand=rot.map(id=>item(id)).filter(Boolean).map(c=>piece(set,c,color)).filter(Boolean).map(p=>({...p,category:name}));
+   return strict?cand.filter(p=>p.ready):cand;});
+  const counted=()=>pieces.filter(p=>!strict||p.ready).length;
+  for(let round=0;counted()<size&&lists.some(l=>l.length>round);round++)
+   for(const l of lists){if(counted()>=size)break;const p=l[round];if(p&&!used.has(p.catalog)){pieces.push(p);used.add(p.catalog);}}
   if(pieces.length<3)return null;
-  return {kind:'outfit',title:`${set.name} full outfit (${pieces.length} items)`,pieces,reason:`Every piece is cut from the ${set.name} set${set.product?` (${set.product})`:''}: front, back, sleeves, hood and pocket go to the matching print area on each item, so the whole outfit reads as one design. Remove any item you don't want before making it.`};
+  return {kind:'outfit',title:`${set.name} full outfit (${pieces.filter(p=>!strict||p.ready).length} items)`,pieces,reason:`Every piece is cut from the ${set.name} set${set.product?` (${set.product})`:''}: front, back, sleeves, hood and pocket go to the matching print area on each item, so the whole outfit reads as one design. Remove any item you don't want before making it.`};
  }
  function compose(set,n){
   if(n%3===0)return outfit(set,n/3,settings().outfitSize);
@@ -324,12 +331,12 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   else if(p==='/dismiss'){for(const id of ids())run("UPDATE idea_set_ideas SET status='dismissed',updated=? WHERE id=? AND status IN ('new','failed','approved')",now(),id);}
   else if(p==='/set'){if(typeof b.id!=='string'||!get('SELECT 1 x FROM idea_sets WHERE id=?',b.id))fail(404,'Design set not found.');run('UPDATE idea_sets SET enabled=? WHERE id=?',b.enabled?1:0,b.id);if(!b.enabled)run("DELETE FROM idea_set_ideas WHERE set_id=? AND status='new'",b.id);}
   else if(p==='/settings'){const n=(v,lo,hi,label)=>Number.isSafeInteger(v)&&v>=lo&&v<=hi?v:fail(400,`${label} must be between ${lo} and ${hi}.`);
-   const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,OUTFIT_CATEGORIES.length,'Items per outfit'),grew=size!==settings().outfitSize;
+   const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,60,'Items per outfit'),grew=size!==settings().outfitSize;
    run('UPDATE idea_settings SET team=?,pool=?,auto_make=?,outfit_size=?,autopilot=?,per_day=? WHERE id=1',n(b.team,1,100,'Idea workers'),n(b.pool,5,500,'Ideas to keep waiting'),b.autoMake?1:0,size,b.autopilot===undefined?settings().autopilot?1:0:b.autopilot?1:0,b.perDay===undefined?settings().perDay:n(b.perDay,1,50,'Outfits per day'));
    if(grew){run("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");generate();}if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
   else if(p==='/piece'){const idea=typeof b.id==='string'&&get("SELECT * FROM idea_set_ideas WHERE id=? AND status IN ('new','failed')",b.id);if(!idea)fail(404,'Idea not found.');
    const pieces=JSON.parse(idea.pieces),left=pieces.filter(x=>x.catalog!==b.catalog);if(left.length===pieces.length)fail(404,'That item is not in this idea.');if(!left.length)fail(400,'An idea needs at least one item. Dismiss it instead.');
-   run("UPDATE idea_set_ideas SET pieces=?,title=?,updated=? WHERE id=?",JSON.stringify(left),idea.kind==='outfit'?idea.title.replace(/\(\d+ items\)$/,`(${left.length} items)`):idea.title,now(),idea.id);}
+   run("UPDATE idea_set_ideas SET pieces=?,title=?,updated=? WHERE id=?",JSON.stringify(left),idea.kind==='outfit'?idea.title.replace(/\(\d+ items\)$/,`(${left.some(x=>x.ready)?left.filter(x=>x.ready).length:left.length} items)`):idea.title,now(),idea.id);}
   else if(p==='/shape'){if(typeof b.artwork!=='string'||!get('SELECT 1 x FROM idea_artwork WHERE artwork=?',b.artwork))fail(404,'Design not found.');if(b.shape!==null&&!SHAPES.some(([id])=>id===b.shape))fail(400,'Choose a design shape.');
    run('UPDATE idea_artwork SET override=? WHERE artwork=?',b.shape,b.artwork);uploadSets();run("DELETE FROM idea_set_ideas WHERE status='new' AND pieces LIKE ?",'%'+b.artwork+'%');}
   else fail(404,'Unknown idea action.');

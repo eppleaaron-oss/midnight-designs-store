@@ -60,10 +60,11 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   assert.equal(outfit.pieces[0].catalog,390,'the outfit starts from the jacket the set came from');
   const jacketOutfits=snap.ideas.filter(i=>i.kind==='outfit'&&sets.get(i.set).jacket);
   assert.ok(jacketOutfits.some(o=>o.pieces.some(p=>p.group==='bottom'&&p.placements.some(x=>/leg/.test(x.area)&&/sleeve/.test(x.part)))),'sleeve art runs down the legs');
-  assert.equal(outfit.pieces.length,14,'one jacket set goes onto as many items as the owner allows');assert.equal(new Set(outfit.pieces.map(p=>p.category)).size,14,'one item per category');
+  assert.equal(outfit.pieces.filter(p=>p.ready).length,14,'one jacket set goes onto as many publishable items as the owner allows');assert.match(outfit.title,/\(14 items\)$/);
+  assert.equal(new Set(outfit.pieces.map(p=>p.catalog)).size,outfit.pieces.length,'no item twice');assert.equal(outfit.pieces[0].why,'Already in your store: this set came from this item.');
   assert.ok(outfit.pieces.find(p=>p.catalog===390).tag,'pieces with a tag print area carry the logo on the tag');
   snap=(await call('/api/owner/ai-factory/ideas/piece',{id:outfit.id,catalog:outfit.pieces[1].catalog})).data;
-  const trimmed=snap.ideas.find(i=>i.id===outfit.id);assert.equal(trimmed.pieces.length,13);assert.match(trimmed.title,/\(13 items\)$/);
+  const trimmed=snap.ideas.find(i=>i.id===outfit.id);assert.equal(trimmed.pieces.length,outfit.pieces.length-1);assert.match(trimmed.title,/\(13 items\)$/);
   outfit.pieces=trimmed.pieces;
   assert.ok(outfit.pieces.some(p=>p.group==='face'));
   assert.ok(snap.ideas.some(i=>i.kind==='product'&&i.pieces[0].catalog!==390));
@@ -73,7 +74,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.equal(jobs.length,outfit.pieces.length);
   for(const j of jobs){assert.match(j.brief,/Design set: Blood Moon Reaper, taken from the store product "Blood Moon Reaper Bomber Jacket"/);assert.ok(j.brief.includes(cdn('jb'))||j.brief.includes(cdn('jf'))||j.brief.includes(cdn('jsl')));assert.ok(!/files\/h[fbh]\.png/.test(j.brief),'no other set is mixed in');assert.match(j.brief,/Base garment color: White/);}
   assert.ok(jobs.every(j=>/Midnight Design logo/.test(j.brief)),'every job puts the logo on the tag');
-  assert.ok(jobs.some(j=>/no part of this set fits here, so fill it with the base color only/.test(j.brief)),'print areas the set has no part for get the base color');
+  assert.ok(jobs.every(j=>!/no part of this set fits here/.test(j.brief)),'Printful outfits only hold items whose every print area is filled');
 
   // Publishing straight to the store: only pieces that are complete go to Printful, with the logo on the tag.
   const fresh=(await call('/api/owner/ai-factory/ideas')).data,pub=fresh.ideas.find(i=>i.kind==='outfit'&&i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.some(p=>p.ready));assert.ok(pub,'a printful outfit has ready pieces');
