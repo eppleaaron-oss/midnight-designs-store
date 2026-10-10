@@ -264,7 +264,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   const same=storePrices.get(catalogId+'|'+size);return same>0?same:Math.max(Math.ceil(cost*1.8)-0.01,Math.ceil(cost)+9.99);
  }
  // What the publisher is doing right now, shown on the AI Made page so a slow or stuck item is visible.
- let blocked=null;// set when Printful refuses the token itself; publishing waits until the token is replaced (a Render env change restarts the server)
+ let blocked=null,blockedAt=0;// set when Printful refuses the token itself; publishing waits until the token is replaced (a Render env change restarts the server)
  const progress={name:null,step:null,since:null,done:0,failed:0,lastError:null,lastErrorAt:null};
  const step=(name,what)=>{progress.name=name;progress.step=what;progress.since=clock();console.log(`[publish] ${name}: ${what}`);};
  const PIECE_LIMIT=pace?150000:5000;
@@ -290,14 +290,14 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
    if(!made.sync_product.id)throw Error('Printful did not return the new product.');
    run("UPDATE idea_made SET printful_id=?,thumb=coalesce(?,thumb),status='published',error=NULL,updated=? WHERE idea=? AND catalog=?",String(made.sync_product.id),made.sync_product.thumbnail_url||null,now(),idea.id,p.catalog);
    progress.done++;console.log(`[publish] ${name}: published as Printful product ${made.sync_product.id}`);
-  })(),name);}catch(e){const msg=String(e.message).slice(0,300);if(e.status===401||e.status===403)blocked=/scope/i.test(msg)?'Your Printful token is not allowed to create products. In Printful make a token with "View and manage store products" (sync_products/write) and put it in PRINTFUL_TOKEN on Render.':'Printful rejected the token ('+msg+'). Put a working token in PRINTFUL_TOKEN on Render.';
+  })(),name);}catch(e){const msg=String(e.message).slice(0,300);if(e.status===401||e.status===403)blockedAt=clock(),blocked=/scope/i.test(msg)?'Your Printful token is not allowed to create products. In Printful make a token with "View and manage store products" (sync_products/write) and put it in PRINTFUL_TOKEN on Render.':'Printful rejected the token ('+msg+'). Put a working token in PRINTFUL_TOKEN on Render.';
    progress.failed++;progress.lastError=`${name}: ${msg}`;progress.lastErrorAt=clock();console.error(`[publish] ${name} failed: ${msg}`);
    const cur=get('SELECT printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);if(!cur?.printful_id)run("UPDATE idea_made SET status='failed',error=?,updated=? WHERE idea=? AND catalog=?",msg,now(),idea.id,p.catalog);}
   return get('SELECT * FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);
  }
  // Publishing runs in the background: pressing Publish only queues the ideas, so a big batch never times out the page.
  let publishing=false,syncAsked=0;
- function queue(ids){if(!env.PRINTFUL_TOKEN)fail(409,'Printful is not connected on the backend, so nothing can be published.');let n=0;for(const id of ids)n+=run("UPDATE idea_set_ideas SET status='queued',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id).changes;return n;}
+ function queue(ids){if(!env.PRINTFUL_TOKEN)fail(409,'Printful is not connected on the backend, so nothing can be published.');blocked=null;let n=0;for(const id of ids)n+=run("UPDATE idea_set_ideas SET status='queued',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id).changes;return n;}
  async function publishOne(id){
   const idea=get('SELECT * FROM idea_set_ideas WHERE id=?',id),set=idea&&get('SELECT * FROM idea_sets WHERE id=?',idea.set_id);
   if(!idea||!set){run("UPDATE idea_set_ideas SET status='failed',error='Its design set is no longer available.',updated=? WHERE id=?",now(),id);return 0;}
@@ -313,6 +313,8 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  async function drain(){
   // A publisher that has shown no progress for five minutes is treated as dead so the queue can move again.
   if(publishing&&progress.since&&clock()-progress.since>5*60000){console.error('[publish] publisher stalled, restarting it');publishing=false;}
+  // After a token refusal, try one item again every two minutes so a replaced token is picked up without anyone pressing anything.
+  if(blocked&&clock()-blockedAt>120000)blocked=null;
   if(publishing||blocked||!env.PRINTFUL_TOKEN)return 0;publishing=true;let count=0;
   try{for(let next;!blocked&&(next=get("SELECT id FROM idea_set_ideas WHERE status='queued' ORDER BY updated,created LIMIT 1"));)count+=await publishOne(next.id);
    if(count&&env.CATALOG_GITHUB_TOKEN&&clock()-syncAsked>10*60000){syncAsked=clock();
@@ -361,7 +363,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   const ids=()=>Array.isArray(b.ids)&&b.ids.length&&b.ids.length<=300&&b.ids.every(x=>typeof x==='string')?b.ids:fail(400,'Choose at least one idea.');
   if(p==='/generate'){generate({force:true});}
   else if(p==='/printful'){limit(req,'factory-ideas-printful',6);await refreshPrintful();generate({force:true});}
-  else if(p==='/publish'){limit(req,'factory-ideas-publish',20);const list=ids();for(const id of list)if(!get("SELECT 1 x FROM idea_set_ideas WHERE id=? AND status IN ('new','failed')",id))fail(409,'Only waiting ideas can be published.');queue(list);const work=drain().catch(e=>console.error('Publishing failed:',e.message));if(b.wait===true)await work;}
+  else if(p==='/publish'){limit(req,'factory-ideas-publish',20);const list=ids();for(const id of list)if(!get("SELECT 1 x FROM idea_set_ideas WHERE id=? AND status IN ('new','failed','queued')",id))fail(409,'Only waiting ideas can be published.');queue(list);const work=drain().catch(e=>console.error('Publishing failed:',e.message));if(b.wait===true)await work;}
   else if(p==='/rate'){if(typeof b.id!=='string')fail(400,'Choose a product.');const r=b.rating===null?null:Number.isInteger(b.rating)&&b.rating>=1&&b.rating<=5?b.rating:fail(400,'Rate from 1 to 5 stars.');rate(b.id,r,typeof b.note==='string'?b.note.slice(0,300):'');}
   else if(p==='/delete'){if(typeof b.id!=='string')fail(400,'Choose a product.');if(b.confirm!==true)fail(400,'Confirm the delete.');await deleteMade(b.id);}
   else if(p==='/approve'){for(const id of ids())run("UPDATE idea_set_ideas SET status='approved',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id);await make();}

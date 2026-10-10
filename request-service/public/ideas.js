@@ -60,7 +60,7 @@ function renderMade(){
  $('madeBadge').textContent=list.length?`${list.filter(m=>m.status==='published').length} published · ${unrated} to rate`+(r.count?` · average ${r.avg.toFixed(1)}★`:''):'Nothing yet';
  const busy=data.ideas.filter(i=>i.status==='queued'||i.status==='publishing').length;
  const pub=data.publisher||{},failed=list.filter(m=>m.status==='failed').length;
- if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done, ${failed} failed. `+(pub.blocked?`Stopped: ${pub.blocked} It starts again by itself after that.`:pub.running&&pub.name?`Now ${pub.step} for ${pub.name} (${pub.seconds}s).`:'Waiting for the publisher to start, it checks every 30 seconds.')+(pub.lastError?` Last problem: ${pub.lastError}`:'');
+ if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done, ${failed} failed. `+(pub.blocked?`Stopped: ${pub.blocked} It tries again by itself every two minutes, or press Start Factory to try right now.`:pub.running&&pub.name?`Now ${pub.step} for ${pub.name} (${pub.seconds}s).`:'Waiting for the publisher to start, it checks every 30 seconds.')+(pub.lastError?` Last problem: ${pub.lastError}`:'');
  else if(/^Publishing in the background/.test($('madeNote').textContent))$('madeNote').textContent='Publishing finished. Rate what came out.';
  const shown=list.filter(m=>madeFilter==='unrated'?m.status!=='failed'&&!m.rating:madeFilter==='rated'?!!m.rating:m.status==='failed');
  $('madeGrid').replaceChildren(...(shown.length?shown.map(m=>{const card=node('article','', 'mx-card');card.dataset.status=m.status;
@@ -86,7 +86,9 @@ $('ideaAll').onclick=()=>{for(const i of shown())if(i.status==='new'||i.status==
 function started(n){render();note(`${n} idea${n===1?'':'s'} sent to your store. Watch them arrive in AI Made.`);$('madeNote').textContent=`Publishing ${n} idea${n===1?'':'s'} in the background. Products appear below one by one, and you can leave this page open or come back later.`;document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
 // Used by Start Factory: publishes the ticked ideas, or every waiting outfit that has ready items when none are ticked.
 window.mdIdeas={async start(){if(!data)await load();if(!data.canPublish)throw Error('Printful is not connected on the backend, so nothing can be published.');
- const ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.some(p=>p.ready)).map(i=>i.id);if(!ids.length)return 0;
+ let ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.some(p=>p.ready)).map(i=>i.id);
+ // Ideas already waiting in line get a fresh push (this also retries right away after a token change).
+ if(!ids.length)ids=data.ideas.filter(i=>i.status==='queued').map(i=>i.id);if(!ids.length)return 0;
  data=await api('ideas/publish',{ids});picked.clear();started(ids.length);return ids.length;}};
 $('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked]});picked.clear();started(n);});
 document.querySelectorAll('#madeTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#madeTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));madeFilter=t.dataset.filter;renderMade();});
