@@ -30,13 +30,14 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
  const products={1:{sync_product:{id:1,name:'Blood Moon Reaper Bomber Jacket'},sync_variants:[{product:{product_id:390},files:[file('front','jf'),file('back','jb'),file('sleeve_left','jsl'),file('sleeve_right','jsr'),file('preview','jprev')]}]},
   2:{sync_product:{id:2,name:'Crimson Throne Recycled Fleece Hoodie'},sync_variants:[{product:{product_id:388},files:[file('front','hf'),file('back','hb'),file('hood','hh')]}]},
   3:{sync_product:{id:3,name:'Mockup only'},sync_variants:[{product:{product_id:328},files:[file('preview','only')]}]}};
- const pfCalls=[],created=[],deleted=[];
+ const pfCalls=[],created=[],deleted=[];let hang=0;
  const service=createService({dbPath:':memory:',origin,storefrontOrigin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),
   runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(files[url.slice(storefrontOrigin.length+1)],{headers:{'Content-Type':'image/png'}})},
   ideaSettings:{pace:0,env:{PRINTFUL_TOKEN:'pf-test',PRINTFUL_STORE_ID:'77'},fetchImpl:async(url,o)=>{if(url.includes('api.printful.com'))pfCalls.push([url,o.headers?.Authorization,o.headers?.['X-PF-Store-Id']]);
   if(url.endsWith('/products.json'))return new Response(JSON.stringify({products:[{id:'55',catalogProductId:328,name:'Other Tee',variants:[{size:'M',price:44.5}]}]}));
   if(/store\/products\/@/.test(url))return new Response('{}',{status:404});
   const cat=/api\.printful\.com\/products\/(\d+)$/.exec(url);if(cat)return new Response(JSON.stringify({result:{variants:['S','M','L'].map((size,k)=>({id:Number(cat[1])*10+k,size,color:'White',price:'20.00',in_stock:true}))}}));
+  if(o.method==='POST'&&url.endsWith('/store/products')&&hang){hang--;return new Promise(()=>{});}
   if(o.method==='POST'&&url.endsWith('/store/products')){created.push(JSON.parse(o.body));return new Response(JSON.stringify({result:{id:9000+created.length}}));}
   if(o.method==='DELETE'){deleted.push(url);return new Response('{}');}
   const m=/store\/products\/(\d+)$/.exec(url);return new Response(JSON.stringify({result:m?products[m[1]]:Object.values(products).map(p=>({id:p.sync_product.id,name:p.sync_product.name}))}));}}});
@@ -88,6 +89,11 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   const item=snap.made[0];snap=(await call('/api/owner/ai-factory/ideas/rate',{id:item.id,rating:5,note:'Clean'})).data;assert.equal(snap.made.find(m=>m.id===item.id).rating,5);assert.equal(snap.ratings.count,1);
   assert.equal((await call('/api/owner/ai-factory/ideas/delete',{id:item.id})).status,400);
   snap=(await call('/api/owner/ai-factory/ideas/delete',{id:item.id,confirm:true})).data;assert.ok(!snap.made.some(m=>m.id===item.id));assert.equal(deleted.length,1);
+  // A Printful call that never answers fails that one item with a reason and the rest still publish.
+  const next=snap.ideas.find(i=>i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.filter(p=>p.ready).length>1);assert.ok(next,'another publishable outfit');
+  hang=1;const before=created.length;snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[next.id],wait:true})).data;snap=(await call('/api/owner/ai-factory/ideas')).data;
+  const stuck=snap.made.filter(m=>m.status==='failed'&&/did not answer in time/.test(m.error||''));assert.equal(stuck.length,1,'the hung item times out');
+  assert.equal(created.length-before,next.pieces.filter(p=>p.ready).length-1,'the rest of the outfit still publishes');assert.match(snap.publisher.lastError,/did not answer in time/);assert.equal(snap.publisher.running,false);
 
   const raven=snap.sets.find(s=>s.source==='upload');snap=(await call('/api/owner/ai-factory/ideas/set',{id:raven.id,enabled:false})).data;
   assert.ok(!snap.sets.some(s=>s.id===raven.id));assert.ok(!snap.ideas.some(i=>i.set===raven.id&&i.status==='new'));

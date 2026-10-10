@@ -110,6 +110,8 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  db.exec(`CREATE TABLE IF NOT EXISTS idea_made(id TEXT PRIMARY KEY,idea TEXT NOT NULL,set_id TEXT NOT NULL,set_name TEXT NOT NULL,catalog INTEGER NOT NULL,category TEXT,name TEXT NOT NULL,printful_id TEXT,status TEXT NOT NULL,error TEXT,prices TEXT,thumb TEXT,rating INTEGER,note TEXT NOT NULL DEFAULT '',created TEXT NOT NULL,updated TEXT NOT NULL,UNIQUE(idea,catalog))`);
  if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='autopilot')){db.exec('ALTER TABLE idea_settings ADD COLUMN autopilot INTEGER NOT NULL DEFAULT 1');db.exec('ALTER TABLE idea_settings ADD COLUMN per_day INTEGER NOT NULL DEFAULT 2');db.exec("DELETE FROM idea_set_ideas WHERE status='new'");}
  db.exec("UPDATE idea_set_ideas SET status='queued' WHERE status='publishing'");
+ // An item that was mid-publish when the server stopped is retried, not left saying Publishing forever.
+ db.exec("UPDATE idea_made SET status='failed',error='The server restarted while this was publishing. It is retried automatically.' WHERE status='creating' AND printful_id IS NULL");
  db.exec('CREATE TABLE IF NOT EXISTS idea_migrations(name TEXT PRIMARY KEY)');
  if(!db.prepare("SELECT 1 x FROM idea_migrations WHERE name='outfit-rounds'").get()){db.exec("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");db.exec("INSERT INTO idea_migrations VALUES('outfit-rounds')");}
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
@@ -260,24 +262,34 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   if(!storePrices){storePrices=new Map();try{const r=await fetchImpl(storefrontOrigin+'/products.json',{signal:AbortSignal.timeout(10000)});if(r.ok)for(const p of (await r.json()).products||[])for(const v of p.variants||[])storePrices.set(p.catalogProductId+'|'+v.size,Math.max(storePrices.get(p.catalogProductId+'|'+v.size)||0,Number(v.price)||0));}catch{}}
   const same=storePrices.get(catalogId+'|'+size);return same>0?same:Math.max(Math.ceil(cost*1.8)-0.01,Math.ceil(cost)+9.99);
  }
+ // What the publisher is doing right now, shown on the AI Made page so a slow or stuck item is visible.
+ const progress={name:null,step:null,since:null,done:0,failed:0,lastError:null,lastErrorAt:null};
+ const step=(name,what)=>{progress.name=name;progress.step=what;progress.since=clock();console.log(`[publish] ${name}: ${what}`);};
+ const PIECE_LIMIT=pace?150000:5000;
+ function watchdog(promise,name){let t;return Promise.race([promise,new Promise((_,no)=>{t=setTimeout(()=>no(Error(`Printful did not answer in time while ${progress.step||'publishing'}. It will be retried on the next publish.`)),PIECE_LIMIT);t.unref?.();})]).finally(()=>clearTimeout(t));}
  async function publishPiece(idea,set,p){
   const key=idea.id+':'+p.catalog,row=get('SELECT * FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);if(row?.printful_id)return row;
   const external=('md-ai-'+createHash('sha256').update(key).digest('hex')).slice(0,32),name=`${set.name} ${p.label}`.replace(/\s+/g,' ').slice(0,120),t=now();
   if(!row)run("INSERT INTO idea_made(id,idea,set_id,set_name,catalog,category,name,status,created,updated) VALUES(?,?,?,?,?,?,?,'creating',?,?)",randomUUID(),idea.id,set.id,set.name,p.catalog,p.category||p.group,name,t,t);
-  try{
+  else run("UPDATE idea_made SET status='creating',error=NULL,updated=? WHERE idea=? AND catalog=?",t,idea.id,p.catalog);
+  try{await watchdog((async()=>{
+   step(name,'checking whether it already exists in Printful');
    let made=await pfCall('store/products/@'+external);
    if(!made?.sync_product){
+    step(name,'reading sizes and prices from Printful');
     const variants=await catalogVariants(p.catalog),bySize=new Map();for(const v of variants){const k=v.size||v.name;if(!bySize.has(k)||/white/i.test(v.color||''))bySize.set(k,v);}
     if(!bySize.size)throw Error('Printful has no in-stock sizes for this item.');
     const logo=storefrontOrigin+LABEL_LOGO_PATH,files=[...p.placements.map(x=>({type:x.area,url:x.url})),...(p.tag?[{type:p.tag,url:logo}]:[])],prices={};
     const sync_variants=[];for(const [size,v] of bySize){const price=await priceFor(p.catalog,size,Number(v.price)||30);prices[size]=price;sync_variants.push({variant_id:v.id,retail_price:price.toFixed(2),files});}
     // Printful allows about 120 calls a minute; pace the creates and wait out a rate limit once.
     const create=()=>pfCall('store/products',{method:'POST',body:JSON.stringify({sync_product:{external_id:external,name},sync_variants:sync_variants.slice(0,20)})});
-    await sleep(pace);let r;try{r=await create();}catch(e){if(e.status!==429)throw e;await sleep(pace?60000:0);r=await create();}
+    await sleep(pace);step(name,'creating the product in Printful');let r;try{r=await create();}catch(e){if(e.status!==429)throw e;step(name,'waiting a minute because Printful asked to slow down');await sleep(pace?60000:0);step(name,'creating the product in Printful (second try)');r=await create();}
     made={sync_product:{id:r?.id,thumbnail_url:r?.thumbnail_url||null}};run('UPDATE idea_made SET prices=? WHERE idea=? AND catalog=?',JSON.stringify(prices),idea.id,p.catalog);}
    if(!made.sync_product.id)throw Error('Printful did not return the new product.');
    run("UPDATE idea_made SET printful_id=?,thumb=coalesce(?,thumb),status='published',error=NULL,updated=? WHERE idea=? AND catalog=?",String(made.sync_product.id),made.sync_product.thumbnail_url||null,now(),idea.id,p.catalog);
-  }catch(e){run("UPDATE idea_made SET status='failed',error=?,updated=? WHERE idea=? AND catalog=?",String(e.message).slice(0,300),now(),idea.id,p.catalog);}
+   progress.done++;console.log(`[publish] ${name}: published as Printful product ${made.sync_product.id}`);
+  })(),name);}catch(e){const msg=String(e.message).slice(0,300);progress.failed++;progress.lastError=`${name}: ${msg}`;progress.lastErrorAt=clock();console.error(`[publish] ${name} failed: ${msg}`);
+   const cur=get('SELECT printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);if(!cur?.printful_id)run("UPDATE idea_made SET status='failed',error=?,updated=? WHERE idea=? AND catalog=?",msg,now(),idea.id,p.catalog);}
   return get('SELECT * FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);
  }
  // Publishing runs in the background: pressing Publish only queues the ideas, so a big batch never times out the page.
@@ -295,11 +307,13 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   return ok;
  }
  async function drain(){
+  // A publisher that has shown no progress for five minutes is treated as dead so the queue can move again.
+  if(publishing&&progress.since&&clock()-progress.since>5*60000){console.error('[publish] publisher stalled, restarting it');publishing=false;}
   if(publishing||!env.PRINTFUL_TOKEN)return 0;publishing=true;let count=0;
   try{for(let next;(next=get("SELECT id FROM idea_set_ideas WHERE status='queued' ORDER BY updated,created LIMIT 1"));)count+=await publishOne(next.id);
    if(count&&env.CATALOG_GITHUB_TOKEN&&clock()-syncAsked>10*60000){syncAsked=clock();
     await fetchImpl('https://api.github.com/repos/eppleaaron-oss/midnight-designs-store/actions/workflows/sync-printful.yml/dispatches',{method:'POST',headers:{Authorization:'Bearer '+env.CATALOG_GITHUB_TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({ref:'main'}),signal:AbortSignal.timeout(20000)}).catch(()=>{});}
-  }finally{publishing=false;}
+  }finally{publishing=false;progress.name=progress.step=progress.since=null;}
   return count;
  }
  const publishIdeas=async ids=>{queue(ids);return drain();};
@@ -332,6 +346,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
    sets:sets().map(s=>({id:s.id,source:s.source,name:s.name,product:s.product,jacket:s.jacket,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{thumb:v.thumb,name:v.name}]))})),
    designs:designs().map(d=>({id:d.id,name:d.name,collection:d.collection,shape:d.shape,detected:d.detected,override:!!d.override,reason:d.reason,url:'/api/owner/ai-factory/artwork/'+d.id+'/file'})),
    made:madeList(),ratings:{count:get('SELECT count(rating) n FROM idea_made WHERE rating IS NOT NULL').n,avg:get('SELECT avg(rating) a FROM idea_made WHERE rating IS NOT NULL').a},canPublish:!!env.PRINTFUL_TOKEN,
+   publisher:{running:publishing,name:progress.name,step:progress.step,seconds:progress.since?Math.round((clock()-progress.since)/1000):null,done:progress.done,failed:progress.failed,lastError:progress.lastError},
    ideas:ideas.map(i=>({id:i.id,set:i.set_id,kind:i.kind,title:i.title,pieces:JSON.parse(i.pieces).map(p=>({...p,placements:p.placements.map(({url,...x})=>x)})),reason:i.reason,status:i.status,error:i.error,jobs:JSON.parse(i.jobs).filter(Boolean).length,created:i.created}))};
  }
 

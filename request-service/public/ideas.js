@@ -59,11 +59,12 @@ function renderMade(){
  const list=data.made||[],unrated=list.filter(m=>m.status==='published'&&!m.rating).length,r=data.ratings;
  $('madeBadge').textContent=list.length?`${list.filter(m=>m.status==='published').length} published · ${unrated} to rate`+(r.count?` · average ${r.avg.toFixed(1)}★`:''):'Nothing yet';
  const busy=data.ideas.filter(i=>i.status==='queued'||i.status==='publishing').length;
- if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done so far.`;
+ const pub=data.publisher||{},failed=list.filter(m=>m.status==='failed').length;
+ if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done, ${failed} failed. `+(pub.running&&pub.name?`Now ${pub.step} for ${pub.name} (${pub.seconds}s).`:'Waiting for the publisher to start, it checks every 30 seconds.')+(pub.lastError?` Last problem: ${pub.lastError}`:'');
  else if(/^Publishing in the background/.test($('madeNote').textContent))$('madeNote').textContent='Publishing finished. Rate what came out.';
  const shown=list.filter(m=>madeFilter==='unrated'?m.status!=='failed'&&!m.rating:madeFilter==='rated'?!!m.rating:m.status==='failed');
  $('madeGrid').replaceChildren(...(shown.length?shown.map(m=>{const card=node('article','', 'mx-card');card.dataset.status=m.status;
-  if(m.thumb){const img=node('img');img.src=m.thumb;img.alt=m.name;img.loading='lazy';img.referrerPolicy='no-referrer';card.append(img);}else card.append(node('div',m.status==='failed'?'Not published':m.status==='creating'?'Publishing…':'Printful is making the mockup. It shows here in a minute or two.','mx-wait'));
+  if(m.thumb){const img=node('img');img.src=m.thumb;img.alt=m.name;img.loading='lazy';img.referrerPolicy='no-referrer';card.append(img);}else card.append(node('div',m.status==='failed'?'Not published':m.status==='creating'?(data.publisher?.name===m.name?`Publishing: ${data.publisher.step} (${data.publisher.seconds}s)`:'Publishing…'):'Printful is making the mockup. It shows here in a minute or two.','mx-wait'));
   card.append(node('strong',m.name),node('p',`${m.category||''} · design set ${m.set}`,'fx-sublabel'));
   if(m.prices){const v=Object.values(m.prices);card.append(node('p',`Price $${Math.min(...v).toFixed(2)}${Math.max(...v)!==Math.min(...v)?'–$'+Math.max(...v).toFixed(2):''} · ${v.length} sizes`,'fx-sublabel'));}
   if(m.error)card.append(node('p',m.error,'fx-warn'));
