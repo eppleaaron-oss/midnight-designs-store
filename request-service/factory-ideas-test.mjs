@@ -1,5 +1,5 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {scryptSync} from 'node:crypto';import {deflateSync} from 'node:zlib';
-import {createService} from './server.mjs';import {imageInfo,classify,PLANS} from './factory-ideas.mjs';import {storeAudit} from './factory-audit.mjs';
+import {createService} from './server.mjs';import {imageInfo,classify,PLANS,ideaPrice} from './factory-ideas.mjs';import {storeAudit} from './factory-audit.mjs';
 
 // Minimal RGBA PNG: an opaque rectangle (x,y,w,h) on a transparent canvas, optionally with holes every few pixels.
 function png(W,H,[x,y,w,h],sparse=false){
@@ -21,6 +21,13 @@ test('design shapes come from the visible pixels, not the canvas',()=>{
  assert.equal(classify(null).shape,'full');
 });
 
+test('idea pricing holds unknown costs and keeps old store prices above the base-cost floor',()=>{
+ assert.equal(ideaPrice(20),35.99);
+ assert.equal(ideaPrice(20,10),35.99);
+ assert.equal(ideaPrice(20,44.50),44.50);
+ for(const cost of [NaN,Infinity,0,-1])assert.throws(()=>ideaPrice(cost,50),/Pricing hold/);
+});
+
 test('outfits reuse one design set from the store jackets, mapped onto real all-over-print areas',async()=>{
  const origin='http://localhost:3000',storefrontOrigin='https://midnight-designs.store',salt='ab'.repeat(16),password='ideas-test-password-1';
  const files={'a/back.png':full,'a/front.png':full,'a/sleeve.png':strip,'a/mark.png':emblem};
@@ -34,6 +41,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
  const service=createService({dbPath:':memory:',origin,storefrontOrigin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),
   runSettings:{fetchImpl:async url=>url.endsWith('/designs.json')?new Response(JSON.stringify(designs)):new Response(files[url.slice(storefrontOrigin.length+1)],{headers:{'Content-Type':'image/png'}})},
   ideaSettings:{pace:0,env:{PRINTFUL_TOKEN:'pf-test',PRINTFUL_STORE_ID:'77'},fetchImpl:async(url,o)=>{if(url.includes('api.printful.com'))pfCalls.push([url,o.headers?.Authorization,o.headers?.['X-PF-Store-Id']]);
+  if(url.endsWith('/oauth/scopes'))return new Response(JSON.stringify({result:{scopes:[{scope:noScope?'sync_products/read':'sync_products'}]}}));
   if(url.endsWith('/products.json'))return new Response(JSON.stringify({products:[{id:'55',catalogProductId:328,name:'Other Tee',variants:[{size:'M',price:44.5}]}]}));
   if(/store\/products\/@/.test(url))return new Response('{}',{status:404});
   const cat=/api\.printful\.com\/products\/(\d+)$/.exec(url);if(cat)return new Response(JSON.stringify({result:{variants:['S','M','L'].map((size,k)=>({id:Number(cat[1])*10+k,size,color:'White',price:'20.00',in_stock:true}))}}));
@@ -50,7 +58,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   assert.equal((await call('/api/owner/ai-factory/runs/import',{ids:designs.map(d=>d.id)})).data.imported.length,5);
   assert.equal((await call('/api/owner/ai-factory/ideas/settings',{team:12,pool:30,autoMake:false})).status,200);
   let snap=(await call('/api/owner/ai-factory/ideas/printful',{})).data;
-  assert.equal(snap.printful.state,'connected');assert.ok(pfCalls.every(([,a,s])=>a==='Bearer pf-test'&&s==='77'));
+  assert.equal(snap.printful.state,'connected');assert.equal(snap.access.state,'ready');assert.deepEqual(snap.access.scopes,['sync_products']);assert.ok(pfCalls.every(([,a,s])=>a==='Bearer pf-test'&&s==='77'));
   assert.deepEqual(snap.sets.map(s=>[s.name,s.jacket,s.source]),[['Blood Moon Reaper',true,'printful'],['Crimson Throne',false,'printful'],['Raven Set',false,'upload']]);
   assert.deepEqual(Object.keys(snap.sets[0].parts).sort(),['back','front','sleeve_left','sleeve_right']);
   assert.deepEqual(Object.keys(snap.sets[2].parts).sort(),['back','front','pocket','sleeve_left','sleeve_right'],'an uploaded collection splits into parts by shape');
@@ -94,11 +102,11 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   const next=snap.ideas.find(i=>i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.filter(p=>p.ready).length>1);assert.ok(next,'another publishable outfit');
   hang=1;const before=created.length;snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[next.id],wait:true})).data;snap=(await call('/api/owner/ai-factory/ideas')).data;
   const stuck=snap.made.filter(m=>m.status==='failed'&&/did not answer in time/.test(m.error||''));assert.equal(stuck.length,1,'the hung item times out');
-  assert.equal(created.length-before,next.pieces.filter(p=>p.ready).length-1,'the rest of the outfit still publishes');assert.match(snap.publisher.lastError,/did not answer in time/);assert.equal(snap.publisher.running,false);
+  assert.equal(created.length-before,next.pieces.filter(p=>p.ready).length-1,'the rest of the outfit still publishes');assert.match(snap.publisher.lastError,/did not answer in time/);assert.equal(snap.publisher.running,false);assert.equal(snap.ideas.find(i=>i.id===next.id).status,'failed','a partly failed outfit remains retryable');assert.equal(snap.publisher.publishedCount,created.length-deleted.length,'totals come from published products');
   // A token without write access stops publishing after the first refusal and keeps the outfit in line.
   const third=snap.ideas.find(i=>i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.filter(p=>p.ready).length>1);assert.ok(third,'a third outfit');
   noScope=true;const failedBefore=snap.made.filter(m=>m.status==='failed').length;await call('/api/owner/ai-factory/ideas/publish',{ids:[third.id],wait:true});snap=(await call('/api/owner/ai-factory/ideas')).data;
-  assert.equal(snap.made.filter(m=>m.status==='failed').length-failedBefore,1,'only one item tries before it stops');assert.match(snap.publisher.blocked,/View and manage store products/);
+  assert.equal(snap.made.filter(m=>m.status==='failed').length-failedBefore,0,'permission check stops before any product creation');assert.match(snap.publisher.blocked,/View and manage store products/);
   assert.equal(snap.ideas.find(i=>i.id===third.id).status,'queued','the outfit waits for a working token');
 
   const raven=snap.sets.find(s=>s.source==='upload');snap=(await call('/api/owner/ai-factory/ideas/set',{id:raven.id,enabled:false})).data;
