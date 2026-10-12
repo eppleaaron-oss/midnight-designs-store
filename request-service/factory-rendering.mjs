@@ -1,4 +1,5 @@
 import sharp from 'sharp';
+import {readFileSync} from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
 
 const MAX_PIXELS=40_000_000,MAX_FILE=25*1024*1024;
@@ -52,7 +53,7 @@ export async function renderArea(area,source,recipe={},permissions={}){
  return {data,width,height,effectiveDpi,sha256:hash(data)};
 }
 
-export function factoryRendering({db,auth,body,send,fail,limit,origin}){
+export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON.parse(readFileSync(new URL('../printful-plans.json',import.meta.url),'utf8'))}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_render_plans(job TEXT PRIMARY KEY,plan TEXT NOT NULL,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_files(file TEXT PRIMARY KEY,signature TEXT NOT NULL,recipe TEXT NOT NULL,source_sha TEXT,created TEXT NOT NULL);`);
  const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString();let busy=false;
@@ -102,7 +103,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin}){
   const row=get('SELECT plan FROM factory_render_plans WHERE job=?',job);if(!row)return null;const plan=JSON.parse(row.plan);if(plan.continueAcrossPanels)error('Cross-panel continuity needs a reviewed layout. Switch off Continue artwork across panels for independent-area rendering.');
   const selection=JSON.parse(get('SELECT selection FROM factory_job_audiences WHERE job=?',job)?.selection||'null');
   const ids=JSON.parse(get('SELECT templates FROM factory_job_profiles WHERE job=?',job)?.templates||'[]');if(!ids.length)error('Assign a product and exact native-area blueprints before rendering.');
-  const requests=ids.map(id=>{const draft=get('SELECT * FROM factory_print_drafts WHERE id=?',id);if(!draft||draft.product!==selection?.product)error('Saved blueprints do not match the selected product.');
+  const requests=ids.map(id=>{const draft=get('SELECT * FROM factory_print_drafts WHERE id=?',id);if(!draft||draft.product!==selection?.product)error('Saved blueprints do not match the selected product.');if(!/all-over print/i.test(plans.products?.[draft.product]?.name||''))error('Automatic garment fill requires a verified all-over-print product. For other garments, select the actual fabric color and review its print-area files.');
    const placements={};for(const a of JSON.parse(draft.areas)){const match=plan.assignments.find(p=>p.zone===zone(a.placement));if(!match)error('No explicit artwork or empty-placement decision for '+a.placement+'. Review the garment placement plan.');
     placements[a.placement]={artworkId:match.artworkId,fillOnly:!match.artworkId,fit:plan.fit,mirror:plan.mirrorSleeves&&zone(a.placement)==='sleeve_right'&&plan.assignments.find(p=>p.zone==='sleeve_left')?.artworkId===match.artworkId};}
    return {draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};});
