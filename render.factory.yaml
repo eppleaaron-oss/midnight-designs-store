@@ -2,18 +2,24 @@
 # Existing backend: midnight-designs-backend (srv-db39ivqd0e5s73fioc10).
 # Backend env: DATA_PATH=/var/data/requests.sqlite, FACTORY_DISK_MOUNT=/var/data,
 # FACTORY_WORKER_TOKEN=<same random backend-only secret as worker>.
+# Optional backend-only AI layout: OPENAI_API_KEY, FACTORY_AI_MODEL,
+# FACTORY_AI_INPUT_CENTS_PER_MILLION, FACTORY_AI_OUTPUT_CENTS_PER_MILLION,
+# FACTORY_AI_MAX_JOB_CENTS. Keep these off the worker and storefront.
+# For larger outfit runs, backend FACTORY_PRINT_STORAGE_MB=3072 and
+# FACTORY_MAX_PRINT_FILES=8192 require enough persistent disk capacity (plan 5 GB).
+# Native raster rendering runs on the backend; size its memory for your real blueprints.
 services:
   - type: worker
     name: midnight-designs-factory-worker
     runtime: node
     region: oregon
-    plan: starter
+    plan: 0.5c-512mb
     repo: https://github.com/eppleaaron-oss/midnight-designs-store
     branch: main
     buildCommand: npm ci --prefix request-service && npm test --prefix request-service
     startCommand: node request-service/factory-worker.mjs
     maxShutdownDelaySeconds: 90
-    autoDeployTrigger: off
+    autoDeployTrigger: "off"
     envVars:
       - key: FACTORY_BACKEND_URL
         value: https://midnight-designs-backend.onrender.com

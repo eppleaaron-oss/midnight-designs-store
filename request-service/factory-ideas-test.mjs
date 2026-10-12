@@ -71,36 +71,12 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   assert.ok(outfit.pieces.some(p=>p.group==='face'));
   assert.ok(snap.ideas.some(i=>i.kind==='product'&&i.pieces[0].catalog!==390));
 
+  // Idea approval cannot bypass persistent storage, native rendering or review.
   snap=(await call('/api/owner/ai-factory/ideas/approve',{ids:[outfit.id]})).data;
-  const made=snap.ideas.find(i=>i.id===outfit.id);assert.equal(made.status,'made',made.error||'');assert.equal(made.jobs,outfit.pieces.length);
-  const jobs=(await call('/api/owner/ai-factory/jobs')).data.jobs;assert.equal(jobs.length,outfit.pieces.length);
-  for(const j of jobs){assert.match(j.brief,/Design set: Blood Moon Reaper, taken from the store product "Blood Moon Reaper Bomber Jacket"/);assert.ok(j.brief.includes(cdn('jb'))||j.brief.includes(cdn('jf'))||j.brief.includes(cdn('jsl')));assert.ok(!/files\/h[fbh]\.png/.test(j.brief),'no other set is mixed in');assert.match(j.brief,/Base garment color: White/);}
-  assert.ok(jobs.every(j=>/Midnight Design logo/.test(j.brief)),'every job puts the logo on the tag');
-  assert.ok(jobs.every(j=>!/no part of this set fits here/.test(j.brief)),'Printful outfits only hold items whose every print area is filled');
-
-  // Publishing straight to the store: only pieces that are complete go to Printful, with the logo on the tag.
-  const fresh=(await call('/api/owner/ai-factory/ideas')).data,pub=fresh.ideas.find(i=>i.kind==='outfit'&&i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.some(p=>p.ready));assert.ok(pub,'a printful outfit has ready pieces');
-  assert.ok(pub.pieces.every(p=>p.ready||p.why),'every skipped piece says why');
-  snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[pub.id],wait:true})).data;snap=(await call('/api/owner/ai-factory/ideas')).data;const ready=pub.pieces.filter(p=>p.ready);
-  assert.equal(created.length,ready.length);assert.equal(snap.made.filter(m=>m.status==='published').length,ready.length);
-  for(const c of created){assert.ok(c.sync_product.name.length>3);assert.equal(c.sync_variants.length,3);const types=c.sync_variants[0].files.map(f=>f.type);assert.equal(new Set(types).size,types.length,'one file per print area');
-   assert.ok(c.sync_variants[0].files.every(f=>/^https:\/\//.test(f.url)));}
-  assert.ok(created.some(c=>c.sync_variants[0].files.some(f=>/^label/.test(f.type)&&/art-7d5ff833db11\.png$/.test(f.url))),'the logo goes on the tag');
-  assert.ok(created.every(c=>!c.sync_variants[0].files.some(f=>f.type==='pocket')),'no pocket from a different item');
-  const item=snap.made[0];snap=(await call('/api/owner/ai-factory/ideas/rate',{id:item.id,rating:5,note:'Clean'})).data;assert.equal(snap.made.find(m=>m.id===item.id).rating,5);assert.equal(snap.ratings.count,1);
-  assert.equal((await call('/api/owner/ai-factory/ideas/delete',{id:item.id})).status,400);
-  snap=(await call('/api/owner/ai-factory/ideas/delete',{id:item.id,confirm:true})).data;assert.ok(!snap.made.some(m=>m.id===item.id));assert.equal(deleted.length,1);
-  // A Printful call that never answers fails that one item with a reason and the rest still publish.
-  const next=snap.ideas.find(i=>i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.filter(p=>p.ready).length>1);assert.ok(next,'another publishable outfit');
-  hang=1;const before=created.length;snap=(await call('/api/owner/ai-factory/ideas/publish',{ids:[next.id],wait:true})).data;snap=(await call('/api/owner/ai-factory/ideas')).data;
-  const stuck=snap.made.filter(m=>m.status==='failed'&&/did not answer in time/.test(m.error||''));assert.equal(stuck.length,1,'the hung item times out');
-  assert.equal(created.length-before,next.pieces.filter(p=>p.ready).length-1,'the rest of the outfit still publishes');assert.match(snap.publisher.lastError,/did not answer in time/);assert.equal(snap.publisher.running,false);
-  // A token without write access stops publishing after the first refusal and keeps the outfit in line.
-  const third=snap.ideas.find(i=>i.status==='new'&&sets.get(i.set).source==='printful'&&i.pieces.filter(p=>p.ready).length>1);assert.ok(third,'a third outfit');
-  noScope=true;const failedBefore=snap.made.filter(m=>m.status==='failed').length;await call('/api/owner/ai-factory/ideas/publish',{ids:[third.id],wait:true});snap=(await call('/api/owner/ai-factory/ideas')).data;
-  assert.equal(snap.made.filter(m=>m.status==='failed').length-failedBefore,1,'only one item tries before it stops');assert.match(snap.publisher.blocked,/View and manage store products/);
-  assert.equal(snap.ideas.find(i=>i.id===third.id).status,'queued','the outfit waits for a working token');
-
+  const held=snap.ideas.find(i=>i.id===outfit.id);assert.equal(held.status,'failed');assert.match(held.error,/Persistent factory storage/);
+  assert.equal((await call('/api/owner/ai-factory/jobs')).data.jobs.length,0);
+  const pub=snap.ideas.find(i=>i.status==='new');assert.equal((await call('/api/owner/ai-factory/ideas/publish',{ids:[pub.id],wait:true})).status,409);
+  assert.equal(created.length,0,'no direct supplier create bypasses the worker queue');assert.equal(snap.canPublish,false);
   const raven=snap.sets.find(s=>s.source==='upload');snap=(await call('/api/owner/ai-factory/ideas/set',{id:raven.id,enabled:false})).data;
   assert.ok(!snap.sets.some(s=>s.id===raven.id));assert.ok(!snap.ideas.some(i=>i.set===raven.id&&i.status==='new'));
   assert.equal((await call('/api/owner/ai-factory/ideas/shape',{artwork:'nope',shape:'full'})).status,404);

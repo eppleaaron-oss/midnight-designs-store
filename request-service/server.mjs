@@ -1,3 +1,5 @@
+import {factoryArtworkEngine} from './factory-artwork-engine.mjs';
+import {factoryWorkflow} from './factory-workflow.mjs';
 import {factoryRendering} from './factory-rendering.mjs';
 import {factoryHistory} from './factory-history.mjs';
 import {factoryRuns} from './factory-runs.mjs';
@@ -31,7 +33,7 @@ export const STATUSES=['New','Reviewing','Designing','Customer Review','Revision
 const hash=s=>createHash('sha256').update(s).digest('hex'),token=()=>randomBytes(32).toString('hex'),now=()=>new Date().toISOString();
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 const str=(v,max=6000,required=false)=>{if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Invalid or missing field.');return v.trim();};
-export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={},outfitSettings={},productionSettings={},publishingSettings={},runSettings={},intelligenceSettings={},ideaSettings={},auditSettings={}}){
+export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={},outfitSettings={},productionSettings={},publishingSettings={},runSettings={},intelligenceSettings={},ideaSettings={},auditSettings={},artworkEngineSettings={},workflowSettings={}}){
  const designs=new Map(designCatalog.filter(d=>d.kind!=='reference').map(d=>[d.id,d]));const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
  if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
  if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
@@ -64,7 +66,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader});
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
  const blueprintHandler=factoryBlueprints({...blueprintSettings,db,auth,body,send,fail,limit,origin});
- const artworkHandler=factoryArtwork({db,auth,body,send,fail,limit,origin});
+ const artworkHandler=factoryArtwork({plans:blueprintSettings.plans,db,auth,body,send,fail,limit,origin});
  const factoryHandler=factoryManager({...factorySettings,db,auth,body,send,fail,limit,origin});
  const productionHandler=factoryProduction({storageDurable:durableQueueStorage(dbPath),...productionSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setProduction(productionHandler);
  const supportHandler=factorySupport({db,auth,body,send,fail,limit,origin});factoryHandler.setSupport(supportHandler);productionHandler.setSupport(supportHandler);
@@ -72,10 +74,12 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const publishingHandler=factoryPublishing({storageDurable:durableQueueStorage(dbPath),...publishingSettings,db,auth,body,send,fail,limit,origin,manager:factoryHandler,pricing:pricingHandler});productionHandler.setPublishing(publishingHandler);
  const employeeHandler=factoryEmployees({db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setEmployees(employeeHandler);supportHandler.setEmployees(employeeHandler);productionHandler.setEmployees(employeeHandler);
  const outfitHandler=factoryOutfits({...outfitSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin,storefrontOrigin});
- const renderingHandler=factoryRendering({db,auth,body,send,fail,limit,origin,plans:blueprintSettings.plans});productionHandler.setRendering(renderingHandler);
+ const artworkEngine=factoryArtworkEngine({db,...artworkEngineSettings});productionHandler.setArtworkEngine(artworkEngine);
+ const renderingHandler=factoryRendering({artworkEngine,db,auth,body,send,fail,limit,origin,plans:blueprintSettings.plans});productionHandler.setRendering(renderingHandler);
  const historyHandler=factoryHistory({db,auth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler});
  const intelligenceHandler=factoryIntelligence({storageDurable:durableQueueStorage(dbPath),storefrontOrigin,...intelligenceSettings,db,auth,body,send,fail,limit,origin,passwordHash});
- const ideasHandler=factoryIdeas({storefrontOrigin,...ideaSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler});
+ const workflow=factoryWorkflow({storageDurable:durableQueueStorage(dbPath),...workflowSettings,db,manager:factoryHandler,blueprints:blueprintHandler,artwork:artworkHandler,rendering:renderingHandler,publishing:publishingHandler});
+ const ideasHandler=factoryIdeas({workflow,publishingEngine:publishingHandler,storefrontOrigin,...ideaSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler});
  const auditHandler=factoryAudit({storefrontOrigin,...auditSettings,ideas:ideasHandler,db,auth,body,send,fail,limit,origin});
  const runsHandler=factoryRuns({...runSettings,rendering:renderingHandler,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler,artwork:artworkHandler,storefrontOrigin});
  const startedAt=new Date().toISOString();
