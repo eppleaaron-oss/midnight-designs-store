@@ -1,3 +1,4 @@
+import {factoryRendering} from './factory-rendering.mjs';
 import {factoryHistory} from './factory-history.mjs';
 import {factoryRuns} from './factory-runs.mjs';
 import {factoryIntelligence} from './factory-intelligence.mjs';
@@ -71,11 +72,12 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const publishingHandler=factoryPublishing({storageDurable:durableQueueStorage(dbPath),...publishingSettings,db,auth,body,send,fail,limit,origin,manager:factoryHandler,pricing:pricingHandler});productionHandler.setPublishing(publishingHandler);
  const employeeHandler=factoryEmployees({db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setEmployees(employeeHandler);supportHandler.setEmployees(employeeHandler);productionHandler.setEmployees(employeeHandler);
  const outfitHandler=factoryOutfits({...outfitSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin,storefrontOrigin});
+ const renderingHandler=factoryRendering({db,auth,body,send,fail,limit,origin});productionHandler.setRendering(renderingHandler);
  const historyHandler=factoryHistory({db,auth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler});
  const intelligenceHandler=factoryIntelligence({storageDurable:durableQueueStorage(dbPath),storefrontOrigin,...intelligenceSettings,db,auth,body,send,fail,limit,origin,passwordHash});
  const ideasHandler=factoryIdeas({storefrontOrigin,...ideaSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler});
  const auditHandler=factoryAudit({storefrontOrigin,...auditSettings,ideas:ideasHandler,db,auth,body,send,fail,limit,origin});
- const runsHandler=factoryRuns({...runSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler,artwork:artworkHandler,storefrontOrigin});
+ const runsHandler=factoryRuns({...runSettings,rendering:renderingHandler,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler,artwork:artworkHandler,storefrontOrigin});
  const startedAt=new Date().toISOString();
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
  const server=http.createServer((req,res)=>historyHandler.scope(req,new URL(req.url,origin).pathname,req.method,async()=>{
@@ -93,6 +95,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    if(await supportHandler.handle(req,res,path,method))return;
    if(await productionHandler.handle(req,res,path,method))return;
    if(await outfitHandler.handle(req,res,path,method))return;
+   if(await renderingHandler.handle(req,res,path,method))return;
    if(await blueprintHandler.handle(req,res,path,method,url))return;
    if(await artworkHandler.handle(req,res,path,method))return;
    if(await factoryHandler.handle(req,res,path,method))return;

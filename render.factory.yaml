@@ -10,7 +10,7 @@ services:
     plan: starter
     repo: https://github.com/eppleaaron-oss/midnight-designs-store
     branch: main
-    buildCommand: npm test --prefix request-service
+    buildCommand: npm ci --prefix request-service && npm test --prefix request-service
     startCommand: node request-service/factory-worker.mjs
     maxShutdownDelaySeconds: 90
     autoDeployTrigger: off

@@ -110,7 +110,7 @@ export function brief(c,slot,art){
  ].filter(Boolean).join('\n');
 }
 
-export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,brain=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
+export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,rendering=null,brain=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  db.exec(`CREATE TABLE IF NOT EXISTS factory_runs(id TEXT PRIMARY KEY,number INTEGER NOT NULL UNIQUE,name TEXT NOT NULL,config TEXT NOT NULL,plan TEXT NOT NULL,status TEXT NOT NULL,cycle INTEGER NOT NULL DEFAULT 0,message TEXT NOT NULL DEFAULT '',started INTEGER,ends INTEGER,created TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_run_slots(run TEXT NOT NULL,seq INTEGER NOT NULL,cycle INTEGER NOT NULL,garment TEXT NOT NULL,design TEXT,outfit TEXT,color TEXT NOT NULL,job TEXT,error TEXT NOT NULL DEFAULT '',PRIMARY KEY(run,seq));
@@ -139,7 +139,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
    const g=garment(s.garment),a=s.design?art.get(s.design):null,label=g.single;
    const title=(s.outfit?s.outfit+' · ':'')+label+(a?' · '+a.name:'');
    try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:(head=>[head,brain?.knowledge(s.garment,5990-head.length)].filter(Boolean).join('\n\n'))([brief(c,s,a),brain?.production(s.garment,support(c,s,a))].filter(Boolean).join('\n\n')).slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:support(c,s,a).map(x=>x.id).slice(0,12)}});
-    db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
+    db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);rendering?.saveRunPlan(prepared.id,c,s,support(c,s,a),brain?.placementPlan(s.garment,support(c,s,a)));run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
    catch(e){if(e.status===409&&/queue is full/i.test(e.message))break;run('UPDATE factory_run_slots SET error=? WHERE run=? AND seq=?',String(e.message).slice(0,300),r.id,s.seq);}
   }
  }
@@ -151,7 +151,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
  function runView(r){if(!r)return null;const c=JSON.parse(r.config),plan=JSON.parse(r.plan);const counts=Object.fromEntries(all("SELECT COALESCE(j.status,CASE WHEN s.error<>'' THEN 'not_queued' ELSE 'planned' END) status,count(*) n FROM factory_run_slots s LEFT JOIN factory_jobs j ON j.id=s.job WHERE s.run=? GROUP BY 1",r.id).map(x=>[x.status,x.n]));
   return {id:r.id,number:r.number,name:r.name,status:r.status,message:r.message,config:c,plan,cycle:r.cycle,started:r.started,ends:r.ends,created:r.created,updated:r.updated,counts,completed:completed(r.id),slotErrors:all("SELECT garment,error,count(*) n FROM factory_run_slots WHERE run=? AND error<>'' GROUP BY garment,error LIMIT 10",r.id)};}
 
- function stage(j){if(j.status==='queued')return j.step>0?'Assigned':'Queued';if(j.status==='awaiting_review')return 'Owner review';if(j.status==='draft_saved')return 'Approved (draft)';if(j.status==='completed')return 'Ready for publishing';if(['failed','waiting_input','retry_wait'].includes(j.status))return j.status==='retry_wait'?'Revision':'Needs attention';if(j.status==='running')return ['Designing','Blueprint fit','Blueprint fit','AI QC','Supplier product','Mockup','Publishing'][j.step]||'Designing';return j.status;}
+ function stage(j){if(j.status==='queued')return j.step>0?'Assigned':'Queued';if(j.status==='awaiting_review')return 'Owner review';if(j.status==='draft_saved')return 'Approved (draft)';if(j.status==='completed')return 'Ready for publishing';if(['failed','waiting_input','retry_wait'].includes(j.status))return j.status==='retry_wait'?'Revision':'Needs attention';if(j.status==='running')return ['Check assignments','Verify supplier','Render print files','Pricing and review','Create supplier product','Generate mockups','Publish storefront'][j.step]||'Designing';return j.status;}
 
  function snapshot(){
   const settings=get('SELECT * FROM factory_settings WHERE id=1')||{state:'stopped',daily_budget:0,total_budget:0},today=new Date(clock()).toISOString().slice(0,10),hour=clock()-3600000;
