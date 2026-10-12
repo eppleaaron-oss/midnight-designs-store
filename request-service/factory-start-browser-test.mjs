@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {scryptSync,randomUUID} from 'node:crypto';
+import {scryptSync,randomUUID,createHash} from 'node:crypto';
 import {createServer} from 'node:net';
 import sharp from 'sharp';
 import {createService} from './server.mjs';
@@ -17,14 +17,14 @@ async function api(path,b,machine=false){const r=await fetch(origin+path,{method
 try{
  cookie=(await api('/api/owner/login',{password})).cookie;await api('/api/owner/ai-factory/budget',{dailyBudget:1000,totalBudget:1000});await api('/internal/factory/heartbeat',{worker:'browser-fixture'},true);
  const data=await sharp({create:{width:24,height:12,channels:4,background:'#ff0000'}}).png().toBuffer();
- const uploaded=await api('/api/owner/ai-factory/artwork/upload',{name:'Night art',collection:'Night',scope:'collection',target:'',product:null,placements:['front'],instructions:'Red on black',permissions:{reuse:true,modify:false,crop:false,recolor:false},files:[{filename:'art.png',base64:data.toString('base64')}]});const art=uploaded.data.artworks[0].id,idea=randomUUID(),set='up:browser',date=new Date().toISOString(),url='/api/owner/ai-factory/artwork/'+art+'/file';
+ const uploaded=await api('/api/owner/ai-factory/artwork/upload',{name:'Night art',collection:'Night',scope:'collection',target:'',product:null,placements:['front'],instructions:'Red on black',permissions:{reuse:true,modify:false,crop:false,recolor:false},files:[{filename:'art.png',base64:data.toString('base64')}]});const art=uploaded.data.artworks[0].id,idea=randomUUID(),set='up:'+createHash('sha256').update('Night').digest('hex').slice(0,16),date=new Date().toISOString(),url='/api/owner/ai-factory/artwork/'+art+'/file';
  service.db.prepare('INSERT INTO idea_sets(id,source,name,parts,updated,jacket) VALUES(?,?,?,?,?,0)').run(set,'upload','Night',JSON.stringify({front:{artwork:art,url,thumb:url,name:'Night art'}}),date);
  service.db.prepare('INSERT INTO idea_set_ideas(id,signature,set_id,kind,title,pieces,reason,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?)').run(idea,idea,set,'outfit','Night outfit',JSON.stringify([{catalog:328,role:'shirts',label:'T-Shirt',color:'Black',placements:[{area:'front',artwork:art,part:'front',name:'Night art',url}],empty:['back'],ready:true,why:'Fixture placement'}]),'Native garment fixture','new',date,date);
  browser=await chromium.launch();const context=await browser.newContext({viewport:{width:1440,height:1000}});const split=cookie.indexOf('=');await context.addCookies([{name:cookie.slice(0,split),value:cookie.slice(split+1),url:origin}]);const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(origin+'/ai-factory');await page.waitForFunction(()=>window.mdIdeas&&document.querySelector('#stateBadge').textContent.includes('Stopped'));await page.waitForSelector('#ideaGrid input[type=checkbox]');
  await page.locator('#ctlStart').click();await page.waitForFunction(()=>document.querySelector('#controlNote').textContent.includes('Factory running.'),null,{timeout:15000});
  for(let attempt=0;attempt<100&&!service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n;attempt++)await new Promise(resolve=>setTimeout(resolve,20));
- assert.equal(service.db.prepare('SELECT state FROM factory_settings').get().state,'running','Start Factory starts the actual backend queue');assert.equal(service.db.prepare("SELECT enabled FROM factory_employees WHERE id='shirts'").get().enabled,1);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal(writes,0,'Starting preparation does not bypass review with supplier writes');
+ assert.equal(service.db.prepare('SELECT state FROM factory_settings').get().state,'running','Start Factory starts the actual backend queue');assert.equal(service.db.prepare("SELECT enabled FROM factory_employees WHERE id='shirts'").get().enabled,1);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1,JSON.stringify(service.db.prepare('SELECT status,error FROM idea_set_ideas').all()));assert.equal(writes,0,'Starting preparation does not bypass review with supplier writes');
  await page.locator('#ctlPause').click();await page.waitForFunction(()=>document.querySelector('#stateBadge').textContent.includes('Paused'));assert.equal(service.db.prepare('SELECT state FROM factory_settings').get().state,'paused');
  assert.deepEqual(errors,[],'Factory page has no uncaught script errors');const anonymous=await browser.newContext();const blocked=await anonymous.request.get(origin+'/api/owner/ai-factory/rendering');assert.equal(blocked.status(),401);await anonymous.close();
  console.log('PASS: private factory page loads; Start starts the backend queue and selected creators; Pause reaches the backend; preparation does not publish; owner access enforced.');
