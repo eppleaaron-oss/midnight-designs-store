@@ -12,8 +12,9 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
  const hold=message=>{throw Object.assign(Error(message),{status:409});};
  async function sourceFile(part,set){
   if(part.artwork){if(!get('SELECT id FROM factory_artwork WHERE id=?',part.artwork))hold('Assigned artwork is missing.');return part.artwork;}
-  const cached=get('SELECT artwork FROM factory_imported_artwork WHERE url=?',part.url);
-  if(cached&&get('SELECT id FROM factory_artwork WHERE id=?',cached.artwork))return cached.artwork;
+  const cacheKey=part.url+'#factoryCollection='+encodeURIComponent(set.name);
+  const cached=get('SELECT artwork FROM factory_imported_artwork WHERE url=?',cacheKey)||get('SELECT artwork FROM factory_imported_artwork WHERE url=?',part.url);
+  if(cached&&get('SELECT id FROM factory_artwork WHERE id=? AND collection=?',cached.artwork,set.name.slice(0,100))){run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,cached.artwork);return cached.artwork;}
   let u;try{u=new URL(part.url);}catch{hold('Import the original artwork into the upload library first.');}
   if(u.protocol!=='https:'||!u.hostname.endsWith('.printful.com')||u.username||u.password)hold('Import the original artwork into the upload library. This external file host is not supported.');
   const r=await fetchImpl(u.href,{redirect:'error',signal:AbortSignal.timeout(25000)});
@@ -22,8 +23,9 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const data=Buffer.concat(chunks),extension={'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[r.headers.get('content-type').split(';')[0]];
   // Supplier imports preserve their pixels. Cropping, rotation and recoloring
   // remain disabled until the owner changes the artwork's permissions.
+  const existing=get("SELECT id FROM factory_artwork WHERE sha256=? AND collection=? AND kind='original' ORDER BY created LIMIT 1",createHash('sha256').update(data).digest('hex'),set.name.slice(0,100));if(existing){run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,existing.id);return existing.id;}
   const id=artwork.importFile({data,filename:'printful-'+createHash('sha256').update(u.href).digest('hex').slice(0,16)+'.'+extension},{name:String(part.name||set.name).slice(0,100),collection:set.name.slice(0,100),scope:'collection',target:'',product:null,placements:['front','back','left-sleeve','right-sleeve','hood'],instructions:'Preserve the imported original artwork.',permissions:{reuse:true,crop:false,modify:false,recolor:false}});
-  run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',u.href,id);return id;
+  run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,id);return id;
  }
  async function enqueue({idea,set,piece,brief,aiLayout=false}){
   if(!storageDurable)hold('Persistent factory storage must be attached before starting production.');
