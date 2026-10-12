@@ -32,7 +32,7 @@ function render(){
   const head=node('div','', 'fx-row');head.append(node('strong',i.title),node('span',i.kind==='outfit'?'Outfit':'Item','fx-pill'));card.append(head);
   const ready=i.pieces.length;
   if(open&&ready&&data.canPublish){const go=node('button',`Prepare ${ready} item${ready===1?'':'s'} now`,'fx-btn fx-go ix-now');go.type='button';
-   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();data=await api('ideas/publish',{ids:[i.id]});picked.delete(i.id);started(1);});card.append(go);}
+   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();data=await api('ideas/publish',{ids:[i.id],activateCreators:true});picked.delete(i.id);started(1);});card.append(go);}
   if(set)card.append(thumbs(set.parts));
   const pieces=node('ul','', 'ix-pieces');
   for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.category?p.category+': ':''}${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')),node('span','Labels require a separately assigned brand file.','ix-tag'));
@@ -88,11 +88,11 @@ window.mdIdeas={async start(){if(!data)await load();if(!data.canPublish)throw Er
  let ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.length).map(i=>i.id);
  // Ideas already waiting in line get a fresh push (this also retries right away after a token change).
  if(!ids.length)ids=data.ideas.filter(i=>i.status==='queued').map(i=>i.id);if(!ids.length)return 0;
- data=await api('ideas/publish',{ids});picked.clear();started(ids.length);return ids.length;}};
-$('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked]});picked.clear();started(n);});
+ data=await api('ideas/publish',{ids,activateCreators:true});picked.clear();started(ids.length);return ids.length;}};
+$('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked],activateCreators:true});picked.clear();started(n);});
 document.querySelectorAll('#madeTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#madeTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));madeFilter=t.dataset.filter;renderMade();});
-$('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=await api('ideas/approve',{ids:[...picked]});picked.clear();render();note(`${n} idea${n===1?'':'s'} sent to production. Jobs appear in the live queue below.`);});
-$('ideaDismiss').onclick=guard($('ideaDismiss'),async()=>{const n=picked.size;data=await api('ideas/dismiss',{ids:[...picked]});picked.clear();render();note(`${n} dismissed. The team will draft new ones.`);});
+$('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=await api('ideas/approve',{ids:[...picked],activateCreators:true});picked.clear();render();note(`${n} idea${n===1?'':'s'} sent to production. Jobs appear in the live queue below.`);});
+$('ideaDismiss').onclick=guard($('ideaDismiss'),async()=>{const n=picked.size;data=await api('ideas/dismiss',{ids:[...picked],activateCreators:true});picked.clear();render();note(`${n} dismissed. The team will draft new ones.`);});
 $('ideaMore').onclick=guard($('ideaMore'),async()=>{const before=data.counts.new||0;data=await api('ideas/generate',{});render();note(`${Math.max(0,(data.counts.new||0)-before)} new ideas drafted.`);});
 $('ideaPrintful').onclick=guard($('ideaPrintful'),async()=>{note('Reading your Printful products…');data=await api('ideas/printful',{});render();note(data.printful.state==='connected'?`Found ${data.sets.filter(x=>x.source==='printful').length} design sets in ${data.printful.products} Printful products.`:$('ideaShapes').textContent);});
 const saveSettings=guard(null,async()=>{data=await api('ideas/settings',{team:Number($('ideaTeam').value),pool:Number($('ideaPool').value),outfitSize:Number($('ideaOutfit').value),autopilot:$('ideaAutopilot').checked,perDay:Number($('ideaPerDay').value),autoMake:$('ideaAuto').checked,aiLayout:$('ideaAiLayout').checked});render();note($('ideaAutopilot').checked?`Autopilot is on: up to ${$('ideaPerDay').value} outfits a day enter production; publication follows the selected review rules.`:$('ideaAuto').checked?'The team now sends ideas straight to production.':'Settings saved.');});

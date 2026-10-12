@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {scryptSync,randomUUID} from 'node:crypto';
+import {createServer} from 'node:net';
+import sharp from 'sharp';
+import {createService} from './server.mjs';
+
+const require=createRequire(import.meta.url),{chromium}=require(require.resolve('playwright',{paths:[process.cwd(),process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES].filter(Boolean)}));
+const probe=createServer();await new Promise(resolve=>probe.listen(0,'127.0.0.1',resolve));const port=probe.address().port;await new Promise(resolve=>probe.close(resolve));
+const origin='http://127.0.0.1:'+port,password='factory-browser-fixture-password',salt='ad'.repeat(16),workerToken='factory-browser-worker-'.repeat(3);
+const product={id:328,title:'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',currency:'USD'},variant={id:10,size:'M',color:'White',price:'15.00'};
+const result=value=>new Response(JSON.stringify({result:value}));let writes=0;
+const fetchImpl=async(url,o={})=>{url=String(url);if(o.method==='POST'){writes++;throw Error('No supplier writes allowed in browser fixture');}if(url.endsWith('/products'))return result([product]);if(url.endsWith('/products/328'))return result({product,variants:[variant]});if(url.includes('/v2/'))return new Response(JSON.stringify({data:{techniques:[]}}));if(url.includes('/printfiles/'))return result({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:12,height:8,dpi:150}],variant_printfiles:[{variant_id:10,placements:{front:1,back:1}}]});if(url.includes('/templates/'))return result({templates:[],variant_mapping:[]});if(url.includes('/store/products?'))return result([]);return new Response(JSON.stringify([]));};
+const service=createService({dbPath:':memory:',origin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),productionSettings:{storageDurable:true,workerToken},workflowSettings:{storageDurable:true,fetchImpl},factorySettings:{token:'fixture-token',fetchImpl},blueprintSettings:{token:'fixture-token',plans:{products:{}},fetchImpl},publishingSettings:{token:null,githubToken:null},artworkEngineSettings:{env:{}},runSettings:{fetchImpl},ideaSettings:{env:{PRINTFUL_TOKEN:'fixture-token'},catalog:[],fetchImpl}});
+await new Promise(resolve=>service.server.listen(port,'127.0.0.1',resolve));let cookie,browser;
+async function api(path,b,machine=false){const r=await fetch(origin+path,{method:b?'POST':'GET',headers:{Origin:origin,...(cookie?{Cookie:cookie}:{}),...(b?{'Content-Type':'application/json'}:{}),...(machine?{Authorization:'Bearer '+workerToken}:{})},body:b?JSON.stringify(b):undefined});const data=await r.json();assert.equal(r.status,200,JSON.stringify(data));return {data,cookie:r.headers.get('set-cookie')?.split(';')[0]};}
+try{
+ cookie=(await api('/api/owner/login',{password})).cookie;await api('/api/owner/ai-factory/budget',{dailyBudget:1000,totalBudget:1000});await api('/internal/factory/heartbeat',{worker:'browser-fixture'},true);
+ const data=await sharp({create:{width:24,height:12,channels:4,background:'#ff0000'}}).png().toBuffer();
+ const uploaded=await api('/api/owner/ai-factory/artwork/upload',{name:'Night art',collection:'Night',scope:'collection',target:'',product:null,placements:['front'],instructions:'Red on black',permissions:{reuse:true,modify:false,crop:false,recolor:false},files:[{filename:'art.png',base64:data.toString('base64')}]});const art=uploaded.data.artworks[0].id,idea=randomUUID(),set='up:browser',date=new Date().toISOString(),url='/api/owner/ai-factory/artwork/'+art+'/file';
+ service.db.prepare('INSERT INTO idea_sets(id,source,name,parts,updated,jacket) VALUES(?,?,?,?,?,0)').run(set,'upload','Night',JSON.stringify({front:{artwork:art,url,thumb:url,name:'Night art'}}),date);
+ service.db.prepare('INSERT INTO idea_set_ideas(id,signature,set_id,kind,title,pieces,reason,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?)').run(idea,idea,set,'outfit','Night outfit',JSON.stringify([{catalog:328,role:'shirts',label:'T-Shirt',color:'Black',placements:[{area:'front',artwork:art,part:'front',name:'Night art',url}],empty:['back'],ready:true,why:'Fixture placement'}]),'Native garment fixture','new',date,date);
+ browser=await chromium.launch();const context=await browser.newContext({viewport:{width:1440,height:1000}});const split=cookie.indexOf('=');await context.addCookies([{name:cookie.slice(0,split),value:cookie.slice(split+1),url:origin}]);const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(origin+'/ai-factory');await page.waitForFunction(()=>window.mdIdeas&&document.querySelector('#stateBadge').textContent.includes('Stopped'));await page.waitForSelector('#ideaGrid input[type=checkbox]');
+ await page.locator('#ctlStart').click();await page.waitForFunction(()=>document.querySelector('#controlNote').textContent.includes('Factory running.'),null,{timeout:15000});
+ for(let attempt=0;attempt<100&&!service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n;attempt++)await new Promise(resolve=>setTimeout(resolve,20));
+ assert.equal(service.db.prepare('SELECT state FROM factory_settings').get().state,'running','Start Factory starts the actual backend queue');assert.equal(service.db.prepare("SELECT enabled FROM factory_employees WHERE id='shirts'").get().enabled,1);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal(writes,0,'Starting preparation does not bypass review with supplier writes');
+ await page.locator('#ctlPause').click();await page.waitForFunction(()=>document.querySelector('#stateBadge').textContent.includes('Paused'));assert.equal(service.db.prepare('SELECT state FROM factory_settings').get().state,'paused');
+ assert.deepEqual(errors,[],'Factory page has no uncaught script errors');const anonymous=await browser.newContext();const blocked=await anonymous.request.get(origin+'/api/owner/ai-factory/rendering');assert.equal(blocked.status(),401);await anonymous.close();
+ console.log('PASS: private factory page loads; Start starts the backend queue and selected creators; Pause reaches the backend; preparation does not publish; owner access enforced.');
+}finally{await browser?.close();await new Promise(resolve=>service.server.close(resolve));}

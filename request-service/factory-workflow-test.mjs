@@ -50,16 +50,17 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
  const c=await client(service),base='/api/owner/ai-factory/';
  const machine=(op,b={})=>c.call('/internal/factory/'+op,{worker:'workflow-worker',...b},true);
  try{
-  await c.call(base+'employee',{id:'shirts',enabled:true});await c.call(base+'budget',{dailyBudget:1000,totalBudget:1000});
+  await c.call(base+'budget',{dailyBudget:1000,totalBudget:1000});
   const uploaded=await c.call(base+'artwork/upload',{name:'Outfit art',collection:'Night',scope:'collection',target:'',product:null,placements:['front'],instructions:'Keep red on black.',permissions,files:[{filename:'art.png',base64:png.toString('base64')}]});assert.equal(uploaded.status,200);const art=uploaded.data.artworks[0].id;
   const idea=randomUUID(),set='up:test',pieces=ids.map(id=>({catalog:id,role:'shirts',label:'T-Shirt '+id,color:'Black',placements:[{area:'front',artwork:art,part:'front',name:'Outfit art',url:base+'artwork/'+art+'/file'}],empty:['back'],ready:true}));
   service.db.prepare('INSERT INTO idea_sets(id,source,name,parts,updated,jacket) VALUES(?,?,?,?,?,0)').run(set,'upload','Night',JSON.stringify({front:{artwork:art}}),new Date().toISOString());
   service.db.prepare('INSERT INTO idea_set_ideas(id,signature,set_id,kind,title,pieces,reason,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?)').run(idea,'test-14',set,'outfit','Night outfit',JSON.stringify(pieces),'Test original artwork','new',new Date().toISOString(),new Date().toISOString());
-  assert.equal((await c.call(base+'ideas/publish',{ids:[idea],wait:true})).status,200);
+  assert.equal((await c.call(base+'ideas/publish',{ids:[idea],wait:true,activateCreators:true})).status,200);
+  assert.equal(service.db.prepare("SELECT enabled FROM factory_employees WHERE id='shirts'").get().enabled,1,'master preparation activates the selected creator roles');
   const jobs=service.db.prepare('SELECT * FROM factory_jobs ORDER BY rowid').all();assert.equal(jobs.length,14,'every outfit piece becomes its own tracked product job');assert.equal(creates,0,'queuing alone creates no supplier listings');
   const batch=service.db.prepare('SELECT jobs,status FROM idea_set_ideas WHERE id=?').get(idea);assert.equal(JSON.parse(batch.jobs).filter(Boolean).length,14);assert.equal(batch.status,'made');
   // Retry a partially accepted batch: all stable job IDs are recovered.
-  service.db.prepare("UPDATE idea_set_ideas SET status='failed' WHERE id=?").run(idea);await c.call(base+'ideas/publish',{ids:[idea],wait:true});assert.equal(service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,14);
+  service.db.prepare("UPDATE idea_set_ideas SET status='failed' WHERE id=?").run(idea);await c.call(base+'ideas/publish',{ids:[idea],wait:true,activateCreators:true});assert.equal(service.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,14);
   const job=jobs[0].id;await c.call(base+'production/job',{id:job,action:'priority',priority:9});await machine('heartbeat');assert.equal((await c.call(base+'control',{action:'start'})).status,200);
   async function step(){const lease=(await machine('claim')).data;assert.equal(lease.job,job,lease.reason);return (await machine('step',{job,lease:lease.lease})).data;}
   for(const stage of ['validate','supplier','files']){const r=await step();assert.equal(r.status,'queued',JSON.stringify(r));assert.ok(service.db.prepare('SELECT result FROM factory_job_checkpoints WHERE job=? AND step=?').get(job,stage));}

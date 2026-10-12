@@ -155,9 +155,9 @@ async function launch(){
 }
 async function control(action){
  const run=snap?.active;
- // Start Factory publishes the Idea Room's outfits to the store; AI-worker runs only start when one is set up.
- if(action==='start'){const n=await window.mdIdeas?.start?.();if(n){$('controlNote').textContent=`Publishing ${n} idea${n===1?'':'s'} to your store. Watch them arrive in AI Made.`;return;}
-  if(!run){$('controlNote').textContent='Nothing to publish right now. Tick ideas in the Idea Room, or press Get more ideas now.';return;}}
+ // Start the authenticated worker queue before accepting new outfit jobs.
+ if(action==='start'){const reason=await factory(snap.factory.state==='paused'?'resume':'start');if(reason){$('controlNote').textContent='Factory could not start: '+reason;return;}const n=await window.mdIdeas?.start?.();await refresh();if(n){$('controlNote').textContent=`Factory running. ${n} outfit batch${n===1?'':'es'} queued for preparation and review.`;return;}
+  if(!run){$('controlNote').textContent='Factory running. Existing jobs can continue; select outfits in the Idea Room to add more work.';return;}}
  const blocked=await factory(action==='start'&&snap.factory.state==='paused'?'resume':action);
  if(run)snap=await api('runs/control',{id:run.id,action:action==='start'?'resume':action});
  await refresh();$('controlNote').textContent=blocked?`The factory didn't ${action.replace('-',' ')}: ${blocked}`:{start:'Factory started.',resume:'Factory resumed.',pause:'Factory paused. Work in progress keeps its place.',stop:'Factory stopped. Finished products are kept.','emergency-stop':'Emergency stop. Queued and running work was cancelled; finished products are kept.'}[action];
