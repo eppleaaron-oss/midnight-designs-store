@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
 import {scryptSync,createHash} from 'node:crypto';
-import {renderArea} from './factory-rendering.mjs';
+import {renderArea,factoryRendering} from './factory-rendering.mjs';
 import {createService} from './server.mjs';
 import {pngDimensions} from './factory-blueprints.mjs';
 
@@ -68,5 +68,6 @@ test('owner rendering saves actual files once and holds invalid batches without 
   for(const stage of ['validate','supplier','files']){const lease=await machine('claim');assert.equal(lease.step,stage,lease.reason);working=lease.job;const result=await machine('step',{job:lease.job,lease:lease.lease});assert.equal(result.status,'queued',JSON.stringify(result));}
   const profile=jobs.find(j=>j.id===working),saved=(await call('/api/owner/ai-factory/blueprints')).data.drafts.find(d=>d.id===profile.assignedTemplates[0]);assert.equal(saved.files.length,2,'worker created every required native print file from the run settings');
   const back=saved.files.find(f=>f.placement==='back'),rendered=await fetch(root+back.url,{headers:{Cookie:cookie}});const backPixels=await pixels(Buffer.from(await rendered.arrayBuffer()));assert.deepEqual(pixel(backPixels,0,0),[0,0,0,255]);assert.deepEqual(pixel(backPixels,6,4),[255,0,0,255]);
+  const nonAop=factoryRendering({db:service.db,plans:{products:{328:{name:'DTG Unisex T-Shirt'}}}});await assert.rejects(nonAop.renderJob(working),/verified all-over-print/,'a print rectangle is not treated as a garment color');
  }finally{await new Promise(resolve=>service.server.close(resolve));}
 });
