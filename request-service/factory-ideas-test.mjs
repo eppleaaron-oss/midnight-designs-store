@@ -56,6 +56,7 @@ test('outfits reuse one design set from the store jackets, mapped onto real all-
   assert.deepEqual(Object.keys(snap.sets[2].parts).sort(),['back','front','pocket','sleeve_left','sleeve_right'],'an uploaded collection splits into parts by shape');
   assert.ok(!snap.sets.some(s=>s.name==='Sleeve panels'),'library categories are not sets');
 
+  assert.equal(snap.settings.baseColor,'Black');assert.ok(snap.ideas.every(i=>i.pieces.every(p=>p.color==='Black')),'owner color controls actual queued print backgrounds');
   const sets=new Map(snap.sets.map(s=>[s.id,s]));assert.ok(snap.counts.new>=10);
   for(const i of snap.ideas)for(const p of i.pieces)for(const x of p.placements)assert.ok(sets.get(i.set).parts[x.part],'every part comes from the idea\'s own set');
   const outfit=snap.ideas.find(i=>i.kind==='outfit'&&sets.get(i.set).jacket);assert.ok(outfit,'jacket sets get full outfits');

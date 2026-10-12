@@ -1,4 +1,5 @@
 import {randomUUID,createHash} from 'node:crypto';import {inflateSync} from 'node:zlib';import {readFileSync} from 'node:fs';
+import {garmentColors} from './factory-rendering.mjs';
 import {fillInstruction,labelInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 
 // The idea team: finds the design sets behind the store's products (jackets first) and uploaded collections,
@@ -116,10 +117,11 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
  db.exec('CREATE TABLE IF NOT EXISTS idea_migrations(name TEXT PRIMARY KEY)');
  if(!db.prepare("SELECT 1 x FROM idea_migrations WHERE name='outfit-rounds'").get()){db.exec("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");db.exec("INSERT INTO idea_migrations VALUES('outfit-rounds')");}
  if(!db.prepare('PRAGMA table_info(idea_made)').all().some(c=>c.name==='job'))db.exec('ALTER TABLE idea_made ADD COLUMN job TEXT');
+ if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='base_color')){db.exec("ALTER TABLE idea_settings ADD COLUMN base_color TEXT NOT NULL DEFAULT 'Black'");db.exec("DELETE FROM idea_set_ideas WHERE status='new'");}
  if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='ai_layout'))db.exec('ALTER TABLE idea_settings ADD COLUMN ai_layout INTEGER NOT NULL DEFAULT 0');
  db.exec("UPDATE idea_made SET status='supplier_created' WHERE job IS NULL AND status='published'");
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
- const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make,outfitSize:s.outfit_size,autopilot:!!s.autopilot,perDay:s.per_day,aiLayout:!!s.ai_layout};};
+ const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make,outfitSize:s.outfit_size,autopilot:!!s.autopilot,perDay:s.per_day,aiLayout:!!s.ai_layout,baseColor:s.base_color};};
  const item=id=>catalog.find(c=>c.id===id);
 
  // Shape sorting for uploaded designs, used to split an uploaded collection into parts.
@@ -167,6 +169,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
 
  // One piece: a catalog item with every print area filled from the same set, or the base color where the set has nothing for it.
  function piece(set,c,color){
+  color=settings().baseColor;
   const placements=[],empty=[];for(const area of c.areas){const p=partFor(area,set.parts);p?placements.push({area,part:Object.keys(set.parts).find(k=>set.parts[k]===p),name:p.name,url:p.url,thumb:p.thumb,artwork:p.artwork||null}):empty.push(area);}
   if(!placements.length)return null;
   // Ready to publish as-is: every print area gets its own part of the set, so nothing prints blank, and a pocket
@@ -294,7 +297,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
   syncMade();
   const ideas=all("SELECT * FROM idea_set_ideas WHERE status IN ('new','approved','failed','publishing','queued') ORDER BY created DESC LIMIT 300").concat(all("SELECT * FROM idea_set_ideas WHERE status IN ('made','published') ORDER BY updated DESC LIMIT 60"));
   const counts=Object.fromEntries(all('SELECT status,count(*) n FROM idea_set_ideas GROUP BY status').map(r=>[r.status,r.n]));
-  return {settings:settings(),counts,categories:OUTFIT_CATEGORIES.map(([n])=>n),shapes:SHAPES,printful:{state:printful.state,error:printful.error,products:printful.products||0},catalog:catalog.length,
+  return {settings:settings(),colors:Object.keys(garmentColors),counts,categories:OUTFIT_CATEGORIES.map(([n])=>n),shapes:SHAPES,printful:{state:printful.state,error:printful.error,products:printful.products||0},catalog:catalog.length,
    sets:sets().map(s=>({id:s.id,source:s.source,name:s.name,product:s.product,jacket:s.jacket,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{thumb:v.thumb,name:v.name}]))})),
    designs:designs().map(d=>({id:d.id,name:d.name,collection:d.collection,shape:d.shape,detected:d.detected,override:!!d.override,reason:d.reason,url:'/api/owner/ai-factory/artwork/'+d.id+'/file'})),
    made:madeList(),ratings:{count:get('SELECT count(rating) n FROM idea_made WHERE rating IS NOT NULL').n,avg:get('SELECT avg(rating) a FROM idea_made WHERE rating IS NOT NULL').a},canPublish:!!env.PRINTFUL_TOKEN&&!!workflow?.ready(),productionNote:'Products enter the backend worker queue. Review, complete pricing and verified saved mockups are required before publication.',
@@ -316,9 +319,9 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
   else if(p==='/dismiss'){for(const id of ids())run("UPDATE idea_set_ideas SET status='dismissed',updated=? WHERE id=? AND status IN ('new','failed','approved')",now(),id);}
   else if(p==='/set'){if(typeof b.id!=='string'||!get('SELECT 1 x FROM idea_sets WHERE id=?',b.id))fail(404,'Design set not found.');run('UPDATE idea_sets SET enabled=? WHERE id=?',b.enabled?1:0,b.id);if(!b.enabled)run("DELETE FROM idea_set_ideas WHERE set_id=? AND status='new'",b.id);}
   else if(p==='/settings'){const n=(v,lo,hi,label)=>Number.isSafeInteger(v)&&v>=lo&&v<=hi?v:fail(400,`${label} must be between ${lo} and ${hi}.`);
-   const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,60,'Items per outfit'),grew=size!==settings().outfitSize;
+   if(b.baseColor!==undefined&&!Object.hasOwn(garmentColors,b.baseColor))fail(400,'Choose a supported base color.');const changedColor=b.baseColor!==undefined&&b.baseColor!==settings().baseColor;if(b.baseColor!==undefined)run('UPDATE idea_settings SET base_color=? WHERE id=1',b.baseColor);if(changedColor)run("DELETE FROM idea_set_ideas WHERE status='new'");const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,60,'Items per outfit'),grew=size!==settings().outfitSize;
    run('UPDATE idea_settings SET team=?,pool=?,auto_make=?,outfit_size=?,autopilot=?,per_day=? WHERE id=1',n(b.team,1,100,'Idea workers'),n(b.pool,5,500,'Ideas to keep waiting'),b.autoMake?1:0,size,b.autopilot===undefined?settings().autopilot?1:0:b.autopilot?1:0,b.perDay===undefined?settings().perDay:n(b.perDay,1,50,'Outfits per day'));
-   if(grew){run("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");generate();}if(b.aiLayout!==undefined){if(typeof b.aiLayout!=='boolean')fail(400,'Choose fixed or AI-assisted layout.');run('UPDATE idea_settings SET ai_layout=? WHERE id=1',Number(b.aiLayout));}if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
+   if(grew||changedColor){run("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");generate();}if(b.aiLayout!==undefined){if(typeof b.aiLayout!=='boolean')fail(400,'Choose fixed or AI-assisted layout.');run('UPDATE idea_settings SET ai_layout=? WHERE id=1',Number(b.aiLayout));}if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
   else if(p==='/piece'){const idea=typeof b.id==='string'&&get("SELECT * FROM idea_set_ideas WHERE id=? AND status IN ('new','failed')",b.id);if(!idea)fail(404,'Idea not found.');
    const pieces=JSON.parse(idea.pieces),left=pieces.filter(x=>x.catalog!==b.catalog);if(left.length===pieces.length)fail(404,'That item is not in this idea.');if(!left.length)fail(400,'An idea needs at least one item. Dismiss it instead.');
    run("UPDATE idea_set_ideas SET pieces=?,title=?,updated=? WHERE id=?",JSON.stringify(left),idea.kind==='outfit'?idea.title.replace(/\(\d+ items\)$/,`(${left.some(x=>x.ready)?left.filter(x=>x.ready).length:left.length} items)`):idea.title,now(),idea.id);}
