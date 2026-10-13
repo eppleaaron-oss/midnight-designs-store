@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
-import {scryptSync,randomUUID} from 'node:crypto';
+import {scryptSync,randomUUID,createHash} from 'node:crypto';
 import {createService} from './server.mjs';
 import {factoryArtworkEngine} from './factory-artwork-engine.mjs';
 import {renderArea,factoryRendering} from './factory-rendering.mjs';
@@ -28,7 +28,7 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
  const variants=id=>[{id:id*10,size:'S',color:'White',price:'15.00',in_stock:true},{id:id*10+1,size:'M',color:'White',price:'16.00',in_stock:true}];
  const files=id=>({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:12,height:8,dpi:150}],variant_printfiles:variants(id).map(v=>({variant_id:v.id,placements:{front:1,back:1}}))});
  const fetchImpl=async(url,o={})=>{
-  url=String(url);
+  url=String(url);if(o.method==='HEAD'&&url.includes('/factory-print-file/')){const key=new URL(url).pathname.split('/').at(-1),row=service.db.prepare('SELECT f.sha256 FROM factory_file_links l JOIN factory_print_files f ON f.id=l.file WHERE l.hash=?').get(createHash('sha256').update(key).digest('hex'));return new Response(null,{headers:{'Content-Type':'image/png','X-Midnight-Print-Sha256':row?.sha256||''}});}
   if(url==='https://api.printful.com/products')return response(products);
   let m=/\/products\/(\d+)$/.exec(url);if(m&&url.includes('api.printful.com')&&!url.includes('/store/'))return response({product:products.find(p=>p.id===Number(m[1])),variants:variants(Number(m[1]))});
   if(url.includes('/v2/catalog-products/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));
@@ -37,17 +37,17 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
   if(url.includes('/store/products/@')){const external=decodeURIComponent(url.split('@')[1]),entry=[...created].find(([,b])=>b.sync_product.external_id===external);return entry?response({sync_product:{id:entry[0]}}):new Response('{}',{status:404});}
   if(url==='https://api.printful.com/store/products'&&o.method==='POST'){assert.equal(o.headers['X-PF-Store-Id'],undefined,'single-store token does not require an account-wide store header');const b=JSON.parse(o.body);created.set(501+creates,b);creates++;return response({id:500+creates});}
   m=/\/store\/products\/(\d+)$/.exec(url);if(m){const b=created.get(Number(m[1]));return response({sync_product:{id:Number(m[1])},sync_variants:b.sync_variants.map((v,i)=>({id:601+i,variant_id:v.variant_id,synced:true,is_ignored:false,availability_status:'active',currency:'USD',size:i?'M':'S',color:'White',retail_price:v.retail_price,files:v.files.map(f=>({...f,status:'ok'}))}))});}
-  if(url.includes('/mockup-generator/create-task/')){taskCreates++;const b=JSON.parse(o.body);assert.ok(b.files.every(f=>f.image_url.includes('/factory-print-file/')));assert.ok(b.files.every(f=>f.position.width===12&&f.position.height===8));return response({task_key:'task-'+b.variant_ids[0]});}
-  if(url.includes('/mockup-generator/task?')){const id=Number(new URL(url).searchParams.get('task_key').split('-')[1]);return response({status:'completed',mockups:[{variant_ids:[id],mockup_url:'https://files.cdn.printful.com/mockup-'+id+'.png'},{variant_ids:[id],mockup_url:'https://files.cdn.printful.com/mockup-back-'+id+'.png'}]});}
-  if(url.startsWith('https://files.cdn.printful.com/mockup-back-')&&failMockup){failMockup=false;return new Response('temporary supplier error',{status:503});}
+  if(url.includes('/mockup-generator/create-task/')){taskCreates++;const b=JSON.parse(o.body);assert.ok(b.files.every(f=>f.image_url.includes('/factory-print-file/')));assert.ok(b.files.every(f=>f.position.width===12&&f.position.height===8));return response({task_key:'task-'+b.variant_ids[0],status:'pending'});}
+  if(url.includes('/mockup-generator/task?')){const id=Number(new URL(url).searchParams.get('task_key').split('-')[1]);return response({status:'completed',mockups:[{variant_ids:[id],placement:'front',mockup_url:'https://printful-upload.s3-accelerate.amazonaws.com/tmp/mockup-'+id+'.png',extra:[{title:'Back',option_group:'Flat',url:'https://printful-upload.s3-accelerate.amazonaws.com/tmp/mockup-back-'+id+'.png'}]}]});}
+  if(url.startsWith('https://printful-upload.s3-accelerate.amazonaws.com/tmp/mockup-back-')&&failMockup){failMockup=false;return new Response('temporary supplier error',{status:503});}
   if(url==='https://files.cdn.printful.com/original.png')return new Response(png,{headers:{'Content-Type':'image/png'}});
-  if(url.startsWith('https://files.cdn.printful.com/mockup-'))return new Response(png,{headers:{'Content-Type':'image/png'}});
+  if(url.startsWith('https://printful-upload.s3-accelerate.amazonaws.com/tmp/mockup-'))return new Response(png,{headers:{'Content-Type':'image/png'}});
   if(url.includes('/contents/factory-listings.json')){if(o.method==='PUT'){manifest=JSON.parse(Buffer.from(JSON.parse(o.body).content,'base64').toString());return new Response('{}');}return manifest?new Response(JSON.stringify({sha:'manifest-test',content:Buffer.from(JSON.stringify(manifest)).toString('base64')})):new Response('{}',{status:404});}
   if(url.includes('/dispatches')){dispatches++;return new Response(null,{status:204});}
   if(url.startsWith('https://midnight-designs.store/products.json')){const products=live?Object.values(manifest?.products||{}).map(p=>brokenImages?{...p,images:[]}:p):[];return new Response(JSON.stringify({products}));}
   throw Error('Unexpected workflow request: '+url);
  };
- const service=createService({dbPath:':memory:',origin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),productionSettings:{storageDurable:true,workerToken,clock:()=>clock},workflowSettings:{storageDurable:true,fetchImpl},factorySettings:{token:'supplier-test',fetchImpl},blueprintSettings:{token:'supplier-test',plans:{products:{}},fetchImpl},publishingSettings:{token:' supplier-test ',storeId:undefined,githubToken:'repository-test',storageDurable:true,fetchImpl},ideaSettings:{env:{PRINTFUL_TOKEN:'supplier-test'},catalog:[],fetchImpl}});
+ const service=createService({dbPath:':memory:',origin,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),productionSettings:{storageDurable:true,workerToken,clock:()=>clock},workflowSettings:{storageDurable:true,fetchImpl},factorySettings:{token:'supplier-test',fetchImpl},blueprintSettings:{token:'supplier-test',plans:{products:{}},fetchImpl},publishingSettings:{token:' supplier-test ',storeId:undefined,githubToken:'repository-test',storageDurable:true,fetchImpl,clock:()=>clock},ideaSettings:{env:{PRINTFUL_TOKEN:'supplier-test'},catalog:[],fetchImpl}});
  const c=await client(service),base='/api/owner/ai-factory/';
  const machine=(op,b={})=>c.call('/internal/factory/'+op,{worker:'workflow-worker',...b},true);
  try{
@@ -72,14 +72,14 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
   await c.call(base+'production/job',{id:job,action:'resume'});assert.equal((await step()).status,'awaiting_review');assert.equal(creates,0,'review mode requires owner approval');
   assert.equal((await c.call(base+'publishing/approve',{job,confirm:true})).status,200);assert.equal((await step()).status,'queued');assert.equal(creates,1);const payload=created.get(501);assert.equal(payload.sync_variants.length,2);assert.ok(payload.sync_variants.every(v=>[3280,3281].includes(v.variant_id)),'AOP uses the supplier blank IDs while printing black panels');
   assert.ok(payload.sync_variants.every(v=>v.files.every(f=>f.url.includes('/factory-print-file/'))));
-  assert.equal((await step()).status,'retry_wait');clock+=31000;assert.equal((await step()).status,'waiting_input');assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,0,'a partial mockup download is not mistaken for a complete saved variant');await c.call(base+'production/job',{id:job,action:'resume'});
+  assert.equal((await step()).status,'retry_wait');clock+=31000;assert.equal((await step()).status,'retry_wait');assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,0,'a partial mockup download is not mistaken for a complete saved variant');assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockup_downloads WHERE job=?').get(job).n,1,'a valid download survives a temporary failure without making an incomplete product');clock+=31000;
   for(let i=0;i<2;i++){const result=await step();if(result.status==='retry_wait')clock+=31000;else assert.equal(result.status,'queued');}
   assert.equal(taskCreates,2);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,4);
   assert.equal((await step()).status,'retry_wait');assert.equal(dispatches,1);assert.ok(Object.values(manifest.products)[0].variants.every(v=>v.color==='Black'&&v.supplierBaseColor==='White'),'store shows the printed background, preserving supplier blank metadata');clock+=31000;
   const image=Object.values(manifest.products)[0].image;assert.equal((await fetch(c.root+new URL(image).pathname)).status,200,'public listing image is backed by saved supplier bytes');
   live=true;brokenImages=true;assert.equal((await step()).status,'retry_wait','missing storefront images prevent false publication');clock+=31000;brokenImages=false;
   assert.equal((await step()).status,'completed');assert.equal(dispatches,1,'polling does not dispatch duplicate catalog jobs');assert.equal(creates,1);
-  const shown=(await c.call(base+'ideas')).data.made.find(m=>m.printfulId==='501');assert.equal(shown.status,'published');assert.ok(shown.thumb.startsWith('/api/owner/ai-factory/publishing/mockup/'));
+  const shown=(await c.call(base+'ideas')).data.made.find(m=>m.printfulId==='501');assert.equal(shown.status,'published');assert.ok(shown.thumb.startsWith('/api/owner/ai-factory/publishing/mockup/'));assert.equal(shown.mockupStatus.saved,4);assert.equal(shown.mockupStatus.generating,false);assert.ok(shown.mockupStatus.tasks.every(t=>t.task_key&&t.state==='saved'));assert.ok(Object.values(manifest.products)[0].variants.every(v=>v.images.length===2),'store variants retain their own actual saved mockups');
   assert.equal((await fetch(c.root+shown.thumb)).status,401,'private preview requires master authentication');assert.equal(Object.values(manifest.products)[0].outfitId,idea);
   // A shared supplier URL must not mix collection ownership or bypass revoked rights.
   const remoteIdea=name=>{const id=randomUUID(),set='pf:'+name,piece={...pieces[0],catalog:329,placements:[{area:'front',name:'Shared original',part:'front',url:'https://files.cdn.printful.com/original.png'}]};service.db.prepare('INSERT INTO idea_sets(id,source,name,parts,updated,jacket) VALUES(?,?,?,?,?,0)').run(set,'printful',name,'{}',new Date().toISOString());service.db.prepare('INSERT INTO idea_set_ideas(id,signature,set_id,kind,title,pieces,reason,status,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?)').run(id,id,set,'product',name,JSON.stringify([piece]),'Imported supplier original','new',new Date().toISOString(),new Date().toISOString());return id;};
