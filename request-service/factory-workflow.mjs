@@ -1,6 +1,7 @@
 import {randomUUID,createHash} from 'node:crypto';
 import {variantAreas} from './factory-blueprints.mjs';
 import {audienceMatches} from './factory-audiences.mjs';
+import {garmentColorCapability,fabricColorMatches} from './factory-color.mjs';
 import {garmentColors} from './factory-rendering.mjs';
 
 // All idea-room products enter the same leased production queue. This module never
@@ -34,10 +35,10 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   if(existing?.printful_id)hold('This item already exists in Printful. Review the existing product; a duplicate will not be created.');
   const product=await manager.productDetails(piece.catalog),blueprint=await blueprints.load(piece.catalog,'default');
   if(blueprint.source!=='live')hold('Live Printful blueprint verification failed. The stored snapshot cannot start automatic production.');
-  const aop=/all-over print/i.test(blueprint.name),color=piece.color||'Black';
-  const candidates=product.variants.filter(v=>aop||v.color.toLowerCase()===color.toLowerCase());
+  const capability=garmentColorCapability(blueprint);if(capability.mode==='hold')hold(capability.reason);const aop=capability.mode==='print',color=piece.color||'Black';
+  const candidates=product.variants.filter(v=>aop||fabricColorMatches(v,color));
   if(!candidates.length)hold('Printful has no available '+color+' fabric variants for this product.');
-  const bySize=new Map();for(const v of candidates){const key=v.size||v.name;if(!bySize.has(key)||aop&&v.color.toLowerCase()==='white')bySize.set(key,v);}
+  const bySize=new Map();for(const v of candidates){const key=v.size||v.name;if(!bySize.has(key)||aop&&fabricColorMatches(v,'White'))bySize.set(key,v);}
   const variants=[...bySize.values()];if(!variants.length)hold('Printful has no available variants for this product.');
   const audience=piece.audience||(['unisex','men','women','children'].find(a=>product.audiences.includes(a)));
   if(!audience||!audienceMatches(product,audience))hold('Choose an audience supported by this supplier product.');
@@ -57,8 +58,8 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const copy={title:(set.name+' '+piece.label).slice(0,150),description:set.name+' artwork on '+blueprint.name+'. '+(aop?'Printed background: '+color+'.':'Garment color: '+color+'.'),category:piece.role,tags:[piece.role,audience],collections:[set.name.slice(0,100)]};
   db.exec('BEGIN IMMEDIATE');try{
    if(get('SELECT count(*) n FROM factory_print_drafts').n+drafts.length>500)hold('Blueprint storage limit reached. Archive unused product blueprints.');
-   for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,'default',JSON.stringify(d.areas),'live',now());
-   manager.insertJob(prepared);rendering.savePlan(prepared.id,{background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,continueAcrossPanels:false,aiLayout});publishing.saveCopy(prepared.id,copy);
+   for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,blueprint.effectiveTechnique||blueprint.technique,JSON.stringify(d.areas),'live',now());
+   manager.insertJob(prepared);rendering.savePlan(prepared.id,{background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout});publishing.saveCopy(prepared.id,copy);
    for(const v of variants){const numeric=Number(v.price);if(v.price!==null&&v.price!==undefined&&String(v.price).trim()&&Number.isFinite(numeric)&&numeric>0&&v.currency==='USD')run('INSERT INTO factory_supplier_quotes VALUES(?,?,?,?,?,?)',prepared.id,v.id,Math.round(numeric*100),'USD','Printful catalog product '+piece.catalog,now());}
    const madeId=existing?get('SELECT id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog).id:randomUUID();
    run("INSERT INTO idea_made(id,idea,set_id,set_name,catalog,category,name,status,created,updated,job) VALUES(?,?,?,?,?,?,?,'queued',?,?,?) ON CONFLICT(idea,catalog) DO UPDATE SET job=excluded.job,status='queued',error=NULL,updated=excluded.updated",madeId,idea.id,set.id,set.name,piece.catalog,piece.role,copy.title,now(),now(),prepared.id);

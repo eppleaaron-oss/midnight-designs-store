@@ -24,15 +24,15 @@ async function client(service){
 test('one 14-piece outfit uses native files, real mockup downloads, review pricing and live storefront verification',async()=>{
  const ids=Array.from({length:14},(_,i)=>328+i),png=await fixture();let clock=Date.now(),manifest,live=false,brokenImages=false,creates=0,taskCreates=0,dispatches=0,failMockup=true;
  const created=new Map();
- const products=ids.map(id=>({id,title:'All-Over Print Unisex T-Shirt '+id,type_name:'T-Shirt',currency:'USD'}));
+ const products=ids.map(id=>({id,title:'All-Over Print Unisex T-Shirt '+id,type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'}));
  const variants=id=>[{id:id*10,size:'S',color:'White',price:'15.00',in_stock:true},{id:id*10+1,size:'M',color:'White',price:'16.00',in_stock:true}];
  const files=id=>({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:12,height:8,dpi:150}],variant_printfiles:variants(id).map(v=>({variant_id:v.id,placements:{front:1,back:1}}))});
  const fetchImpl=async(url,o={})=>{
   url=String(url);
   if(url==='https://api.printful.com/products')return response(products);
   let m=/\/products\/(\d+)$/.exec(url);if(m&&url.includes('api.printful.com')&&!url.includes('/store/'))return response({product:products.find(p=>p.id===Number(m[1])),variants:variants(Number(m[1]))});
-  if(url.includes('/v2/catalog-products/'))return new Response(JSON.stringify({data:{techniques:[]}}));
-  m=/printfiles\/(\d+)/.exec(url);if(m)return response(files(Number(m[1])));
+  if(url.includes('/v2/catalog-products/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));
+  m=/printfiles\/(\d+)/.exec(url);if(m){assert.equal(new URL(url).searchParams.get('technique'),'CUT-SEW');return response(files(Number(m[1])));}
   if(url.includes('/mockup-generator/templates/'))return response({templates:[],variant_mapping:[]});
   if(url.includes('/store/products/@')){const external=decodeURIComponent(url.split('@')[1]),entry=[...created].find(([,b])=>b.sync_product.external_id===external);return entry?response({sync_product:{id:entry[0]}}):new Response('{}',{status:404});}
   if(url==='https://api.printful.com/store/products'&&o.method==='POST'){assert.equal(o.headers['X-PF-Store-Id'],undefined,'single-store token does not require an account-wide store header');const b=JSON.parse(o.body);created.set(501+creates,b);creates++;return response({id:500+creates});}
@@ -70,12 +70,12 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
   const held=await step();assert.equal(held.status,'waiting_input');assert.match(held.result.wait,/Pricing hold/);assert.equal(creates,0);
   await c.call(base+'pricing/rule',{category:'shirts',rule});assert.equal((await c.call(base+'pricing/confirm-quotes',{job,extraCents:0,shippingCents:null,source:'Owner verified AOP included print charges',verified:true,remember:true})).status,200);
   await c.call(base+'production/job',{id:job,action:'resume'});assert.equal((await step()).status,'awaiting_review');assert.equal(creates,0,'review mode requires owner approval');
-  assert.equal((await c.call(base+'publishing/approve',{job,confirm:true})).status,200);assert.equal((await step()).status,'queued');assert.equal(creates,1);const payload=created.get(501);assert.equal(payload.sync_variants.length,2);
+  assert.equal((await c.call(base+'publishing/approve',{job,confirm:true})).status,200);assert.equal((await step()).status,'queued');assert.equal(creates,1);const payload=created.get(501);assert.equal(payload.sync_variants.length,2);assert.ok(payload.sync_variants.every(v=>[3280,3281].includes(v.variant_id)),'AOP uses the supplier blank IDs while printing black panels');
   assert.ok(payload.sync_variants.every(v=>v.files.every(f=>f.url.includes('/factory-print-file/'))));
   assert.equal((await step()).status,'retry_wait');clock+=31000;assert.equal((await step()).status,'waiting_input');assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,0,'a partial mockup download is not mistaken for a complete saved variant');await c.call(base+'production/job',{id:job,action:'resume'});
   for(let i=0;i<2;i++){const result=await step();if(result.status==='retry_wait')clock+=31000;else assert.equal(result.status,'queued');}
   assert.equal(taskCreates,2);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,4);
-  assert.equal((await step()).status,'retry_wait');assert.equal(dispatches,1);clock+=31000;
+  assert.equal((await step()).status,'retry_wait');assert.equal(dispatches,1);assert.ok(Object.values(manifest.products)[0].variants.every(v=>v.color==='Black'&&v.supplierBaseColor==='White'),'store shows the printed background, preserving supplier blank metadata');clock+=31000;
   const image=Object.values(manifest.products)[0].image;assert.equal((await fetch(c.root+new URL(image).pathname)).status,200,'public listing image is backed by saved supplier bytes');
   live=true;brokenImages=true;assert.equal((await step()).status,'retry_wait','missing storefront images prevent false publication');clock+=31000;brokenImages=false;
   assert.equal((await step()).status,'completed');assert.equal(dispatches,1,'polling does not dispatch duplicate catalog jobs');assert.equal(creates,1);
@@ -111,7 +111,7 @@ test('automatic rendering retains completed native areas and resumes an interrup
  try{
   const png=await fixture(),uploaded=await c.call(base+'artwork/upload',{name:'Resume art',collection:'Night',scope:'collection',target:'',product:null,placements:['front','back'],instructions:'Preserve proportions',permissions,files:[{filename:'art.png',base64:png.toString('base64')}]});const art=uploaded.data.artworks[0].id,job=randomUUID(),draft=randomUUID(),date=new Date().toISOString();
   service.db.prepare('INSERT INTO factory_job_profiles VALUES(?,?,?)').run(job,'',JSON.stringify([draft]));service.db.prepare('INSERT INTO factory_job_audiences VALUES(?,?)').run(job,JSON.stringify({product:328,artworkIds:[art]}));service.db.prepare('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)').run(draft,'Resume tee',328,10,'default',JSON.stringify([{placement:'front',width:12,height:8,dpi:150},{placement:'back',width:120,height:80,dpi:150}]),'live',date);
-  const renderer=factoryRendering({db:service.db,plans:{products:{328:{name:'All-Over Print Unisex Tee'}}}}),plan={colorMode:'print',background:'Black',placements:{front:{artworkId:art},back:{artworkId:art}}};renderer.savePlan(job,plan);
+  const renderer=factoryRendering({db:service.db,blueprints:{load:async()=>({source:'live',catalogType:'CUT-SEW',effectiveTechnique:'cut-sew',name:'All-Over Print Unisex Tee',variants:[{id:10,color:'White',size:'M'}],printfiles:{printfiles:[{printfile_id:1,width:12,height:8,dpi:150},{printfile_id:2,width:120,height:80,dpi:150}],variant_printfiles:[{variant_id:10,placements:{front:1,back:2}}]},layouts:{}})}}),plan={colorMode:'print',background:'Black',placements:{front:{artworkId:art},back:{artworkId:art}}};renderer.savePlan(job,plan);
   await assert.rejects(renderer.renderJob(job),/resolution is too low/);const first=service.db.prepare('SELECT id,placement FROM factory_print_files').all();assert.equal(first.length,1);assert.equal(first[0].placement,'front');
   renderer.savePlan(job,{...plan,placements:{...plan.placements,back:{fillOnly:true}}});const resumed=await renderer.renderJob(job);assert.equal(resumed.rendered,1);assert.equal(resumed.files[0].id,first[0].id);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_print_files').get().n,2);
   assert.ok(printFileLimits({}).files>14*8*6,'one outfit with all size print areas is not stopped by the obsolete 256-file cap');assert.throws(()=>printFileLimits({FACTORY_PRINT_STORAGE_MB:'invalid'}),/Invalid/);

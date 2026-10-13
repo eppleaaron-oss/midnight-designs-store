@@ -116,3 +116,14 @@ Print-file limits default to 512 MB and 8,192 saved files. `FACTORY_PRINT_STORAG
 The command center Start Factory button now starts the authenticated backend queue before submitting Idea Room outfits. Explicit master preparation enables the chosen creator roles; removed roles remain blocked. Autopilot does not reactivate paused roles. Quick runs and the command center report the actual provider configuration status instead of a hard-coded disconnected flag. `factory-start-browser-test.mjs` verifies the real page controls against an isolated service; the dedicated GitHub factory check installs its browser dependencies separately from the Render backend.
 
 The private Idea Room has a persistent base garment / print background color setting (Black initially). New ideas use that setting for actual printable fills or fabric-variant selection. Changing it rebuilds waiting ideas; already queued, reviewed or published items keep their original color.
+
+
+## Clothing color verification
+
+Automatic production verifies the live Printful product type and selected printing method before deciding between fabric colors and full-panel print backgrounds. A product name alone cannot authorize all-over printing, and sublimation on a mug does not imply garment-wide coverage. Native blueprint requests use the resolved supplier method; mockups use the resulting native files and actual variant IDs. Missing or conflicting AOP evidence holds the job.
+
+Regular garments select an actual available supplier variant in the requested color for each size. Quick production remaps its unrendered per-job blueprint to that real color variant; missing black stock holds rather than falling back to white. Only assigned artwork areas receive transparent-background print files. Color and variant availability are checked again before supplier creation.
+
+Verified AOP jobs render every native supported panel, including panels with no assigned artwork, to an opaque selected background over the complete supplier file dimensions. This fills native bleed pixels where included in the supplied print file; safe zones, seams and cross-panel art alignment still need template review. Unsupported hood/sleeve requests hold. Prepared files cannot silently be reassigned when supplier geometry changes. Hardware, zippers and unprintable surfaces are not recolored, and sublimation on white fabric can still show lighter seams or become lighter when stretched.
+
+Store listings show the actual printed background color for AOP garments while preserving `supplierBaseColor`, fulfillment IDs and size variants. Approval fingerprints include the color mode and garment color, and live publication verification checks the displayed color. Tests verify native dimensions, DPI and all four black panel edges, regular black variant selection with transparent uncovered pixels, missing-color holds, capability holds and preservation of printed colors during catalog sync.
