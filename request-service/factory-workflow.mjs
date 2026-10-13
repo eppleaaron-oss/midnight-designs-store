@@ -1,3 +1,4 @@
+import {checkedArtwork} from './factory-artwork-permissions.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {variantAreas} from './factory-blueprints.mjs';
 import {audienceMatches} from './factory-audiences.mjs';
@@ -43,7 +44,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const audience=piece.audience||(['unisex','men','women','children'].find(a=>product.audiences.includes(a)));
   if(!audience||!audienceMatches(product,audience))hold('Choose an audience supported by this supplier product.');
   const placements={},ids=[];let collection=null;
-  for(const part of piece.placements){const id=await sourceFile(part,set),row=get('SELECT collection,permissions FROM factory_artwork WHERE id=?',id);if(!JSON.parse(row.permissions).reuse)hold('Enable Reuse for the assigned artwork.');if(collection&&row.collection!==collection)hold('Every piece must use artwork from one collection.');collection=row.collection;ids.push(id);placements[part.area]={artworkId:id,fit:'contain',scale:100,x:0,y:0,rotation:0,mirror:false,tile:false,spacing:0,protect:!JSON.parse(row.permissions).modify&&!JSON.parse(row.permissions).recolor,recolor:null};}
+  for(const part of piece.placements){const id=await sourceFile(part,set),row=checkedArtwork(db,id);if(!row.effectivePermissions.reuse)hold('Enable Reuse for the assigned artwork.');if(collection&&row.collection!==collection)hold('Every piece must use artwork from one collection.');collection=row.collection;ids.push(id);placements[part.area]={artworkId:id,fit:'contain',scale:100,x:0,y:0,rotation:0,mirror:false,tile:false,spacing:0,protect:!JSON.parse(row.permissions).modify&&!JSON.parse(row.permissions).recolor,recolor:null};}
   if(!ids.length)hold('Assign at least one original artwork file.');
   const drafts=variants.map(v=>{let areas;try{areas=variantAreas(blueprint,v.id);}catch(e){hold(e.message);}if(!aop)areas=areas.filter(a=>placements[a.placement]);
    // Labels are optional. They require a separate owner-selected label file.
@@ -59,7 +60,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   db.exec('BEGIN IMMEDIATE');try{
    if(get('SELECT count(*) n FROM factory_print_drafts').n+drafts.length>500)hold('Blueprint storage limit reached. Archive unused product blueprints.');
    for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,blueprint.effectiveTechnique||blueprint.technique,JSON.stringify(d.areas),'live',now());
-   manager.insertJob(prepared);rendering.savePlan(prepared.id,{background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout});publishing.saveCopy(prepared.id,copy);
+   manager.insertJob(prepared);rendering.savePlan(prepared.id,{background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout,artworkEdits:rendering.artworkRules()});publishing.saveCopy(prepared.id,copy);
    for(const v of variants){const numeric=Number(v.price);if(v.price!==null&&v.price!==undefined&&String(v.price).trim()&&Number.isFinite(numeric)&&numeric>0&&v.currency==='USD')run('INSERT INTO factory_supplier_quotes VALUES(?,?,?,?,?,?)',prepared.id,v.id,Math.round(numeric*100),'USD','Printful catalog product '+piece.catalog,now());}
    const madeId=existing?get('SELECT id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog).id:randomUUID();
    run("INSERT INTO idea_made(id,idea,set_id,set_name,catalog,category,name,status,created,updated,job) VALUES(?,?,?,?,?,?,?,'queued',?,?,?) ON CONFLICT(idea,catalog) DO UPDATE SET job=excluded.job,status='queued',error=NULL,updated=excluded.updated",madeId,idea.id,set.id,set.name,piece.catalog,piece.role,copy.title,now(),now(),prepared.id);
