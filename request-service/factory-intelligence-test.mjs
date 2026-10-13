@@ -84,7 +84,7 @@ test('owner login health never exposes the hash, and the Brain feeds every produ
   assert.equal((await call('/api/owner/ai-factory/intelligence/feedback',{job:jobs[0].id,kind:'never'})).status,200);
   assert.equal((await call('/api/owner/ai-factory/intelligence/feedback',{job:'missing',kind:'good'})).status,404);
   const life=(await call('/api/owner/ai-factory/intelligence/job/'+jobs[0].id)).data;
-  assert.equal(life.run.number,1);assert.equal(life.stages[0].name,'Brief');assert.ok(life.log.some(e=>/Owner feedback/.test(e.text)));
+  assert.equal(life.run.number,1);assert.equal(life.stages.length,12);assert.equal(life.stages[0].id,'artwork-analyzed');assert.ok(life.stages.every(s=>s.state!=='done'),'instructions alone do not complete production');assert.ok(life.log.some(e=>/Owner feedback/.test(e.text)));
   assert.ok((await call('/api/owner/ai-factory/intelligence')).data.memories.some(m=>m.kind==='failure'||m.job===jobs[0].id));
  }finally{await new Promise(r=>service.server.close(r));}
 });

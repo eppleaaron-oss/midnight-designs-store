@@ -15,6 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install backend rendering dependencies
+        run: npm ci --prefix request-service
       - uses: actions/jekyll-build-pages@v1
         with:
           source: ./

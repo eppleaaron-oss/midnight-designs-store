@@ -1,3 +1,11 @@
+import {factoryBranding} from './factory-branding.mjs';
+import {factoryDiagnostics} from './factory-diagnostics.mjs';
+import {factoryAcceptance} from './factory-acceptance.mjs';
+import {factoryAiPipeline} from './factory-ai-pipeline.mjs';
+import {factoryArtworkEditor} from './factory-artwork-editor.mjs';
+import {factoryArtworkEngine} from './factory-artwork-engine.mjs';
+import {factoryWorkflow} from './factory-workflow.mjs';
+import {factoryRendering} from './factory-rendering.mjs';
 import {factoryHistory} from './factory-history.mjs';
 import {factoryRuns} from './factory-runs.mjs';
 import {factoryIntelligence} from './factory-intelligence.mjs';
@@ -30,7 +38,7 @@ export const STATUSES=['New','Reviewing','Designing','Customer Review','Revision
 const hash=s=>createHash('sha256').update(s).digest('hex'),token=()=>randomBytes(32).toString('hex'),now=()=>new Date().toISOString();
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 const str=(v,max=6000,required=false)=>{if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(400,'Invalid or missing field.');return v.trim();};
-export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={},outfitSettings={},productionSettings={},publishingSettings={},runSettings={},intelligenceSettings={},ideaSettings={},auditSettings={}}){
+export function createService({dbPath,origin,passwordHash,secure=true,designCatalog=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url),'utf8')),storefrontOrigin='https://midnight-designs.store',catalogToken=process.env.CATALOG_GITHUB_TOKEN,catalogFetch=fetch,paymentSettings={},paymentFetch=fetch,paymentCatalogLoader,blueprintSettings={},factorySettings={},outfitSettings={},productionSettings={},publishingSettings={},runSettings={},intelligenceSettings={},ideaSettings={},auditSettings={},artworkEngineSettings={},workflowSettings={},editorSettings={},pipelineSettings={},diagnosticSettings={}}){
  const designs=new Map(designCatalog.filter(d=>d.kind!=='reference').map(d=>[d.id,d]));const site=new URL(origin);if(site.origin!==origin||(!secure&&site.hostname!=='127.0.0.1'&&site.hostname!=='localhost'))throw Error('Use an HTTPS origin, or loopback for development.');
  if(secure&&site.protocol!=='https:')throw Error('Production APP_ORIGIN must use HTTPS.');
  if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash||''))throw Error('Set OWNER_PASSWORD_HASH using password.mjs.');
@@ -62,26 +70,38 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const reviewHandler=productReviews({db,products:JSON.parse(readFileSync(new URL('./product-catalog.json',import.meta.url),'utf8')),auth,body,send,fail,limit,origin,storefrontOrigin});
  const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader});
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
- const blueprintHandler=factoryBlueprints({...blueprintSettings,db,auth,body,send,fail,limit,origin});
- const artworkHandler=factoryArtwork({db,auth,body,send,fail,limit,origin});
- const factoryHandler=factoryManager({...factorySettings,db,auth,body,send,fail,limit,origin});
+ const brandingHandler=factoryBranding({db,auth,body,send,fail,limit,origin});
+ const diagnostics=factoryDiagnostics({clock:productionSettings.clock||Date.now,...diagnosticSettings,db,auth,send,fail,limit,secrets:()=>[passwordHash,catalogToken,process.env.PRINTFUL_TOKEN,process.env.OPENAI_API_KEY,process.env.CATALOG_GITHUB_TOKEN,process.env.FACTORY_WORKER_TOKEN]}),tracked=s=>({...s,fetchImpl:diagnostics.wrapFetch(s.fetchImpl||fetch)});
+ const blueprintHandler=factoryBlueprints({...tracked(blueprintSettings),db,auth,body,send,fail,limit,origin});
+ const artworkHandler=factoryArtwork({plans:blueprintSettings.plans,db,auth,body,send,fail,limit,origin});
+ const factoryHandler=factoryManager({...tracked(factorySettings),db,auth,body,send,fail,limit,origin});
  const productionHandler=factoryProduction({storageDurable:durableQueueStorage(dbPath),...productionSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setProduction(productionHandler);
  const supportHandler=factorySupport({db,auth,body,send,fail,limit,origin});factoryHandler.setSupport(supportHandler);productionHandler.setSupport(supportHandler);
  const pricingHandler=factoryPricing({db,auth,body,send,fail,limit,origin});productionHandler.setPricing(pricingHandler);supportHandler.setPricing(pricingHandler);
- const publishingHandler=factoryPublishing({storageDurable:durableQueueStorage(dbPath),...publishingSettings,db,auth,body,send,fail,limit,origin,manager:factoryHandler,pricing:pricingHandler});productionHandler.setPublishing(publishingHandler);
+ const publishingHandler=factoryPublishing({storageDurable:durableQueueStorage(dbPath),...tracked(publishingSettings),db,auth,body,send,fail,limit,origin,manager:factoryHandler,pricing:pricingHandler,blueprints:blueprintHandler});productionHandler.setPublishing(publishingHandler);
  const employeeHandler=factoryEmployees({db,manager:factoryHandler,auth,body,send,fail,limit,origin});factoryHandler.setEmployees(employeeHandler);supportHandler.setEmployees(employeeHandler);productionHandler.setEmployees(employeeHandler);
  const outfitHandler=factoryOutfits({...outfitSettings,db,manager:factoryHandler,auth,body,send,fail,limit,origin,storefrontOrigin});
- const historyHandler=factoryHistory({db,auth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler});
+ const artworkEngine=factoryArtworkEngine({db,...tracked(artworkEngineSettings)});productionHandler.setArtworkEngine(artworkEngine);
+ const renderingHandler=factoryRendering({artworkEngine,blueprints:blueprintHandler,manager:factoryHandler,db,auth,body,send,fail,limit,origin,plans:blueprintSettings.plans});productionHandler.setRendering(renderingHandler);
+ const editorHandler=factoryArtworkEditor({storageDurable:durableQueueStorage(dbPath),secretKey:passwordHash,...tracked(editorSettings),db,artwork:artworkHandler,manager:factoryHandler,auth,body,send,fail,limit,origin});editorHandler.setEmployees(employeeHandler);renderingHandler.setEditor(editorHandler);productionHandler.setEditor(editorHandler);
+ const pipelineHandler=factoryAiPipeline({storageDurable:durableQueueStorage(dbPath),env:artworkEngineSettings.env||process.env,...tracked(pipelineSettings),db,auth,body,send,fail,limit,origin,editor:editorHandler,publishing:publishingHandler,pricing:pricingHandler,employees:employeeHandler});factoryHandler.setPipeline(pipelineHandler);productionHandler.setPipeline(pipelineHandler);publishingHandler.setPipeline(pipelineHandler);supportHandler.setPipeline(pipelineHandler);renderingHandler.setPipeline(pipelineHandler);renderingHandler.setDiagnostics(diagnostics);productionHandler.setDiagnostics(diagnostics);publishingHandler.setDiagnostics(diagnostics);diagnostics.setIntegrations({pipeline:pipelineHandler,publishing:publishingHandler,readiness:productionHandler.diagnosticReadiness});diagnostics.setSecrets(()=>[passwordHash,catalogToken,editorHandler.providerConnection().key,process.env.PRINTFUL_TOKEN,process.env.OPENAI_API_KEY,process.env.AI_IMAGE_API_KEY,process.env.CATALOG_GITHUB_TOKEN,process.env.FACTORY_WORKER_TOKEN,...[factorySettings,blueprintSettings,publishingSettings,productionSettings,artworkEngineSettings,editorSettings,pipelineSettings,intelligenceSettings].flatMap(s=>[s.token,s.githubToken,s.workerToken,s.env?.OPENAI_API_KEY,s.env?.AI_IMAGE_API_KEY,s.env?.PRINTFUL_TOKEN])]);artworkEngine.setConnection(pipelineHandler.configuration);
+ const acceptance=factoryAcceptance({db,pipeline:pipelineHandler,diagnostics,editor:editorHandler,publishing:publishingHandler});publishingHandler.setAcceptance(acceptance);diagnostics.setAcceptance(acceptance);
+ const historyHandler=factoryHistory({db,auth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler,pipeline:pipelineHandler});
  const intelligenceHandler=factoryIntelligence({storageDurable:durableQueueStorage(dbPath),storefrontOrigin,...intelligenceSettings,db,auth,body,send,fail,limit,origin,passwordHash});
- const ideasHandler=factoryIdeas({storefrontOrigin,...ideaSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler});
+ intelligenceHandler.setEditor(editorHandler);intelligenceHandler.setPipeline(pipelineHandler);intelligenceHandler.setDiagnostics(diagnostics);
+ const workflow=factoryWorkflow({storageDurable:durableQueueStorage(dbPath),...workflowSettings,db,manager:factoryHandler,blueprints:blueprintHandler,artwork:artworkHandler,rendering:renderingHandler,publishing:publishingHandler});
+ const ideasHandler=factoryIdeas({workflow,publishingEngine:publishingHandler,storefrontOrigin,...ideaSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler});
  const auditHandler=factoryAudit({storefrontOrigin,...auditSettings,ideas:ideasHandler,db,auth,body,send,fail,limit,origin});
- const runsHandler=factoryRuns({...runSettings,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler,artwork:artworkHandler,storefrontOrigin});
+ const runsHandler=factoryRuns({...runSettings,pipeline:pipelineHandler,rendering:renderingHandler,brain:intelligenceHandler,db,auth,body,send,fail,limit,origin,manager:factoryHandler,artwork:artworkHandler,storefrontOrigin});
  const startedAt=new Date().toISOString();
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
  const server=http.createServer((req,res)=>historyHandler.scope(req,new URL(req.url,origin).pathname,req.method,async()=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data: https://*.printful.com "+storefrontOrigin+"; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
+   if(await brandingHandler.handle(req,res,path,method))return;
+   if(await diagnostics.handle(req,res,path,method))return;
+   if(await pipelineHandler.handle(req,res,path,method))return;
    if(await intelligenceHandler.handle(req,res,path,method))return;
    if(await ideasHandler.handle(req,res,path,method))return;
    if(await auditHandler.handle(req,res,path,method))return;
@@ -91,8 +111,10 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    if(await publishingHandler.handle(req,res,path,method))return;
    if(await pricingHandler.handle(req,res,path,method))return;
    if(await supportHandler.handle(req,res,path,method))return;
+   if(await editorHandler.handle(req,res,path,method))return;
    if(await productionHandler.handle(req,res,path,method))return;
    if(await outfitHandler.handle(req,res,path,method))return;
+   if(await renderingHandler.handle(req,res,path,method))return;
    if(await blueprintHandler.handle(req,res,path,method,url))return;
    if(await artworkHandler.handle(req,res,path,method))return;
    if(await factoryHandler.handle(req,res,path,method))return;
@@ -100,7 +122,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    if(await catalogHandler.handle(req,res,path,method))return;
    if(path==='/health'&&method==='GET')return send(res,200,{ok:true});
    if(path==='/health/owner'&&method==='GET'){const fp=createHash('sha256').update(passwordHash).digest('hex');return send(res,200,{ownerPasswordHashConfigured:true,hashFormatValid:true,hashFingerprint:fp.slice(0,4)+'…'+fp.slice(-4),ownerEmail:'midnightdesign107@gmail.com',deployCommit:(process.env.RENDER_GIT_COMMIT||'').slice(0,7)||null,deployBranch:process.env.RENDER_GIT_BRANCH||null,startedAt,note:'The fingerprint is a one-way summary of OWNER_PASSWORD_HASH. Compare it with the fingerprint shown when the code was made; it never reveals the hash or password.'});}
-   if(!path.startsWith('/api/')){const staticFiles={'/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'factory.html','/ai-intelligence':'intelligence.html','/intelligence.js':'intelligence.js','/ideas.js':'ideas.js','/store-check.js':'store-check.js','/factory.js':'factory.js','/factory.css':'factory.css','/ai-factory/tools':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/factory-workspace.js':'factory-workspace.js','/factory-workspace.css':'factory-workspace.css','/factory-uploads.js':'factory-uploads.js','/factory-blueprints.js':'factory-blueprints.js','/factory-outfits.js':'factory-outfits.js','/ai-history':'factory-history.html','/factory-history.js':'factory-history.js','/ai-employees':'factory-employees.html','/factory-employees.js':'factory-employees.js','/factory-publishing.js':'factory-publishing.js','/factory-pricing.js':'factory-pricing.js','/factory-support.js':'factory-support.js','/factory-production.js':'factory-production.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/factory-workspace.js','/factory-workspace.css','/ai-history','/factory-history.js','/ai-employees','/factory-employees.js','/ai-factory','/ai-intelligence','/intelligence.js','/ideas.js','/store-check.js','/factory.js','/factory.css','/ai-factory/tools','/ai-factory.html','/ai-factory.js','/ai-factory.css','/factory-uploads.js','/factory-blueprints.js','/factory-outfits.js','/factory-publishing.js','/factory-pricing.js','/factory-support.js','/factory-production.js'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:path==='/ai-history'?'/login?next=ai-history':path==='/ai-employees'?'/login?next=ai-employees':'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
+   if(!path.startsWith('/api/')){const staticFiles={'/factory-pipeline.js':'factory-pipeline.js','/factory-mockup-view.js':'factory-mockup-view.js','/factory-mockups.css':'factory-mockups.css','/ai-artwork':'factory-artwork-editor.html','/factory-artwork-editor.js':'factory-artwork-editor.js','/':'index.html','/login':'login.html','/login.js':'login.js','/portal.js':'portal.js','/request-center-filters.js':'request-center-filters.js','/portal.css':'portal.css','/ai-factory':'factory.html','/ai-intelligence':'intelligence.html','/intelligence.js':'intelligence.js','/ideas.js':'ideas.js','/store-check.js':'store-check.js','/factory.js':'factory.js','/factory.css':'factory.css','/ai-factory/tools':'ai-factory.html','/ai-factory.html':'ai-factory.html','/ai-factory.js':'ai-factory.js','/ai-factory.css':'ai-factory.css','/factory-workspace.js':'factory-workspace.js','/factory-workspace.css':'factory-workspace.css','/factory-uploads.js':'factory-uploads.js','/factory-blueprints.js':'factory-blueprints.js','/factory-outfits.js':'factory-outfits.js','/ai-history':'factory-history.html','/factory-history.js':'factory-history.js','/ai-employees':'factory-employees.html','/factory-employees.js':'factory-employees.js','/factory-publishing.js':'factory-publishing.js','/factory-pricing.js':'factory-pricing.js','/factory-support.js':'factory-support.js','/factory-production.js':'factory-production.js','/analytics.html':'analytics.html','/design-analytics.js':'design-analytics.js','/design-analytics.css':'design-analytics.css'};if(['/factory-pipeline.js','/factory-mockup-view.js','/factory-mockups.css','/ai-artwork','/factory-artwork-editor.js','/factory-workspace.js','/factory-workspace.css','/ai-history','/factory-history.js','/ai-employees','/factory-employees.js','/ai-factory','/ai-intelligence','/intelligence.js','/ideas.js','/store-check.js','/factory.js','/factory.css','/ai-factory/tools','/ai-factory.html','/ai-factory.js','/ai-factory.css','/factory-uploads.js','/factory-blueprints.js','/factory-outfits.js','/factory-publishing.js','/factory-pricing.js','/factory-support.js','/factory-production.js'].includes(path)&&session(req)?.role!=='owner'){if(/\.(js|css)$/.test(path))fail(401,'Owner access required.');res.writeHead(302,{Location:path==='/ai-artwork'?'/login?next=ai-artwork':path==='/ai-history'?'/login?next=ai-history':path==='/ai-employees'?'/login?next=ai-employees':'/login?next=ai-factory'});return res.end();}if(path==='/analytics.html'&&session(req)?.role!=='owner'){res.writeHead(302,{Location:'/'});return res.end();}if(method!=='GET'||!staticFiles[path])fail(404,'Not found.');res.setHeader('Content-Type',path.endsWith('.js')?'text/javascript':path.endsWith('.css')?'text/css':'text/html');return res.end(readFileSync(join(root,staticFiles[path])));}
    if(await designStats.handle(req,res,path,method,url))return;
    if(await reviewHandler(req,res,path,method,url))return;
    if(path==='/api/design-ratings'){
@@ -148,7 +170,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
   }catch(e){if(res.headersSent)return res.end();send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
  }));
  const runFeed=setInterval(()=>{runsHandler.tick().catch(e=>console.error('Production run feed failed:',e.message));ideasHandler.tick().catch(e=>console.error('Idea team failed:',e.message));},30000);runFeed.unref();
- server.on('close',()=>{clearInterval(runFeed);db.close();});return {server,db};
+ server.on('close',()=>{clearInterval(runFeed);editorHandler.idle().finally(()=>db.close());});return {server,db,artworkEditor:editorHandler,factoryDiagnostics:diagnostics,factoryAcceptance:acceptance,publishingEngine:publishingHandler};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const {server}=createService({dbPath:process.env.DATA_PATH||'./private-data/requests.sqlite',origin:process.env.APP_ORIGIN,passwordHash:process.env.OWNER_PASSWORD_HASH,secure:process.env.DEV_HTTP!=='1'});

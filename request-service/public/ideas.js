@@ -16,10 +16,10 @@ function shown(){
 }
 function render(){
  const c=data.counts,s=data.settings,sets=new Map(data.sets.map(x=>[x.id,x])),jackets=data.sets.filter(x=>x.jacket).length;
- $('ideaBadge').textContent=`${c.new||0} new · ${c.approved||0} approved · ${c.made||0} made`;
+ $('ideaBadge').textContent=`${c.new||0} new · ${c.approved||0} approved · ${c.made||0} batches queued`;
  const pf=data.printful;
  $('ideaShapes').textContent=`${data.sets.length} design sets (${jackets} from jackets) across ${data.catalog} all-over-print items. `+(pf.state==='connected'?`Read ${pf.products} Printful products.`:pf.state==='not_connected'?'Printful isn\'t connected on the backend, so only uploaded sets are used.':pf.state==='error'?'Printful: '+pf.error:'Reading your Printful products…')+(pf.state==='connected'&&!jackets?' Your Printful store has no jackets yet, so hoodie sets lead.':'');
- if(document.activeElement?.closest?.('.ix-team')==null){$('ideaTeam').value=$('ideaTeamSlider').value=s.team;$('ideaPool').value=s.pool;$('ideaOutfit').value=s.outfitSize;$('ideaAuto').checked=s.autoMake;}
+ if(document.activeElement?.closest?.('.ix-team')==null){$('ideaTeam').value=$('ideaTeamSlider').value=s.team;$('ideaPool').value=s.pool;$('ideaOutfit').value=s.outfitSize;$('ideaAuto').checked=s.autoMake;$('ideaAiLayout').checked=s.aiLayout;if(!$('ideaBaseColor').options.length)for(const color of data.colors){const o=node('option',color);o.value=color;$('ideaBaseColor').append(o);}$('ideaBaseColor').value=s.baseColor;}
  if(document.activeElement?.closest?.('.ix-autopilot')==null){$('ideaAutopilot').checked=s.autopilot;$('ideaPerDay').value=s.perDay;}
  $('ideaSets').replaceChildren(...data.sets.map(x=>{const d=node('div','', 'ix-set');d.dataset.jacket=String(x.jacket);
   const off=node('label'),cb=node('input');cb.type='checkbox';cb.checked=true;cb.onchange=guard(cb,async()=>{data=await api('ideas/set',{id:x.id,enabled:false});render();note(`${x.name} won't be used for ideas.`);});off.append(cb,document.createTextNode('Use this set'));
@@ -30,13 +30,13 @@ function render(){
   const open=i.status==='new'||i.status==='failed',card=node(open?'label':'article','', 'ix-idea'),set=sets.get(i.set);card.dataset.status=i.status;
   if(open){const cb=node('input');cb.type='checkbox';cb.checked=picked.has(i.id);cb.setAttribute('aria-label','Select '+i.title);cb.onchange=()=>{cb.checked?picked.add(i.id):picked.delete(i.id);bar();};card.append(cb);}
   const head=node('div','', 'fx-row');head.append(node('strong',i.title),node('span',i.kind==='outfit'?'Outfit':'Item','fx-pill'));card.append(head);
-  const ready=i.pieces.filter(p=>p.ready).length;
-  if(open&&ready&&data.canPublish){const go=node('button',`Publish ${ready} ready item${ready===1?'':'s'} now`,'fx-btn fx-go ix-now');go.type='button';
-   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();data=await api('ideas/publish',{ids:[i.id]});picked.delete(i.id);started(1);});card.append(go);}
+  const ready=i.pieces.length;
+  if(open&&ready&&data.canPublish){const go=node('button',`Prepare ${ready} item${ready===1?'':'s'} now`,'fx-btn fx-go ix-now');go.type='button';
+   go.onclick=guard(go,async ev=>{ev?.preventDefault?.();data=await api('ideas/publish',{ids:[i.id],activateCreators:true});picked.delete(i.id);started(1);});card.append(go);}
   if(set)card.append(thumbs(set.parts));
   const pieces=node('ul','', 'ix-pieces');
-  for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.category?p.category+': ':''}${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')),node('span',p.tag?`Tag: Midnight Design logo`:'Tag: logo small at the inside back neck (no tag print area)','ix-tag'));
-   if(p.ready!==undefined)li.append(node('span',p.ready?'Ready to publish':'Not published: '+p.why,p.ready?'ix-ready':'ix-skip'));
+  for(const p of i.pieces){const li=node('li');li.append(node('b',`${p.category?p.category+': ':''}${p.label} · ${p.color}`),node('span',p.placements.map(x=>`${area(x.area)}: ${PART[x.part]||x.part}`).join(' · ')+(p.empty.length?` · ${p.empty.map(area).join(', ')}: base color`:'')),node('span','Labels require a separately assigned brand file.','ix-tag'));
+   if(p.ready!==undefined)li.append(node('span',p.ready?'Artwork mapped — files and mockups still required':'Needs placement review: '+p.why,p.ready?'ix-ready':'ix-skip'));
    if(open&&i.pieces.length>1){const x=node('button','Remove','ix-drop');x.type='button';x.setAttribute('aria-label',`Remove ${p.label} from ${i.title}`);x.onclick=guard(x,async ev=>{ev?.preventDefault?.();data=await api('ideas/piece',{id:i.id,catalog:p.catalog});render();note(`${p.label} removed from ${i.title}.`);});li.append(x);}
    pieces.append(li);}
   card.append(pieces,node('p',i.reason,'fx-sublabel'));
@@ -53,19 +53,19 @@ function render(){
   t.append(img,node('span',x.name,'fx-tile-name'),node('span',x.collection,'fx-sublabel'),sel);return t;}));
  bar();renderMade();
 }
-function bar(){$('ideaPublish').textContent=picked.size?`Publish selected to store (${picked.size})`:'Publish selected to store';$('ideaPublish').disabled=$('ideaMake').disabled=$('ideaDismiss').disabled=!picked.size;}
+function bar(){$('ideaPublish').textContent=picked.size?`Prepare selected products (${picked.size})`:'Prepare selected products';$('ideaPublish').disabled=$('ideaMake').disabled=$('ideaDismiss').disabled=!picked.size;}
 // AI Made: everything the team published, with star ratings that feed back into what it makes next.
 function renderMade(){
  const list=data.made||[],unrated=list.filter(m=>m.status==='published'&&!m.rating).length,r=data.ratings;
  $('madeBadge').textContent=list.length?`${list.filter(m=>m.status==='published').length} published · ${unrated} to rate`+(r.count?` · average ${r.avg.toFixed(1)}★`:''):'Nothing yet';
  const busy=data.ideas.filter(i=>i.status==='queued'||i.status==='publishing').length;
  const pub=data.publisher||{},failed=list.filter(m=>m.status==='failed').length;
- if(busy)$('madeNote').textContent=`Publishing in the background: ${busy} idea${busy===1?'':'s'} to go, ${list.filter(m=>m.status==='published').length} products done, ${failed} failed. `+(pub.blocked?`Stopped: ${pub.blocked} It tries again by itself every two minutes, or press Start Factory to try right now.`:pub.running&&pub.name?`Now ${pub.step} for ${pub.name} (${pub.seconds}s).`:'Waiting for the publisher to start, it checks every 30 seconds.')+(pub.lastError?` Last problem: ${pub.lastError}`:'');
- else if(/^Publishing in the background/.test($('madeNote').textContent))$('madeNote').textContent='Publishing finished. Rate what came out.';
+ $('madeNote').textContent=data.productionNote+(pub.lastError?' Last preparation problem: '+pub.lastError:'');
  const shown=list.filter(m=>madeFilter==='unrated'?m.status!=='failed'&&!m.rating:madeFilter==='rated'?!!m.rating:m.status==='failed');
  $('madeGrid').replaceChildren(...(shown.length?shown.map(m=>{const card=node('article','', 'mx-card');card.dataset.status=m.status;
-  if(m.thumb){const img=node('img');img.src=m.thumb;img.alt=m.name;img.loading='lazy';img.referrerPolicy='no-referrer';card.append(img);}else card.append(node('div',m.status==='failed'?'Not published':m.status==='creating'?(data.publisher?.name===m.name?`Publishing: ${data.publisher.step} (${data.publisher.seconds}s)`:'Publishing…'):'Printful is making the mockup. It shows here in a minute or two.','mx-wait'));
-  card.append(node('strong',m.name),node('p',`${m.category||''} · design set ${m.set}`,'fx-sublabel'));
+  if(m.thumb){const img=node('img');img.src=m.thumb;img.alt=m.name;img.loading='lazy';img.referrerPolicy='no-referrer';card.append(img);}else card.append(node('div',m.mockupStatus?.label||'No tracked mockup is saved for this product yet.','mx-wait'));
+  card.append(node('p',m.status.replace(/_/g,' '),'fx-pill'),node('strong',m.name),node('p',`${m.category||''} · design set ${m.set}`,'fx-sublabel'));
+  if(window.mdMockups&&m.mockupStatus)card.append(window.mdMockups.render(m.mockupStatus,{key:m.job}));
   if(m.prices){const v=Object.values(m.prices);card.append(node('p',`Price $${Math.min(...v).toFixed(2)}${Math.max(...v)!==Math.min(...v)?'–$'+Math.max(...v).toFixed(2):''} · ${v.length} sizes`,'fx-sublabel'));}
   if(m.error)card.append(node('p',m.error,'fx-warn'));
   if(m.status==='published'){
@@ -83,22 +83,22 @@ async function load(){data=await api('ideas');render();}
 document.querySelectorAll('#ideaTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#ideaTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));filter=t.dataset.filter;render();});
 $('ideaAll').onclick=()=>{for(const i of shown())if(i.status==='new'||i.status==='failed')picked.add(i.id);render();};
 // Publishing runs on the server in the background; the page jumps to AI Made and refreshes every few seconds as products arrive.
-function started(n){render();note(`${n} idea${n===1?'':'s'} sent to your store. Watch them arrive in AI Made.`);$('madeNote').textContent=`Publishing ${n} idea${n===1?'':'s'} in the background. Products appear below one by one, and you can leave this page open or come back later.`;document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
+function started(n){render();note(`${n} idea${n===1?'':'s'} queued for preparation. Review progress and holds below.`);$('madeNote').textContent=data.productionNote;document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
 // Used by Start Factory: publishes the ticked ideas, or every waiting outfit that has ready items when none are ticked.
-window.mdIdeas={async start(){if(!data)await load();if(!data.canPublish)throw Error('Printful is not connected on the backend, so nothing can be published.');
- let ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.some(p=>p.ready)).map(i=>i.id);
+window.mdIdeas={async start(){if(!data)await load();if(!data.canPublish)throw Error('Connect Printful and persistent factory storage before preparing products.');
+ let ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.length).map(i=>i.id);
  // Ideas already waiting in line get a fresh push (this also retries right away after a token change).
  if(!ids.length)ids=data.ideas.filter(i=>i.status==='queued').map(i=>i.id);if(!ids.length)return 0;
- data=await api('ideas/publish',{ids});picked.clear();started(ids.length);return ids.length;}};
-$('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked]});picked.clear();started(n);});
+ data=await api('ideas/publish',{ids,activateCreators:true});picked.clear();started(ids.length);return ids.length;}};
+$('ideaPublish').onclick=guard($('ideaPublish'),async()=>{const n=picked.size;data=await api('ideas/publish',{ids:[...picked],activateCreators:true});picked.clear();started(n);});
 document.querySelectorAll('#madeTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#madeTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));madeFilter=t.dataset.filter;renderMade();});
-$('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=await api('ideas/approve',{ids:[...picked]});picked.clear();render();note(`${n} idea${n===1?'':'s'} sent to production. Jobs appear in the live queue below.`);});
-$('ideaDismiss').onclick=guard($('ideaDismiss'),async()=>{const n=picked.size;data=await api('ideas/dismiss',{ids:[...picked]});picked.clear();render();note(`${n} dismissed. The team will draft new ones.`);});
+$('ideaMake').onclick=guard($('ideaMake'),async()=>{const n=picked.size;data=await api('ideas/approve',{ids:[...picked],activateCreators:true});picked.clear();render();note(`${n} idea${n===1?'':'s'} sent to production. Jobs appear in the live queue below.`);});
+$('ideaDismiss').onclick=guard($('ideaDismiss'),async()=>{const n=picked.size;data=await api('ideas/dismiss',{ids:[...picked],activateCreators:true});picked.clear();render();note(`${n} dismissed. The team will draft new ones.`);});
 $('ideaMore').onclick=guard($('ideaMore'),async()=>{const before=data.counts.new||0;data=await api('ideas/generate',{});render();note(`${Math.max(0,(data.counts.new||0)-before)} new ideas drafted.`);});
 $('ideaPrintful').onclick=guard($('ideaPrintful'),async()=>{note('Reading your Printful products…');data=await api('ideas/printful',{});render();note(data.printful.state==='connected'?`Found ${data.sets.filter(x=>x.source==='printful').length} design sets in ${data.printful.products} Printful products.`:$('ideaShapes').textContent);});
-const saveSettings=guard(null,async()=>{data=await api('ideas/settings',{team:Number($('ideaTeam').value),pool:Number($('ideaPool').value),outfitSize:Number($('ideaOutfit').value),autopilot:$('ideaAutopilot').checked,perDay:Number($('ideaPerDay').value),autoMake:$('ideaAuto').checked});render();note($('ideaAutopilot').checked?`Autopilot is on: up to ${$('ideaPerDay').value} outfits a day go to your store.`:$('ideaAuto').checked?'The team now sends ideas straight to production.':'Settings saved.');});
+const saveSettings=guard(null,async()=>{data=await api('ideas/settings',{team:Number($('ideaTeam').value),pool:Number($('ideaPool').value),outfitSize:Number($('ideaOutfit').value),autopilot:$('ideaAutopilot').checked,perDay:Number($('ideaPerDay').value),autoMake:$('ideaAuto').checked,aiLayout:$('ideaAiLayout').checked,baseColor:$('ideaBaseColor').value});render();note($('ideaAutopilot').checked?`Autopilot is on: up to ${$('ideaPerDay').value} outfits a day enter production; publication follows the selected review rules.`:$('ideaAuto').checked?'The team now sends ideas straight to production.':'Settings saved.');});
 $('ideaTeamSlider').oninput=()=>{$('ideaTeam').value=$('ideaTeamSlider').value;};$('ideaTeamSlider').onchange=saveSettings;
-$('ideaTeam').onchange=()=>{$('ideaTeamSlider').value=$('ideaTeam').value;saveSettings();};$('ideaPool').onchange=saveSettings;$('ideaOutfit').onchange=saveSettings;$('ideaAutopilot').onchange=saveSettings;$('ideaPerDay').onchange=saveSettings;$('ideaAuto').onchange=saveSettings;
+$('ideaTeam').onchange=()=>{$('ideaTeamSlider').value=$('ideaTeam').value;saveSettings();};$('ideaPool').onchange=saveSettings;$('ideaOutfit').onchange=saveSettings;$('ideaAutopilot').onchange=saveSettings;$('ideaPerDay').onchange=saveSettings;$('ideaAuto').onchange=saveSettings;$('ideaAiLayout').onchange=saveSettings;$('ideaBaseColor').onchange=saveSettings;
 let last=0;setInterval(()=>{const busy=data?.ideas?.some(i=>i.status==='queued'||i.status==='publishing');if(document.hidden||Date.now()-last<(busy?5000:20000)||document.activeElement?.closest?.('#madeGrid,.ix-team,.ix-autopilot'))return;last=Date.now();load().catch(()=>{});},2500);
 load().catch(e=>note(e.message));
 })();

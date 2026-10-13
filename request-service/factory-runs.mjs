@@ -1,3 +1,4 @@
+import {BRAND_LOGO_PATH,BRANDING_RULE,isBrandLabel,isBrandArtwork} from './factory-branding.mjs';
 import {randomUUID} from 'node:crypto';
 
 // Garment types offered by the factory page. Each maps to an existing creator role so runs reuse the same
@@ -89,16 +90,17 @@ export function fillInstruction(color){
  return /^white$/i.test(color)?'Base garment color: White. Use the plain white garment with the fill option OFF.':`Base garment color: ${color}. FILL OPTION REQUIRED: switch on the fill option in ${color} for every print area, edge to edge, before placing any artwork. The blank garment is white, so without the fill the product comes out white. Never fake the color with a pasted solid-color image.`;
 }
 // Permanent brand rule: the Midnight Design logo goes on the clothing tag so buyers remember where it came from.
-export const LABEL_LOGO_PATH='/assets/designs/art-7d5ff833db11.png';
+export const LABEL_LOGO_PATH=BRAND_LOGO_PATH;
 export function labelInstruction(storefrontOrigin='https://midnight-designs.store',area=undefined){
  const file=storefrontOrigin+LABEL_LOGO_PATH;
- if(area===null)return `BRAND TAG: this item has no tag print area, so add the Midnight Design logo (${file}) small, about 1.5 inches wide, at the inside back neck or another discreet edge where it never competes with the main design.`;
- return `BRAND TAG (permanent rule): print the Midnight Design logo (${file}) on the clothing tag${area?` (print area ${area})`:', using the inside label print area (label_inside), or the outside label if there is no inside one'}. Center it, keep it fully inside the tag's safe area, on the garment's base color. This is required on every product.`;
+ if(area===null||area!==undefined&&!isBrandLabel(area))return 'BRAND TAG: no supported internal tag/label is selected. Skip garment branding; do not fall back to the chest, neck artwork, outside label, sleeve or another visible edge.';
+ return `BRAND TAG: reserve Midnight Designs branding (${file}) for the supplier-supported internal label${area?` (print area ${area})`:''}. Verify its exact safe area and file requirements. If the product has no supported internal label, skip branding. Visible graphics are thematic artwork, not company advertisements.`;
 }
 export function brief(c,slot,art){
  const g=garment(slot.garment),[lo,hi]=c.density.values[slot.garment],creative=c.creativity<34?'Strict: follow the uploaded design closely; only adapt scale and placement.':c.creativity<67?'Balanced: improve placement and composition while preserving the design.':'Experimental: variations, complementary graphics, alternate placements and matching sleeve graphics are allowed.';
  return [
   `${g.single} for production run "${c.name||'Untitled run'}".`,
+  BRANDING_RULE,
   fillInstruction(slot.color)+(c.color.lock?' Color is locked.':''),
   art?`Primary artwork: ${art.name} (${art.collection}).`:'No artwork selected; wait for owner input.',
   `Design elements: ${lo===hi?lo:lo+'–'+hi} across ${g.zones.join(', ')}. Use the garment's real supplier blueprint, print areas, safe zones, bleed and seams.`,
@@ -106,11 +108,11 @@ export function brief(c,slot,art){
   slot.outfit?`Part of ${slot.outfit}: coordinate theme, colors, typography and placement with the other pieces.`:'',
   `Creativity: ${creative}`,
   c.style?`Style: ${c.style}`:'',
-  `Quality control: ${c.qc.automatic?`automatic, minimum score ${c.qc.threshold}, up to ${c.qc.maxRevisions} automatic revisions`:'manual'}; ${c.qc.requireApproval?'owner approval required before publishing':'owner review only for exceptions'}.`
+  `Quality control: ${c.qc.automatic?`automatic, minimum score ${c.qc.threshold}, failed checks held for revision`:'manual'}; ${c.qc.requireApproval?'owner approval required before publishing':'owner review only for exceptions'}.`
  ].filter(Boolean).join('\n');
 }
 
-export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,brain=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
+export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,rendering=null,brain=null,pipeline=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  db.exec(`CREATE TABLE IF NOT EXISTS factory_runs(id TEXT PRIMARY KEY,number INTEGER NOT NULL UNIQUE,name TEXT NOT NULL,config TEXT NOT NULL,plan TEXT NOT NULL,status TEXT NOT NULL,cycle INTEGER NOT NULL DEFAULT 0,message TEXT NOT NULL DEFAULT '',started INTEGER,ends INTEGER,created TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_run_slots(run TEXT NOT NULL,seq INTEGER NOT NULL,cycle INTEGER NOT NULL,garment TEXT NOT NULL,design TEXT,outfit TEXT,color TEXT NOT NULL,job TEXT,error TEXT NOT NULL DEFAULT '',PRIMARY KEY(run,seq));
@@ -118,9 +120,9 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
  CREATE TABLE IF NOT EXISTS factory_presets(id TEXT PRIMARY KEY,name TEXT NOT NULL UNIQUE,config TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_library_imports(design TEXT PRIMARY KEY,artwork TEXT NOT NULL,created TEXT NOT NULL);`);
  const ACTIVE=['running','waiting'],state=()=>get('SELECT state FROM factory_settings WHERE id=1')?.state||'stopped';
- const artworkMap=()=>new Map(all("SELECT id,name,collection FROM factory_artwork WHERE kind='original'").map(a=>[a.id,a]));
+ const artworkMap=()=>new Map(all("SELECT id,original,name,filename,sha256,collection FROM factory_artwork WHERE kind='original'").filter(a=>!isBrandArtwork(db,a)).map(a=>[a.id,a]));
  let library={time:0,designs:null};
- async function storefrontDesigns(){if(library.designs&&clock()-library.time<600000)return library.designs;try{const r=await fetchImpl(storefrontOrigin+'/designs.json',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const list=await r.json();library={time:clock(),designs:list.filter(d=>d&&typeof d.id==='string'&&d.kind!=='reference'&&typeof d.image==='string').map(d=>({id:d.id,name:String(d.name||d.id).slice(0,100),category:String(d.category||'Midnight Designs').slice(0,100),image:storefrontOrigin+'/'+d.image.replace(/^\/+/,''),thumbnail:storefrontOrigin+'/'+String(d.thumbnail||d.image).replace(/^\/+/,'')}))};}catch{if(!library.designs)return [];}return library.designs;}
+ async function storefrontDesigns(){if(library.designs&&clock()-library.time<600000)return library.designs;try{const r=await fetchImpl(storefrontOrigin+'/designs.json',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const list=await r.json();library={time:clock(),designs:list.filter(d=>d&&typeof d.id==='string'&&d.kind!=='reference'&&typeof d.image==='string'&&'/'+d.image.replace(/^\/+/,'')!==LABEL_LOGO_PATH).map(d=>({id:d.id,name:String(d.name||d.id).slice(0,100),category:String(d.category||'Midnight Designs').slice(0,100),image:storefrontOrigin+'/'+d.image.replace(/^\/+/,''),thumbnail:storefrontOrigin+'/'+String(d.thumbnail||d.image).replace(/^\/+/,'')}))};}catch{if(!library.designs)return [];}return library.designs;}
 
  // Moves queued slots into the factory job queue while there is room, respecting the run's batch size.
  async function feed(r){
@@ -139,7 +141,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
    const g=garment(s.garment),a=s.design?art.get(s.design):null,label=g.single;
    const title=(s.outfit?s.outfit+' · ':'')+label+(a?' · '+a.name:'');
    try{const prepared=await manager.prepareJob({title:title.slice(0,100),brief:(head=>[head,brain?.knowledge(s.garment,5990-head.length)].filter(Boolean).join('\n\n'))([brief(c,s,a),brain?.production(s.garment,support(c,s,a))].filter(Boolean).join('\n\n')).slice(0,6000),kind:s.outfit?'outfit':'product',gender:c.audience,employee:g.role,selection:{product:null,fit:'',sizes:[],collection:a?a.collection:'',artworkIds:support(c,s,a).map(x=>x.id).slice(0,12)}});
-    db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
+    db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);rendering?.saveRunPlan(prepared.id,c,s,support(c,s,a),brain?.placementPlan(s.garment,support(c,s,a)));run('UPDATE factory_run_slots SET job=? WHERE run=? AND seq=?',prepared.id,r.id,s.seq);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}}
    catch(e){if(e.status===409&&/queue is full/i.test(e.message))break;run('UPDATE factory_run_slots SET error=? WHERE run=? AND seq=?',String(e.message).slice(0,300),r.id,s.seq);}
   }
  }
@@ -151,12 +153,12 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
  function runView(r){if(!r)return null;const c=JSON.parse(r.config),plan=JSON.parse(r.plan);const counts=Object.fromEntries(all("SELECT COALESCE(j.status,CASE WHEN s.error<>'' THEN 'not_queued' ELSE 'planned' END) status,count(*) n FROM factory_run_slots s LEFT JOIN factory_jobs j ON j.id=s.job WHERE s.run=? GROUP BY 1",r.id).map(x=>[x.status,x.n]));
   return {id:r.id,number:r.number,name:r.name,status:r.status,message:r.message,config:c,plan,cycle:r.cycle,started:r.started,ends:r.ends,created:r.created,updated:r.updated,counts,completed:completed(r.id),slotErrors:all("SELECT garment,error,count(*) n FROM factory_run_slots WHERE run=? AND error<>'' GROUP BY garment,error LIMIT 10",r.id)};}
 
- function stage(j){if(j.status==='queued')return j.step>0?'Assigned':'Queued';if(j.status==='awaiting_review')return 'Owner review';if(j.status==='draft_saved')return 'Approved (draft)';if(j.status==='completed')return 'Ready for publishing';if(['failed','waiting_input','retry_wait'].includes(j.status))return j.status==='retry_wait'?'Revision':'Needs attention';if(j.status==='running')return ['Designing','Blueprint fit','Blueprint fit','AI QC','Supplier product','Mockup','Publishing'][j.step]||'Designing';return j.status;}
+ function stage(j){if(j.status==='queued')return j.step>0?'Assigned':'Queued';if(j.status==='awaiting_review')return 'Owner review';if(j.status==='draft_saved')return 'Approved (draft)';if(j.status==='completed')return 'Ready for publishing';if(['failed','waiting_input','retry_wait'].includes(j.status))return j.status==='retry_wait'?'Revision':'Needs attention';if(j.status==='running')return ['Check assignments','Verify supplier','Render print files','Pricing and review','Create supplier product','Generate mockups','Publish storefront'][j.step]||'Designing';return j.status;}
 
  function snapshot(){
   const settings=get('SELECT * FROM factory_settings WHERE id=1')||{state:'stopped',daily_budget:0,total_budget:0},today=new Date(clock()).toISOString().slice(0,10),hour=clock()-3600000;
   const counts=Object.fromEntries(all('SELECT status,count(*) n FROM factory_jobs GROUP BY status').map(x=>[x.status,x.n]));
-  const jobs=all(`SELECT j.id,j.title,j.employee,j.status,j.error,j.updated,COALESCE(t.step,0) step,t.worker,s.run,s.garment,s.color,s.outfit,r.number FROM factory_jobs j LEFT JOIN factory_job_runtime t ON t.job=j.id LEFT JOIN factory_run_slots s ON s.job=j.id LEFT JOIN factory_runs r ON r.id=s.run WHERE j.status NOT IN ('archived','cancelled') ORDER BY CASE j.status WHEN 'running' THEN 0 WHEN 'awaiting_review' THEN 1 WHEN 'queued' THEN 2 ELSE 3 END,j.updated DESC LIMIT 200`).map(j=>({...j,stage:stage(j),progress:j.status==='completed'?100:Math.round(Math.min(j.step,7)/7*100)}));
+  const jobs=all(`SELECT j.id,j.title,j.employee,j.status,j.error,j.updated,COALESCE(t.step,0) step,t.worker,s.run,s.garment,s.color,s.outfit,r.number FROM factory_jobs j LEFT JOIN factory_job_runtime t ON t.job=j.id LEFT JOIN factory_run_slots s ON s.job=j.id LEFT JOIN factory_runs r ON r.id=s.run WHERE j.status NOT IN ('archived','cancelled') ORDER BY CASE j.status WHEN 'running' THEN 0 WHEN 'awaiting_review' THEN 1 WHEN 'queued' THEN 2 ELSE 3 END,j.updated DESC LIMIT 200`).map(j=>({...j,aiPipeline:pipeline?.required(j.id)||false,stage:stage(j),progress:j.status==='completed'?100:Math.round(Math.min(j.step,7)/7*100)}));
   const completedToday=get('SELECT count(*) n FROM factory_job_checkpoints WHERE step=? AND created>=?','review',Date.parse(today+'T00:00:00Z')).n,lastHour=get('SELECT count(*) n FROM factory_job_checkpoints WHERE step=? AND created>=?','review',hour).n;
   const heartbeat=get('SELECT max(seen) seen FROM factory_worker_heartbeats')?.seen||0,workerConnected=clock()-heartbeat<45000;
   const spent=get('SELECT COALESCE(sum(amount),0) n FROM factory_usage')?.n||0,spentToday=get('SELECT COALESCE(sum(amount),0) n FROM factory_usage WHERE created>=?',today)?.n||0;
@@ -165,7 +167,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
   // A run is interrupted when it still has work but production stopped underneath it after it had begun processing.
   const processed=active&&get('SELECT 1 x FROM factory_run_slots s JOIN factory_job_checkpoints k ON k.job=s.job WHERE s.run=? LIMIT 1',active.id);
   const interrupted=active&&active.status==='running'&&remaining&&(settings.state==='running'?!workerConnected&&processed:processed)?{number:active.number,id:active.id,reason:settings.state==='running'?'The background worker stopped responding.':'The factory stopped before this run finished.'}:null;
-  return {factory:{state:settings.state,workerConnected,dailyBudgetCents:settings.daily_budget,totalBudgetCents:settings.total_budget,spentCents:spent,spentTodayCents:spentToday,providerConnected:false},
+  return {factory:{state:settings.state,workerConnected,dailyBudgetCents:settings.daily_budget,totalBudgetCents:settings.total_budget,spentCents:spent,spentTodayCents:spentToday,providerConnected:!!manager.readiness?.().providerConnected},
    summary:{running:counts.running||0,waiting:(counts.queued||0)+(counts.retry_wait||0),inQc:jobs.filter(j=>j.status==='running'&&j.step===3).length,needReview:(counts.awaiting_review||0)+(counts.waiting_input||0),failed:counts.failed||0,completedToday,productsPerHour:lastHour,queueSize:counts.queued||0,etaMinutes:lastHour&&remaining?Math.ceil(remaining/lastHour*60):null},
    active:runView(active),interrupted,runs:all('SELECT * FROM factory_runs ORDER BY number DESC LIMIT 20').map(r=>({id:r.id,number:r.number,name:r.name,status:r.status,message:r.message,created:r.created,completed:completed(r.id),slots:get('SELECT count(*) n FROM factory_run_slots WHERE run=?',r.id).n})),
    presets:all('SELECT id,name,config,updated FROM factory_presets ORDER BY name').map(p=>({...p,config:JSON.parse(p.config)})),

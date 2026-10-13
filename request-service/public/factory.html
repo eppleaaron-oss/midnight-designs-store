@@ -1,5 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Factory | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"></head><body class="factory-page">
-<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a></nav><button id="logout" type="button">Sign out</button></header>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Factory | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"><link rel="stylesheet" href="/factory-mockups.css"></head><body class="factory-page">
+<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a><a href="/ai-artwork">Artwork Editor</a></nav><button id="logout" type="button">Sign out</button></header>
 <main class="fx-main">
 
 <section class="fx-summary" aria-labelledby="summaryTitle">
@@ -35,16 +35,19 @@
   <div><label for="ideaTeam">Idea workers</label><div class="fx-slider"><input id="ideaTeamSlider" type="range" min="1" max="100" value="20" aria-label="Idea workers slider"><input id="ideaTeam" type="number" min="1" max="100" value="20"></div></div>
   <div><label for="ideaPool">Ideas to keep waiting for me</label><input id="ideaPool" type="number" min="5" max="500" value="40"></div>
   <div><label for="ideaOutfit">Items per full outfit</label><input id="ideaOutfit" type="number" min="3" max="60" value="14"></div>
+  <label>Base garment / print background color<select id="ideaBaseColor"></select></label>
+  <label class="check fx-check"><input id="ideaAiLayout" type="checkbox"><span>AI-assisted artwork layout (requires the backend model and spending limits)</span></label>
   <label class="check fx-check"><input id="ideaAuto" type="checkbox"><span>Send new ideas straight to production (I trust the team)</span></label>
  </div>
  <div class="ix-autopilot">
-  <label class="check fx-check"><input id="ideaAutopilot" type="checkbox"><span><strong>Autopilot:</strong> publish the best outfits to my store by itself</span></label>
+  <label class="check fx-check"><input id="ideaAutopilot" type="checkbox"><span><strong>Autopilot:</strong> queue outfits through preparation and review</span></label>
   <div><label for="ideaPerDay">Outfits to publish per day</label><input id="ideaPerDay" type="number" min="1" max="50" value="2"></div>
-  <p class="fx-note">Only items that are complete get published: every print area filled from the same design, the pocket lined up with the front, and the logo on the tag. Everything appears in AI Made for you to rate, and on the store after the next catalog sync.</p>
+  <p class="fx-note">Preparing selected products enables their creator roles. Removed roles remain blocked; Autopilot respects paused roles.</p>
+  <p class="fx-note">Every item goes through native print files, pricing and the selected review mode. Saved supplier mockups and a verified live listing are required before it is marked published. Pockets and seams need placement review; labels need a separately assigned brand file.</p>
  </div>
  <p id="ideaShapes" class="fx-meta"></p><div class="fx-actions"><button id="ideaPrintful" type="button" class="fx-btn fx-quiet">Read my Printful products again</button></div>
  <div class="fx-tabs" role="tablist" aria-label="Idea filter" id="ideaTabs"><button type="button" role="tab" data-filter="new" aria-selected="true">New ideas</button><button type="button" role="tab" data-filter="outfit" aria-selected="false">Full outfits</button><button type="button" role="tab" data-filter="product" aria-selected="false">Single items</button><button type="button" role="tab" data-filter="approved" aria-selected="false">Approved</button><button type="button" role="tab" data-filter="made" aria-selected="false">Made</button></div>
- <div class="fx-actions ix-ideabar"><button id="ideaPublish" type="button" class="fx-btn fx-go">Publish selected to store</button><button id="ideaMake" type="button" class="fx-btn fx-quiet">Send to AI workers</button><button id="ideaAll" type="button" class="fx-btn fx-quiet">Select all shown</button><button id="ideaDismiss" type="button" class="fx-btn fx-quiet">Dismiss selected</button><button id="ideaMore" type="button" class="fx-btn fx-quiet">Get more ideas now</button><span id="ideaNote" class="fx-note" role="status" aria-live="polite"></span></div>
+ <div class="fx-actions ix-ideabar"><button id="ideaPublish" type="button" class="fx-btn fx-go">Prepare selected products</button><button id="ideaMake" type="button" class="fx-btn fx-quiet">Send to AI workers</button><button id="ideaAll" type="button" class="fx-btn fx-quiet">Select all shown</button><button id="ideaDismiss" type="button" class="fx-btn fx-quiet">Dismiss selected</button><button id="ideaMore" type="button" class="fx-btn fx-quiet">Get more ideas now</button><span id="ideaNote" class="fx-note" role="status" aria-live="polite"></span></div>
  <div id="ideaGrid" class="ix-ideas"></div>
  <details class="fx-advanced"><summary>Uploaded sets: check how each picture is used</summary>
   <p class="fx-note">Upload a set as one collection (name it in Advanced settings below). The team uses full designs for the back and front, strips for sleeves and legs, an emblem for the pocket, and anything named "hood" for the hood. Fix any picture it sorted wrong.</p>
@@ -52,9 +55,34 @@
  </details>
 </section>
 
+<section class="fx-panel" id="aiPipeline" aria-labelledby="pipelineTitle">
+ <div class="fx-row"><h2 id="pipelineTitle">AI production pipeline</h2><span id="pipelineState" class="fx-pill">Loading</span><button id="pipelineRefresh" type="button" class="fx-btn fx-quiet">Refresh</button></div>
+ <p id="pipelineConnection" class="fx-note"></p>
+ <form id="pipelineRules" class="fp-form">
+  <label class="fx-check"><input id="pipelineEnabled" type="checkbox"> Enable full AI production for new products</label>
+  <label class="fx-check"><input id="pipelineChoose" type="checkbox"> Let AI choose among my assigned artwork for supported placements</label>
+  <label class="fx-check"><input id="pipelineOwner" type="checkbox" checked> I approve the finished garment before publishing</label>
+  <div class="fx-two"><label>Minimum visual score <input id="pipelineScore" type="number" min="50" max="100" value="90" required></label><label>Minimum confidence <input id="pipelineConfidence" type="number" min="0.5" max="1" step="0.05" value="0.8" required></label></div>
+  <button type="submit" class="fx-btn fx-go">Save production rules</button>
+ </form>
+ <details class="fx-advanced"><summary>Connect the AI vision model here</summary>
+  <form id="pipelineProvider" class="fp-form">
+   <label>Provider API key <input id="pipelineKey" type="password" autocomplete="new-password" placeholder="Leave blank to keep the saved key"></label>
+   <label>Accessible vision model <input id="pipelineModel" maxlength="100" required placeholder="Model enabled in your provider account"></label>
+   <div class="fx-two"><label>Input rate (cents per million tokens) <input id="pipelineInputRate" type="number" min="0.001" step="any" required></label><label>Output rate (cents per million tokens) <input id="pipelineOutputRate" type="number" min="0.001" step="any" required></label></div>
+   <label>Maximum reservation per AI request (cents) <input id="pipelineCap" type="number" min="1" max="1000000" value="100" required></label>
+   <label class="fx-check"><input id="pipelineRatesVerified" type="checkbox" required> I checked these rates for this model in my provider account</label>
+   <p class="fx-note">The same private key can serve the Artwork Editor. Creative pixel edits use its separate image model and rates. Daily and total factory budgets still apply.</p>
+   <button type="submit" class="fx-btn">Save private connection</button>
+  </form>
+ </details>
+ <p id="pipelineNote" class="fx-note" role="status" aria-live="polite"></p>
+ <div id="pipelineJobs"></div>
+</section>
+
 <section class="fx-panel" id="aiMade" aria-labelledby="aiMadeTitle">
  <div class="fx-row"><h2 id="aiMadeTitle">AI Made</h2><span id="madeBadge" class="fx-pill">Nothing yet</span></div>
- <p class="fx-note fx-lead">Everything the AI published to your store. Rate each one: 4 or 5 stars tells the team to make more like it, 1 or 2 stars tells it to stop. Designs and item types you rate low stop getting ideas.</p>
+ <p class="fx-note fx-lead">Products being prepared, awaiting review or verified on your store. Rate published products: 4 or 5 stars tells the team to make more like it, 1 or 2 stars tells it to stop. Designs and item types you rate low stop getting ideas.</p>
  <div class="fx-tabs" role="tablist" aria-label="AI made filter" id="madeTabs"><button type="button" role="tab" data-filter="unrated" aria-selected="true">Needs a rating</button><button type="button" role="tab" data-filter="rated" aria-selected="false">Rated</button><button type="button" role="tab" data-filter="failed" aria-selected="false">Problems</button></div>
  <span id="madeNote" class="fx-note" role="status" aria-live="polite"></span>
  <div id="madeGrid" class="mx-grid"></div>
@@ -69,10 +97,10 @@
 </section>
 
 <section class="fx-panel" aria-labelledby="setupTitle">
-<details class="fx-advanced" id="quickProduction"><summary>Quick production with AI workers (only works once the image AI is connected)</summary>
+<details class="fx-advanced" id="quickProduction"><summary>Quick production from uploaded artwork and saved blueprints</summary>
 
  <div class="fx-row"><h2 id="setupTitle">Quick production</h2></div>
- <p class="fx-note fx-lead">Add your designs, pick the clothing, set your workers and press Start. The AI handles placement, color fill and quality checks using the Midnight Brain.</p>
+ <p class="fx-note fx-lead">Add your designs, pick the clothing and start a run. Assign exact product blueprints to your creators first. Review the prepared print files before publishing.</p>
  <ol class="fx-steps">
   <li class="fx-step" id="stepDesigns">
    <div class="fx-step-head"><h3>Add designs</h3><span id="designCount" class="fx-pill">0 selected</span></div>
@@ -129,7 +157,7 @@
   </fieldset>
 <fieldset id="stepColor"><legend>Main garment color</legend>
    <div id="colorSwatches" class="fx-swatches" role="radiogroup" aria-label="Base garment color"></div>
-   <p class="fx-note">Black by default. Any color other than white is made with the fill option.</p>
+   <p class="fx-note">Black by default. Regular garments use the actual supplier fabric color; supported all-over-print garments use filled native print panels.</p>
   </fieldset>
 <fieldset><legend>Products or outfits</legend>
    <div class="fx-seg">
@@ -238,5 +266,5 @@
 
 <div id="toast" class="fx-toast" role="status" aria-live="polite" hidden></div>
 </main>
-<script src="/factory.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
+<script src="/factory-pipeline.js" defer></script><script src="/factory.js" defer></script><script src="/factory-mockup-view.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
 </body></html>

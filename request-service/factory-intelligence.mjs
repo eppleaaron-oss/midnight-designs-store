@@ -1,3 +1,4 @@
+import {BRANDING_RULE,BRANDING_CONCEPTS,brandingInstruction} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 
@@ -6,7 +7,7 @@ import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 export const BRAIN_SECTIONS=[['brand-dna','Brand DNA'],['fashion','Fashion knowledge'],['garment','Garment intelligence'],['artwork','Artwork intelligence'],['color','Color intelligence'],['placement','Placement intelligence'],['composition','Composition intelligence'],['supplier','Supplier knowledge'],['blueprint','Blueprint knowledge'],['qc','QC intelligence'],['pricing','Pricing intelligence'],['publishing','Publishing intelligence']];
 export const MEMORY_KINDS=[['permanent','Permanent rules'],['preference','Owner preferences'],['success','Successful designs'],['failure','Failed designs'],['supplier','Supplier knowledge'],['learning','Production learnings']];
 export const FEEDBACK=[['good','Good','success'],['excellent','Excellent','success'],['bad','Bad','failure'],['never','Never do this again','failure'],['style','Save this style','preference'],['placement','Save this placement','preference'],['color','Save this color combination','preference'],['reference','Save as reference','success']];
-const BRAIN_VERSION='MD-Brain 1.1';
+const BRAIN_VERSION='MD-Brain 1.2';
 
 const FILL_RULE='The blank garment is white. White products use no fill. Every other main color (black, charcoal, navy, red and so on) must use the fill option on every print area, edge to edge, before artwork goes on. Never fake a color with a pasted solid-color image.';
 // Rules added after the first Brain release. Seeded once per database, so an owner who deletes an unlocked one doesn't get it back.
@@ -17,15 +18,15 @@ const RULES_V2=[
 ];
 // Industry knowledge added with the idea team: how big brands place graphics, and how design shapes map to placements.
 const RULES_V3=[
- ['fashion','Industry placement playbook','Common layouts from major streetwear and sportswear brands: left-chest logo about 3.5 to 4 inches wide; full-front graphic 10 to 12 inches wide; oversized back print up to 14 by 16 inches; sleeve run down the outer sleeve seam; small sleeve hit near the cuff or shoulder; leg run down the outer leg seam; small hip mark high on the thigh; hat front mark about 2 to 2.5 inches tall; nape print under the collar. A strong back with a small chest mark is the most common premium layout.',0],
- ['artwork','Design shapes','Strips (long, thin designs) go on sleeves, legs and shoe side panels. Full designs lead on fronts, backs, hats, masks and accessories. Emblems (small logos and marks) go on chests, hat fronts, hoods and sleeve hits. Never stretch a full design down a sleeve or squash a strip onto a chest.',1],
+ ['fashion','Industry placement playbook','Common layouts from major streetwear and sportswear brands: small thematic chest artwork about 3.5 to 4 inches wide; full-front graphic 10 to 12 inches wide; oversized back print up to 14 by 16 inches; sleeve run down the outer sleeve seam; small sleeve hit near the cuff or shoulder; leg run down the outer leg seam; small hip mark high on the thigh; hat front mark about 2 to 2.5 inches tall; nape print under the collar. A strong back with a small chest mark is the most common premium layout.',0],
+ ['artwork','Design shapes','Strips (long, thin designs) go on sleeves, legs and shoe side panels. Full designs lead on fronts, backs, hats, masks and accessories. Emblems (small thematic symbols and artwork details) go on chests, hat fronts, hoods and sleeve hits. Never stretch a full design down a sleeve or squash a strip onto a chest.',1],
  ['composition','Full outfits','An outfit is headwear, face wear, a top, bottoms and shoes built around one hero design. Every piece uses the hero or a design from the same collection, shares the palette and keeps a similar wear and texture so the pieces read as one set.',0]
 ];
 const DEFAULT_RULES=[
  ['brand-dna','Primary style','Dark vintage streetwear.',1],
  ['brand-dna','Default garment color','Black.',1],
  ['brand-dna','Prefer','Large statement back graphics; smaller supporting front graphics; coordinated sleeves; distressed artwork; dark palettes with bone/cream accents; premium streetwear composition.',0],
- ['brand-dna','Avoid','Random or unrelated graphics; unrelated sleeve artwork; excessive empty placement; cheap clip-art appearance; artwork outside print boundaries; unnecessary colors; designs that don\'t coordinate.',1],
+ ['brand-dna','Avoid','Random or unrelated graphics; unrelated sleeve artwork; cheap clip-art appearance; artwork outside print boundaries; unnecessary colors; designs that don\'t coordinate.',1],
  ['placement','Hierarchy','Only one hero graphic per product. Supporting and accent graphics must be visibly smaller than the hero.',0],
  ['placement','Seams','Never let faces or text cross a seam, zipper or pocket edge.',1],
  ['color','Garment fill',FILL_RULE,1],
@@ -35,22 +36,22 @@ const DEFAULT_RULES=[
 ];
 // Per-garment profiles: density, hierarchy and where each role goes. Keys match GARMENTS ids.
 const DEFAULT_PROFILES={
- jacket:{density:[4,6],hierarchy:'1 hero, 1–2 secondary, 2–3 accents, optional branding',placement:{back:'Hero',front:'Secondary / minimal','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
+ jacket:{density:[4,6],hierarchy:'1 hero, 1–2 secondary, 2–3 accents, branding reserved for supported labels',placement:{back:'Hero',front:'Secondary / minimal','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
  ziphoodie:{density:[4,6],hierarchy:'1 hero, 1–2 secondary, 2 accents',placement:{back:'Hero','front-left':'Secondary','front-right':'Accent','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
  hoodie:{density:[3,5],hierarchy:'1 hero, 1 secondary, 1–2 accents',placement:{back:'Hero',front:'Secondary','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
  sweatshirt:{density:[2,4],hierarchy:'1 hero, 1 secondary, accents optional',placement:{back:'Hero',front:'Secondary','left-sleeve':'Accent','right-sleeve':'Accent'},color:'Black'},
- tshirt:{density:[1,3],hierarchy:'1 hero, optional small front and sleeve accent',placement:{back:'Hero',front:'Secondary / chest mark','left-sleeve':'Accent'},color:'Black'},
+ tshirt:{density:[1,3],hierarchy:'1 hero, optional small front and sleeve accent',placement:{back:'Hero',front:'Secondary / thematic chest artwork','left-sleeve':'Accent'},color:'Black'},
  longsleeve:{density:[2,4],hierarchy:'1 hero, 1 secondary, sleeve accents',placement:{back:'Hero',front:'Secondary','left-sleeve':'Accent','right-sleeve':'Accent'},color:'Black'},
  pants:{density:[1,2],hierarchy:'1–2 vertical leg graphics',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
  joggers:{density:[1,2],hierarchy:'1–2 vertical leg graphics',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
  shorts:{density:[1,2],hierarchy:'1 small leg graphic, optional accent',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
- hat:{density:[1,1],hierarchy:'1 front mark',placement:{front:'Brand / secondary'},color:'Black'},
+ hat:{density:[1,1],hierarchy:'1 thematic front symbol',placement:{front:'Thematic symbol / secondary'},color:'Black'},
  accessory:{density:[1,2],hierarchy:'1 main graphic, optional back accent',placement:{front:'Hero',back:'Accent'},color:'Black'},
  facemask:{density:[1,1],hierarchy:'1 print across the mask face',placement:{front:'Hero'},color:'Black'},
- shoes:{density:[1,3],hierarchy:'Strip runs on the side panels, optional tongue mark',placement:{'left-side':'Secondary','right-side':'Accent',tongue:'Brand / secondary'},color:'Black'}
+ shoes:{density:[1,3],hierarchy:'Strip runs on the side panels, optional tongue mark',placement:{'left-side':'Secondary','right-side':'Accent',tongue:'Thematic symbol / secondary'},color:'Black'}
 };
 
-export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwordHash,storageDurable=false,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now}){
+export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwordHash,storageDurable=false,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now,imageEditor=null,pipeline=null,diagnostics=null}){
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  db.exec(`CREATE TABLE IF NOT EXISTS brain_rules(id TEXT PRIMARY KEY,section TEXT NOT NULL,title TEXT NOT NULL,body TEXT NOT NULL,locked INTEGER NOT NULL DEFAULT 0,created TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS brain_garments(garment TEXT PRIMARY KEY,profile TEXT NOT NULL,locked INTEGER NOT NULL DEFAULT 0,updated TEXT NOT NULL);
@@ -65,7 +66,7 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   for(const [g,p] of Object.entries(DEFAULT_PROFILES))run('INSERT OR IGNORE INTO brain_garments VALUES(?,?,0,?)',g,JSON.stringify(p),t);run("INSERT INTO brain_migrations VALUES('rules-v3',?)",t);}
  // rules-v4: the owner's permanent logo-on-the-tag rule, plus one jacket design carried across a whole outfit.
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v4'")){const t=now();
-  for(const [section,title,text,locked] of [['brand-dna','Logo on the tag',`Every product carries the Midnight Design logo (${storefrontOrigin+LABEL_LOGO_PATH}) on its tag: the inside label print area, else the outside label, else small at the inside back neck. Never skip it.`,1],
+  for(const [section,title,text,locked] of [['brand-dna','Logo on the tag',`Use the Midnight Designs logo (${storefrontOrigin+LABEL_LOGO_PATH}) only in a supported internal tag/label area by default. If no supported label area exists, skip garment branding; never use an exterior fallback.`,1],
    ['composition','One design, many items','Carry one design set onto as many items as fit, each part in its matching print area. Never swap in a different design.',1]])
    if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
   run("INSERT INTO brain_migrations VALUES('rules-v4',?)",t);}
@@ -73,6 +74,15 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v5'")){const t=now();
   if(!get("SELECT 1 x FROM brain_rules WHERE title='Pocket lines up with the front'"))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),'placement','Pocket lines up with the front','The pocket print is the front image cut at exactly the spot the pocket covers, so the design runs unbroken across it. Never a different image or a misaligned crop. Copy the clean layouts in the reference products.',1,t,t);
   run("INSERT INTO brain_migrations VALUES('rules-v5',?)",t);}
+ // Replace shipped branding defaults in existing databases, preserving custom guidance and locks.
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='design-first-branding-v1'")){const t=now();
+  run("UPDATE brain_rules SET body=?,locked=1,updated=? WHERE title='Logo on the tag'",`Use the Midnight Designs logo (${storefrontOrigin+LABEL_LOGO_PATH}) only in an actual supplier-supported internal tag/label by default. Without one, skip garment branding. No outside-label, neck-artwork or discreet-edge fallback.`,t);
+  for(const [title,body] of [['Industry placement playbook',RULES_V3[0][2]],['Design shapes',RULES_V3[1][2]]])run("UPDATE brain_rules SET body=?,updated=? WHERE title=? AND (body LIKE '%left-chest logo about%' OR body LIKE '%Emblems (small logos and marks)%')",body,t,title);
+  run("UPDATE brain_rules SET body=replace(body,'excessive empty placement; ',''),updated=? WHERE title='Avoid'",t);
+  for(const r of all('SELECT * FROM brain_garments')){const p=JSON.parse(r.profile);let changed=false;if(p.hierarchy?.includes('optional branding')){p.hierarchy=p.hierarchy.replace('optional branding','branding reserved for supported labels');changed=true;}for(const [z,v] of Object.entries(p.placement||{}))if(v==='Brand / secondary'||v==='Secondary / chest mark'){p.placement[z]=v==='Brand / secondary'?'Thematic symbol / secondary':'Secondary / thematic chest artwork';changed=true;}if(p.hierarchy==='1 front mark'){p.hierarchy='1 thematic front symbol';changed=true;}if(changed)run('UPDATE brain_garments SET profile=?,updated=? WHERE garment=?',JSON.stringify(p),t,r.garment);}
+  for(const [title,text] of [['Design-first branding',BRANDING_RULE],['Identity, artwork and marking',BRANDING_CONCEPTS],['Thematic chest graphics','A small chest graphic is artwork from the collection: raven, skull, rose, cathedral detail, symbol or design-related lettering. Never substitute the company logo.'],['Layout diversity','Dark vintage/gothic style is not a full-coverage layout. Vary minimal, balanced, statement, typography, asymmetric, back-focused, sleeve-focused, ornamental, gallery and AOP compositions. Blank space is deliberate; company logos never fill it.']]){const r=get('SELECT id FROM brain_rules WHERE title=?',title);if(r)run('UPDATE brain_rules SET body=?,locked=1,updated=? WHERE id=?',text,t,r.id);else run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),'brand-dna',title,text,1,t,t);}
+  run("INSERT INTO brain_migrations VALUES('design-first-branding-v1',?)",t);
+ }
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;
@@ -80,13 +90,15 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
 
  // The exact knowledge text a worker receives for one garment. Shown on the AI Intelligence page so nothing is hidden in a prompt.
  // With a size limit, owner preferences, rejections, references and the garment profile always fit;
- // unlocked rules are dropped from the end first, then locked ones, so a brief is never cut mid-sentence.
+ // Custom owner rules precede shipped defaults; the immutable branding policy always comes first.
+ // Rules are removed whole when the brief budget is tight.
  function knowledge(garment,max=Infinity){
-  const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created");
+  const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created").filter(r=>!['Design-first branding','Identity, artwork and marking'].includes(r.title));
+  const shipped=new Set([...DEFAULT_RULES,...RULES_V2,...RULES_V3].map(r=>r[1]).concat(['Logo on the tag','One design, many items','Pocket lines up with the front','Thematic chest graphics','Layout diversity']));rules.sort((a,b)=>Number(shipped.has(a.title))-Number(shipped.has(b.title)));
   const p=garment?profile(garment):null,prefs=all("SELECT text FROM brain_memories WHERE kind IN ('permanent','preference') AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 15",garment||'');
   const avoid=all("SELECT text FROM brain_memories WHERE kind='failure' AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 8",garment||'');
   const refs=all('SELECT kind,name,image,garment,note FROM brain_references WHERE garment IS NULL OR garment=? ORDER BY garment IS NULL,created DESC LIMIT 8',garment||'');
-  const head=[];
+  const head=[brandingInstruction()];
   if(prefs.length)head.push('Owner preferences:',...prefs.map(m=>'- '+m.text));
   if(avoid.length)head.push('Avoid (owner rejected):',...avoid.map(m=>'- '+m.text));
   if(refs.length)head.push('Reference examples from the Midnight Designs store (match this level and their clean layouts):',...refs.map(r=>`- ${r.name} (${r.kind==='product'?'store product':r.kind==='design'?'store design':'mockup'})${r.note?': '+r.note:''} ${r.image}`));
@@ -138,14 +150,14 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  }
 
  function heartbeat(){return has('factory_worker_heartbeats')?get('SELECT max(seen) seen FROM factory_worker_heartbeats')?.seen||0:0;}
- const provider=()=>({name:env.AI_IMAGE_PROVIDER||(env.OPENAI_API_KEY?'openai':''),key:env.AI_IMAGE_API_KEY||env.OPENAI_API_KEY||''});
+ const provider=()=>{const p=imageEditor?.providerConnection();return p?.key?p:{name:env.AI_IMAGE_PROVIDER||(env.OPENAI_API_KEY?'openai':''),key:env.AI_IMAGE_API_KEY||env.OPENAI_API_KEY||''};};
  function status(){
   const p=provider(),hb=heartbeat(),workerOnline=!!env.FACTORY_WORKER_TOKEN&&clock()-hb<45000;
   const failed=count('factory_jobs',"WHERE status='failed'"),queued=count('factory_jobs',"WHERE status='queued'");
   const fp=createHash('sha256').update(passwordHash||'').digest('hex');
   const components=[
    {id:'brain',label:'Brain',ok:true,state:'Online',detail:`${count('brain_rules')} rules and ${count('brain_garments')} garment profiles loaded.`},
-   {id:'provider',label:'AI provider',ok:!!p.key,state:p.key?'Configured':'Offline',detail:p.key?`${p.name} key is set on the backend. Run the full diagnostic to verify it.`:'No AI image provider key is set on the backend, so no artwork can be generated or edited.',fix:p.key?null:'Choose a provider and add its API key to the backend environment on Render (AI_IMAGE_PROVIDER and AI_IMAGE_API_KEY).'},
+   {id:'provider',label:'AI provider',ok:!!p.key,state:p.key?'Configured':'Offline',detail:p.key?`${p.name} key is set on the backend. Run the full diagnostic to verify it.`:'No AI image provider key is set on the backend, so no artwork can be generated or edited.',fix:p.key?null:'Open the private Artwork Editor to configure the image provider, model and verified rates.'},
    {id:'worker',label:'Production worker',ok:workerOnline,state:workerOnline?'Online':'Offline',detail:workerOnline?'Heartbeat received in the last 45 seconds.':env.FACTORY_WORKER_TOKEN?'Worker token is set, but no heartbeat has arrived.':'No background worker is set up.',fix:workerOnline?null:'Create the Render background worker from render.factory.yaml with the shared FACTORY_WORKER_TOKEN.'},
    {id:'database',label:'Database',ok:storageDurable,state:storageDurable?'Persistent':'Temporary',detail:storageDurable?'Factory data is on a persistent disk.':'Factory data is on temporary instance storage. A restart or redeploy erases artwork, queue, Brain edits and history.',fix:storageDurable?null:'Attach a persistent disk at /var/data and set DATA_PATH and FACTORY_DISK_MOUNT (see docs/factory-production.md).'},
    {id:'printful',label:'Printful',ok:!!env.PRINTFUL_TOKEN,state:env.PRINTFUL_TOKEN?'Configured':'Not connected',detail:env.PRINTFUL_TOKEN?'Printful token is set.':'No PRINTFUL_TOKEN on the backend, so blueprints and products can\'t load from Printful.',fix:env.PRINTFUL_TOKEN?null:'Add PRINTFUL_TOKEN (and PRINTFUL_STORE_ID for publishing) to the backend environment.'},
@@ -162,7 +174,7 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  async function diagnose(){
   const results=[],add=(id,label,state,detail,fix=null)=>results.push({id,label,state,detail,fix});
   const p=provider(),timeout=()=>AbortSignal.timeout(10000);
-  if(!p.key){for(const [id,label] of [['provider','AI provider'],['auth','API authentication'],['generation','Generation endpoint'],['vision','Vision capability'],['editing','Image editing']])add(id,label,'not_configured','No AI image provider key on the backend.','Choose a provider, then add AI_IMAGE_PROVIDER and AI_IMAGE_API_KEY on Render.');}
+  if(!p.key){for(const [id,label] of [['provider','AI provider'],['auth','API authentication'],['generation','Generation endpoint'],['vision','Vision capability'],['editing','Image editing']])add(id,label,'not_configured','No AI image provider key on the backend.','Open the private Artwork Editor and save your image provider settings.');}
   else if(p.name==='openai'){add('provider','AI provider','pass','OpenAI key is set.');try{const r=await fetchImpl('https://api.openai.com/v1/models',{headers:{Authorization:'Bearer '+p.key},signal:timeout()});if(!r.ok){add('auth','API authentication','fail',`OpenAI answered ${r.status}.`,'Check that the API key is valid and has billing enabled.');}else{const models=((await r.json()).data||[]).map(m=>m.id);add('auth','API authentication','pass','The key was accepted.');const image=models.find(m=>/^(gpt-image|dall-e)/.test(m));add('generation','Generation endpoint',image?'pass':'fail',image?`Image model available: ${image}.`:'No image model is available to this key.',image?null:'Enable image models on the OpenAI account.');const vision=models.find(m=>/^gpt-(4o|4\.1|5)/.test(m));add('vision','Vision capability',vision?'pass':'fail',vision?`Vision model available: ${vision}.`:'No vision model is available to this key.');add('editing','Image editing',models.some(m=>/^gpt-image/.test(m))?'pass':'fail',models.some(m=>/^gpt-image/.test(m))?'Image edits are supported by the available image model.':'Image editing needs a gpt-image model.');}}catch(e){add('auth','API authentication','fail','Could not reach OpenAI: '+(e.message||'network error'),'Check the backend has internet access.');}}
   else add('provider','AI provider','fail',`Provider "${p.name}" is not supported yet.`,'Use AI_IMAGE_PROVIDER=openai or ask Claude to add this provider.');
   const hb=heartbeat();add('worker','Worker communication',!env.FACTORY_WORKER_TOKEN?'not_configured':clock()-hb<45000?'pass':'fail',!env.FACTORY_WORKER_TOKEN?'No worker token is set.':hb?`Last heartbeat ${Math.round((clock()-hb)/1000)} seconds ago.`:'The worker has never checked in.',clock()-hb<45000?null:'Create or restart the Render background worker.');
@@ -199,11 +211,11 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   const memories=all('SELECT kind,text,created FROM brain_memories WHERE job=? ORDER BY created',id);
   const log=[...events.map(e=>{let actor='';try{actor=JSON.parse(e.actor).name||'';}catch{}return {at:e.created,text:`${e.action}${actor?' — '+actor:''}`};}),...checkpoints.map(c=>({at:new Date(c.created).toISOString(),text:`Finished ${c.step} step.`})),...memories.map(m=>({at:m.created,text:`Owner feedback (${m.kind}): ${m.text}`}))].sort((a,b)=>a.at.localeCompare(b.at));
   const step=runtime?.step||0,done=s=>checkpoints.some(c=>c.step===s);
-  const stages=[['Brief',true],['Brain',true],['Designer',done('validate')],['Critic',false],['Revision',false],['Technical QC',done('files')],['Mockup',done('mockups')],['Owner review',['completed'].includes(job.status)||step>4],['Printful',done('supplier-product')],['Store',done('store-publication')]].map(([name,ok])=>({name,state:ok?'done':name==='Critic'||name==='Revision'?'needs AI provider':'waiting'}));
-  return {job:{id:job.id,title:job.title,status:job.status,error:job.error,created:job.created,updated:job.updated},run:slot?{number:slot.number,name:slot.name,garment:slot.garment,color:slot.color}:null,brief:job.brief,stages,log};
+  const diagnostic=diagnostics?.snapshot(id);const stages=diagnostic?diagnostic.stages:pipeline?.required(id)?pipeline.detail(id).stages.map(s=>({name:s.name,state:s.complete?'done':'waiting'})):[['Brief',true],['Brain',true],['Designer',done('validate')],['Critic',false],['Revision',false],['Technical QC',done('files')],['Mockup',done('mockups')],['Owner review',['completed'].includes(job.status)||step>4],['Printful',done('supplier-product')],['Store',done('store-publication')]].map(([name,ok])=>({name,state:ok?'done':name==='Critic'||name==='Revision'?'needs AI provider':'waiting'}));
+  return {job:{id:job.id,title:diagnostics?diagnostics.redactText(job.title):job.title,status:job.status,error:diagnostics?diagnostics.redactText(job.error):job.error,created:job.created,updated:job.updated},run:slot?{number:slot.number,name:slot.name,garment:slot.garment,color:slot.color}:null,brief:diagnostics?diagnostics.redactText(job.brief):job.brief,stages,log:diagnostics?log.map(e=>({...e,text:diagnostics.redactText(e.text)})):log,diagnosticNotes:diagnostic?.notes||[]};
  }
 
- return {knowledge,production,placementPlan,status,async handle(req,res,path,method){
+ return {setDiagnostics(d){diagnostics=d;},setPipeline(p){pipeline=p;},setEditor(e){imageEditor=e;},knowledge,production,placementPlan,status,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/intelligence'))return false;auth(req,null,true);const p=path.slice('/api/owner/ai-factory/intelligence'.length);
   if(method==='GET'){
    if(p===''){send(res,200,{...status(),sections:BRAIN_SECTIONS,memoryKinds:MEMORY_KINDS,feedback:FEEDBACK.map(([id,label])=>({id,label})),garments:GARMENTS.map(g=>({id:g.id,label:g.label,zones:g.zones,profile:profile(g.id)})),references:all('SELECT * FROM brain_references ORDER BY created DESC'),rules:all('SELECT * FROM brain_rules ORDER BY section,locked DESC,created'),memories:all('SELECT * FROM brain_memories ORDER BY created DESC LIMIT 300'),jobs:has('factory_jobs')?all('SELECT id,title,status,updated FROM factory_jobs ORDER BY updated DESC LIMIT 50'):[]});return true;}

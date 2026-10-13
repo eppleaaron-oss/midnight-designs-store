@@ -71,9 +71,14 @@
 </section>
 
 <section class="fx-panel" aria-labelledby="jobTitle">
- <div class="fx-row"><h2 id="jobTitle">Job inspector</h2><label for="jobSelect" class="fx-sr">Job</label><select id="jobSelect" class="ix-select"><option value="">Choose a job…</option></select></div>
- <ol id="pipeline" class="ix-pipeline"></ol>
- <div id="jobDetail" hidden><p id="jobMeta" class="fx-meta"></p><h3>Decision log</h3><ol id="jobLog" class="ix-log"></ol><details class="fx-advanced"><summary>Production brief</summary><pre id="jobBrief" class="ix-pre"></pre></details></div>
+ <div class="fx-row"><h2 id="jobTitle">Production diagnostics</h2><button id="refreshJob" type="button" class="fx-btn fx-quiet">Refresh</button></div>
+ <form id="productionFilter" class="ix-form ix-inline"><label for="jobSearch" class="fx-sr">Find a product</label><input id="jobSearch" type="search" maxlength="200" placeholder="Product name or job ID"><label for="jobStatus" class="fx-sr">Production status</label><select id="jobStatus"><option value="">All statuses</option><option value="waiting_input">Needs input</option><option value="failed">Failed</option><option value="retry_wait">Retrying</option><option value="running">Running</option><option value="queued">Queued</option><option value="awaiting_review">Awaiting review</option><option value="completed">Completed</option></select><button type="submit" class="fx-btn">Find</button></form>
+ <p id="productionCount" class="fx-note" role="status"></p><label for="jobSelect" class="fx-sr">Product</label><select id="jobSelect" class="ix-select"><option value="">Choose a product…</option></select><button id="moreJobs" type="button" class="fx-btn fx-quiet" hidden>Load older products</button>
+ <div id="jobDetail" hidden><p id="jobMeta" class="fx-meta"></p><p id="productionNotes" class="fx-note"></p>
+ <table class="fx-table ix-production"><thead><tr><th scope="col">Stage</th><th scope="col">Status</th><th scope="col">Evidence</th></tr></thead><tbody id="pipeline"></tbody></table>
+ <section id="stageDetail" class="ix-stage-detail" aria-labelledby="stageTitle" hidden><div class="fx-row"><h3 id="stageTitle" tabindex="-1"></h3><button id="closeStage" class="fx-btn fx-quiet" type="button">Close details</button></div><p id="stageSummary"></p><p id="responseNote" class="fx-note"></p><pre id="stageEvidence" class="ix-pre"></pre><div class="fx-actions"><button id="exportStage" class="fx-btn fx-quiet" type="button">Download evidence</button></div><div id="apiResponses"></div></section>
+ <div class="fx-actions"><button id="acceptanceReport" class="fx-btn fx-quiet" type="button">Check required live test</button></div><div id="acceptanceDetail" hidden><p id="acceptanceSummary" role="status"></p><ul id="acceptanceChecks"></ul><pre id="acceptanceEvidence" class="ix-pre"></pre></div>
+ <h3>Decision log</h3><ol id="jobLog" class="ix-log"></ol><details class="fx-advanced"><summary>Production brief</summary><pre id="jobBrief" class="ix-pre"></pre></details></div>
 </section>
 
 <div id="toast" class="fx-toast" role="status" aria-live="polite" hidden></div>

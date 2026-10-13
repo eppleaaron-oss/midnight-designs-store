@@ -155,9 +155,9 @@ async function launch(){
 }
 async function control(action){
  const run=snap?.active;
- // Start Factory publishes the Idea Room's outfits to the store; AI-worker runs only start when one is set up.
- if(action==='start'){const n=await window.mdIdeas?.start?.();if(n){$('controlNote').textContent=`Publishing ${n} idea${n===1?'':'s'} to your store. Watch them arrive in AI Made.`;return;}
-  if(!run){$('controlNote').textContent='Nothing to publish right now. Tick ideas in the Idea Room, or press Get more ideas now.';return;}}
+ // Start the authenticated worker queue before accepting new outfit jobs.
+ if(action==='start'){const reason=await factory(snap.factory.state==='paused'?'resume':'start');if(reason){$('controlNote').textContent='Factory could not start: '+reason;return;}const n=await window.mdIdeas?.start?.();await refresh();if(n){$('controlNote').textContent=`Factory running. ${n} outfit batch${n===1?'':'es'} queued for preparation and review.`;return;}
+  if(!run){$('controlNote').textContent='Factory running. Existing jobs can continue; select outfits in the Idea Room to add more work.';return;}}
  const blocked=await factory(action==='start'&&snap.factory.state==='paused'?'resume':action);
  if(run)snap=await api('runs/control',{id:run.id,action:action==='start'?'resume':action});
  await refresh();$('controlNote').textContent=blocked?`The factory didn't ${action.replace('-',' ')}: ${blocked}`:{start:'Factory started.',resume:'Factory resumed.',pause:'Factory paused. Work in progress keeps its place.',stop:'Factory stopped. Finished products are kept.','emergency-stop':'Emergency stop. Queued and running work was cancelled; finished products are kept.'}[action];
@@ -197,13 +197,13 @@ function renderQueue(){
   tr.append(node('td',j.number?`#${j.number}-${j.id.slice(0,4)}`:j.id.slice(0,6)),node('td',[j.garment?garment(j.garment).single:ROLE_LABELS[j.employee]||j.employee,j.color].filter(Boolean).join(' · ')),node('td',j.worker?'AI-'+j.worker.slice(-4):ROLE_LABELS[j.employee]||j.employee),node('td',j.stage,'fx-stage'),pc);tr.title=j.title+(j.error?' — '+j.error:'');tr.dataset.status=j.status;return tr;}));
 }
 function renderReview(){
- const list=snap.jobs.filter(j=>['awaiting_review','waiting_input','failed'].includes(j.status));$('approveAll').hidden=!list.some(j=>j.status==='awaiting_review');
+ const list=snap.jobs.filter(j=>['awaiting_review','waiting_input','failed'].includes(j.status));$('approveAll').hidden=!list.some(j=>j.status==='awaiting_review'&&!j.aiPipeline);
  $('reviewList').replaceChildren(...(list.length?list.map(reviewCard):[node('p','Nothing needs you right now.','fx-note')]));
 }
 function reviewCard(j){
  const card=node('article','', 'fx-review-card');card.append(node('h3',j.title),node('p',`${j.stage}${j.error?': '+j.error:''}`,j.status==='awaiting_review'?'fx-note':'fx-warn'));
  const previews=node('div','', 'fx-previews'),actions=node('div','', 'fx-actions'),btn=(t,cls,fn)=>{const b=node('button',t,'fx-btn '+(cls||''));b.type='button';b.onclick=()=>guard(b,fn);actions.append(b);return b;};
- if(j.status==='awaiting_review')btn('Approve','fx-go',async()=>{await api('publishing/approve',{job:j.id,confirm:true});toast('Approved. It moves on to the supplier and store steps.');await refresh();});
+ if(j.aiPipeline){const a=node('a','Review AI garment','fx-btn fx-go');a.href='#aiPipeline';actions.append(a);}if(!j.aiPipeline&&j.status==='awaiting_review')btn('Approve','fx-go',async()=>{await api('publishing/approve',{job:j.id,confirm:true});toast('Approved. It moves on to the supplier and store steps.');await refresh();});
  if(j.status==='failed')btn('Retry','',async()=>{await api('retry',{id:j.id});await refresh();});
  if(j.status==='waiting_input')btn('Resume','',async()=>{await api('production/job',{id:j.id,action:'resume'});await refresh();});
  const revise=btn('Revise','',async()=>{const box=card.querySelector('textarea');if(!box){const t=node('textarea');t.rows=3;t.placeholder='What should change?';t.setAttribute('aria-label','Revision notes for '+j.title);card.insertBefore(t,actions);t.focus();revise.textContent='Send revision';return;}if(!box.value.trim())return toast('Describe what should change.');const r=await api('history',{job:j.id,action:'revise',brief:box.value.trim()});await api('history',{job:r.job,action:'queue'});toast('Revision queued.');await refresh();});
@@ -244,7 +244,7 @@ $('workerSlider').oninput=()=>{$('workerTotal').value=$('workerSlider').value;$(
 $('launch').onclick=()=>guard($('launch'),launch);
 $('ctlStart').onclick=()=>guard($('ctlStart'),()=>control('start'));$('ctlPause').onclick=()=>guard($('ctlPause'),()=>control('pause'));$('ctlResume').onclick=()=>guard($('ctlResume'),()=>control('resume'));$('ctlStop').onclick=()=>guard($('ctlStop'),()=>control('stop'));$('ctlEmergency').onclick=emergency;
 $('recoveryResume').onclick=()=>guard($('recoveryResume'),()=>control(snap.factory.state==='paused'?'resume':'start'));
-$('approveAll').onclick=()=>guard($('approveAll'),async()=>{const list=snap.jobs.filter(j=>j.status==='awaiting_review');let ok=0,errors=[];for(const j of list){try{await api('publishing/approve',{job:j.id,confirm:true});ok++;}catch(e){errors.push(j.title+': '+e.message);}}await refresh();toast(`Approved ${ok} of ${list.length}.`+(errors.length?' '+errors[0]:''));});
+$('approveAll').onclick=()=>guard($('approveAll'),async()=>{const list=snap.jobs.filter(j=>j.status==='awaiting_review'&&!j.aiPipeline);let ok=0,errors=[];for(const j of list){try{await api('publishing/approve',{job:j.id,confirm:true});ok++;}catch(e){errors.push(j.title+': '+e.message);}}await refresh();toast(`Approved ${ok} of ${list.length}.`+(errors.length?' '+errors[0]:''));});
 $('saveBudget').onclick=()=>guard($('saveBudget'),async()=>{await api('budget',{dailyBudget:dollars('limDaily'),totalBudget:dollars('limTotal')});await refresh();toast('Factory spending limits saved.');});
 $('presetSave').onclick=()=>guard($('presetSave'),async()=>{const name=$('runName').value.trim();if(!name)return toast('Type a run name first; the preset uses it.');const c=config();snap=await api('runs/preset',{name,config:c,keepDesigns:$('presetDesigns').checked});await refresh();toast(`Preset "${name}" saved.`);});
 $('presetSelect').onchange=()=>{const p=snap.presets.find(x=>x.id===$('presetSelect').value);$('presetDelete').hidden=!p;if(p){applyConfig({...p.config,name:p.name});toast(`Preset "${p.name}" loaded. Select designs, then start.`);}};

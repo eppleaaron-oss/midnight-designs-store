@@ -58,20 +58,38 @@ function renderRefs(){
   act.append(save,del);body.append(head,g,n,act);card.append(img,body);return card;}):[node('p','No references pinned yet. Tick store products or designs above.','fx-note')]));
 }
 async function loadStore(){if(store)return renderStore();$('storeNote').textContent='Loading your store…';try{store=(await api('intelligence/store')).items;renderStore();}catch(e){$('storeNote').textContent=e.message;}}
-async function inspect(id){
- if(!id){$('jobDetail').hidden=true;$('pipeline').replaceChildren();return;}
- const d=await api('intelligence/job/'+id);
- $('pipeline').replaceChildren(...d.stages.map(s=>{const li=node('li',s.name,'ix-stage');li.dataset.state=s.state;li.title=s.state;return li;}));
- $('jobMeta').textContent=[d.job.title,d.job.status,d.run?`Run #${d.run.number} · ${d.run.color}`:null,d.job.error||null].filter(Boolean).join(' · ');
- $('jobLog').replaceChildren(...(d.log.length?d.log.map(e=>{const li=node('li');li.append(node('time',new Date(e.at).toLocaleTimeString()),node('span',' '+e.text));return li;}):[node('li','No recorded actions yet. The worker writes a step here each time it finishes one.')]));
- $('jobBrief').textContent=d.brief;$('jobDetail').hidden=false;
+let products=[],nextProduct=null,selectedJob='',selectedStage='',stageReport=null,inspectSequence=0,stageSequence=0;
+function updateLink(){const u=new URL(location.href);if(selectedJob)u.searchParams.set('job',selectedJob);else u.searchParams.delete('job');if(selectedStage)u.searchParams.set('stage',selectedStage);else u.searchParams.delete('stage');history.replaceState(null,'',u);}
+function hideJob(){selectedJob='';selectedStage='';stageReport=null;++inspectSequence;++stageSequence;$('jobDetail').hidden=true;$('stageDetail').hidden=true;$('pipeline').replaceChildren();$('acceptanceDetail').hidden=true;}
+async function loadProducts(append=false){
+ const params=new URLSearchParams({q:$('jobSearch').value.trim(),status:$('jobStatus').value});if(append&&nextProduct)params.set('before',nextProduct);
+ const d=await api('intelligence/production?'+params);products=append?[...products,...d.jobs]:d.jobs;nextProduct=d.next;
+ options($('jobSelect'),[['','Choose a product…'],...products.map(j=>[j.id,`${j.title} · ${j.status}`])],true);$('moreJobs').hidden=!nextProduct;$('productionCount').textContent=`${products.length} of ${d.total} products shown.`;
+ if(!append&&selectedJob&&!products.some(j=>j.id===selectedJob)){hideJob();updateLink();}
+}
+async function showStage(id,{focus=true}={}){
+ if(!selectedJob)return;const job=selectedJob,sequence=++stageSequence,d=await api('intelligence/job/'+job+'/stage/'+id);if(job!==selectedJob||sequence!==stageSequence)return;
+ selectedStage=id;stageReport=d;updateLink();$('stageTitle').textContent=d.stage.name+' · '+d.stage.label;$('stageSummary').textContent=d.stage.summary;$('responseNote').textContent=d.responseNote;
+ $('stageEvidence').textContent=JSON.stringify({evidence:d.stage.evidence,runtime:d.runtime,worker:d.worker},null,2);
+ $('apiResponses').replaceChildren(...d.events.map(e=>{const card=node('article','', 'ix-response');card.append(node('h4',`${e.kind==='api'?'API response':e.kind} · ${e.state} · ${new Date(e.created).toLocaleString()}`),node('p',e.message),node('pre',JSON.stringify(e.details,null,2),'ix-pre'));return card;}));
+ for(const b of $('pipeline').querySelectorAll('button'))b.setAttribute('aria-expanded',String(b.dataset.stage===id));$('stageDetail').hidden=false;if(focus)$('stageTitle').focus();
+}
+async function inspect(id,{link=true}={}){
+ if(!id){hideJob();updateLink();return;}const sequence=++inspectSequence,d=await api('intelligence/job/'+id);if(sequence!==inspectSequence)return;
+ const changed=selectedJob!==id,focusStage=document.activeElement?.dataset.stage;selectedJob=id;if(changed){selectedStage='';stageReport=null;++stageSequence;$('stageDetail').hidden=true;$('acceptanceDetail').hidden=true;}
+ if(![...$('jobSelect').options].some(o=>o.value===id)){$('jobSelect').append(new Option(d.job.title+' · '+d.job.status,id));}$('jobSelect').value=id;
+ $('pipeline').replaceChildren(...d.stages.map(s=>{const tr=node('tr');tr.dataset.state=s.state;const td=node('td'),b=node('button',s.name);b.type='button';b.dataset.stage=s.id;b.setAttribute('aria-controls','stageDetail');b.setAttribute('aria-expanded',String(s.id===selectedStage));b.onclick=guard(b,()=>showStage(s.id));td.append(b);tr.append(td,node('td',s.label||s.state,'ix-result'),node('td',s.summary||''));return tr;}));
+ if(focusStage)$('pipeline').querySelector(`[data-stage="${focusStage}"]`)?.focus();
+ $('jobMeta').textContent=[d.job.title,d.job.status,d.run?`Run #${d.run.number} · ${d.run.color}`:null,d.job.error||null].filter(Boolean).join(' · ');$('productionNotes').textContent=(d.diagnosticNotes||[]).join(' ');
+ $('jobLog').replaceChildren(...(d.log.length?d.log.map(e=>{const li=node('li');li.append(node('time',new Date(e.at).toLocaleTimeString()),node('span',' '+e.text));return li;}):[node('li','No recorded actions yet.')]));
+ $('jobBrief').textContent=d.brief;$('jobDetail').hidden=false;if(link)updateLink();if(selectedStage)await showStage(selectedStage,{focus:false});
 }
 async function load(){
  data=await api('intelligence');renderStatus();renderRules();renderMemories();renderRefs();renderStore();
  if(!$('garmentSelect').options.length){options($('garmentSelect'),data.garments.map(g=>[g.id,g.label]));$('garmentSelect').value='jacket';options($('testGarment'),data.garments.map(g=>[g.id,g.label]));$('testGarment').value='ziphoodie';
   options($('memFilter'),[['','All memories'],...data.memoryKinds]);options($('memKind'),data.memoryKinds);}
  renderGarment();
- options($('jobSelect'),[['','Choose a job…'],...data.jobs.map(j=>[j.id,`${j.title} · ${j.status}`])],true);
+ await loadProducts();
  try{const art=(await api('runs')).artwork;options($('testArt'),art.map(a=>[a.id,a.name]),false);}catch{}
 }
 $('diagnose').onclick=guard($('diagnose'),async()=>{$('diagSummary').textContent='Running every check…';const d=await api('intelligence/diagnose',{});$('diagSummary').textContent=d.summary;$('diagTable').hidden=false;
@@ -92,7 +110,14 @@ $('testForm').onsubmit=e=>{e.preventDefault();guard(null,async()=>{const d=await
 $('testRun').onclick=()=>toast('Test generation runs once the AI provider is connected.');
 $('jobSelect').onchange=()=>guard(null,()=>inspect($('jobSelect').value))();
 $('logout').onclick=async()=>{await fetch('/api/logout',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'}).catch(()=>{});location.replace('/login?next=ai-factory');};
-const deep=()=>{const m=/^#job-([\w-]{1,64})$/.exec(location.hash);if(!m)return;$('jobSelect').value=m[1];inspect(m[1]).then(()=>$('jobTitle').scrollIntoView()).catch(e=>toast(e.message));};
-addEventListener('hashchange',deep);
-load().then(()=>{loadStore();deep();}).catch(e=>toast(e.message));
+$('productionFilter').onsubmit=e=>{e.preventDefault();guard(null,()=>loadProducts())();};
+$('moreJobs').onclick=guard($('moreJobs'),()=>loadProducts(true));
+$('refreshJob').onclick=guard($('refreshJob'),async()=>{if(selectedJob)await inspect(selectedJob);else await loadProducts();});
+$('closeStage').onclick=()=>{const id=selectedStage;selectedStage='';stageReport=null;++stageSequence;$('stageDetail').hidden=true;updateLink();const b=$('pipeline').querySelector(`[data-stage="${id}"]`);b?.setAttribute('aria-expanded','false');b?.focus();};
+$('exportStage').onclick=()=>{if(!stageReport)return;const url=URL.createObjectURL(new Blob([JSON.stringify(stageReport,null,2)],{type:'application/json'})),a=node('a');a.href=url;a.download=`production-${selectedJob}-${selectedStage}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('acceptanceReport').onclick=guard($('acceptanceReport'),async()=>{if(!selectedJob)return;const job=selectedJob,d=await api('intelligence/job/'+job+'/acceptance');if(job!==selectedJob)return;$('acceptanceSummary').textContent=d.status==='passed'?'Required live test passed.':'Required live test has not passed. Automatic publishing remains disabled.';$('acceptanceChecks').replaceChildren(...d.checks.map(c=>node('li',(c.passed?'Complete: ':'Missing: ')+c.label)));$('acceptanceEvidence').textContent=JSON.stringify({files:d.files,mockupTaskIds:d.mockupTaskIds,supplierId:d.supplierId,storefrontId:d.storefrontId,models:d.models,note:d.note},null,2);$('acceptanceDetail').hidden=false;});
+async function deep(){const p=new URL(location.href).searchParams,m=/^#job-([\w-]{1,64})$/.exec(location.hash),id=p.get('job')||m?.[1],stage=p.get('stage');if(!id||!/^[-a-f0-9]{36}$/.test(id))return;await inspect(id,{link:false});if(stage&&/^[-a-z]+$/.test(stage))await showStage(stage);$('jobTitle').scrollIntoView();}
+addEventListener('hashchange',()=>deep().catch(e=>toast(e.message)));
+let refreshing=false;setInterval(async()=>{if(!selectedJob||document.hidden||refreshing)return;refreshing=true;try{await inspect(selectedJob);}catch(e){toast(e.message);}finally{refreshing=false;}},15000);
+load().then(()=>{loadStore();return deep();}).catch(e=>toast(e.message));
 })();

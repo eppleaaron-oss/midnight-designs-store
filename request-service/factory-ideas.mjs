@@ -1,4 +1,6 @@
+import {INTERNAL_LABELS,isBrandArtwork} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';import {inflateSync} from 'node:zlib';import {readFileSync} from 'node:fs';
+import {garmentColors} from './factory-rendering.mjs';
 import {fillInstruction,labelInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 
 // The idea team: finds the design sets behind the store's products (jackets first) and uploaded collections,
@@ -44,7 +46,7 @@ export function classify(info,name=''){
  if(/\b(sleeves?|legs?|stripes?|bands?|borders?|strips?)\b/i.test(name))return {shape:'strip',reason:'Named as a sleeve, leg or stripe design, so it runs down sleeves, legs and shoe sides.'};
  if(/\b(pocket|chest)\b/i.test(name))return {shape:'emblem',reason:'Named as pocket or chest art, so it sits small on the chest.'};
  if(ratio>=2.2)return {shape:'strip',reason:`${h>w?'Tall':'Wide'} design (${ratio.toFixed(1)} to 1), so it fits sleeves, legs and shoe sides.`};
- if(/\b(logo|emblem|badge|crest|monogram|icon|mark|patch|seal)\b/i.test(name))return {shape:'emblem',reason:'Named like a logo or badge, so it works as a chest, hat or sleeve mark.'};
+ if(/\b(logo|emblem|badge|crest|monogram|icon|mark|patch|seal)\b/i.test(name))return {shape:'emblem',reason:'Named like a thematic emblem or badge, so it works as a chest, hat or sleeve artwork element. Company marks require a label or explicit owner exception.'};
  if(info.box&&info.box.fill<0.18&&ratio<1.6)return {shape:'emblem',reason:'Light, open design, so it reads best small, like a chest or hat mark.'};
  return {shape:'full',reason:'Solid main graphic, so it leads on fronts, backs, hats and accessories.'};
 }
@@ -57,8 +59,8 @@ const GROUPS=[['jacket',/jacket|windbreaker|bomber|zip hoodie/i,'jackets'],['top
  ['bottom',/shorts|trunks/i,'shorts'],['bottom',/leggings|joggers|pants|skirt/i,'pants'],['swim',/bikini|swimsuit|boxer|bra\b/i,'underwear'],['dress',/dress/i,'shirts'],['top',/./,'shirts']];
 // Most-wanted items first; kids and youth sizes last.
 const PRIORITY=[390,615,801,717,619,388,1419,1628,919,328,1414,1482,257,320,1418,1590,644,792,400,618,784,604,298,330,332,1481,420,630,279,963,350];
-// The tag print area the brand logo goes on: inside label first, then the outside label.
-const TAGS=['label_inside','label_inside_dtfabric','label_outside','label_outside_dtfabric','label_outside_back','label_panel','label_panel_dtfabric'];
+// The tag print area the brand logo goes on: supported internal labels only; exterior labels never substitute.
+const TAGS=INTERNAL_LABELS;
 export const tagArea=areas=>TAGS.find(t=>areas.includes(t))||null;
 export function loadCatalog(plans){
  const list=Object.values(plans?.products||{}).map(p=>{const [group,,role]=GROUPS.find(([,re])=>re.test(p.name));
@@ -99,7 +101,7 @@ export function setFromPrintful(detail,storeNames={}){
  return {id:'pf:'+p.id,printfulId:String(p.id),files,source:'printful',name,product:p.name,catalog,jacket:JACKETS.has(catalog)||/jacket|windbreaker|bomber/i.test(p.name),parts};
 }
 
-export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=null,catalog=CATALOG,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now,pace=700}){
+export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workflow=null,publishingEngine=null,brain=null,catalog=CATALOG,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now,pace=700}){
  db.exec(`CREATE TABLE IF NOT EXISTS idea_artwork(artwork TEXT PRIMARY KEY,width INTEGER,height INTEGER,shape TEXT NOT NULL,reason TEXT NOT NULL,override TEXT,analyzed TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS idea_sets(id TEXT PRIMARY KEY,source TEXT NOT NULL,name TEXT NOT NULL,product TEXT,catalog INTEGER,jacket INTEGER NOT NULL,parts TEXT NOT NULL,enabled INTEGER NOT NULL DEFAULT 1,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS idea_set_ideas(id TEXT PRIMARY KEY,signature TEXT NOT NULL UNIQUE,set_id TEXT NOT NULL,kind TEXT NOT NULL,title TEXT NOT NULL,pieces TEXT NOT NULL,reason TEXT NOT NULL,status TEXT NOT NULL,jobs TEXT NOT NULL DEFAULT '[]',error TEXT,created TEXT NOT NULL,updated TEXT NOT NULL);
@@ -115,8 +117,12 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  db.exec("UPDATE idea_made SET status='failed',error='The server restarted while this was publishing. It is retried automatically.' WHERE status='creating' AND printful_id IS NULL");
  db.exec('CREATE TABLE IF NOT EXISTS idea_migrations(name TEXT PRIMARY KEY)');
  if(!db.prepare("SELECT 1 x FROM idea_migrations WHERE name='outfit-rounds'").get()){db.exec("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");db.exec("INSERT INTO idea_migrations VALUES('outfit-rounds')");}
+ if(!db.prepare('PRAGMA table_info(idea_made)').all().some(c=>c.name==='job'))db.exec('ALTER TABLE idea_made ADD COLUMN job TEXT');
+ if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='base_color')){db.exec("ALTER TABLE idea_settings ADD COLUMN base_color TEXT NOT NULL DEFAULT 'Black'");db.exec("DELETE FROM idea_set_ideas WHERE status='new'");}
+ if(!db.prepare('PRAGMA table_info(idea_settings)').all().some(c=>c.name==='ai_layout'))db.exec('ALTER TABLE idea_settings ADD COLUMN ai_layout INTEGER NOT NULL DEFAULT 0');
+ db.exec("UPDATE idea_made SET status='supplier_created' WHERE job IS NULL AND status='published'");
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
- const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make,outfitSize:s.outfit_size,autopilot:!!s.autopilot,perDay:s.per_day};};
+ const settings=()=>{const s=get('SELECT * FROM idea_settings WHERE id=1');return {team:s.team,pool:s.pool,autoMake:!!s.auto_make,outfitSize:s.outfit_size,autopilot:!!s.autopilot,perDay:s.per_day,aiLayout:!!s.ai_layout,baseColor:s.base_color};};
  const item=id=>catalog.find(c=>c.id===id);
 
  // Shape sorting for uploaded designs, used to split an uploaded collection into parts.
@@ -129,7 +135,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
  // Store library categories group designs by type, not by set, so they are never treated as one set.
  const LIBRARY=/^(sleeve panels|hood panels|pocket & emblems|celestial & gothic|halloween & horror|mockups & references)$/i;
  function uploadSets(){
-  const by=new Map();for(const d of designs()){if(LIBRARY.test(d.collection))continue;(by.get(d.collection)||by.set(d.collection,[]).get(d.collection)).push(d);}
+  const by=new Map();for(const d of designs()){if(LIBRARY.test(d.collection)||isBrandArtwork(db,get('SELECT * FROM factory_artwork WHERE id=?',d.id)))continue;(by.get(d.collection)||by.set(d.collection,[]).get(d.collection)).push(d);}
   const t=now(),seen=new Set();
   for(const [collection,list] of by){
    const full=list.filter(d=>d.shape==='full'),strips=list.filter(d=>d.shape==='strip'),marks=list.filter(d=>d.shape==='emblem');if(!full.length)continue;
@@ -164,6 +170,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
 
  // One piece: a catalog item with every print area filled from the same set, or the base color where the set has nothing for it.
  function piece(set,c,color){
+  color=settings().baseColor;
   const placements=[],empty=[];for(const area of c.areas){const p=partFor(area,set.parts);p?placements.push({area,part:Object.keys(set.parts).find(k=>set.parts[k]===p),name:p.name,url:p.url,thumb:p.thumb,artwork:p.artwork||null}):empty.push(area);}
   if(!placements.length)return null;
   // Ready to publish as-is: every print area gets its own part of the set, so nothing prints blank, and a pocket
@@ -234,103 +241,44 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
    idea.kind==='outfit'?`Part of the ${set.name} outfit (${JSON.parse(idea.pieces).map(q=>q.label).join(', ')}). Every piece must look like the same design.`:''].filter(Boolean).join('\n');
   return [head,brain?.knowledge(null,5990-head.length)].filter(Boolean).join('\n').slice(0,6000);
  }
- const attach=p=>{const ids=[...new Set(p.placements.map(x=>x.artwork).filter(Boolean))],rows=ids.map(id=>get('SELECT id,collection FROM factory_artwork WHERE id=?',id)).filter(Boolean),c=rows[0]?.collection||'';return {product:null,fit:'',sizes:[],collection:c,artworkIds:rows.filter(r=>r.collection===c).map(r=>r.id)};};
- // Approved ideas become factory jobs, one per piece, as queue room allows. Anything that doesn't fit waits for the next cycle.
- async function make(){
-  let queued=0;
-  for(const idea of all("SELECT * FROM idea_set_ideas WHERE status='approved' ORDER BY updated LIMIT 50")){
-   const set=get('SELECT * FROM idea_sets WHERE id=?',idea.set_id),pieces=JSON.parse(idea.pieces),jobs=JSON.parse(idea.jobs),errors=[];
-   if(!set){run("UPDATE idea_set_ideas SET status='failed',error=?,updated=? WHERE id=?",'Its design set is no longer available.',now(),idea.id);continue;}
-   for(const [i,p] of pieces.entries()){if(jobs[i])continue;
-    run("UPDATE factory_employees SET enabled=1 WHERE id=? AND id NOT IN (SELECT id FROM factory_employee_settings WHERE kind='creator' AND removed=1)",p.role);
-    try{const prepared=await manager.prepareJob({title:`${p.label} · ${set.name}`.slice(0,100),brief:briefFor(idea,p,set),kind:idea.kind,gender:'unisex',employee:p.role,selection:attach(p)});
-     db.exec('BEGIN IMMEDIATE');try{manager.insertJob(prepared);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}jobs[i]=prepared.id;queued++;}
-    catch(e){if(e.status===409&&/queue is full/i.test(e.message)){run('UPDATE idea_set_ideas SET jobs=? WHERE id=?',JSON.stringify(jobs),idea.id);return queued;}errors.push(`${p.label}: ${e.message}`);jobs[i]=null;}}
-   const done=pieces.every((_,i)=>jobs[i]);run('UPDATE idea_set_ideas SET jobs=?,status=?,error=?,updated=? WHERE id=?',JSON.stringify(jobs),done?'made':errors.length?'failed':'approved',errors.join(' ')||null,now(),idea.id);
+ // A product is published only when its leased worker verifies the live storefront.
+ const progress={name:null,step:null,since:null,done:0,failed:0,lastError:null};
+ let publishing=false,blocked=null;
+ const pfHeaders=()=>({Authorization:'Bearer '+(env.PRINTFUL_TOKEN||'').trim(),...(env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':env.PRINTFUL_STORE_ID}:{}),'Content-Type':'application/json'});
+ async function pfCall(path){const r=await fetchImpl('https://api.printful.com/'+path,{headers:pfHeaders(),signal:AbortSignal.timeout(30000)});if(r.status===404)return null;if(!r.ok)throw Error('Printful returned HTTP '+r.status+'.');return (await r.json()).result;}
+ function syncMade(){
+  for(const r of all('SELECT m.id,m.job,j.status,j.error,l.supplier_id,l.store_id,l.status listing_status FROM idea_made m JOIN factory_jobs j ON j.id=m.job LEFT JOIN factory_listings l ON l.job=m.job WHERE m.status!=\'deleted\'')){
+   const media=get('SELECT id FROM factory_mockups WHERE job=? ORDER BY rowid LIMIT 1',r.job);
+   const status=r.listing_status==='published'?'published':r.status==='completed'?'waiting_input':r.status;
+   run('UPDATE idea_made SET status=?,error=?,printful_id=coalesce(?,printful_id),thumb=?,updated=? WHERE id=?',status,r.error||null,r.supplier_id||null,media?'/api/owner/ai-factory/publishing/mockup/'+media.id:null,now(),r.id);
   }
+ }
+ async function make(){
+  if(publishing)return 0;publishing=true;let queued=0;
+  try{for(const idea of all("SELECT * FROM idea_set_ideas WHERE status IN ('approved','queued') ORDER BY updated LIMIT 50")){
+   const set=get('SELECT * FROM idea_sets WHERE id=?',idea.set_id),pieces=JSON.parse(idea.pieces),jobs=JSON.parse(idea.jobs),errors=[];
+   if(!set){run("UPDATE idea_set_ideas SET status='failed',error='Its design set is no longer available.',updated=? WHERE id=?",now(),idea.id);continue;}
+   for(const [i,p] of pieces.entries()){
+    if(jobs[i]&&get('SELECT id FROM factory_jobs WHERE id=?',jobs[i]))continue;
+    progress.name=p.label;progress.step='Preparing exact product blueprint and original artwork';progress.since=clock();
+    try{if(!workflow)fail(409,'The unified factory workflow is not connected.');jobs[i]=await workflow.enqueue({idea,set,piece:p,brief:briefFor(idea,p,set),aiLayout:settings().aiLayout});queued++;}
+    catch(e){jobs[i]=null;errors.push(p.label+': '+e.message);progress.failed++;progress.lastError=e.message;}
+    run('UPDATE idea_set_ideas SET jobs=?,updated=? WHERE id=?',JSON.stringify(jobs),now(),idea.id);
+   }
+   const done=pieces.every((_,i)=>jobs[i]);run('UPDATE idea_set_ideas SET jobs=?,status=?,error=?,updated=? WHERE id=?',JSON.stringify(jobs),done?'made':'failed',errors.join(' ').slice(0,2000)||null,now(),idea.id);
+  }}finally{publishing=false;progress.name=progress.step=progress.since=null;syncMade();}
   return queued;
  }
- // ---------- publishing straight to the store ----------
- // A Printful set's parts are finished print files already hosted by Printful, so ready pieces can be created as
- // Printful store products directly; the catalog sync then lists them on midnight-designs.store.
- const pfHeaders=()=>({Authorization:'Bearer '+env.PRINTFUL_TOKEN,...(env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':env.PRINTFUL_STORE_ID}:{}),'Content-Type':'application/json'});
- async function pfCall(path,options={}){const r=await fetchImpl('https://api.printful.com/'+path,{...options,headers:pfHeaders(),signal:AbortSignal.timeout(30000)});const d=await r.json().catch(()=>({}));if(r.status===404)return null;if(!r.ok)throw Object.assign(Error(`Printful: ${d?.error?.message||d?.result||'HTTP '+r.status}`.slice(0,300)),{status:r.status});return d.result;}
- const sleep=ms=>ms>0?new Promise(r=>setTimeout(r,ms)):Promise.resolve();
- const variantCache=new Map();
- async function catalogVariants(id){if(!variantCache.has(id)){const r=await pfCall('products/'+id);variantCache.set(id,(r?.variants||[]).filter(v=>v.in_stock!==false));}return variantCache.get(id);}
- let storePrices=null;
- async function priceFor(catalogId,size,cost){
-  if(!storePrices){storePrices=new Map();try{const r=await fetchImpl(storefrontOrigin+'/products.json',{signal:AbortSignal.timeout(10000)});if(r.ok)for(const p of (await r.json()).products||[])for(const v of p.variants||[])storePrices.set(p.catalogProductId+'|'+v.size,Math.max(storePrices.get(p.catalogProductId+'|'+v.size)||0,Number(v.price)||0));}catch{}}
-  const same=storePrices.get(catalogId+'|'+size);return same>0?same:Math.max(Math.ceil(cost*1.8)-0.01,Math.ceil(cost)+9.99);
- }
- // What the publisher is doing right now, shown on the AI Made page so a slow or stuck item is visible.
- let blocked=null,blockedAt=0;// set when Printful refuses the token itself; publishing waits until the token is replaced (a Render env change restarts the server)
- const progress={name:null,step:null,since:null,done:0,failed:0,lastError:null,lastErrorAt:null};
- const step=(name,what)=>{progress.name=name;progress.step=what;progress.since=clock();console.log(`[publish] ${name}: ${what}`);};
- const PIECE_LIMIT=pace?150000:5000;
- function watchdog(promise,name){let t;return Promise.race([promise,new Promise((_,no)=>{t=setTimeout(()=>no(Error(`Printful did not answer in time while ${progress.step||'publishing'}. It will be retried on the next publish.`)),PIECE_LIMIT);t.unref?.();})]).finally(()=>clearTimeout(t));}
- async function publishPiece(idea,set,p){
-  const key=idea.id+':'+p.catalog,row=get('SELECT * FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);if(row?.printful_id)return row;
-  const external=('md-ai-'+createHash('sha256').update(key).digest('hex')).slice(0,32),name=`${set.name} ${p.label}`.replace(/\s+/g,' ').slice(0,120),t=now();
-  if(!row)run("INSERT INTO idea_made(id,idea,set_id,set_name,catalog,category,name,status,created,updated) VALUES(?,?,?,?,?,?,?,'creating',?,?)",randomUUID(),idea.id,set.id,set.name,p.catalog,p.category||p.group,name,t,t);
-  else run("UPDATE idea_made SET status='creating',error=NULL,updated=? WHERE idea=? AND catalog=?",t,idea.id,p.catalog);
-  try{await watchdog((async()=>{
-   step(name,'checking whether it already exists in Printful');
-   let made=await pfCall('store/products/@'+external);
-   if(!made?.sync_product){
-    step(name,'reading sizes and prices from Printful');
-    const variants=await catalogVariants(p.catalog),bySize=new Map();for(const v of variants){const k=v.size||v.name;if(!bySize.has(k)||/white/i.test(v.color||''))bySize.set(k,v);}
-    if(!bySize.size)throw Error('Printful has no in-stock sizes for this item.');
-    const logo=storefrontOrigin+LABEL_LOGO_PATH,files=[...p.placements.map(x=>({type:x.area,url:x.url})),...(p.tag?[{type:p.tag,url:logo}]:[])],prices={};
-    const sync_variants=[];for(const [size,v] of bySize){const price=await priceFor(p.catalog,size,Number(v.price)||30);prices[size]=price;sync_variants.push({variant_id:v.id,retail_price:price.toFixed(2),files});}
-    // Printful allows about 120 calls a minute; pace the creates and wait out a rate limit once.
-    const create=()=>pfCall('store/products',{method:'POST',body:JSON.stringify({sync_product:{external_id:external,name},sync_variants:sync_variants.slice(0,20)})});
-    await sleep(pace);step(name,'creating the product in Printful');let r;try{r=await create();}catch(e){if(e.status!==429)throw e;step(name,'waiting a minute because Printful asked to slow down');await sleep(pace?60000:0);step(name,'creating the product in Printful (second try)');r=await create();}
-    made={sync_product:{id:r?.id,thumbnail_url:r?.thumbnail_url||null}};run('UPDATE idea_made SET prices=? WHERE idea=? AND catalog=?',JSON.stringify(prices),idea.id,p.catalog);}
-   if(!made.sync_product.id)throw Error('Printful did not return the new product.');
-   run("UPDATE idea_made SET printful_id=?,thumb=coalesce(?,thumb),status='published',error=NULL,updated=? WHERE idea=? AND catalog=?",String(made.sync_product.id),made.sync_product.thumbnail_url||null,now(),idea.id,p.catalog);
-   progress.done++;console.log(`[publish] ${name}: published as Printful product ${made.sync_product.id}`);
-  })(),name);}catch(e){const msg=String(e.message).slice(0,300);if(e.status===401||e.status===403)blockedAt=clock(),blocked=/scope/i.test(msg)?'Your Printful token is not allowed to create products. In Printful make a token with "View and manage store products" (sync_products/write) and put it in PRINTFUL_TOKEN on Render.':'Printful rejected the token ('+msg+'). Put a working token in PRINTFUL_TOKEN on Render.';
-   progress.failed++;progress.lastError=`${name}: ${msg}`;progress.lastErrorAt=clock();console.error(`[publish] ${name} failed: ${msg}`);
-   const cur=get('SELECT printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);if(!cur?.printful_id)run("UPDATE idea_made SET status='failed',error=?,updated=? WHERE idea=? AND catalog=?",msg,now(),idea.id,p.catalog);}
-  return get('SELECT * FROM idea_made WHERE idea=? AND catalog=?',idea.id,p.catalog);
- }
- // Publishing runs in the background: pressing Publish only queues the ideas, so a big batch never times out the page.
- let publishing=false,syncAsked=0;
- function queue(ids){if(!env.PRINTFUL_TOKEN)fail(409,'Printful is not connected on the backend, so nothing can be published.');blocked=null;let n=0;for(const id of ids)n+=run("UPDATE idea_set_ideas SET status='queued',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id).changes;return n;}
- async function publishOne(id){
-  const idea=get('SELECT * FROM idea_set_ideas WHERE id=?',id),set=idea&&get('SELECT * FROM idea_sets WHERE id=?',idea.set_id);
-  if(!idea||!set){run("UPDATE idea_set_ideas SET status='failed',error='Its design set is no longer available.',updated=? WHERE id=?",now(),id);return 0;}
-  const pieces=JSON.parse(idea.pieces),ready=pieces.filter(p=>p.ready),setRow={...set,parts:JSON.parse(set.parts)};
-  if(!ready.length){run("UPDATE idea_set_ideas SET status='failed',error=?,updated=? WHERE id=?",'None of its items can be published as-is: '+[...new Set(pieces.map(p=>p.why))].join(' '),now(),id);return 0;}
-  run("UPDATE idea_set_ideas SET status='publishing',updated=? WHERE id=?",now(),id);
-  const results=[];for(const p of ready){results.push(await publishPiece(idea,setRow,p));if(blocked)break;}
-  if(blocked){run("UPDATE idea_set_ideas SET status='queued',error=?,updated=? WHERE id=?",blocked,now(),id);return 0;}
-  const ok=results.filter(r=>r?.status==='published').length,bad=results.filter(r=>r?.status==='failed'),skipped=pieces.length-ready.length;
-  run('UPDATE idea_set_ideas SET status=?,error=?,updated=? WHERE id=?',ok?'published':'failed',[bad.length?`${bad.length} failed: ${bad[0].error}`:'',skipped?`${skipped} item${skipped===1?'':'s'} skipped because they would print blank or misaligned.`:''].filter(Boolean).join(' ')||null,now(),id);
-  return ok;
- }
- async function drain(){
-  // A publisher that has shown no progress for five minutes is treated as dead so the queue can move again.
-  if(publishing&&progress.since&&clock()-progress.since>5*60000){console.error('[publish] publisher stalled, restarting it');publishing=false;}
-  // After a token refusal, try one item again every two minutes so a replaced token is picked up without anyone pressing anything.
-  if(blocked&&clock()-blockedAt>120000)blocked=null;
-  if(publishing||blocked||!env.PRINTFUL_TOKEN)return 0;publishing=true;let count=0;
-  try{for(let next;!blocked&&(next=get("SELECT id FROM idea_set_ideas WHERE status='queued' ORDER BY updated,created LIMIT 1"));)count+=await publishOne(next.id);
-   if(count&&env.CATALOG_GITHUB_TOKEN&&clock()-syncAsked>10*60000){syncAsked=clock();
-    await fetchImpl('https://api.github.com/repos/eppleaaron-oss/midnight-designs-store/actions/workflows/sync-printful.yml/dispatches',{method:'POST',headers:{Authorization:'Bearer '+env.CATALOG_GITHUB_TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({ref:'main'}),signal:AbortSignal.timeout(20000)}).catch(()=>{});}
-  }finally{publishing=false;progress.name=progress.step=progress.since=null;}
-  return count;
- }
- const publishIdeas=async ids=>{queue(ids);return drain();};
- // Autopilot: publishes the best waiting outfits from Printful sets, up to the owner's daily number.
+ function queue(ids){if(!workflow?.ready())fail(409,'Persistent factory storage must be attached before starting production.');let n=0;for(const id of ids)n+=run("UPDATE idea_set_ideas SET status='queued',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id).changes;return n;}
+ const drain=()=>make();
+ const publishIdeas=async ids=>{queue(ids);return make();};
  async function autopilot(){
-  const s=settings();if(!s.autopilot||!env.PRINTFUL_TOKEN||publishing||get("SELECT 1 x FROM idea_set_ideas WHERE status='queued'"))return 0;
-  const today=get("SELECT count(DISTINCT idea) n FROM idea_made WHERE created>=?",new Date(clock()-86400000).toISOString()).n;if(today>=s.perDay)return 0;
-  const next=all("SELECT i.* FROM idea_set_ideas i JOIN idea_sets s ON s.id=i.set_id WHERE i.status='new' AND i.kind='outfit' AND s.source='printful' AND s.enabled=1 ORDER BY i.created").find(i=>JSON.parse(i.pieces).filter(p=>p.ready).length>=3);
-  return next?publishIdeas([next.id]):0;
+  const s=settings();if(!s.autopilot||!workflow?.ready()||publishing||get("SELECT 1 x FROM idea_set_ideas WHERE status IN ('queued','approved')"))return 0;
+  // Count accepted outfit batches, including unfinished work, so it cannot enqueue unlimited work.
+  const today=get("SELECT count(*) n FROM idea_set_ideas WHERE kind='outfit' AND status='made' AND updated>=?",new Date(clock()-86400000).toISOString()).n;if(today>=s.perDay)return 0;
+  const next=get("SELECT i.id FROM idea_set_ideas i JOIN idea_sets s ON s.id=i.set_id WHERE i.status='new' AND i.kind='outfit' AND s.enabled=1 ORDER BY i.created LIMIT 1");return next?publishIdeas([next.id]):0;
  }
- async function refreshThumbs(){if(!env.PRINTFUL_TOKEN)return;for(const r of all("SELECT * FROM idea_made WHERE status='published' AND thumb IS NULL AND updated<? LIMIT 5",new Date(clock()-60000).toISOString())){try{const d=await pfCall('store/products/'+r.printful_id);if(!d){run("UPDATE idea_made SET status='deleted',updated=? WHERE id=?",now(),r.id);continue;}const u=d.sync_product?.thumbnail_url||(d.sync_variants||[]).flatMap(v=>v.files||[]).find(f=>f.type==='preview')?.preview_url;run('UPDATE idea_made SET thumb=?,updated=? WHERE id=?',u||null,now(),r.id);}catch{}}}
+ const refreshThumbs=async()=>syncMade();
  function rate(id,rating,note){
   const r=get('SELECT * FROM idea_made WHERE id=?',id);if(!r)fail(404,'Product not found.');
   run('UPDATE idea_made SET rating=?,note=?,updated=? WHERE id=?',rating,note,now(),id);
@@ -339,19 +287,21 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
    run('INSERT INTO brain_memories VALUES(?,?,?,?,?,?)',randomUUID(),rating>=4?'preference':'failure',`Owner rated "${r.name}" ${rating}/5${note?': '+note:''}. ${rating>=4?'Do more like this.':'Avoid repeating this.'}`.slice(0,500),'made:'+id,null,now());}
  }
  async function deleteMade(id){const r=get('SELECT * FROM idea_made WHERE id=?',id);if(!r)fail(404,'Product not found.');
+  if(r.job){if(get('SELECT status FROM factory_jobs WHERE id=?',r.job)?.status==='running')fail(409,'Pause this job before deleting its product.');const listing=get('SELECT status FROM factory_listings WHERE job=?',r.job);if(['published','catalog_pending','unpublishing'].includes(listing?.status)){const result=await publishingEngine.withdraw(r.job);if(result.pending)fail(409,result.note);}run("UPDATE factory_jobs SET status='archived',updated=? WHERE id=?",now(),r.job);}
   if(r.printful_id){const res=await fetchImpl('https://api.printful.com/store/products/'+r.printful_id,{method:'DELETE',headers:pfHeaders(),signal:AbortSignal.timeout(30000)});if(!res.ok&&res.status!==404)fail(502,'Printful did not delete it (HTTP '+res.status+').');}
   run("UPDATE idea_made SET status='deleted',updated=? WHERE id=?",now(),id);}
- function madeList(){return all("SELECT * FROM idea_made WHERE status!='deleted' ORDER BY created DESC LIMIT 200").map(r=>({id:r.id,name:r.name,set:r.set_name,category:r.category,status:r.status,error:r.error,printfulId:r.printful_id,prices:r.prices?JSON.parse(r.prices):null,thumb:r.thumb,rating:r.rating,note:r.note,created:r.created}));}
+ function madeList(){return all("SELECT * FROM idea_made WHERE status!='deleted' ORDER BY created DESC LIMIT 200").map(r=>({id:r.id,name:r.name,set:r.set_name,category:r.category,status:r.status,error:r.error,printfulId:r.printful_id,prices:r.prices?JSON.parse(r.prices):null,job:r.job,mockupStatus:r.job?publishingEngine?.mockupStatus(r.job)||null:null,thumb:r.thumb,rating:r.rating,note:r.note,created:r.created}));}
 
  async function tick(){if(clock()-printful.checked>30*60000)await refreshPrintful();generate();await autopilot().catch(e=>console.error('Autopilot failed:',e.message));drain().catch(e=>console.error('Publishing failed:',e.message));await refreshThumbs();return make();}
 
  function snapshot(){
+  syncMade();
   const ideas=all("SELECT * FROM idea_set_ideas WHERE status IN ('new','approved','failed','publishing','queued') ORDER BY created DESC LIMIT 300").concat(all("SELECT * FROM idea_set_ideas WHERE status IN ('made','published') ORDER BY updated DESC LIMIT 60"));
   const counts=Object.fromEntries(all('SELECT status,count(*) n FROM idea_set_ideas GROUP BY status').map(r=>[r.status,r.n]));
-  return {settings:settings(),counts,categories:OUTFIT_CATEGORIES.map(([n])=>n),shapes:SHAPES,printful:{state:printful.state,error:printful.error,products:printful.products||0},catalog:catalog.length,
+  return {settings:settings(),colors:Object.keys(garmentColors),counts,categories:OUTFIT_CATEGORIES.map(([n])=>n),shapes:SHAPES,printful:{state:printful.state,error:printful.error,products:printful.products||0},catalog:catalog.length,
    sets:sets().map(s=>({id:s.id,source:s.source,name:s.name,product:s.product,jacket:s.jacket,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{thumb:v.thumb,name:v.name}]))})),
    designs:designs().map(d=>({id:d.id,name:d.name,collection:d.collection,shape:d.shape,detected:d.detected,override:!!d.override,reason:d.reason,url:'/api/owner/ai-factory/artwork/'+d.id+'/file'})),
-   made:madeList(),ratings:{count:get('SELECT count(rating) n FROM idea_made WHERE rating IS NOT NULL').n,avg:get('SELECT avg(rating) a FROM idea_made WHERE rating IS NOT NULL').a},canPublish:!!env.PRINTFUL_TOKEN,
+   made:madeList(),ratings:{count:get('SELECT count(rating) n FROM idea_made WHERE rating IS NOT NULL').n,avg:get('SELECT avg(rating) a FROM idea_made WHERE rating IS NOT NULL').a},canPublish:!!env.PRINTFUL_TOKEN&&!!workflow?.ready(),productionNote:'Products enter the backend worker queue. Review, complete pricing and verified saved mockups are required before publication.',
    publisher:{running:publishing,blocked,name:progress.name,step:progress.step,seconds:progress.since?Math.round((clock()-progress.since)/1000):null,done:progress.done,failed:progress.failed,lastError:progress.lastError},
    ideas:ideas.map(i=>({id:i.id,set:i.set_id,kind:i.kind,title:i.title,pieces:JSON.parse(i.pieces).map(p=>({...p,placements:p.placements.map(({url,...x})=>x)})),reason:i.reason,status:i.status,error:i.error,jobs:JSON.parse(i.jobs).filter(Boolean).length,created:i.created}))};
  }
@@ -363,16 +313,16 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,brain=
   const ids=()=>Array.isArray(b.ids)&&b.ids.length&&b.ids.length<=300&&b.ids.every(x=>typeof x==='string')?b.ids:fail(400,'Choose at least one idea.');
   if(p==='/generate'){generate({force:true});}
   else if(p==='/printful'){limit(req,'factory-ideas-printful',6);await refreshPrintful();generate({force:true});}
-  else if(p==='/publish'){limit(req,'factory-ideas-publish',20);const list=ids();for(const id of list)if(!get("SELECT 1 x FROM idea_set_ideas WHERE id=? AND status IN ('new','failed','queued')",id))fail(409,'Only waiting ideas can be published.');queue(list);const work=drain().catch(e=>console.error('Publishing failed:',e.message));if(b.wait===true)await work;}
+  else if(p==='/publish'){limit(req,'factory-ideas-publish',20);const list=ids();for(const id of list)if(!get("SELECT 1 x FROM idea_set_ideas WHERE id=? AND status IN ('new','failed','queued')",id))fail(409,'Only waiting ideas can be published.');if(b.activateCreators===true)manager.activateCreators(list.flatMap(id=>JSON.parse(get('SELECT pieces FROM idea_set_ideas WHERE id=?',id).pieces).map(p=>p.role)));queue(list);const work=drain().catch(e=>console.error('Publishing failed:',e.message));if(b.wait===true)await work;}
   else if(p==='/rate'){if(typeof b.id!=='string')fail(400,'Choose a product.');const r=b.rating===null?null:Number.isInteger(b.rating)&&b.rating>=1&&b.rating<=5?b.rating:fail(400,'Rate from 1 to 5 stars.');rate(b.id,r,typeof b.note==='string'?b.note.slice(0,300):'');}
   else if(p==='/delete'){if(typeof b.id!=='string')fail(400,'Choose a product.');if(b.confirm!==true)fail(400,'Confirm the delete.');await deleteMade(b.id);}
-  else if(p==='/approve'){for(const id of ids())run("UPDATE idea_set_ideas SET status='approved',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id);await make();}
+  else if(p==='/approve'){const selected=ids();if(b.activateCreators===true)manager.activateCreators(selected.flatMap(id=>JSON.parse(get('SELECT pieces FROM idea_set_ideas WHERE id=?',id)?.pieces||'[]').map(p=>p.role)));for(const id of selected)run("UPDATE idea_set_ideas SET status='approved',error=NULL,updated=? WHERE id=? AND status IN ('new','failed')",now(),id);await make();}
   else if(p==='/dismiss'){for(const id of ids())run("UPDATE idea_set_ideas SET status='dismissed',updated=? WHERE id=? AND status IN ('new','failed','approved')",now(),id);}
   else if(p==='/set'){if(typeof b.id!=='string'||!get('SELECT 1 x FROM idea_sets WHERE id=?',b.id))fail(404,'Design set not found.');run('UPDATE idea_sets SET enabled=? WHERE id=?',b.enabled?1:0,b.id);if(!b.enabled)run("DELETE FROM idea_set_ideas WHERE set_id=? AND status='new'",b.id);}
   else if(p==='/settings'){const n=(v,lo,hi,label)=>Number.isSafeInteger(v)&&v>=lo&&v<=hi?v:fail(400,`${label} must be between ${lo} and ${hi}.`);
-   const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,60,'Items per outfit'),grew=size!==settings().outfitSize;
+   if(b.baseColor!==undefined&&!Object.hasOwn(garmentColors,b.baseColor))fail(400,'Choose a supported base color.');const changedColor=b.baseColor!==undefined&&b.baseColor!==settings().baseColor;if(b.baseColor!==undefined)run('UPDATE idea_settings SET base_color=? WHERE id=1',b.baseColor);if(changedColor)run("DELETE FROM idea_set_ideas WHERE status='new'");const size=b.outfitSize===undefined?settings().outfitSize:n(b.outfitSize,3,60,'Items per outfit'),grew=size!==settings().outfitSize;
    run('UPDATE idea_settings SET team=?,pool=?,auto_make=?,outfit_size=?,autopilot=?,per_day=? WHERE id=1',n(b.team,1,100,'Idea workers'),n(b.pool,5,500,'Ideas to keep waiting'),b.autoMake?1:0,size,b.autopilot===undefined?settings().autopilot?1:0:b.autopilot?1:0,b.perDay===undefined?settings().perDay:n(b.perDay,1,50,'Outfits per day'));
-   if(grew){run("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");generate();}if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
+   if(grew||changedColor){run("DELETE FROM idea_set_ideas WHERE status='new' AND kind='outfit'");generate();}if(b.aiLayout!==undefined){if(typeof b.aiLayout!=='boolean')fail(400,'Choose fixed or AI-assisted layout.');run('UPDATE idea_settings SET ai_layout=? WHERE id=1',Number(b.aiLayout));}if(b.autoMake)run("UPDATE idea_set_ideas SET status='approved',updated=? WHERE status='new'",now());}
   else if(p==='/piece'){const idea=typeof b.id==='string'&&get("SELECT * FROM idea_set_ideas WHERE id=? AND status IN ('new','failed')",b.id);if(!idea)fail(404,'Idea not found.');
    const pieces=JSON.parse(idea.pieces),left=pieces.filter(x=>x.catalog!==b.catalog);if(left.length===pieces.length)fail(404,'That item is not in this idea.');if(!left.length)fail(400,'An idea needs at least one item. Dismiss it instead.');
    run("UPDATE idea_set_ideas SET pieces=?,title=?,updated=? WHERE id=?",JSON.stringify(left),idea.kind==='outfit'?idea.title.replace(/\(\d+ items\)$/,`(${left.some(x=>x.ready)?left.filter(x=>x.ready).length:left.length} items)`):idea.title,now(),idea.id);}

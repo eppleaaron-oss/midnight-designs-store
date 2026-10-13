@@ -39,7 +39,7 @@ export function storeAudit({products=[],copy={},printful=null,plans={}}){
     const main=areas.filter(a=>!SKIP.test(a)),empty=main.filter(a=>!has(a));
     if(main.length&&empty.length&&!files.has('default'))add(p,empty.some(a=>/^(front|back)/.test(a))?'high':'medium','Print areas left blank',`${empty.map(AREA).join(', ')} ${empty.length===1?'has':'have'} no artwork, so ${empty.length===1?'it prints':'they print'} plain.`,'Add the matching part of the design (sleeves get the sleeve strip, the hood gets the hood panel), or confirm the blank is on purpose.');
     const tag=tagArea(areas);
-    if(tag&&!has(tag))add(p,'medium','No logo on the tag',`This item has a tag print area (${AREA(tag)}) but no Midnight Design logo on it.`,'Put the Midnight Design logo on the tag. New factory products do this automatically.');
+    if(tag&&!has(tag))add(p,'medium','No logo on the tag',`This item has a tag print area (${AREA(tag)}) but no Midnight Design logo on it.`,'Add a print file for this supported internal label. Keep visible graphics thematic; do not move branding onto exterior clothing.');
    }}
  }
  if(pf)for(const x of printful)if(!x.ignored&&!products.some(p=>String(p.id)===x.id))issues.push({id:createHash('sha256').update('pf|'+x.id).digest('hex').slice(0,16),product:x.id,productName:x.name,url:null,image:null,severity:'medium',title:'In Printful but not on the store',detail:`"${x.name}" exists in Printful but isn't listed on midnight-designs.store.`,fix:'Run the catalog sync, or ignore it in Printful if it was a test.'});
