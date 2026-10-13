@@ -64,7 +64,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
  db.exec(`CREATE TABLE IF NOT EXISTS factory_render_plans(job TEXT PRIMARY KEY,plan TEXT NOT NULL,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_files(file TEXT PRIMARY KEY,signature TEXT NOT NULL,recipe TEXT NOT NULL,source_sha TEXT,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_quality(file TEXT PRIMARY KEY,signature TEXT NOT NULL,required_dpi INTEGER NOT NULL,effective_dpi REAL);`);
- const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null,pipeline=null;
+ const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null,pipeline=null,diagnostics=null;
  function saveRunPlan(job,c,slot,art,placementPlan){pipeline?.configureRun(job,c.qc);
   const map=new Map(art.map(a=>[a.name,a.id]));if((placementPlan||[]).some(p=>p.artwork&&!map.has(p.artwork)))error('A named artwork in the placement plan is missing.');
   const assignments=(placementPlan||[]).map(p=>({zone:zone(p.zone),artworkId:p.artwork?map.get(p.artwork):null}));
@@ -145,12 +145,12 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   return nextSelection;
  }
  async function renderJob(job){
-  await resolveJobColor(job);
+  await (diagnostics?diagnostics.withStage('garment-color',()=>resolveJobColor(job)):resolveJobColor(job));
   const row=get('SELECT plan FROM factory_render_plans WHERE job=?',job);if(!row)return null;let plan=JSON.parse(row.plan);if(plan.continueAcrossPanels)error('Cross-panel continuity needs a reviewed layout. Switch off Continue artwork across panels for independent-area rendering.');
   let selection=JSON.parse(get('SELECT selection FROM factory_job_audiences WHERE job=?',job)?.selection||'null');
   const ids=JSON.parse(get('SELECT templates FROM factory_job_profiles WHERE job=?',job)?.templates||'[]');if(!ids.length)error('Assign a product and exact native-area blueprints before rendering.');
-  if(plan.artworkEdits?.enabled){if(!editor)error('Artwork editor is unavailable.');const result=await editor.prepareJob(job,plan,ids,selection);if(result.defer)return result;plan=result.plan;selection=result.selection;}
-  if(plan.aiLayout){if(!artworkEngine)error('Connect the AI artwork planner before using AI layout mode.');plan=await artworkEngine.plan(job,plan,ids,selection);}
+  if(plan.artworkEdits?.enabled){if(!editor)error('Artwork editor is unavailable.');const result=await (diagnostics?diagnostics.withStage('artwork-edited',()=>editor.prepareJob(job,plan,ids,selection)):editor.prepareJob(job,plan,ids,selection));if(result.defer)return result;plan=result.plan;selection=result.selection;}
+  if(plan.aiLayout){if(!artworkEngine)error('Connect the AI artwork planner before using AI layout mode.');plan=await (diagnostics?diagnostics.withStage('artwork-analyzed',()=>artworkEngine.plan(job,plan,ids,selection)):artworkEngine.plan(job,plan,ids,selection));}
   const requests=ids.map(id=>{const draft=get('SELECT * FROM factory_print_drafts WHERE id=?',id);if(!draft||draft.product!==selection?.product)error('Saved blueprints do not match the selected product.');
    if(plan.placements){const placements=Object.fromEntries(JSON.parse(draft.areas).map(a=>[a.placement,plan.placements[a.placement]||(plan.colorMode==='print'?{fillOnly:true}:null)]));return {draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};}
    const placements={};for(const a of JSON.parse(draft.areas)){const match=plan.assignments.find(p=>p.zone===zone(a.placement))||(plan.colorMode==='print'?{artworkId:null}:null);if(!match)error('No explicit artwork or empty-placement decision for '+a.placement+'. Review the garment placement plan.');
@@ -164,7 +164,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   }
   return result;
  }
- return {setPipeline(p){pipeline=p;},setEditor(e){editor=e;},artworkRules:()=>editor?.rules()||{enabled:false},savePlan(job,plan){run('INSERT OR REPLACE INTO factory_render_plans VALUES(?,?,?)',job,JSON.stringify(plan),now());},saveRunPlan,resolveJobColor,renderJob,async handle(req,res,path,method){
+ return {setDiagnostics(d){diagnostics=d;},setPipeline(p){pipeline=p;},setEditor(e){editor=e;},artworkRules:()=>editor?.rules()||{enabled:false},savePlan(job,plan){run('INSERT OR REPLACE INTO factory_render_plans VALUES(?,?,?)',job,JSON.stringify(plan),now());},saveRunPlan,resolveJobColor,renderJob,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/rendering'))return false;auth(req,null,true);
   if(method==='GET'&&path==='/api/owner/ai-factory/rendering'){send(res,200,{limits:fileLimits,usage:get('SELECT count(*) files,COALESCE(sum(length(data)),0) bytes FROM factory_print_files'),artworkPlanner:artworkEngine?.readiness()||null});return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-rendering',10);const b=await body(req);

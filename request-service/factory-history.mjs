@@ -14,7 +14,7 @@ export function factoryHistory({db,auth,body,send,fail,limit,origin,publishing,s
  for(const action of ['INSERT','UPDATE'])db.exec(`DROP TRIGGER IF EXISTS history_product_snapshot_${action}; CREATE TRIGGER history_product_snapshot_${action} AFTER ${action==='UPDATE'?'UPDATE OF approved,status,copy':'INSERT'} ON factory_listings BEGIN INSERT INTO factory_product_versions(job,state,snapshot,actor,created) VALUES(NEW.job,NEW.status,${productSnapshot('NEW.job')},factory_history_actor(),strftime('%Y-%m-%dT%H:%M:%fZ','now')); END;`);
  if(!get('SELECT seq FROM factory_product_versions LIMIT 1'))db.exec(`INSERT INTO factory_product_versions(job,state,snapshot,actor,created) SELECT l.job,l.status,${productSnapshot('l.job')},'{"type":"system","name":"Existing product baseline"}',strftime('%Y-%m-%dT%H:%M:%fZ','now') FROM factory_listings l`);
   // Row versions retain metadata and immutable file references; image bytes remain in their original tables.
- const excluded=new Set(['factory_history_events','factory_product_versions','factory_worker_heartbeats','factory_job_runtime','factory_file_links','factory_verified_templates']);
+ const excluded=new Set(['factory_diagnostic_events','factory_diagnostic_facts','factory_history_events','factory_product_versions','factory_worker_heartbeats','factory_job_runtime','factory_file_links','factory_verified_templates']);
  for(const {name} of all("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'factory_%'")){
   if(excluded.has(name))continue;
   const cols=all('PRAGMA table_info('+name+')').filter(c=>c.type.toUpperCase()!=='BLOB'),key=cols.find(c=>c.name==='id')||cols.find(c=>c.name==='job')||cols.find(c=>c.pk)||cols[0];
