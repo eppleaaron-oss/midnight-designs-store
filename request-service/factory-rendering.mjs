@@ -62,9 +62,10 @@ export async function renderArea(area,source,recipe={},permissions={}){
 
 export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON.parse(readFileSync(new URL('../printful-plans.json',import.meta.url),'utf8')),artworkEngine=null,blueprints=null,manager=null}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_render_plans(job TEXT PRIMARY KEY,plan TEXT NOT NULL,created TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS factory_render_files(file TEXT PRIMARY KEY,signature TEXT NOT NULL,recipe TEXT NOT NULL,source_sha TEXT,created TEXT NOT NULL);`);
- const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null;
- function saveRunPlan(job,c,slot,art,placementPlan){
+ CREATE TABLE IF NOT EXISTS factory_render_files(file TEXT PRIMARY KEY,signature TEXT NOT NULL,recipe TEXT NOT NULL,source_sha TEXT,created TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS factory_render_quality(file TEXT PRIMARY KEY,signature TEXT NOT NULL,required_dpi INTEGER NOT NULL,effective_dpi REAL);`);
+ const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null,pipeline=null;
+ function saveRunPlan(job,c,slot,art,placementPlan){pipeline?.configureRun(job,c.qc);
   const map=new Map(art.map(a=>[a.name,a.id]));if((placementPlan||[]).some(p=>p.artwork&&!map.has(p.artwork)))error('A named artwork in the placement plan is missing.');
   const assignments=(placementPlan||[]).map(p=>({zone:zone(p.zone),artworkId:p.artwork?map.get(p.artwork):null}));
   if(!assignments.length)for(const a of art){const row=get('SELECT placements FROM factory_artwork WHERE id=?',a.id);for(const z of JSON.parse(row?.placements||'[]'))if(!assignments.some(p=>p.zone===zone(z)))assignments.push({zone:zone(z),artworkId:a.id});}
@@ -96,13 +97,13 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   if(busy)throw Object.assign(Error('The print renderer is busy. Retry when the current product finishes.'),{status:429});busy=true;
   try{
    const work=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds)),pending=[],storedBytes=get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes;let renderedBytes=0;
-   for(const x of work){const cached=get('SELECT f.id,f.sha256,f.data FROM factory_render_files r JOIN factory_print_files f ON f.id=r.file WHERE r.signature=? AND f.draft=? AND f.placement=? AND f.id=(SELECT id FROM factory_print_files WHERE draft=? AND placement=? ORDER BY created DESC,rowid DESC LIMIT 1)',x.signature,x.d.id,x.area.placement,x.d.id,x.area.placement);if(cached&&hash(Buffer.from(cached.data))===cached.sha256){pending.push({...x,cached});continue;}
+   for(const x of work){const cached=get('SELECT f.id,f.sha256,f.data FROM factory_render_files r JOIN factory_print_files f ON f.id=r.file WHERE r.signature=? AND f.draft=? AND f.placement=? AND f.id=(SELECT id FROM factory_print_files WHERE draft=? AND placement=? ORDER BY created DESC,rowid DESC LIMIT 1)',x.signature,x.d.id,x.area.placement,x.d.id,x.area.placement);if(cached&&get('SELECT file FROM factory_render_quality WHERE file=?',cached.id)&&hash(Buffer.from(cached.data))===cached.sha256){pending.push({...x,cached});continue;}
     const source=x.a?Buffer.from(get('SELECT data FROM factory_artwork WHERE id=?',x.a.id).data):null;if(source&&hash(source)!==x.a.sha256)error('The original artwork checksum changed. Restore its original version before rendering.');const result=await renderArea(x.area,source,x.recipe,x.a?x.a.effectivePermissions:{});renderedBytes+=result.data.length;if(renderedBytes>64*1024*1024)error('This rendering batch exceeds 64 MB. Prepare smaller variant sets to stay within the renderer memory budget.');if(storedBytes+renderedBytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');pending.push({...x,result});}
    // Recheck permissions and draft changes after asynchronous rendering before storing any of the batch.
    const checked=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds));if(checked.some((x,i)=>x.signature!==work[i].signature))error('Artwork permissions or blueprint changed during rendering. Retry with the updated settings.');
    const newFiles=pending.filter(x=>!x.cached),bytes=newFiles.reduce((n,x)=>n+x.result.data.length,0);
    if(get('SELECT count(*) n,COALESCE(sum(length(data)),0) bytes FROM factory_print_files').n+newFiles.length>fileLimits.files||get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes+bytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');
-   db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){const id=randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?)',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT INTO factory_render_files VALUES(?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.a?.sha256||null,now());x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
+   db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){const id=randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?)',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT INTO factory_render_files VALUES(?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.a?.sha256||null,now());run('INSERT INTO factory_render_quality VALUES(?,?,?,?)',id,x.signature,x.area.dpi,Number.isFinite(x.result.effectiveDpi)?x.result.effectiveDpi:null);x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
    return {rendered:newFiles.length,files:pending.map(x=>({id:x.id||x.cached.id,draft:x.d.id,placement:x.area.placement,width:x.area.width,height:x.area.height,sha256:x.result?.sha256||x.cached.sha256,url:'/api/owner/ai-factory/blueprints/file/'+(x.id||x.cached.id)})),reviewRequired:true};
   }finally{busy=false;}
  }
@@ -163,7 +164,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   }
   return result;
  }
- return {setEditor(e){editor=e;},artworkRules:()=>editor?.rules()||{enabled:false},savePlan(job,plan){run('INSERT OR REPLACE INTO factory_render_plans VALUES(?,?,?)',job,JSON.stringify(plan),now());},saveRunPlan,resolveJobColor,renderJob,async handle(req,res,path,method){
+ return {setPipeline(p){pipeline=p;},setEditor(e){editor=e;},artworkRules:()=>editor?.rules()||{enabled:false},savePlan(job,plan){run('INSERT OR REPLACE INTO factory_render_plans VALUES(?,?,?)',job,JSON.stringify(plan),now());},saveRunPlan,resolveJobColor,renderJob,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/rendering'))return false;auth(req,null,true);
   if(method==='GET'&&path==='/api/owner/ai-factory/rendering'){send(res,200,{limits:fileLimits,usage:get('SELECT count(*) files,COALESCE(sum(length(data)),0) bytes FROM factory_print_files'),artworkPlanner:artworkEngine?.readiness()||null});return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-rendering',10);const b=await body(req);

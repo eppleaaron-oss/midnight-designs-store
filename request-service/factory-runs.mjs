@@ -106,11 +106,11 @@ export function brief(c,slot,art){
   slot.outfit?`Part of ${slot.outfit}: coordinate theme, colors, typography and placement with the other pieces.`:'',
   `Creativity: ${creative}`,
   c.style?`Style: ${c.style}`:'',
-  `Quality control: ${c.qc.automatic?`automatic, minimum score ${c.qc.threshold}, up to ${c.qc.maxRevisions} automatic revisions`:'manual'}; ${c.qc.requireApproval?'owner approval required before publishing':'owner review only for exceptions'}.`
+  `Quality control: ${c.qc.automatic?`automatic, minimum score ${c.qc.threshold}, failed checks held for revision`:'manual'}; ${c.qc.requireApproval?'owner approval required before publishing':'owner review only for exceptions'}.`
  ].filter(Boolean).join('\n');
 }
 
-export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,rendering=null,brain=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
+export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork,rendering=null,brain=null,pipeline=null,storefrontOrigin,fetchImpl=fetch,clock=Date.now}){
  const all=(q,...a)=>db.prepare(q).all(...a),get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  db.exec(`CREATE TABLE IF NOT EXISTS factory_runs(id TEXT PRIMARY KEY,number INTEGER NOT NULL UNIQUE,name TEXT NOT NULL,config TEXT NOT NULL,plan TEXT NOT NULL,status TEXT NOT NULL,cycle INTEGER NOT NULL DEFAULT 0,message TEXT NOT NULL DEFAULT '',started INTEGER,ends INTEGER,created TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_run_slots(run TEXT NOT NULL,seq INTEGER NOT NULL,cycle INTEGER NOT NULL,garment TEXT NOT NULL,design TEXT,outfit TEXT,color TEXT NOT NULL,job TEXT,error TEXT NOT NULL DEFAULT '',PRIMARY KEY(run,seq));
@@ -156,7 +156,7 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
  function snapshot(){
   const settings=get('SELECT * FROM factory_settings WHERE id=1')||{state:'stopped',daily_budget:0,total_budget:0},today=new Date(clock()).toISOString().slice(0,10),hour=clock()-3600000;
   const counts=Object.fromEntries(all('SELECT status,count(*) n FROM factory_jobs GROUP BY status').map(x=>[x.status,x.n]));
-  const jobs=all(`SELECT j.id,j.title,j.employee,j.status,j.error,j.updated,COALESCE(t.step,0) step,t.worker,s.run,s.garment,s.color,s.outfit,r.number FROM factory_jobs j LEFT JOIN factory_job_runtime t ON t.job=j.id LEFT JOIN factory_run_slots s ON s.job=j.id LEFT JOIN factory_runs r ON r.id=s.run WHERE j.status NOT IN ('archived','cancelled') ORDER BY CASE j.status WHEN 'running' THEN 0 WHEN 'awaiting_review' THEN 1 WHEN 'queued' THEN 2 ELSE 3 END,j.updated DESC LIMIT 200`).map(j=>({...j,stage:stage(j),progress:j.status==='completed'?100:Math.round(Math.min(j.step,7)/7*100)}));
+  const jobs=all(`SELECT j.id,j.title,j.employee,j.status,j.error,j.updated,COALESCE(t.step,0) step,t.worker,s.run,s.garment,s.color,s.outfit,r.number FROM factory_jobs j LEFT JOIN factory_job_runtime t ON t.job=j.id LEFT JOIN factory_run_slots s ON s.job=j.id LEFT JOIN factory_runs r ON r.id=s.run WHERE j.status NOT IN ('archived','cancelled') ORDER BY CASE j.status WHEN 'running' THEN 0 WHEN 'awaiting_review' THEN 1 WHEN 'queued' THEN 2 ELSE 3 END,j.updated DESC LIMIT 200`).map(j=>({...j,aiPipeline:pipeline?.required(j.id)||false,stage:stage(j),progress:j.status==='completed'?100:Math.round(Math.min(j.step,7)/7*100)}));
   const completedToday=get('SELECT count(*) n FROM factory_job_checkpoints WHERE step=? AND created>=?','review',Date.parse(today+'T00:00:00Z')).n,lastHour=get('SELECT count(*) n FROM factory_job_checkpoints WHERE step=? AND created>=?','review',hour).n;
   const heartbeat=get('SELECT max(seen) seen FROM factory_worker_heartbeats')?.seen||0,workerConnected=clock()-heartbeat<45000;
   const spent=get('SELECT COALESCE(sum(amount),0) n FROM factory_usage')?.n||0,spentToday=get('SELECT COALESCE(sum(amount),0) n FROM factory_usage WHERE created>=?',today)?.n||0;
