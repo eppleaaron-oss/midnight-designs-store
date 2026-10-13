@@ -1,3 +1,4 @@
+import {INTERNAL_LABELS,isBrandArtwork} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';import {inflateSync} from 'node:zlib';import {readFileSync} from 'node:fs';
 import {garmentColors} from './factory-rendering.mjs';
 import {fillInstruction,labelInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
@@ -45,7 +46,7 @@ export function classify(info,name=''){
  if(/\b(sleeves?|legs?|stripes?|bands?|borders?|strips?)\b/i.test(name))return {shape:'strip',reason:'Named as a sleeve, leg or stripe design, so it runs down sleeves, legs and shoe sides.'};
  if(/\b(pocket|chest)\b/i.test(name))return {shape:'emblem',reason:'Named as pocket or chest art, so it sits small on the chest.'};
  if(ratio>=2.2)return {shape:'strip',reason:`${h>w?'Tall':'Wide'} design (${ratio.toFixed(1)} to 1), so it fits sleeves, legs and shoe sides.`};
- if(/\b(logo|emblem|badge|crest|monogram|icon|mark|patch|seal)\b/i.test(name))return {shape:'emblem',reason:'Named like a logo or badge, so it works as a chest, hat or sleeve mark.'};
+ if(/\b(logo|emblem|badge|crest|monogram|icon|mark|patch|seal)\b/i.test(name))return {shape:'emblem',reason:'Named like a thematic emblem or badge, so it works as a chest, hat or sleeve artwork element. Company marks require a label or explicit owner exception.'};
  if(info.box&&info.box.fill<0.18&&ratio<1.6)return {shape:'emblem',reason:'Light, open design, so it reads best small, like a chest or hat mark.'};
  return {shape:'full',reason:'Solid main graphic, so it leads on fronts, backs, hats and accessories.'};
 }
@@ -58,8 +59,8 @@ const GROUPS=[['jacket',/jacket|windbreaker|bomber|zip hoodie/i,'jackets'],['top
  ['bottom',/shorts|trunks/i,'shorts'],['bottom',/leggings|joggers|pants|skirt/i,'pants'],['swim',/bikini|swimsuit|boxer|bra\b/i,'underwear'],['dress',/dress/i,'shirts'],['top',/./,'shirts']];
 // Most-wanted items first; kids and youth sizes last.
 const PRIORITY=[390,615,801,717,619,388,1419,1628,919,328,1414,1482,257,320,1418,1590,644,792,400,618,784,604,298,330,332,1481,420,630,279,963,350];
-// The tag print area the brand logo goes on: inside label first, then the outside label.
-const TAGS=['label_inside','label_inside_dtfabric','label_outside','label_outside_dtfabric','label_outside_back','label_panel','label_panel_dtfabric'];
+// The tag print area the brand logo goes on: supported internal labels only; exterior labels never substitute.
+const TAGS=INTERNAL_LABELS;
 export const tagArea=areas=>TAGS.find(t=>areas.includes(t))||null;
 export function loadCatalog(plans){
  const list=Object.values(plans?.products||{}).map(p=>{const [group,,role]=GROUPS.find(([,re])=>re.test(p.name));
@@ -134,7 +135,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
  // Store library categories group designs by type, not by set, so they are never treated as one set.
  const LIBRARY=/^(sleeve panels|hood panels|pocket & emblems|celestial & gothic|halloween & horror|mockups & references)$/i;
  function uploadSets(){
-  const by=new Map();for(const d of designs()){if(LIBRARY.test(d.collection))continue;(by.get(d.collection)||by.set(d.collection,[]).get(d.collection)).push(d);}
+  const by=new Map();for(const d of designs()){if(LIBRARY.test(d.collection)||isBrandArtwork(db,get('SELECT * FROM factory_artwork WHERE id=?',d.id)))continue;(by.get(d.collection)||by.set(d.collection,[]).get(d.collection)).push(d);}
   const t=now(),seen=new Set();
   for(const [collection,list] of by){
    const full=list.filter(d=>d.shape==='full'),strips=list.filter(d=>d.shape==='strip'),marks=list.filter(d=>d.shape==='emblem');if(!full.length)continue;

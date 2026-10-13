@@ -16,4 +16,6 @@ jobs:
       - run: npm ci --prefix request-service
       - run: npm install --no-save playwright@1.58.2
       - run: npx playwright install --with-deps chromium
+      - run: npm test --prefix request-service
       - run: node request-service/factory-start-browser-test.mjs
+      - run: node request-service/factory-diagnostics-browser-test.mjs

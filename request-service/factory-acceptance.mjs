@@ -1,3 +1,4 @@
+import {isBrandArtwork} from './factory-branding.mjs';
 import {checkedArtwork} from './factory-artwork-permissions.mjs';
 
 const parse=(x,d=null)=>{try{return JSON.parse(x);}catch{return d;}};
@@ -7,7 +8,7 @@ export function factoryAcceptance({db,pipeline,diagnostics,editor,publishing}){
  function inspect(job,{savedReceipts=null}={}){
   const j=get('SELECT * FROM factory_jobs WHERE id=?',job);if(!j)hold('Acceptance product not found.');
   const selection=parse(get('SELECT selection FROM factory_job_audiences WHERE job=?',job)?.selection,{}),listing=get('SELECT * FROM factory_listings WHERE job=?',job),trace=diagnostics.snapshot(job),stages=trace.stages,checks=[],check=(id,label,passed,evidence)=>checks.push({id,label,passed:passed===true,evidence:evidence||null});
-  const originals=[];let artValid=true;for(const id of selection.artworkIds||[]){try{originals.push(checkedArtwork(db,id).original);}catch{artValid=false;}}
+  const originals=[];let artValid=true;for(const id of selection.artworkIds||[]){try{const art=checkedArtwork(db,id);if(!isBrandArtwork(db,art))originals.push(art.original);}catch{artValid=false;}}
   const edits=all('SELECT je.source,je.version,v.job sourceJob,v.recipe,v.provider,c.effect,e.status,e.provider_id FROM factory_editor_job_edits je JOIN factory_editor_versions v ON v.version=je.version JOIN factory_editor_cache c ON c.fingerprint=je.fingerprint LEFT JOIN factory_production_effects e ON e.id=c.effect WHERE je.job=?',job).filter(e=>selection.artworkIds?.includes(e.version)&&parse(e.recipe)?.creative&&e.status==='committed'&&e.provider&&e.provider===e.provider_id);
   const files=all('SELECT f.id,f.draft,f.placement,f.width,f.height,f.sha256,r.recipe FROM factory_print_files f JOIN factory_render_files r ON r.file=f.id WHERE f.draft IN (SELECT value FROM json_each((SELECT templates FROM factory_job_profiles WHERE job=?))) AND f.rowid=(SELECT f2.rowid FROM factory_print_files f2 WHERE f2.draft=f.draft AND f2.placement=f.placement ORDER BY f2.created DESC,f2.rowid DESC LIMIT 1)',job);
   let quality=null,review=null;try{quality=pipeline.quality.assert(job);review=pipeline.detail(job);}catch{}

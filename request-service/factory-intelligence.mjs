@@ -1,3 +1,4 @@
+import {BRANDING_RULE,BRANDING_CONCEPTS,brandingInstruction} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 
@@ -6,7 +7,7 @@ import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 export const BRAIN_SECTIONS=[['brand-dna','Brand DNA'],['fashion','Fashion knowledge'],['garment','Garment intelligence'],['artwork','Artwork intelligence'],['color','Color intelligence'],['placement','Placement intelligence'],['composition','Composition intelligence'],['supplier','Supplier knowledge'],['blueprint','Blueprint knowledge'],['qc','QC intelligence'],['pricing','Pricing intelligence'],['publishing','Publishing intelligence']];
 export const MEMORY_KINDS=[['permanent','Permanent rules'],['preference','Owner preferences'],['success','Successful designs'],['failure','Failed designs'],['supplier','Supplier knowledge'],['learning','Production learnings']];
 export const FEEDBACK=[['good','Good','success'],['excellent','Excellent','success'],['bad','Bad','failure'],['never','Never do this again','failure'],['style','Save this style','preference'],['placement','Save this placement','preference'],['color','Save this color combination','preference'],['reference','Save as reference','success']];
-const BRAIN_VERSION='MD-Brain 1.1';
+const BRAIN_VERSION='MD-Brain 1.2';
 
 const FILL_RULE='The blank garment is white. White products use no fill. Every other main color (black, charcoal, navy, red and so on) must use the fill option on every print area, edge to edge, before artwork goes on. Never fake a color with a pasted solid-color image.';
 // Rules added after the first Brain release. Seeded once per database, so an owner who deletes an unlocked one doesn't get it back.
@@ -17,15 +18,15 @@ const RULES_V2=[
 ];
 // Industry knowledge added with the idea team: how big brands place graphics, and how design shapes map to placements.
 const RULES_V3=[
- ['fashion','Industry placement playbook','Common layouts from major streetwear and sportswear brands: left-chest logo about 3.5 to 4 inches wide; full-front graphic 10 to 12 inches wide; oversized back print up to 14 by 16 inches; sleeve run down the outer sleeve seam; small sleeve hit near the cuff or shoulder; leg run down the outer leg seam; small hip mark high on the thigh; hat front mark about 2 to 2.5 inches tall; nape print under the collar. A strong back with a small chest mark is the most common premium layout.',0],
- ['artwork','Design shapes','Strips (long, thin designs) go on sleeves, legs and shoe side panels. Full designs lead on fronts, backs, hats, masks and accessories. Emblems (small logos and marks) go on chests, hat fronts, hoods and sleeve hits. Never stretch a full design down a sleeve or squash a strip onto a chest.',1],
+ ['fashion','Industry placement playbook','Common layouts from major streetwear and sportswear brands: small thematic chest artwork about 3.5 to 4 inches wide; full-front graphic 10 to 12 inches wide; oversized back print up to 14 by 16 inches; sleeve run down the outer sleeve seam; small sleeve hit near the cuff or shoulder; leg run down the outer leg seam; small hip mark high on the thigh; hat front mark about 2 to 2.5 inches tall; nape print under the collar. A strong back with a small chest mark is the most common premium layout.',0],
+ ['artwork','Design shapes','Strips (long, thin designs) go on sleeves, legs and shoe side panels. Full designs lead on fronts, backs, hats, masks and accessories. Emblems (small thematic symbols and artwork details) go on chests, hat fronts, hoods and sleeve hits. Never stretch a full design down a sleeve or squash a strip onto a chest.',1],
  ['composition','Full outfits','An outfit is headwear, face wear, a top, bottoms and shoes built around one hero design. Every piece uses the hero or a design from the same collection, shares the palette and keeps a similar wear and texture so the pieces read as one set.',0]
 ];
 const DEFAULT_RULES=[
  ['brand-dna','Primary style','Dark vintage streetwear.',1],
  ['brand-dna','Default garment color','Black.',1],
  ['brand-dna','Prefer','Large statement back graphics; smaller supporting front graphics; coordinated sleeves; distressed artwork; dark palettes with bone/cream accents; premium streetwear composition.',0],
- ['brand-dna','Avoid','Random or unrelated graphics; unrelated sleeve artwork; excessive empty placement; cheap clip-art appearance; artwork outside print boundaries; unnecessary colors; designs that don\'t coordinate.',1],
+ ['brand-dna','Avoid','Random or unrelated graphics; unrelated sleeve artwork; cheap clip-art appearance; artwork outside print boundaries; unnecessary colors; designs that don\'t coordinate.',1],
  ['placement','Hierarchy','Only one hero graphic per product. Supporting and accent graphics must be visibly smaller than the hero.',0],
  ['placement','Seams','Never let faces or text cross a seam, zipper or pocket edge.',1],
  ['color','Garment fill',FILL_RULE,1],
@@ -35,19 +36,19 @@ const DEFAULT_RULES=[
 ];
 // Per-garment profiles: density, hierarchy and where each role goes. Keys match GARMENTS ids.
 const DEFAULT_PROFILES={
- jacket:{density:[4,6],hierarchy:'1 hero, 1–2 secondary, 2–3 accents, optional branding',placement:{back:'Hero',front:'Secondary / minimal','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
+ jacket:{density:[4,6],hierarchy:'1 hero, 1–2 secondary, 2–3 accents, branding reserved for supported labels',placement:{back:'Hero',front:'Secondary / minimal','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
  ziphoodie:{density:[4,6],hierarchy:'1 hero, 1–2 secondary, 2 accents',placement:{back:'Hero','front-left':'Secondary','front-right':'Accent','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
  hoodie:{density:[3,5],hierarchy:'1 hero, 1 secondary, 1–2 accents',placement:{back:'Hero',front:'Secondary','left-sleeve':'Accent','right-sleeve':'Accent',hood:'Supporting'},color:'Black'},
  sweatshirt:{density:[2,4],hierarchy:'1 hero, 1 secondary, accents optional',placement:{back:'Hero',front:'Secondary','left-sleeve':'Accent','right-sleeve':'Accent'},color:'Black'},
- tshirt:{density:[1,3],hierarchy:'1 hero, optional small front and sleeve accent',placement:{back:'Hero',front:'Secondary / chest mark','left-sleeve':'Accent'},color:'Black'},
+ tshirt:{density:[1,3],hierarchy:'1 hero, optional small front and sleeve accent',placement:{back:'Hero',front:'Secondary / thematic chest artwork','left-sleeve':'Accent'},color:'Black'},
  longsleeve:{density:[2,4],hierarchy:'1 hero, 1 secondary, sleeve accents',placement:{back:'Hero',front:'Secondary','left-sleeve':'Accent','right-sleeve':'Accent'},color:'Black'},
  pants:{density:[1,2],hierarchy:'1–2 vertical leg graphics',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
  joggers:{density:[1,2],hierarchy:'1–2 vertical leg graphics',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
  shorts:{density:[1,2],hierarchy:'1 small leg graphic, optional accent',placement:{'left-leg':'Secondary','right-leg':'Accent'},color:'Black'},
- hat:{density:[1,1],hierarchy:'1 front mark',placement:{front:'Brand / secondary'},color:'Black'},
+ hat:{density:[1,1],hierarchy:'1 thematic front symbol',placement:{front:'Thematic symbol / secondary'},color:'Black'},
  accessory:{density:[1,2],hierarchy:'1 main graphic, optional back accent',placement:{front:'Hero',back:'Accent'},color:'Black'},
  facemask:{density:[1,1],hierarchy:'1 print across the mask face',placement:{front:'Hero'},color:'Black'},
- shoes:{density:[1,3],hierarchy:'Strip runs on the side panels, optional tongue mark',placement:{'left-side':'Secondary','right-side':'Accent',tongue:'Brand / secondary'},color:'Black'}
+ shoes:{density:[1,3],hierarchy:'Strip runs on the side panels, optional tongue mark',placement:{'left-side':'Secondary','right-side':'Accent',tongue:'Thematic symbol / secondary'},color:'Black'}
 };
 
 export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwordHash,storageDurable=false,storefrontOrigin='https://midnight-designs.store',fetchImpl=fetch,env=process.env,clock=Date.now,imageEditor=null,pipeline=null,diagnostics=null}){
@@ -65,7 +66,7 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   for(const [g,p] of Object.entries(DEFAULT_PROFILES))run('INSERT OR IGNORE INTO brain_garments VALUES(?,?,0,?)',g,JSON.stringify(p),t);run("INSERT INTO brain_migrations VALUES('rules-v3',?)",t);}
  // rules-v4: the owner's permanent logo-on-the-tag rule, plus one jacket design carried across a whole outfit.
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v4'")){const t=now();
-  for(const [section,title,text,locked] of [['brand-dna','Logo on the tag',`Every product carries the Midnight Design logo (${storefrontOrigin+LABEL_LOGO_PATH}) on its tag: the inside label print area, else the outside label, else small at the inside back neck. Never skip it.`,1],
+  for(const [section,title,text,locked] of [['brand-dna','Logo on the tag',`Use the Midnight Designs logo (${storefrontOrigin+LABEL_LOGO_PATH}) only in a supported internal tag/label area by default. If no supported label area exists, skip garment branding; never use an exterior fallback.`,1],
    ['composition','One design, many items','Carry one design set onto as many items as fit, each part in its matching print area. Never swap in a different design.',1]])
    if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);
   run("INSERT INTO brain_migrations VALUES('rules-v4',?)",t);}
@@ -73,6 +74,15 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='rules-v5'")){const t=now();
   if(!get("SELECT 1 x FROM brain_rules WHERE title='Pocket lines up with the front'"))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),'placement','Pocket lines up with the front','The pocket print is the front image cut at exactly the spot the pocket covers, so the design runs unbroken across it. Never a different image or a misaligned crop. Copy the clean layouts in the reference products.',1,t,t);
   run("INSERT INTO brain_migrations VALUES('rules-v5',?)",t);}
+ // Replace shipped branding defaults in existing databases, preserving custom guidance and locks.
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='design-first-branding-v1'")){const t=now();
+  run("UPDATE brain_rules SET body=?,locked=1,updated=? WHERE title='Logo on the tag'",`Use the Midnight Designs logo (${storefrontOrigin+LABEL_LOGO_PATH}) only in an actual supplier-supported internal tag/label by default. Without one, skip garment branding. No outside-label, neck-artwork or discreet-edge fallback.`,t);
+  for(const [title,body] of [['Industry placement playbook',RULES_V3[0][2]],['Design shapes',RULES_V3[1][2]]])run("UPDATE brain_rules SET body=?,updated=? WHERE title=? AND (body LIKE '%left-chest logo about%' OR body LIKE '%Emblems (small logos and marks)%')",body,t,title);
+  run("UPDATE brain_rules SET body=replace(body,'excessive empty placement; ',''),updated=? WHERE title='Avoid'",t);
+  for(const r of all('SELECT * FROM brain_garments')){const p=JSON.parse(r.profile);let changed=false;if(p.hierarchy?.includes('optional branding')){p.hierarchy=p.hierarchy.replace('optional branding','branding reserved for supported labels');changed=true;}for(const [z,v] of Object.entries(p.placement||{}))if(v==='Brand / secondary'||v==='Secondary / chest mark'){p.placement[z]=v==='Brand / secondary'?'Thematic symbol / secondary':'Secondary / thematic chest artwork';changed=true;}if(p.hierarchy==='1 front mark'){p.hierarchy='1 thematic front symbol';changed=true;}if(changed)run('UPDATE brain_garments SET profile=?,updated=? WHERE garment=?',JSON.stringify(p),t,r.garment);}
+  for(const [title,text] of [['Design-first branding',BRANDING_RULE],['Identity, artwork and marking',BRANDING_CONCEPTS],['Thematic chest graphics','A small chest graphic is artwork from the collection: raven, skull, rose, cathedral detail, symbol or design-related lettering. Never substitute the company logo.'],['Layout diversity','Dark vintage/gothic style is not a full-coverage layout. Vary minimal, balanced, statement, typography, asymmetric, back-focused, sleeve-focused, ornamental, gallery and AOP compositions. Blank space is deliberate; company logos never fill it.']]){const r=get('SELECT id FROM brain_rules WHERE title=?',title);if(r)run('UPDATE brain_rules SET body=?,locked=1,updated=? WHERE id=?',text,t,r.id);else run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),'brand-dna',title,text,1,t,t);}
+  run("INSERT INTO brain_migrations VALUES('design-first-branding-v1',?)",t);
+ }
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;
@@ -80,13 +90,15 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
 
  // The exact knowledge text a worker receives for one garment. Shown on the AI Intelligence page so nothing is hidden in a prompt.
  // With a size limit, owner preferences, rejections, references and the garment profile always fit;
- // unlocked rules are dropped from the end first, then locked ones, so a brief is never cut mid-sentence.
+ // Custom owner rules precede shipped defaults; the immutable branding policy always comes first.
+ // Rules are removed whole when the brief budget is tight.
  function knowledge(garment,max=Infinity){
-  const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created");
+  const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created").filter(r=>!['Design-first branding','Identity, artwork and marking'].includes(r.title));
+  const shipped=new Set([...DEFAULT_RULES,...RULES_V2,...RULES_V3].map(r=>r[1]).concat(['Logo on the tag','One design, many items','Pocket lines up with the front','Thematic chest graphics','Layout diversity']));rules.sort((a,b)=>Number(shipped.has(a.title))-Number(shipped.has(b.title)));
   const p=garment?profile(garment):null,prefs=all("SELECT text FROM brain_memories WHERE kind IN ('permanent','preference') AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 15",garment||'');
   const avoid=all("SELECT text FROM brain_memories WHERE kind='failure' AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 8",garment||'');
   const refs=all('SELECT kind,name,image,garment,note FROM brain_references WHERE garment IS NULL OR garment=? ORDER BY garment IS NULL,created DESC LIMIT 8',garment||'');
-  const head=[];
+  const head=[brandingInstruction()];
   if(prefs.length)head.push('Owner preferences:',...prefs.map(m=>'- '+m.text));
   if(avoid.length)head.push('Avoid (owner rejected):',...avoid.map(m=>'- '+m.text));
   if(refs.length)head.push('Reference examples from the Midnight Designs store (match this level and their clean layouts):',...refs.map(r=>`- ${r.name} (${r.kind==='product'?'store product':r.kind==='design'?'store design':'mockup'})${r.note?': '+r.note:''} ${r.image}`));

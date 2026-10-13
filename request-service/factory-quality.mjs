@@ -1,3 +1,4 @@
+import {brandingPolicy,assertBrandingPlacement} from './factory-branding.mjs';
 import sharp from 'sharp';
 import {createHash} from 'node:crypto';
 import {checkedArtwork} from './factory-artwork-permissions.mjs';
@@ -23,6 +24,7 @@ export function factoryQuality({db}){
    const r=get('SELECT * FROM factory_render_files WHERE file=?',f.id),p=get('SELECT * FROM factory_render_quality WHERE file=?',f.id);
    if(!r||!p)hold('Quality hold: this print file has no measured source-resolution proof. Render it again from its original artwork.');
    const recipe=JSON.parse(r.recipe),a=recipe.artworkId?checkedArtwork(db,recipe.artworkId):null;
+   assertBrandingPlacement(db,job,area.placement,a);
    if(a&&!selection.artworkIds.includes(a.id))hold('Quality hold: print artwork is not assigned to this product.');
    if(a&&(!a.effectivePermissions.reuse||r.source_sha!==a.sha256||hash(Buffer.from(a.data))!==a.sha256))hold('Quality hold: rendered artwork or its permission changed.');
    const signature=hash(JSON.stringify([d.product,d.variant,d.technique,area,recipe,a?.sha256||null,a?.effectivePermissions||null]));
@@ -31,11 +33,11 @@ export function factoryQuality({db}){
    return {...area,file:f.id,sha256:f.sha256,recipe,requiredDpi:p.required_dpi,effectiveDpi:p.effective_dpi,signature:r.signature};
   })};});
   if(new Set(drafts.map(d=>d.variant)).size!==drafts.length)hold('Quality hold: duplicate supplier variants.');
-  const value={selection,art,drafts};return {...value,fingerprint:hash(JSON.stringify(value))};
+  const value={branding:brandingPolicy(db,job),selection,art,drafts};return {...value,fingerprint:hash(JSON.stringify(value))};
  }
  async function check(job){const value=inputs(job);for(const d of value.drafts)for(const a of d.areas){const f=get('SELECT data FROM factory_print_files WHERE id=?',a.file),image=sharp(Buffer.from(f.data),{limitInputPixels:40_000_000,failOn:'warning'}),meta=await image.metadata();if(meta.format!=='png'||meta.pages>1||Math.abs((meta.density||0)-a.requiredDpi)>1)hold('Quality hold: PNG format or print-density metadata is invalid.');await image.stats();}
   if(inputs(job).fingerprint!==value.fingerprint)hold('Quality inputs changed while decoding the files.');
-  const report={passed:true,fingerprint:value.fingerprint,variants:value.drafts.map(d=>d.variant),files:value.drafts.flatMap(d=>d.areas.map(a=>({variant:d.variant,placement:a.placement,file:a.file,sha256:a.sha256,width:a.width,height:a.height,requiredDpi:a.requiredDpi,effectiveDpi:a.effectiveDpi,fillOnly:a.recipe.fillOnly===true}))),checks:['native dimensions','full PNG decode','file and source checksums','measured source DPI','supported areas','current artwork permissions','complete variant files'],note:'Technical file checks do not certify physical seams, print color or supplier manufacturing.'};
+  const report={passed:true,fingerprint:value.fingerprint,variants:value.drafts.map(d=>d.variant),files:value.drafts.flatMap(d=>d.areas.map(a=>({variant:d.variant,placement:a.placement,file:a.file,sha256:a.sha256,width:a.width,height:a.height,requiredDpi:a.requiredDpi,effectiveDpi:a.effectiveDpi,fillOnly:a.recipe.fillOnly===true}))),checks:['native dimensions','full PNG decode','file and source checksums','measured source DPI','supported areas','current artwork permissions','complete variant files','label-first branding permissions'],note:'Technical file checks do not certify physical seams, print color or supplier manufacturing.'};
   db.prepare('INSERT OR REPLACE INTO factory_quality_reports VALUES(?,?,?,?)').run(job,value.fingerprint,JSON.stringify(report),new Date().toISOString());return report;
  }
  function assert(job){const value=inputs(job),saved=get('SELECT * FROM factory_quality_reports WHERE job=?',job);if(!saved||saved.fingerprint!==value.fingerprint||!JSON.parse(saved.report).passed)hold('Quality hold: run technical quality control on the current print files.');return JSON.parse(saved.report);}

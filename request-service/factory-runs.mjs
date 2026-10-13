@@ -1,3 +1,4 @@
+import {BRAND_LOGO_PATH,BRANDING_RULE,isBrandLabel,isBrandArtwork} from './factory-branding.mjs';
 import {randomUUID} from 'node:crypto';
 
 // Garment types offered by the factory page. Each maps to an existing creator role so runs reuse the same
@@ -89,16 +90,17 @@ export function fillInstruction(color){
  return /^white$/i.test(color)?'Base garment color: White. Use the plain white garment with the fill option OFF.':`Base garment color: ${color}. FILL OPTION REQUIRED: switch on the fill option in ${color} for every print area, edge to edge, before placing any artwork. The blank garment is white, so without the fill the product comes out white. Never fake the color with a pasted solid-color image.`;
 }
 // Permanent brand rule: the Midnight Design logo goes on the clothing tag so buyers remember where it came from.
-export const LABEL_LOGO_PATH='/assets/designs/art-7d5ff833db11.png';
+export const LABEL_LOGO_PATH=BRAND_LOGO_PATH;
 export function labelInstruction(storefrontOrigin='https://midnight-designs.store',area=undefined){
  const file=storefrontOrigin+LABEL_LOGO_PATH;
- if(area===null)return `BRAND TAG: this item has no tag print area, so add the Midnight Design logo (${file}) small, about 1.5 inches wide, at the inside back neck or another discreet edge where it never competes with the main design.`;
- return `BRAND TAG (permanent rule): print the Midnight Design logo (${file}) on the clothing tag${area?` (print area ${area})`:', using the inside label print area (label_inside), or the outside label if there is no inside one'}. Center it, keep it fully inside the tag's safe area, on the garment's base color. This is required on every product.`;
+ if(area===null||area!==undefined&&!isBrandLabel(area))return 'BRAND TAG: no supported internal tag/label is selected. Skip garment branding; do not fall back to the chest, neck artwork, outside label, sleeve or another visible edge.';
+ return `BRAND TAG: reserve Midnight Designs branding (${file}) for the supplier-supported internal label${area?` (print area ${area})`:''}. Verify its exact safe area and file requirements. If the product has no supported internal label, skip branding. Visible graphics are thematic artwork, not company advertisements.`;
 }
 export function brief(c,slot,art){
  const g=garment(slot.garment),[lo,hi]=c.density.values[slot.garment],creative=c.creativity<34?'Strict: follow the uploaded design closely; only adapt scale and placement.':c.creativity<67?'Balanced: improve placement and composition while preserving the design.':'Experimental: variations, complementary graphics, alternate placements and matching sleeve graphics are allowed.';
  return [
   `${g.single} for production run "${c.name||'Untitled run'}".`,
+  BRANDING_RULE,
   fillInstruction(slot.color)+(c.color.lock?' Color is locked.':''),
   art?`Primary artwork: ${art.name} (${art.collection}).`:'No artwork selected; wait for owner input.',
   `Design elements: ${lo===hi?lo:lo+'–'+hi} across ${g.zones.join(', ')}. Use the garment's real supplier blueprint, print areas, safe zones, bleed and seams.`,
@@ -118,9 +120,9 @@ export function factoryRuns({db,auth,body,send,fail,limit,origin,manager,artwork
  CREATE TABLE IF NOT EXISTS factory_presets(id TEXT PRIMARY KEY,name TEXT NOT NULL UNIQUE,config TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_library_imports(design TEXT PRIMARY KEY,artwork TEXT NOT NULL,created TEXT NOT NULL);`);
  const ACTIVE=['running','waiting'],state=()=>get('SELECT state FROM factory_settings WHERE id=1')?.state||'stopped';
- const artworkMap=()=>new Map(all("SELECT id,name,collection FROM factory_artwork WHERE kind='original'").map(a=>[a.id,a]));
+ const artworkMap=()=>new Map(all("SELECT id,original,name,filename,sha256,collection FROM factory_artwork WHERE kind='original'").filter(a=>!isBrandArtwork(db,a)).map(a=>[a.id,a]));
  let library={time:0,designs:null};
- async function storefrontDesigns(){if(library.designs&&clock()-library.time<600000)return library.designs;try{const r=await fetchImpl(storefrontOrigin+'/designs.json',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const list=await r.json();library={time:clock(),designs:list.filter(d=>d&&typeof d.id==='string'&&d.kind!=='reference'&&typeof d.image==='string').map(d=>({id:d.id,name:String(d.name||d.id).slice(0,100),category:String(d.category||'Midnight Designs').slice(0,100),image:storefrontOrigin+'/'+d.image.replace(/^\/+/,''),thumbnail:storefrontOrigin+'/'+String(d.thumbnail||d.image).replace(/^\/+/,'')}))};}catch{if(!library.designs)return [];}return library.designs;}
+ async function storefrontDesigns(){if(library.designs&&clock()-library.time<600000)return library.designs;try{const r=await fetchImpl(storefrontOrigin+'/designs.json',{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const list=await r.json();library={time:clock(),designs:list.filter(d=>d&&typeof d.id==='string'&&d.kind!=='reference'&&typeof d.image==='string'&&'/'+d.image.replace(/^\/+/,'')!==LABEL_LOGO_PATH).map(d=>({id:d.id,name:String(d.name||d.id).slice(0,100),category:String(d.category||'Midnight Designs').slice(0,100),image:storefrontOrigin+'/'+d.image.replace(/^\/+/,''),thumbnail:storefrontOrigin+'/'+String(d.thumbnail||d.image).replace(/^\/+/,'')}))};}catch{if(!library.designs)return [];}return library.designs;}
 
  // Moves queued slots into the factory job queue while there is room, respecting the run's batch size.
  async function feed(r){

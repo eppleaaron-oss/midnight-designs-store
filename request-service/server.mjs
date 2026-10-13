@@ -1,3 +1,4 @@
+import {factoryBranding} from './factory-branding.mjs';
 import {factoryDiagnostics} from './factory-diagnostics.mjs';
 import {factoryAcceptance} from './factory-acceptance.mjs';
 import {factoryAiPipeline} from './factory-ai-pipeline.mjs';
@@ -69,6 +70,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const reviewHandler=productReviews({db,products:JSON.parse(readFileSync(new URL('./product-catalog.json',import.meta.url),'utf8')),auth,body,send,fail,limit,origin,storefrontOrigin});
  const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader});
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
+ const brandingHandler=factoryBranding({db,auth,body,send,fail,limit,origin});
  const diagnostics=factoryDiagnostics({clock:productionSettings.clock||Date.now,...diagnosticSettings,db,auth,send,fail,limit,secrets:()=>[passwordHash,catalogToken,process.env.PRINTFUL_TOKEN,process.env.OPENAI_API_KEY,process.env.CATALOG_GITHUB_TOKEN,process.env.FACTORY_WORKER_TOKEN]}),tracked=s=>({...s,fetchImpl:diagnostics.wrapFetch(s.fetchImpl||fetch)});
  const blueprintHandler=factoryBlueprints({...tracked(blueprintSettings),db,auth,body,send,fail,limit,origin});
  const artworkHandler=factoryArtwork({plans:blueprintSettings.plans,db,auth,body,send,fail,limit,origin});
@@ -97,6 +99,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data: https://*.printful.com "+storefrontOrigin+"; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
+   if(await brandingHandler.handle(req,res,path,method))return;
    if(await diagnostics.handle(req,res,path,method))return;
    if(await pipelineHandler.handle(req,res,path,method))return;
    if(await intelligenceHandler.handle(req,res,path,method))return;

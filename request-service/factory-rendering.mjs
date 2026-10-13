@@ -1,3 +1,4 @@
+import {assertBrandingPlacement} from './factory-branding.mjs';
 import {checkedArtwork} from './factory-artwork-permissions.mjs';
 import sharp from 'sharp';
 import {readFileSync} from 'node:fs';
@@ -77,7 +78,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    if(products.length===1){const selection=JSON.parse(get('SELECT selection FROM factory_job_audiences WHERE job=?',job).selection);selection.product=products[0];selection.variantIds=fresh.map(id=>get('SELECT variant FROM factory_print_drafts WHERE id=?',id).variant);run('UPDATE factory_job_audiences SET selection=? WHERE job=?',JSON.stringify(selection),job);}
   }
  }
- function inputs(draftId,plan,allowedIds){
+ function inputs(draftId,plan,allowedIds,job=null){
   const d=get('SELECT * FROM factory_print_drafts WHERE id=?',draftId);if(!d)error('Save the exact supplier variant blueprint first.');
   if(!/^(default|dtg|digital|cut-sew|sublimation)$/i.test(d.technique))error('This printing method requires a dedicated print-file renderer.');
   const areas=JSON.parse(d.areas),placements=plan.placements;
@@ -86,6 +87,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    const area=areas.find(a=>a.placement===placement);if(!area)error('Unsupported placement for this saved variant: '+placement+'.');
    if(!r||typeof r!=='object')error('Choose artwork or an explicit fill-only recipe for each area.');
    const a=r.artworkId?checkedArtwork(db,r.artworkId):null;
+   assertBrandingPlacement(db,job,placement,a);
    if(r.artworkId&&!a)error('Assigned artwork is missing.');if(a&&allowedIds&&!allowedIds.includes(a.id))error('Artwork is not assigned to this job.');
    if(!a&&r.fillOnly!==true)error('This area needs artwork or an explicit fill-only choice.');
    if(a?.product!==null&&a?.product!==undefined&&a.product!==d.product)error('Artwork is restricted to a different product.');
@@ -96,11 +98,11 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
  async function prepare(requests){
   if(busy)throw Object.assign(Error('The print renderer is busy. Retry when the current product finishes.'),{status:429});busy=true;
   try{
-   const work=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds)),pending=[],storedBytes=get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes;let renderedBytes=0;
+   const work=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds,r.job)),pending=[],storedBytes=get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes;let renderedBytes=0;
    for(const x of work){const cached=get('SELECT f.id,f.sha256,f.data FROM factory_render_files r JOIN factory_print_files f ON f.id=r.file WHERE r.signature=? AND f.draft=? AND f.placement=? AND f.id=(SELECT id FROM factory_print_files WHERE draft=? AND placement=? ORDER BY created DESC,rowid DESC LIMIT 1)',x.signature,x.d.id,x.area.placement,x.d.id,x.area.placement);if(cached&&get('SELECT file FROM factory_render_quality WHERE file=?',cached.id)&&hash(Buffer.from(cached.data))===cached.sha256){pending.push({...x,cached});continue;}
     const source=x.a?Buffer.from(get('SELECT data FROM factory_artwork WHERE id=?',x.a.id).data):null;if(source&&hash(source)!==x.a.sha256)error('The original artwork checksum changed. Restore its original version before rendering.');const result=await renderArea(x.area,source,x.recipe,x.a?x.a.effectivePermissions:{});renderedBytes+=result.data.length;if(renderedBytes>64*1024*1024)error('This rendering batch exceeds 64 MB. Prepare smaller variant sets to stay within the renderer memory budget.');if(storedBytes+renderedBytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');pending.push({...x,result});}
    // Recheck permissions and draft changes after asynchronous rendering before storing any of the batch.
-   const checked=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds));if(checked.some((x,i)=>x.signature!==work[i].signature))error('Artwork permissions or blueprint changed during rendering. Retry with the updated settings.');
+   const checked=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds,r.job));if(checked.some((x,i)=>x.signature!==work[i].signature))error('Artwork permissions or blueprint changed during rendering. Retry with the updated settings.');
    const newFiles=pending.filter(x=>!x.cached),bytes=newFiles.reduce((n,x)=>n+x.result.data.length,0);
    if(get('SELECT count(*) n,COALESCE(sum(length(data)),0) bytes FROM factory_print_files').n+newFiles.length>fileLimits.files||get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes+bytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');
    db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){const id=randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?)',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT INTO factory_render_files VALUES(?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.a?.sha256||null,now());run('INSERT INTO factory_render_quality VALUES(?,?,?,?)',id,x.signature,x.area.dpi,Number.isFinite(x.result.effectiveDpi)?x.result.effectiveDpi:null);x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
@@ -152,10 +154,10 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   if(plan.artworkEdits?.enabled){if(!editor)error('Artwork editor is unavailable.');const result=await (diagnostics?diagnostics.withStage('artwork-edited',()=>editor.prepareJob(job,plan,ids,selection)):editor.prepareJob(job,plan,ids,selection));if(result.defer)return result;plan=result.plan;selection=result.selection;}
   if(plan.aiLayout){if(!artworkEngine)error('Connect the AI artwork planner before using AI layout mode.');plan=await (diagnostics?diagnostics.withStage('artwork-analyzed',()=>artworkEngine.plan(job,plan,ids,selection)):artworkEngine.plan(job,plan,ids,selection));}
   const requests=ids.map(id=>{const draft=get('SELECT * FROM factory_print_drafts WHERE id=?',id);if(!draft||draft.product!==selection?.product)error('Saved blueprints do not match the selected product.');
-   if(plan.placements){const placements=Object.fromEntries(JSON.parse(draft.areas).map(a=>[a.placement,plan.placements[a.placement]||(plan.colorMode==='print'?{fillOnly:true}:null)]));return {draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};}
+   if(plan.placements){const placements=Object.fromEntries(JSON.parse(draft.areas).map(a=>[a.placement,plan.placements[a.placement]||(plan.colorMode==='print'?{fillOnly:true}:null)]));return {job,draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};}
    const placements={};for(const a of JSON.parse(draft.areas)){const match=plan.assignments.find(p=>p.zone===zone(a.placement))||(plan.colorMode==='print'?{artworkId:null}:null);if(!match)error('No explicit artwork or empty-placement decision for '+a.placement+'. Review the garment placement plan.');
     placements[a.placement]={artworkId:match.artworkId,fillOnly:!match.artworkId,fit:plan.fit,scale:match.scale,mirror:plan.mirrorSleeves&&zone(a.placement)==='sleeve_right'&&plan.assignments.find(p=>p.zone==='sleeve_left')?.artworkId===match.artworkId};}
-   return {draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};});
+   return {job,draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};});
   // Save each native area independently. A full product can exceed an in-memory
   // atomic batch; matching saved recipes let interrupted jobs resume safely.
   const result={rendered:0,files:[],reviewRequired:true};
