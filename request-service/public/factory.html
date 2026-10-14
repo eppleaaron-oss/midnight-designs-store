@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Factory | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"><link rel="stylesheet" href="/factory-mockups.css"></head><body class="factory-page">
-<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a><a href="/ai-artwork">Artwork Editor</a></nav><button id="logout" type="button">Sign out</button></header>
+<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="#layoutTypes">Layout Types</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a><a href="/ai-artwork">Artwork Editor</a></nav><button id="logout" type="button">Sign out</button></header>
 <main class="fx-main">
 
 <section class="fx-summary" aria-labelledby="summaryTitle">
@@ -53,6 +53,16 @@
   <p class="fx-note">Upload a set as one collection (name it in Advanced settings below). The team uses full designs for the back and front, strips for sleeves and legs, an emblem for the pocket, and anything named "hood" for the hood. Fix any picture it sorted wrong.</p>
   <div id="ideaDesigns" class="fx-grid"></div>
  </details>
+</section>
+
+<section class="fx-panel" id="layoutTypes" aria-labelledby="layoutTitle">
+ <div class="fx-row"><h2 id="layoutTitle">Layout Types</h2><span id="layoutCount" class="fx-pill" role="status" aria-live="polite">Loading layouts</span><button id="layoutRefresh" type="button" class="fx-btn fx-quiet">Refresh layouts</button></div>
+ <p class="fx-note fx-lead">Browse all 66 design layouts. Open a card to see its placement instructions, then choose a layout for that clothing category.</p>
+ <div class="fl-filter"><label>Clothing category<select id="layoutCategory"><option value="">All clothing categories</option></select></label><label>Search layouts<input id="layoutSearch" type="search" placeholder="Back only, gothic crest, sleeves…"></label></div>
+ <details class="fx-advanced"><summary>Saved category choices</summary><div id="layoutChoices" class="fl-choices" aria-label="Saved category layouts"></div></details>
+ <p id="layoutHelp" class="fx-note"></p>
+ <p id="layoutNote" class="fx-note" role="status" aria-live="polite"></p>
+ <div id="layoutGrid" class="fl-grid"></div><p id="layoutEmpty" class="fx-note" hidden>No layouts match. Clear the search or choose another category.</p>
 </section>
 
 <section class="fx-panel" id="aiPipeline" aria-labelledby="pipelineTitle">
@@ -266,5 +276,5 @@
 
 <div id="toast" class="fx-toast" role="status" aria-live="polite" hidden></div>
 </main>
-<script src="/factory-pipeline.js" defer></script><script src="/factory.js" defer></script><script src="/factory-mockup-view.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
+<script src="/factory-layouts.js" defer></script><script src="/factory-pipeline.js" defer></script><script src="/factory.js" defer></script><script src="/factory-mockup-view.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
 </body></html>
