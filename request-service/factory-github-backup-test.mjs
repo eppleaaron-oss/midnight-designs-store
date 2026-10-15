@@ -74,6 +74,12 @@ test('missing backups stop automatic restart recovery; disabled GitHub configura
 test('backup size limits hold oversized local data before upload',async t=>{
  const f=await fixture(t),store=new GithubSnapshotStore({...config,maxBytes:512},{fetchImpl:f.gh.fetch});await assert.rejects(store.snapshot(f.db,{initialize:true}),/size limit/);assert.equal(f.gh.calls.some(c=>c.method!=='GET'),false);
 });
+test('fresh initialization needs an exact empty-repository commit pin and cannot be reused after the first save',async t=>{
+ const f=await fixture(t),dest=join(f.dir,'new-workspace.sqlite'),env={FACTORY_BACKUP_REPO:config.repo,FACTORY_BACKUP_GITHUB_TOKEN:config.token,FACTORY_BACKUP_ENCRYPTION_KEY:config.key.toString('hex'),FACTORY_BACKUP_INITIALIZE_FROM_COMMIT:'c'.repeat(40)};
+ await assert.rejects(prepareGithubRecovery({dbPath:dest,env,settings:{fetchImpl:f.gh.fetch}}),/instead of creating an empty workspace/);env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT=f.gh.head;
+ const store=await prepareGithubRecovery({dbPath:dest,env,settings:{fetchImpl:f.gh.fetch,sleep:async()=>{}}});assert.equal(store.initializeBeforeListen,true);await assert.rejects(stat(dest),{code:'ENOENT'});await store.snapshot(f.db,{initialize:true});assert.notEqual(f.gh.head,env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT);
+ const head=f.gh.head,commit=f.gh.commits.get(head),tree=f.gh.trees.get(commit.tree.sha);tree.delete('factory-backup/latest.enc');await assert.rejects(prepareGithubRecovery({dbPath:dest,env,settings:{fetchImpl:f.gh.fetch}}),/instead of creating an empty workspace/);
+});
 test('owner-only backup controls require the same origin and status reports confirmed commits',async t=>{
  const f=await fixture(t),env={FACTORY_BACKUP_REPO:config.repo,FACTORY_BACKUP_GITHUB_TOKEN:config.token,FACTORY_BACKUP_ENCRYPTION_KEY:config.key.toString('hex')};let result;
  const service=factoryGithubBackups({db:f.db,dbPath:f.path,env,store:f.store,autoStart:false,origin:'https://factory.test',auth(req){if(!req.owner)throw Object.assign(Error('Owner required'),{status:401});},body:async req=>req.body||{},send(_res,status,data){result={status,data};},fail(status,message){throw Object.assign(Error(message),{status});},limit(){}});t.after(()=>service.close());

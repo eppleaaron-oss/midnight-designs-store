@@ -99,7 +99,14 @@ export class GithubSnapshotStore{
 export async function prepareGithubRecovery({dbPath,env=process.env,passwordHash,settings={}}){
  const config=githubBackupConfig(env,passwordHash);if(!config)return null;
  const store=new GithubSnapshotStore(config,settings);let exists=false;try{exists=(await stat(dbPath)).size>0;}catch(e){if(e.code!=='ENOENT')throw e;}
- if(!exists)await store.restore(dbPath);return store;
+ if(!exists){
+  await store.connect();
+  // Fresh initialization is an explicit, one-time pin to the empty
+  // destination's current commit. The first snapshot advances that ref.
+  if(!store.manifest&&sha(env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT)&&env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT===store.head)store.initializeBeforeListen=true;
+  else await store.restore(dbPath);
+ }
+ return store;
 }
 
 export function factoryGithubBackups({db,dbPath,auth,body,send,fail,limit,origin,env=process.env,passwordHash,store:preparedStore,fetchImpl=fetch,sleep=pause,clock=Date.now,autoStart=true}){

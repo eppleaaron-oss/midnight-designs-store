@@ -181,7 +181,8 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const dbPath=process.env.DATA_PATH||'./private-data/requests.sqlite';
  const backupStore=await prepareGithubRecovery({dbPath,passwordHash:process.env.OWNER_PASSWORD_HASH});
- const {server}=createService({dbPath,backupSettings:{env:process.env,store:backupStore},origin:process.env.APP_ORIGIN,passwordHash:process.env.OWNER_PASSWORD_HASH,secure:process.env.DEV_HTTP!=='1'});
+ const service=createService({dbPath,backupSettings:{env:process.env,store:backupStore},origin:process.env.APP_ORIGIN,passwordHash:process.env.OWNER_PASSWORD_HASH,secure:process.env.DEV_HTTP!=='1'}),{server}=service;
+ if(backupStore?.initializeBeforeListen){try{await service.githubBackups.save(true);}catch(e){await service.githubBackups.close();await service.artworkEditor.idle();service.db.close();throw e;}}
  server.listen(Number(process.env.PORT||3000),'0.0.0.0',()=>console.log('Midnight Designs request service started.'));
 }
 

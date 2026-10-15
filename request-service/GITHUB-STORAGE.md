@@ -51,6 +51,18 @@ copy cannot be downloaded through the Render/GitHub connectors. This is an
 unresolved migration blocker, not a completed transfer. No empty test database
 should be substituted for the owner's current records.
 
+### Explicitly starting a new, empty workspace
+
+If the owner expressly approves losing the previous runtime's records and
+starting fresh, `FACTORY_BACKUP_INITIALIZE_FROM_COMMIT` may be set to the exact
+current commit SHA of the empty private backup repository. This does not transfer
+or recover the previous data. The backend creates its new default database and
+saves its first encrypted GitHub snapshot **before accepting HTTP requests**.
+If the save fails, startup stops. That snapshot advances the repository branch;
+the old initialization pin cannot authorize another empty start on a later
+restart, even if the manifest goes missing. Never enable this mode as a substitute
+for a preservation-first migration without the owner's explicit approval.
+
 ## Backup integrity and limits
 
 - Only repositories confirmed private by GitHub are accepted.
