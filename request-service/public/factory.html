@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Factory | Midnight Designs</title><link rel="stylesheet" href="/portal.css"><link rel="stylesheet" href="/factory.css"><link rel="stylesheet" href="/factory-mockups.css"></head><body class="factory-page">
-<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="#layoutTypes">Layout Types</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a><a href="/ai-artwork">Artwork Editor</a></nav><button id="logout" type="button">Sign out</button></header>
+<header class="fx-header"><a href="https://midnight-designs.store/master.html">MIDNIGHT DESIGNS <span>/ AI FACTORY</span></a><nav aria-label="Factory pages" class="fx-nav"><a href="/ai-factory" aria-current="page">Command Center</a><a href="/ai-factory#ideas">Idea Room</a><a href="#layoutTypes">Layout Types</a><a href="#factoryStorage">Storage</a><a href="/ai-factory#aiMade">AI Made</a><a href="/ai-factory#storeCheck">Store Check</a><a href="/ai-intelligence">AI Intelligence</a><a href="/ai-intelligence#references">Reference Library</a><a href="/ai-factory/tools#artworkPanel">Artwork Library</a><a href="/ai-factory/tools#blueprintPanel">Clothing Studio</a><a href="/ai-factory/tools#outfitPanel">Full Outfits</a><a href="/ai-employees">AI Workforce</a><a href="#queueTitle">Production Queue</a><a href="#reviewTitle">Review &amp; Publish</a><a href="/ai-history">History</a><a href="/ai-factory/tools#spending">Settings &amp; Costs</a><a href="/ai-artwork">Artwork Editor</a></nav><button id="logout" type="button">Sign out</button></header>
 <main class="fx-main">
 
 <section class="fx-summary" aria-labelledby="summaryTitle">
@@ -274,7 +274,14 @@
  <div id="runList" class="fx-runs"></div>
 </section>
 
+<section id="factoryStorage" class="fx-panel" aria-labelledby="storageTitle">
+ <div class="fx-row"><h2 id="storageTitle">Private GitHub backups</h2><button id="backupNow" type="button" class="fx-btn" disabled>Save backup now</button></div>
+ <p id="backupStatus" class="fx-note" role="status" aria-live="polite">Checking backup storage…</p>
+ <p id="backupDetails" class="fx-note"></p>
+ <p class="fx-note">Backups include the entire database and its artwork, print files, mockups and job history. Changes since the last completed backup can be lost during an unexpected restart. Continuous production requires durable live queue storage.</p>
+</section>
+
 <div id="toast" class="fx-toast" role="status" aria-live="polite" hidden></div>
 </main>
-<script src="/factory-layouts.js" defer></script><script src="/factory-pipeline.js" defer></script><script src="/factory.js" defer></script><script src="/factory-mockup-view.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
+<script src="/factory-storage.js" defer></script><script src="/factory-layouts.js" defer></script><script src="/factory-pipeline.js" defer></script><script src="/factory.js" defer></script><script src="/factory-mockup-view.js" defer></script><script src="/ideas.js" defer></script><script src="/store-check.js" defer></script>
 </body></html>
