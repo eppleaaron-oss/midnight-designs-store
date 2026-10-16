@@ -12,10 +12,13 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   id TEXT PRIMARY KEY,outfit TEXT NOT NULL,ordinal INTEGER NOT NULL,role TEXT NOT NULL,
   choice TEXT NOT NULL,signature TEXT NOT NULL,item TEXT,error TEXT NOT NULL DEFAULT '',
   UNIQUE(outfit,ordinal));
+ CREATE TABLE IF NOT EXISTS factory_basic_outfit_revisions(id TEXT PRIMARY KEY,request_key TEXT UNIQUE NOT NULL,piece TEXT NOT NULL,item TEXT NOT NULL,choice TEXT NOT NULL,signature TEXT NOT NULL,created TEXT NOT NULL);
  CREATE UNIQUE INDEX IF NOT EXISTS factory_basic_one_outfit ON factory_basic_outfit_runs((1))
   WHERE status IN ('running','paused','held');`);
+ if(!db.prepare('PRAGMA table_info(factory_basic_outfit_pieces)').all().some(c=>c.name==='revision'))db.exec('ALTER TABLE factory_basic_outfit_pieces ADD COLUMN revision INTEGER NOT NULL DEFAULT 1');
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),run=(q,...a)=>db.prepare(q).run(...a);
  const now=()=>new Date(clock()).toISOString(),open=()=>get("SELECT * FROM factory_basic_outfit_runs WHERE status IN ('running','paused','held') LIMIT 1");
+ const requestKey=p=>'basic-outfit_'+p.id+(p.revision>1?'_r'+p.revision:'');
  let planning=false,ticking=false;
  function pieces(id) {
   return all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=? ORDER BY ordinal',id).map(p=>{
@@ -30,7 +33,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
  function attach(p,item) {
   run('UPDATE factory_basic_outfit_pieces SET item=?,error=\'\' WHERE id=?',item.id,p.id);
   const template=item.job&&get('SELECT templates FROM factory_job_profiles WHERE job=?',item.job);
-  if(template)run('INSERT OR IGNORE INTO factory_outfit_items(id,outfit,role,template,job) VALUES(?,?,?,?,?)',p.id,p.outfit,p.role,JSON.parse(template.templates)[0]||'',item.job);
+  if(template)run('INSERT INTO factory_outfit_items(id,outfit,role,template,job,revision) VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET template=excluded.template,job=excluded.job,revision=excluded.revision,store_product=NULL,approved=0',p.id,p.outfit,p.role,JSON.parse(template.templates)[0]||'',item.job,p.revision);
  }
  async function tick() {
   if(ticking||planning)return;ticking=true;
@@ -39,7 +42,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
    if(get('SELECT state FROM factory_settings WHERE id=1').state!=='running')return;
    // Reconcile a crash after Basic saved the new item but before the queue pointer.
    for(const p of all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=? AND item IS NULL',r.id)) {
-    const item=get('SELECT * FROM factory_basic_items WHERE request_key=?','basic-outfit_'+p.id);
+    const item=get('SELECT * FROM factory_basic_items WHERE request_key=?',requestKey(p));
     if(item)attach(p,item);
    }
    const list=pieces(r.id);
@@ -57,11 +60,11 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
    if(get('SELECT id FROM factory_basic_items WHERE closed=0'))return;
    await basic.checkpoint();
    try {
-    const item=await basic.create({...next.choice,requestKey:'basic-outfit_'+next.id},{outfitId:r.id,collection:r.name,signature:next.signature});
+    const item=await basic.create({...next.choice,requestKey:requestKey(next)},{outfitId:r.id,collection:r.name,signature:next.signature});
     attach(next,item);run("UPDATE factory_basic_outfit_runs SET error='',updated=? WHERE id=?",now(),r.id);
     await basic.checkpoint(item.job);
    } catch(e) {
-    const item=get('SELECT * FROM factory_basic_items WHERE request_key=?','basic-outfit_'+next.id);if(item)attach(next,item);
+    const item=get('SELECT * FROM factory_basic_items WHERE request_key=?',requestKey(next));if(item)attach(next,item);
     run('UPDATE factory_basic_outfit_pieces SET error=? WHERE id=?',e.message.slice(0,500),next.id);
     run("UPDATE factory_basic_outfit_runs SET status='held',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);
     await basic.checkpoint(item?.job);
@@ -97,10 +100,28 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   }finally{planning=false;}
   await tick();return summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',id));
  }
+ async function replace(b) {
+  if(typeof b.requestKey!=='string'||!/^[-a-zA-Z0-9_]{16,100}$/.test(b.requestKey))fail(400,'A stable replacement request ID is required.');
+  const replay=get('SELECT piece FROM factory_basic_outfit_revisions WHERE request_key=?',b.requestKey);if(replay){const p=get('SELECT outfit FROM factory_basic_outfit_pieces WHERE id=?',replay.piece);return summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',p.outfit));}
+  const p=get('SELECT * FROM factory_basic_outfit_pieces WHERE id=? AND outfit=?',b.pieceId,b.id),item=p?.item&&get('SELECT * FROM factory_basic_items WHERE id=?',p.item);
+  if(!p||!item?.closed||item.decision!=='disapproved'||!JSON.parse(item.cleanup||'{}').verified)fail(409,'Only a rejected piece with verified cleanup can be rebuilt.');
+  if(planning||ticking||get('SELECT id FROM factory_basic_items WHERE closed=0')||open()&&open().id!==p.outfit)fail(409,'Finish the current piece or outfit before rebuilding this piece.');
+  planning=true;
+  try {
+   const choice={...JSON.parse(p.choice),setId:b.setId,adaptArtwork:b.adaptArtwork===true},checked=await basic.inspect(choice);if(checked.role!==p.role)fail(409,'A replacement must keep the original clothing category.');
+   if(get('SELECT id FROM factory_basic_items WHERE closed=0')||open()&&open().id!==p.outfit)fail(409,'Production changed. Refresh before rebuilding this piece.');
+   db.exec('BEGIN IMMEDIATE');try{
+   run('INSERT INTO factory_basic_outfit_revisions VALUES(?,?,?,?,?,?,?)',randomUUID(),b.requestKey,p.id,item.id,p.choice,p.signature,now());
+   run("UPDATE factory_basic_outfit_pieces SET choice=?,signature=?,item=NULL,error='',revision=revision+1 WHERE id=?",JSON.stringify(choice),basic.inspectionSignature(checked),p.id);
+   run("UPDATE factory_basic_outfit_runs SET status='running',error='',updated=? WHERE id=?",now(),p.outfit);run('UPDATE factory_outfits SET published=0 WHERE id=?',p.outfit);run("UPDATE factory_settings SET state='running',updated=? WHERE id=1",now());db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}await basic.checkpoint();
+  }finally{planning=false;}
+  await tick();return summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',p.outfit));
+ }
  return {snapshot,activeId:()=>open()?.id||null,tick,async handle(req,res,path,method) {
   if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
   if(method==='GET'&&path===ROOT){send(res,200,snapshot());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'basic-outfits',30);const b=await body(req);
+  if(path===ROOT+'/replace'){send(res,200,await replace(b));return true;}
   if(path===ROOT+'/create'){send(res,200,await create(b));return true;}
   if(path!==ROOT+'/control')fail(404,'Outfit action not found.');
   const r=open();if(!r||r.id!==b.id)fail(404,'Open outfit not found.');

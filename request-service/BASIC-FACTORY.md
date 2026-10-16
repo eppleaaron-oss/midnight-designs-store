@@ -128,3 +128,7 @@ A disapproved piece prevents the complete outfit group from being advertised;
 approved individual products stay live. When every piece is published and
 cleaned, the existing public outfit API exposes the coordinated group.
 This uses fixed artwork, not creative AI generation or simultaneous paid workers.
+
+A rejected, cleaned outfit piece can be rebuilt using the selected design set.
+Only that piece receives a new revision and stable request ID. Other products
+are retained, and the earlier decision and recipe remain in revision history.
