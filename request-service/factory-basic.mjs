@@ -20,10 +20,11 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  const row=job=>get('SELECT * FROM factory_basic_items WHERE job=?',job),active=()=>get('SELECT * FROM factory_basic_items WHERE closed=0');
  let creating=false,cleaning=false;
  function blockers(){
-  const r=production.readiness(),p={connected:publishing.basicConnectionReady(),mode:publishing.mode()},s=get('SELECT * FROM factory_settings WHERE id=1'),out=[];
-  if(!r.storageDurable)out.push({code:'workspace',message:'Persistent production workspace is not attached. GitHub recovery backups do not replace live file and queue storage.'});
+  const r=production.readiness(),p={...publishing.basicConnectionStatus(),mode:publishing.mode()},s=get('SELECT * FROM factory_settings WHERE id=1'),out=[];
+  if(!r.storageDurable||!p.storageDurable)out.push({code:'workspace',message:'Persistent production workspace is not attached. GitHub recovery backups do not replace live file and queue storage.'});
   if(!r.workerConnected)out.push({code:'worker',message:'The backend production worker is not connected.'});
-  if(!p.connected)out.push({code:'publishing',message:'Printful product access and storefront publishing credentials must be connected on the backend.'});
+  if(!p.supplierConfigured)out.push({code:'supplier',message:'The backend Printful token is not configured.'});
+  if(!p.storeConfigured)out.push({code:'publishing',message:'Storefront publishing credentials are not configured on the backend.'});
   if(p.mode!=='review')out.push({code:'review',message:'Basic requires Review before publishing. Automatic mode is not used.'});
   if(!s.daily_budget||!s.total_budget)out.push({code:'budget',message:'Set daily and total spending limits below before starting.'});
   return out;
