@@ -16,7 +16,7 @@ export function factoryHistory({db,auth,body,send,fail,limit,origin,publishing,s
  for(const action of ['INSERT','UPDATE'])db.exec(`DROP TRIGGER IF EXISTS history_product_snapshot_${action}; CREATE TRIGGER history_product_snapshot_${action} AFTER ${action==='UPDATE'?'UPDATE OF approved,status,copy':'INSERT'} ON factory_listings BEGIN INSERT INTO factory_product_versions(job,state,snapshot,actor,created) VALUES(NEW.job,NEW.status,${productSnapshot('NEW.job')},factory_history_actor(),strftime('%Y-%m-%dT%H:%M:%fZ','now')); END;`);
  if(!get('SELECT seq FROM factory_product_versions LIMIT 1'))db.exec(`INSERT INTO factory_product_versions(job,state,snapshot,actor,created) SELECT l.job,l.status,${productSnapshot('l.job')},'{"type":"system","name":"Existing product baseline"}',strftime('%Y-%m-%dT%H:%M:%fZ','now') FROM factory_listings l`);
   // Row versions retain metadata and immutable file references; image bytes remain in their original tables.
- const excluded=new Set(['factory_diagnostic_events','factory_diagnostic_facts','factory_history_events','factory_product_versions','factory_worker_heartbeats','factory_job_runtime','factory_file_links','factory_verified_templates']);
+ const excluded=new Set(['factory_basic_github_settings','factory_diagnostic_events','factory_diagnostic_facts','factory_history_events','factory_product_versions','factory_worker_heartbeats','factory_job_runtime','factory_file_links','factory_verified_templates']);
  for(const {name} of all("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'factory_%'")){
   if(excluded.has(name))continue;
   const cols=all('PRAGMA table_info('+name+')').filter(c=>c.type.toUpperCase()!=='BLOB'),key=cols.find(c=>c.name==='id')||cols.find(c=>c.pk)||cols.find(c=>c.name==='job')||cols[0];
@@ -35,6 +35,7 @@ export function factoryHistory({db,auth,body,send,fail,limit,origin,publishing,s
    const basic="SELECT b.job FROM factory_basic_items b JOIN factory_jobs j ON j.id=b.job JOIN factory_listings l ON l.job=b.job WHERE b.job=OLD.job";
    when=action==='DELETE'?"NOT EXISTS("+basic+" AND j.status<>'running' AND b.decision='disapproved' AND l.status='disapproved' AND l.store_id IS NULL)":"NOT (length(OLD.data)=0 AND NEW.id=OLD.id AND NEW.job=OLD.job AND NEW.variant=OLD.variant AND NEW.mime=OLD.mime AND EXISTS("+basic+"))";
   }
+  if(table==='factory_mockups'&&action==='UPDATE')when="("+when+") AND NOT (length(NEW.data)=0 AND NEW.id=OLD.id AND NEW.job=OLD.job AND NEW.variant=OLD.variant AND NEW.mime=OLD.mime AND EXISTS(SELECT 1 FROM factory_basic_items b JOIN factory_listings l ON l.job=b.job JOIN factory_basic_final_media f ON f.job=b.job JOIN factory_mockup_files m ON m.file=f.file WHERE b.job=OLD.job AND f.file=OLD.id AND f.sha256=m.sha256 AND f.verified=1 AND b.decision='approved' AND l.status='published'))";
   db.exec(`DROP TRIGGER IF EXISTS preserve_${table}_${action}; CREATE TRIGGER preserve_${table}_${action} BEFORE ${action} ON ${table} ${when?'WHEN '+when:''} BEGIN SELECT RAISE(ABORT,'Factory original and generated files are immutable'); END;`);
  }
  for(const table of ['factory_history_events','factory_product_versions'])for(const action of ['UPDATE','DELETE'])db.exec(`CREATE TRIGGER IF NOT EXISTS preserve_${table}_${action} BEFORE ${action} ON ${table} BEGIN SELECT RAISE(ABORT,'Factory history is append-only'); END;`);

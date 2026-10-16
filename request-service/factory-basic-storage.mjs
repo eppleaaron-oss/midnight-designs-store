@@ -8,7 +8,11 @@ export function stripBasicWorkingPixels(db){
  try{db.exec(`UPDATE factory_print_files SET data=x'' WHERE draft IN (
   SELECT value FROM factory_job_profiles p JOIN factory_basic_items b ON b.job=p.job,json_each(p.templates));
  UPDATE factory_mockups SET data=x'' WHERE job IN (SELECT job FROM factory_basic_items WHERE decision IS NULL OR decision='disapproved');
- DELETE FROM factory_mockup_downloads WHERE job IN (SELECT job FROM factory_basic_items);`);
+`);
+  if(db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_basic_remote_assets'").get()&&db.prepare('SELECT enabled FROM factory_basic_github_settings WHERE id=1').get()?.enabled){
+   db.exec("UPDATE factory_mockup_downloads SET data=x'' WHERE job IN (SELECT job FROM factory_basic_items)");
+   db.exec("UPDATE factory_mockups SET data=x'' WHERE id IN (SELECT file FROM factory_basic_final_media)");
+  }else db.exec('DELETE FROM factory_mockup_downloads WHERE job IN (SELECT job FROM factory_basic_items)');
  }finally{for(const t of triggers)db.exec(t.sql);}
 }
 

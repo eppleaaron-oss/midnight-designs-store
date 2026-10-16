@@ -11,6 +11,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
  db.exec(`CREATE TABLE IF NOT EXISTS factory_imported_artwork(url TEXT PRIMARY KEY,artwork TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_supplier_quotes(job TEXT NOT NULL,variant INTEGER NOT NULL,cents INTEGER NOT NULL,currency TEXT NOT NULL,source TEXT NOT NULL,created TEXT NOT NULL,PRIMARY KEY(job,variant));`);
  const get=(s,...a)=>db.prepare(s).get(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString();
+ let basicWorkspace=null;
  const hold=message=>{throw Object.assign(Error(message),{status:409});};
  async function sourceFile(part,set){
   if(part.artwork){if(!get('SELECT id FROM factory_artwork WHERE id=?',part.artwork))hold('Assigned artwork is missing.');return part.artwork;}
@@ -30,7 +31,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,id);return id;
  }
  async function enqueue({idea,set,piece,brief,aiLayout=false,variantIds=null,fixedRecipe=false}){
-  if(!storageDurable)hold('Persistent factory storage must be attached before starting production.');
+  if(!storageDurable&&!(fixedRecipe&&basicWorkspace?.ready()))hold('Persistent factory storage must be attached before starting production.');
   const existing=get('SELECT job,printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog);
   if(existing?.job&&get('SELECT id FROM factory_jobs WHERE id=?',existing.job))return existing.job;
   if(existing?.printful_id)hold('This item already exists in Printful. Review the existing product; a duplicate will not be created.');
@@ -69,5 +70,5 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   }catch(e){db.exec('ROLLBACK');throw e;}
   return prepared.id;
  }
- return {enqueue,ready:()=>storageDurable};
+ return {setBasicWorkspace(w){basicWorkspace=w;},enqueue,ready:()=>storageDurable};
 }
