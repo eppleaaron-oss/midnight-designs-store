@@ -1,3 +1,4 @@
+import {stripBasicWorkingPixels} from './factory-basic-storage.mjs';
 import {backup,DatabaseSync} from 'node:sqlite';
 import {createCipheriv,createDecipheriv,createHash,createHmac,hkdfSync,randomBytes} from 'node:crypto';
 import {mkdtemp,mkdir,open,rm,stat,link} from 'node:fs/promises';
@@ -59,10 +60,10 @@ export class GithubSnapshotStore{
   await this.connect();await this.privateRepository();
   if(this.hold)throw problem('Backup conflict requires an owner review. Existing GitHub snapshots were preserved.');
   if(!this.manifest&&!initialize)throw problem('No Factory backup exists yet. Save the first backup explicitly from the owner page.',409);
-  const bytes=Number(db.prepare('PRAGMA page_count').get().page_count)*Number(db.prepare('PRAGMA page_size').get().page_size);if(bytes>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
+  // Reproducible Basic working pixels are removed from the copy before applying the backup limit.
   const folder=await mkdtemp(join(tmpdir(),'midnight-snapshot-'));let file;
   try{
-   const path=join(folder,'snapshot.sqlite');await backup(db,path);const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
+   const path=join(folder,'snapshot.sqlite');await backup(db,path);const copy=new DatabaseSync(path);try{stripBasicWorkingPixels(copy);copy.exec('VACUUM');}finally{copy.close();}const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
    file=await open(path,'r');const previous=new Map((this.manifest?.chunks||[]).map(c=>[c.id,c])),chunks=[],tree=[],added=new Set(),hash=createHash('sha256');let offset=0;
    while(offset<size){const data=Buffer.alloc(Math.min(CHUNK,size-offset));let used=0;while(used<data.length){const {bytesRead}=await file.read(data,used,data.length-used,offset+used);if(!bytesRead)throw problem('Unable to read a complete SQLite snapshot.');used+=bytesRead;}hash.update(data);const id=createHmac('sha256',this.key).update(data).digest('hex');let entry=previous.get(id);
     if(!entry){const encrypted=seal(deflateSync(data),this.key,'chunk-v1:'+id),blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:encrypted.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm a backup chunk.');entry={id,sha:blob.sha,bytes:data.length};previous.set(id,entry);}

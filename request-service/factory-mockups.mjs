@@ -31,7 +31,7 @@ export function mockupImages(result,variant){
 
 const LABELS={queued:'Mockup not requested — waiting for the worker',submitting:'Submitting mockup request — acceptance not confirmed',uncertain:'Mockup request outcome unknown — reconciliation required',accepted:'Printful accepted the task — awaiting confirmed status',pending:'Printful is generating the mockup',completed:'Printful finished — saving images',downloading:'Printful finished — saving images',saved:'Mockup images saved',failed:'Printful mockup generation failed',download_failed:'Printful finished — image download needs retry',invalid:'Printful result needs review',timed_out:'Accepted task exceeded the generation time limit',rejected:'Printful rejected the mockup request',poll_error:'Accepted task — status check unavailable',blocked:'Mockup not requested — print-file access needs review'};
 
-export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImpl=fetch,clock=Date.now,storageDurable=false,validateVariant=async()=>{},verifyPrintFile=async()=>{}}){
+export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImpl=fetch,clock=Date.now,storageDurable=false,requestOptions=()=>({}),validateVariant=async()=>{},verifyPrintFile=async()=>{}}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_mockup_tasks(job TEXT NOT NULL,variant INTEGER NOT NULL,product INTEGER NOT NULL,task_key TEXT,state TEXT NOT NULL,supplier_status TEXT,accepted INTEGER,next_poll INTEGER NOT NULL DEFAULT 0,checked INTEGER,error TEXT NOT NULL DEFAULT '',request_hash TEXT NOT NULL,attempts INTEGER NOT NULL DEFAULT 0,created INTEGER NOT NULL,updated INTEGER NOT NULL,PRIMARY KEY(job,variant));
  CREATE TABLE IF NOT EXISTS factory_mockup_task_history(job TEXT NOT NULL,variant INTEGER NOT NULL,task_key TEXT NOT NULL,product INTEGER NOT NULL,request_hash TEXT NOT NULL,supplier_status TEXT NOT NULL,error TEXT NOT NULL DEFAULT '',accepted INTEGER NOT NULL,checked INTEGER,PRIMARY KEY(job,variant,task_key));
  CREATE TABLE IF NOT EXISTS factory_mockup_manifests(job TEXT NOT NULL,variant INTEGER NOT NULL,task_key TEXT NOT NULL,images TEXT NOT NULL,created INTEGER NOT NULL,PRIMARY KEY(job,variant,task_key));
@@ -64,7 +64,7 @@ export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImp
   const key='mockup-'+d.variant,id=p.j.id+':'+d.variant;active.add(id);
   try{
    begin(p.j.id,key);run("UPDATE factory_mockup_tasks SET state='submitting',attempts=attempts+1,created=?,updated=?,error='' WHERE job=? AND variant=?",clock(),clock(),p.j.id,d.variant);
-   let result;try{result=await pf('mockup-generator/create-task/'+d.product,{method:'POST',body:JSON.stringify({variant_ids:[d.variant],format:'jpg',width:1000,files})});}catch(e){
+   let result;try{result=await pf('mockup-generator/create-task/'+d.product,{method:'POST',body:JSON.stringify({variant_ids:[d.variant],format:'jpg',width:1000,...requestOptions(p.j.id),files})});}catch(e){
     if([400,401,403,404,422,429].includes(e.printfulStatus)){run('DELETE FROM factory_publish_operations WHERE job=? AND operation=?',p.j.id,key);state(p.j.id,d.variant,e.printfulStatus===429?'queued':'rejected',e.message);if(e.printfulStatus===429)run('UPDATE factory_mockup_tasks SET next_poll=? WHERE job=? AND variant=?',clock()+Math.max(60000,(e.retryAfter||0)*1000),p.j.id,d.variant);}
     else state(p.j.id,d.variant,'uncertain','Printful request outcome is unknown. Verify the task before retrying.');throw e;
    }
@@ -126,5 +126,10 @@ export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImp
   }
   run("UPDATE factory_listings SET status='mockups_saved',error='',updated=? WHERE job=?",new Date(clock()).toISOString(),job);return {mockupsSaved:true};
  }
- return {execute,snapshot,gallery,verifiedGallery,retry,reconcile,assertReconcile};
+ async function restorePreview(job){
+  const rows=all('SELECT m.id,f.source_url,f.sha256 FROM factory_mockups m JOIN factory_mockup_files f ON f.file=m.id WHERE m.job=? AND length(m.data)=0',job);
+  for(const row of rows){const result=await download({url:row.source_url});if(result.sha256!==row.sha256)hold('Recovered preview differs from the reviewed image. Keep this tracked item held for review.');run('UPDATE factory_mockups SET data=? WHERE id=? AND length(data)=0',result.data,row.id);}
+  return {restored:rows.length};
+ }
+ return {restorePreview,execute,snapshot,gallery,verifiedGallery,retry,reconcile,assertReconcile};
 }

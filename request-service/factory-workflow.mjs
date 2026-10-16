@@ -29,7 +29,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const id=artwork.importFile({data,filename:'printful-'+createHash('sha256').update(u.href).digest('hex').slice(0,16)+'.'+extension},{name:String(part.name||set.name).slice(0,100),collection:set.name.slice(0,100),scope:'collection',target:'',product:null,placements:['front','back','left-sleeve','right-sleeve','hood'],instructions:'Preserve the imported original artwork.',permissions:{reuse:true,crop:false,modify:false,recolor:false}});
   run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,id);return id;
  }
- async function enqueue({idea,set,piece,brief,aiLayout=false}){
+ async function enqueue({idea,set,piece,brief,aiLayout=false,variantIds=null,fixedRecipe=false}){
   if(!storageDurable)hold('Persistent factory storage must be attached before starting production.');
   const existing=get('SELECT job,printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog);
   if(existing?.job&&get('SELECT id FROM factory_jobs WHERE id=?',existing.job))return existing.job;
@@ -37,7 +37,8 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const product=await manager.productDetails(piece.catalog),blueprint=await blueprints.load(piece.catalog,'default');
   if(blueprint.source!=='live')hold('Live Printful blueprint verification failed. The stored snapshot cannot start automatic production.');
   const capability=garmentColorCapability(blueprint);if(capability.mode==='hold')hold(capability.reason);const aop=capability.mode==='print',color=piece.color||'Black';
-  const candidates=product.variants.filter(v=>aop||fabricColorMatches(v,color));
+  const candidates=product.variants.filter(v=>(!variantIds||variantIds.includes(v.id))&&(aop||fabricColorMatches(v,color)));
+  if(variantIds&&variantIds.some(id=>!candidates.some(v=>v.id===id)))hold('A selected exact supplier variant is no longer available.');
   if(!candidates.length)hold('Printful has no available '+color+' fabric variants for this product.');
   const bySize=new Map();for(const v of candidates){const key=v.size||v.name;if(!bySize.has(key)||aop&&fabricColorMatches(v,'White'))bySize.set(key,v);}
   const variants=[...bySize.values()];if(!variants.length)hold('Printful has no available variants for this product.');
@@ -60,7 +61,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   db.exec('BEGIN IMMEDIATE');try{
    if(get('SELECT count(*) n FROM factory_print_drafts').n+drafts.length>500)hold('Blueprint storage limit reached. Archive unused product blueprints.');
    for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,blueprint.effectiveTechnique||blueprint.technique,JSON.stringify(d.areas),'live',now());
-   manager.insertJob(prepared);rendering.savePlan(prepared.id,{background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout,artworkEdits:rendering.artworkRules()});publishing.saveCopy(prepared.id,copy);
+   manager.insertJob(prepared);rendering.savePlan(prepared.id,{background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout,artworkEdits:fixedRecipe?{enabled:false}:rendering.artworkRules()});publishing.saveCopy(prepared.id,copy);
    for(const v of variants){const numeric=Number(v.price);if(v.price!==null&&v.price!==undefined&&String(v.price).trim()&&Number.isFinite(numeric)&&numeric>0&&v.currency==='USD')run('INSERT INTO factory_supplier_quotes VALUES(?,?,?,?,?,?)',prepared.id,v.id,Math.round(numeric*100),'USD','Printful catalog product '+piece.catalog,now());}
    const madeId=existing?get('SELECT id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog).id:randomUUID();
    run("INSERT INTO idea_made(id,idea,set_id,set_name,catalog,category,name,status,created,updated,job) VALUES(?,?,?,?,?,?,?,'queued',?,?,?) ON CONFLICT(idea,catalog) DO UPDATE SET job=excluded.job,status='queued',error=NULL,updated=excluded.updated",madeId,idea.id,set.id,set.name,piece.catalog,piece.role,copy.title,now(),now(),prepared.id);

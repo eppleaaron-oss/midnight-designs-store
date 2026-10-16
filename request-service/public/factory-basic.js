@@ -1,0 +1,86 @@
+'use strict';
+(()=>{
+ const $=id=>document.getElementById(id),el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+ const money=c=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format((c||0)/100),bytes=n=>n>=1048576?(n/1048576).toFixed(2)+' MiB':n>=1024?(n/1024).toFixed(1)+' KiB':(n||0)+' B';
+ let state=null,products=[],inspected=null,selected=null,busy=false,requestKey=crypto.randomUUID(),viewed=null,lastLibrary='';
+ async function api(path='',payload){const r=await fetch('/api/owner/ai-factory/'+path,{method:payload===undefined?'GET':'POST',headers:payload===undefined?{}:{'Content-Type':'application/json'},body:payload===undefined?undefined:JSON.stringify(payload),signal:AbortSignal.timeout(90000)});if(r.status===401&&document.body.dataset.factoryPublic!=='true'){location.assign('/login?next=ai-factory-basic');throw Error('Sign in to open Basic.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'This action could not finish. Your tracked item has been kept.');return d;}
+ function message(text){$('message').textContent=text;$('message').hidden=!text;}
+ async function action(button,fn){if(busy)return;busy=true;button.disabled=true;try{message('');await fn();}catch(e){message(e.message);}finally{busy=false;button.disabled=false;renderControls();}}
+ function image(src,alt){const i=el('img');try{const u=new URL(src,location.origin);if(u.origin===location.origin||u.protocol==='https:'&&(u.hostname.endsWith('.printful.com')||u.hostname==='midnight-designs.store'||u.hostname==='printful-upload.s3-accelerate.amazonaws.com'))i.src=u.href;}catch{}i.alt=alt;i.loading='lazy';i.onerror=()=>{i.removeAttribute('src');i.alt='Preview unavailable — '+alt;};return i;}
+ function choice(){return {setId:selected,product:Number($('garment').value),audience:$('audience').value,sizes:inspected?[...document.querySelectorAll('#garmentDetails input:checked')].map(x=>x.value):[]};}
+ function invalidate(){inspected=null;requestKey=crypto.randomUUID();$('garmentDetails').replaceChildren(el('p','Check the garment to load its current variants and native print panels.','muted'));renderControls();}
+ function renderSets(){
+  const signature=JSON.stringify([state?.sets,selected,$('setSearch').value]);if(signature===lastLibrary)return;lastLibrary=signature;
+  const q=$('setSearch').value.trim().toLowerCase(),sets=(state?.sets||[]).filter(s=>(s.name+' '+(s.product||'')).toLowerCase().includes(q));
+  $('sets').replaceChildren(...sets.map(s=>{const b=el('button',undefined,'design-card');b.type='button';b.setAttribute('aria-pressed',String(selected===s.id));const main=s.parts.back||s.parts.front||s.parts.default||Object.values(s.parts)[0];if(main)b.append(image(main.thumb,s.name));const caption=el('span',s.name);caption.append(el('small',s.source==='printful'?'From '+(s.product||'existing product'):'Uploaded collection'));b.append(caption);b.onclick=()=>{selected=s.id;invalidate();renderSets();renderParts();};return b;}));
+  $('setsEmpty').hidden=sets.length>0;$('setsEmpty').textContent=q?'No sets match this search.':'No design sets yet. Upload a collection or refresh Printful to load sets from your existing products.';
+ }
+ function renderParts(){const set=state?.sets.find(s=>s.id===selected);$('parts').replaceChildren(...Object.entries(set?.parts||{}).map(([key,p])=>{const f=el('figure');f.append(image(p.thumb,p.name||key),el('figcaption',key.replaceAll('_',' ')));return f;}));}
+ function renderCatalog(){const old=$('garment').value,q=$('garmentSearch').value.toLowerCase(),audience=$('audience').value,list=products.filter(p=>p.audiences.includes(audience)&&p.name.toLowerCase().includes(q));$('garment').replaceChildren(new Option(list.length?'Select an exact garment':'No garments match this search',''),...list.map(p=>new Option(p.name,String(p.id))));if(list.some(p=>String(p.id)===old))$('garment').value=old;}
+ function showInspection(p){
+  inspected=p;$('garment').value=String(p.product.id);if([...$('priceCategory').options].some(o=>o.value===p.role)){$('priceCategory').value=p.role;$('priceCategory').dispatchEvent(new Event('change'));}
+  const box=$('garmentDetails');box.replaceChildren(el('h3',p.product.name),el('p','Available supplier base colors: '+[...new Set(p.variants.map(v=>v.color))].join(', ')+'. The print panels use a black background.','muted'));
+  box.append(el('p','Sizes to include','muted'));const sizes=el('div',undefined,'sizes');for(const v of p.variants){const label=el('label'),input=el('input');input.type='checkbox';input.value=v.size;input.checked=true;input.onchange=()=>{requestKey=crypto.randomUUID();renderControls();};label.append(input,document.createTextNode(v.size||v.name));sizes.append(label);}box.append(sizes);
+  const areas=el('div',undefined,'areas');for(const a of p.areas){const match=p.placements.find(x=>x.area===a.placement),row=el('div',undefined,'area-row');row.append(el('strong',a.label||a.placement),el('span',(match?match.name:'Black fill only')+' · '+a.width+' × '+a.height+' px · '+a.dpi+' DPI'));areas.append(row);}box.append(areas);
+  box.append(el('p',p.hasModelOptions?'People/model styles: '+p.modelGroups.join(', '):'No recognized people/model style reported.','muted'));for(const w of p.warnings)box.append(el('p',w,'warning'));
+  box.append(el('p','Live supplier template checked. Bleed, seams and unprintable surfaces follow this product’s exact blueprint.','muted'));requestKey=crypto.randomUUID();renderControls();
+ }
+ function renderControls(){const open=state?.active,missing=(state?.blockers||[]).length;
+  $('create').disabled=busy||!!open||!inspected||missing>0||!choice().sizes.length;
+  $('inspect').disabled=busy||!selected||!$('garment').value;$('random').disabled=busy||!selected||!products.length;
+  $('createHint').textContent=open?'One item is already active. Finish its decision and cleanup first.':missing?'Production is held. Resolve the workspace items above before creating a product.':!inspected?'Choose a set and check its garment first.':!choice().sizes.length?'Choose at least one size.':'One product, with the selected sizes. Review is required before it appears in the store.';
+  const current=viewed?state?.recent.find(x=>x.id===viewed):open;
+  $('decision').hidden=!current||!!current.closed||current.id!==open?.id;
+  $('approve').disabled=busy||!current?.canApprove||current?.temporaryPixelsMissing;$('disapprove').disabled=busy||!current||current.jobStatus==='running'||current.decision==='approved';
+  $('missingModelLabel').hidden=!current||current.recipe.hasModelOptions;$('resume').hidden=!current||!!current.closed||current.jobStatus==='running'||current.canApprove&&!current.temporaryPixelsMissing||!current.temporaryPixelsMissing&&!['waiting_input','failed','retry_wait','cancelled'].includes(current.jobStatus)&&!['held','cleanup_failed'].includes(current.status);
+ }
+ const stages=[['validate','Artwork & recipe'],['supplier','Garment, variants & color'],['files','Print files & technical quality'],['review','Listing & pricing'],['supplier-product','Printful draft'],['mockups','Real mockups'],['store-publication','Live store publication']];
+ function renderItem(item){
+  const box=$('current');box.replaceChildren();$('itemBadge').textContent=item?item.status.replaceAll('_',' '):'No active item';
+  if(!item){const empty=el('div',undefined,'preview-empty');empty.append(el('span','✦'),el('h3','Your next product starts here.'),el('p','Real Printful mockups will appear when the tracked generation tasks finish.'));box.append(empty);renderStorage(null);return;}
+  box.append(el('h3',item.listing?.copy.title||item.recipe.set.name+' '+item.recipe.name));
+  if(item.temporaryPixelsMissing)box.append(el('p','Working pixels were omitted from the recovery backup. Resume this tracked item to rebuild print files and restore its preview before approval.','item-error'));
+  if(item.error)box.append(el('p',item.error,'item-error'));
+  if(item.mockups.length){const gallery=el('div',undefined,'gallery');for(const m of item.mockups){const figure=el('figure'),a=el('a');a.href=m.url;a.target='_blank';a.rel='noopener';a.append(image(m.url,m.title||m.placement||'Printful mockup'));figure.append(a,el('figcaption',(m.title||m.placement||'Supplier view')+' · '+(m.style||'Printful')));gallery.append(figure);}box.append(gallery);}
+  else box.append(el('p',item.closed?'Generated draft photos cleared. Original design set retained.':'No completed mockup images have been saved yet.','muted'));
+  if(item.listing?.copy.description)box.append(el('p',item.listing.copy.description,'item-copy'));
+  box.append(el('p','Sizes: '+item.recipe.variants.map(v=>v.size).join(', ')+' · Printed background: Black','muted'));
+  if(item.pricing?.variants.length){const table=el('table',undefined,'price-table'),head=el('tr');for(const text of ['Size','Price','Status'])head.append(el('th',text));table.append(head);for(const v of item.pricing.variants){const row=el('tr');row.append(el('td',item.recipe.variants.find(x=>x.id===v.variant)?.size||String(v.variant)),el('td',v.status==='ready'?money(v.priceCents):'—'),el('td',v.status==='ready'?'Checked':v.reason));table.append(row);}box.append(table);}
+  const progress=el('ol',undefined,'progress');for(const [key,label] of stages){const li=el('li'),done=item.checkpoints.some(c=>c.step===key);li.append(el('strong',label),el('span',done?'Completed':key==='store-publication'&&item.decision!=='approved'?'Owner decision required':'Waiting'));progress.append(li);}box.append(progress);
+  const keys=(item.mockupStatus?.tasks||[]).map(x=>x.taskKey||x.task_key).filter(Boolean);box.append(el('p','Tracked job: '+(item.job||'not created')+'\nSupplier: '+(item.listing?.supplier_id||'not created')+' · Store: '+(item.listing?.store_id||'not published')+(keys.length?' · Mockup tasks: '+keys.join(', '):''),'evidence'));
+  if(item.storefrontUrl){const link=el('a','Open verified storefront product ↗');link.href=item.storefrontUrl;link.target='_blank';link.rel='noopener';box.append(link);}
+  renderStorage(item);
+ }
+ function renderStorage(item){
+  const box=$('storage');box.replaceChildren();if(!item?.storage){box.append(el('p','Storage measurements appear with your first item.','muted'));return;}
+  const s=item.storage,c=item.cleanup,dl=el('dl');const values=[['Disposable print pixels',bytes(s.printBytes)],['Download staging',bytes(s.stagingBytes)],['Saved product photos',bytes(s.mockupBytes)],['Reclaimed by this decision',c?bytes(c.reclaimedBytes):'Awaiting decision'],['Reusable SQLite pages',bytes(s.reusableBytes)],['Cleanup verified',c?.verified?'Yes — next item is allowed':'Not yet']];for(const [k,v] of values){const row=el('div');row.append(el('dt',k),el('dd',v));dl.append(row);}box.append(dl);box.append(el('p','Freed pages can be reused. The allocated database file does not have to shrink for working capacity to return.','muted'));
+ }
+ function render(){
+  $('laneBadge').textContent=state.active?'One item active':state.blockers.length?'Production held':'Ready for one item';
+  const badges=[['Live workspace',state.readiness.storageDurable],['Backend worker',state.readiness.workerConnected],['GitHub recovery',state.backup.configured&&state.backup.initialized]];
+  $('connections').replaceChildren(...badges.map(([name,ok])=>el('span',(ok?'● ':'○ ')+name,'connection '+(ok?'ok':'held'))));$('blockers').replaceChildren(...state.blockers.map(b=>el('p',b.message)));$('gate').textContent=state.production?'Factory: '+state.production:'';
+  if(selected&&!state.sets.some(s=>s.id===selected)){selected=null;invalidate();}renderSets();renderParts();
+  const item=viewed?state.recent.find(x=>x.id===viewed):state.active;renderItem(item||null);renderControls();
+  $('history').replaceChildren(...state.recent.map(r=>{const card=el('article',undefined,'history-card'),info=el('div');info.append(el('p',r.listing?.copy.title||r.recipe.set.name+' '+r.recipe.name),el('small',r.status.replaceAll('_',' ')+' · '+new Date(r.created).toLocaleString()+(r.cleanup?.verified?' · cleanup verified, '+bytes(r.cleanup.reclaimedBytes)+' reclaimed':'')));const b=el('button',r.id===viewed?'Showing':'View','secondary');b.type='button';b.onclick=()=>{viewed=r.id;render();$('reviewHeading').scrollIntoView({behavior:'smooth',block:'start'});};card.append(info,b);return card;}));if(!state.recent.length)$('history').append(el('p','No tracked Basic products yet.','muted'));
+  $('acceptance').textContent='Live publish + cleanup cycle: '+(state.liveCycleVerified?'verified in tracked history':'not yet demonstrated')+'. Disapproval cleanup: '+(state.rejectionCleanupVerified?'verified':'not yet demonstrated')+'.';
+ }
+ async function load(){state=await api('basic');render();}
+ async function rules(){const p=await api('pricing');$('priceCategory').replaceChildren(...p.categories.map(c=>new Option(c.name,c.id)));const fill=()=>{const r=p.rules.find(r=>r.category===$('priceCategory').value)?.rule;if(!r)return;for(const [id,key,scale] of [['margin','marginBps',100],['minProfit','minimumProfitCents',100],['minPrice','minimumPriceCents',100],['maxPrice','maximumPriceCents',100],['paymentFee','paymentFeeBps',100],['paymentFixed','paymentFixedCents',100],['platformFee','platformFeeBps',100],['platformFixed','platformFixedCents',100],['discount','discountBps',100]])$(id).value=r[key]/scale;$('absorbShipping').checked=r.absorbShipping;};$('priceCategory').onchange=fill;fill();}
+ $('setSearch').oninput=renderSets;$('garmentSearch').oninput=()=>{invalidate();renderCatalog();};$('audience').onchange=()=>{invalidate();renderCatalog();};$('garment').onchange=invalidate;
+ $('inspect').onclick=()=>action($('inspect'),async()=>showInspection(await api('basic/inspect',choice())));
+ $('random').onclick=()=>action($('random'),async()=>{const p=await api('basic/random',{setId:selected,audience:$('audience').value});$('garmentSearch').value='';renderCatalog();showInspection(p);});
+ $('create').onclick=()=>action($('create'),async()=>{const result=await api('basic/create',{...choice(),requestKey});viewed=result.id;await load();message('One tracked item created. It will wait here for your review before publishing.');});
+ $('refresh').onclick=()=>action($('refresh'),async()=>{state=await api('basic/refresh',{});const c=await api('basic/catalog');products=c.products;renderCatalog();render();message('Printful refresh finished. Check the connection status above.');});
+ const activeId=()=>state?.active?.id;
+ $('approve').onclick=()=>action($('approve'),async()=>{await api('basic/approve',{id:activeId(),confirm:true,acceptMissingModel:$('acceptMissingModel').checked});await load();message('Approval recorded. Publication is still pending until the storefront is verified.');});
+ $('disapprove').onclick=()=>action($('disapprove'),async()=>{await api('basic/disapprove',{id:activeId(),confirm:true});await load();message('Disapproval recorded. Check the cleanup measurements below. Your original set is retained.');});
+ $('resume').onclick=()=>action($('resume'),async()=>{await api('basic/resume',{id:activeId()});await load();});
+ const n=id=>Math.round(Number($(id).value)*100);
+ $('budgetForm').onsubmit=e=>{e.preventDefault();action(e.submitter,async()=>{await api('budget',{dailyBudget:n('dailyBudget'),totalBudget:n('totalBudget')});await load();});};
+ $('ruleForm').onsubmit=e=>{e.preventDefault();action(e.submitter,async()=>{await api('pricing/rule',{category:$('priceCategory').value,rule:{absorbShipping:$('absorbShipping').checked,rounding:'99',marginBps:n('margin'),minimumProfitCents:n('minProfit'),minimumPriceCents:n('minPrice'),maximumPriceCents:n('maxPrice'),paymentFeeBps:n('paymentFee'),paymentFixedCents:n('paymentFixed'),platformFeeBps:n('platformFee'),platformFixedCents:n('platformFixed'),discountBps:n('discount')}});await load();message('Category pricing rule saved.');});};
+ $('chargesForm').onsubmit=e=>{e.preventDefault();action(e.submitter,async()=>{if(!state?.active?.job)throw Error('Create a tracked item before confirming its supplier charges.');await api('pricing/confirm-quotes',{job:state.active.job,extraCents:n('extra'),shippingCents:$('absorbShipping').checked?n('shipping'):null,source:$('chargeSource').value,verified:$('chargesVerified').checked});await api('basic/resume',{id:activeId()});await load();});};
+ $('reviewMode').onclick=()=>action($('reviewMode'),async()=>{await api('publishing/mode',{mode:'review'});await load();});
+ for(const [id,verb] of [['startFactory','start'],['pauseFactory','pause'],['stopFactory','emergency-stop']])$(id).onclick=()=>action($(id),async()=>{await api('control',{action:verb});await load();});
+ async function init(){const results=await Promise.allSettled([load(),api('basic/catalog'),rules()]);for(let i=0;i<results.length;i++){const r=results[i];if(r.status==='rejected')message(r.reason.message);else if(i===1){products=r.value.products;renderCatalog();}}if(state){$('dailyBudget').value=(state.settings.daily_budget/100).toFixed(2);$('totalBudget').value=(state.settings.total_budget/100).toFixed(2);}renderControls();}
+ init().catch(e=>message(e.message));setInterval(()=>{if(!busy&&document.visibilityState==='visible')load().catch(e=>message(e.message));},10000);
+})();

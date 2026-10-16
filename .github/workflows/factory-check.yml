@@ -21,3 +21,4 @@ jobs:
       - run: node request-service/factory-diagnostics-browser-test.mjs
       - run: node request-service/factory-storage-browser-test.mjs
       - run: node request-service/factory-access-browser-test.mjs
+      - run: node request-service/factory-basic-browser-test.mjs
