@@ -106,3 +106,29 @@ and Pages deployment. It never grants owner approval or creates customer orders.
 Private artwork storage continues to use the existing separate backup credential.
 Optional app-entered store tokens remain supported. No private-repository or
 larger-runner jobs are enabled by this workflow.
+
+
+## Coordinated outfits on GitHub working storage
+
+Basic defaults to the outfit builder. Choose one existing set and 2–11 distinct
+supplier categories, with exact garments and optional per-piece size filters.
+Starting verifies every choice before creating any work. The saved outfit plan
+feeds the same one-item lane; other pieces are metadata until their turn.
+Each piece keeps the shared outfit ID and store collection. Originals remain
+separate. The optional, explicit primary-panel adaptation uses the set's main
+artwork on front/default/leg panels without overriding exact assignments,
+changing proportions or inserting branding.
+
+Owner decisions, pricing holds, mockup retrieval and verified cleanup remain
+per item. The next piece starts after cleanup, without a second Start click.
+The queue can pause or cancel remaining pieces after the active item is settled.
+A restart reconciles stable piece request IDs before submitting another job.
+A changed set or selected variants holds the pending piece for review.
+A disapproved piece prevents the complete outfit group from being advertised;
+approved individual products stay live. When every piece is published and
+cleaned, the existing public outfit API exposes the coordinated group.
+This uses fixed artwork, not creative AI generation or simultaneous paid workers.
+
+A rejected, cleaned outfit piece can be rebuilt using the selected design set.
+Only that piece receives a new revision and stable request ID. Other products
+are retained, and the earlier decision and recipe remain in revision history.

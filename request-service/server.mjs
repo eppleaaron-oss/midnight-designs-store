@@ -1,3 +1,4 @@
+import {factoryBasicOutfits} from './factory-basic-outfits.mjs';
 import {factoryGithubPublisher} from './factory-github-publisher.mjs';
 import {startBasicWorker} from './factory-inline-worker.mjs';
 import {factoryBasicGithub} from './factory-basic-github.mjs';
@@ -105,6 +106,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const githubBackups=factoryGithubBackups({...backupSettings,db,dbPath,auth:factoryAuth,body,send,fail,limit,origin,passwordHash});
  const basicHandler=factoryBasic({db,auth:factoryAuth,body,send,fail,limit,origin,manager:factoryHandler,ideas:ideasHandler,workflow,blueprints:blueprintHandler,production:productionHandler,rendering:renderingHandler,publishing:publishingHandler,pricing:pricingHandler,quality:pipelineHandler.quality,backups:githubBackups});productionHandler.setBasic(basicHandler);publishingHandler.setBasic(basicHandler);
  basicGithub=factoryBasicGithub({db,backups:githubBackups,basic:basicHandler,passwordHash,env:backupSettings.env||{},...basicGithubSettings});basicHandler.setWorkspace(basicGithub);workflow.setBasicWorkspace(basicGithub);renderingHandler.setBasic(basicHandler);
+ const basicOutfits=factoryBasicOutfits({db,basic:basicHandler,auth:factoryAuth,body,send,fail,limit,origin});basicHandler.setOutfits(basicOutfits);
  const githubPublisher=factoryGithubPublisher({workspace:basicGithub,db,body,send,fail,limit});
  const historyHandler=factoryHistory({publicAccess:!factoryLoginRequired,db,auth:factoryAuth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler,pipeline:pipelineHandler});
  const startedAt=new Date().toISOString();
@@ -114,6 +116,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
    if(await githubPublisher.handle(req,res,path,method))return;
+   if(await basicOutfits.handle(req,res,path,method))return;
    if(await basicHandler.handle(req,res,path,method,url))return;
    if(await githubBackups.handle(req,res,path,method))return;
    if(await brandingHandler.handle(req,res,path,method))return;
@@ -188,8 +191,8 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    fail(404,'Not found.');
   }catch(e){if(res.headersSent)return res.end();send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
  }));
- const runFeed=setInterval(()=>{runsHandler.tick().catch(e=>console.error('Production run feed failed:',e.message));ideasHandler.tick().catch(e=>console.error('Idea team failed:',e.message));basicHandler.tick().catch(e=>console.error('Basic cleanup held:',e.message));},30000);runFeed.unref();
- server.on('close',()=>{clearInterval(runFeed);editorHandler.idle().finally(async()=>{await githubBackups.close();db.close();});});return {server,db,githubBackups,artworkEditor:editorHandler,basic:basicHandler,basicGithub,factoryDiagnostics:diagnostics,factoryAcceptance:acceptance,publishingEngine:publishingHandler};
+ const runFeed=setInterval(()=>{runsHandler.tick().catch(e=>console.error('Production run feed failed:',e.message));ideasHandler.tick().catch(e=>console.error('Idea team failed:',e.message));basicHandler.tick().then(()=>basicOutfits.tick()).catch(e=>console.error('Basic cleanup held:',e.message));},30000);runFeed.unref();
+ server.on('close',()=>{clearInterval(runFeed);editorHandler.idle().finally(async()=>{await githubBackups.close();db.close();});});return {server,db,githubBackups,artworkEditor:editorHandler,basic:basicHandler,basicOutfits,basicGithub,factoryDiagnostics:diagnostics,factoryAcceptance:acceptance,publishingEngine:publishingHandler};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const dbPath=process.env.DATA_PATH||'./private-data/requests.sqlite';
