@@ -12,12 +12,24 @@ supported panels black, and never substitutes exterior brand graphics. Native
 variant blueprints, original artwork permissions and measured source DPI still
 control rendering.
 
-The job runs through the existing authenticated, leased backend worker. Basic
-requires persistent live storage, a current worker heartbeat, supplier and
-store publishing access, review mode, configured budgets and confirmed pricing.
-GitHub recovery snapshots do **not** satisfy the live-storage requirement.
-Missing prerequisites appear on Basic and block creation. The page never calls
-an AI provider for this fixed recipe or silently enables automatic publishing.
+Basic has an optional **GitHub working space** mode for one fixed-artwork item
+at a time. It uses the existing backend and an authenticated loopback worker,
+with no additional Render disk or paid worker. Enable it in Basic using the
+private backup connection and a store-scoped GitHub token if needed. Tokens
+supplied in the app are encrypted on the backend and never returned.
+
+Encrypted working pixels are stored as deletable attachments on a private draft
+GitHub release. They do not enter Git history. Before external effects the
+backend confirms a GitHub database checkpoint containing the recipe, lease,
+file pointers and intent. Accepted mockup task keys are checkpointed immediately.
+A changed remote checkpoint holds the old backend before another effect.
+Recovery authenticates the original attachment checksums.
+
+Only deterministic original-artwork recipes run in this mode, so a zero AI
+budget is valid. Creative AI and the full batch factory keep their existing
+persistent-disk, worker and budget requirements. No automatic publishing is
+enabled. Free hosting can sleep; opening the app wakes it and resumes tracked
+work. This is not an always-on service or unlimited usage.
 
 One open Basic item is enforced by a database unique index. A stable creation
 request ID returns the existing item after a repeated click or uncertain client
@@ -32,7 +44,11 @@ people/model styles where reported. Missing recognized model options are shown
 as a warning and require explicit owner acknowledgement. The saved gallery is
 reviewed before **Approve & publish** can queue the final store handoff.
 
-Approval preserves the product and all approved storefront images. Print files,
+Approval preserves the product and all approved storefront images. GitHub mode
+copies approved photos to `images/factory/<supplier-id>/` in the store repository
+and verifies their actual live bytes before cleanup. The listing then no longer
+depends on the backend staying awake. Temporary private attachments are deleted
+after either decision, with deletion verified before closing the lane. Print files,
 download staging and working blueprints are cleared only after supplier file
 processing and the live storefront's IDs, variants, prices and images have been
 verified. Disapproval checks ownership and deletes only that job's unpublished
@@ -42,7 +58,7 @@ decisions, recipe, template/file metadata and supplier/store IDs remain.
 Cleanup records before/after BLOB usage, reclaimed bytes and reusable SQLite
 pages. A failed cleanup retains the open lane; retrying it cannot start another
 product. SQLite can reuse freed pages without shrinking its allocated file.
-Published photos remain available at their original `/factory-media/` URLs.
+Existing `/factory-media/` links redirect to the final store image where present.
 
 New GitHub snapshots retain reproducible print file identities/checksums with
 empty pixel placeholders, omit unapproved preview pixels and staging downloads,

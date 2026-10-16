@@ -65,7 +65,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
  db.exec(`CREATE TABLE IF NOT EXISTS factory_render_plans(job TEXT PRIMARY KEY,plan TEXT NOT NULL,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_files(file TEXT PRIMARY KEY,signature TEXT NOT NULL,recipe TEXT NOT NULL,source_sha TEXT,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_quality(file TEXT PRIMARY KEY,signature TEXT NOT NULL,required_dpi INTEGER NOT NULL,effective_dpi REAL);`);
- const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null,pipeline=null,diagnostics=null;
+ const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null,pipeline=null,diagnostics=null,basic=null;
  function saveRunPlan(job,c,slot,art,placementPlan){pipeline?.configureRun(job,c.qc);
   const map=new Map(art.map(a=>[a.name,a.id]));if((placementPlan||[]).some(p=>p.artwork&&!map.has(p.artwork)))error('A named artwork in the placement plan is missing.');
   const assignments=(placementPlan||[]).map(p=>({zone:zone(p.zone),artworkId:p.artwork?map.get(p.artwork):null}));
@@ -160,13 +160,13 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    return {job,draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};});
   // Save each native area independently. A full product can exceed an in-memory
   // atomic batch; matching saved recipes let interrupted jobs resume safely.
-  const result={rendered:0,files:[],reviewRequired:true};
+  const result={rendered:0,files:[],reviewRequired:true};let processed=0;const total=requests.reduce((n,r)=>n+Object.keys(r.plan.placements).length,0);
   for(const request of requests)for(const [placement,recipe] of Object.entries(request.plan.placements)){
-   const saved=await prepare([{...request,plan:{...request.plan,placements:{[placement]:recipe}}}]);result.rendered+=saved.rendered;result.files.push(...saved.files);
+   const saved=await prepare([{...request,plan:{...request.plan,placements:{[placement]:recipe}}}]);result.rendered+=saved.rendered;result.files.push(...saved.files);processed++;if(basic?.workspaceReady(job)&&result.rendered>=2&&processed<total)return {...result,defer:true,note:'Saving this item’s print areas in small recoverable batches.'};
   }
   return result;
  }
- return {setDiagnostics(d){diagnostics=d;},setPipeline(p){pipeline=p;},setEditor(e){editor=e;},artworkRules:()=>editor?.rules()||{enabled:false},savePlan(job,plan){run('INSERT OR REPLACE INTO factory_render_plans VALUES(?,?,?)',job,JSON.stringify(plan),now());},saveRunPlan,resolveJobColor,renderJob,async handle(req,res,path,method){
+ return {setBasic(b){basic=b;},setDiagnostics(d){diagnostics=d;},setPipeline(p){pipeline=p;},setEditor(e){editor=e;},artworkRules:()=>editor?.rules()||{enabled:false},savePlan(job,plan){run('INSERT OR REPLACE INTO factory_render_plans VALUES(?,?,?)',job,JSON.stringify(plan),now());},saveRunPlan,resolveJobColor,renderJob,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/rendering'))return false;auth(req,null,true);
   if(method==='GET'&&path==='/api/owner/ai-factory/rendering'){send(res,200,{limits:fileLimits,usage:get('SELECT count(*) files,COALESCE(sum(length(data)),0) bytes FROM factory_print_files'),artworkPlanner:artworkEngine?.readiness()||null});return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-rendering',10);const b=await body(req);

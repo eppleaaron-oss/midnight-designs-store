@@ -84,3 +84,23 @@ for a preservation-first migration without the owner's explicit approval.
 
 Run `npm test --prefix request-service` for backup, corruption, privacy,
 authentication, conflict and full-schema recovery tests.
+
+## Basic GitHub working space
+
+The one-item Basic mode adds encrypted, deletable private draft-release attachments
+for working print files and previews. Before supplier effects, write-through
+checkpoints save the tracked intent and file pointers; accepted mockup keys are
+checkpointed immediately. This is additional functionality beyond periodic backup.
+Working pixels are excluded from new versioned snapshots. Existing Git history is
+preserved, including any earlier backups created before this feature.
+
+The Basic worker runs on the existing backend and can resume after a free host
+wakes. It creates one fixed-artwork product and makes no paid AI-provider calls.
+The full unattended creative/batch factory still requires durable live hosting.
+Approved photos are copied into the store repository and verified on the live site
+before temporary attachments are deleted. Disapproval deletes its own generated
+supplier draft and working attachments. Cleanup failures keep the lane locked.
+Originals and compact production/decision records remain in encrypted snapshots.
+
+No new paid Render resources are created by deploying or connecting Basic mode.
+Free-service limits, GitHub/API limits and any account usage charges still apply.

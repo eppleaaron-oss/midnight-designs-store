@@ -18,15 +18,17 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  CREATE UNIQUE INDEX IF NOT EXISTS factory_basic_one_active ON factory_basic_items((1)) WHERE closed=0;`);
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  const row=job=>get('SELECT * FROM factory_basic_items WHERE job=?',job),active=()=>get('SELECT * FROM factory_basic_items WHERE closed=0');
- let creating=false,cleaning=false;
+ let creating=false,cleaning=false,workspace=null;
+ const remote=()=>workspace?.ready()===true;
+ const checkpoint=job=>workspace?.snapshot().enabled&&(!job||row(job))?workspace.checkpoint(job):Promise.resolve();
  function blockers(){
   const r=production.readiness(),p={...publishing.basicConnectionStatus(),mode:publishing.mode()},s=get('SELECT * FROM factory_settings WHERE id=1'),out=[];
-  if(!r.storageDurable||!p.storageDurable)out.push({code:'workspace',message:'Persistent production workspace is not attached. GitHub recovery backups do not replace live file and queue storage.'});
+  if(!remote()&&(!r.storageDurable||!p.storageDurable))out.push({code:'workspace',message:workspace?.snapshot().available?'Connect GitHub working space below for one-item production.':'Persistent production workspace is not attached. GitHub recovery backups do not replace live file and queue storage.'});
   if(!r.workerConnected)out.push({code:'worker',message:'The backend production worker is not connected.'});
   if(!p.supplierConfigured)out.push({code:'supplier',message:'The backend Printful token is not configured.'});
-  if(!p.storeConfigured)out.push({code:'publishing',message:'Storefront publishing credentials are not configured on the backend.'});
+  if(!p.storeConfigured&&!workspace?.snapshot().storeConfigured)out.push({code:'publishing',message:'Storefront publishing credentials are not configured on the backend.'});
   if(p.mode!=='review')out.push({code:'review',message:'Basic requires Review before publishing. Automatic mode is not used.'});
-  if(!s.daily_budget||!s.total_budget)out.push({code:'budget',message:'Set daily and total spending limits below before starting.'});
+  if(!remote()&&(!s.daily_budget||!s.total_budget))out.push({code:'budget',message:'Set daily and total spending limits below before starting.'});
   return out;
  }
  async function catalog(){
@@ -68,11 +70,11 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    canApprove:!r.closed&&r.decision===null&&rt?.step===6&&l?.status==='mockups_saved'&&j?.status!=='running',
    storefrontUrl:l?.status==='published'&&l.store_id?'https://midnight-designs.store/products/'+encodeURIComponent(l.store_id)+'.html':null};
  }
- function snapshot(){return {active:detail(active()),recent:all('SELECT * FROM factory_basic_items ORDER BY created DESC LIMIT 20').map(detail),sets:sets().map(s=>({...s,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{name:v.name,thumb:v.thumb||v.url}]))})),blockers:blockers(),readiness:production.readiness(),production:production.snapshot().pauseReason,settings:get('SELECT state,daily_budget,total_budget FROM factory_settings WHERE id=1'),backup:backups.snapshot(),oneActiveItem:true,liveCycleVerified:!!get("SELECT id FROM factory_basic_items WHERE status='published' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),rejectionCleanupVerified:!!get("SELECT id FROM factory_basic_items WHERE decision='disapproved' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),note:'Original design sets are retained. Disposable Basic print pixels and unapproved preview pixels are omitted from new GitHub snapshots; approved storefront photos are retained. Existing Git history is unchanged.'};}
+ function snapshot(){return {active:detail(active()),recent:all('SELECT * FROM factory_basic_items ORDER BY created DESC LIMIT 20').map(detail),sets:sets().map(s=>({...s,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{name:v.name,thumb:v.thumb||v.url}]))})),blockers:blockers(),readiness:production.readiness(),production:remote()&&!active()?null:production.snapshot().pauseReason,settings:get('SELECT state,daily_budget,total_budget FROM factory_settings WHERE id=1'),backup:backups.snapshot(),github:workspace?.snapshot()||null,oneActiveItem:true,liveCycleVerified:!!get("SELECT id FROM factory_basic_items WHERE status='published' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),rejectionCleanupVerified:!!get("SELECT id FROM factory_basic_items WHERE decision='disapproved' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),note:'Original design sets are retained. Disposable Basic print pixels and unapproved preview pixels are omitted from new GitHub snapshots; approved storefront photos are retained. Existing Git history is unchanged.'};}
  async function create(b){
   if(typeof b.requestKey!=='string'||!/^[-a-zA-Z0-9_]{16,100}$/.test(b.requestKey))fail(400,'A stable creation request ID is required.');
   const previous=get('SELECT * FROM factory_basic_items WHERE request_key=?',b.requestKey);if(previous)return detail(previous);
-  if(creating||active())fail(409,'Finish or disapprove the current item and verify cleanup before starting another.');
+  if(creating||cleaning||active())fail(409,'Finish or disapprove the current item and verify cleanup before starting another.');
   const blocked=blockers();if(blocked.length)fail(409,blocked.map(x=>x.message).join(' '));
   if(get("SELECT id FROM factory_jobs WHERE status IN ('queued','running','retry_wait') LIMIT 1"))fail(409,'Finish or pause existing queued production before starting the single-item Basic lane.');
   creating=true;
@@ -82,7 +84,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    if(get("SELECT id FROM factory_jobs WHERE status IN ('queued','running','retry_wait') LIMIT 1"))fail(409,'Other production started during selection. Finish or pause it before starting Basic.');
    const id=randomUUID(),recipe={set:p.set,product:p.product.id,name:p.product.name,role:p.role,audience:p.audience,variants:p.variants,placements:p.placements,fill:p.fill,warnings:p.warnings,modelGroups:p.modelGroups,hasModelOptions:p.hasModelOptions,color:'Black',fit:'contain'};
    run('INSERT INTO factory_basic_items(id,request_key,recipe_key,recipe,created,updated) VALUES(?,?,?,?,?,?)',id,b.requestKey,recipeKey,JSON.stringify(recipe),now(),now());
-   await enqueue(get('SELECT * FROM factory_basic_items WHERE id=?',id));return detail(get('SELECT * FROM factory_basic_items WHERE id=?',id));
+   await enqueue(get('SELECT * FROM factory_basic_items WHERE id=?',id));await checkpoint(get('SELECT job FROM factory_basic_items WHERE id=?',id).job);return detail(get('SELECT * FROM factory_basic_items WHERE id=?',id));
   }finally{creating=false;}
  }
  async function enqueue(r){
@@ -105,15 +107,16 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    if(r.decision==='approved'&&l?.status!=='published')fail(409,'Keep final files until the live storefront product is verified.');
    if(get("SELECT operation FROM factory_publish_operations WHERE job=? AND status='uncertain'",r.job))fail(409,'Reconcile the uncertain supplier operation before cleanup.');
    if(r.decision==='disapproved')await publishing.discardDraft(r.job);
-   const savedPrice=pricing.assessJob(r.job),result={...clearBasicWorkingFiles(db,r.job,{keepPhotos:r.decision==='approved'}),pricing:savedPrice};
+   const prior=r.cleanup?JSON.parse(r.cleanup):null,savedPrice=pricing.assessJob(r.job);let result={...clearBasicWorkingFiles(db,r.job,{keepPhotos:r.decision==='approved'}),pricing:savedPrice};
+   if(remote()){if(prior?.files?.length)result={...prior,...result,files:prior.files,templates:prior.templates,before:prior.before,reclaimedBytes:prior.reclaimedBytes};run("UPDATE factory_basic_items SET cleanup=?,status='cleaning' WHERE id=?",JSON.stringify({...result,verified:false}),r.id);const cleared=await workspace.cleanup(r.job);if(!cleared.verified){run('UPDATE factory_basic_items SET cleanup=? WHERE id=?',JSON.stringify({...result,verified:false,github:cleared}),r.id);await checkpoint();return;}result={...result,github:cleared,after:basicStorage(db,r.job),reclaimedBytes:(result.before?.workingBytes||0)+(result.before?.mockupBytes||0),verified:true};}
    run('UPDATE factory_basic_items SET cleanup=?,closed=1,status=?,error=\'\',updated=? WHERE id=?',JSON.stringify(result),r.decision==='approved'?'published':'disapproved',now(),r.id);
-   run('UPDATE factory_jobs SET status=?,updated=? WHERE id=?',r.decision==='approved'?'completed':'archived',now(),r.job);
-  }catch(e){run("UPDATE factory_basic_items SET status='cleanup_failed',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);throw e;}finally{cleaning=false;}
+   run('UPDATE factory_jobs SET status=?,updated=? WHERE id=?',r.decision==='approved'?'completed':'archived',now(),r.job);await checkpoint();
+  }catch(e){run("UPDATE factory_basic_items SET closed=0,status='cleanup_failed',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);try{await checkpoint();}catch{}throw e;}finally{cleaning=false;}
  }
  async function settled(job){const r=row(job);if(r&&!r.closed&&(r.decision==='disapproved'||r.decision==='approved'&&get('SELECT status FROM factory_listings WHERE job=?',job)?.status==='published'))await cleanup(r);}
  function options(job){const r=row(job);if(!r)return {};const p=JSON.parse(r.recipe);return p.modelGroups.length?{option_groups:p.modelGroups}:{};}
  function orderMedia(job,media){const r=row(job);if(!r)return media;const groups=JSON.parse(r.recipe).modelGroups;return [...media].sort((a,b)=>Number(groups.includes(b.style))-Number(groups.includes(a.style)));}
- return {owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
+ return {currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
   async tick(){const r=active();if(r?.job&&(r.decision==='disapproved'||get('SELECT status FROM factory_listings WHERE job=?',r.job)?.status==='published'))await settled(r.job);},
   async handle(req,res,path,method,url){
    if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
@@ -129,6 +132,8 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
     for(const p of candidates.slice(0,12)){try{found=await inspect({...b,product:p.id});break;}catch(e){if(![400,409].includes(e.status))throw e;}}
     if(!found)fail(409,'No compatible garment was verified in this selection. Try an exact garment or refresh Printful.');send(res,200,found);return true;
    }
+   if(path===ROOT+'/control'){if(!remote()||!['start','resume'].includes(b.action))fail(409,'Connect GitHub working space first.');run("UPDATE factory_settings SET state='running',updated=? WHERE id=1",now());await checkpoint(active()?.job);send(res,200,snapshot());return true;}
+   if(path===ROOT+'/github'){if(!workspace)fail(409,'GitHub workspace is unavailable.');await workspace.enable(b.token);send(res,200,snapshot());return true;}
    if(path===ROOT+'/refresh'){limit(req,'basic-refresh',4);await ideas.refreshPrintful();ideas.syncSets();send(res,200,snapshot());return true;}
    if(path===ROOT+'/create'){send(res,200,await create(b));return true;}
    if(!['/approve','/disapprove','/resume'].some(action=>path===ROOT+action))fail(404,'Basic action not found.');
@@ -137,6 +142,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    if(path===ROOT+'/approve'&&r.decision==='approved'){send(res,200,snapshot());return true;}
    const j=r.job&&get('SELECT status FROM factory_jobs WHERE id=?',r.job);
    if(path===ROOT+'/approve'){
+    if(remote()){let result;do{result=await workspace.hydrate(r.job);}while(result?.defer);}
     if(publishing.mode()!=='review')fail(409,'Basic requires review mode before approving.');
     if(b.confirm!==true||!detail(r).canApprove||detail(r).temporaryPixelsMissing)fail(409,'Wait for the completed mockups, variants, listing and price before approving.');
     if(!JSON.parse(r.recipe).hasModelOptions&&b.acceptMissingModel!==true)fail(409,'Acknowledge the missing people/model option after reviewing the actual product images.');
@@ -147,7 +153,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    }else if(path===ROOT+'/disapprove'){
     if(b.confirm!==true)fail(400,'Confirm disapproval.');if(r.decision==='approved'||j?.status==='running'||get('SELECT status FROM factory_listings WHERE job=?',r.job)?.status==='catalog_pending')fail(409,'Finish the current operation before disapproving. Published products are kept live.');
     run("UPDATE factory_basic_items SET decision='disapproved',status='cleaning',updated=? WHERE id=?",now(),r.id);
-    if(r.job){run("UPDATE factory_jobs SET status='waiting_input',updated=? WHERE id=?",now(),r.job);await cleanup({...r,decision:'disapproved'});}else run("UPDATE factory_basic_items SET closed=1,status='disapproved',cleanup=?,updated=? WHERE id=?",JSON.stringify({verified:true,reclaimedBytes:0,files:[],before:null,after:null}),now(),r.id);
+    if(r.job){run("UPDATE factory_jobs SET status='waiting_input',updated=? WHERE id=?",now(),r.job);await checkpoint(r.job);await cleanup({...r,decision:'disapproved'});}else run("UPDATE factory_basic_items SET closed=1,status='disapproved',cleanup=?,updated=? WHERE id=?",JSON.stringify({verified:true,reclaimedBytes:0,files:[],before:null,after:null}),now(),r.id);
    }else if(path===ROOT+'/resume'){
     if(r.status==='cleanup_failed'){await cleanup(r);}
     else if(!r.job){const blocked=blockers();if(blocked.length)fail(409,blocked[0].message);await enqueue(r);}
@@ -156,11 +162,12 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
      if(r.decision==='disapproved'){await cleanup(r);}else{
       if(get("SELECT operation FROM factory_publish_operations WHERE job=? AND status='uncertain'",r.job))fail(409,'The previous supplier result is uncertain. Reconcile it in Production diagnostics before resuming this same job.');
       if(get('SELECT retries FROM factory_job_runtime WHERE job=?',r.job)?.retries>production.snapshot().policy.retryLimit)fail(409,'The retry limit is exhausted. Review this tracked failure before continuing.');
+      if(remote()){let restored;do{restored=await workspace.hydrate(r.job);}while(restored?.defer);}
       if(detail(r).temporaryPixelsMissing){await rendering.renderJob(r.job);await quality.check(r.job);await publishing.restoreBasicPreview(r.job);}
       run("UPDATE factory_jobs SET status='queued',error='',updated=? WHERE id=?",now(),r.job);run("UPDATE factory_job_runtime SET available=0,error='' WHERE job=?",r.job);run("UPDATE factory_basic_items SET error='',updated=? WHERE id=?",now(),r.id);
      }
     }
    }else fail(404,'Basic action not found.');
-   send(res,200,snapshot());return true;
+   await checkpoint(active()?.job);send(res,200,snapshot());return true;
   }};
 }

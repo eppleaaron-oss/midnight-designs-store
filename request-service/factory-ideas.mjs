@@ -143,7 +143,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
    const hood=list.find(d=>/\bhood\b/i.test(d.name)),parts={back:url(full[0])};if(full[1]&&full[1]!==hood)parts.front=url(full[1]);
    if(strips[0]){parts.sleeve_left=url(strips[0]);parts.sleeve_right=url(strips[1]||strips[0]);}if(hood)parts.hood=url(hood);if(marks[0])parts.pocket=url(marks[0]);
    const id='up:'+createHash('sha256').update(collection).digest('hex').slice(0,16);seen.add(id);
-   run('INSERT INTO idea_sets(id,source,name,product,catalog,jacket,parts,updated) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name,parts=excluded.parts,updated=excluded.updated',id,'upload',collection,null,null,0,JSON.stringify(parts),t);
+   run('INSERT INTO idea_sets(id,source,name,product,catalog,jacket,parts,updated) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name,parts=excluded.parts,updated=excluded.updated WHERE idea_sets.name IS NOT excluded.name OR idea_sets.parts IS NOT excluded.parts',id,'upload',collection,null,null,0,JSON.stringify(parts),t);
   }
   for(const s of all("SELECT id FROM idea_sets WHERE source='upload'"))if(!seen.has(s.id))run('DELETE FROM idea_sets WHERE id=?',s.id);
  }

@@ -1,5 +1,7 @@
 name: Sync Printful catalog
 on:
+  repository_dispatch:
+    types: [midnight-basic-publish]
   workflow_dispatch:
   schedule:
     - cron: '17 */6 * * *'

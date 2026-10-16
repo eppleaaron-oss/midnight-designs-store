@@ -31,7 +31,7 @@ export function mockupImages(result,variant){
 
 const LABELS={queued:'Mockup not requested — waiting for the worker',submitting:'Submitting mockup request — acceptance not confirmed',uncertain:'Mockup request outcome unknown — reconciliation required',accepted:'Printful accepted the task — awaiting confirmed status',pending:'Printful is generating the mockup',completed:'Printful finished — saving images',downloading:'Printful finished — saving images',saved:'Mockup images saved',failed:'Printful mockup generation failed',download_failed:'Printful finished — image download needs retry',invalid:'Printful result needs review',timed_out:'Accepted task exceeded the generation time limit',rejected:'Printful rejected the mockup request',poll_error:'Accepted task — status check unavailable',blocked:'Mockup not requested — print-file access needs review'};
 
-export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImpl=fetch,clock=Date.now,storageDurable=false,requestOptions=()=>({}),validateVariant=async()=>{},verifyPrintFile=async()=>{}}){
+export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImpl=fetch,clock=Date.now,storageDurable=false,storageReady=()=>storageDurable,checkpoint=async()=>{},requestOptions=()=>({}),validateVariant=async()=>{},verifyPrintFile=async()=>{}}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_mockup_tasks(job TEXT NOT NULL,variant INTEGER NOT NULL,product INTEGER NOT NULL,task_key TEXT,state TEXT NOT NULL,supplier_status TEXT,accepted INTEGER,next_poll INTEGER NOT NULL DEFAULT 0,checked INTEGER,error TEXT NOT NULL DEFAULT '',request_hash TEXT NOT NULL,attempts INTEGER NOT NULL DEFAULT 0,created INTEGER NOT NULL,updated INTEGER NOT NULL,PRIMARY KEY(job,variant));
  CREATE TABLE IF NOT EXISTS factory_mockup_task_history(job TEXT NOT NULL,variant INTEGER NOT NULL,task_key TEXT NOT NULL,product INTEGER NOT NULL,request_hash TEXT NOT NULL,supplier_status TEXT NOT NULL,error TEXT NOT NULL DEFAULT '',accepted INTEGER NOT NULL,checked INTEGER,PRIMARY KEY(job,variant,task_key));
  CREATE TABLE IF NOT EXISTS factory_mockup_manifests(job TEXT NOT NULL,variant INTEGER NOT NULL,task_key TEXT NOT NULL,images TEXT NOT NULL,created INTEGER NOT NULL,PRIMARY KEY(job,variant,task_key));
@@ -53,7 +53,7 @@ export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImp
   if(result.status==='completed'){const images=mockupImages(result,variant);run('INSERT OR IGNORE INTO factory_mockup_manifests VALUES(?,?,?,?,?)',job,variant,key,JSON.stringify(images),clock());}
  }
  async function submit(p,d,t,guard){
-  if(!storageDurable)hold('Persistent backend storage is required before submitting a Printful mockup task.');
+  if(!storageReady(p.j.id))hold('Persistent backend storage is required before submitting a Printful mockup task.');
   if(t.attempts>=5)hold('Mockup request retry limit reached. Review this product before creating replacement work.');
   if(clock()<t.next_poll)return {defer:true,note:'Mockup request is waiting for Printful rate-limit recovery.'};
   const latest=get('SELECT max(created) submitted FROM factory_mockup_tasks WHERE attempts>0');
@@ -63,7 +63,7 @@ export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImp
   await validateVariant(p,d);const files=d.areas.map(a=>({placement:a.placement,image_url:link(a.file),position:{area_width:a.width,area_height:a.height,width:a.width,height:a.height,top:0,left:0}}));try{await Promise.all(files.map((f,i)=>verifyPrintFile(f.image_url,d.areas[i])));}catch(e){state(p.j.id,d.variant,'blocked',e.message);throw e;}guard();checked(p.j.id);
   const key='mockup-'+d.variant,id=p.j.id+':'+d.variant;active.add(id);
   try{
-   begin(p.j.id,key);run("UPDATE factory_mockup_tasks SET state='submitting',attempts=attempts+1,created=?,updated=?,error='' WHERE job=? AND variant=?",clock(),clock(),p.j.id,d.variant);
+   await begin(p.j.id,key);run("UPDATE factory_mockup_tasks SET state='submitting',attempts=attempts+1,created=?,updated=?,error='' WHERE job=? AND variant=?",clock(),clock(),p.j.id,d.variant);await checkpoint(p.j.id);
    let result;try{result=await pf('mockup-generator/create-task/'+d.product,{method:'POST',body:JSON.stringify({variant_ids:[d.variant],format:'jpg',width:1000,...requestOptions(p.j.id),files})});}catch(e){
     if([400,401,403,404,422,429].includes(e.printfulStatus)){run('DELETE FROM factory_publish_operations WHERE job=? AND operation=?',p.j.id,key);state(p.j.id,d.variant,e.printfulStatus===429?'queued':'rejected',e.message);if(e.printfulStatus===429)run('UPDATE factory_mockup_tasks SET next_poll=? WHERE job=? AND variant=?',clock()+Math.max(60000,(e.retryAfter||0)*1000),p.j.id,d.variant);}
     else state(p.j.id,d.variant,'uncertain','Printful request outcome is unknown. Verify the task before retrying.');throw e;
@@ -72,6 +72,7 @@ export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImp
    // Save the accepted key before interpreting status or downloading any images.
    done(p.j.id,key,result.task_key);run("UPDATE factory_mockup_tasks SET task_key=?,accepted=?,state='accepted',next_poll=?,updated=? WHERE job=? AND variant=?",result.task_key,clock(),clock()+10000,clock(),p.j.id,d.variant);
    run('INSERT OR IGNORE INTO factory_mockup_task_history VALUES(?,?,?,?,?,?,?,?,?)',p.j.id,d.variant,result.task_key,d.product,t.request_hash,'accepted','',clock(),null);
+   await checkpoint(p.j.id);
    if(result.status!==undefined){try{recordResult(p.j.id,d.variant,result.task_key,result);}catch(e){state(p.j.id,d.variant,'invalid',e.message);return {wait:e.message};}}
    if(result.status==='pending')run('UPDATE factory_mockup_tasks SET next_poll=? WHERE job=? AND variant=?',clock()+10000,p.j.id,d.variant);
    if(result.status==='failed')return {wait:'Printful mockup task failed: '+String(result.error||'No reason supplied.')};
@@ -112,7 +113,7 @@ export function factoryMockups({db,checked,pf,link,operation,begin,done,fetchImp
   if(regenerate){if(!confirm||!(['failed','completed'].includes(t.supplier_status)||t.state==='rejected')||t.attempts>=5)hold('Confirm replacing a verified failed/completed or rejected mockup request. Unknown submissions must be reconciled first.');run('DELETE FROM factory_publish_operations WHERE job=? AND operation=?',job,'mockup-'+variant);run("UPDATE factory_mockup_tasks SET state='queued',task_key=NULL,supplier_status=NULL,accepted=NULL,next_poll=0,error='',updated=? WHERE job=? AND variant=?",clock(),job,variant);}
   else{if(!t.task_key)hold('An accepted task key is required before checking its result.');run("UPDATE factory_mockup_tasks SET state='accepted',next_poll=0,error='',updated=? WHERE job=? AND variant=?",clock(),job,variant);}
  }
- async function execute(job,guard){const p=checked(job);if(!p.listing.supplier_id)hold('Create the validated supplier product before requesting mockups.');if(!storageDurable)hold('Persistent backend storage is required for mockups.');
+ async function execute(job,guard){const p=checked(job);if(!p.listing.supplier_id)hold('Create the validated supplier product before requesting mockups.');if(!storageReady(p.j.id))hold('Persistent backend storage is required for mockups.');
   for(const d of p.files){let t=ensure(p,d);if(t.state==='saved'){verifiedGallery(job,[d.variant]);continue;}
    if(!t.task_key){if(t.state==='uncertain'||operation(job,'mockup-'+d.variant))return {wait:t.error||'Mockup request outcome is uncertain. Verify it before retrying.'};if(t.state==='rejected')return {wait:t.error||'Printful rejected this request. Review configuration before explicitly retrying.'};return submit(p,d,t,guard);}
    if(['failed','invalid','timed_out'].includes(t.state))return {wait:t.error||LABELS[t.state]};
