@@ -21,7 +21,17 @@ export function githubBackupConfig(env={},passwordHash=''){
  else{if(!/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(passwordHash))throw problem('Backup encryption requires the backend owner password hash.');key=Buffer.from(hkdfSync('sha256',passwordHash,'midnight-factory-backup-v1','private-sqlite-snapshots',32));}
  const maxMB=Number(env.FACTORY_BACKUP_MAX_MB||512),interval=Number(env.FACTORY_BACKUP_INTERVAL_SECONDS||300)*1000;
  if(!Number.isSafeInteger(maxMB)||maxMB<1||maxMB>2048||!Number.isSafeInteger(interval)||interval<60000||interval>86400000)throw problem('Invalid GitHub backup size or interval.');
- return {repo:env.FACTORY_BACKUP_REPO,token,key,interval,maxBytes:maxMB*1024*1024};
+ const keySource=env.FACTORY_BACKUP_ENCRYPTION_KEY?'explicit backend key':'backend owner hash',recoveryKeys=[];
+ // Existing installations initially derived their backup key from the backend
+ // credential. A newly added explicit key must
+ // not strand that authenticated snapshot. Try only keys already configured on
+ // this backend; every candidate must pass AES-GCM before any data is restored.
+ for(const value of [passwordHash])if(/^[a-f0-9]{32}:[a-f0-9]{128}$/.test(value)){
+  const candidate=Buffer.from(hkdfSync('sha256',value,'midnight-factory-backup-v1','private-sqlite-snapshots',32));
+  if(!candidate.equals(key)&&!recoveryKeys.some(k=>k.key.equals(candidate)))recoveryKeys.push({key:candidate,source:'original backend owner hash'});
+ }
+ const fingerprint=passwordHash?digest(passwordHash).slice(0,4)+'…'+digest(passwordHash).slice(-4):'unavailable';
+ return {repo:env.FACTORY_BACKUP_REPO,token,key,keySource,recoveryKeys,ownerFingerprint:fingerprint,interval,maxBytes:maxMB*1024*1024};
 }
 function seal(bytes,key,context){const iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',key,iv);cipher.setAAD(Buffer.from(context));const encrypted=Buffer.concat([cipher.update(bytes),cipher.final()]);return Buffer.concat([iv,cipher.getAuthTag(),encrypted]);}
 function unseal(bytes,key,context){try{if(bytes.length<29)throw Error();const decipher=createDecipheriv('aes-256-gcm',key,bytes.subarray(0,12));decipher.setAAD(Buffer.from(context));decipher.setAuthTag(bytes.subarray(12,28));return Buffer.concat([decipher.update(bytes.subarray(28)),decipher.final()]);}catch{throw problem('Backup authentication failed. Check the original encryption key; the local database was not replaced.');}}
@@ -52,7 +62,15 @@ export class GithubSnapshotStore{
   const ref=await this.api('/git/ref/heads/'+encodeURIComponent(this.branch));if(!sha(ref.object?.sha))throw problem('GitHub returned an invalid backup branch.');
   const commit=await this.api('/git/commits/'+ref.object.sha);if(!sha(commit.tree?.sha))throw problem('GitHub returned an invalid backup tree.');
   const entry=await this.api('/contents/'+MANIFEST+'?ref='+ref.object.sha,{missing:true});let manifest=null;
-  if(entry){if(entry.encoding!=='base64'||typeof entry.content!=='string'||entry.size>2*1024*1024||entry.content.length>3*1024*1024)throw problem('Backup manifest is invalid.');const plain=unseal(Buffer.from(entry.content.replace(/\s/g,''),'base64'),this.key,'manifest-v1');try{manifest=JSON.parse(plain.toString('utf8'));}catch{throw problem('Backup manifest is invalid.');}this.validateManifest(manifest);}
+  if(entry){
+   if(entry.encoding!=='base64'||typeof entry.content!=='string'||entry.size>2*1024*1024||entry.content.length>3*1024*1024)throw problem('Backup manifest is invalid.');
+   const encrypted=Buffer.from(entry.content.replace(/\s/g,''),'base64');let plain;
+   for(const candidate of [{key:this.key,source:this.keySource||'configured key'},...(this.recoveryKeys||[])]){
+    try{plain=unseal(encrypted,candidate.key,'manifest-v1');this.key=candidate.key;this.keySource=candidate.source;break;}catch{}
+   }
+   if(!plain)throw problem('Backup authentication failed. The configured backend keys cannot decrypt this snapshot. Key source: '+(this.keySource||'configured key')+'; owner-hash fingerprint: '+(this.ownerFingerprint||'unavailable')+'. The local database was not replaced.');
+   try{manifest=JSON.parse(plain.toString('utf8'));}catch{throw problem('Backup manifest is invalid.');}this.validateManifest(manifest);
+  }
   this.head=ref.object.sha;this.tree=commit.tree.sha;this.manifest=manifest;return manifest;
  }
  validateManifest(m){if(m?.format!==1||!Number.isSafeInteger(m.bytes)||m.bytes<512||m.bytes>this.maxBytes||!/^[a-f0-9]{64}$/.test(m.sha256)||!Array.isArray(m.chunks)||m.chunks.length!==Math.ceil(m.bytes/CHUNK)||!Number.isFinite(Date.parse(m.created)))throw problem('Backup manifest is invalid or exceeds the configured size limit.');let size=0;for(const c of m.chunks){if(!/^[a-f0-9]{64}$/.test(c.id)||!sha(c.sha)||!Number.isSafeInteger(c.bytes)||c.bytes<1||c.bytes>CHUNK)throw problem('Backup chunk manifest is invalid.');size+=c.bytes;}if(size!==m.bytes)throw problem('Backup size does not match its manifest.');}
@@ -114,7 +132,7 @@ export function factoryGithubBackups({db,dbPath,auth,body,send,fail,limit,origin
  let config,configurationError='';try{config=githubBackupConfig(env,passwordHash);}catch(e){configurationError=e.message;}
  const store=preparedStore||(config?new GithubSnapshotStore(config,{fetchImpl,sleep,clock}):null);let pending=null,watermark=-1,lastError=configurationError,lastSaved=store?.manifest?.created||null,commit=store?.manifest?store.head:null,retryAt=0,closed=false;
  const changes=()=>Number(db.prepare('SELECT total_changes() n').get().n);
- function snapshot(){return {configured:!!store,repository:config?.repo||null,running:!!pending,initialized:!!store?.manifest,lastSaved,commit,bytes:store?.manifest?.bytes||0,unsavedChanges:!!store&&changes()!==watermark,error:lastError,retryAt:retryAt?new Date(retryAt).toISOString():null,conflict:!!store?.hold,intervalSeconds:(config?.interval||0)/1000,liveQueueStorage:false,note:'GitHub stores encrypted recovery snapshots. Changes after the last completed backup can be lost on a sudden restart. Continuous production still requires durable live queue storage.'};}
+ function snapshot(){return {configured:!!store,repository:config?.repo||null,encryptionSource:store?.keySource||config?.keySource||null,running:!!pending,initialized:!!store?.manifest,lastSaved,commit,bytes:store?.manifest?.bytes||0,unsavedChanges:!!store&&changes()!==watermark,error:lastError,retryAt:retryAt?new Date(retryAt).toISOString():null,conflict:!!store?.hold,intervalSeconds:(config?.interval||0)/1000,liveQueueStorage:false,note:'GitHub stores encrypted recovery snapshots. Changes after the last completed backup can be lost on a sudden restart. Continuous production still requires durable live queue storage.'};}
  async function save(initialize=false){
   if(closed)throw problem('Backup service is closing.');if(!store)throw problem(configurationError||'GitHub backups are not configured.');if(pending)return pending;
   if(clock()<retryAt)throw problem('GitHub backup is waiting before its next permitted attempt.',429);

@@ -89,6 +89,20 @@ test('owner-only backup controls require the same origin and status reports conf
 test('configuration derives stable encryption from backend credentials and rejects invalid keys and paths',()=>{
  const hash='ab'.repeat(16)+':'+'cd'.repeat(64),env={FACTORY_BACKUP_REPO:config.repo,CATALOG_GITHUB_TOKEN:config.token};assert.deepEqual(githubBackupConfig(env,hash).key,githubBackupConfig(env,hash).key);assert.notDeepEqual(githubBackupConfig(env,hash).key,githubBackupConfig(env,'ef'.repeat(16)+':'+'cd'.repeat(64)).key);assert.equal(githubBackupConfig({}),null);for(const bad of [{...env,FACTORY_BACKUP_REPO:'https://github.com/public/repo'},{...env,FACTORY_BACKUP_ENCRYPTION_KEY:'invalid'},{...env,FACTORY_BACKUP_INTERVAL_SECONDS:'1'},{...env,CATALOG_GITHUB_TOKEN:''}])assert.throws(()=>githubBackupConfig(bad,hash));
 });
+test('an added explicit key recovers an original owner-derived snapshot without discarding encryption or data',async t=>{
+ const f=await fixture(t),passwordHash='ab'.repeat(16)+':'+'cd'.repeat(64),env={FACTORY_BACKUP_REPO:config.repo,FACTORY_BACKUP_GITHUB_TOKEN:config.token};
+ const original=githubBackupConfig(env,passwordHash),writer=new GithubSnapshotStore(original,{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.snapshot(f.db,{initialize:true});
+ const changed=githubBackupConfig({...env,FACTORY_BACKUP_ENCRYPTION_KEY:'ef'.repeat(32)},passwordHash),reader=new GithubSnapshotStore(changed,{fetchImpl:f.gh.fetch,sleep:async()=>{}}),dest=join(f.dir,'compatible-key.sqlite');
+ await reader.restore(dest);assert.equal(reader.keySource,'original backend owner hash');assert.deepEqual(reader.key,original.key);const restored=new DatabaseSync(dest);try{assert.deepEqual(Buffer.from(restored.prepare('SELECT data FROM factory_artwork').get().data),f.artwork);}finally{restored.close();}
+ const wrong=githubBackupConfig({...env,FACTORY_BACKUP_ENCRYPTION_KEY:'ef'.repeat(32)},'12'.repeat(16)+':'+'34'.repeat(64));await assert.rejects(new GithubSnapshotStore(wrong,{fetchImpl:f.gh.fetch}).restore(join(f.dir,'wrong.sqlite')),/authentication failed/);await assert.rejects(stat(join(f.dir,'wrong.sqlite')),{code:'ENOENT'});
+});
+
+test('changed backend credentials fail closed and errors contain only a one-way fingerprint',async t=>{
+ const f=await fixture(t),passwordHash='ab'.repeat(16)+':'+'cd'.repeat(64),env={FACTORY_BACKUP_REPO:config.repo,FACTORY_BACKUP_GITHUB_TOKEN:config.token};
+ const writer=new GithubSnapshotStore(githubBackupConfig(env,passwordHash),{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.snapshot(f.db,{initialize:true});
+ const changed='12'.repeat(16)+':'+'34'.repeat(64),wrong=new GithubSnapshotStore(githubBackupConfig(env,changed),{fetchImpl:f.gh.fetch});await assert.rejects(wrong.connect(),e=>{assert.match(e.message,/owner-hash fingerprint/);assert.ok(!e.message.includes(changed));assert.ok(!e.message.includes(config.token));return /authentication failed/.test(e.message);});
+});
+
 test('real authenticated backend saves and recovers its complete schema, with private routes and assets protected',async t=>{
  const dir=await mkdtemp(join(tmpdir(),'midnight-full-recovery-')),gh=github(),store=new GithubSnapshotStore(config,{fetchImpl:gh.fetch,sleep:async()=>{}}),origin='http://127.0.0.1:3039',password='backup-local-fixture',salt='bc'.repeat(16),passwordHash=salt+':'+scryptSync(password,salt,64).toString('hex'),env={FACTORY_BACKUP_REPO:config.repo,FACTORY_BACKUP_GITHUB_TOKEN:config.token,FACTORY_BACKUP_ENCRYPTION_KEY:config.key.toString('hex')};
  const service=createService({dbPath:join(dir,'original.sqlite'),origin,passwordHash,secure:false,backupSettings:{env,store,autoStart:false}});await new Promise(r=>service.server.listen(0,'127.0.0.1',r));t.after(async()=>{await service.githubBackups.close();await new Promise(r=>service.server.close(r));await rm(dir,{recursive:true,force:true});});const url='http://127.0.0.1:'+service.server.address().port;

@@ -66,3 +66,11 @@ These fixtures do not establish a real live Printful acceptance test. Basic's
 history reports a live-cycle receipt only after an actual job verifies its store
 listing and cleanup. No product or customer order is created by deploying this
 page. A real selected design and garment must still complete that live cycle.
+
+Backup startup also checks the original key derivation from the currently
+configured backend credential when a new explicit backup key would otherwise
+strand a snapshot. Every candidate must pass
+AES-GCM authentication. The successful original key is retained for subsequent
+snapshots; no database is reset or unverified plaintext accepted. When none
+works, startup reports only the key-source name and a one-way credential
+fingerprint so the original configuration can be restored without logging keys.
