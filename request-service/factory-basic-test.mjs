@@ -1,0 +1,94 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import sharp from 'sharp';
+import {createHash,randomUUID,scryptSync} from 'node:crypto';
+import {DatabaseSync,backup} from 'node:sqlite';
+import {mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {createService} from './server.mjs';
+import {stripBasicWorkingPixels,clearBasicWorkingFiles} from './factory-basic-storage.mjs';
+
+const origin='http://localhost:3000',workerToken='basic-fixture-worker-'.repeat(3),salt='fb'.repeat(16),passwordHash=salt+':'+scryptSync('basic-fixture-password',salt,64).toString('hex');
+const rule={absorbShipping:false,rounding:'99',paymentFeeBps:290,platformFeeBps:0,marginBps:3500,discountBps:0,paymentFixedCents:30,platformFixedCents:0,minimumProfitCents:1000,minimumPriceCents:0,maximumPriceCents:15000};
+const response=result=>new Response(JSON.stringify({result}),{headers:{'Content-Type':'application/json'}});
+async function fixture(t,{durable=true,models=true}={}){
+ const png=await sharp({create:{width:30,height:24,channels:4,background:'#a73434'}}).png().toBuffer();let clock=Date.now(),manifest=null,live=false,creates=0,taskCreates=0,deletes=0,removed=false;
+ const variants=[{id:3280,size:'S',color:'White',price:'15.00',in_stock:true},{id:3281,size:'M',color:'White',price:'16.00',in_stock:true}],product={id:328,title:'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'};
+ let supplierPayload;
+ const fetchImpl=async(url,o={})=>{
+  url=String(url);
+  if(url==='https://api.printful.com/products')return response([product]);
+  if(url==='https://api.printful.com/products/328')return response({product,variants});
+  if(url.includes('/v2/catalog-products/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));
+  if(url.includes('/mockup-generator/printfiles/'))return response({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:12,height:8,dpi:150}],variant_printfiles:variants.map(v=>({variant_id:v.id,placements:{front:1,back:1}})),option_groups:models?["Men's","Women's",'Flat']:['Flat']});
+  if(url.includes('/mockup-generator/templates/'))return response({templates:[],variant_mapping:[]});
+  if(url.includes('/store/products/@'))return creates&&!removed?response({sync_product:{id:501,external_id:supplierPayload.sync_product.external_id}}):new Response('{}',{status:404});
+  if(url==='https://api.printful.com/store/products'&&o.method==='POST'){supplierPayload=JSON.parse(o.body);creates++;return response({id:501});}
+  if(url==='https://api.printful.com/store/products/501'){
+   if(o.method==='DELETE'){deletes++;removed=true;return response({});}
+   if(removed)return new Response('{}',{status:404});
+   return response({sync_product:{id:501,external_id:supplierPayload.sync_product.external_id},sync_variants:supplierPayload.sync_variants.map((v,i)=>({id:601+i,variant_id:v.variant_id,synced:true,is_ignored:false,availability_status:'active',currency:'USD',size:variants.find(x=>x.id===v.variant_id).size,color:'White',retail_price:v.retail_price,files:v.files.map(f=>({...f,status:'ok'}))}))});
+  }
+  if(o.method==='HEAD'&&url.includes('/factory-print-file/')){const key=new URL(url).pathname.split('/').at(-1),row=service.db.prepare('SELECT f.sha256 FROM factory_file_links l JOIN factory_print_files f ON f.id=l.file WHERE l.hash=?').get(createHash('sha256').update(key).digest('hex'));return new Response(null,{headers:{'Content-Type':'image/png','X-Midnight-Print-Sha256':row?.sha256||''}});}
+  if(url.includes('/mockup-generator/create-task/')){const b=JSON.parse(o.body);if(models)assert.deepEqual(b.option_groups,["Men's","Women's"]);else assert.equal(b.option_groups,undefined);taskCreates++;return response({task_key:'basic-'+b.variant_ids[0],status:'pending'});}
+  if(url.includes('/mockup-generator/task?')){const id=Number(new URL(url).searchParams.get('task_key').split('-')[1]);return response({status:'completed',mockups:[{variant_ids:[id],placement:'front',mockup_url:'https://files.cdn.printful.com/basic-'+id+'.png',extra:[{title:'Back',option_group:models?"Men's":'Flat',url:'https://files.cdn.printful.com/basic-back-'+id+'.png'}]}]});}
+  if(url.startsWith('https://files.cdn.printful.com/basic-'))return new Response(png,{headers:{'Content-Type':'image/png'}});
+  if(url.includes('/contents/factory-listings.json')){if(o.method==='PUT'){manifest=JSON.parse(Buffer.from(JSON.parse(o.body).content,'base64').toString());return new Response('{}');}return manifest?new Response(JSON.stringify({sha:'basic-test',content:Buffer.from(JSON.stringify(manifest)).toString('base64')})):new Response('{}',{status:404});}
+  if(url.includes('/dispatches'))return new Response(null,{status:204});
+  if(url.startsWith('https://midnight-designs.store/products.json'))return new Response(JSON.stringify({products:live?Object.values(manifest?.products||{}):[]}));
+  throw Error('Unexpected Basic fixture request: '+url);
+ };
+ const service=createService({dbPath:':memory:',origin,passwordHash,secure:false,factoryLoginRequired:false,productionSettings:{storageDurable:durable,workerToken,clock:()=>clock},workflowSettings:{storageDurable:durable,fetchImpl},factorySettings:{token:'supplier-fixture',fetchImpl},blueprintSettings:{token:'supplier-fixture',fetchImpl,plans:{products:{}}},publishingSettings:{token:'supplier-fixture',githubToken:'store-fixture',storageDurable:durable,fetchImpl,clock:()=>clock},ideaSettings:{env:{},catalog:[]}});
+ await new Promise(r=>service.server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>service.server.close(r)));const url='http://127.0.0.1:'+service.server.address().port,db=service.db;
+ async function call(path,b,machine=false){const r=await fetch(url+path,{method:b?'POST':'GET',headers:{Origin:origin,...(b?{'Content-Type':'application/json'}:{}),...(machine?{Authorization:'Bearer '+workerToken}:{})},body:b?JSON.stringify(b):undefined});return {status:r.status,data:await r.json()};}
+ const basic=(path='',b)=>call('/api/owner/ai-factory/basic'+path,b),api=(path,b)=>call('/api/owner/ai-factory/'+path,b),machine=(path,b={})=>call('/internal/factory/'+path,{worker:'basic-worker',...b},true);
+ await api('budget',{dailyBudget:1000,totalBudget:2000});await api('pricing/rule',{category:'shirts',rule});await machine('heartbeat');
+ const upload=await api('artwork/upload',{name:'Raven front',collection:'Raven test set',scope:'collection',target:'',product:null,placements:['front'],instructions:'Keep the original artwork.',permissions:{reuse:true,crop:false,modify:false,recolor:false},files:[{filename:'front.png',base64:png.toString('base64')}]});assert.equal(upload.status,200);const artwork=upload.data.artworks[0].id;
+ const set='basic:test';db.prepare('INSERT INTO idea_sets(id,source,name,parts,updated,jacket) VALUES(?,?,?,?,?,0)').run(set,'printful','Raven test set',JSON.stringify({front:{artwork,name:'Raven front',url:'/api/owner/ai-factory/artwork/'+artwork+'/file'}}),new Date().toISOString());
+ async function step(){clock+=31000;await machine('heartbeat');const c=await machine('claim');assert.ok(c.data.job,JSON.stringify(c.data));return machine('step',{job:c.data.job,lease:c.data.lease});}
+ async function start(){const c=await basic('/create',{requestKey:randomUUID(),setId:set,product:328,sizes:['S','M'],audience:'unisex'});assert.equal(c.status,200,JSON.stringify(c.data));return c.data;}
+ async function preview(item){for(let i=0;i<3;i++)assert.equal((await step()).data.status,'queued');const held=await step();assert.equal(held.data.status,'waiting_input');assert.match(held.data.result.wait,/Pricing/);assert.equal((await api('pricing/confirm-quotes',{job:item.job,extraCents:0,shippingCents:null,source:'Verified supplier included print charges',verified:true})).status,200);await basic('/resume',{id:item.id});assert.equal((await step()).data.status,'queued','Basic prepares mockups before final publication approval');assert.equal((await step()).data.status,'queued');for(let i=0;i<12;i++){const result=await step();if(result.data.status==='waiting_input')break;}const current=(await basic()).data.active;assert.equal(current.canApprove,true,JSON.stringify(current));return current;}
+ return {service,db,call,basic,api,machine,step,start,preview,set,artwork,png,url,live:()=>{live=true;},counts:()=>({creates,taskCreates,deletes}),manifest:()=>manifest};
+}
+
+test('Basic creates one real tracked recipe, retrieves model mockups before approval, verifies publication and releases working capacity',async t=>{
+ const f=await fixture(t),item=await f.start();
+ const duplicate=await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'});assert.equal(duplicate.status,409);
+ assert.equal((await f.basic('/create',{requestKey:item.request_key,setId:f.set,product:328})).data.id,item.id,'a repeated creation request returns the same item');
+ const current=await f.preview(item);assert.equal(f.counts().creates,1);assert.equal(f.counts().taskCreates,2);assert.equal(f.manifest(),null,'mockup creation never publishes the listing');assert.equal(current.mockups.length,4);
+ const file=f.db.prepare("SELECT data FROM factory_print_files WHERE placement='back' LIMIT 1").get();assert.deepEqual([...(await sharp(Buffer.from(file.data)).raw().toBuffer()).subarray(0,4)],[0,0,0,255],'unused print area has actual black pixels');
+ assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,200);assert.equal((await f.step()).data.status,'retry_wait');assert.ok(f.manifest());assert.ok((await f.basic()).data.active,'cleanup waits for actual live-store verification');
+ f.live();assert.equal((await f.step()).data.status,'completed');const saved=(await f.basic()).data;assert.equal(saved.active,null);const result=saved.recent[0];assert.equal(result.status,'published');assert.equal(result.cleanup.verified,true);assert.ok(result.cleanup.reclaimedBytes>0);assert.equal(result.storage.printBytes,0);assert.equal(result.storage.stagingBytes,0);assert.ok(result.storage.mockupBytes>0);assert.equal(f.counts().deletes,0,'publication cleanup never deletes a live supplier product');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_print_drafts').get().n,0,'working blueprint quota is reclaimed');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_artwork WHERE id=?').get(f.artwork).n,1);assert.equal(saved.liveCycleVerified,true);
+ const media=new URL(Object.values(f.manifest().products)[0].image).pathname;assert.equal((await fetch(f.url+media)).status,200,'published photos survive print-file cleanup');assert.equal((await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'})).status,409,'the same approved recipe does not create a duplicate listing');
+});
+
+test('Disapproval deletes only its owned unpublished supplier draft, originals survive, and failed cleanup keeps the next item locked',async t=>{
+ const f=await fixture(t),item=await f.start();await f.preview(item);
+ const profile=f.db.prepare('SELECT templates FROM factory_job_profiles WHERE job=?').get(item.job),other=randomUUID();f.db.prepare('INSERT INTO factory_job_profiles VALUES(?,?,?)').run(other,'Another product references this set',profile.templates);
+ assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,409);let state=(await f.basic()).data;assert.equal(state.active.status,'cleanup_failed');assert.equal(state.active.closed,0);assert.equal((await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'})).status,409);
+ f.db.prepare('DELETE FROM factory_job_profiles WHERE job=?').run(other);assert.equal((await f.basic('/resume',{id:item.id})).status,200);state=(await f.basic()).data;assert.equal(state.active,null);assert.equal(state.rejectionCleanupVerified,true);assert.equal(state.recent[0].storage.mockupBytes,0);assert.equal(state.recent[0].storage.workingBytes,0);assert.equal(f.counts().deletes,1,'retrying cleanup never creates or deletes another product');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_artwork WHERE id=?').get(f.artwork).n,1);
+});
+
+test('Basic backup copies omit disposable pixels, preserve file IDs and restore the same recipe without duplicate supplier or mockup tasks',async t=>{
+ const f=await fixture(t),item=await f.start();await f.preview(item);const folder=await mkdtemp(join(tmpdir(),'basic-backup-'));t.after(()=>rm(folder,{recursive:true,force:true}));const path=join(folder,'snapshot.sqlite');await backup(f.db,path);const copy=new DatabaseSync(path);
+ try{stripBasicWorkingPixels(copy);assert.equal(copy.prepare('SELECT sum(length(data)) n FROM factory_print_files').get().n,0);assert.equal(copy.prepare('SELECT sum(length(data)) n FROM factory_mockups').get().n,0);assert.equal(copy.prepare('SELECT count(*) n FROM factory_mockup_downloads').get().n,0);assert.equal(copy.prepare('SELECT count(*) n FROM factory_artwork WHERE id=?').get(f.artwork).n,1);}finally{copy.close();}
+ const ids=f.db.prepare('SELECT id FROM factory_print_files ORDER BY id').all();stripBasicWorkingPixels(f.db);assert.equal((await f.basic()).data.active.temporaryPixelsMissing,true);assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,409);const before=f.counts();assert.equal((await f.basic('/resume',{id:item.id})).status,200);assert.deepEqual(f.db.prepare('SELECT id FROM factory_print_files ORDER BY id').all(),ids);assert.deepEqual(f.counts(),before);assert.equal((await f.basic()).data.active.temporaryPixelsMissing,false);
+});
+
+test('Basic exposes real storage blockers, keeps customer routes isolated, and requires explicit review when people/model options are missing',async t=>{
+ const f=await fixture(t,{durable:false}),state=(await f.basic()).data;assert.ok(state.blockers.some(x=>x.code==='workspace'));assert.equal(state.liveCycleVerified,false);assert.equal((await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328})).status,409);assert.equal((await f.call('/api/requests')).status,401);assert.equal((await f.call('/api/owner/export')).status,401);
+ const response=await fetch(f.url+'/ai-factory/basic');assert.equal(response.status,200);assert.match(await response.text(),/data-factory-public="true"/);
+ const g=await fixture(t,{models:false}),item=await g.start();await g.preview(item);assert.equal((await g.basic('/approve',{id:item.id,confirm:true})).status,409);assert.equal((await g.basic('/approve',{id:item.id,confirm:true,acceptMissingModel:true})).status,200);
+});
+
+test('Basic does not substitute artwork into other placements or approve changed print files',async t=>{
+ const f=await fixture(t),inspect=await f.basic('/inspect',{setId:f.set,product:328,audience:'unisex'});assert.equal(inspect.status,200);assert.deepEqual(inspect.data.placements.map(x=>x.area),['front']);assert.deepEqual(inspect.data.fill,['back']);const item=await f.start();await f.preview(item);f.db.exec("DROP TRIGGER preserve_factory_print_files_UPDATE");f.db.prepare("UPDATE factory_print_files SET data=x'00' WHERE placement='front'").run();assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,409);
+ const old=(await f.basic()).data.active;assert.equal(old.decision,null);assert.equal(f.manifest(),null);
+});
+
+test('Basic follows private installations’ existing login setting and preserves its exact destination',async t=>{
+ const service=createService({dbPath:':memory:',origin,passwordHash,secure:false,factorySettings:{token:null},publishingSettings:{token:null,githubToken:null},ideaSettings:{env:{},catalog:[]}});await new Promise(r=>service.server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>service.server.close(r)));const url='http://127.0.0.1:'+service.server.address().port;
+ const page=await fetch(url+'/ai-factory/basic',{redirect:'manual'});assert.equal(page.status,302);assert.equal(page.headers.get('location'),'/login?next=ai-factory-basic');assert.equal((await fetch(url+'/factory-basic.js')).status,401);assert.equal((await fetch(url+'/api/owner/ai-factory/basic')).status,401);
+ const login=await fetch(url+'/api/owner/login',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({password:'basic-fixture-password'})}),cookie=login.headers.get('set-cookie').split(';')[0];assert.equal(login.status,200);const opened=await fetch(url+'/ai-factory/basic',{headers:{Cookie:cookie}});assert.equal(opened.status,200);assert.doesNotMatch(await opened.text(),/data-factory-public="true"/);
+});

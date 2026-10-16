@@ -306,7 +306,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
    ideas:ideas.map(i=>({id:i.id,set:i.set_id,kind:i.kind,title:i.title,pieces:JSON.parse(i.pieces).map(p=>({...p,placements:p.placements.map(({url,...x})=>x)})),reason:i.reason,status:i.status,error:i.error,jobs:JSON.parse(i.jobs).filter(Boolean).length,created:i.created}))};
  }
 
- return {tick,generate,make,analyze,refreshPrintful,publishIdeas,autopilot,printfulProducts:()=>pfProducts,printfulState:()=>printful,async handle(req,res,path,method){
+ return {tick,generate,make,analyze,syncSets(){analyze(300);uploadSets();},refreshPrintful,publishIdeas,autopilot,printfulProducts:()=>pfProducts,printfulState:()=>printful,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/ideas'))return false;auth(req,null,true);const p=path.slice('/api/owner/ai-factory/ideas'.length);
   if(method==='GET'){if(p!=='')fail(404,'Not found.');if(!printful.checked)await refreshPrintful();analyze(25);uploadSets();if(!get("SELECT 1 x FROM idea_set_ideas WHERE status='new'"))generate();send(res,200,snapshot());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-ideas',120);const b=await body(req);
