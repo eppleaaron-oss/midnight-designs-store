@@ -2,7 +2,7 @@
 (()=>{
  const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
  let data=null,busy=false;
- async function api(body){const r=await fetch('/api/owner/ai-factory/layouts',{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(20000)});if(r.status===401){location.replace('/login?next=ai-factory');throw Error('Master sign-in required.');}const d=await r.json();if(!r.ok)throw Error(d.error||'Could not load layouts.');return d;}
+ async function api(body){const r=await fetch('/api/owner/ai-factory/layouts',{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(20000)});if(r.status===401&&document.body.dataset.factoryPublic!=='true'){location.replace('/login?next=ai-factory');throw Error('Master sign-in required.');}const d=await r.json();if(!r.ok)throw Error(d.error||'Could not load layouts.');return d;}
  function render(){
   if(!data)return;const category=$('layoutCategory').value,q=$('layoutSearch').value.trim().toLowerCase(),labels=Object.fromEntries(data.categories.map(c=>[c.id,c.label])),shown=data.layouts.filter(l=>(!category||l.category===category)&&(!q||(l.number+' '+l.name+' '+l.recipe+' '+labels[l.category]).toLowerCase().includes(q)));
   $('layoutCount').textContent=shown.length+' of '+data.layouts.length+' layouts';$('layoutHelp').textContent=data.note;

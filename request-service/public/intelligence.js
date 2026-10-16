@@ -2,7 +2,7 @@
 (()=>{
 const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined&&text!==null)e.textContent=text;if(cls)e.className=cls;return e;};
 let data=null,section='brand-dna',store=null;
-async function api(path,body){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(70000)});if(r.status===401){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Request failed.');return d;}
+async function api(path,body){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(70000)});if(r.status===401&&document.body.dataset.factoryPublic!=='true'){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Request failed.');return d;}
 function toast(t){const e=$('toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,6000);}
 const guard=(b,fn)=>async(...a)=>{if(b)b.disabled=true;try{await fn(...a);}catch(e){toast(e.message);}finally{if(b)b.disabled=false;}};
 const options=(sel,rows,keep)=>{const v=sel.value;sel.replaceChildren(...rows.map(([value,label])=>{const o=node('option',label);o.value=value;return o;}));if(keep&&rows.some(([value])=>value===v))sel.value=v;};

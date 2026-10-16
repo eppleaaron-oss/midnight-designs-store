@@ -8,7 +8,7 @@ let snap=null,library=null,queueFilter='all',planTimer=0,busy=false,lastPlan=nul
 const selected=new Set(),librarySelected=new Set(),garments=new Set(),each={},mix={},roles={},density={},perColor={},exclude=new Set(),designGarments={};
 let baseColor='Black';
 
-async function api(path,body,raw){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(70000)});if(r.status===401){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Factory request failed.');return d;}
+async function api(path,body,raw){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(70000)});if(r.status===401&&document.body.dataset.factoryPublic!=='true'){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Factory request failed.');return d;}
 function toast(text){const t=$('toast');t.textContent=text;t.hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.hidden=true,6000);}
 async function guard(button,work){if(busy)return;busy=true;if(button)button.disabled=true;try{await work();}catch(e){toast(e.message);}finally{busy=false;if(button)button.disabled=false;renderControls();}}
 
