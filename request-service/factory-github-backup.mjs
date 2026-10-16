@@ -11,6 +11,7 @@ const digest=b=>createHash('sha256').update(b).digest('hex');
 const problem=(message,status=503,extra={})=>Object.assign(Error(message),{status,...extra});
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const sha=value=>typeof value==='string'&&/^[a-f0-9]{40}$/.test(value);
+const gitBlobSha=bytes=>createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
 export function githubBackupConfig(env={},passwordHash=''){
  if(!env.FACTORY_BACKUP_REPO)return null;
  if(!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(env.FACTORY_BACKUP_REPO))throw problem('Invalid private backup repository.');
@@ -64,11 +65,22 @@ export class GithubSnapshotStore{
   const entry=await this.api('/contents/'+MANIFEST+'?ref='+ref.object.sha,{missing:true});let manifest=null;
   if(entry){
    if(entry.encoding!=='base64'||typeof entry.content!=='string'||entry.size>2*1024*1024||entry.content.length>3*1024*1024)throw problem('Backup manifest is invalid.');
-   const encrypted=Buffer.from(entry.content.replace(/\s/g,''),'base64');let plain;
+   // Verify the transport bytes before classifying an AES failure as a key
+   // problem. Contents responses can be transformed by intermediaries; Git's
+   // immutable blob endpoint provides an independent, hash-checked read.
+   let encrypted=Buffer.from(entry.content.replace(/\s/g,''),'base64');
+   if(!sha(entry.sha))throw problem('Backup manifest has no verified Git blob identity.');
+   if(gitBlobSha(encrypted)!==entry.sha){
+    const blob=await this.api('/git/blobs/'+entry.sha);
+    if(blob.encoding!=='base64'||typeof blob.content!=='string'||blob.size>2*1024*1024||blob.content.length>3*1024*1024)throw problem('Backup manifest download is invalid. The saved snapshot was not changed.');
+    encrypted=Buffer.from(blob.content.replace(/\s/g,''),'base64');
+    if(gitBlobSha(encrypted)!==entry.sha)throw problem('Backup manifest download failed its Git checksum. The saved snapshot was not changed.');
+   }
+   let plain;
    for(const candidate of [{key:this.key,source:this.keySource||'configured key'},...(this.recoveryKeys||[])]){
     try{plain=unseal(encrypted,candidate.key,'manifest-v1');this.key=candidate.key;this.keySource=candidate.source;break;}catch{}
    }
-   if(!plain)throw problem('Backup authentication failed. The configured backend keys cannot decrypt this snapshot. Key source: '+(this.keySource||'configured key')+'; owner-hash fingerprint: '+(this.ownerFingerprint||'unavailable')+'. The local database was not replaced.');
+   if(!plain)throw problem('Backup authentication failed for verified Git blob '+entry.sha+'. The configured backend keys cannot decrypt this snapshot. Key source: '+(this.keySource||'configured key')+'; owner-hash fingerprint: '+(this.ownerFingerprint||'unavailable')+'. The local database was not replaced.');
    try{manifest=JSON.parse(plain.toString('utf8'));}catch{throw problem('Backup manifest is invalid.');}this.validateManifest(manifest);
   }
   this.head=ref.object.sha;this.tree=commit.tree.sha;this.manifest=manifest;return manifest;

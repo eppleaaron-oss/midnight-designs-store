@@ -10,7 +10,7 @@ import {durableQueueStorage} from './factory-storage.mjs';
 import {createService} from './server.mjs';
 
 const config={repo:'owner/private-data',token:'private-fixture-token',key:Buffer.alloc(32,17),maxBytes:32*1024*1024,interval:60000};
-const objectHash=b=>createHash('sha1').update(b).digest('hex');
+const objectHash=b=>{const bytes=Buffer.from(b);return createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');};
 const reply=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json',...headers}});
 function github(){
  const blobs=new Map(),trees=new Map([['b'.repeat(40),new Map()]]),commits=new Map([['a'.repeat(40),{tree:{sha:'b'.repeat(40)},parents:[]}]]),calls=[];
@@ -22,7 +22,7 @@ function github(){
   if(path==='')return reply({id:123,private:g.private,visibility:g.private?'private':'public',default_branch:'main',size:2});
   if(path==='/git/ref/heads/main')return reply({object:{sha:g.head}});
   if(path.startsWith('/git/commits/')&&method==='GET')return reply(commits.get(path.split('/').at(-1)));
-  if(path==='/contents/factory-backup/latest.enc'){const commit=commits.get(u.searchParams.get('ref')),tree=trees.get(commit.tree.sha),sha=tree.get('factory-backup/latest.enc');if(!sha)return reply({message:'Not Found'},404);const data=blobs.get(sha);return reply({encoding:'base64',content:data.toString('base64'),size:data.length});}
+  if(path==='/contents/factory-backup/latest.enc'){const commit=commits.get(u.searchParams.get('ref')),tree=trees.get(commit.tree.sha),sha=tree.get('factory-backup/latest.enc');if(!sha)return reply({message:'Not Found'},404);const data=blobs.get(sha),download=g.alteredContents?Buffer.from(data.toString('utf8')):data;return reply({sha,encoding:'base64',content:download.toString('base64'),size:download.length});}
   if(path.startsWith('/git/blobs/')&&method==='GET'){const data=blobs.get(path.split('/').at(-1));return reply({encoding:'base64',content:data.toString('base64'),size:data.length});}
   if(path==='/git/blobs'&&method==='POST'){const data=Buffer.from(body.content,'base64'),sha=objectHash(data);blobs.set(sha,data);return reply({sha});}
   if(path==='/git/trees'&&method==='POST'){assert.equal(new Set(body.tree.map(t=>t.path)).size,body.tree.length,'No duplicate tree paths');const next=new Map(trees.get(body.base_tree));for(const t of body.tree){if(t.sha===null){assert.ok(next.has(t.path));next.delete(t.path);}else{assert.ok(blobs.has(t.sha));next.set(t.path,t.sha);}}const sha=objectHash(JSON.stringify([...next]));trees.set(sha,next);return reply({sha});}
@@ -54,6 +54,16 @@ test('public repository is refused before uploading or downloading private data'
 test('wrong key and damaged chunks stop recovery without creating a partial database',async t=>{
  const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});const dest=join(f.dir,'recovery.sqlite'),wrong=new GithubSnapshotStore({...config,key:Buffer.alloc(32,3)},{fetchImpl:f.gh.fetch});await assert.rejects(wrong.restore(dest),/authentication failed/);await assert.rejects(stat(dest),{code:'ENOENT'});
  const chunk=f.store.manifest.chunks[0];f.gh.blobs.get(chunk.sha)[30]^=1;await assert.rejects(f.store.restore(dest),/could not be verified/);await assert.rejects(stat(dest),{code:'ENOENT'});
+});
+test('an altered contents download recovers through the immutable verified Git blob',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});f.gh.alteredContents=true;
+ const reader=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch}),dest=join(f.dir,'verified-transport.sqlite');await reader.restore(dest);
+ const restored=new DatabaseSync(dest);try{assert.deepEqual(Buffer.from(restored.prepare('SELECT data FROM factory_artwork').get().data),f.artwork);}finally{restored.close();}
+ assert.ok(f.gh.calls.some(c=>c.path==='/git/blobs/'+f.gh.trees.get(f.gh.commits.get(f.gh.head).tree.sha).get('factory-backup/latest.enc')));
+});
+test('corrupt manifest bytes fail the Git checksum before blaming the encryption key',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});const id=f.gh.trees.get(f.gh.commits.get(f.gh.head).tree.sha).get('factory-backup/latest.enc');f.gh.blobs.get(id)[30]^=1;
+ const reader=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch}),dest=join(f.dir,'corrupt-manifest.sqlite');await assert.rejects(reader.restore(dest),/Git checksum/);await assert.rejects(stat(dest),{code:'ENOENT'});
 });
 test('recovery never overwrites a current local database',async t=>{
  const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});const dest=join(f.dir,'existing.sqlite');await writeFile(dest,'current private data');await assert.rejects(f.store.restore(dest),/will not replace/);assert.equal(await readFile(dest,'utf8'),'current private data');
