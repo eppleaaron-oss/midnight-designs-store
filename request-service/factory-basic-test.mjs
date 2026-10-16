@@ -26,7 +26,7 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
   if(url.startsWith('https://api.github.com/repos/owner/private-data')||url.startsWith('https://uploads.github.com/repos/owner/private-data'))return git.fetch(url,o);
   if(url==='https://api.github.com/repos/eppleaaron-oss/midnight-designs-store')return new Response(JSON.stringify({id:1393932711,permissions:{push:true}}));
   if(url.includes('/contents/images/factory/')){const path=new URL(url).pathname;if(o.method==='PUT'){const b=JSON.parse(o.body),data=Buffer.from(b.content,'base64'),sha=createHash('sha1').update('blob '+data.length+'\0').update(data).digest('hex');photos.set(path,{sha,data});return new Response(JSON.stringify({content:{sha}}));}const saved=photos.get(path);return saved?new Response(JSON.stringify({sha:saved.sha,size:saved.data.length})):new Response('{}',{status:404});}
-  if(url==='https://api.printful.com/products')return response(outfitProducts?[product,jacket]:[product]);
+  if(url==='https://api.printful.com/products')return response([...(outfitProducts?[product,jacket]:[product]),{id:83,title:'All-Over Print Basic Pillow',type_name:'Pillow'},{id:630,title:'All-Over Print Unisex Bandana',type_name:'Bandana'}]);
   if(url==='https://api.printful.com/products/328')return response({product,variants});
   if(outfitProducts&&url==='https://api.printful.com/products/390')return response({product:jacket,variants:jacketVariants});
   if(url.includes('/v2/catalog-products/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));
@@ -160,6 +160,6 @@ test('outfit preflight is atomic, pause prevents the next piece, and failed dele
 });
 
 test('primary-panel adaptation requires owner permission and preserves matching assignments',async t=>{
- const f=await fixture(t);const original=JSON.parse(f.db.prepare('SELECT parts FROM idea_sets WHERE id=?').get(f.set).parts);f.db.prepare('UPDATE idea_sets SET parts=? WHERE id=?').run(JSON.stringify({default:original.front}),f.set);
+ const f=await fixture(t);const catalog=(await f.basic('/catalog')).data.products;assert.equal(catalog.some(p=>p.id===83),false,'unclassified nonclothing products are not advertised for production');assert.equal(catalog.find(p=>p.id===630).role,'accessories','live creator capabilities take priority over an incompatible saved category');const original=JSON.parse(f.db.prepare('SELECT parts FROM idea_sets WHERE id=?').get(f.set).parts);f.db.prepare('UPDATE idea_sets SET parts=? WHERE id=?').run(JSON.stringify({default:original.front}),f.set);
  assert.equal((await f.basic('/inspect',{setId:f.set,product:328})).status,409);const inspected=await f.basic('/inspect',{setId:f.set,product:328,adaptArtwork:true});assert.equal(inspected.status,200);assert.deepEqual(inspected.data.placements.map(p=>[p.area,p.part]),[['front','default']]);assert.deepEqual(inspected.data.fill,['back']);assert.match(inspected.data.warnings.join(' '),/with your primary-panel permission/);
 });

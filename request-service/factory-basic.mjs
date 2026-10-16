@@ -34,7 +34,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  }
  async function catalog(){
   const live=await manager.catalog(),known=new Map(loadCatalog(PLANS).map(x=>[x.id,x]));
-  return live.filter(p=>known.has(p.id)||/all.over.print/i.test(p.name)).map(p=>({...p,role:known.get(p.id)?.role||p.roles[0],image:known.get(p.id)?.image||null}));
+  return live.filter(p=>known.has(p.id)||/all.over.print/i.test(p.name)).map(p=>{const preferred=known.get(p.id)?.role;return {...p,role:p.roles.includes(preferred)?preferred:p.roles[0],image:known.get(p.id)?.image||null};}).filter(p=>typeof p.role==='string');
  }
  function sets(){ideas.syncSets();return all('SELECT * FROM idea_sets WHERE enabled=1 ORDER BY jacket DESC,name').map(s=>({...s,parts:JSON.parse(s.parts)}));}
  async function inspect({setId,product,sizes=[],audience='unisex',adaptArtwork=false}){
