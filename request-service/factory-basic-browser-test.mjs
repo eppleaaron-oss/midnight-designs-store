@@ -27,5 +27,6 @@ try{
  await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'/tmp/midnight-basic-desktop.png',fullPage:true});await page.setViewportSize({width:390,height:844});await page.screenshot({path:'/tmp/midnight-basic-phone.png',fullPage:true});
  await page.locator('#setSearch').fill('no matching set');assert.equal(await page.locator('#sets .design-card').count(),0);await page.getByText('No sets match this search.',{exact:true}).waitFor();
  await page.goto(origin+'/ai-factory');await page.getByRole('link',{name:'Basic',exact:true}).click();await page.getByRole('heading',{name:'Keep it basic.'}).waitFor();assert.ok(page.url().endsWith('/ai-factory/basic'));
+ service.db.prepare('UPDATE factory_basic_github_settings SET enabled=1,managed=1 WHERE id=1').run();await page.reload();await page.getByText(/automatic GitHub workflow/).waitFor();assert.equal(await page.locator('#githubForm').isHidden(),true,'managed publishing does not ask for an owner token');
  assert.equal((await page.request.get(origin+'/api/requests')).status(),401);assert.deepEqual(errors,[]);console.log('PASS Basic navigation, real supplier template selection, fixed black recipe, truthful blockers, no login, customer isolation and six screen sizes');
 }finally{await browser.close();await new Promise(r=>service.server.close(r));}

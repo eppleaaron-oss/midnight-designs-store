@@ -90,3 +90,19 @@ AES-GCM authentication. The successful original key is retained for subsequent
 snapshots; no database is reset or unverified plaintext accepted. When none
 works, startup reports only the key-source name and a one-way credential
 fingerprint so the original configuration can be restored without logging keys.
+
+## Automatic GitHub publishing connection
+
+The public store repository's `basic-github-publisher.yml` workflow authenticates
+itself with a signed GitHub OIDC identity pinned to this repository ID, exact
+workflow, main branch, public visibility and GitHub-hosted runner. It lends its
+short-lived store-scoped workflow credential to the backend over HTTPS; the
+credential stays in memory and is revoked/discarded after the publishing window.
+No additional owner PAT or Render environment edit is required for this path.
+
+The workflow checks periodically and stays connected while an approved listing
+is waiting. Approval queues publication, which may wait for the next GitHub run
+and Pages deployment. It never grants owner approval or creates customer orders.
+Private artwork storage continues to use the existing separate backup credential.
+Optional app-entered store tokens remain supported. No private-repository or
+larger-runner jobs are enabled by this workflow.
