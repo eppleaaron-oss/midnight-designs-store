@@ -138,6 +138,7 @@ test('GitHub outfit produces two coordinated pieces serially, waits for owner de
  const first=(await f.basic()).data.active;assert.ok(first);assert.equal(first.recipe.outfitId,outfit.id);
  const context=JSON.parse(f.db.prepare('SELECT selection FROM factory_job_audiences WHERE job=?').get(first.job).selection);assert.equal(context.outfitId,outfit.id);assert.equal(context.storeCollection,choice.name);
  await f.service.basicOutfits.tick();assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);
+ assert.equal((await f.api('outfits/publish',{id:outfit.id,published:true})).status,409);const legacyPiece=f.db.prepare('SELECT id FROM factory_outfit_items WHERE outfit=?').get(outfit.id);assert.equal((await f.api('outfits/replace',{itemId:legacyPiece.id})).status,409);
  await f.preview(first);await f.service.basicOutfits.tick();assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1,'owner review holds the next piece');
  await f.basic('/approve',{id:first.id,confirm:true});await f.step();f.live();assert.equal((await f.step()).data.status,'completed');assert.equal(f.git.assets.size,0);
  await f.service.basicOutfits.tick();const second=(await f.basic()).data.active;assert.ok(second);assert.notEqual(second.id,first.id);assert.equal(second.recipe.product,390);
