@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   sync:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || (github.actor == github.repository_owner && github.triggering_actor == github.repository_owner))
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || (github.event_name == 'repository_dispatch' && github.actor == 'github-actions[bot]') || (github.actor == github.repository_owner && github.triggering_actor == github.repository_owner))
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

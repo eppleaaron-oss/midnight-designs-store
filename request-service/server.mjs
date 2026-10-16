@@ -1,3 +1,4 @@
+import {factoryGithubPublisher} from './factory-github-publisher.mjs';
 import {startBasicWorker} from './factory-inline-worker.mjs';
 import {factoryBasicGithub} from './factory-basic-github.mjs';
 import {factoryBasic} from './factory-basic.mjs';
@@ -104,6 +105,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const githubBackups=factoryGithubBackups({...backupSettings,db,dbPath,auth:factoryAuth,body,send,fail,limit,origin,passwordHash});
  const basicHandler=factoryBasic({db,auth:factoryAuth,body,send,fail,limit,origin,manager:factoryHandler,ideas:ideasHandler,workflow,blueprints:blueprintHandler,production:productionHandler,rendering:renderingHandler,publishing:publishingHandler,pricing:pricingHandler,quality:pipelineHandler.quality,backups:githubBackups});productionHandler.setBasic(basicHandler);publishingHandler.setBasic(basicHandler);
  basicGithub=factoryBasicGithub({db,backups:githubBackups,basic:basicHandler,passwordHash,env:backupSettings.env||{},...basicGithubSettings});basicHandler.setWorkspace(basicGithub);workflow.setBasicWorkspace(basicGithub);renderingHandler.setBasic(basicHandler);
+ const githubPublisher=factoryGithubPublisher({workspace:basicGithub,db,body,send,fail,limit});
  const historyHandler=factoryHistory({publicAccess:!factoryLoginRequired,db,auth:factoryAuth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler,pipeline:pipelineHandler});
  const startedAt=new Date().toISOString();
  const root=join(dirname(fileURLToPath(import.meta.url)),'public');
@@ -111,6 +113,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data: https://*.printful.com https://printful-upload.s3-accelerate.amazonaws.com "+storefrontOrigin+"; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");if(secure)res.setHeader('Strict-Transport-Security','max-age=31536000');
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
+   if(await githubPublisher.handle(req,res,path,method))return;
    if(await basicHandler.handle(req,res,path,method,url))return;
    if(await githubBackups.handle(req,res,path,method))return;
    if(await brandingHandler.handle(req,res,path,method))return;
