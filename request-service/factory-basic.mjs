@@ -1,3 +1,4 @@
+import {audienceMatches} from './factory-audiences.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {variantAreas} from './factory-blueprints.mjs';
 import {garmentColorCapability} from './factory-color.mjs';
@@ -18,7 +19,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  CREATE UNIQUE INDEX IF NOT EXISTS factory_basic_one_active ON factory_basic_items((1)) WHERE closed=0;`);
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),run=(q,...a)=>db.prepare(q).run(...a),now=()=>new Date(clock()).toISOString();
  const row=job=>get('SELECT * FROM factory_basic_items WHERE job=?',job),active=()=>get('SELECT * FROM factory_basic_items WHERE closed=0');
- let creating=false,cleaning=false,workspace=null;
+ let creating=false,cleaning=false,workspace=null,outfits=null;
  const remote=()=>workspace?.ready()===true;
  const checkpoint=job=>workspace?.snapshot().enabled&&(!job||row(job))?workspace.checkpoint(job):Promise.resolve();
  function blockers(){
@@ -36,21 +37,23 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
   return live.filter(p=>known.has(p.id)||/all.over.print/i.test(p.name)).map(p=>({...p,role:known.get(p.id)?.role||p.roles[0],image:known.get(p.id)?.image||null}));
  }
  function sets(){ideas.syncSets();return all('SELECT * FROM idea_sets WHERE enabled=1 ORDER BY jacket DESC,name').map(s=>({...s,parts:JSON.parse(s.parts)}));}
- async function inspect({setId,product,sizes=[],audience='unisex'}){
+ async function inspect({setId,product,sizes=[],audience='unisex',adaptArtwork=false}){
+  if(typeof adaptArtwork!=='boolean')fail(400,'Choose whether to adapt artwork to primary panels.');
   const set=sets().find(s=>s.id===setId);if(!set)fail(400,'Select an existing design set.');
   if(!Number.isSafeInteger(product))fail(400,'Choose an exact garment.');
   if(!['unisex','men','women','children'].includes(audience)||!Array.isArray(sizes)||sizes.length>100||sizes.some(x=>typeof x!=='string'||x.length>40))fail(400,'Choose a supported audience and size range.');
   const available=(await catalog()).find(p=>p.id===product);if(!available)fail(409,'This garment is not in the connected all-over-print catalog.');
   const [detail,bp]=await Promise.all([manager.productDetails(product),blueprints.load(product,'default')]);
   if(bp.source!=='live'||garmentColorCapability(bp).mode!=='print')fail(409,'This garment has no verified live all-over-print blueprint.');
-  if(!detail.audiences.includes(audience))fail(409,'This garment does not support the selected audience.');
+  if(!audienceMatches(detail,audience))fail(409,'This garment does not support the selected audience.');
   const bySize=new Map();for(const v of detail.variants){if(sizes.length&&!sizes.includes(v.size))continue;const prior=bySize.get(v.size||v.name);if(!prior||/^white$/i.test(v.color))bySize.set(v.size||v.name,v);}
   const variants=[...bySize.values()];if(!variants.length||sizes.some(s=>!variants.some(v=>v.size===s)))fail(409,'A selected size is not currently available.');
   const areaMap=new Map();for(const v of variants)for(const a of variantAreas(bp,v.id))if(!/^label|^inside_label/i.test(a.placement))areaMap.set(a.placement,a);
   const placements=[],fill=[],warnings=[],used=new Set();
   for(const area of areaMap.values()){
-   const key=normalize(area.placement),part=set.parts[key];
-   if(part){if(part.artwork&&isBrandArtwork(db,get('SELECT * FROM factory_artwork WHERE id=?',part.artwork)))fail(409,'Company branding cannot replace the product artwork. Choose a design set.');placements.push({area:area.placement,part:key,name:part.name||key,url:part.url,artwork:part.artwork||null});used.add(key);}
+   const key=normalize(area.placement);let part=set.parts[key],partKey=key;
+   if(!part&&adaptArtwork&&/^(front|default|left_leg|right_leg)$/.test(key)){partKey=['front','default','back'].find(k=>set.parts[k]);part=set.parts[partKey];if(part)warnings.push('Adapted '+partKey+' artwork to '+area.placement+' with your primary-panel permission.');}
+   if(part){if(part.artwork&&isBrandArtwork(db,get('SELECT * FROM factory_artwork WHERE id=?',part.artwork)))fail(409,'Company branding cannot replace the product artwork. Choose a design set.');placements.push({area:area.placement,part:partKey,name:part.name||partKey,url:part.url,artwork:part.artwork||null});used.add(partKey);}
    else fill.push(area.placement);
   }
   if(!placements.length)fail(409,'This design set has no artwork assigned to this garment’s supported panels.');
@@ -70,19 +73,20 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    canApprove:!r.closed&&r.decision===null&&rt?.step===6&&l?.status==='mockups_saved'&&j?.status!=='running',
    storefrontUrl:l?.status==='published'&&l.store_id?'https://midnight-designs.store/products/'+encodeURIComponent(l.store_id)+'.html':null};
  }
- function snapshot(){return {active:detail(active()),recent:all('SELECT * FROM factory_basic_items ORDER BY created DESC LIMIT 20').map(detail),sets:sets().map(s=>({...s,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{name:v.name,thumb:v.thumb||v.url}]))})),blockers:blockers(),readiness:production.readiness(),production:remote()&&!active()?null:production.snapshot().pauseReason,settings:get('SELECT state,daily_budget,total_budget FROM factory_settings WHERE id=1'),backup:backups.snapshot(),github:workspace?.snapshot()||null,oneActiveItem:true,liveCycleVerified:!!get("SELECT id FROM factory_basic_items WHERE status='published' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),rejectionCleanupVerified:!!get("SELECT id FROM factory_basic_items WHERE decision='disapproved' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),note:'Original design sets are retained. Disposable Basic print pixels and unapproved preview pixels are omitted from new GitHub snapshots; approved storefront photos are retained. Existing Git history is unchanged.'};}
- async function create(b){
+ function snapshot(){return {outfitQueue:outfits?.snapshot()||null,active:detail(active()),recent:all('SELECT * FROM factory_basic_items ORDER BY created DESC LIMIT 20').map(detail),sets:sets().map(s=>({...s,parts:Object.fromEntries(Object.entries(s.parts).map(([k,v])=>[k,{name:v.name,thumb:v.thumb||v.url}]))})),blockers:blockers(),readiness:production.readiness(),production:remote()&&!active()?null:production.snapshot().pauseReason,settings:get('SELECT state,daily_budget,total_budget FROM factory_settings WHERE id=1'),backup:backups.snapshot(),github:workspace?.snapshot()||null,oneActiveItem:true,liveCycleVerified:!!get("SELECT id FROM factory_basic_items WHERE status='published' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),rejectionCleanupVerified:!!get("SELECT id FROM factory_basic_items WHERE decision='disapproved' AND closed=1 AND json_extract(cleanup,'$.verified')=1"),note:'Original design sets are retained. Disposable Basic print pixels and unapproved preview pixels are omitted from new GitHub snapshots; approved storefront photos are retained. Existing Git history is unchanged.'};}
+ async function create(b,context={}){
   if(typeof b.requestKey!=='string'||!/^[-a-zA-Z0-9_]{16,100}$/.test(b.requestKey))fail(400,'A stable creation request ID is required.');
   const previous=get('SELECT * FROM factory_basic_items WHERE request_key=?',b.requestKey);if(previous)return detail(previous);
+  if(outfits?.activeId()&&context.outfitId!==outfits.activeId())fail(409,'Finish or cancel the current outfit queue before creating a separate item.');
   if(creating||cleaning||active())fail(409,'Finish or disapprove the current item and verify cleanup before starting another.');
   const blocked=blockers();if(blocked.length)fail(409,blocked.map(x=>x.message).join(' '));
   if(get("SELECT id FROM factory_jobs WHERE status IN ('queued','running','retry_wait') LIMIT 1"))fail(409,'Finish or pause existing queued production before starting the single-item Basic lane.');
   creating=true;
   try{
-   const p=await inspect(b),recipeKey=hash([p.set.parts,p.product.id,p.variants.map(v=>v.id),'Black','fixed-basic-v1']);
+   const p=await inspect(b);if(context.signature&&context.signature!==inspectionSignature(p))fail(409,'Artwork or supplier variants changed since the outfit was checked. Review this piece before retrying.');const recipeKey=hash([p.set.parts,p.product.id,p.variants.map(v=>v.id),'Black','fixed-basic-v1']);
    if(get("SELECT id FROM factory_basic_items WHERE recipe_key=? AND decision='approved' LIMIT 1",recipeKey))fail(409,'This exact set and garment recipe is already approved. Open its tracked product instead of creating a duplicate.');
    if(get("SELECT id FROM factory_jobs WHERE status IN ('queued','running','retry_wait') LIMIT 1"))fail(409,'Other production started during selection. Finish or pause it before starting Basic.');
-   const id=randomUUID(),recipe={set:p.set,product:p.product.id,name:p.product.name,role:p.role,audience:p.audience,variants:p.variants,placements:p.placements,fill:p.fill,warnings:p.warnings,modelGroups:p.modelGroups,hasModelOptions:p.hasModelOptions,color:'Black',fit:'contain'};
+   const id=randomUUID(),recipe={outfitId:context.outfitId||null,outfitCollection:context.collection||null,set:p.set,product:p.product.id,name:p.product.name,role:p.role,audience:p.audience,variants:p.variants,placements:p.placements,fill:p.fill,warnings:p.warnings,modelGroups:p.modelGroups,hasModelOptions:p.hasModelOptions,color:'Black',fit:'contain'};
    run('INSERT INTO factory_basic_items(id,request_key,recipe_key,recipe,created,updated) VALUES(?,?,?,?,?,?)',id,b.requestKey,recipeKey,JSON.stringify(recipe),now(),now());
    await enqueue(get('SELECT * FROM factory_basic_items WHERE id=?',id));await checkpoint(get('SELECT job FROM factory_basic_items WHERE id=?',id).job);return detail(get('SELECT * FROM factory_basic_items WHERE id=?',id));
   }finally{creating=false;}
@@ -90,7 +94,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  async function enqueue(r){
   const p=JSON.parse(r.recipe),settingsUpdated=get('SELECT updated FROM factory_settings WHERE id=1').updated;manager.activateCreators([p.role]);
   try{
-   const job=await workflow.enqueue({idea:{id:r.id,kind:'product'},set:p.set,piece:{catalog:p.product,label:p.name,role:p.role,color:'Black',audience:p.audience,placements:p.placements},brief:'Basic fixed recipe: keep this design set together. Preserve assigned panels and proportions; black fill across every unused supported panel. No exterior company branding. Owner review before publication.',variantIds:p.variants.map(v=>v.id),fixedRecipe:true});
+   const job=await workflow.enqueue({idea:{id:r.id,kind:'product'},set:p.set,piece:{catalog:p.product,label:p.name,role:p.role,color:'Black',audience:p.audience,placements:p.placements},brief:'Basic fixed recipe: keep this design set together. Preserve assigned panels and proportions; black fill across every unused supported panel. No exterior company branding. Owner review before publication.',variantIds:p.variants.map(v=>v.id),fixedRecipe:true,outfitId:p.outfitId,storeCollection:p.outfitCollection});
    const selection=JSON.parse(get('SELECT selection FROM factory_job_audiences WHERE job=?',job).selection);selection.basicMode=true;
    run('UPDATE factory_job_audiences SET selection=? WHERE job=?',JSON.stringify(selection),job);run('DELETE FROM factory_pipeline_jobs WHERE job=?',job);
    run("UPDATE factory_basic_items SET job=?,status='producing',error='',updated=? WHERE id=?",job,now(),r.id);
@@ -116,7 +120,8 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  async function settled(job){const r=row(job);if(r&&!r.closed&&(r.decision==='disapproved'||r.decision==='approved'&&get('SELECT status FROM factory_listings WHERE job=?',job)?.status==='published'))await cleanup(r);}
  function options(job){const r=row(job);if(!r)return {};const p=JSON.parse(r.recipe);return p.modelGroups.length?{option_groups:p.modelGroups}:{};}
  function orderMedia(job,media){const r=row(job);if(!r)return media;const groups=JSON.parse(r.recipe).modelGroups;return [...media].sort((a,b)=>Number(groups.includes(b.style))-Number(groups.includes(a.style)));}
- return {currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',publisherManaged:()=>workspace?.snapshot().managed===true,publisherWait:job=>workspace?.publisherWait(job)||null,verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
+ function inspectionSignature(p){return hash([p.set.parts,p.product.id,p.variants.map(v=>v.id),p.placements,p.fill]);}
+ return {create,catalog,inspectionSignature,setOutfits(o){outfits=o;},currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',publisherManaged:()=>workspace?.snapshot().managed===true,publisherWait:job=>workspace?.publisherWait(job)||null,verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
   async tick(){const r=active();if(r?.job&&(r.decision==='disapproved'||get('SELECT status FROM factory_listings WHERE job=?',r.job)?.status==='published'))await settled(r.job);},
   async handle(req,res,path,method,url){
    if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
@@ -128,7 +133,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-basic',60);const b=await body(req);
    if(path===ROOT+'/inspect'){send(res,200,await inspect(b));return true;}
    if(path===ROOT+'/random'){
-    const candidates=(await catalog()).filter(p=>p.audiences.includes(b.audience||'unisex')).sort(()=>Math.random()-.5);let found;
+    const candidates=(await catalog()).filter(p=>audienceMatches(p,b.audience||'unisex')).sort(()=>Math.random()-.5);let found;
     for(const p of candidates.slice(0,12)){try{found=await inspect({...b,product:p.id});break;}catch(e){if(![400,409].includes(e.status))throw e;}}
     if(!found)fail(409,'No compatible garment was verified in this selection. Try an exact garment or refresh Printful.');send(res,200,found);return true;
    }

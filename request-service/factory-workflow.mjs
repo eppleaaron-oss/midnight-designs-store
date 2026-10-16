@@ -30,7 +30,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const id=artwork.importFile({data,filename:'printful-'+createHash('sha256').update(u.href).digest('hex').slice(0,16)+'.'+extension},{name:String(part.name||set.name).slice(0,100),collection:set.name.slice(0,100),scope:'collection',target:'',product:null,placements:['front','back','left-sleeve','right-sleeve','hood'],instructions:'Preserve the imported original artwork.',permissions:{reuse:true,crop:false,modify:false,recolor:false}});
   run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,id);return id;
  }
- async function enqueue({idea,set,piece,brief,aiLayout=false,variantIds=null,fixedRecipe=false}){
+ async function enqueue({idea,set,piece,brief,aiLayout=false,variantIds=null,fixedRecipe=false,outfitId=null,storeCollection=null}){
   if(!storageDurable&&!(fixedRecipe&&basicWorkspace?.ready()))hold('Persistent factory storage must be attached before starting production.');
   const existing=get('SELECT job,printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog);
   if(existing?.job&&get('SELECT id FROM factory_jobs WHERE id=?',existing.job))return existing.job;
@@ -57,8 +57,8 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
    return {id:randomUUID(),variant:v.id,areas};});
   // Creator assignments remain subject to the existing employee controls.
   const prepared=await manager.prepareJob({title:(set.name+' '+piece.label).slice(0,100),brief,kind:idea.kind,gender:audience,employee:piece.role,selection:{product:piece.catalog,fit:'',sizes:variants.map(v=>v.size).filter(Boolean),collection,artworkIds:[...new Set(ids)]}});
-  prepared.assigned=drafts.map(d=>d.id);if(idea.kind==='outfit'){prepared.selection.outfitId=idea.id;prepared.selection.storeCollection=set.name.slice(0,100)+' outfit';}prepared.selection.variantIds=variants.map(v=>v.id);prepared.selection.garmentColor=color;prepared.selection.colorMode=aop?'print':'fabric';
-  const copy={title:(set.name+' '+piece.label).slice(0,150),description:set.name+' artwork on '+blueprint.name+'. '+(aop?'Printed background: '+color+'.':'Garment color: '+color+'.'),category:piece.role,tags:[piece.role,audience],collections:[set.name.slice(0,100)]};
+  prepared.assigned=drafts.map(d=>d.id);if(idea.kind==='outfit'){prepared.selection.outfitId=idea.id;prepared.selection.storeCollection=set.name.slice(0,100)+' outfit';}if(outfitId){prepared.selection.outfitId=outfitId;prepared.selection.storeCollection=storeCollection||set.name.slice(0,100)+' outfit';}prepared.selection.variantIds=variants.map(v=>v.id);prepared.selection.garmentColor=color;prepared.selection.colorMode=aop?'print':'fabric';
+  const copy={title:(set.name+' '+piece.label).slice(0,150),description:set.name+' artwork on '+blueprint.name+'. '+(aop?'Printed background: '+color+'.':'Garment color: '+color+'.'),category:piece.role,tags:[piece.role,audience],collections:[...new Set([set.name.slice(0,100),storeCollection].filter(Boolean))]};
   db.exec('BEGIN IMMEDIATE');try{
    if(get('SELECT count(*) n FROM factory_print_drafts').n+drafts.length>500)hold('Blueprint storage limit reached. Archive unused product blueprints.');
    for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,blueprint.effectiveTechnique||blueprint.technique,JSON.stringify(d.areas),'live',now());
