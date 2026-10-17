@@ -1,3 +1,4 @@
+import {SIZING_RULES} from './factory-sizing-rules.mjs';
 import {BRANDING_RULE,BRANDING_CONCEPTS,brandingInstruction} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
@@ -7,7 +8,7 @@ import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 export const BRAIN_SECTIONS=[['brand-dna','Brand DNA'],['fashion','Fashion knowledge'],['garment','Garment intelligence'],['artwork','Artwork intelligence'],['color','Color intelligence'],['placement','Placement intelligence'],['composition','Composition intelligence'],['supplier','Supplier knowledge'],['blueprint','Blueprint knowledge'],['qc','QC intelligence'],['pricing','Pricing intelligence'],['publishing','Publishing intelligence']];
 export const MEMORY_KINDS=[['permanent','Permanent rules'],['preference','Owner preferences'],['success','Successful designs'],['failure','Failed designs'],['supplier','Supplier knowledge'],['learning','Production learnings']];
 export const FEEDBACK=[['good','Good','success'],['excellent','Excellent','success'],['bad','Bad','failure'],['never','Never do this again','failure'],['style','Save this style','preference'],['placement','Save this placement','preference'],['color','Save this color combination','preference'],['reference','Save as reference','success']];
-const BRAIN_VERSION='MD-Brain 1.2';
+const BRAIN_VERSION='MD-Brain 1.3';
 
 const FILL_RULE='The blank garment is white. White products use no fill. Every other main color (black, charcoal, navy, red and so on) must use the fill option on every print area, edge to edge, before artwork goes on. Never fake a color with a pasted solid-color image.';
 // Rules added after the first Brain release. Seeded once per database, so an owner who deletes an unlocked one doesn't get it back.
@@ -83,6 +84,7 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   for(const [title,text] of [['Design-first branding',BRANDING_RULE],['Identity, artwork and marking',BRANDING_CONCEPTS],['Thematic chest graphics','A small chest graphic is artwork from the collection: raven, skull, rose, cathedral detail, symbol or design-related lettering. Never substitute the company logo.'],['Layout diversity','Dark vintage/gothic style is not a full-coverage layout. Vary minimal, balanced, statement, typography, asymmetric, back-focused, sleeve-focused, ornamental, gallery and AOP compositions. Blank space is deliberate; company logos never fill it.']]){const r=get('SELECT id FROM brain_rules WHERE title=?',title);if(r)run('UPDATE brain_rules SET body=?,locked=1,updated=? WHERE id=?',text,t,r.id);else run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),'brand-dna',title,text,1,t,t);}
   run("INSERT INTO brain_migrations VALUES('design-first-branding-v1',?)",t);
  }
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='sizing-basic-v1'")){const t=now();for(const [section,title,text,locked] of SIZING_RULES)if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);run("INSERT INTO brain_migrations VALUES('sizing-basic-v1',?)",t);}
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;
@@ -94,11 +96,11 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  // Rules are removed whole when the brief budget is tight.
  function knowledge(garment,max=Infinity){
   const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created").filter(r=>!['Design-first branding','Identity, artwork and marking'].includes(r.title));
-  const shipped=new Set([...DEFAULT_RULES,...RULES_V2,...RULES_V3].map(r=>r[1]).concat(['Logo on the tag','One design, many items','Pocket lines up with the front','Thematic chest graphics','Layout diversity']));rules.sort((a,b)=>Number(shipped.has(a.title))-Number(shipped.has(b.title)));
+  const shipped=new Set([...DEFAULT_RULES,...RULES_V2,...RULES_V3,...SIZING_RULES].map(r=>r[1]).concat(['Logo on the tag','One design, many items','Pocket lines up with the front','Thematic chest graphics','Layout diversity']));const sizingTitles=new Set(SIZING_RULES.map(r=>r[1]));const rank=r=>!shipped.has(r.title)?0:sizingTitles.has(r.title)?1:2;rules.sort((a,b)=>rank(a)-rank(b));
   const p=garment?profile(garment):null,prefs=all("SELECT text FROM brain_memories WHERE kind IN ('permanent','preference') AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 15",garment||'');
   const avoid=all("SELECT text FROM brain_memories WHERE kind='failure' AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 8",garment||'');
   const refs=all('SELECT kind,name,image,garment,note FROM brain_references WHERE garment IS NULL OR garment=? ORDER BY garment IS NULL,created DESC LIMIT 8',garment||'');
-  const head=[brandingInstruction()];
+  const head=[brandingInstruction(),'Sizing policy: Supplier canvas and per-variant mappings are authoritative. Artwork inches and anatomical position come from a reviewed numeric layout; preserve proportions, safe regions and measured effective DPI. Missing required artwork stops production. Show and accept reductions. Black-fill all unused AOP panels including bleed. Freeze the inspected plan; render, mockups and publishing use the same files.'];
   if(prefs.length)head.push('Owner preferences:',...prefs.map(m=>'- '+m.text));
   if(avoid.length)head.push('Avoid (owner rejected):',...avoid.map(m=>'- '+m.text));
   if(refs.length)head.push('Reference examples from the Midnight Designs store (match this level and their clean layouts):',...refs.map(r=>`- ${r.name} (${r.kind==='product'?'store product':r.kind==='design'?'store design':'mockup'})${r.note?': '+r.note:''} ${r.image}`));

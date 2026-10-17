@@ -82,8 +82,8 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   try {
    const checked=[];
    for(const piece of b.pieces) {
-    const choice={setId:b.setId,audience:b.audience||'unisex',product:piece.product,sizes:piece.sizes||[],adaptArtwork:b.adaptArtwork===true};
-    const p=await basic.inspect(choice);checked.push({choice,p,signature:basic.inspectionSignature(p)});
+    const choice={setId:b.setId,audience:b.audience||'unisex',product:piece.product,sizes:piece.sizes||[],adaptArtwork:b.adaptArtwork===true,layout:piece.layout||null,inspectionToken:piece.inspectionToken||null};
+    const p=await basic.inspect(choice);basic.verifyLayoutReceipt(choice,p);checked.push({choice,p,signature:basic.inspectionSignature(p)});
    }
    if(new Set(checked.map(x=>x.p.role)).size!==checked.length)fail(400,'Choose one garment per clothing category for this outfit.');
    if(open()||get('SELECT id FROM factory_basic_items WHERE closed=0')||get("SELECT id FROM factory_jobs WHERE status IN ('queued','running','retry_wait') LIMIT 1"))fail(409,'Production changed while checking this outfit. Refresh before starting.');
@@ -108,7 +108,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   if(planning||ticking||get('SELECT id FROM factory_basic_items WHERE closed=0')||open()&&open().id!==p.outfit)fail(409,'Finish the current piece or outfit before rebuilding this piece.');
   planning=true;
   try {
-   const choice={...JSON.parse(p.choice),setId:b.setId,adaptArtwork:b.adaptArtwork===true},checked=await basic.inspect(choice);if(checked.role!==p.role)fail(409,'A replacement must keep the original clothing category.');
+   const choice={...JSON.parse(p.choice),setId:b.setId,adaptArtwork:b.adaptArtwork===true};if(choice.layout){if(!b.layout||!b.inspectionToken)fail(409,'Inspect a layout for this replacement artwork and garment before rebuilding this piece.');choice.layout=b.layout;choice.inspectionToken=b.inspectionToken;}const checked=await basic.inspect(choice);basic.verifyLayoutReceipt(choice,checked);if(checked.role!==p.role)fail(409,'A replacement must keep the original clothing category.');
    if(get('SELECT id FROM factory_basic_items WHERE closed=0')||open()&&open().id!==p.outfit)fail(409,'Production changed. Refresh before rebuilding this piece.');
    db.exec('BEGIN IMMEDIATE');try{
    run('INSERT INTO factory_basic_outfit_revisions VALUES(?,?,?,?,?,?,?)',randomUUID(),b.requestKey,p.id,item.id,p.choice,p.signature,now());

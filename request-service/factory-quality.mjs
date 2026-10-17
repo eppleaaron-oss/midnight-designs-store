@@ -13,6 +13,7 @@ export function factoryQuality({db}){
  db.exec('CREATE TABLE IF NOT EXISTS factory_quality_reports(job TEXT PRIMARY KEY,fingerprint TEXT NOT NULL,report TEXT NOT NULL,created TEXT NOT NULL)');
  const get=(q,...a)=>db.prepare(q).get(...a);
  function inputs(job){
+  const frozen=JSON.parse(get('SELECT plan FROM factory_render_plans WHERE job=?',job)?.plan||'null')?.numericLayout;
   const selection=JSON.parse(get('SELECT selection FROM factory_job_audiences WHERE job=?',job)?.selection||'null');
   const ids=JSON.parse(get('SELECT templates FROM factory_job_profiles WHERE job=?',job)?.templates||'[]');
   if(!selection?.product||!ids.length)hold('Quality hold: exact supplier blueprints are missing.');
@@ -24,6 +25,7 @@ export function factoryQuality({db}){
    const r=get('SELECT * FROM factory_render_files WHERE file=?',f.id),p=get('SELECT * FROM factory_render_quality WHERE file=?',f.id);
    if(!r||!p)hold('Quality hold: this print file has no measured source-resolution proof. Render it again from its original artwork.');
    const recipe=JSON.parse(r.recipe),a=recipe.artworkId?checkedArtwork(db,recipe.artworkId):null;
+   if(frozen){const expected=frozen.variants.find(v=>v.variant===d.variant)?.placements[area.placement];if(!expected||JSON.stringify({...expected,background:frozen.background})!==JSON.stringify(recipe))hold('Quality hold: the rendered file differs from the frozen inspected layout.');}
    assertBrandingPlacement(db,job,area.placement,a);
    if(a&&!selection.artworkIds.includes(a.id))hold('Quality hold: print artwork is not assigned to this product.');
    if(a&&(!a.effectivePermissions.reuse||r.source_sha!==a.sha256||hash(Buffer.from(a.data))!==a.sha256))hold('Quality hold: rendered artwork or its permission changed.');
