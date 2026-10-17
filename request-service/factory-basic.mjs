@@ -70,6 +70,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    checkpoints:r.job?all('SELECT step,created,result FROM factory_job_checkpoints WHERE job=?',r.job).map(x=>({...x,result:JSON.parse(x.result)})):[],
    mockups:mockups?.mockups||[],mockupStatus:mockups?.mockupStatus||null,pricing:r.cleanup?JSON.parse(r.cleanup).pricing:r.job?pricing.assessJob(r.job):null,storage:r.job?basicStorage(db,r.job):null,
    temporaryPixelsMissing:!!(r.job&&get("SELECT id FROM factory_print_files WHERE draft IN (SELECT value FROM factory_job_profiles,json_each(templates) WHERE job=?) AND length(data)=0 UNION ALL SELECT id FROM factory_mockups WHERE job=? AND length(data)=0 LIMIT 1",r.job,r.job)),
+   printFiles:r.job?all('SELECT f.id,f.placement,f.width,f.height,q.required_dpi AS requiredDpi,q.effective_dpi AS effectiveDpi FROM factory_print_files f LEFT JOIN factory_render_quality q ON q.file=f.id WHERE f.draft IN (SELECT value FROM factory_job_profiles,json_each(templates) WHERE job=?) ORDER BY f.rowid',r.job).map(f=>({...f,url:'/api/owner/ai-factory/blueprints/file/'+f.id})):[],
    canApprove:!r.closed&&r.decision===null&&rt?.step===6&&l?.status==='mockups_saved'&&j?.status!=='running',
    storefrontUrl:l?.status==='published'&&l.store_id?'https://midnight-designs.store/products/'+encodeURIComponent(l.store_id)+'.html':null};
  }
@@ -121,7 +122,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  function options(job){const r=row(job);if(!r)return {};const p=JSON.parse(r.recipe);return p.modelGroups.length?{option_groups:p.modelGroups}:{};}
  function orderMedia(job,media){const r=row(job);if(!r)return media;const groups=JSON.parse(r.recipe).modelGroups;return [...media].sort((a,b)=>Number(groups.includes(b.style))-Number(groups.includes(a.style)));}
  function inspectionSignature(p){return hash([p.set.parts,p.product.id,p.variants.map(v=>v.id),p.placements,p.fill]);}
- return {create,catalog,inspectionSignature,setOutfits(o){outfits=o;},currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',publisherManaged:()=>workspace?.snapshot().managed===true,publisherWait:job=>workspace?.publisherWait(job)||null,verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
+ return {create,catalog,inspectionSignature,setOutfits(o){outfits=o;},currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),previewAllowed:job=>{const r=row(job);return !!r&&!r.closed&&r.decision===null&&get('SELECT step FROM factory_job_runtime WHERE job=?',job)?.step===3&&publishing.mode()==='review';},assertPreview:job=>quality.assert(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',publisherManaged:()=>workspace?.snapshot().managed===true,publisherWait:job=>workspace?.publisherWait(job)||null,verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
   async tick(){const r=active();if(r?.job&&(r.decision==='disapproved'||get('SELECT status FROM factory_listings WHERE job=?',r.job)?.status==='published'))await settled(r.job);},
   async handle(req,res,path,method,url){
    if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
@@ -141,12 +142,18 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    if(path===ROOT+'/github'){if(!workspace)fail(409,'GitHub workspace is unavailable.');await workspace.enable(b.token);send(res,200,snapshot());return true;}
    if(path===ROOT+'/refresh'){limit(req,'basic-refresh',4);await ideas.refreshPrintful();ideas.syncSets();send(res,200,snapshot());return true;}
    if(path===ROOT+'/create'){send(res,200,await create(b));return true;}
-   if(!['/approve','/disapprove','/resume'].some(action=>path===ROOT+action))fail(404,'Basic action not found.');
+   if(!['/approve','/disapprove','/resume','/fit-artwork'].some(action=>path===ROOT+action))fail(404,'Basic action not found.');
    const r=get('SELECT * FROM factory_basic_items WHERE id=?',typeof b.id==='string'?b.id:'');if(!r)fail(404,'Tracked Basic item not found.');
    if(r.closed){if(path===ROOT+'/approve'&&r.decision!=='approved'||path===ROOT+'/disapprove'&&r.decision!=='disapproved')fail(409,'This item is already closed with another decision.');send(res,200,detail(r));return true;}
    if(path===ROOT+'/approve'&&r.decision==='approved'){send(res,200,snapshot());return true;}
    const j=r.job&&get('SELECT status FROM factory_jobs WHERE id=?',r.job);
-   if(path===ROOT+'/approve'){
+   if(path===ROOT+'/fit-artwork'){
+    const rt=get('SELECT step FROM factory_job_runtime WHERE job=?',r.job);
+    if(r.closed||r.decision||!rt||rt.step>2||j?.status==='running'||get('SELECT 1 FROM factory_print_files WHERE draft IN (SELECT value FROM factory_job_profiles,json_each(templates) WHERE job=?) LIMIT 1',r.job)||get('SELECT 1 FROM factory_publish_operations WHERE job=? LIMIT 1',r.job))fail(409,'Resolution fitting is available only before print files or supplier operations have been saved.');
+    const saved=get('SELECT plan FROM factory_render_plans WHERE job=?',r.job),plan=saved&&JSON.parse(saved.plan);if(!plan?.placements)fail(409,'The original placement recipe is missing.');
+    for(const p of Object.values(plan.placements))if(p.artworkId)p.withoutEnlargement=true;
+    run('UPDATE factory_render_plans SET plan=? WHERE job=?',JSON.stringify(plan),r.job);run("UPDATE factory_jobs SET status='queued',error='',updated=? WHERE id=?",now(),r.job);run("UPDATE factory_job_runtime SET available=0,error='' WHERE job=?",r.job);run("UPDATE factory_basic_items SET error='',updated=? WHERE id=?",now(),r.id);run("UPDATE factory_settings SET state='running',updated=? WHERE id=1",now());
+   }else if(path===ROOT+'/approve'){
     if(remote()){let result;do{result=await workspace.hydrate(r.job);}while(result?.defer);}
     if(publishing.mode()!=='review')fail(409,'Basic requires review mode before approving.');
     if(b.confirm!==true||!detail(r).canApprove||detail(r).temporaryPixelsMissing)fail(409,'Wait for the completed mockups, variants, listing and price before approving.');
