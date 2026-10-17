@@ -30,6 +30,9 @@ test('full garment coverage requires live supplier method evidence, not a name o
  assert.equal(garmentColorCapability({...live,source:'snapshot',catalogType:'CUT-SEW'}).mode,'hold');
  assert.equal(garmentColorCapability({source:'live',name:'Unisex Hoodie',effectiveTechnique:'dtg'}).mode,'fabric');
  assert.equal(garmentColorCapability({source:'live',name:'Mug',effectiveTechnique:'sublimation'}).mode,'fabric');
+ assert.equal(garmentColorCapability({...live,name:'All-Over Print Unisex Cotton Wide-Leg Pants',catalogType:'DIRECT-TO-FABRIC',effectiveTechnique:'direct-to-fabric'}).mode,'print');
+ assert.equal(garmentColorCapability({...live,catalogType:'HOODIE',effectiveTechnique:'direct-to-fabric'}).mode,'hold');
+ assert.equal(supplierTechnique({type:'DIRECT-TO-FABRIC'},{techniques:[{key:'dtg'},{key:'direct-to-fabric',is_default:true}]}),'direct-to-fabric');
  assert.equal(supplierTechnique({type:'CUT-SEW'},{techniques:[{key:'cut-sew'}]}),'cut-sew');
  assert.equal(supplierTechnique({title:'All-Over Print Jacket'},{techniques:[{key:'dtg'}]}),'dtg');
 });

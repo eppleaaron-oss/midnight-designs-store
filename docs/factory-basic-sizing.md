@@ -26,3 +26,14 @@ Existing products and legacy jobs retain their saved recipes. Global layout or g
 The versioned migration installs 12 separate owner-supplied sizing rules and one adult-target rule into the appropriate Brain sections. A concise sizing policy stays in short worker briefs, while the full records remain visible in AI Intelligence. This is explicit knowledge and deterministic enforcement, not model training.
 
 No AI-provider call, new worker service, paid storage, automatic publishing, price assumptions, or approval bypass is introduced. The current owner review, pricing, supplier-operation recovery and cleanup contract remains in place.
+
+
+## Combined trouser panels
+
+Pants can use one native front PNG containing two separate cut legs. Leg layouts bind logical wearer-left and wearer-right targets to independently reviewed regions inside that shared canvas. These become separate composition elements in one supplier file; they are never centered across the crotch gap. Sleeve strips from the same design set are offered as matching leg sources, with independent source selectors, inch targets and position presets. Source pixels are not automatically cropped or mirrored.
+
+Conservative rectangles have been checked against the exact front guideline images for Printful 1479 (cotton wide-leg pants) and 618 (track pants), and are bound to their product, printfile and template identities and geometry. An unknown guideline does not inherit these regions. Other combined pants need separately reviewed leg maps. Existing saved owner maps remain preferred. These rectangles are technical placement regions, not supplier certification of the finished garment.
+
+The same multi-element recipe controls the preview, export, source hashes, permissions, minimum effective DPI and quality proof. The complete native canvas is retained up to 90 million pixels for generated supplier files; input artwork keeps its existing 40-million-pixel bound. PNG export composes small resized artwork overlays onto the native canvas without a full JavaScript raw-pixel allocation. Originals and legacy saved jobs retain their recipes. Automatic publishing stays disabled.
+
+All-over cotton must use the live supplier `DIRECT-TO-FABRIC` catalog type together with its `direct-to-fabric` technique. This is recognized as printable fabric coverage; an unverified product name or an unrelated direct-print method cannot bypass coverage checks. Rendering and supplier preparation accept this verified cotton method.

@@ -1,3 +1,5 @@
+import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
+import {recipeIds,sourceProof} from './factory-render-proof.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
 import {checkedArtwork} from './factory-artwork-permissions.mjs';
 import sharp from 'sharp';
@@ -19,10 +21,11 @@ function background(value){if(value===null)return {r:0,g:0,b:0,alpha:0};const c=
 // Render real pixels. DPI is checked against source resolution, before enlarging the output canvas.
 export async function renderArea(area,source,recipe={},permissions={}){
  const {width,height,dpi}=area;
- if(!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||width<1||height<1||width*height>MAX_PIXELS||!Number.isFinite(dpi)||dpi<1)error('This native print area is missing dimensions/DPI or exceeds the 40-million-pixel rendering limit.');
+ if(!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||width<1||height<1||width*height>MAX_NATIVE_PIXELS||!Number.isFinite(dpi)||dpi<1)error('This native print area is missing dimensions/DPI or exceeds the supported native rendering limit.');
  const bg=background(Object.hasOwn(recipe,'background')?recipe.background:'Black'),overlays=[];
  let effectiveDpi=null;
- if(source){
+ for(const input of Array.isArray(source)?source:source?[{data:source,recipe,permissions}]:[]){
+  const {data:source,recipe,permissions}=input;
   if(permissions.reuse!==true)error('Allow Reuse for this artwork before rendering.');
   const sourceImage=sharp(source,{limitInputPixels:MAX_PIXELS,failOn:'warning'});
   const original=await sourceImage.metadata();if(!['png','jpeg','webp'].includes(original.format)||original.pages>1)error('Use a single PNG, JPEG or WebP artwork image.');
@@ -46,8 +49,8 @@ export async function renderArea(area,source,recipe={},permissions={}){
    const safe=geometry.safeRect;if(!safe||!['x','y','width','height'].every(k=>Number.isFinite(safe[k]))||geometry.x<safe.x-1||geometry.y<safe.y-1||geometry.x+w>safe.x+safe.width+1||geometry.y+h>safe.y+safe.height+1)error('The saved artwork extends outside its reviewed safe region.');
   }
   if(w*h>MAX_PIXELS)error('Scaled artwork exceeds the rendering limit.');
-  effectiveDpi=Math.min(sw/w,sh/h)*dpi;
-  if(effectiveDpi+1<dpi)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);
+  const sourceDpi=Math.min(sw/w,sh/h)*dpi;effectiveDpi=Math.min(effectiveDpi??Infinity,sourceDpi);
+  if(sourceDpi+1<dpi)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);
   let image=sharp(oriented).extract({left,top,width:sw,height:sh}).resize(w,h,{fit:'fill'});
   if(recipe.recolor!==undefined&&recipe.recolor!==null)image=image.tint(background(recipe.recolor));
   if(mirror)image=image.flop();if(angle)image=image.rotate(angle,{background:{r:0,g:0,b:0,alpha:0}});
@@ -89,19 +92,18 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
  }
  function inputs(draftId,plan,allowedIds,job=null){
   const d=get('SELECT * FROM factory_print_drafts WHERE id=?',draftId);if(!d)error('Save the exact supplier variant blueprint first.');
-  if(!/^(default|dtg|digital|cut-sew|sublimation)$/i.test(d.technique))error('This printing method requires a dedicated print-file renderer.');
+  if(!/^(default|dtg|digital|cut-sew|sublimation|direct-to-fabric)$/i.test(d.technique))error('This printing method requires a dedicated print-file renderer.');
   const areas=JSON.parse(d.areas),placements=plan.placements;
   if(!placements||typeof placements!=='object'||Array.isArray(placements)||!Object.keys(placements).length)error('Choose at least one native print area.');
   return Object.entries(placements).map(([placement,r])=>{
    const area=areas.find(a=>a.placement===placement);if(!area)error('Unsupported placement for this saved variant: '+placement+'.');
    if(!r||typeof r!=='object')error('Choose artwork or an explicit fill-only recipe for each area.');
-   const a=r.artworkId?checkedArtwork(db,r.artworkId):null;
-   assertBrandingPlacement(db,job,placement,a);
-   if(r.artworkId&&!a)error('Assigned artwork is missing.');if(a&&allowedIds&&!allowedIds.includes(a.id))error('Artwork is not assigned to this job.');
-   if(!a&&r.fillOnly!==true)error('This area needs artwork or an explicit fill-only choice.');
-   if(a?.product!==null&&a?.product!==undefined&&a.product!==d.product)error('Artwork is restricted to a different product.');
-   const recipe={...r,background:Object.hasOwn(plan,'background')?plan.background:'Black'},signature=hash(JSON.stringify([d.product,d.variant,d.technique,area,recipe,a?.sha256||null,a?.effectivePermissions||null]));
-   return {d,area,a,recipe,signature};
+   if(r.elements&&(!Array.isArray(r.elements)||r.elements.length<1||r.elements.length>8||r.artworkId||r.fillOnly||r.elements.some(e=>!e?.artworkId||!e.geometry||e.elements||e.tile)))error('Choose one to eight inspected artwork elements for this panel.');
+   const rows=recipeIds(r).map(id=>checkedArtwork(db,id));
+   for(const a of rows){assertBrandingPlacement(db,job,placement,a);if(allowedIds&&!allowedIds.includes(a.id))error('Artwork is not assigned to this job.');if(a.product!==null&&a.product!==undefined&&a.product!==d.product)error('Artwork is restricted to a different product.');}
+   if(!rows.length&&r.fillOnly!==true)error('This area needs artwork or an explicit fill-only choice.');
+   const a=rows[0]||null,recipe={...r,background:Object.hasOwn(plan,'background')?plan.background:'Black'},proof=sourceProof(recipe,rows),signature=hash(JSON.stringify([d.product,d.variant,d.technique,area,recipe,proof.sha,proof.permissions]));
+   return {d,area,a,rows,proof,recipe,signature};
   });
  }
  async function prepare(requests){
@@ -109,12 +111,14 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   try{
    const work=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds,r.job)),pending=[],storedBytes=get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes;let renderedBytes=0;
    for(const x of work){const cached=get('SELECT f.id,f.sha256,f.data FROM factory_render_files r JOIN factory_print_files f ON f.id=r.file WHERE r.signature=? AND f.draft=? AND f.placement=? AND f.id=(SELECT id FROM factory_print_files WHERE draft=? AND placement=? ORDER BY created DESC,rowid DESC LIMIT 1)',x.signature,x.d.id,x.area.placement,x.d.id,x.area.placement);if(cached&&get('SELECT file FROM factory_render_quality WHERE file=?',cached.id)&&hash(Buffer.from(cached.data))===cached.sha256){pending.push({...x,cached});continue;}
-    const source=x.a?Buffer.from(get('SELECT data FROM factory_artwork WHERE id=?',x.a.id).data):null;if(source&&hash(source)!==x.a.sha256)error('The original artwork checksum changed. Restore its original version before rendering.');const result=await renderArea(x.area,source,x.recipe,x.a?x.a.effectivePermissions:{});renderedBytes+=result.data.length;if(renderedBytes>64*1024*1024)error('This rendering batch exceeds 64 MB. Prepare smaller variant sets to stay within the renderer memory budget.');if(storedBytes+renderedBytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');pending.push({...x,result,placeholder:cached&&cached.data.length===0?cached.id:null,expectedSha:cached?.sha256});}
+    const read=a=>{const data=Buffer.from(get('SELECT data FROM factory_artwork WHERE id=?',a.id).data);if(hash(data)!==a.sha256)error('The original artwork checksum changed. Restore its original version before rendering.');return data;};
+    const source=x.recipe.elements?x.rows.map((a,i)=>({data:read(a),recipe:x.recipe.elements[i],permissions:a.effectivePermissions})):x.a?read(x.a):null;
+    const result=await renderArea(x.area,source,x.recipe,x.a?x.a.effectivePermissions:{});renderedBytes+=result.data.length;if(renderedBytes>64*1024*1024)error('This rendering batch exceeds 64 MB. Prepare smaller variant sets to stay within the renderer memory budget.');if(storedBytes+renderedBytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');pending.push({...x,result,placeholder:cached&&cached.data.length===0?cached.id:null,expectedSha:cached?.sha256});}
    // Recheck permissions and draft changes after asynchronous rendering before storing any of the batch.
    const checked=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds,r.job));if(checked.some((x,i)=>x.signature!==work[i].signature))error('Artwork permissions or blueprint changed during rendering. Retry with the updated settings.');
    const newFiles=pending.filter(x=>!x.cached),bytes=newFiles.reduce((n,x)=>n+x.result.data.length,0);
    if(get('SELECT count(*) n,COALESCE(sum(length(data)),0) bytes FROM factory_print_files').n+newFiles.filter(x=>!x.placeholder).length>fileLimits.files||get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes+bytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');
-   db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){if(x.placeholder&&x.result.sha256!==x.expectedSha)error('Recovered print pixels do not match the saved recipe checksum. Review this tracked item.');const id=x.placeholder||randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,sha256=excluded.sha256',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT OR REPLACE INTO factory_render_files VALUES(?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.a?.sha256||null,now());run('INSERT OR REPLACE INTO factory_render_quality VALUES(?,?,?,?)',id,x.signature,x.area.dpi,Number.isFinite(x.result.effectiveDpi)?x.result.effectiveDpi:null);x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
+   db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){if(x.placeholder&&x.result.sha256!==x.expectedSha)error('Recovered print pixels do not match the saved recipe checksum. Review this tracked item.');const id=x.placeholder||randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,sha256=excluded.sha256',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT OR REPLACE INTO factory_render_files VALUES(?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.proof.sha,now());run('INSERT OR REPLACE INTO factory_render_quality VALUES(?,?,?,?)',id,x.signature,x.area.dpi,Number.isFinite(x.result.effectiveDpi)?x.result.effectiveDpi:null);x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
    return {rendered:newFiles.length,files:pending.map(x=>({id:x.id||x.cached.id,draft:x.d.id,placement:x.area.placement,width:x.area.width,height:x.area.height,sha256:x.result?.sha256||x.cached.sha256,url:'/api/owner/ai-factory/blueprints/file/'+(x.id||x.cached.id)})),reviewRequired:true};
   }finally{busy=false;}
  }
@@ -138,7 +142,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    if(capability.mode==='fabric'&&!fabricColorMatches(variant,color))variant=available.find(v=>v.size===original?.size&&fabricColorMatches(v,color));
    if(!variant)error('Printful has no available '+color+' fabric variant for the selected size; a white garment will not be substituted.');
    let areas;try{areas=variantAreas(live,variant.id);}catch(e){error(e.message);}
-   const requested=plan.placements?Object.entries(plan.placements).filter(([,r])=>r.artworkId).map(([placement])=>zone(placement)):plan.strictAssignments?plan.assignments.filter(p=>p.artworkId).map(p=>p.zone):[];if(requested.some(p=>!areas.some(a=>zone(a.placement)===p)))error('Artwork was assigned to an unsupported placement for this exact variant.');
+   const requested=plan.numericLayout?Object.keys(plan.numericLayout.variants.find(v=>v.variant===d.variant)?.placements||{}).map(zone):plan.placements?Object.entries(plan.placements).filter(([,r])=>r.artworkId).map(([placement])=>zone(placement)):plan.strictAssignments?plan.assignments.filter(p=>p.artworkId).map(p=>p.zone):[];if(requested.some(p=>!areas.some(a=>zone(a.placement)===p)))error('Artwork was assigned to an unsupported placement for this exact variant.');
    const recipeFor=a=>plan.placements?.[a.placement]||plan.assignments?.find(p=>p.zone===zone(a.placement));
    areas=areas.filter(a=>!/^label/.test(a.placement)||recipeFor(a)?.artworkId);
    if(capability.mode==='fabric')areas=areas.filter(a=>recipeFor(a)?.artworkId);
