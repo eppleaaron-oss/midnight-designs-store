@@ -25,7 +25,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
    const item=p.item&&get('SELECT id,job,status,closed,decision,error,cleanup FROM factory_basic_items WHERE id=?',p.item);
    const job=item?.job&&get('SELECT status,error FROM factory_jobs WHERE id=?',item.job);
    const listing=item?.job&&get('SELECT supplier_id,store_id,status FROM factory_listings WHERE job=?',item.job);
-   return {...p,choice:JSON.parse(p.choice),item:item?{...item,jobStatus:job?.status||null,error:item.error||job?.error||'',cleanup:item.cleanup?JSON.parse(item.cleanup):null,listing:listing||null}:null};
+   return {...p,choice:JSON.parse(p.choice),item:item?{...item,jobStatus:job?.status||null,error:item.error||(!item.closed&&job?.error)||'',cleanup:item.cleanup?JSON.parse(item.cleanup):null,listing:listing||null}:null};
   });
  }
  function summary(r) {if(!r)return null;const list=pieces(r.id);return {...r,pieces:list,done:list.filter(p=>p.item?.closed).length,total:list.length,published:list.filter(p=>p.item?.status==='published').length};}
