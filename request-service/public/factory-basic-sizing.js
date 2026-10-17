@@ -57,3 +57,41 @@ window.MidnightBasicSizing=({api,action,message,choice,onChange,onInspection,ima
  }
  return {input,open(p,{saved=null,title=''}={}){version++;base=p;context=title;const value=saved||p.numericLayout?.input;layout=value?p.layoutOptions.layouts.find(l=>l.number===value.number):null;assignments={...(value?.assignments||{})};overrides=structuredClone(value?.overrides||{});result=p.numericLayout?p:null;render();if(value){$('layoutScaleMode').value=value.scaleMode||'fixed';$('acceptLayoutReduction').checked=value.acceptReduction===true;}},clear(){version++;base=null;layout=null;result=null;root.hidden=true;},result:()=>result};
 };
+
+// Selection previews are separate from immutable production jobs. They never submit
+// mockup tasks, create supplier products, or confer a production inspection receipt.
+window.MidnightBasicPreview=({api,image})=>{
+ const $=id=>document.getElementById(id),el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+ const kind=s=>s.replace(/_dtfabric$/,'').replace(/^default$/,'front').replace(/^top_front$/,'front').replace(/^top_back$/,'back').replace(/^left_leg$/,'leg_left').replace(/^right_leg$/,'leg_right');
+ const cache=new Map();let signature='',version=0,view='';
+ function blueprint(id){const hit=cache.get(id);if(hit&&Date.now()-hit.time<900000)return hit.promise;const entry={time:Date.now(),promise:api('blueprints/product/'+id)};cache.set(id,entry);entry.promise.catch(()=>{if(cache.get(id)===entry)cache.delete(id);});return entry.promise;}
+ function render(bp,set,plan){
+  const root=$('selectionArt');root.replaceChildren();const frozen=plan?.variants?.[0],variant=frozen?.variant||bp.variants?.find(v=>v.size==='M')?.id||bp.variants?.[0]?.id;
+  const mapping=bp.printfiles?.variant_printfiles?.find(v=>v.variant_id===variant)?.placements||{},templates=bp.layouts?.variant_mapping?.find(v=>v.variant_id===variant)?.templates||[];
+  const areas=Object.entries(mapping).filter(([placement])=>!/^label|^inside_label/i.test(placement)).map(([placement,id])=>({placement,...bp.printfiles.printfiles.find(f=>f.printfile_id===id)}));
+  if(!areas.length){root.append(el('p','No verified print panels are available for this garment.','warning'));return;}
+  const note=el('p',plan?'Inspected artwork coordinates on the supplier’s print panels. Create the item to request real Printful model photos.':'Draft panel preview: artwork fitted without stretching. Choose and inspect a measured layout before creation. This is not a completed Printful mockup.','muted');root.append(note);
+  const label=el('label','Garment panel'),select=el('select');select.id='selectionPanel';for(const a of areas)select.append(new Option(a.placement.replaceAll('_',' '),a.placement));
+  if(!areas.some(a=>a.placement===view))view=areas.find(a=>Object.keys(set.parts).some(k=>kind(k)===kind(a.placement)))?.placement||areas[0].placement;select.value=view;label.append(select);root.append(label);
+  const guide=el('label',undefined,'check'),check=el('input');check.type='checkbox';check.checked=true;check.id='selectionGuideline';guide.append(check,document.createTextNode('Show supplier guideline overlay'));root.append(guide);
+  const box=el('div');root.append(box);
+  function draw(){
+   view=select.value;box.replaceChildren();const area=areas.find(a=>a.placement===view),tid=templates.find(t=>t.placement===view)?.template_id,t=bp.layouts?.templates?.find(t=>t.template_id===tid),m=frozen?.measurements.find(m=>m.placement===view);
+   const part=m?.part||Object.keys(set.parts).find(k=>kind(k)===kind(view)),art=part&&set.parts[part];
+   const figure=el('figure',undefined,'selection-composition'),surface=el('div',undefined,'selection-surface');surface.dataset.placement=view;surface.dataset.setId=set.id;surface.style.aspectRatio=(t?.template_width||area.width)+' / '+(t?.template_height||area.height);
+   const panel=el('div',undefined,'selection-print-area');panel.style.left=t?100*t.print_area_left/t.template_width+'%':'0';panel.style.top=t?100*t.print_area_top/t.template_height+'%':'0';panel.style.width=t?100*t.print_area_width/t.template_width+'%':'100%';panel.style.height=t?100*t.print_area_height/t.template_height+'%':'100%';surface.append(panel);
+   if(art&&!m?.blank){const pic=image(m?.previewUrl||art.thumb,set.name+' — '+view+' artwork');pic.loading='eager';pic.className='selection-artwork';pic.dataset.part=part;pic.onerror=()=>{pic.remove();box.append(el('p','The selected artwork image could not load. The old design has not been reused.','warning'));};
+    if(m?.geometry){const g=m.geometry;pic.style.left=100*g.x/area.width+'%';pic.style.top=100*g.y/area.height+'%';pic.style.width=100*g.width/area.width+'%';pic.style.height=100*g.height/area.height+'%';if(m.pattern){pic.hidden=true;const tiles=el('canvas',undefined,'selection-pattern'),scale=Math.min(600/area.width,600/area.height);tiles.width=Math.round(area.width*scale);tiles.height=Math.round(area.height*scale);const ctx=tiles.getContext('2d');pic.onload=()=>{const w=g.width*scale,h=g.height*scale,x=g.x*scale,y=g.y*scale,gap=m.spacingIn*area.dpi*scale;for(let ix=x-Math.ceil(tiles.width/(w+gap))*(w+gap);ix<tiles.width;ix+=w+gap)for(let iy=y-Math.ceil(tiles.height/(h+gap))*(h+gap);iy<tiles.height;iy+=h+gap)ctx.drawImage(pic,ix,iy,w,h);};panel.append(tiles);}}
+    panel.append(pic);
+   }
+   let overlay;if(t?.image_url){overlay=image('/api/owner/ai-factory/blueprints/template/'+bp.catalogProductId+'/'+t.template_id,'Supplier '+view+' guideline');overlay.loading='eager';overlay.className='selection-guideline';overlay.hidden=!check.checked;overlay.onerror=()=>{overlay.remove();guide.hidden=true;box.append(el('p','Supplier guideline image unavailable. Showing the rectangular print canvas.','warning'));};surface.append(overlay);}guide.hidden=!overlay;check.onchange=()=>{if(overlay)overlay.hidden=!check.checked;};
+   figure.append(surface,el('figcaption',view.replaceAll('_',' ')+' · '+area.width+' × '+area.height+' px'+(art&&!m?.blank?' · '+(art.name||part):' · No artwork assigned — black only')));box.append(figure);
+   if(!art&&!m?.blank)box.append(el('p','This set has no matching '+view.replaceAll('_',' ')+' artwork. Assign a source in the layout controls; artwork is not automatically moved from a different panel.','warning'));
+  }
+  select.onchange=draw;draw();
+ }
+ return {update({product,set,plan=null,visible=true}){
+  const key=JSON.stringify([visible,product?.id,set?.id,set?.parts,plan?.signature]);if(key===signature)return;signature=key;const request=++version,root=$('selectionArt');root.replaceChildren();root.hidden=!visible||!product||!set;$('selectedDesignName').textContent=set?'Design: '+set.name:'Choose a design set';if(root.hidden)return;
+  root.append(el('p','Loading the selected garment’s print panels…','muted'));blueprint(product.id).then(bp=>{if(request===version)render(bp,set,plan);}).catch(e=>{if(request===version)root.replaceChildren(el('p','Preview unavailable: '+e.message+' Your previous design is not being shown.','warning'));});
+ }};
+};
