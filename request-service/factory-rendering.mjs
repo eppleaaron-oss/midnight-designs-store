@@ -36,7 +36,15 @@ export async function renderArea(area,source,recipe={},permissions={}){
   if((mirror||angle)&&(permissions.modify!==true||recipe.protect===true))error('Mirroring or rotation requires Modify permission and pixel protection switched off.');
   if(recipe.recolor!==undefined&&recipe.recolor!==null&&(permissions.recolor!==true||recipe.protect===true))error('Recoloring requires Recolor permission and pixel protection switched off.');
   const requestedRatio=(fit==='cover'?Math.max(width/sw,height/sh):Math.min(width/sw,height/sh))*scale;
-  const ratio=recipe.withoutEnlargement===true?Math.min(1,requestedRatio):requestedRatio,w=Math.max(1,Math.round(sw*ratio)),h=Math.max(1,Math.round(sh*ratio));
+  const ratio=recipe.withoutEnlargement===true?Math.min(1,requestedRatio):requestedRatio;
+  let w=Math.max(1,Math.round(sw*ratio)),h=Math.max(1,Math.round(sh*ratio));
+  const geometry=recipe.geometry;
+  if(geometry){
+   if(geometry.canvasWidth!==width||geometry.canvasHeight!==height||geometry.dpi!==dpi||![geometry.width,geometry.height,geometry.x,geometry.y].every(Number.isSafeInteger)||geometry.width<1||geometry.height<1)error('The saved numeric layout does not match this native canvas. Inspect the garment again.');
+   w=geometry.width;h=geometry.height;
+   if(Math.abs(w*sh-h*sw)>Math.max(sw,sh)*1.5)error('The numeric layout would distort the original artwork.');
+   const safe=geometry.safeRect;if(!safe||!['x','y','width','height'].every(k=>Number.isFinite(safe[k]))||geometry.x<safe.x-1||geometry.y<safe.y-1||geometry.x+w>safe.x+safe.width+1||geometry.y+h>safe.y+safe.height+1)error('The saved artwork extends outside its reviewed safe region.');
+  }
   if(w*h>MAX_PIXELS)error('Scaled artwork exceeds the rendering limit.');
   effectiveDpi=Math.min(sw/w,sh/h)*dpi;
   if(effectiveDpi+1<dpi)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);
@@ -44,7 +52,7 @@ export async function renderArea(area,source,recipe={},permissions={}){
   if(recipe.recolor!==undefined&&recipe.recolor!==null)image=image.tint(background(recipe.recolor));
   if(mirror)image=image.flop();if(angle)image=image.rotate(angle,{background:{r:0,g:0,b:0,alpha:0}});
   const rendered=await image.png().toBuffer({resolveWithObject:true}),rw=rendered.info.width,rh=rendered.info.height;
-  const centerX=width*(.5+x),centerY=height*(.5+y),dx=Math.max(1,Math.round(w*(1+spacing))),dy=Math.max(1,Math.round(h*(1+spacing)));
+  const centerX=geometry?geometry.x+w/2:width*(.5+x),centerY=geometry?geometry.y+h/2:height*(.5+y),dx=Math.max(1,Math.round(w*(1+spacing))),dy=Math.max(1,Math.round(h*(1+spacing)));
   const nx=tile?Math.ceil((width+rw+Math.abs(centerX-width/2)*2)/dx):0,ny=tile?Math.ceil((height+rh+Math.abs(centerY-height/2)*2)/dy):0;
   if((2*nx+1)*(2*ny+1)>400)error('Pattern has too many tiles. Increase artwork size or spacing.');
   for(let ix=-nx;ix<=nx;ix++)for(let iy=-ny;iy<=ny;iy++){
@@ -155,6 +163,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
   if(plan.artworkEdits?.enabled){if(!editor)error('Artwork editor is unavailable.');const result=await (diagnostics?diagnostics.withStage('artwork-edited',()=>editor.prepareJob(job,plan,ids,selection)):editor.prepareJob(job,plan,ids,selection));if(result.defer)return result;plan=result.plan;selection=result.selection;}
   if(plan.aiLayout){if(!artworkEngine)error('Connect the AI artwork planner before using AI layout mode.');plan=await (diagnostics?diagnostics.withStage('artwork-analyzed',()=>artworkEngine.plan(job,plan,ids,selection)):artworkEngine.plan(job,plan,ids,selection));}
   const requests=ids.map(id=>{const draft=get('SELECT * FROM factory_print_drafts WHERE id=?',id);if(!draft||draft.product!==selection?.product)error('Saved blueprints do not match the selected product.');
+   if(plan.numericLayout){const saved=plan.numericLayout.variants.find(v=>v.variant===draft.variant);if(!saved||JSON.stringify(saved.areas.map(a=>[a.placement,a.printfile_id,a.width,a.height,a.dpi]))!==JSON.stringify(JSON.parse(draft.areas).map(a=>[a.placement,a.printfile_id,a.width,a.height,a.dpi])))error('The saved layout template no longer matches this variant. Inspect a new product recipe.');return {job,draft:id,plan:{background:plan.numericLayout.background,placements:saved.placements},allowedIds:selection.artworkIds};}
    if(plan.placements){const placements=Object.fromEntries(JSON.parse(draft.areas).map(a=>[a.placement,plan.placements[a.placement]||(plan.colorMode==='print'?{fillOnly:true}:null)]));return {job,draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};}
    const placements={};for(const a of JSON.parse(draft.areas)){const match=plan.assignments.find(p=>p.zone===zone(a.placement))||(plan.colorMode==='print'?{artworkId:null}:null);if(!match)error('No explicit artwork or empty-placement decision for '+a.placement+'. Review the garment placement plan.');
     placements[a.placement]={artworkId:match.artworkId,fillOnly:!match.artworkId,fit:plan.fit,scale:match.scale,mirror:plan.mirrorSleeves&&zone(a.placement)==='sleeve_right'&&plan.assignments.find(p=>p.zone==='sleeve_left')?.artworkId===match.artworkId};}
