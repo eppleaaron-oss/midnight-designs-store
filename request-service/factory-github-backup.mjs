@@ -40,11 +40,11 @@ function unseal(bytes,key,context){try{if(bytes.length<29)throw Error();const de
 // GitHub holds encrypted recovery snapshots. This is deliberately NOT treated as
 // a durable live queue: an abrupt restart can lose changes since the last snapshot.
 export class GithubSnapshotStore{
- constructor(config,{fetchImpl=fetch,sleep=pause,clock=Date.now}={}){Object.assign(this,config);this.fetch=fetchImpl;this.sleep=sleep;this.clock=clock;this.head=null;this.tree=null;this.manifest=null;this.repositoryId=null;this.lastMutation=null;this.hold=false;}
+ constructor(config,{fetchImpl=fetch,sleep=pause,clock=Date.now}={}){Object.assign(this,config);this.fetch=fetchImpl;this.sleep=sleep;this.clock=clock;this.head=null;this.previousHead=null;this.tree=null;this.manifest=null;this.repositoryId=null;this.lastMutation=null;this.hold=false;}
  async api(path,{method='GET',body,missing=false}={}){
   for(let attempt=0;attempt<3;attempt++){
    if(method!=='GET'){if(this.lastMutation!==null)await this.sleep(Math.max(0,1000-(this.clock()-this.lastMutation)));this.lastMutation=this.clock();}
-   let response;try{response=await this.fetch('https://api.github.com/repos/'+this.repo+path,{method,headers:{Authorization:'Bearer '+this.token,Accept:'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'},...(body?{body:JSON.stringify(body)}:{}),redirect:'error',signal:AbortSignal.timeout(30000)});}catch{if(attempt<2){await this.sleep(1000*2**attempt);continue;}throw problem('GitHub backup connection failed. No new backup was confirmed.');}
+   let response;try{response=await this.fetch('https://api.github.com/repos/'+this.repo+path,{method,headers:{Authorization:'Bearer '+this.token,Accept:'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28',...(method==='GET'?{'Cache-Control':'no-cache'}:{})},...(body?{body:JSON.stringify(body)}:{}),cache:'no-store',redirect:'error',signal:AbortSignal.timeout(30000)});}catch{if(attempt<2){await this.sleep(1000*2**attempt);continue;}throw problem('GitHub backup connection failed. No new backup was confirmed.');}
    if(response.status===404&&missing)return null;
    if(response.status===429||response.status===403&&(response.headers.get('retry-after')||response.headers.get('x-ratelimit-remaining')==='0')){
     const delay=Number(response.headers.get('retry-after')||0)*1000,reset=Number(response.headers.get('x-ratelimit-reset')||0)*1000;
@@ -85,11 +85,22 @@ export class GithubSnapshotStore{
   }
   this.head=ref.object.sha;this.tree=commit.tree.sha;this.manifest=manifest;return manifest;
  }
- async assertCurrent(){await this.connect();const ref=await this.api('/git/ref/heads/'+encodeURIComponent(this.branch));if(ref.object?.sha!==this.head){this.hold=true;throw problem('GitHub checkpoint changed on another backend. This item is held before another external operation.',503,{conflict:true});}}
+ async confirmHead(expected,previous=null){
+  for(let attempt=0;attempt<4;attempt++){
+   const ref=await this.api('/git/ref/heads/'+encodeURIComponent(this.branch));
+   // Another local checkpoint may have finished while this GET was in flight.
+   if(this.head!==expected&&this.head!==previous)return false;
+   if(ref.object?.sha===expected)return true;
+   if(previous&&ref.object?.sha===previous){if(attempt<3){await this.sleep(250*2**attempt);continue;}throw problem('GitHub is still confirming the saved checkpoint. The tracked item will retry without creating another product.',503,{confirmationPending:true});}
+   this.hold=true;throw problem('GitHub checkpoint changed on another backend. This item is held before another external operation.',503,{conflict:true});
+  }
+ }
+ async assertCurrent(){await this.connect();while(!await this.confirmHead(this.head,this.previousHead)){};}
  validateManifest(m){if(m?.format!==1||!Number.isSafeInteger(m.bytes)||m.bytes<512||m.bytes>this.maxBytes||!/^[a-f0-9]{64}$/.test(m.sha256)||!Array.isArray(m.chunks)||m.chunks.length!==Math.ceil(m.bytes/CHUNK)||!Number.isFinite(Date.parse(m.created)))throw problem('Backup manifest is invalid or exceeds the configured size limit.');let size=0;for(const c of m.chunks){if(!/^[a-f0-9]{64}$/.test(c.id)||!sha(c.sha)||!Number.isSafeInteger(c.bytes)||c.bytes<1||c.bytes>CHUNK)throw problem('Backup chunk manifest is invalid.');size+=c.bytes;}if(size!==m.bytes)throw problem('Backup size does not match its manifest.');}
  async snapshot(db,{initialize=false}={}){
   await this.connect();await this.privateRepository();
   if(this.hold)throw problem('Backup conflict requires an owner review. Existing GitHub snapshots were preserved.');
+  await this.assertCurrent();
   if(!this.manifest&&!initialize)throw problem('No Factory backup exists yet. Save the first backup explicitly from the owner page.',409);
   // Reproducible Basic working pixels are removed from the copy before applying the backup limit.
   const folder=await mkdtemp(join(tmpdir(),'midnight-snapshot-'));let file;
@@ -107,9 +118,12 @@ export class GithubSnapshotStore{
    const nextTree=await this.api('/git/trees',{method:'POST',body:{base_tree:this.tree,tree}});if(!sha(nextTree.sha))throw problem('GitHub did not confirm the backup tree.');
    const commit=await this.api('/git/commits',{method:'POST',body:{message:'Save encrypted Factory recovery snapshot',tree:nextTree.sha,parents:[this.head]}});if(!sha(commit.sha))throw problem('GitHub did not confirm the backup commit.');
    await this.privateRepository();
-   try{await this.api('/git/refs/heads/'+encodeURIComponent(this.branch),{method:'PATCH',body:{sha:commit.sha,force:false}});}catch(e){if(e.conflict){this.hold=true;throw problem('GitHub changed during backup. The existing snapshot was preserved; owner review is required.',503,{conflict:true});}const current=await this.api('/git/ref/heads/'+encodeURIComponent(this.branch));if(current.object?.sha!==commit.sha)throw e;}
-   const confirmed=await this.api('/git/ref/heads/'+encodeURIComponent(this.branch));if(confirmed.object?.sha!==commit.sha){this.hold=true;throw problem('GitHub backup confirmation changed. Owner review is required.',503,{conflict:true});}
-   this.head=commit.sha;this.tree=nextTree.sha;this.manifest=manifest;return {commit:this.head,manifest};
+   const parentHead=this.head;
+   try{const accepted=await this.api('/git/refs/heads/'+encodeURIComponent(this.branch),{method:'PATCH',body:{sha:commit.sha,force:false}});if(accepted.object?.sha!==commit.sha)await this.confirmHead(commit.sha,parentHead);}catch(e){if(e.conflict){this.hold=true;throw problem('GitHub changed during backup. The existing snapshot was preserved; owner review is required.',503,{conflict:true});}try{await this.confirmHead(commit.sha,parentHead);}catch{throw e;}}
+   // The write response acknowledges this exact ref. A stale GET of its parent
+   // is a bounded consistency wait, not evidence of a competing backend.
+   this.previousHead=parentHead;this.head=commit.sha;this.tree=nextTree.sha;this.manifest=manifest;
+   await this.confirmHead(this.head,parentHead);return {commit:this.head,manifest};
   }finally{await file?.close();await rm(folder,{recursive:true,force:true});}
  }
  async restore(dbPath){

@@ -105,6 +105,22 @@ test('Disapproval deletes only its owned unpublished supplier draft, originals s
  assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,409);let state=(await f.basic()).data;assert.equal(state.active.status,'cleanup_failed');assert.equal(state.active.closed,0);assert.equal((await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'})).status,409);
  f.db.prepare('DELETE FROM factory_job_profiles WHERE job=?').run(other);assert.equal((await f.basic('/resume',{id:item.id})).status,200);state=(await f.basic()).data;assert.equal(state.active,null);assert.equal(state.rejectionCleanupVerified,true);assert.equal(state.recent[0].storage.mockupBytes,0);assert.equal(state.recent[0].storage.workingBytes,0);assert.equal(f.counts().deletes,1,'retrying cleanup never creates or deletes another product');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_artwork WHERE id=?').get(f.artwork).n,1);
 });
+test('cleanup waits for GitHub, retains reclaimed bytes across retries, and releases the rejected lane only after checkpoint confirmation',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.preview(item);
+ f.git.failDelete=true;assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,503);
+ const first=(await f.basic()).data.active;assert.equal(first.cleanup.verified,false);assert.equal(first.cleanup.localVerified,true);assert.ok(first.cleanup.reclaimedBytes>0);assert.ok(first.cleanup.files.length>0);
+ const remaining=f.git.assets.size;f.store.hold=true;
+ await assert.rejects(f.service.basic.tick(),/GitHub/);const held=(await f.basic()).data.active;assert.equal(held.cleanup.reclaimedBytes,first.cleanup.reclaimedBytes);assert.deepEqual(held.cleanup.files,first.cleanup.files);assert.equal(held.cleanup.verified,false);assert.equal(held.closed,0);assert.equal(f.git.assets.size,remaining);
+ f.store.hold=false;f.git.failDelete=false;f.git.staleReadsAfterWrite=3;
+ assert.equal((await f.basic('/resume',{id:item.id})).status,200);const state=(await f.basic()).data;assert.equal(state.active,null);assert.equal(state.recent[0].cleanup.verified,true);assert.equal(state.recent[0].cleanup.reclaimedBytes,first.cleanup.reclaimedBytes);assert.deepEqual(state.recent[0].cleanup.files,first.cleanup.files);assert.equal(f.git.assets.size,0);assert.equal(state.recent[0].error,'');assert.equal(f.store.hold,false);assert.equal(f.counts().deletes,1);
+});
+test('a failed final checkpoint never reports verified cleanup and retries without losing the original cleanup record',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.preview(item);let failFinal=true;
+ f.service.basic.setWorkspace({...f.service.basicGithub,async checkpoint(job){if(failFinal&&f.db.prepare('SELECT closed FROM factory_basic_items WHERE id=?').get(item.id).closed){failFinal=false;throw Object.assign(Error('Checkpoint confirmation delayed'),{status:503});}return f.service.basicGithub.checkpoint(job);}});
+ assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,503);const held=(await f.basic()).data.active;
+ assert.equal(held.closed,0);assert.equal(held.cleanup.verified,false);assert.equal(held.cleanup.github.verified,true);assert.ok(held.cleanup.reclaimedBytes>0);assert.equal(f.git.assets.size,0);
+ assert.equal((await f.basic('/resume',{id:item.id})).status,200);const done=(await f.basic()).data;assert.equal(done.active,null);assert.equal(done.recent[0].cleanup.verified,true);assert.equal(done.recent[0].cleanup.reclaimedBytes,held.cleanup.reclaimedBytes);assert.deepEqual(done.recent[0].cleanup.files,held.cleanup.files);assert.equal(f.counts().deletes,1);assert.equal(done.recent[0].error,'');
+});
 
 test('Basic backup copies omit disposable pixels, preserve file IDs and restore the same recipe without duplicate supplier or mockup tasks',async t=>{
  const f=await fixture(t),item=await f.start();await f.preview(item);const folder=await mkdtemp(join(tmpdir(),'basic-backup-'));t.after(()=>rm(folder,{recursive:true,force:true}));const path=join(folder,'snapshot.sqlite');await backup(f.db,path);const copy=new DatabaseSync(path);
