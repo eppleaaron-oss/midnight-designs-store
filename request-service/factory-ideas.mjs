@@ -1,3 +1,4 @@
+import {readPrintful} from './printful-read.mjs';
 import {INTERNAL_LABELS,isBrandArtwork} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';import {inflateSync} from 'node:zlib';import {readFileSync} from 'node:fs';
 import {garmentColors} from './factory-rendering.mjs';
@@ -150,10 +151,12 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
  // Read every product in the Printful store and keep the design set behind it. Jackets lead.
  let pfProducts=null;
  let printful={state:env.PRINTFUL_TOKEN?'waiting':'not_connected',error:null,checked:0};
- async function refreshPrintful(){
+ let refreshing=null;
+ async function refreshPrintful(){if(refreshing)return refreshing;refreshing=refreshStore();try{return await refreshing;}finally{refreshing=null;}}
+ async function refreshStore(){
   if(!env.PRINTFUL_TOKEN){printful={state:'not_connected',error:null,checked:clock()};return;}
   const headers={Authorization:'Bearer '+env.PRINTFUL_TOKEN,...(env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':env.PRINTFUL_STORE_ID}:{})};
-  const pf=async path=>{const r=await fetchImpl('https://api.printful.com/'+path,{headers,signal:AbortSignal.timeout(25000)});if(!r.ok)throw Error('Printful answered '+r.status+'.');return (await r.json()).result;};
+  const pf=async path=>{const r=await readPrintful('https://api.printful.com/'+path,{headers,signal:AbortSignal.timeout(25000)},fetchImpl);if(!r.ok)throw Error('Printful answered '+r.status+'.');return (await r.json()).result;};
   let storeNames={};try{const r=await fetchImpl(storefrontOrigin+'/products.json',{signal:AbortSignal.timeout(10000)});if(r.ok){const d=await r.json();for(const x of d.products||[])if(x&&x.id&&x.name)storeNames[String(x.id)]=String(x.name);}}catch{}
   try{const list=[];for(let offset=0;offset<1000;offset+=100){const page=await pf(`store/products?limit=100&offset=${offset}`);list.push(...page);if(page.length<100)break;}
    const t=now(),seen=new Set(),found=[];
@@ -292,7 +295,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
   run("UPDATE idea_made SET status='deleted',updated=? WHERE id=?",now(),id);}
  function madeList(){return all("SELECT * FROM idea_made WHERE status!='deleted' ORDER BY created DESC LIMIT 200").map(r=>({id:r.id,name:r.name,set:r.set_name,category:r.category,status:r.status,error:r.error,printfulId:r.printful_id,prices:r.prices?JSON.parse(r.prices):null,job:r.job,mockupStatus:r.job?publishingEngine?.mockupStatus(r.job)||null:null,thumb:r.thumb,rating:r.rating,note:r.note,created:r.created}));}
 
- async function tick(){if(clock()-printful.checked>30*60000)await refreshPrintful();generate();await autopilot().catch(e=>console.error('Autopilot failed:',e.message));drain().catch(e=>console.error('Publishing failed:',e.message));await refreshThumbs();return make();}
+ async function tick(){if(get('SELECT state FROM factory_settings WHERE id=1')?.state==='running'&&clock()-printful.checked>30*60000)await refreshPrintful();generate();await autopilot().catch(e=>console.error('Autopilot failed:',e.message));drain().catch(e=>console.error('Publishing failed:',e.message));await refreshThumbs();return make();}
 
  function snapshot(){
   syncMade();

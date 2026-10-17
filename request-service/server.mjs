@@ -189,7 +189,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    }
    const image=path.match(/^\/api\/attachments\/([a-f0-9-]{36})$/);if(image&&method==='GET'){const a=get('SELECT * FROM attachments WHERE id=?',image[1]);if(!a)fail(404,'Image not found.');auth(req,a.request);res.setHeader('Content-Type',a.mime);return res.end(Buffer.from(a.data));}
    fail(404,'Not found.');
-  }catch(e){if(res.headersSent)return res.end();send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
+  }catch(e){if(res.headersSent)return res.end();if(e.status===429&&Number.isFinite(e.retryAfter))res.setHeader('Retry-After',String(Math.ceil(e.retryAfter)));send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
  }));
  const runFeed=setInterval(()=>{runsHandler.tick().catch(e=>console.error('Production run feed failed:',e.message));ideasHandler.tick().catch(e=>console.error('Idea team failed:',e.message));basicHandler.tick().then(()=>basicOutfits.tick()).catch(e=>console.error('Basic cleanup held:',e.message));},30000);runFeed.unref();
  server.on('close',()=>{clearInterval(runFeed);editorHandler.idle().finally(async()=>{await githubBackups.close();db.close();});});return {server,db,githubBackups,artworkEditor:editorHandler,basic:basicHandler,basicOutfits,basicGithub,factoryDiagnostics:diagnostics,factoryAcceptance:acceptance,publishingEngine:publishingHandler};
