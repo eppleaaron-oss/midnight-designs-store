@@ -1,3 +1,4 @@
+import {artworkBounds} from './factory-artwork-bounds.mjs';
 import {targetAreas,MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import sharp from 'sharp';
 import {createHash,randomUUID} from 'node:crypto';
@@ -58,7 +59,7 @@ export function basicSizing({db,workflow,clock=Date.now}) {
   let minX=sample.info.width,minY=sample.info.height,maxX=-1,maxY=-1;
   for(let y=0;y<sample.info.height;y++)for(let x=0;x<sample.info.width;x++){const i=(y*sample.info.width+x)*4;if(sample.data[i+3]>24&&Math.max(...sample.data.subarray(i,i+3))>22){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}}
   const visible=maxX>=minX?(maxX-minX+1)*(maxY-minY+1)/(sample.info.width*sample.info.height):0;
-  return {id,sha256:row.sha256,width,height,permissions:row.effectivePermissions,marginWarning:visible<0.65?'The source has substantial dark/transparent margins. The inch measurement is the full image bounds; inspect the visible graphic. Cropping/extracting a symbol requires separate permission.':null};
+  return {id,sha256:row.sha256,width,height,bounds:await artworkBounds(data),permissions:row.effectivePermissions,marginWarning:visible<0.65?'The source has substantial dark/transparent margins. The inch measurement is the full image bounds; inspect the visible graphic. Cropping/extracting a symbol requires separate permission.':null};
  }
  async function resolve(p,bp,input){
   if(!input||typeof input!=='object'||Array.isArray(input)||input.version!==BASIC_LAYOUT_VERSION)fail('Choose a current Basic layout version.',400);
@@ -83,20 +84,23 @@ export function basicSizing({db,workflow,clock=Date.now}) {
     const override=overrides[s.id]||{};if(Object.keys(override).some(k=>!['widthIn','heightIn','xIn','yIn','spacingIn'].includes(k)))fail('Only size, position and pattern spacing overrides are supported.',400);
     const base=firstAreas.find(a=>a.placement===area.placement),factor=input.scaleMode==='proportional'&&base?Math.min(area.width/area.dpi/(base.width/base.dpi),area.height/area.dpi/(base.height/base.dpi)):1;
     const targetW=num(override.widthIn??s.widthIn,'artwork width',0.1,40)*factor*area.dpi,targetH=override.heightIn===undefined&&s.heightIn===null?Infinity:num(override.heightIn??s.heightIn,'artwork height',0.1,60)*factor*area.dpi;
-    const requested=Math.min(targetW/src.width,targetH/src.height),anchor=map.anchors[s.anchor];
+    const bounds=input.measureVisible!==false&&!layout.pattern?src.bounds:null,b=bounds||{x:0,y:0,width:src.width,height:src.height};
+    const requested=Math.min(targetW/b.width,targetH/b.height),anchor=map.anchors[s.anchor];
     const cx=override.xIn===undefined?anchor.x:num(override.xIn,'horizontal position')*area.dpi,cy=override.yIn===undefined?anchor.y:num(override.yIn,'vertical position')*area.dpi;
     if(!inside({x:cx,y:cy,width:0,height:0},map.safeRect))fail('The '+s.id+' position is outside the reviewed safe region.');
     const safeW=2*Math.min(cx-map.safeRect.x,map.safeRect.x+map.safeRect.width-cx),safeH=2*Math.min(cy-map.safeRect.y,map.safeRect.y+map.safeRect.height-cy);
-    const ratio=Math.min(requested,1,safeW/src.width,safeH/src.height);if(ratio<=0)fail('The '+s.id+' anchor leaves no safe artwork space.');
-    const width=Math.max(1,Math.floor(src.width*ratio)),height=Math.max(1,Math.floor(src.height*ratio)),x=Math.round(cx-width/2),y=Math.round(cy-height/2),effectiveDpi=Math.min(src.width/width,src.height/height)*area.dpi;
+    const sourceCenterX=b.x+b.width/2,sourceCenterY=b.y+b.height/2,canvasLimit=Math.min(cx/sourceCenterX,(area.width-cx)/(src.width-sourceCenterX),cy/sourceCenterY,(area.height-cy)/(src.height-sourceCenterY));
+    const ratio=Math.min(requested,1,safeW/b.width,safeH/b.height,canvasLimit);if(ratio<=0)fail('The '+s.id+' anchor leaves no safe artwork space.');
+    const width=Math.max(1,Math.floor(src.width*ratio)),height=Math.max(1,Math.floor(src.height*ratio)),x=Math.min(area.width-width,Math.max(0,Math.round(cx-sourceCenterX*width/src.width))),y=Math.min(area.height-height,Math.max(0,Math.round(cy-sourceCenterY*height/src.height))),effectiveDpi=Math.min(src.width/width,src.height/height)*area.dpi;
     if(effectiveDpi+0.01<area.dpi)fail('The source artwork cannot meet this garment’s resolution requirement.');
-    if(ratio<requested-0.001)reductions.push({variant:v.id,placement:area.placement,requestedWidthIn:round(src.width*requested/area.dpi),requestedHeightIn:round(src.height*requested/area.dpi),actualWidthIn:round(width/area.dpi),actualHeightIn:round(height/area.dpi),reason:requested>1?'Source pixels or the reviewed safe area limit the requested size.':'The reviewed safe area limits the requested size.'});
-    if(src.marginWarning)warnings.push(s.id+': '+src.marginWarning);
-    const geometry={x,y,width,height,canvasWidth:area.width,canvasHeight:area.height,dpi:area.dpi,safeRect:map.safeRect,profileStamp:hash(map)};
+    const visibleWidth=width*b.width/src.width,visibleHeight=height*b.height/src.height;
+    if(ratio<requested-0.001)reductions.push({variant:v.id,placement:area.placement,requestedWidthIn:round(b.width*requested/area.dpi),requestedHeightIn:round(b.height*requested/area.dpi),actualWidthIn:round(visibleWidth/area.dpi),actualHeightIn:round(visibleHeight/area.dpi),reason:requested>1?'Source pixels or the reviewed safe area limit the requested size.':'The reviewed safe area limits the requested size.'});
+    if(src.marginWarning)warnings.push(s.id+': '+(bounds?'Measurements follow the visible artwork; the full original including empty borders is preserved.':src.marginWarning));
+    const geometry={x,y,width,height,canvasWidth:area.width,canvasHeight:area.height,dpi:area.dpi,safeRect:map.safeRect,profileStamp:hash(map),...(bounds&&(bounds.width!==src.width||bounds.height!==src.height)?{contentBounds:{...bounds,sourceWidth:src.width,sourceHeight:src.height}}:{})};
     const recipe={artworkId:src.id,fit:'contain',geometry,protect:true,mirror:false,rotation:0,tile:false};
     if(layout.pattern){if(!src.permissions.crop)fail('Repeating patterns extend through the panel bleed and need explicit Crop permission for the selected motif.');recipe.tile=true;recipe.protect=false;const spacing=num(override.spacingIn??0,'pattern spacing',0,10)*area.dpi;if(spacing>width*2)fail('Pattern spacing must be at most twice the motif width.');recipe.spacing=100*spacing/width;const nx=Math.ceil((area.width+width+Math.abs(cx-area.width/2)*2)/(width+spacing)),ny=Math.ceil((area.height+height+Math.abs(cy-area.height/2)*2)/(height+spacing));if((2*nx+1)*(2*ny+1)>400)fail('This pattern would have too many tiles. Increase the motif size or choose fewer repeats.');}
     elements.push(recipe);
-    measurements.push({region:target.region||null,slot:s.id,part:s.part,artwork:src.id,name:p.set.parts[s.part].name,previewUrl:'/api/owner/ai-factory/artwork/'+src.id+'/file',placement:area.placement,anchor:s.anchor,widthIn:round(width/area.dpi),heightIn:round(height/area.dpi),centerXIn:round(cx/area.dpi),centerYIn:round(cy/area.dpi),effectiveDpi:round(effectiveDpi),canvas:{width:area.width,height:area.height,dpi:area.dpi},geometry,pattern:layout.pattern,spacingIn:override.spacingIn||0,profileReference:map.reference});
+    measurements.push({region:target.region||null,slot:s.id,part:s.part,artwork:src.id,name:p.set.parts[s.part].name,previewUrl:'/api/owner/ai-factory/artwork/'+src.id+'/file',placement:area.placement,anchor:s.anchor,widthIn:round(visibleWidth/area.dpi),heightIn:round(visibleHeight/area.dpi),centerXIn:round(cx/area.dpi),centerYIn:round(cy/area.dpi),effectiveDpi:round(effectiveDpi),canvas:{width:area.width,height:area.height,dpi:area.dpi},geometry,pattern:layout.pattern,spacingIn:override.spacingIn||0,profileReference:map.reference});
     }placements[area.placement]=elements.length===1?elements[0]:{elements};
    }
    variants.push({variant:v.id,size:v.size,areas:native,placements,measurements});

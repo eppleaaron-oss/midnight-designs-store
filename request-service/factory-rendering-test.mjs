@@ -1,3 +1,4 @@
+import {artworkBounds} from './factory-artwork-bounds.mjs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
@@ -87,4 +88,14 @@ test('native 10200 by 7500 pants PNG keeps separate elements and black gap witho
  const geometry=x=>({x,y:2000,width:400,height:1200,canvasWidth:10200,canvasHeight:7500,dpi:150,safeRect:{x,y:1500,width:600,height:3000}}),parts=[2500,6700].map(x=>({data,recipe:{geometry:geometry(x),protect:true},permissions:allow}));
  const result=await renderArea(area,parts,{background:'Black',elements:[]});assert.deepEqual(pngDimensions(result.data),{width:10200,height:7500});assert.equal((await sharp(result.data).metadata()).density,150);assert.equal(result.effectiveDpi,150);
  const at=async x=>[...await sharp(result.data).extract({left:x,top:2500,width:1,height:1}).removeAlpha().raw().toBuffer()];assert.deepEqual(await at(2600),[255,0,0]);assert.deepEqual(await at(6800),[255,0,0]);assert.deepEqual(await at(5100),[0,0,0]);
+});
+
+
+test('visible artwork ignores only exact black/transparent padding and keeps both protected originals when padded images overlap',async()=>{
+ const source=async color=>sharp({create:{width:60,height:60,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:4,height:40,channels:4,background:color}}).png().toBuffer(),left:28,top:10}]).png().toBuffer();
+ const red=await source('#ff0000'),blue=await source('#0000ff'),before=[red,blue].map(b=>createHash('sha256').update(b).digest('hex')),bounds=await artworkBounds(red);assert.deepEqual(bounds,{x:28,y:10,width:4,height:40});
+ const geometry=x=>({x,y:20,width:60,height:60,canvasWidth:120,canvasHeight:120,dpi:10,safeRect:{x:x+27,y:29,width:6,height:42},contentBounds:{...bounds,sourceWidth:60,sourceHeight:60}}),items=[red,blue].map((data,i)=>({data,recipe:{geometry:geometry(i*20),protect:true},permissions:{reuse:true,crop:false,modify:false,recolor:false}}));
+ const out=await renderArea({width:120,height:120,dpi:10},items,{background:'Black'}),raw=await pixels(out.data);assert.deepEqual(pixel(raw,29,50),[255,0,0,255],'second black margin does not erase the first graphic');assert.deepEqual(pixel(raw,49,50),[0,0,255,255]);assert.deepEqual(pixel(raw,40,50),[0,0,0,255]);assert.deepEqual([red,blue].map(b=>createHash('sha256').update(b).digest('hex')),before,'no original pixels are edited');
+ const fake=structuredClone(items[0].recipe);fake.geometry.contentBounds.width=1;await assert.rejects(renderArea({width:120,height:120,dpi:10},red,fake,{reuse:true}),/measurement does not match/);
+ const faint=await sharp(red).composite([{input:Buffer.from([1,0,0,255]),raw:{width:1,height:1,channels:4},left:2,top:3}]).png().toBuffer();assert.deepEqual(await artworkBounds(faint),{x:2,y:3,width:30,height:47},'faint detail cannot be discarded as empty background');
 });

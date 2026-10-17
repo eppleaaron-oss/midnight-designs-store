@@ -1,3 +1,4 @@
+import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
 import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import {recipeIds,sourceProof} from './factory-render-proof.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
@@ -46,7 +47,8 @@ export async function renderArea(area,source,recipe={},permissions={}){
    if(geometry.canvasWidth!==width||geometry.canvasHeight!==height||geometry.dpi!==dpi||![geometry.width,geometry.height,geometry.x,geometry.y].every(Number.isSafeInteger)||geometry.width<1||geometry.height<1)error('The saved numeric layout does not match this native canvas. Inspect the garment again.');
    w=geometry.width;h=geometry.height;
    if(Math.abs(w*sh-h*sw)>Math.max(sw,sh)*1.5)error('The numeric layout would distort the original artwork.');
-   const safe=geometry.safeRect;if(!safe||!['x','y','width','height'].every(k=>Number.isFinite(safe[k]))||geometry.x<safe.x-1||geometry.y<safe.y-1||geometry.x+w>safe.x+safe.width+1||geometry.y+h>safe.y+safe.height+1)error('The saved artwork extends outside its reviewed safe region.');
+   if(geometry.contentBounds){const b=geometry.contentBounds,actual=await artworkBounds(oriented);if(bg!=='#000000'||left||top||sw!==meta.width||sh!==meta.height||b.sourceWidth!==meta.width||b.sourceHeight!==meta.height||!actual||JSON.stringify(actual)!==JSON.stringify({x:b.x,y:b.y,width:b.width,height:b.height}))error('Visible-artwork measurement does not match the preserved original or black print background.');}
+   const safe=geometry.safeRect,visible=visibleGeometry(geometry);if(!safe||!['x','y','width','height'].every(k=>Number.isFinite(safe[k]))||visible.x<safe.x-1||visible.y<safe.y-1||visible.x+visible.width>safe.x+safe.width+1||visible.y+visible.height>safe.y+safe.height+1)error('The saved artwork extends outside its reviewed safe region.');
   }
   if(w*h>MAX_PIXELS)error('Scaled artwork exceeds the rendering limit.');
   const sourceDpi=Math.min(sw/w,sh/h)*dpi;effectiveDpi=Math.min(effectiveDpi??Infinity,sourceDpi);
@@ -64,7 +66,7 @@ export async function renderArea(area,source,recipe={},permissions={}){
    const clipped=l<0||t<0||l+rw>width||t+rh>height;
    if(clipped&&(permissions.crop!==true||recipe.protect===true))error('This position, pattern or rotation clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
    const input=clipped?await sharp(rendered.data).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png().toBuffer():rendered.data;
-   overlays.push({input,left:a,top:b});
+   overlays.push({input,left:a,top:b,...(geometry?.contentBounds?{blend:'lighten'}:{})});
   }
   if(!overlays.length)error('Artwork is entirely outside the print area.');
  }
