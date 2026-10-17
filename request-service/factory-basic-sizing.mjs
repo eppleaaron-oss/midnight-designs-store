@@ -1,3 +1,4 @@
+import {targetAreas,MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import sharp from 'sharp';
 import {createHash,randomUUID} from 'node:crypto';
 import {variantAreas} from './factory-blueprints.mjs';
@@ -10,9 +11,9 @@ const fail=(message,status=409)=>{throw Object.assign(Error(message),{status});}
 const num=(v,label,min=0,max=100)=>{if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)fail('Invalid '+label+'.',400);return v;};
 const round=n=>Math.round(n*1000)/1000;
 const areaStamp=a=>hash([a.placement,a.printfile_id,a.width,a.height,a.dpi]);
-const key=(product,technique,a)=>[product,technique,a.placement,areaStamp(a)].join(':');
+const key=(product,technique,a)=>[product,technique,a.placement,areaStamp(a),...(a.region?[a.region]:[])].join(':');
 const inside=(r,b)=>r.x>=b.x-0.01&&r.y>=b.y-0.01&&r.x+r.width<=b.x+b.width+0.01&&r.y+r.height<=b.y+b.height+0.01;
-const defaultPart=(slot,parts)=>Object.keys(parts).find(k=>panelKind(k)===slot.panel)||null;
+const defaultPart=(slot,parts)=>Object.keys(parts).find(k=>panelKind(k)===slot.panel)||(slot.panel==='leg_left'?parts.sleeve_left&&'sleeve_left':slot.panel==='leg_right'?parts.sleeve_right&&'sleeve_right':null)||null;
 
 // Reviewed anatomical anchors are separate from supplier mockup-image coordinates.
 // A Printful API rectangle does not supply a chest/thigh safe zone by itself.
@@ -20,13 +21,13 @@ export function basicSizing({db,workflow,clock=Date.now}) {
  db.exec(`CREATE TABLE IF NOT EXISTS factory_basic_geometry(key TEXT PRIMARY KEY,product INTEGER NOT NULL,technique TEXT NOT NULL,placement TEXT NOT NULL,stamp TEXT NOT NULL,profile TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_basic_inspections(id TEXT PRIMARY KEY,signature TEXT NOT NULL,created INTEGER NOT NULL);`);
  const get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a);
- const profile=(product,technique,a)=>{const r=get('SELECT profile FROM factory_basic_geometry WHERE key=?',key(product,technique,a));return r?JSON.parse(r.profile):null;};
+ const profile=(product,technique,a)=>{const r=get('SELECT profile FROM factory_basic_geometry WHERE key=?',key(product,technique,a));return r?JSON.parse(r.profile):a.builtinProfile||null;};
  function options(p,bp){
   const technique=bp.effectiveTechnique||bp.technique,areas=new Map();
-  for(const v of p.variants)for(const a of exterior(variantAreas(bp,v.id))){const k=key(p.product.id,technique,a);if(!areas.has(k))areas.set(k,{...a,key:k,variantIds:[],profile:profile(p.product.id,technique,a),widthIn:round(a.width/a.dpi),heightIn:round(a.height/a.dpi)});areas.get(k).variantIds.push(v.id);}
+  for(const v of p.variants)for(const a of targetAreas(p.product.id,p.role,exterior(variantAreas(bp,v.id)))){const k=key(p.product.id,technique,a);if(!areas.has(k))areas.set(k,{...a,key:k,variantIds:[],profile:profile(p.product.id,technique,a),widthIn:round(a.width/a.dpi),heightIn:round(a.height/a.dpi)});areas.get(k).variantIds.push(v.id);}
   const layouts=BASIC_LAYOUTS.filter(l=>l.category===p.role||[64,66].includes(l.number)).map(l=>{
    const reasons=l.reason?[l.reason]:[];
-   for(const v of p.variants)for(const s of l.slots){if(s.panel==='*')continue;if(!s.optional&&!exterior(variantAreas(bp,v.id)).some(a=>panelKind(a.placement)===s.panel))reasons.push('Size '+v.size+' has no supported '+s.panel+' panel.');}
+   for(const v of p.variants)for(const s of l.slots){if(s.panel==='*')continue;if(!s.optional&&!targetAreas(p.product.id,p.role,exterior(variantAreas(bp,v.id))).some(a=>(a.region||panelKind(a.placement))===s.panel))reasons.push('Size '+v.size+' has no supported '+s.panel+' panel.');}
    return {...l,compatible:!reasons.length,reasons:[...new Set(reasons)],needsReviewedMap:true};
   });
   return {version:BASIC_LAYOUT_VERSION,layouts,areas:[...areas.values()],allLayouts:BASIC_LAYOUTS.map(l=>({number:l.number,category:l.category,name:l.name,supported:l.supported,reason:l.reason})),note:'Inches refer to the artwork inside the full native canvas. Safe regions and anatomical anchors need a product-specific review; mockup template rectangles are not safe-zone masks.'};
@@ -37,7 +38,7 @@ export function basicSizing({db,workflow,clock=Date.now}) {
   if(typeof b.anchor!=='string'||!/^[-a-z_]{1,40}$/.test(b.anchor))fail('Choose a named anatomical anchor.',400);
   const r=b.safeRect;if(!r||typeof r!=='object')fail('Define the safe region from this garment’s print guideline.',400);
   const dpi=option.dpi,safeRect={x:num(r.x,'safe left')*dpi,y:num(r.y,'safe top')*dpi,width:num(r.width,'safe width',0.01)*dpi,height:num(r.height,'safe height',0.01)*dpi};
-  const bounds={x:0,y:0,width:option.width,height:option.height};if(!inside(safeRect,bounds))fail('The reviewed safe region extends outside the native print canvas.');
+  const bounds=option.builtinProfile?.safeRect||{x:0,y:0,width:option.width,height:option.height};if(!inside(safeRect,bounds))fail('The reviewed safe region extends outside the native print canvas.');
   const point={x:num(b.xIn,'anchor horizontal position')*dpi,y:num(b.yIn,'anchor vertical position')*dpi};
   if(!inside({...point,width:0,height:0},safeRect))fail('The anatomical anchor must be inside the reviewed safe region.');
   const old=profile(p.product.id,bp.effectiveTechnique||bp.technique,option),anchors={...(old?.anchors||{}),[b.anchor]:point};
@@ -75,9 +76,10 @@ export function basicSizing({db,workflow,clock=Date.now}) {
   }
   const technique=bp.effectiveTechnique||bp.technique,firstAreas=exterior(variantAreas(bp,p.variants[0].id));
   for(const v of p.variants){const native=exterior(variantAreas(bp,v.id)),placements={},measurements=[];
-   for(const area of native){if(area.width*area.height>40_000_000)fail('The required '+area.placement+' native canvas exceeds this renderer’s 40-million-pixel limit. Choose another supplier template.');const s=bindings.find(s=>s.panel==='*'||s.panel===panelKind(area.placement));
-    if(!s?.part){placements[area.placement]={fillOnly:true,fit:'contain',protect:true};measurements.push({placement:area.placement,blank:true,width:area.width,height:area.height,dpi:area.dpi});continue;}
-    const src=sources.get(s.part),map=profile(p.product.id,technique,area);if(!map?.reviewed||!map.anchors[s.anchor])fail('Review the '+area.placement+' safe region and '+s.anchor+' anchor for size '+v.size+' before using '+layout.name+'.');
+   for(const area of native){if(area.width*area.height>MAX_NATIVE_PIXELS)fail('The required '+area.placement+' native canvas exceeds the supported native rendering limit.');const targets=targetAreas(p.product.id,p.role,[area]),selected=bindings.flatMap(s=>{const target=targets.find(a=>s.panel==='*'?!a.region:(a.region||panelKind(a.placement))===s.panel);return s.part&&target?[{s,target}]:[];});
+    if(!selected.length){placements[area.placement]={fillOnly:true,fit:'contain',protect:true};measurements.push({placement:area.placement,blank:true,width:area.width,height:area.height,dpi:area.dpi});continue;}
+    const elements=[];for(const {s,target}of selected){
+    const src=sources.get(s.part),map=profile(p.product.id,technique,target);if(!map?.reviewed||!map.anchors[s.anchor])fail('Review the '+(target.region||area.placement)+' safe region and '+s.anchor+' anchor for size '+v.size+' before using '+layout.name+'.');
     const override=overrides[s.id]||{};if(Object.keys(override).some(k=>!['widthIn','heightIn','xIn','yIn','spacingIn'].includes(k)))fail('Only size, position and pattern spacing overrides are supported.',400);
     const base=firstAreas.find(a=>a.placement===area.placement),factor=input.scaleMode==='proportional'&&base?Math.min(area.width/area.dpi/(base.width/base.dpi),area.height/area.dpi/(base.height/base.dpi)):1;
     const targetW=num(override.widthIn??s.widthIn,'artwork width',0.1,40)*factor*area.dpi,targetH=override.heightIn===undefined&&s.heightIn===null?Infinity:num(override.heightIn??s.heightIn,'artwork height',0.1,60)*factor*area.dpi;
@@ -93,8 +95,9 @@ export function basicSizing({db,workflow,clock=Date.now}) {
     const geometry={x,y,width,height,canvasWidth:area.width,canvasHeight:area.height,dpi:area.dpi,safeRect:map.safeRect,profileStamp:hash(map)};
     const recipe={artworkId:src.id,fit:'contain',geometry,protect:true,mirror:false,rotation:0,tile:false};
     if(layout.pattern){if(!src.permissions.crop)fail('Repeating patterns extend through the panel bleed and need explicit Crop permission for the selected motif.');recipe.tile=true;recipe.protect=false;const spacing=num(override.spacingIn??0,'pattern spacing',0,10)*area.dpi;if(spacing>width*2)fail('Pattern spacing must be at most twice the motif width.');recipe.spacing=100*spacing/width;const nx=Math.ceil((area.width+width+Math.abs(cx-area.width/2)*2)/(width+spacing)),ny=Math.ceil((area.height+height+Math.abs(cy-area.height/2)*2)/(height+spacing));if((2*nx+1)*(2*ny+1)>400)fail('This pattern would have too many tiles. Increase the motif size or choose fewer repeats.');}
-    placements[area.placement]=recipe;
-    measurements.push({slot:s.id,part:s.part,artwork:src.id,name:p.set.parts[s.part].name,previewUrl:'/api/owner/ai-factory/artwork/'+src.id+'/file',placement:area.placement,anchor:s.anchor,widthIn:round(width/area.dpi),heightIn:round(height/area.dpi),centerXIn:round(cx/area.dpi),centerYIn:round(cy/area.dpi),effectiveDpi:round(effectiveDpi),canvas:{width:area.width,height:area.height,dpi:area.dpi},geometry,pattern:layout.pattern,spacingIn:override.spacingIn||0,profileReference:map.reference});
+    elements.push(recipe);
+    measurements.push({region:target.region||null,slot:s.id,part:s.part,artwork:src.id,name:p.set.parts[s.part].name,previewUrl:'/api/owner/ai-factory/artwork/'+src.id+'/file',placement:area.placement,anchor:s.anchor,widthIn:round(width/area.dpi),heightIn:round(height/area.dpi),centerXIn:round(cx/area.dpi),centerYIn:round(cy/area.dpi),effectiveDpi:round(effectiveDpi),canvas:{width:area.width,height:area.height,dpi:area.dpi},geometry,pattern:layout.pattern,spacingIn:override.spacingIn||0,profileReference:map.reference});
+    }placements[area.placement]=elements.length===1?elements[0]:{elements};
    }
    variants.push({variant:v.id,size:v.size,areas:native,placements,measurements});
   }

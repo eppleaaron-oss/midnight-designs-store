@@ -1,3 +1,5 @@
+import {factoryQuality} from './factory-quality.mjs';
+import {legRegions} from './factory-placement-regions.mjs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {scryptSync,randomUUID} from 'node:crypto';
@@ -6,11 +8,11 @@ import {createService} from './server.mjs';
 import {SIZING_RULES} from './factory-sizing-rules.mjs';
 import {BASIC_LAYOUT_VERSION,BASIC_LAYOUTS} from './factory-basic-layout-library.mjs';
 
-async function fixture(t){
- const origin='http://localhost:3000',salt='aa'.repeat(16),token='sizing-test-worker-'.repeat(3),product={id:328,title:'All-Over Print Unisex T-Shirt',type:'CUT-SEW',type_name:'T-Shirt',currency:'USD'};
+async function fixture(t,{pants=false}={}){
+ const origin='http://localhost:3000',salt='aa'.repeat(16),token='sizing-test-worker-'.repeat(3),product={id:pants?1479:328,title:pants?'All-Over Print Unisex Cotton Wide-Leg Pants':'All-Over Print Unisex T-Shirt',type:'CUT-SEW',type_name:pants?'Pants':'T-Shirt',currency:'USD'};
  const variants=[{id:3281,size:'M',color:'White',price:'20.00',in_stock:true},{id:3282,size:'L',color:'White',price:'21.00',in_stock:true}];
  const response=result=>new Response(JSON.stringify({result}),{headers:{'Content-Type':'application/json'}});
- const fetchImpl=async url=>{url=String(url);if(url.endsWith('/products'))return response([product]);if(url.endsWith('/products/328'))return response({product,variants});if(url.includes('/v2/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));if(url.includes('/printfiles/'))return response({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:1800,height:2400,dpi:150},{printfile_id:2,width:2100,height:2700,dpi:150}],variant_printfiles:variants.map((v,i)=>({variant_id:v.id,placements:{front:i+1,back:i+1}})),option_groups:["Men's"]});if(url.includes('/templates/'))return response({templates:[],variant_mapping:[]});throw Error('Unexpected sizing fixture request: '+url);};
+ const fetchImpl=async url=>{url=String(url);if(url.endsWith('/products'))return response([product]);if(url.endsWith('/products/'+product.id))return response({product,variants});if(url.includes('/v2/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));if(url.includes('/printfiles/'))return response({available_placements:{front:'Front',back:'Back'},printfiles:pants?[{printfile_id:1563,width:2040,height:1500,dpi:30}]:[{printfile_id:1,width:1800,height:2400,dpi:150},{printfile_id:2,width:2100,height:2700,dpi:150}],variant_printfiles:variants.map((v,i)=>({variant_id:v.id,placements:{front:pants?1563:i+1,back:pants?1563:i+1}})),option_groups:["Men's"]});if(url.includes('/templates/'))return response(pants?{templates:[{template_id:1100803,image_url:'https://files.cdn.printful.com/o/upload/api-template/c9/c954949c18e77172acd369ba80c139f0?v=1772003399',template_width:3000,template_height:3000,print_area_left:0,print_area_top:395,print_area_width:3000,print_area_height:2208}],variant_mapping:variants.map(v=>({variant_id:v.id,templates:[{placement:'front',template_id:1100803}]}))}:{templates:[],variant_mapping:[]});throw Error('Unexpected sizing fixture request: '+url);};
  const service=createService({dbPath:':memory:',origin,secure:false,factoryLoginRequired:false,passwordHash:salt+':'+scryptSync('sizing-fixture',salt,64).toString('hex'),factorySettings:{token:'supplier-test',fetchImpl},blueprintSettings:{token:'supplier-test',fetchImpl,plans:{products:{}}},productionSettings:{storageDurable:true,workerToken:token},workflowSettings:{storageDurable:true,fetchImpl},publishingSettings:{token:'supplier-test',githubToken:'store-test',storageDurable:true,fetchImpl},ideaSettings:{env:{},catalog:[]}});
  await new Promise(r=>service.server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>service.server.close(r)));const url='http://127.0.0.1:'+service.server.address().port,db=service.db;
  async function call(path,b,machine=false){const r=await fetch(url+path,{method:b?'POST':'GET',headers:{Origin:origin,...(b?{'Content-Type':'application/json'}:{}),...(machine?{Authorization:'Bearer '+token}:{})},body:b?JSON.stringify(b):undefined});return {status:r.status,data:await r.json()};}
@@ -19,7 +21,7 @@ async function fixture(t){
  const png=await sharp({create:{width:900,height:1200,channels:4,background:'#cc3333'}}).png().toBuffer();
  const uploaded=await api('artwork/upload',{name:'Sizing graphic',collection:'Sizing collection',scope:'collection',target:'',product:null,placements:['front','back'],instructions:'Preserve artwork.',permissions:{reuse:true,crop:false,modify:false,recolor:false},files:[{filename:'art.png',base64:png.toString('base64')}]});assert.equal(uploaded.status,200);const art=uploaded.data.artworks[0].id;
  const part={artwork:art,name:'Sizing graphic',url:'/api/owner/ai-factory/artwork/'+art+'/file'},set='sizing:collection';db.prepare('INSERT INTO idea_sets(id,source,name,parts,jacket,updated) VALUES(?,?,?,?,?,?)').run(set,'printful','Sizing collection',JSON.stringify({front:part,back:part}),0,new Date().toISOString());
- const choice={setId:set,product:328,sizes:['M'],audience:'unisex'};
+ const choice={setId:set,product:product.id,sizes:['M'],audience:'unisex'};
  async function profile({anchor='center_front',placement='front',xIn=6,yIn=7,sizes=['M']}={}){const p=await basic('/inspect',{...choice,sizes});assert.equal(p.status,200,JSON.stringify(p.data));const area=p.data.layoutOptions.areas.find(a=>a.placement===placement);const saved=await basic('/layouts/profile',{...choice,sizes,areaKey:area.key,safeRect:{x:0.5,y:0.5,width:area.widthIn-1,height:area.heightIn-1},anchor,xIn,yIn,reviewed:true,orientation:'wearer',reference:'Fixture: exact garment print guideline and seam review'});assert.equal(saved.status,200,JSON.stringify(saved.data));return saved.data;}
  const layout=(number,overrides={},assignments={})=>({number,version:BASIC_LAYOUT_VERSION,assignments,overrides,scaleMode:'fixed'});
  async function step(){const c=await machine('claim');assert.ok(c.data.job,JSON.stringify(c.data));const r=await machine('step',{job:c.data.job,lease:c.data.lease});assert.equal(r.status,200,JSON.stringify(r.data));return r;}
@@ -76,4 +78,18 @@ test('accepted sizing reductions stay explicit, distinct layouts have distinct r
  const second=await f.basic('/create',{...f.choice,layout:secondLayout,inspectionToken:secondInspection.data.inspectionToken,requestKey:randomUUID()});assert.equal(second.status,200,JSON.stringify(second.data));assert.notEqual(first.data.recipe_key,second.data.recipe_key);
  assert.equal((await f.basic('/layouts/profile',{...f.choice,reviewed:false})).status,400);
  assert.ok(f.db.prepare('SELECT length(data) n FROM factory_artwork WHERE id=?').get(f.art).n>0);
+});
+
+
+test('combined pants canvas exports two independent leg graphics with an empty crotch gap and source proofs for both',async t=>{
+ const f=await fixture(t,{pants:true}),url='/api/owner/ai-factory/artwork/';
+ const blue=await sharp({create:{width:600,height:1800,channels:4,background:'#2233cc'}}).png().toBuffer(),up=await f.api('artwork/upload',{name:'Right leg blue',collection:'Sizing collection',scope:'collection',target:'',product:null,placements:['front'],instructions:'Preserve.',permissions:{reuse:true,crop:false,modify:false,recolor:false},files:[{filename:'blue.png',base64:blue.toString('base64')}]});assert.equal(up.status,200);const right=up.data.artworks[0].id;
+ f.db.prepare('UPDATE idea_sets SET parts=? WHERE id=?').run(JSON.stringify({sleeve_left:{artwork:f.art,name:'Left red',url:url+f.art+'/file'},sleeve_right:{artwork:right,name:'Right blue',url:url+right+'/file'}}),f.set);
+ const layout=f.layout(42),choice={...f.choice,layout},reply=await f.basic('/inspect',choice);assert.equal(reply.status,200,JSON.stringify(reply.data));const p=reply.data,front=p.numericLayout.variants[0].measurements.filter(m=>m.placement==='front');assert.equal(front.length,2);assert.deepEqual(new Set(front.map(m=>m.region)),new Set(['leg_left','leg_right']));assert.ok(front.every(m=>m.geometry.x+m.geometry.width<900||m.geometry.x>1100),'neither graphic overlaps the center gap');assert.equal(p.numericLayout.requiresAcceptance,false);
+ const bad=await f.basic('/inspect',{...choice,layout:f.layout(42,{leg_left:{xIn:34}})});assert.equal(bad.status,409);assert.match(bad.data.error,/outside the reviewed safe region/);
+ const made=await f.basic('/create',{...choice,inspectionToken:p.inspectionToken,requestKey:randomUUID()});assert.equal(made.status,200,JSON.stringify(made.data));for(let i=0;i<3;i++)await f.step();
+ const file=f.db.prepare("SELECT f.* FROM factory_print_files f JOIN factory_job_profiles p ON f.draft IN (SELECT value FROM json_each(p.templates)) WHERE p.job=? AND f.placement='front'").get(made.data.job);assert.ok(file);const png=Buffer.from(file.data),at=async(x,y)=>[...await sharp(png).extract({left:x,top:y,width:1,height:1}).removeAlpha().raw().toBuffer()];
+ assert.deepEqual(await at(1020,750),[0,0,0]);for(const m of front)assert.deepEqual(await at(m.geometry.x+5,m.geometry.y+5),m.region==='leg_left'?[204,51,51]:[34,51,204]);
+ const qc=factoryQuality({db:f.db});assert.equal((await qc.check(made.data.job)).passed,true);f.db.prepare('UPDATE factory_artwork SET permissions=? WHERE id=?').run(JSON.stringify({reuse:false,crop:false,modify:false,recolor:false}),right);assert.throws(()=>qc.assert(made.data.job),/permission/);
+ const native=p.numericLayout.variants[0].areas[0];assert.equal(legRegions(1479,{...native,template:{...native.template,template_id:999}}).length,0,'unknown supplier templates cannot inherit a checked leg map');
 });

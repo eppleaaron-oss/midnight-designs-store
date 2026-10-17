@@ -80,3 +80,11 @@ test('owner rendering saves actual files once and holds invalid batches without 
   const nonAop=factoryRendering({db:service.db,plans:{products:{328:{name:'DTG Unisex T-Shirt'}}}});await assert.rejects(nonAop.renderJob(working),/Live Printful/,'a print rectangle is not treated as a garment color');
  }finally{await new Promise(resolve=>service.server.close(resolve));}
 });
+
+
+test('native 10200 by 7500 pants PNG keeps separate elements and black gap without allocating a full raw pixel array',async()=>{
+ const data=await sharp({create:{width:400,height:1200,channels:4,background:'#ff0000'}}).png().toBuffer(),area={width:10200,height:7500,dpi:150};
+ const geometry=x=>({x,y:2000,width:400,height:1200,canvasWidth:10200,canvasHeight:7500,dpi:150,safeRect:{x,y:1500,width:600,height:3000}}),parts=[2500,6700].map(x=>({data,recipe:{geometry:geometry(x),protect:true},permissions:allow}));
+ const result=await renderArea(area,parts,{background:'Black',elements:[]});assert.deepEqual(pngDimensions(result.data),{width:10200,height:7500});assert.equal((await sharp(result.data).metadata()).density,150);assert.equal(result.effectiveDpi,150);
+ const at=async x=>[...await sharp(result.data).extract({left:x,top:2500,width:1,height:1}).removeAlpha().raw().toBuffer()];assert.deepEqual(await at(2600),[255,0,0]);assert.deepEqual(await at(6800),[255,0,0]);assert.deepEqual(await at(5100),[0,0,0]);
+});
