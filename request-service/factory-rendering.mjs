@@ -92,7 +92,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
  }
  function inputs(draftId,plan,allowedIds,job=null){
   const d=get('SELECT * FROM factory_print_drafts WHERE id=?',draftId);if(!d)error('Save the exact supplier variant blueprint first.');
-  if(!/^(default|dtg|digital|cut-sew|sublimation)$/i.test(d.technique))error('This printing method requires a dedicated print-file renderer.');
+  if(!/^(default|dtg|digital|cut-sew|sublimation|direct-to-fabric)$/i.test(d.technique))error('This printing method requires a dedicated print-file renderer.');
   const areas=JSON.parse(d.areas),placements=plan.placements;
   if(!placements||typeof placements!=='object'||Array.isArray(placements)||!Object.keys(placements).length)error('Choose at least one native print area.');
   return Object.entries(placements).map(([placement,r])=>{
