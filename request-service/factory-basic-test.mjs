@@ -15,7 +15,7 @@ import {stripBasicWorkingPixels,clearBasicWorkingFiles} from './factory-basic-st
 const origin='http://localhost:3000',workerToken='basic-fixture-worker-'.repeat(3),salt='fb'.repeat(16),passwordHash=salt+':'+scryptSync('basic-fixture-password',salt,64).toString('hex');
 const rule={absorbShipping:false,rounding:'99',paymentFeeBps:290,platformFeeBps:0,marginBps:3500,discountBps:0,paymentFixedCents:30,platformFixedCents:0,minimumProfitCents:1000,minimumPriceCents:0,maximumPriceCents:15000};
 const response=result=>new Response(JSON.stringify({result}),{headers:{'Content-Type':'application/json'}});
-async function fixture(t,{durable=true,models=true,githubWorkspace=false,managedPublisher=false,outfitProducts=false}={}){
+async function fixture(t,{durable=true,models=true,githubWorkspace=false,managedPublisher=false,outfitProducts=false,largePanels=false}={}){
  const git=githubWorkingFixture(),env={FACTORY_BACKUP_REPO:'owner/private-data',FACTORY_BACKUP_GITHUB_TOKEN:'private-fixture-token'},photos=new Map();
  const png=await sharp({create:{width:30,height:24,channels:4,background:'#a73434'}}).png().toBuffer();let clock=Date.now(),manifest=null,live=false,creates=0,taskCreates=0,deletes=0,removed=false;
  const variants=[{id:3280,size:'S',color:'White',price:'15.00',in_stock:true},{id:3281,size:'M',color:'White',price:'16.00',in_stock:true}],product={id:328,title:'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'};
@@ -30,7 +30,7 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
   if(url==='https://api.printful.com/products/328')return response({product,variants});
   if(outfitProducts&&url==='https://api.printful.com/products/390')return response({product:jacket,variants:jacketVariants});
   if(url.includes('/v2/catalog-products/'))return new Response(JSON.stringify({data:{type:'CUT-SEW',techniques:[{key:'cut-sew',is_default:true}]}}));
-  if(url.includes('/mockup-generator/printfiles/'))return response({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:12,height:8,dpi:150}],variant_printfiles:(url.includes('/390')?jacketVariants:variants).map(v=>({variant_id:v.id,placements:{front:1,back:1}})),option_groups:models?["Men's","Women's",'Flat']:['Flat']});
+  if(url.includes('/mockup-generator/printfiles/'))return response({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:largePanels?120:12,height:largePanels?80:8,dpi:150}],variant_printfiles:(url.includes('/390')?jacketVariants:variants).map(v=>({variant_id:v.id,placements:{front:1,back:1}})),option_groups:models?["Men's","Women's",'Flat']:['Flat']});
   if(url.includes('/mockup-generator/templates/'))return response({templates:[],variant_mapping:[]});
   if(url.includes('/store/products/@')){const external=decodeURIComponent(url.split('/@')[1]),found=[...supplierProducts].find(([id,p])=>p.sync_product.external_id===external&&!removedProducts.has(id));return found?response({sync_product:{id:found[0],external_id:external}}):new Response('{}',{status:404});}
   if(url==='https://api.printful.com/store/products'&&o.method==='POST'){supplierPayload=JSON.parse(o.body);creates++;const id=500+creates;supplierProducts.set(id,supplierPayload);return response({id});}
@@ -60,7 +60,14 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
  const set='basic:test';db.prepare('INSERT INTO idea_sets(id,source,name,parts,updated,jacket) VALUES(?,?,?,?,?,0)').run(set,'printful','Raven test set',JSON.stringify({front:{artwork,name:'Raven front',url:'/api/owner/ai-factory/artwork/'+artwork+'/file'}}),new Date().toISOString());
  async function step(){clock+=31000;await machine('heartbeat');const c=await machine('claim');assert.ok(c.data.job,JSON.stringify(c.data));const result=await machine('step',{job:c.data.job,lease:c.data.lease});assert.equal(result.status,200,JSON.stringify(result));return result;}
  async function start(){const c=await basic('/create',{requestKey:randomUUID(),setId:set,product:328,sizes:['S','M'],audience:'unisex'});assert.equal(c.status,200,JSON.stringify(c.data));return c.data;}
- async function preview(item){for(let i=0;i<2;i++)assert.equal((await step()).data.status,'queued');for(let i=0;i<20;i++){const saved=await step();if(saved.data.status==='queued')break;assert.equal(saved.data.status,'retry_wait');}const held=await step();assert.equal(held.data.status,'waiting_input');assert.match(held.data.result.wait,/Pricing/);assert.equal((await api('pricing/confirm-quotes',{job:item.job,extraCents:0,shippingCents:null,source:'Verified supplier included print charges',verified:true})).status,200);await basic('/resume',{id:item.id});assert.equal((await step()).data.status,'queued','Basic prepares mockups before final publication approval');assert.equal((await step()).data.status,'queued');for(let i=0;i<12;i++){const result=await step();if(result.data.status==='waiting_input')break;}const current=(await basic()).data.active;assert.equal(current.canApprove,true,JSON.stringify(current));return current;}
+ async function preview(item){
+  let held;for(let i=0;i<35;i++){const result=await step();if(result.data.status==='waiting_input'){held=result;break;}}
+  assert.ok(held,'preview eventually stops for explicit pricing confirmation');assert.match(held.data.result.wait,/Pricing/);
+  const visual=(await basic()).data.active;assert.equal(visual.mockups.length,visual.recipe.variants.length*2,'real mockup images are saved before price confirmation');assert.equal(visual.listing.supplier_id,null,'no supplier product is created with unknown costs');assert.equal(visual.canApprove,false);
+  assert.equal((await api('pricing/confirm-quotes',{job:item.job,extraCents:0,shippingCents:null,source:'Verified supplier included print charges',verified:true})).status,200);await basic('/resume',{id:item.id});
+  for(let i=0;i<8;i++){const result=await step();if(result.data.status==='waiting_input')break;}
+  const current=(await basic()).data.active;assert.equal(current.canApprove,true,JSON.stringify(current));return current;
+ }
  return {service,db,git,photos,store,fetchImpl,backupConfig:githubBackupConfig(env,passwordHash),call,basic,api,machine,step,start,preview,set,artwork,png,url,live:()=>{live=true;},publisher:()=>service.basicGithub.connectPublisher('workflow-fixture-token-'.repeat(2),'1002',clock+300000),counts:()=>({creates,taskCreates,deletes}),manifest:()=>manifest};
 }
 
@@ -163,4 +170,28 @@ test('outfit preflight is atomic, pause prevents the next piece, and failed dele
 test('primary-panel adaptation requires owner permission and preserves matching assignments',async t=>{
  const f=await fixture(t);const catalog=(await f.basic('/catalog')).data.products;assert.equal(catalog.some(p=>p.id===83),false,'unclassified nonclothing products are not advertised for production');assert.equal(catalog.find(p=>p.id===630).role,'accessories','live creator capabilities take priority over an incompatible saved category');const original=JSON.parse(f.db.prepare('SELECT parts FROM idea_sets WHERE id=?').get(f.set).parts);f.db.prepare('UPDATE idea_sets SET parts=? WHERE id=?').run(JSON.stringify({default:original.front}),f.set);
  assert.equal((await f.basic('/inspect',{setId:f.set,product:328})).status,409);const inspected=await f.basic('/inspect',{setId:f.set,product:328,adaptArtwork:true});assert.equal(inspected.status,200);assert.deepEqual(inspected.data.placements.map(p=>[p.area,p.part]),[['front','default']]);assert.deepEqual(inspected.data.fill,['back']);assert.match(inspected.data.warnings.join(' '),/with your primary-panel permission/);
+});
+
+
+test('Basic saves real previews with no price rules, but cannot create a supplier product or publish until pricing is verified',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true});f.db.prepare('DELETE FROM factory_pricing_rules').run();
+ const item=await f.start();let held;for(let i=0;i<35;i++){const result=await f.step();if(result.data.status==='waiting_input'){held=result;break;}}
+ assert.ok(held);assert.match(held.data.result.wait,/Save pricing rules/);const current=(await f.basic()).data.active;
+ assert.equal(current.step,3);assert.equal(current.mockups.length,4);assert.equal(current.printFiles.length,4);assert.ok(current.printFiles.every(f=>f.effectiveDpi===null||f.effectiveDpi>=150));
+ assert.equal(current.listing.supplier_id,null);assert.equal(current.canApprove,false);assert.equal(current.listing.approved,0);assert.equal(f.counts().creates,0);assert.equal(f.manifest(),null);
+ assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,409,'visual previews never bypass prices or owner approval');
+ assert.throws(()=>f.service.publishingEngine.prepared(item.job),/Pricing hold/);
+ assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,200);assert.equal((await f.basic()).data.active,null);assert.equal(f.git.assets.size,0);assert.equal(f.counts().deletes,0,'no supplier product exists to delete');
+ assert.ok(f.db.prepare('SELECT length(data) bytes FROM factory_artwork WHERE id=?').get(f.artwork).bytes>0);
+});
+
+test('a legacy low-resolution Basic job can fit its original artwork and resume the same tracked job without lowering required DPI',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true,largePanels:true}),item=await f.start();
+ const saved=JSON.parse(f.db.prepare('SELECT plan FROM factory_render_plans WHERE job=?').get(item.job).plan);for(const p of Object.values(saved.placements))delete p.withoutEnlargement;
+ f.db.prepare('UPDATE factory_render_plans SET plan=? WHERE job=?').run(JSON.stringify(saved),item.job);
+ await f.step();await f.step();const fail=await f.step();assert.equal(fail.data.status,'waiting_input');assert.match(fail.data.result.wait,/resolution is too low/);
+ assert.equal((await f.basic('/fit-artwork',{id:item.id})).status,200);
+ for(let i=0;i<8;i++){const result=await f.step();if(result.data.status==='queued')break;}
+ const current=(await f.basic()).data.active;assert.equal(current.job,item.job);assert.equal(current.printFiles.length,4);assert.ok(current.printFiles.every(f=>f.width===120&&f.height===80));assert.ok(current.printFiles.every(f=>f.effectiveDpi===null||f.effectiveDpi===150));
+ assert.equal((await f.basic('/fit-artwork',{id:item.id})).status,409,'completed files cannot be changed under accepted tasks');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal(f.counts().creates,0);
 });

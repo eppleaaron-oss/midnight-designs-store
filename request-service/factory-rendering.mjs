@@ -35,7 +35,8 @@ export async function renderArea(area,source,recipe={},permissions={}){
   if((left||top||sw<meta.width||sh<meta.height||fit==='cover')&&(permissions.crop!==true||recipe.protect===true))error('Cropping requires Crop permission and pixel protection switched off.');
   if((mirror||angle)&&(permissions.modify!==true||recipe.protect===true))error('Mirroring or rotation requires Modify permission and pixel protection switched off.');
   if(recipe.recolor!==undefined&&recipe.recolor!==null&&(permissions.recolor!==true||recipe.protect===true))error('Recoloring requires Recolor permission and pixel protection switched off.');
-  const ratio=(fit==='cover'?Math.max(width/sw,height/sh):Math.min(width/sw,height/sh))*scale,w=Math.max(1,Math.round(sw*ratio)),h=Math.max(1,Math.round(sh*ratio));
+  const requestedRatio=(fit==='cover'?Math.max(width/sw,height/sh):Math.min(width/sw,height/sh))*scale;
+  const ratio=recipe.withoutEnlargement===true?Math.min(1,requestedRatio):requestedRatio,w=Math.max(1,Math.round(sw*ratio)),h=Math.max(1,Math.round(sh*ratio));
   if(w*h>MAX_PIXELS)error('Scaled artwork exceeds the rendering limit.');
   effectiveDpi=Math.min(sw/w,sh/h)*dpi;
   if(effectiveDpi+1<dpi)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);

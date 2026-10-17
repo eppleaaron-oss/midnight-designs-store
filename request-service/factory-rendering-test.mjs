@@ -35,6 +35,15 @@ test('rendering respects crop/modify rights, proportions and source resolution',
  const tiled=await renderArea(area,source,{background:'Black',tile:true,scale:50,spacing:100},allow);const raw=await pixels(tiled.data);assert.ok(pixel(raw,6,4)[0]>200);
 });
 
+test('native-resolution fitting keeps small artwork printable and fills the exact remaining canvas black',async()=>{
+ const source=await artwork(),native={placement:'front',width:120,height:80,dpi:150};
+ const out=await renderArea(native,source,{fit:'contain',withoutEnlargement:true,background:'Black'},allow),raw=await pixels(out.data);
+ assert.equal(out.effectiveDpi,150);assert.deepEqual(pngDimensions(out.data),{width:120,height:80});
+ assert.deepEqual(pixel(raw,0,0),[0,0,0,255]);assert.deepEqual(pixel(raw,60,40),[255,0,0,255]);
+ assert.deepEqual(pixel(raw,47,40),[0,0,0,255]);assert.deepEqual(pixel(raw,72,40),[0,0,0,255]);
+ await assert.rejects(renderArea(native,source,{fit:'contain'},allow),/resolution is too low/,'strict full-area recipes still reject enlargement');
+});
+
 test('owner rendering saves actual files once and holds invalid batches without partial writes',async()=>{
  const origin='http://localhost:3000',salt='ac'.repeat(16),password='render-test-password';
  const native={catalogProductId:328,name:'All-Over Print Unisex Test T-Shirt',variants:[{id:10,name:'White M',size:'M',color:'White'}],printfiles:{available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:12,height:8,dpi:150}],variant_printfiles:[{variant_id:10,placements:{front:1,back:1}}]},layouts:{templates:[],variant_mapping:[]}};
