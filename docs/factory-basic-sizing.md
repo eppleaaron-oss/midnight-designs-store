@@ -37,3 +37,8 @@ Conservative rectangles have been checked against the exact front guideline imag
 The same multi-element recipe controls the preview, export, source hashes, permissions, minimum effective DPI and quality proof. The complete native canvas is retained up to 90 million pixels for generated supplier files; input artwork keeps its existing 40-million-pixel bound. PNG export composes small resized artwork overlays onto the native canvas without a full JavaScript raw-pixel allocation. Originals and legacy saved jobs retain their recipes. Automatic publishing stays disabled.
 
 All-over cotton must use the live supplier `DIRECT-TO-FABRIC` catalog type together with its `direct-to-fabric` technique. This is recognized as printable fabric coverage; an unverified product name or an unrelated direct-print method cannot bypass coverage checks. Rendering and supplier preparation accept this verified cotton method.
+
+
+## Visible artwork measurements
+
+The default inch target measures the nonblack, nontransparent subject, so large empty borders in a 2000-square source cannot shrink a sleeve/leg strip into a tiny accent. Exact pixel bounds include every nonblack pixel with nonzero alpha, including faint detail. Full source pixels remain intact: the engine scales and positions the complete original, fits its visible bounds inside the reviewed region, and also keeps the entire source inside the native canvas. Empty black padding is combined with lighten compositing on the black print background so one padded image cannot erase a separate graphic. The renderer independently recomputes the bounds and verifies them against the signed recipe. This is sizing/positioning, not cropping or background removal. Owners can switch back to measuring the whole image.
