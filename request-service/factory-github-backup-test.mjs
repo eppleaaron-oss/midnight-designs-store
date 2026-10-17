@@ -20,7 +20,7 @@ function github(){
   if(g.rate)return reply({message:'Do not surface secret provider responses'},429,{'retry-after':'120'});
   if(g.failReads&&method==='GET')throw Error('Sensitive network detail');
   if(path==='')return reply({id:123,private:g.private,visibility:g.private?'private':'public',default_branch:'main',size:2});
-  if(path==='/git/ref/heads/main')return reply({object:{sha:g.head}});
+  if(path==='/git/ref/heads/main'){if(g.staleReads>0){g.staleReads--;return reply({object:{sha:g.staleHead}});}return reply({object:{sha:g.head}});}
   if(path.startsWith('/git/commits/')&&method==='GET')return reply(commits.get(path.split('/').at(-1)));
   if(path==='/contents/factory-backup/latest.enc'){const commit=commits.get(u.searchParams.get('ref')),tree=trees.get(commit.tree.sha),sha=tree.get('factory-backup/latest.enc');if(!sha)return reply({message:'Not Found'},404);const data=blobs.get(sha),download=g.alteredContents?Buffer.from(data.toString('utf8')):data;return reply({sha,encoding:'base64',content:download.toString('base64'),size:download.length});}
   if(path.startsWith('/git/blobs/')&&method==='GET'){const data=blobs.get(path.split('/').at(-1));return reply({encoding:'base64',content:data.toString('base64'),size:data.length});}
@@ -28,7 +28,7 @@ function github(){
   if(path==='/git/trees'&&method==='POST'){assert.equal(new Set(body.tree.map(t=>t.path)).size,body.tree.length,'No duplicate tree paths');const next=new Map(trees.get(body.base_tree));for(const t of body.tree){if(t.sha===null){assert.ok(next.has(t.path));next.delete(t.path);}else{assert.ok(blobs.has(t.sha));next.set(t.path,t.sha);}}const sha=objectHash(JSON.stringify([...next]));trees.set(sha,next);return reply({sha});}
   if(path==='/git/commits'&&method==='POST'){const sha=objectHash(JSON.stringify(body));commits.set(sha,{tree:{sha:body.tree},parents:body.parents});return reply({sha});}
   if(path==='/git/refs/heads/main'&&method==='PATCH'){
-   assert.equal(body.force,false);if(g.failRef)return reply({},500);if(g.conflict)return reply({},422);if(body.sha!==g.head&&!commits.get(body.sha).parents.includes(g.head))return reply({},409);g.head=body.sha;
+   assert.equal(body.force,false);if(g.failRef)return reply({},500);if(g.conflict)return reply({},422);if(body.sha!==g.head&&!commits.get(body.sha).parents.includes(g.head))return reply({},409);g.staleHead=g.head;g.head=body.sha;g.staleReads=g.staleReadsAfterWrite||0;
    if(g.dropResponse){g.dropResponse=false;throw Error('Lost acknowledgement');}return reply({object:{sha:g.head}});
   }
   throw Error('Unexpected fixture API: '+method+' '+path);
@@ -70,6 +70,17 @@ test('recovery never overwrites a current local database',async t=>{
 });
 test('a GitHub conflict preserves the old branch and prevents further backup writes',async t=>{
  const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});const head=f.gh.head;f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');f.gh.conflict=true;await assert.rejects(f.store.snapshot(f.db),/existing snapshot was preserved/);assert.equal(f.gh.head,head);assert.equal(f.store.hold,true);const count=f.gh.calls.length;await assert.rejects(f.store.snapshot(f.db),/owner review/);assert.equal(f.gh.calls.slice(count).some(c=>c.method!=='GET'),false);
+});
+test('an acknowledged checkpoint tolerates stale parent reads without declaring a competing backend',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});f.db.prepare('UPDATE factory_jobs SET status=?').run('disapproved');f.gh.staleReadsAfterWrite=3;
+ const result=await f.store.snapshot(f.db);assert.equal(result.commit,f.gh.head);assert.equal(f.store.hold,false);await f.store.assertCurrent();
+ const writes=f.gh.calls.filter(c=>c.method==='PATCH').length;await f.store.snapshot(f.db);assert.equal(f.gh.calls.filter(c=>c.method==='PATCH').length,writes,'confirmation retries never write another checkpoint');
+});
+test('a longer confirmation delay stays retryable and recovers the same accepted checkpoint',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});f.db.prepare('UPDATE factory_jobs SET status=?').run('disapproved');f.gh.staleReadsAfterWrite=8;
+ await assert.rejects(f.store.snapshot(f.db),e=>e.confirmationPending===true);assert.equal(f.store.hold,false);const accepted=f.gh.head,writes=f.gh.calls.filter(c=>c.method==='PATCH').length;
+ f.gh.staleReads=0;const saved=await f.store.snapshot(f.db);assert.equal(saved.commit,accepted);assert.equal(saved.unchanged,true);assert.equal(f.gh.calls.filter(c=>c.method==='PATCH').length,writes);
+ f.gh.head='c'.repeat(40);await assert.rejects(f.store.assertCurrent(),e=>e.conflict===true);assert.equal(f.store.hold,true,'a genuinely different ref still blocks further external operations');
 });
 test('temporary errors retry with bounded waits and failed commits never become successful backups',async t=>{
  const f=await fixture(t);f.gh.failRef=true;await assert.rejects(f.store.snapshot(f.db,{initialize:true}),/HTTP 500/);assert.equal(f.store.manifest,null);assert.equal(f.gh.head,'a'.repeat(40));assert.equal(f.gh.calls.filter(c=>c.method==='PATCH').length,3);f.gh.failRef=false;f.gh.dropResponse=true;await f.store.snapshot(f.db,{initialize:true});assert.equal(f.store.head,f.gh.head);

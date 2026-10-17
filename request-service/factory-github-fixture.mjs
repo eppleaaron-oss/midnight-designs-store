@@ -11,7 +11,7 @@ export function githubFixture(){
   if(g.rate)return reply({message:'Do not surface secret provider responses'},429,{'retry-after':'120'});
   if(g.failReads&&method==='GET')throw Error('Sensitive network detail');
   if(path==='')return reply({id:123,private:g.private,visibility:g.private?'private':'public',default_branch:'main',size:2});
-  if(path==='/git/ref/heads/main')return reply({object:{sha:g.head}});
+  if(path==='/git/ref/heads/main'){if(g.staleReads>0){g.staleReads--;return reply({object:{sha:g.staleHead}});}return reply({object:{sha:g.head}});}
   if(path.startsWith('/git/commits/')&&method==='GET')return reply(commits.get(path.split('/').at(-1)));
   if(path==='/contents/factory-backup/latest.enc'){const commit=commits.get(u.searchParams.get('ref')),tree=trees.get(commit.tree.sha),sha=tree.get('factory-backup/latest.enc');if(!sha)return reply({message:'Not Found'},404);const data=blobs.get(sha),download=g.alteredContents?Buffer.from(data.toString('utf8')):data;return reply({sha,encoding:'base64',content:download.toString('base64'),size:download.length});}
   if(path.startsWith('/git/blobs/')&&method==='GET'){const data=blobs.get(path.split('/').at(-1));return reply({encoding:'base64',content:data.toString('base64'),size:data.length});}
@@ -19,7 +19,7 @@ export function githubFixture(){
   if(path==='/git/trees'&&method==='POST'){assert.equal(new Set(body.tree.map(t=>t.path)).size,body.tree.length,'No duplicate tree paths');const next=new Map(trees.get(body.base_tree));for(const t of body.tree){if(t.sha===null){assert.ok(next.has(t.path));next.delete(t.path);}else{assert.ok(blobs.has(t.sha));next.set(t.path,t.sha);}}const sha=objectHash(JSON.stringify([...next]));trees.set(sha,next);return reply({sha});}
   if(path==='/git/commits'&&method==='POST'){const sha=objectHash(JSON.stringify(body));commits.set(sha,{tree:{sha:body.tree},parents:body.parents});return reply({sha});}
   if(path==='/git/refs/heads/main'&&method==='PATCH'){
-   assert.equal(body.force,false);if(g.failRef)return reply({},500);if(g.conflict)return reply({},422);if(body.sha!==g.head&&!commits.get(body.sha).parents.includes(g.head))return reply({},409);g.head=body.sha;
+   assert.equal(body.force,false);if(g.failRef)return reply({},500);if(g.conflict)return reply({},422);if(body.sha!==g.head&&!commits.get(body.sha).parents.includes(g.head))return reply({},409);g.staleHead=g.head;g.head=body.sha;g.staleReads=g.staleReadsAfterWrite||0;
    if(g.dropResponse){g.dropResponse=false;throw Error('Lost acknowledgement');}return reply({object:{sha:g.head}});
   }
   throw Error('Unexpected fixture API: '+method+' '+path);

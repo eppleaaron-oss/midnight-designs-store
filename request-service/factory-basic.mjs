@@ -111,17 +111,23 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  function beforePublication(job){const r=row(job);if(!r)return null;if(r.closed||r.decision==='disapproved')return {wait:'This Basic item is closed or disapproved.'};if(r.decision!=='approved'){run("UPDATE factory_basic_items SET status='awaiting_review',updated=? WHERE job=?",now(),job);return {wait:'Review the real mockups and choose Approve or Disapprove on Basic.'};}quality.assert(job);return null;}
  async function cleanup(r){
   if(cleaning)return;cleaning=true;
+  let result=r.cleanup?JSON.parse(r.cleanup):null;
   try{
+   const githubWorkspace=workspace?.snapshot().enabled===true;
+   if(githubWorkspace&&!remote())fail(409,workspace.snapshot().error||'GitHub working storage must recover before cleanup can be verified.');
    const l=get('SELECT * FROM factory_listings WHERE job=?',r.job),j=get('SELECT status FROM factory_jobs WHERE id=?',r.job);
    if(j?.status==='running')fail(409,'The current worker step must finish before cleanup.');
    if(r.decision==='approved'&&l?.status!=='published')fail(409,'Keep final files until the live storefront product is verified.');
    if(get("SELECT operation FROM factory_publish_operations WHERE job=? AND status='uncertain'",r.job))fail(409,'Reconcile the uncertain supplier operation before cleanup.');
    if(r.decision==='disapproved')await publishing.discardDraft(r.job);
-   const prior=r.cleanup?JSON.parse(r.cleanup):null,savedPrice=pricing.assessJob(r.job);let result={...clearBasicWorkingFiles(db,r.job,{keepPhotos:r.decision==='approved'}),pricing:savedPrice};
-   if(remote()){if(prior?.files?.length)result={...prior,...result,files:prior.files,templates:prior.templates,before:prior.before,reclaimedBytes:prior.reclaimedBytes};run("UPDATE factory_basic_items SET cleanup=?,status='cleaning' WHERE id=?",JSON.stringify({...result,verified:false}),r.id);const cleared=await workspace.cleanup(r.job);if(!cleared.verified){run('UPDATE factory_basic_items SET cleanup=? WHERE id=?',JSON.stringify({...result,verified:false,github:cleared}),r.id);await checkpoint();return;}result={...result,github:cleared,after:basicStorage(db,r.job),reclaimedBytes:(result.before?.workingBytes||0)+(result.before?.mockupBytes||0),verified:true};}
+   if(!result?.localVerified){const prior=result,savedPrice=prior?.pricing||pricing.assessJob(r.job),cleared=clearBasicWorkingFiles(db,r.job,{keepPhotos:r.decision==='approved'});result={...cleared,...prior,after:cleared.after,pricing:savedPrice,localVerified:true};}
+   result={...result,verified:false};
+   run("UPDATE factory_basic_items SET cleanup=?,status='cleaning',error='' WHERE id=?",JSON.stringify(result),r.id);
+   if(githubWorkspace&&!result.github?.verified){const cleared=await workspace.cleanup(r.job);result={...result,github:cleared};run('UPDATE factory_basic_items SET cleanup=? WHERE id=?',JSON.stringify(result),r.id);if(!cleared.verified){await checkpoint();return;}}
+   result={...result,after:basicStorage(db,r.job),verified:true,verifiedAt:now()};
    run('UPDATE factory_basic_items SET cleanup=?,closed=1,status=?,error=\'\',updated=? WHERE id=?',JSON.stringify(result),r.decision==='approved'?'published':'disapproved',now(),r.id);
-   run('UPDATE factory_jobs SET status=?,updated=? WHERE id=?',r.decision==='approved'?'completed':'archived',now(),r.job);await checkpoint();
-  }catch(e){run("UPDATE factory_basic_items SET closed=0,status='cleanup_failed',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);try{await checkpoint();}catch{}throw e;}finally{cleaning=false;}
+   run('UPDATE factory_jobs SET status=?,error=\'\',updated=? WHERE id=?',r.decision==='approved'?'completed':'archived',now(),r.job);await checkpoint();
+  }catch(e){if(result)result={...result,verified:false};run("UPDATE factory_basic_items SET cleanup=?,closed=0,status='cleanup_failed',error=?,updated=? WHERE id=?",result?JSON.stringify(result):null,e.message.slice(0,500),now(),r.id);try{await checkpoint();}catch{}throw e;}finally{cleaning=false;}
  }
  async function settled(job){const r=row(job);if(r&&!r.closed&&(r.decision==='disapproved'||r.decision==='approved'&&get('SELECT status FROM factory_listings WHERE job=?',job)?.status==='published'))await cleanup(r);}
  function options(job){const r=row(job);if(!r)return {};const p=JSON.parse(r.recipe);return p.modelGroups.length?{option_groups:p.modelGroups}:{};}
