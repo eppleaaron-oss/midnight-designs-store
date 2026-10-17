@@ -36,7 +36,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  }
  async function catalog(){
   const live=await manager.catalog(),known=new Map(loadCatalog(PLANS).map(x=>[x.id,x]));
-  return live.filter(p=>known.has(p.id)||/all.over.print/i.test(p.name)).map(p=>{const preferred=known.get(p.id)?.role;return {...p,role:p.roles.includes(preferred)?preferred:p.roles[0],image:known.get(p.id)?.image||null};}).filter(p=>typeof p.role==='string');
+  return live.filter(p=>known.has(p.id)||/all.over.print/i.test(p.name)).map(p=>{const preferred=known.get(p.id)?.role;return {...p,role:p.roles.includes(preferred)?preferred:p.roles[0],image:p.image||known.get(p.id)?.image||null};}).filter(p=>typeof p.role==='string');
  }
  function sets(){ideas.syncSets();return all('SELECT * FROM idea_sets WHERE enabled=1 ORDER BY jacket DESC,name').map(s=>({...s,parts:JSON.parse(s.parts)}));}
  async function inspect({setId,product,sizes=[],audience='unisex',adaptArtwork=false,layout=null,geometryOnly=false}){
@@ -71,7 +71,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  function detail(r){
   if(!r)return null;const recipe=JSON.parse(r.recipe),j=r.job&&get('SELECT * FROM factory_jobs WHERE id=?',r.job),l=r.job&&get('SELECT * FROM factory_listings WHERE job=?',r.job),rt=r.job&&get('SELECT step FROM factory_job_runtime WHERE job=?',r.job);
   const mockups=r.job?{mockups:publishing.mockupGallery(r.job),mockupStatus:publishing.mockupStatus(r.job)}:null;
-  return {...r,recipe,cleanup:r.cleanup?JSON.parse(r.cleanup):null,jobStatus:j?.status||null,error:r.error||j?.error||l?.error||'',listing:l?{...l,copy:JSON.parse(l.copy)}:null,step:rt?.step??0,
+  return {...r,recipe,cleanup:r.cleanup?JSON.parse(r.cleanup):null,jobStatus:j?.status||null,error:r.error||(!r.closed&&(j?.error||l?.error))||'',listing:l?{...l,copy:JSON.parse(l.copy)}:null,step:rt?.step??0,
    checkpoints:r.job?all('SELECT step,created,result FROM factory_job_checkpoints WHERE job=?',r.job).map(x=>({...x,result:JSON.parse(x.result)})):[],
    mockups:mockups?.mockups||[],mockupStatus:mockups?.mockupStatus||null,pricing:r.cleanup?JSON.parse(r.cleanup).pricing:r.job?pricing.assessJob(r.job):null,storage:r.job?basicStorage(db,r.job):null,
    temporaryPixelsMissing:!!(r.job&&get("SELECT id FROM factory_print_files WHERE draft IN (SELECT value FROM factory_job_profiles,json_each(templates) WHERE job=?) AND length(data)=0 UNION ALL SELECT id FROM factory_mockups WHERE job=? AND length(data)=0 LIMIT 1",r.job,r.job)),

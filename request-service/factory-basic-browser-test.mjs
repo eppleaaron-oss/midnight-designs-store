@@ -5,7 +5,7 @@ import sharp from 'sharp';
 import {createService} from './server.mjs';
 
 const require=createRequire(import.meta.url),{chromium}=require(require.resolve('playwright',{paths:[process.cwd(),process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES].filter(Boolean)}));
-const origin='http://localhost:3046',salt='af'.repeat(16),products=[{id:328,title:'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'},{id:390,title:'All-Over Print Unisex Bomber Jacket',type_name:'Jacket',type:'CUT-SEW',currency:'USD'}];
+const origin='http://localhost:3046',salt='af'.repeat(16),products=[{id:328,title:'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'},{id:390,title:'All-Over Print Unisex Bomber Jacket',type_name:'Jacket',type:'CUT-SEW',currency:'USD'},{id:618,title:'All-Over Print Unisex Track Pants',type_name:'Pants',type:'CUT-SEW',currency:'USD',image:'https://files.cdn.printful.com/pants-fixture.png'}];
 const response=result=>new Response(JSON.stringify({result}));
 const fetchImpl=async url=>{
  url=String(url);if(url.endsWith('/products'))return response(products);
@@ -25,7 +25,7 @@ try{
  const response=await page.goto(origin+'/ai-factory/basic');assert.equal(response.status(),200);await page.getByRole('heading',{name:'Keep it basic.'}).waitFor();
  await page.locator('#outfitChoices input[data-role=shirts]').check();await page.locator('#outfitChoices input[data-role=jackets]').check();
  assert.equal(await page.locator('#outfitChoices button[data-role=shirts]').isDisabled(),true,'a design set is required');
- await page.getByRole('button',{name:/Cathedral From/}).click();assert.equal(await page.locator('#outfitBuilder').isVisible(),true);assert.equal(await page.locator('#outfitChoices input[type=checkbox]:not(:disabled)').count(),2);
+ await page.getByRole('button',{name:/Cathedral From/}).click();assert.equal(await page.locator('#outfitBuilder').isVisible(),true);assert.equal(await page.locator('#outfitChoices input[type=checkbox]:not(:disabled)').count(),3);
  assert.equal(await page.locator('#outfitChoices button[data-role=shirts]').isEnabled(),true,'choosing the design after the garment unlocks layout controls');
  await page.locator('#outfitChoices button[data-role=shirts]').click();await page.getByRole('heading',{name:'Layout for shirts',exact:true}).waitFor();
  assert.equal(inspectionAttempts,2,'a temporary supplier cooldown retries the same inspection automatically');
@@ -45,6 +45,26 @@ assert.equal(await page.locator('#create').isDisabled(),true,'real missing stora
  await page.locator('#productionMode').selectOption('outfit');for(const [width,height]of [[320,700],[390,844],[844,390],[768,1024],[1024,768],[1440,900]]){await page.setViewportSize({width,height});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No outfit builder overflow at '+width);}
  await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'/tmp/midnight-basic-desktop.png',fullPage:true});await page.setViewportSize({width:390,height:844});await page.screenshot({path:'/tmp/midnight-basic-phone.png',fullPage:true});
  await page.locator('#setSearch').fill('no matching set');assert.equal(await page.locator('#sets .design-card').count(),0);await page.getByText('No sets match this search.',{exact:true}).waitFor();
+
+ // A selected pair of pants must never appear to use an old jacket's mockups.
+ const baseline=await (await page.request.get(origin+'/api/owner/ai-factory/basic')).json();
+ const old={id:'existing-jacket',job:'existing-job',recipe:{product:390,name:'All-Over Print Unisex Bomber Jacket',set:{id:'pf:browser',name:'Cathedral'},variants:[{size:'M'}],hasModelOptions:true},jobStatus:'waiting_input',status:'awaiting_review',decision:null,closed:0,error:'',step:3,checkpoints:[],mockups:[{url:'/existing-jacket.png',title:'Jacket front',style:'Model'}],mockupStatus:{tasks:[{state:'saved'}]},pricing:{variants:[]},canApprove:true};
+ let queue={id:'existing-outfit',name:'Existing outfit',status:'running',done:0,total:1,published:0,pieces:[{role:'jackets',item:old}]},active=old;const calls=[];
+ const snapshot=()=>({...baseline,active,recent:[old],blockers:[],outfitQueue:{active:queue,recent:[]}});
+ await page.route('**/pants-fixture.png',route=>route.fulfill({contentType:'image/png',body:art}));await page.route('**/existing-jacket.png',route=>route.fulfill({contentType:'image/png',body:art}));
+ await page.route('**/api/owner/ai-factory/basic',route=>route.fulfill({json:snapshot()}));
+ await page.route('**/api/owner/ai-factory/basic/outfits/control',async route=>{const b=route.request().postDataJSON();assert.equal(b.id,'existing-outfit');calls.push(b.action);if(b.action==='pause')queue={...queue,status:'paused'};else{assert.equal(active,null,'the old draft must finish cleanup first');queue=null;}await route.fulfill({json:{}});});
+ await page.route('**/api/owner/ai-factory/basic/disapprove',async route=>{assert.equal(queue.status,'paused','pause prevents another outfit piece from starting during switching');assert.deepEqual(route.request().postDataJSON(),{id:'existing-jacket',confirm:true});calls.push('disapprove');old.closed=1;old.decision='disapproved';old.cleanup={verified:true};active=null;await route.fulfill({json:snapshot()});});
+ await page.reload();await page.getByRole('button',{name:/Cathedral From/}).click();await page.locator('#productionMode').selectOption('single');await page.locator('#garment').selectOption('618');
+ assert.equal(await page.locator('#selectedGarmentName').innerText(),'All-Over Print Unisex Track Pants');assert.match(await page.locator('#selectionPhoto img').getAttribute('src'),/pants-fixture/);
+ assert.equal(await page.locator('#current .gallery').isVisible(),false,'unrelated jacket mockups are collapsed under their own label');assert.equal(await page.locator('#approve').isDisabled(),true,'a new pants selection cannot approve the old jacket');
+ await page.getByText('Switch from the old draft',{exact:true}).click();assert.equal(await page.locator('#switchSelectionButton').isDisabled(),true);
+ await page.locator('#confirmSelectionSwitch').check();await page.locator('#switchSelectionButton').click();await page.getByText('Old draft cleared and unfinished outfit cancelled. Check your selected garment and layout, then choose Create.',{exact:true}).waitFor();assert.deepEqual(calls,['pause','disapprove','cancel']);assert.equal(await page.locator('#garment').inputValue(),'618');assert.equal(await page.locator('#switchSelection').isHidden(),true);
+ // A delayed response for the shirt must not switch a newer pants selection back.
+ await page.unroute('**/api/owner/ai-factory/basic/inspect');let release,started;const pending=new Promise(r=>release=r),requested=new Promise(r=>started=r);
+ await page.route('**/api/owner/ai-factory/basic/inspect',async route=>{const response=await route.fetch();started();await pending;await route.fulfill({response});});
+ await page.locator('#garment').selectOption('328');await page.getByRole('button',{name:'Check garment & template',exact:true}).click();await requested;await page.locator('#garment').selectOption('618');release();await page.getByRole('alert').filter({hasText:/garment selection changed/}).waitFor();assert.equal(await page.locator('#garment').inputValue(),'618');assert.equal(await page.locator('#layoutBuilder').isHidden(),true);
+ for(const path of ['**/api/owner/ai-factory/basic','**/api/owner/ai-factory/basic/outfits/control','**/api/owner/ai-factory/basic/disapprove','**/api/owner/ai-factory/basic/inspect'])await page.unroute(path);
  await page.goto(origin+'/ai-factory');await page.getByRole('link',{name:'Basic',exact:true}).click();await page.getByRole('heading',{name:'Keep it basic.'}).waitFor();assert.ok(page.url().endsWith('/ai-factory/basic'));
  service.db.prepare('UPDATE factory_basic_github_settings SET enabled=1,managed=1 WHERE id=1').run();await page.reload();await page.getByText(/automatic GitHub workflow/).waitFor();assert.equal(await page.locator('#githubForm').isHidden(),true,'managed publishing does not ask for an owner token');
  assert.equal((await page.request.get(origin+'/api/requests')).status(),401);assert.deepEqual(errors,[]);console.log('PASS Basic navigation, real supplier template selection, fixed black recipe, truthful blockers, no login, customer isolation and six screen sizes');
