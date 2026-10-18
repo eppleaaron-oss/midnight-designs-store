@@ -45,6 +45,10 @@ try{
  await page.locator('#acceptLayoutReduction').check();await page.getByRole('button',{name:'Inspect layout & print size',exact:true}).click();await page.getByText('This inspected layout is ready to be saved with the product.',{exact:true}).waitFor();
  assert.equal(await page.locator('#layoutPreview canvas').count(),2,'front graphic and intentional black back preview use the native panel geometry');
  assert.equal(await page.locator('#layoutPreview canvas').first().evaluate(c=>c.width),225,'native portrait aspect ratio is retained in the preview');
+ await page.getByRole('button',{name:'Save this layout profile',exact:true}).click();await page.getByText('Exact inspected product/layout profile saved.',{exact:true}).waitFor();assert.equal(await page.getByText('Saved inspected profile',{exact:true}).count(),1);
+ assert.equal(await page.getByLabel('front artwork role',{exact:true}).inputValue(),'hero');
+ await page.getByLabel('front artwork role',{exact:true}).selectOption('pattern');assert.equal(await page.getByLabel('front approve pattern repeats',{exact:true}).isChecked(),false,'a model or role label alone cannot approve repetition');
+ await page.getByLabel('front artwork role',{exact:true}).selectOption('hero');assert.equal(await page.locator('#saveLayoutProfile').isDisabled(),true,'changing a classification invalidates the inspection');
 // Changing a design must replace visible artwork and invalidate only its receipt,
  // while keeping the selected garment, sizes and owner's numeric recipe.
  await page.locator('#selectionArt .selection-artwork').waitFor();assert.match(await page.locator('#selectionArt .selection-artwork').getAttribute('src'),new RegExp(id));

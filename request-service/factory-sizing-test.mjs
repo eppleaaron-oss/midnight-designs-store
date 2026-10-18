@@ -95,3 +95,48 @@ test('combined pants canvas exports two independent leg graphics with an empty c
  const qc=factoryQuality({db:f.db});assert.equal((await qc.check(made.data.job)).passed,true);f.db.prepare('UPDATE factory_artwork SET permissions=? WHERE id=?').run(JSON.stringify({reuse:false,crop:false,modify:false,recolor:false}),right);assert.throws(()=>qc.assert(made.data.job),/permission/);
  const native=p.numericLayout.variants[0].areas[0];assert.equal(legRegions(1479,{...native,template:{...native.template,template_id:999}}).length,0,'unknown supplier templates cannot inherit a checked leg map');
 });
+
+test('placement migration preserves owner memories, maps the catalog and seeds seven locked rules once',async t=>{
+ const {PLACEMENT_RULES,PLACEMENT_PLAYBOOK,playbookSnapshot}=await import('./factory-placement-playbook.mjs');
+ const {factoryIntelligence}=await import('./factory-intelligence.mjs');
+ const f=await fixture(t),brain=(await f.api('intelligence')).data;
+ assert.equal(PLACEMENT_PLAYBOOK.length,21);assert.equal(new Set(PLACEMENT_PLAYBOOK.map(g=>g.product)).size,21);
+ const catalog=JSON.parse((await import('node:fs')).readFileSync(new URL('../products.json',import.meta.url))).products;
+ const snapshot=playbookSnapshot();assert.deepEqual(new Set(snapshot.guides.flatMap(g=>g.listings.map(p=>p.id))),new Set(catalog.filter(p=>PLACEMENT_PLAYBOOK.some(g=>g.product===p.catalogProductId)).map(p=>p.id)));
+ for(const [,title,body]of PLACEMENT_RULES){const rows=brain.rules.filter(r=>r.title===title);assert.equal(rows.length,1);assert.equal(rows[0].locked,1);assert.equal(rows[0].body,body);}
+ assert.match(brain.rules.find(r=>r.title==='Pocket lines up with the front').body,/black by default/);
+ await f.api('intelligence/memory',{kind:'preference',text:'Preserve my custom midnight reference.'});
+ const n=f.db.prepare('SELECT count(*) n FROM brain_rules').get().n;factoryIntelligence({db:f.db});assert.equal(f.db.prepare('SELECT count(*) n FROM brain_rules').get().n,n);assert.equal(f.db.prepare("SELECT count(*) n FROM brain_memories WHERE text='Preserve my custom midnight reference.'").get().n,1);
+ const text=(await f.api('intelligence/knowledge/tshirt')).data.text;assert.match(text,/No automatic tiling of scenes or portraits/);
+});
+
+test('only owner-approved pattern versions may repeat, including direct render and cached render requests',async t=>{
+ const f=await fixture(t),{assertComposition,artworkComposition}=await import('./factory-placement-playbook.mjs');
+ const source=f.db.prepare('SELECT * FROM factory_artwork WHERE id=?').get(f.art),permissions={reuse:true,crop:true,modify:false,recolor:false};
+ f.db.prepare('UPDATE factory_artwork SET permissions=? WHERE id=?').run(JSON.stringify(permissions),f.art);
+ const draft=await f.api('blueprints/draft',{title:'Pattern guard',product:328,variant:3281,technique:'default',placements:['front']});assert.equal(draft.status,200,JSON.stringify(draft.data));
+ const path='rendering/draft/'+draft.data.id,plan={background:'Black',placements:{front:{artworkId:f.art,fit:'contain',tile:true,scale:50,spacing:100}}};
+ let response=await f.api(path,plan);assert.equal(response.status,409);assert.match(response.data.error,/no automatic tiling/i);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_print_files').get().n,0);
+ assert.equal((await f.api('intelligence/composition',{artwork:f.art,kind:'hero',repeatApproved:true})).status,409);
+ assert.equal((await f.api('intelligence/composition',{artwork:f.art,kind:'pattern',repeatApproved:true})).status,200);
+ response=await f.api(path,plan);assert.equal(response.status,200,JSON.stringify(response.data));assert.equal(response.data.rendered,1);
+ assert.equal((await f.api(path,plan)).data.rendered,0);
+ assert.equal((await f.api('intelligence/composition',{artwork:f.art,kind:'panel',repeatApproved:false})).status,200);
+ response=await f.api(path,plan);assert.equal(response.status,409,'cached pixels cannot bypass revoked repeat approval');
+ assert.throws(()=>assertComposition(f.db,{elements:[{},{}]},[{...source,effectivePermissions:permissions},{...source,effectivePermissions:permissions}]),/one hero/);
+ assert.equal(artworkComposition(f.db,{...source,sha256:'changed-version'}).repeatApproved,false);
+ assert.equal(f.db.prepare('SELECT sha256 FROM factory_artwork WHERE id=?').get(f.art).sha256,source.sha256,'classification does not edit original pixels');
+});
+
+test('Basic persists exact inspected numeric profiles per product and layout and invalidates different variants',async t=>{
+ const f=await fixture(t);await f.profile();
+ const request={...f.choice,layout:f.layout(5,{front:{widthIn:3.5,heightIn:5}})},p=(await f.basic('/inspect',request)).data;
+ assert.equal(p.numericLayout.requiresAcceptance,false);
+ assert.equal((await f.basic('/layouts/save',{...request,inspectionToken:'invalid'})).status,409);
+ const saved=await f.basic('/layouts/save',{...request,inspectionToken:p.inspectionToken});assert.equal(saved.status,200,JSON.stringify(saved.data));
+ const profile=saved.data.layoutOptions.savedProfiles.find(s=>s.number===5);assert.equal(profile.compatible,true);assert.equal(profile.product,328);assert.equal(profile.sources.front.id,f.art);assert.equal(profile.variants[0].placements.front.geometry.width,525);
+ const fresh=(await f.basic('/inspect',f.choice)).data;assert.equal(fresh.layoutOptions.savedProfiles[0].compatible,true);
+ const changed=(await f.basic('/inspect',{...f.choice,sizes:['L']})).data;assert.equal(changed.layoutOptions.savedProfiles[0].compatible,false);
+ const templateKey=fresh.layoutOptions.areas[0].key;assert.ok(templateKey);assert.equal(profile.variants[0].areas[0].width,1800);assert.equal(profile.variants[0].areas[0].printfile_id,1);
+ const {basicSizing}=await import('./factory-basic-sizing.mjs'),sizing=basicSizing({db:f.db,workflow:null}),bp=(await f.api('blueprints/product/328')).data;bp.layouts={templates:[{template_id:91,image_url:'https://files.cdn.printful.com/new-template.png',template_width:1800,template_height:2400,print_area_width:1800,print_area_height:2400,print_area_left:0,print_area_top:0}],variant_mapping:[{variant_id:3281,templates:[{placement:'front',template_id:91},{placement:'back',template_id:91}]}]};assert.equal(sizing.options(fresh,bp).savedProfiles[0].compatible,false,'a different exact supplier template invalidates a same-size profile');
+});

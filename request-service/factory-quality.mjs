@@ -1,3 +1,4 @@
+import {assertComposition} from './factory-placement-playbook.mjs';
 import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import {recipeIds,sourceProof} from './factory-render-proof.mjs';
 import {brandingPolicy,assertBrandingPlacement} from './factory-branding.mjs';
@@ -26,7 +27,7 @@ export function factoryQuality({db}){
    const dims=pngDimensions(Buffer.from(f.data));if(dims.width!==area.width||dims.height!==area.height)hold('Quality hold: PNG pixels do not match the blueprint.');
    const r=get('SELECT * FROM factory_render_files WHERE file=?',f.id),p=get('SELECT * FROM factory_render_quality WHERE file=?',f.id);
    if(!r||!p)hold('Quality hold: this print file has no measured source-resolution proof. Render it again from its original artwork.');
-   const recipe=JSON.parse(r.recipe),rows=recipeIds(recipe).map(id=>checkedArtwork(db,id)),proof=sourceProof(recipe,rows),a=rows[0]||null;
+   const recipe=JSON.parse(r.recipe),rows=recipeIds(recipe).map(id=>checkedArtwork(db,id)),proof=sourceProof(recipe,rows),a=rows[0]||null;assertComposition(db,recipe,rows);
    if(frozen){const expected=frozen.variants.find(v=>v.variant===d.variant)?.placements[area.placement];if(!expected||JSON.stringify({...expected,background:frozen.background})!==JSON.stringify(recipe))hold('Quality hold: the rendered file differs from the frozen inspected layout.');}
    for(const a of rows){assertBrandingPlacement(db,job,area.placement,a);if(!selection.artworkIds.includes(a.id))hold('Quality hold: print artwork is not assigned to this product.');if(!a.effectivePermissions.reuse||hash(Buffer.from(a.data))!==a.sha256)hold('Quality hold: rendered artwork or its permission changed.');}
    if(r.source_sha!==proof.sha)hold('Quality hold: rendered source checksum changed.');
