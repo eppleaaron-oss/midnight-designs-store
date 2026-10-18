@@ -232,6 +232,7 @@ test('hoodie collection requests are persistent plans, reuse the existing hoodie
  assert.ok(plans.data.plans.find(p=>!p.reusedProducts.length).error.includes('Source artwork'));
  assert.equal((await f.basic('/outfits/plan-hoodie-collections',b)).data.created,0);assert.equal((await f.basic()).data.active.id,first.data.id);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal(f.counts().creates,0);assert.equal(f.counts().taskCreates,0);
  assert.equal(f.db.prepare("SELECT count(*) n FROM factory_outfit_items WHERE outfit=? AND job='' AND approved=1").get(saved.id).n,1);
+ const missing=plans.data.plans.find(p=>!p.reusedProducts.length),attached=await f.basic('/outfits/assign-plan-source',{id:missing.id,setId:f.set});assert.equal(attached.status,200,JSON.stringify(attached.data));assert.ok(attached.data.plans.find(p=>p.id===missing.id).pieces.every(p=>p.choice.setId===f.set));assert.equal((await f.basic()).data.active.id,first.data.id);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);
 });
 
 test('collection slots permit 20 distinct products handled by one creator and preserve per-piece audiences',async t=>{
