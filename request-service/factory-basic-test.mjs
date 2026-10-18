@@ -221,3 +221,25 @@ test('a legacy low-resolution Basic job can fit its original artwork and resume 
  const current=(await f.basic()).data.active;assert.equal(current.job,item.job);assert.equal(current.printFiles.length,4);assert.ok(current.printFiles.every(f=>f.width===120&&f.height===80));assert.ok(current.printFiles.every(f=>f.effectiveDpi===null||f.effectiveDpi===150));
  assert.equal((await f.basic('/fit-artwork',{id:item.id})).status,409,'completed files cannot be changed under accepted tasks');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal(f.counts().creates,0);
 });
+
+test('hoodie collection requests are persistent plans, reuse the existing hoodie and do not disturb an active product',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true,outfitProducts:true});
+ const first=await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'});assert.equal(first.status,200,JSON.stringify(first.data));
+ const source='pf:482797453',set=f.db.prepare('SELECT * FROM idea_sets WHERE id=?').get(f.set);
+ f.db.prepare('INSERT INTO idea_sets(id,source,name,product,catalog,jacket,parts,updated) VALUES(?,?,?,?,?,?,?,?)').run(source,'printful','Even in darkness','Unisex cotton hoodie',1419,0,set.parts,set.updated);
+ const b={setIds:[source],names:{[source]:'Even in darkness'},unresolved:[{key:'stag-ravens',name:'Stag and ravens'}]},plans=await f.basic('/outfits/plan-hoodie-collections',b);assert.equal(plans.status,200,JSON.stringify(plans.data));assert.equal(plans.data.created,2);assert.equal(plans.data.productionStarted,false);assert.equal(plans.data.plans.length,2);
+ const saved=plans.data.plans.find(p=>p.reusedProducts.length);assert.equal(saved.name,'Even in darkness matching collection');assert.equal(saved.total,19);assert.equal(new Set(saved.pieces.map(p=>p.choice.product)).size,19);assert.equal(saved.reusedProducts[0].id,'482797453');assert.ok(saved.pieces.some(p=>p.choice.product===513&&p.choice.audience==='men'),'the requested shoe audience is retained while catalog unavailability still holds the slot');
+ assert.ok(plans.data.plans.find(p=>!p.reusedProducts.length).error.includes('Source artwork'));
+ assert.equal((await f.basic('/outfits/plan-hoodie-collections',b)).data.created,0);assert.equal((await f.basic()).data.active.id,first.data.id);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal(f.counts().creates,0);assert.equal(f.counts().taskCreates,0);
+ assert.equal(f.db.prepare("SELECT count(*) n FROM factory_outfit_items WHERE outfit=? AND job='' AND approved=1").get(saved.id).n,1);
+ const missing=plans.data.plans.find(p=>!p.reusedProducts.length),attached=await f.basic('/outfits/assign-plan-source',{id:missing.id,setId:f.set});assert.equal(attached.status,200,JSON.stringify(attached.data));assert.ok(attached.data.plans.find(p=>p.id===missing.id).pieces.every(p=>p.choice.setId===f.set));assert.equal((await f.basic()).data.active.id,first.data.id);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);
+});
+
+test('collection slots permit 20 distinct products handled by one creator and preserve per-piece audiences',async t=>{
+ const f=await fixture(t),{factoryBasicOutfits}=await import('./factory-basic-outfits.mjs');let captured,request;
+ const api=factoryBasicOutfits({db:f.db,origin,auth(){},body:async()=>request,send:(_res,status,data)=>{captured={status,data};},fail:(status,message)=>{throw Object.assign(Error(message),{status});},limit(){},basic:{snapshot:()=>({blockers:[]}),checkpoint:async()=>{},inspect:async c=>({product:{id:c.product},role:'shirts',set:{name:'Test'},audience:c.audience}),verifyLayoutReceipt(){},inspectionSignature:c=>String(c.product.id),create:async()=>{throw Error('Native files deliberately not generated in this test.');}}});
+ request={requestKey:randomUUID(),name:'Twenty matching pieces',setId:f.set,pieces:Array.from({length:20},(_,i)=>({product:1000+i,audience:i===1?'women':'men'}))};
+ await api.handle({headers:{origin}},{},'/api/owner/ai-factory/basic/outfits/create','POST');assert.equal(captured.status,200);assert.equal(captured.data.total,20);assert.equal(captured.data.status,'held');assert.equal(captured.data.pieces[1].choice.audience,'women');assert.equal(new Set(captured.data.pieces.map(p=>p.role)).size,1);
+ assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,0);
+ const p=captured.data.pieces;f.db.prepare('INSERT INTO factory_outfit_items(id,outfit,role,template,job) VALUES(?,?,?,?,?)').run(p[0].id,captured.data.id,'shirts','','');f.db.prepare('INSERT INTO factory_outfit_items(id,outfit,role,template,job) VALUES(?,?,?,?,?)').run(p[1].id,captured.data.id,'shirts','','');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_outfit_items WHERE outfit=?').get(captured.data.id).n,2,'the database permits independent products sharing one worker');
+});
