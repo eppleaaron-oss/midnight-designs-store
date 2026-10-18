@@ -37,7 +37,7 @@
  function chooseSet(set){
   if(selected===set.id)return;
   const previous=baseInspection,saved=sizingUI.input(),role=editingRole,sizes=choice().sizes;
-  const rebind=value=>value?{...value,assignments:Object.fromEntries(Object.entries(value.assignments||{}).map(([slot,part])=>[slot,part&&set.parts[part]?part:null])),acceptReduction:false}:null;
+  const rebind=value=>value?{...value,assignments:Object.fromEntries(Object.entries(value.assignments||{}).map(([slot,part])=>[slot,part&&set.parts[part]?part:null])),acceptReduction:false,artworkKinds:{},repeatApproved:{}}:null;
   selected=set.id;invalidate();editingRole=role;for(const p of outfitChoices.values())p.layout=rebind(p.layout);
   if(previous&&previous.product.id===Number($('garment').value)&&previous.audience===$('audience').value){
    const parts=set.parts,normalize=s=>s.replace(/_dtfabric$/,'').replace(/^default$/,'front').replace(/^top_front$/,'front').replace(/^top_back$/,'back');

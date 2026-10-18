@@ -49,6 +49,7 @@ try{
  assert.equal(await page.getByLabel('front artwork role',{exact:true}).inputValue(),'hero');
  await page.getByLabel('front artwork role',{exact:true}).selectOption('pattern');assert.equal(await page.getByLabel('front approve pattern repeats',{exact:true}).isChecked(),false,'a model or role label alone cannot approve repetition');
  await page.getByLabel('front artwork role',{exact:true}).selectOption('hero');assert.equal(await page.locator('#saveLayoutProfile').isDisabled(),true,'changing a classification invalidates the inspection');
+ await page.getByLabel('front artwork role',{exact:true}).selectOption('pattern');await page.getByLabel('front approve pattern repeats',{exact:true}).check();
 // Changing a design must replace visible artwork and invalidate only its receipt,
  // while keeping the selected garment, sizes and owner's numeric recipe.
  await page.locator('#selectionArt .selection-artwork').waitFor();assert.match(await page.locator('#selectionArt .selection-artwork').getAttribute('src'),new RegExp(id));
