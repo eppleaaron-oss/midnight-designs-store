@@ -7,6 +7,7 @@ function toast(t){const e=$('toast');e.textContent=t;e.hidden=false;clearTimeout
 const guard=(b,fn)=>async(...a)=>{if(b)b.disabled=true;try{await fn(...a);}catch(e){toast(e.message);}finally{if(b)b.disabled=false;}};
 const options=(sel,rows,keep)=>{const v=sel.value;sel.replaceChildren(...rows.map(([value,label])=>{const o=node('option',label);o.value=value;return o;}));if(keep&&rows.some(([value])=>value===v))sel.value=v;};
 
+function renderPlaybook(){const p=data.placementPlaybook;if(!p)return;$('placementVersion').textContent=p.version;$('placementSummary').textContent=p.rules+' permanent rules · '+p.guides.length+' garment guides · '+p.mappedListings+' catalog listings mapped. No automatic tiling of scenes or portraits.';$('placementNote').textContent=p.note;const q=$('placementSearch').value.trim().toLowerCase();$('placementGuides').replaceChildren(...p.guides.filter(g=>(g.name+' '+g.product).toLowerCase().includes(q)).map(g=>{const card=node('details','','ix-rule');card.append(node('summary',g.name+' · Printful '+g.product+' · '+g.listings.length+' listings'),node('p',g.direction),node('p','Starting layout #'+g.recommendedLayout+'. Exact coordinates require the selected live template and reviewed safe regions.','fx-note'));if(g.listings.length)card.append(node('p',g.listings.map(l=>l.name+' ('+l.id+')').join(' · '),'fx-meta'));return card;}));}
 function renderStatus(){
  $('brainVersion').textContent=data.version;
  const bad=data.components.filter(c=>!c.ok);
@@ -84,8 +85,9 @@ async function inspect(id,{link=true}={}){
  $('jobLog').replaceChildren(...(d.log.length?d.log.map(e=>{const li=node('li');li.append(node('time',new Date(e.at).toLocaleTimeString()),node('span',' '+e.text));return li;}):[node('li','No recorded actions yet.')]));
  $('jobBrief').textContent=d.brief;$('jobDetail').hidden=false;if(link)updateLink();if(selectedStage)await showStage(selectedStage,{focus:false});
 }
+$('placementSearch').oninput=renderPlaybook;
 async function load(){
- data=await api('intelligence');renderStatus();renderRules();renderMemories();renderRefs();renderStore();
+ data=await api('intelligence');renderStatus();renderPlaybook();renderRules();renderMemories();renderRefs();renderStore();
  if(!$('garmentSelect').options.length){options($('garmentSelect'),data.garments.map(g=>[g.id,g.label]));$('garmentSelect').value='jacket';options($('testGarment'),data.garments.map(g=>[g.id,g.label]));$('testGarment').value='ziphoodie';
   options($('memFilter'),[['','All memories'],...data.memoryKinds]);options($('memKind'),data.memoryKinds);}
  renderGarment();

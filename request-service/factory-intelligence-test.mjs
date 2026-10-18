@@ -69,7 +69,7 @@ test('owner login health never exposes the hash, and the Brain feeds every produ
   brain=(await call('/api/owner/ai-factory/intelligence')).data;assert.deepEqual(brain.references.map(r=>r.id).sort(),['design:ref-1','product:p1']);assert.equal(brain.counts.references,2);
   assert.ok((await call('/api/owner/ai-factory/intelligence/store')).data.items.find(x=>x.id==='design:ref-1').pinned);
   const jacketKnow=(await call('/api/owner/ai-factory/intelligence/knowledge/jacket')).data.text;assert.match(jacketKnow,/Reaper jacket mockup \(mockup\): Big back hero/);assert.ok(!jacketKnow.includes('Unisex zip hoodie'),'references for other garments stay out');
-  assert.match(jacketKnow,/One design per placement/);assert.match(jacketKnow,/When to place a design/);assert.match(jacketKnow,/fill option/);
+  assert.match(jacketKnow,/One design per placement/);assert.match(jacketKnow,/When to place a design/);assert.match(jacketKnow,/real supplier fabric-color variant/);
 
   const white=(await call('/api/owner/ai-factory/intelligence/test',{prompt:'A white jacket.',garment:'jacket',artworkIds:artworkIds.slice(0,1)})).data;
   assert.match(white.colorPlan,/White\. Use the plain white garment with the fill option OFF/);

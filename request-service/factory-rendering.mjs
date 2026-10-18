@@ -1,3 +1,4 @@
+import {assertComposition} from './factory-placement-playbook.mjs';
 import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
 import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import {recipeIds,sourceProof} from './factory-render-proof.mjs';
@@ -101,7 +102,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    const area=areas.find(a=>a.placement===placement);if(!area)error('Unsupported placement for this saved variant: '+placement+'.');
    if(!r||typeof r!=='object')error('Choose artwork or an explicit fill-only recipe for each area.');
    if(r.elements&&(!Array.isArray(r.elements)||r.elements.length<1||r.elements.length>8||r.artworkId||r.fillOnly||r.elements.some(e=>!e?.artworkId||!e.geometry||e.elements||e.tile)))error('Choose one to eight inspected artwork elements for this panel.');
-   const rows=recipeIds(r).map(id=>checkedArtwork(db,id));
+   const rows=recipeIds(r).map(id=>checkedArtwork(db,id));assertComposition(db,r,rows);
    for(const a of rows){assertBrandingPlacement(db,job,placement,a);if(allowedIds&&!allowedIds.includes(a.id))error('Artwork is not assigned to this job.');if(a.product!==null&&a.product!==undefined&&a.product!==d.product)error('Artwork is restricted to a different product.');}
    if(!rows.length&&r.fillOnly!==true)error('This area needs artwork or an explicit fill-only choice.');
    const a=rows[0]||null,recipe={...r,background:Object.hasOwn(plan,'background')?plan.background:'Black'},proof=sourceProof(recipe,rows),signature=hash(JSON.stringify([d.product,d.variant,d.technique,area,recipe,proof.sha,proof.permissions]));

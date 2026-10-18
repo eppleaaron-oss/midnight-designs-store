@@ -1,3 +1,5 @@
+import {PLACEMENT_RULES,placementInstruction,playbookSnapshot,ARTWORK_KINDS,saveArtworkComposition} from './factory-placement-playbook.mjs';
+import {checkedArtwork} from './factory-artwork-permissions.mjs';
 import {SIZING_RULES} from './factory-sizing-rules.mjs';
 import {BRANDING_RULE,BRANDING_CONCEPTS,brandingInstruction} from './factory-branding.mjs';
 import {randomUUID,createHash} from 'node:crypto';
@@ -8,7 +10,7 @@ import {GARMENTS,fillInstruction,LABEL_LOGO_PATH} from './factory-runs.mjs';
 export const BRAIN_SECTIONS=[['brand-dna','Brand DNA'],['fashion','Fashion knowledge'],['garment','Garment intelligence'],['artwork','Artwork intelligence'],['color','Color intelligence'],['placement','Placement intelligence'],['composition','Composition intelligence'],['supplier','Supplier knowledge'],['blueprint','Blueprint knowledge'],['qc','QC intelligence'],['pricing','Pricing intelligence'],['publishing','Publishing intelligence']];
 export const MEMORY_KINDS=[['permanent','Permanent rules'],['preference','Owner preferences'],['success','Successful designs'],['failure','Failed designs'],['supplier','Supplier knowledge'],['learning','Production learnings']];
 export const FEEDBACK=[['good','Good','success'],['excellent','Excellent','success'],['bad','Bad','failure'],['never','Never do this again','failure'],['style','Save this style','preference'],['placement','Save this placement','preference'],['color','Save this color combination','preference'],['reference','Save as reference','success']];
-const BRAIN_VERSION='MD-Brain 1.3';
+const BRAIN_VERSION='MD-Brain 1.4';
 
 const FILL_RULE='The blank garment is white. White products use no fill. Every other main color (black, charcoal, navy, red and so on) must use the fill option on every print area, edge to edge, before artwork goes on. Never fake a color with a pasted solid-color image.';
 // Rules added after the first Brain release. Seeded once per database, so an owner who deletes an unlocked one doesn't get it back.
@@ -85,6 +87,13 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   run("INSERT INTO brain_migrations VALUES('design-first-branding-v1',?)",t);
  }
  if(!get("SELECT 1 x FROM brain_migrations WHERE name='sizing-basic-v1'")){const t=now();for(const [section,title,text,locked] of SIZING_RULES)if(!get('SELECT 1 x FROM brain_rules WHERE title=?',title))run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);run("INSERT INTO brain_migrations VALUES('sizing-basic-v1',?)",t);}
+ if(!get("SELECT 1 x FROM brain_migrations WHERE name='placement-playbook-v1'")){const t=now();
+  for(const [section,title,text,locked] of PLACEMENT_RULES){const r=get('SELECT id FROM brain_rules WHERE title=?',title);if(r)run('UPDATE brain_rules SET section=?,body=?,locked=?,updated=? WHERE id=?',section,text,locked,t,r.id);else run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),section,title,text,locked,t,t);}
+  run("UPDATE brain_rules SET body=?,updated=? WHERE title='Pocket lines up with the front'",'Pockets stay black by default. Use a separately assigned accent only when deliberate. A continuation needs a reviewed exact alignment, safe geometry and permitted crop; never assume front artwork automatically aligns.',t);
+  run("UPDATE brain_rules SET body=?,updated=? WHERE title='One design per placement'",'One hero per intended hero region. Supporting motifs must be separately assigned. Distinct reviewed leg regions may share a supplier print panel. Repeat only owner-approved patterns; no automatic tiling of scenes or portraits.',t);
+  run("UPDATE brain_rules SET body=?,updated=? WHERE title='Garment fill' AND body=?",'Choose a real supplier fabric-color variant when available. Only supported all-over-print products need actual background-filled native print panels, including bleed. Black is the default; preserve exact templates and never claim color was applied from instructions alone.',t,FILL_RULE);
+  run("INSERT INTO brain_migrations VALUES('placement-playbook-v1',?)",t);
+ }
  const has=table=>!!get("SELECT 1 x FROM sqlite_master WHERE type='table' AND name=?",table);
  const count=(table,where='')=>has(table)?get(`SELECT count(*) n FROM ${table} ${where}`).n:0;
  const garmentLabel=id=>GARMENTS.find(g=>g.id===id)?.label||id;
@@ -96,11 +105,11 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  // Rules are removed whole when the brief budget is tight.
  function knowledge(garment,max=Infinity){
   const rules=all("SELECT section,title,body,locked FROM brain_rules ORDER BY locked DESC,CASE section WHEN 'brand-dna' THEN 0 ELSE 1 END,created").filter(r=>!['Design-first branding','Identity, artwork and marking'].includes(r.title));
-  const shipped=new Set([...DEFAULT_RULES,...RULES_V2,...RULES_V3,...SIZING_RULES].map(r=>r[1]).concat(['Logo on the tag','One design, many items','Pocket lines up with the front','Thematic chest graphics','Layout diversity']));const sizingTitles=new Set(SIZING_RULES.map(r=>r[1]));const rank=r=>!shipped.has(r.title)?0:sizingTitles.has(r.title)?1:2;rules.sort((a,b)=>rank(a)-rank(b));
+  const shipped=new Set([...DEFAULT_RULES,...RULES_V2,...RULES_V3,...SIZING_RULES,...PLACEMENT_RULES].map(r=>r[1]).concat(['Logo on the tag','One design, many items','Pocket lines up with the front','Thematic chest graphics','Layout diversity']));const sizingTitles=new Set(SIZING_RULES.map(r=>r[1]));const rank=r=>!shipped.has(r.title)?0:sizingTitles.has(r.title)?1:2;rules.sort((a,b)=>rank(a)-rank(b));
   const p=garment?profile(garment):null,prefs=all("SELECT text FROM brain_memories WHERE kind IN ('permanent','preference') AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 15",garment||'');
   const avoid=all("SELECT text FROM brain_memories WHERE kind='failure' AND (garment IS NULL OR garment=?) ORDER BY created DESC LIMIT 8",garment||'');
   const refs=all('SELECT kind,name,image,garment,note FROM brain_references WHERE garment IS NULL OR garment=? ORDER BY garment IS NULL,created DESC LIMIT 8',garment||'');
-  const head=[brandingInstruction(),'Sizing policy: Supplier canvas and per-variant mappings are authoritative. Artwork inches and anatomical position come from a reviewed numeric layout; preserve proportions, safe regions and measured effective DPI. Missing required artwork stops production. Show and accept reductions. Black-fill all unused AOP panels including bleed. Freeze the inspected plan; render, mockups and publishing use the same files.'];
+  const head=[brandingInstruction(),placementInstruction(),'Sizing policy: Supplier canvas and per-variant mappings are authoritative. Artwork inches and anatomical position come from a reviewed numeric layout; preserve proportions, safe regions and measured effective DPI. Missing required artwork stops production. Show and accept reductions. Black-fill all unused AOP panels including bleed. Freeze the inspected plan; render, mockups and publishing use the same files.'];
   if(prefs.length)head.push('Owner preferences:',...prefs.map(m=>'- '+m.text));
   if(avoid.length)head.push('Avoid (owner rejected):',...avoid.map(m=>'- '+m.text));
   if(refs.length)head.push('Reference examples from the Midnight Designs store (match this level and their clean layouts):',...refs.map(r=>`- ${r.name} (${r.kind==='product'?'store product':r.kind==='design'?'store design':'mockup'})${r.note?': '+r.note:''} ${r.image}`));
@@ -220,7 +229,7 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
  return {setDiagnostics(d){diagnostics=d;},setPipeline(p){pipeline=p;},setEditor(e){imageEditor=e;},knowledge,production,placementPlan,status,async handle(req,res,path,method){
   if(!path.startsWith('/api/owner/ai-factory/intelligence'))return false;auth(req,null,true);const p=path.slice('/api/owner/ai-factory/intelligence'.length);
   if(method==='GET'){
-   if(p===''){send(res,200,{...status(),sections:BRAIN_SECTIONS,memoryKinds:MEMORY_KINDS,feedback:FEEDBACK.map(([id,label])=>({id,label})),garments:GARMENTS.map(g=>({id:g.id,label:g.label,zones:g.zones,profile:profile(g.id)})),references:all('SELECT * FROM brain_references ORDER BY created DESC'),rules:all('SELECT * FROM brain_rules ORDER BY section,locked DESC,created'),memories:all('SELECT * FROM brain_memories ORDER BY created DESC LIMIT 300'),jobs:has('factory_jobs')?all('SELECT id,title,status,updated FROM factory_jobs ORDER BY updated DESC LIMIT 50'):[]});return true;}
+   if(p===''){send(res,200,{...status(),placementPlaybook:playbookSnapshot(),artworkKinds:ARTWORK_KINDS,sections:BRAIN_SECTIONS,memoryKinds:MEMORY_KINDS,feedback:FEEDBACK.map(([id,label])=>({id,label})),garments:GARMENTS.map(g=>({id:g.id,label:g.label,zones:g.zones,profile:profile(g.id)})),references:all('SELECT * FROM brain_references ORDER BY created DESC'),rules:all('SELECT * FROM brain_rules ORDER BY section,locked DESC,created'),memories:all('SELECT * FROM brain_memories ORDER BY created DESC LIMIT 300'),jobs:has('factory_jobs')?all('SELECT id,title,status,updated FROM factory_jobs ORDER BY updated DESC LIMIT 50'):[]});return true;}
    if(p==='/store'){const pinned=new Set(all('SELECT id FROM brain_references').map(r=>r.id));send(res,200,{items:(await storeCatalog()).map(x=>({...x,pinned:pinned.has(x.id)}))});return true;}
    if(p.startsWith('/knowledge/')){const g=decodeURIComponent(p.slice(11));send(res,200,{garment:g,text:knowledge(GARMENTS.some(x=>x.id===g)?g:null)});return true;}
    const job=p.match(/^\/job\/([\w-]{1,64})$/);if(job){send(res,200,jobLife(job[1]));return true;}
@@ -230,7 +239,8 @@ export function factoryIntelligence({db,auth,body,send,fail,limit,origin,passwor
   const text=(v,max,label)=>typeof v==='string'&&v.trim()&&v.length<=max?v.trim():fail(400,`Write the ${label} (up to ${max} characters).`);
   if(p==='/diagnose'){limit(req,'factory-diagnose',6);send(res,200,await diagnose());return true;}
   if(p==='/test'){send(res,200,testPlan(b));return true;}
-  if(p==='/rule'){
+  if(p==='/composition'){const a=checkedArtwork(db,String(b.artwork||''));saveArtworkComposition(db,a,{kind:b.kind,repeatApproved:b.repeatApproved});
+  }else if(p==='/rule'){
    if(b.delete){const r=get('SELECT locked FROM brain_rules WHERE id=?',String(b.id||''));if(!r)fail(404,'Rule not found.');if(r.locked)fail(409,'Unlock this rule before deleting it.');run('DELETE FROM brain_rules WHERE id=?',b.id);}
    else if(b.id&&b.locked!==undefined&&b.title===undefined){if(!get('SELECT 1 x FROM brain_rules WHERE id=?',String(b.id)))fail(404,'Rule not found.');run('UPDATE brain_rules SET locked=?,updated=? WHERE id=?',b.locked?1:0,now(),b.id);}
    else{if(!BRAIN_SECTIONS.some(([id])=>id===b.section))fail(400,'Choose a Brain section.');const title=text(b.title,100,'rule name'),bodyText=text(b.body,2000,'rule');if(b.id){const r=get('SELECT locked FROM brain_rules WHERE id=?',String(b.id));if(!r)fail(404,'Rule not found.');if(r.locked&&b.locked!==false)fail(409,'This rule is locked. Unlock it to edit.');run('UPDATE brain_rules SET section=?,title=?,body=?,locked=?,updated=? WHERE id=?',b.section,title,bodyText,b.locked?1:0,now(),b.id);}else run('INSERT INTO brain_rules VALUES(?,?,?,?,?,?,?)',randomUUID(),b.section,title,bodyText,b.locked?1:0,now(),now());}

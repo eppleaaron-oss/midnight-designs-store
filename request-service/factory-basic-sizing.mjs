@@ -1,3 +1,4 @@
+import {placementGuide,artworkComposition,saveArtworkComposition} from './factory-placement-playbook.mjs';
 import {artworkBounds} from './factory-artwork-bounds.mjs';
 import {targetAreas,MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import sharp from 'sharp';
@@ -11,7 +12,7 @@ const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const fail=(message,status=409)=>{throw Object.assign(Error(message),{status});};
 const num=(v,label,min=0,max=100)=>{if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)fail('Invalid '+label+'.',400);return v;};
 const round=n=>Math.round(n*1000)/1000;
-const areaStamp=a=>hash([a.placement,a.printfile_id,a.width,a.height,a.dpi]);
+const areaStamp=a=>hash([a.placement,a.printfile_id,a.width,a.height,a.dpi,a.template||null]);
 const key=(product,technique,a)=>[product,technique,a.placement,areaStamp(a),...(a.region?[a.region]:[])].join(':');
 const inside=(r,b)=>r.x>=b.x-0.01&&r.y>=b.y-0.01&&r.x+r.width<=b.x+b.width+0.01&&r.y+r.height<=b.y+b.height+0.01;
 const defaultPart=(slot,parts)=>Object.keys(parts).find(k=>panelKind(k)===slot.panel)||(slot.panel==='leg_left'?parts.sleeve_left&&'sleeve_left':slot.panel==='leg_right'?parts.sleeve_right&&'sleeve_right':null)||null;
@@ -20,7 +21,8 @@ const defaultPart=(slot,parts)=>Object.keys(parts).find(k=>panelKind(k)===slot.p
 // A Printful API rectangle does not supply a chest/thigh safe zone by itself.
 export function basicSizing({db,workflow,clock=Date.now}) {
  db.exec(`CREATE TABLE IF NOT EXISTS factory_basic_geometry(key TEXT PRIMARY KEY,product INTEGER NOT NULL,technique TEXT NOT NULL,placement TEXT NOT NULL,stamp TEXT NOT NULL,profile TEXT NOT NULL,updated TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS factory_basic_inspections(id TEXT PRIMARY KEY,signature TEXT NOT NULL,created INTEGER NOT NULL);`);
+ CREATE TABLE IF NOT EXISTS factory_basic_inspections(id TEXT PRIMARY KEY,signature TEXT NOT NULL,created INTEGER NOT NULL);
+ CREATE TABLE IF NOT EXISTS factory_basic_saved_layouts(product INTEGER NOT NULL,technique TEXT NOT NULL,number INTEGER NOT NULL,audience TEXT NOT NULL,stamp TEXT NOT NULL,profile TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(product,technique,number,audience));`);
  const get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a);
  const profile=(product,technique,a)=>{const r=get('SELECT profile FROM factory_basic_geometry WHERE key=?',key(product,technique,a));return r?JSON.parse(r.profile):a.builtinProfile||null;};
  function options(p,bp){
@@ -31,7 +33,8 @@ export function basicSizing({db,workflow,clock=Date.now}) {
    for(const v of p.variants)for(const s of l.slots){if(s.panel==='*')continue;if(!s.optional&&!targetAreas(p.product.id,p.role,exterior(variantAreas(bp,v.id))).some(a=>(a.region||panelKind(a.placement))===s.panel))reasons.push('Size '+v.size+' has no supported '+s.panel+' panel.');}
    return {...l,compatible:!reasons.length,reasons:[...new Set(reasons)],needsReviewedMap:true};
   });
-  return {version:BASIC_LAYOUT_VERSION,layouts,areas:[...areas.values()],allLayouts:BASIC_LAYOUTS.map(l=>({number:l.number,category:l.category,name:l.name,supported:l.supported,reason:l.reason})),note:'Inches refer to the artwork inside the full native canvas. Safe regions and anatomical anchors need a product-specific review; mockup template rectangles are not safe-zone masks.'};
+  const templateFingerprint=hash([p.product.id,technique,p.variants.map(v=>[v.id,variantAreas(bp,v.id).map(a=>[areaStamp(a),a.template||null])])]),savedProfiles=db.prepare('SELECT stamp,profile,updated FROM factory_basic_saved_layouts WHERE product=? AND technique=? AND audience=?').all(p.product.id,technique,p.audience).map(r=>({...JSON.parse(r.profile),updated:r.updated,compatible:r.stamp===templateFingerprint}));
+  return {technique,templateFingerprint,savedProfiles,placementGuide:placementGuide(p.product.id),version:BASIC_LAYOUT_VERSION,layouts,areas:[...areas.values()],allLayouts:BASIC_LAYOUTS.map(l=>({number:l.number,category:l.category,name:l.name,supported:l.supported,reason:l.reason})),note:'Inches refer to the artwork inside the full native canvas. Safe regions and anatomical anchors need a product-specific review; mockup template rectangles are not safe-zone masks.'};
  }
  function saveProfile(p,bp,b){
   if(b.reviewed!==true||b.orientation!=='wearer'||typeof b.reference!=='string'||!b.reference.trim()||b.reference.length>600)fail('Review the garment template, use wearer orientation, and describe the supplier guideline used.',400);
@@ -69,11 +72,13 @@ export function basicSizing({db,workflow,clock=Date.now}) {
   if(Object.keys(assignments).some(k=>!layout.slots.some(s=>s.id===k))||Object.keys(overrides).some(k=>!layout.slots.some(s=>s.id===k)))fail('A layout contains an unsupported assignment or override.',400);
   if(input.scaleMode!==undefined&&!['fixed','proportional'].includes(input.scaleMode))fail('Choose fixed inches or proportional scaling.',400);
   if(p.audience==='children')fail('Adult presets cannot be applied to children. A separate reviewed children’s sizing profile is required.');
+  for(const field of ['artworkKinds','repeatApproved'])if(input[field]&&(typeof input[field]!=='object'||Array.isArray(input[field])||Object.keys(input[field]).some(k=>!p.set.parts[k])))fail('Artwork classifications must belong to the selected design set.',400);
+  if(input.repeatApproved&&Object.values(input.repeatApproved).some(v=>typeof v!=='boolean'))fail('Pattern repeat approval must be true or false.',400);
   const sources=new Map(),bindings=[],warnings=[],variants=[],reductions=[];
   for(const s of layout.slots){const chosen=Object.hasOwn(assignments,s.id)?assignments[s.id]:s.panel==='*'?(p.set.parts.front?'front':p.set.parts.default?'default':null):defaultPart(s,p.set.parts);
    if(chosen===null||chosen===''){if(!s.optional)fail('Layout '+layout.name+' requires '+s.id+' artwork. Assign a source from the selected set; an unassigned required panel cannot become blank black.');bindings.push({...s,part:null});continue;}
    if(typeof chosen!=='string'||!p.set.parts[chosen])fail('The '+s.id+' assignment is not in the selected design set.',400);
-   if(!sources.has(chosen))sources.set(chosen,await artwork(p.set.parts[chosen],p.set));bindings.push({...s,part:chosen});
+   if(!sources.has(chosen)){const source=await artwork(p.set.parts[chosen],p.set);if(input.artworkKinds?.[chosen]!==undefined)saveArtworkComposition(db,source,{kind:input.artworkKinds[chosen],repeatApproved:input.repeatApproved?.[chosen]===true});source.composition=artworkComposition(db,source);sources.set(chosen,source);}bindings.push({...s,part:chosen});
   }
   const technique=bp.effectiveTechnique||bp.technique,firstAreas=exterior(variantAreas(bp,p.variants[0].id));
   for(const v of p.variants){const native=exterior(variantAreas(bp,v.id)),placements={},measurements=[];
@@ -98,17 +103,18 @@ export function basicSizing({db,workflow,clock=Date.now}) {
     if(src.marginWarning)warnings.push(s.id+': '+(bounds?'Measurements follow the visible artwork; the full original including empty borders is preserved.':src.marginWarning));
     const geometry={x,y,width,height,canvasWidth:area.width,canvasHeight:area.height,dpi:area.dpi,safeRect:map.safeRect,profileStamp:hash(map),...(bounds&&(bounds.width!==src.width||bounds.height!==src.height)?{contentBounds:{...bounds,sourceWidth:src.width,sourceHeight:src.height}}:{})};
     const recipe={artworkId:src.id,fit:'contain',geometry,protect:true,mirror:false,rotation:0,tile:false};
-    if(layout.pattern){if(!src.permissions.crop)fail('Repeating patterns extend through the panel bleed and need explicit Crop permission for the selected motif.');recipe.tile=true;recipe.protect=false;const spacing=num(override.spacingIn??0,'pattern spacing',0,10)*area.dpi;if(spacing>width*2)fail('Pattern spacing must be at most twice the motif width.');recipe.spacing=100*spacing/width;const nx=Math.ceil((area.width+width+Math.abs(cx-area.width/2)*2)/(width+spacing)),ny=Math.ceil((area.height+height+Math.abs(cy-area.height/2)*2)/(height+spacing));if((2*nx+1)*(2*ny+1)>400)fail('This pattern would have too many tiles. Increase the motif size or choose fewer repeats.');}
+    if(layout.pattern){if(src.composition.kind!=='pattern'||!src.composition.repeatApproved)fail('No automatic tiling of scenes or portraits. Select repeatable pattern and explicitly approve repeats for this source.');if(!src.permissions.crop)fail('Repeating patterns extend through the panel bleed and need explicit Crop permission for the selected motif.');recipe.tile=true;recipe.protect=false;const spacing=num(override.spacingIn??0,'pattern spacing',0,10)*area.dpi;if(spacing>width*2)fail('Pattern spacing must be at most twice the motif width.');recipe.spacing=100*spacing/width;const nx=Math.ceil((area.width+width+Math.abs(cx-area.width/2)*2)/(width+spacing)),ny=Math.ceil((area.height+height+Math.abs(cy-area.height/2)*2)/(height+spacing));if((2*nx+1)*(2*ny+1)>400)fail('This pattern would have too many tiles. Increase the motif size or choose fewer repeats.');}
     elements.push(recipe);
     measurements.push({region:target.region||null,slot:s.id,part:s.part,artwork:src.id,name:p.set.parts[s.part].name,previewUrl:'/api/owner/ai-factory/artwork/'+src.id+'/file',placement:area.placement,anchor:s.anchor,widthIn:round(visibleWidth/area.dpi),heightIn:round(visibleHeight/area.dpi),centerXIn:round(cx/area.dpi),centerYIn:round(cy/area.dpi),effectiveDpi:round(effectiveDpi),canvas:{width:area.width,height:area.height,dpi:area.dpi},geometry,pattern:layout.pattern,spacingIn:override.spacingIn||0,profileReference:map.reference});
     }placements[area.placement]=elements.length===1?elements[0]:{elements};
    }
    variants.push({variant:v.id,size:v.size,areas:native,placements,measurements});
   }
-  const frozen={number:layout.number,name:layout.name,version:BASIC_LAYOUT_VERSION,input,scaleMode:input.scaleMode||'fixed',background:'#000000',bindings,variants,sources:Object.fromEntries([...sources].map(([part,s])=>[part,{id:s.id,sha256:s.sha256,width:s.width,height:s.height,permissions:s.permissions}])),reductions,warnings:[...new Set(warnings)],requiresAcceptance:reductions.length>0&&input.acceptReduction!==true};
+  const frozen={number:layout.number,name:layout.name,version:BASIC_LAYOUT_VERSION,input,scaleMode:input.scaleMode||'fixed',background:'#000000',bindings,variants,sources:Object.fromEntries([...sources].map(([part,s])=>[part,{id:s.id,sha256:s.sha256,width:s.width,height:s.height,permissions:s.permissions,composition:s.composition}])),reductions,warnings:[...new Set(warnings)],requiresAcceptance:reductions.length>0&&input.acceptReduction!==true};
   frozen.signature=hash(frozen);return frozen;
  }
+ function saveLayout(p){const f=p.numericLayout;if(!f||f.requiresAcceptance)fail('Inspect this exact layout and accept any reductions before saving.');const o=p.layoutOptions,value={product:p.product.id,technique:o.technique,number:f.number,audience:p.audience,set:p.set.id,input:f.input,variants:f.variants,sources:f.sources,signature:f.signature};run('INSERT INTO factory_basic_saved_layouts VALUES(?,?,?,?,?,?,?) ON CONFLICT(product,technique,number,audience) DO UPDATE SET stamp=excluded.stamp,profile=excluded.profile,updated=excluded.updated',p.product.id,o.technique,f.number,p.audience,o.templateFingerprint,JSON.stringify(value),new Date(clock()).toISOString());return value;}
  function receipt(signature){const id=randomUUID();run('INSERT INTO factory_basic_inspections VALUES(?,?,?)',id,signature,clock());run('DELETE FROM factory_basic_inspections WHERE id IN (SELECT id FROM factory_basic_inspections ORDER BY created DESC LIMIT -1 OFFSET 200)');return id;}
  function verifyReceipt(token,signature,{queued=false}={}){const saved=typeof token==='string'&&get('SELECT * FROM factory_basic_inspections WHERE id=?',token);if(!saved||saved.signature!==signature||!queued&&clock()-saved.created>86400000)fail('The layout, artwork, sizes or garment map changed. Inspect this exact recipe again before creating it.');}
- return {options,saveProfile,resolve,receipt,verifyReceipt};
+ return {options,saveProfile,saveLayout,resolve,receipt,verifyReceipt};
 }
