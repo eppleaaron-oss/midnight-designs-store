@@ -1,11 +1,11 @@
 import {readFile,writeFile,rename} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {information} from './product-information.mjs';
+import {printfulClient} from './printful-client.mjs';
 export async function enrich({token=process.env.PRINTFUL_TOKEN,storeId=process.env.PRINTFUL_STORE_ID,endpoint=process.env.PRINTFUL_PRODUCTS_ENDPOINT||'store',fetcher=fetch}={}){
  if(!token)throw Error('Product information sync requires the protected supplier token.');if(!['store','sync'].includes(endpoint))throw Error('Invalid products endpoint.');
  const catalog=JSON.parse(await readFile('products.json','utf8'));const specs={},byId=new Map();
- const headers={Authorization:'Bearer '+token,...(storeId?{'X-PF-Store-Id':storeId}:{})};
- async function get(path){for(let i=0;i<5;i++){const r=await fetcher('https://api.printful.com/'+path,{headers,signal:AbortSignal.timeout(30000)});if(r.status===429||r.status>=500){await new Promise(r=>setTimeout(r,(i+1)*3000));continue}if(!r.ok)throw Error('Product information request failed: HTTP '+r.status);const d=await r.json();if(d.code!==200)throw Error('Product information response invalid.');return d.result}throw Error('Product information service unavailable.');}
+ const read=printfulClient({token,storeId,fetcher});const get=async path=>(await read(path)).result;
  for(const p of catalog.products){const detail=await get(endpoint+'/products/'+encodeURIComponent(p.id));const ids=new Set(detail.sync_variants.map(v=>v.product?.product_id).filter(Boolean));if(ids.size!==1)throw Error('Product requires manual verification of mixed catalog types: '+p.id);const id=[...ids][0];p.catalogProductId=id;
   if(!byId.has(id)){const r=await get('products/'+id);byId.set(id,r);specs[id]=information(r)}
   const variants=byId.get(id).variants;
