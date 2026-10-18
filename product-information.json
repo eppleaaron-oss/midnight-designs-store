@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T15:35:12.562Z",
+  "updatedAt": "2026-10-18T17:15:40.647Z",
   "products": {
     "242": {
       "catalogProductId": 242,
@@ -82,7 +82,90 @@
           "name": "All-Over Print Yoga Leggings (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:10.391Z"
+      "verifiedAt": "2026-10-18T17:14:20.037Z"
+    },
+    "276": {
+      "catalogProductId": 276,
+      "title": "All-Over Print Men's Tank Top",
+      "description": "This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous!",
+      "materials": [
+        "Fabric composition: 93% polyester, 7% elastane",
+        "Fabric weight: 7.08 oz./yd.² (240 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Smooth, comfortable 2-way stretch material that stretches and recovers on the cross and lengthwise grains.",
+        "This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous!"
+      ],
+      "features": [
+        "Fabric composition: 93% polyester, 7% elastane",
+        "Fabric weight: 7.08 oz./yd.² (240 g/m²)",
+        "Premium knit mid-weight jersey",
+        "Smooth, comfortable 2-way stretch material that stretches and recovers on the cross and lengthwise grains.",
+        "Precision-cut and hand-sewn after printing",
+        "Blank product components in the EU sourced from Lithuania",
+        "Blank product components in the US sourced from the US"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 9054,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Tank Top (White / 2XL)"
+        },
+        {
+          "id": 9052,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Tank Top (White / L)"
+        },
+        {
+          "id": 9051,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Tank Top (White / M)"
+        },
+        {
+          "id": 9050,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Tank Top (White / S)"
+        },
+        {
+          "id": 9053,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Tank Top (White / XL)"
+        },
+        {
+          "id": 9049,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Tank Top (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:02.466Z"
     },
     "279": {
       "catalogProductId": 279,
@@ -133,7 +216,126 @@
           "name": "All-Over Print Backpack"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:07.432Z"
+      "verifiedAt": "2026-10-18T17:15:34.301Z"
+    },
+    "320": {
+      "catalogProductId": 320,
+      "title": "All-Over Print Recycled Unisex Sweatshirt",
+      "description": "Each unique, all-over printed sweatshirt is precision-cut and hand-sewn to achieve the best possible look and bring out the intricate design. What's more, the durable fabric with a cotton-feel face and soft brushed fleece inside means that this sweatshirt is bound to become your favorite for a long time.",
+      "materials": [
+        "96% recycled polyester, 4% elastane for manufacturing in the US/Mexico",
+        "95% recycled polyester, 5% elastane for manufacturing in Latvia",
+        "Fabric weight (may vary by 5%): 9.08 oz./yd.² (308 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Unisex fit"
+      ],
+      "features": [
+        "96% recycled polyester, 4% elastane for manufacturing in the US/Mexico",
+        "95% recycled polyester, 5% elastane for manufacturing in Latvia",
+        "Fabric weight (may vary by 5%): 9.08 oz./yd.² (308 g/m²)",
+        "Soft cotton-feel face",
+        "Brushed fleece fabric inside",
+        "Unisex fit",
+        "Overlock seams",
+        "Blank components sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 19769,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sweatshirt (White / 2XS)"
+        },
+        {
+          "id": 19770,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sweatshirt (White / 4XL)"
+        },
+        {
+          "id": 19771,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sweatshirt (White / 5XL)"
+        },
+        {
+          "id": 19772,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sweatshirt (White / 6XL)"
+        },
+        {
+          "id": 9735,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (2XL)"
+        },
+        {
+          "id": 9736,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (3XL)"
+        },
+        {
+          "id": 9733,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (L)"
+        },
+        {
+          "id": 9732,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (M)"
+        },
+        {
+          "id": 9731,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (S)"
+        },
+        {
+          "id": 9734,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (XL)"
+        },
+        {
+          "id": 9730,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Sweatshirt (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:08.393Z"
     },
     "328": {
       "catalogProductId": 328,
@@ -225,7 +427,100 @@
           "name": "All-Over Print Men's Athletic T-Shirt (XS)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:06.565Z"
+      "verifiedAt": "2026-10-18T17:14:06.856Z"
+    },
+    "330": {
+      "catalogProductId": 330,
+      "title": "All-Over Print Unisex Athletic Shorts",
+      "description": "Going for a run? Fancy a swim? Perhaps both? Well, here's just the product for you! These athletic short shorts are so comfy and made from such a versatile fabric that you won't feel out of place at any sports event. And, of course, they have pockets. Need we say more? Grab a pair now!",
+      "materials": [
+        "91% recycled polyester, 9% spandex",
+        "Fabric weight: 5.13 oz. /yd. ² (174 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Four-way stretch moisture-wicking microfiber fabric",
+        "Elastic waistband with a flat white drawstring"
+      ],
+      "features": [
+        "91% recycled polyester, 9% spandex",
+        "Fabric weight: 5.13 oz. /yd. ² (174 g/m²)",
+        "Four-way stretch moisture-wicking microfiber fabric",
+        "Breathable and fast-drying material",
+        "UPF50+ protection",
+        "Elastic waistband with a flat white drawstring",
+        "Mesh side pockets",
+        "2.56″ (6.5 cm) inseam",
+        "Blank product components in Mexico sourced from China and Mexico",
+        "Blank product components in the EU sourced from China and Lithuania"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 9809,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (2XL)"
+        },
+        {
+          "id": 9810,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (3XL)"
+        },
+        {
+          "id": 9807,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (L)"
+        },
+        {
+          "id": 9806,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (M)"
+        },
+        {
+          "id": 9805,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (S)"
+        },
+        {
+          "id": 9808,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (XL)"
+        },
+        {
+          "id": 9804,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Women’s Recycled Athletic Shorts (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:21.465Z"
     },
     "350": {
       "catalogProductId": 350,
@@ -284,7 +579,7 @@
           "name": "All-Over Print Fanny Pack (S/M)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:02.157Z"
+      "verifiedAt": "2026-10-18T17:15:28.459Z"
     },
     "388": {
       "catalogProductId": 388,
@@ -409,27 +704,119 @@
           "name": "All-Over Print Unisex Hoodie (XS)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:34:55.585Z"
+      "verifiedAt": "2026-10-18T17:13:51.725Z"
+    },
+    "400": {
+      "catalogProductId": 400,
+      "title": "All-Over Print Recycled Men’s Joggers",
+      "description": "Make your workouts more comfortable with these cotton-feel joggers. They're soft on the outside, and even softer on the inside, so use them for a jog, or simply for lounging on the couch to binge your favorite show.",
+      "materials": [
+        "96% recycled polyester, 4% elastane for manufacturing in the US/Mexico",
+        "95% recycled polyester, 5% spandex for manufacturing in Latvia",
+        "Fabric weight (may vary by 5%): 9.08 oz./yd.² (308 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Slim fit",
+        "Elastic waistband with a white drawstring"
+      ],
+      "features": [
+        "96% recycled polyester, 4% elastane for manufacturing in the US/Mexico",
+        "95% recycled polyester, 5% spandex for manufacturing in Latvia",
+        "Fabric weight (may vary by 5%): 9.08 oz./yd.² (308 g/m²)",
+        "Slim fit",
+        "Soft cotton-feel fabric face",
+        "Brushed fleece fabric inside",
+        "Cuffed legs",
+        "Practical pockets",
+        "Elastic waistband with a white drawstring",
+        "Blank components sourced from China"
+      ],
+      "notes": [
+        "Disclaimer: In areas where the fabric is double-layered (like pockets), details from the inner fabric layer may subtly show through, especially with lighter designs."
+      ],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 11038,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (2XL)"
+        },
+        {
+          "id": 11039,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (3XL)"
+        },
+        {
+          "id": 11036,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (L)"
+        },
+        {
+          "id": 11035,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (M)"
+        },
+        {
+          "id": 11034,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (S)"
+        },
+        {
+          "id": 11037,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (XL)"
+        },
+        {
+          "id": 11033,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Men's Joggers (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:24.365Z"
     },
     "420": {
       "catalogProductId": 420,
       "title": "All-Over Print Neck Gaiter",
       "description": "A reusable, stretchy neck gaiter that can also be worn as a headband or wristband. Printed on one side with an unprinted reverse.",
       "materials": [
-        "Fabric composition in the EU: 96% polyester, 4% spandex",
-        "Fabric composition in the US: 93% polyester, 7% spandex",
-        "Fabric weight in the EU: 6.34 oz./yd.² (215 g/m²)",
-        "Fabric weight in the US: 7.08 oz./yd.² (240 g/m²)"
+        "Fabric composition: 93% polyester, 7% elastane",
+        "Fabric weight: 7.08 oz./yd.² (240 g/m²)"
       ],
       "materialsNote": null,
       "fit": [
         "Smooth, comfortable 2-way stretch fabric that stretches and recovers on the cross and lengthwise grains"
       ],
       "features": [
-        "Fabric composition in the EU: 96% polyester, 4% spandex",
-        "Fabric composition in the US: 93% polyester, 7% spandex",
-        "Fabric weight in the EU: 6.34 oz./yd.² (215 g/m²)",
-        "Fabric weight in the US: 7.08 oz./yd.² (240 g/m²)",
+        "Fabric composition: 93% polyester, 7% elastane",
+        "Fabric weight: 7.08 oz./yd.² (240 g/m²)",
         "Breathable fabric",
         "Smooth, comfortable 2-way stretch fabric that stretches and recovers on the cross and lengthwise grains",
         "Washable and reusable",
@@ -462,7 +849,150 @@
           "name": "All-Over Print Neck Gaiter"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:03.138Z"
+      "verifiedAt": "2026-10-18T17:14:18.498Z"
+    },
+    "618": {
+      "catalogProductId": 618,
+      "title": "All-Over Print Unisex Track Pants",
+      "description": "The unisex track pants are your new go-to piece for working out or styling a streetwear outfit. The water-resistant, lightweight fabric and mesh lining provide comfort, while elastic ankle cuffs will make it easy for you to show off your kicks. Style it with a windbreaker for a complete look and feel.",
+      "materials": [
+        "100% polyester",
+        "Fabric weight: 2.21 oz/yd² (75 g/m²)",
+        "Fully lined, mesh lining"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Relaxed fit",
+        "Elastic waistband and ankle cuffs"
+      ],
+      "features": [
+        "100% polyester",
+        "Fabric weight: 2.21 oz/yd² (75 g/m²)",
+        "Lightweight, water-resistant fabric",
+        "Fully lined, mesh lining",
+        "Relaxed fit",
+        "Elastic waistband and ankle cuffs",
+        "Drawcord",
+        "Zip pockets",
+        "Sits at hip",
+        "Blank product sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 15747,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / 2XL)"
+        },
+        {
+          "id": 15748,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / 3XL)"
+        },
+        {
+          "id": 15745,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / L)"
+        },
+        {
+          "id": 15744,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / M)"
+        },
+        {
+          "id": 15743,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / S)"
+        },
+        {
+          "id": 15746,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / XL)"
+        },
+        {
+          "id": 15742,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "All-Over Print Unisex Track Pants (Black / XS)"
+        },
+        {
+          "id": 15754,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / 2XL)"
+        },
+        {
+          "id": 15755,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / 3XL)"
+        },
+        {
+          "id": 15752,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / L)"
+        },
+        {
+          "id": 15751,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / M)"
+        },
+        {
+          "id": 15750,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / S)"
+        },
+        {
+          "id": 15753,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / XL)"
+        },
+        {
+          "id": 15749,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Track Pants (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:22.910Z"
     },
     "630": {
       "catalogProductId": 630,
@@ -530,7 +1060,431 @@
           "name": "All-Over Print Bandana (White / S)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:11.276Z"
+      "verifiedAt": "2026-10-18T17:14:17.066Z"
+    },
+    "644": {
+      "catalogProductId": 644,
+      "title": "All-Over Print Recycled Unisex Sports Jersey",
+      "description": "Looking for the perfect sports jersey? We have you covered—made of 100% recycled polyester fabric, this shirt is breathable, moisture-wicking, and has a double-layered v-neck collar that creates a premium look.",
+      "materials": [
+        "100% recycled polyester fabric",
+        "Fabric weight (may vary by 5%): 4.42 oz./yd.² (150 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Regular fit"
+      ],
+      "features": [
+        "100% recycled polyester fabric",
+        "Fabric weight (may vary by 5%): 4.42 oz./yd.² (150 g/m²)",
+        "Moisture-wicking material",
+        "Regular fit",
+        "UPF50+ protection",
+        "Double-layered v-neck collar",
+        "Blank product sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 16264,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / 2XL)"
+        },
+        {
+          "id": 16258,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / 2XS)"
+        },
+        {
+          "id": 16265,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / 3XL)"
+        },
+        {
+          "id": 16266,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / 4XL)"
+        },
+        {
+          "id": 16267,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / 5XL)"
+        },
+        {
+          "id": 16268,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / 6XL)"
+        },
+        {
+          "id": 16262,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / L)"
+        },
+        {
+          "id": 16261,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / M)"
+        },
+        {
+          "id": 16260,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / S)"
+        },
+        {
+          "id": 16263,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / XL)"
+        },
+        {
+          "id": 16259,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Recycled Unisex Sports Jersey (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:03.928Z"
+    },
+    "659": {
+      "catalogProductId": 659,
+      "title": "All-Over Print Unisex Button Shirt",
+      "description": "Meet your new favorite summer shirt! It exudes coolness both in terms of style and material. Plus, its featherlight and moisture-wicking material ensures comfort even on the hottest days.",
+      "materials": [
+        "Fabric composition in the EU: 65% recycled polyester, 35% polyester",
+        "Fabric composition in the US: 100% recycled polyester",
+        "Fabric weight in the EU: 2.95 oz./yd.² (100 g/m²)",
+        "Fabric weight in the US: 3.24 oz./yd.² (110 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Oversized fit"
+      ],
+      "features": [
+        "Fabric composition in the EU: 65% recycled polyester, 35% polyester",
+        "Fabric composition in the US: 100% recycled polyester",
+        "Fabric weight in the EU: 2.95 oz./yd.² (100 g/m²)",
+        "Fabric weight in the US: 3.24 oz./yd.² (110 g/m²)",
+        "Fabric specifications in the EU: Breathable; moisture-wicking material with UPF50+ protection",
+        "Oversized fit",
+        "Blank product components sourced from China/Mexico"
+      ],
+      "notes": [
+        "In areas where the fabric is double-layered, details from the inner fabric layer may subtly show through, especially with lighter designs.",
+        "After washing, the fabric will become softer."
+      ],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 17122,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / 2XL)"
+        },
+        {
+          "id": 17117,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / 2XS)"
+        },
+        {
+          "id": 17123,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / 3XL)"
+        },
+        {
+          "id": 17124,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / 4XL)"
+        },
+        {
+          "id": 17125,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / 5XL)"
+        },
+        {
+          "id": 17126,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / 6XL)"
+        },
+        {
+          "id": 17120,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / L)"
+        },
+        {
+          "id": 16400,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / M)"
+        },
+        {
+          "id": 17119,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / S)"
+        },
+        {
+          "id": 17121,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / XL)"
+        },
+        {
+          "id": 17118,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Button Shirt (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:25.817Z"
+    },
+    "919": {
+      "catalogProductId": 919,
+      "title": "All-Over Print Men's Sports Warmup Hoodie",
+      "description": "This customizable outdoors hoodie offers UPF 50+ sun protection and moisture-wicking comfort. Lightweight, breathable, and perfect for hiking, running, or lounging, it’s designed to keep you dry and comfortable. Personalize it with your designs for a hoodie that’s as adventurous as you are!\n\nCare Instructions: Machine wash cold (up to 90 °F / 30 °C ) and tumble dry on low heat. Do not bleach, iron, or dry clean to maintain the fabric’s quality and longevity.",
+      "materials": [
+        "100% moisture-wicking polyester",
+        "Fabric weight: 4.13 oz./yd.² (140 g/m²)",
+        "Blank white hood lining"
+      ],
+      "materialsNote": null,
+      "fit": [],
+      "features": [
+        "100% moisture-wicking polyester",
+        "Fabric weight: 4.13 oz./yd.² (140 g/m²)",
+        "UPF 50+ protection",
+        "Blank white hood lining",
+        "Blank product sourced from USA"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 23670,
+          "size": "2XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (2XL)"
+        },
+        {
+          "id": 23671,
+          "size": "3XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (3XL)"
+        },
+        {
+          "id": 23672,
+          "size": "4XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (4XL)"
+        },
+        {
+          "id": 23668,
+          "size": "L",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (L)"
+        },
+        {
+          "id": 23667,
+          "size": "M",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (M)"
+        },
+        {
+          "id": 23666,
+          "size": "S",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (S)"
+        },
+        {
+          "id": 23669,
+          "size": "XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (XL)"
+        },
+        {
+          "id": 23665,
+          "size": "XS",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:15:17.720Z"
+    },
+    "920": {
+      "catalogProductId": 920,
+      "title": "All-Over Print Men's Long Sleeve Shirt",
+      "description": "Made from 100% brushed polyester, this long-sleeve tee is soft, comfortable, and perfect for layering or wearing on its own. Its smooth fabric is ideal for showcasing your designs while keeping you stylish and versatile all day.\n\nCare Instructions: Machine wash cold (up to 90 °F / 30 °C ) and tumble dry on low heat. Do not bleach, iron, or dry clean to maintain the fabric’s quality and longevity.",
+      "materials": [
+        "100% polyester",
+        "Fabric weight: 5.16 oz./yd.² (175 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [],
+      "features": [
+        "100% polyester",
+        "Fabric weight: 5.16 oz./yd.² (175 g/m²)",
+        "Printed-in size and care label",
+        "Double needle sleeve, neck and bottom hem",
+        "Blank product sourced from USA"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 23678,
+          "size": "2XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (2XL)"
+        },
+        {
+          "id": 23679,
+          "size": "3XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (3XL)"
+        },
+        {
+          "id": 23680,
+          "size": "4XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (4XL)"
+        },
+        {
+          "id": 23676,
+          "size": "L",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (L)"
+        },
+        {
+          "id": 23675,
+          "size": "M",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (M)"
+        },
+        {
+          "id": 23674,
+          "size": "S",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (S)"
+        },
+        {
+          "id": 23677,
+          "size": "XL",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (XL)"
+        },
+        {
+          "id": 23673,
+          "size": "XS",
+          "color": null,
+          "colorCode": null,
+          "name": "Generic brand (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:05.400Z"
     },
     "963": {
       "catalogProductId": 963,
@@ -588,7 +1542,7 @@
           "name": "All-Over Print Utility Backpack (White)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:04.032Z"
+      "verifiedAt": "2026-10-18T17:14:15.550Z"
     },
     "1418": {
       "catalogProductId": 1418,
@@ -705,7 +1659,7 @@
           "name": "All-Over Print Unisex Cotton Sweatshirt (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:35:12.162Z"
+      "verifiedAt": "2026-10-18T17:15:40.247Z"
     },
     "1419": {
       "catalogProductId": 1419,
@@ -823,7 +1777,80 @@
           "name": "All-Over Print Unisex Cotton Hoodie (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:34:54.543Z"
+      "verifiedAt": "2026-10-18T17:13:38.507Z"
+    },
+    "1474": {
+      "catalogProductId": 1474,
+      "title": "All-Over Print Cotton Crop Top",
+      "description": "Elevate your summer wardrobe with this Cotton Crop Top. Crafted from a premium cotton–elastane blend, it offers a comfortable fit with just the right amount of stretch.",
+      "materials": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 8.85 oz./yd.² (300 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Form-fitting silhouette"
+      ],
+      "features": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 8.85 oz./yd.² (300 g/m²)",
+        "Heavyweight cotton-spandex blend with a medium soft feel",
+        "Form-fitting silhouette",
+        "Blank product components sourced from Mexico"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over cotton"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 46227,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Cotton Crop Top (White / L)"
+        },
+        {
+          "id": 46226,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Cotton Crop Top (White / M)"
+        },
+        {
+          "id": 46225,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Cotton Crop Top (White / S)"
+        },
+        {
+          "id": 46228,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Cotton Crop Top (White / XL)"
+        },
+        {
+          "id": 46224,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Cotton Crop Top (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-18T17:14:14.038Z"
     },
     "1628": {
       "catalogProductId": 1628,
@@ -939,7 +1966,7 @@
           "name": "All-Over Print Oversized Cotton Hoodie (White / XS)"
         }
       ],
-      "verifiedAt": "2026-10-12T15:34:59.819Z"
+      "verifiedAt": "2026-10-18T17:13:40.869Z"
     }
   }
 }
