@@ -37,6 +37,18 @@ test('full garment coverage requires live supplier method evidence, not a name o
  assert.equal(supplierTechnique({title:'All-Over Print Jacket'},{techniques:[{key:'dtg'}]}),'dtg');
 });
 
+test('canvas shoes require live native mappings and never promise printable soles or laces',()=>{
+ const placements=Object.fromEntries(['shoe_quarters_left','shoe_quarters_right','shoe_tongue_left','shoe_tongue_right'].map(p=>[p,260]));
+ const live={source:'live',catalogProductId:513,name:"Men's High Top Canvas Shoes",catalogType:'SHOES',effectiveTechnique:'sublimation',variants:[{id:17450}],printfiles:{printfiles:[{printfile_id:260,width:2250,height:2250,dpi:150}],variant_printfiles:[{variant_id:17450,placements}]}};
+ for(const id of [513,525]){const c=garmentColorCapability({...live,catalogProductId:id});assert.equal(c.mode,'print');assert.equal(c.scope,'canvas-panels');assert.match(c.coverage,/Soles, rubber, laces and hardware are not printed/);}
+ assert.equal(garmentColorCapability({...live,source:'snapshot'}).mode,'hold');
+ assert.equal(garmentColorCapability({...live,catalogProductId:999}).mode,'fabric');
+ assert.equal(garmentColorCapability({...live,effectiveTechnique:'dtg'}).mode,'fabric');
+ assert.equal(garmentColorCapability({...live,variants:[{id:17450},{id:17451}]}).mode,'hold');
+ assert.equal(garmentColorCapability({...live,printfiles:{...live.printfiles,printfiles:[]}}).mode,'hold');
+ assert.equal(garmentColorCapability({...live,printfiles:{...live.printfiles,variant_printfiles:[{variant_id:17450,placements:{shoe_quarters_left:260}}]}}).mode,'hold');
+});
+
 test('black fills every supported AOP panel and its native edges for each exact size',async()=>{
  const names=['front','back','sleeve_left','sleeve_right','hood'];
  const blueprint={source:'live',catalogType:'CUT-SEW',effectiveTechnique:'cut-sew',name:'All-Over Print Jacket',variants:[{id:10,color:'White',size:'S'},{id:20,color:'White',size:'M'}],printfiles:{printfiles:[{printfile_id:1,width:8,height:12,dpi:150},{printfile_id:2,width:10,height:14,dpi:150}],variant_printfiles:[{variant_id:10,placements:Object.fromEntries(names.map(n=>[n,1]))},{variant_id:20,placements:Object.fromEntries(names.map(n=>[n,2]))}]},layouts:{templates:[],variant_mapping:[]}};

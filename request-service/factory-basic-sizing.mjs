@@ -15,7 +15,7 @@ const round=n=>Math.round(n*1000)/1000;
 const areaStamp=a=>hash([a.placement,a.printfile_id,a.width,a.height,a.dpi,a.template||null]);
 const key=(product,technique,a)=>[product,technique,a.placement,areaStamp(a),...(a.region?[a.region]:[])].join(':');
 const inside=(r,b)=>r.x>=b.x-0.01&&r.y>=b.y-0.01&&r.x+r.width<=b.x+b.width+0.01&&r.y+r.height<=b.y+b.height+0.01;
-const defaultPart=(slot,parts)=>Object.keys(parts).find(k=>panelKind(k)===slot.panel)||(slot.panel==='leg_left'?parts.sleeve_left&&'sleeve_left':slot.panel==='leg_right'?parts.sleeve_right&&'sleeve_right':null)||null;
+const defaultPart=(slot,parts)=>Object.keys(parts).find(k=>panelKind(k)===slot.panel)||(slot.panel==='leg_left'?parts.sleeve_left&&'sleeve_left':slot.panel==='leg_right'?parts.sleeve_right&&'sleeve_right':slot.panel==='shoe_quarters_left'?['front','default','back'].find(k=>parts[k]):slot.panel==='shoe_quarters_right'?['back','front','default'].find(k=>parts[k]):slot.panel==='shoe_tongue_left'?parts.sleeve_left&&'sleeve_left':slot.panel==='shoe_tongue_right'?parts.sleeve_right&&'sleeve_right':null)||null;
 
 // Reviewed anatomical anchors are separate from supplier mockup-image coordinates.
 // A Printful API rectangle does not supply a chest/thigh safe zone by itself.
