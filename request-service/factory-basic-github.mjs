@@ -11,10 +11,10 @@ function unseal(text,key,context){try{if(!text.startsWith(HEADER)||text.length>M
 
 // Private, deletable release attachments: working pixels never enter Git history.
 export class BasicGithubAssets{
- constructor({repo,token,key},{fetchImpl=fetch,sleep=wait,clock=Date.now}={}){Object.assign(this,{repo,token,key,fetchImpl,sleep,clock});this.lastWrite=0;this.repositoryId=null;}
+ constructor({repo,token,key},{fetchImpl=fetch,sleep=wait,clock=Date.now}={}){Object.assign(this,{repo,token,key,fetchImpl,sleep,clock});this.lastWrite=0;this.repositoryId=null;this.knownReleases=new Map();}
  async api(path,{method='GET',body,missing=false,upload=false}={}){
   if(method!=='GET'){await this.sleep(Math.max(0,1000-(this.clock()-this.lastWrite)));this.lastWrite=this.clock();}
-  let r;try{r=await this.fetchImpl((upload?'https://uploads.github.com/repos/':'https://api.github.com/repos/')+this.repo+path,{method,headers:{Authorization:'Bearer '+this.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':upload?'application/octet-stream':'application/json'},...(body!==undefined?{body:upload?body:JSON.stringify(body)}:{}),redirect:'error',signal:AbortSignal.timeout(30000)});}catch{throw Object.assign(Error('GitHub working storage is unavailable. Resume this same item after the connection recovers.'),{status:503});}
+  let r;try{r=await this.fetchImpl((upload?'https://uploads.github.com/repos/':'https://api.github.com/repos/')+this.repo+path,{method,headers:{Authorization:'Bearer '+this.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':upload?'application/octet-stream':'application/json',...(method==='GET'?{'Cache-Control':'no-cache'}:{})},cache:'no-store',...(body!==undefined?{body:upload?body:JSON.stringify(body)}:{}),redirect:'error',signal:AbortSignal.timeout(30000)});}catch{throw Object.assign(Error('GitHub working storage is unavailable. Resume this same item after the connection recovers.'),{status:503});}
   if(r.status===404&&missing)return null;if(r.status===429||r.status===403&&r.headers.get('retry-after'))throw Object.assign(Error('GitHub rate limit reached. Working files were retained for retry.'),{status:429});
   if(!r.ok)throw Object.assign(Error('GitHub working storage rejected the request (HTTP '+r.status+').'),{status:r.status>=500?503:409});
   return r.status===204?{}:r.json();
@@ -22,8 +22,8 @@ export class BasicGithubAssets{
  async verify(){const r=await this.api('');if(r.private!==true||r.visibility&&r.visibility!=='private'||!Number.isSafeInteger(r.id))fail('Working artwork requires the existing private GitHub backup repository.');if(this.repositoryId!==null&&r.id!==this.repositoryId)fail('GitHub working repository identity changed.');this.repositoryId=r.id;return true;}
  body(job){return 'Midnight Designs Basic workspace v1\n'+createHmac('sha256',this.key).update(job).digest('hex');}
  owned(r,job){if(!r||r.draft!==true||r.tag_name!=='md-basic-'+job||r.body!==this.body(job))fail('This GitHub release is not the tracked private working workspace. Nothing was deleted.');return r;}
- async find(job){for(let page=1;page<=10;page++){const rows=await this.api('/releases?per_page=100&page='+page);if(!Array.isArray(rows))fail('GitHub returned an invalid workspace list.');const found=rows.filter(r=>r.tag_name==='md-basic-'+job);if(found.length>1)fail('Duplicate working releases require review. Nothing was deleted.');if(found.length)return this.owned(found[0],job);if(rows.length<100)return null;}fail('Working release listing limit reached.');}
- async release(job){await this.verify();let r=await this.find(job);if(r)return r;try{r=await this.api('/releases',{method:'POST',body:{tag_name:'md-basic-'+job,target_commitish:'main',name:'Basic working item '+job,draft:true,body:this.body(job)}});}catch(e){r=await this.find(job);if(!r)throw e;}return this.owned(r,job);}
+ async find(job){for(let page=1;page<=10;page++){const rows=await this.api('/releases?per_page=100&page='+page);if(!Array.isArray(rows))fail('GitHub returned an invalid workspace list.');const found=rows.filter(r=>r.tag_name==='md-basic-'+job);if(found.length>1){if(!/^recovery-v2-[a-f0-9]{64}$/.test(job))fail('Duplicate working releases require review. Nothing was deleted.');for(const r of found)this.owned(r,job);found.sort((a,b)=>a.id-b.id);}if(found.length)return this.owned(found[0],job);if(rows.length<100)return null;}fail('Working release listing limit reached.');}
+ async release(job){await this.verify();const known=this.knownReleases.get(job);if(known)return this.owned(await this.api('/releases/'+known.id),job);let r=await this.find(job);if(r){this.knownReleases.set(job,r);return r;}try{r=await this.api('/releases',{method:'POST',body:{tag_name:'md-basic-'+job,target_commitish:'main',name:'Basic working item '+job,draft:true,body:this.body(job)}});}catch(e){r=await this.find(job);if(!r)throw e;}this.owned(r,job);this.knownReleases.set(job,r);return r;}
  async list(id){const rows=[];for(let page=1;page<=10;page++){const next=await this.api('/releases/'+id+'/assets?per_page=100&page='+page);if(!Array.isArray(next))fail('GitHub returned an invalid working-file list.');rows.push(...next);if(next.length<100)return rows;}fail('Working-file limit reached.');}
  async read(asset,job,kind,file,expected){
   const meta=await this.api('/releases/assets/'+asset);if(!meta||meta.size>MAX*1.5+200)fail('GitHub working attachment is invalid or too large.');
@@ -44,7 +44,7 @@ export class BasicGithubAssets{
   await this.verify();const release=await this.api('/releases/'+releaseId,{missing:true});if(!release)return {verified:true,remaining:0};this.owned(release,job);
   const files=await this.list(releaseId);for(const a of files.slice(0,12)){await this.api('/releases/assets/'+a.id,{method:'DELETE',missing:true});if(await this.api('/releases/assets/'+a.id,{missing:true}))fail('GitHub has not confirmed deletion of a temporary attachment.');}
   const remaining=await this.list(releaseId);if(remaining.length)return {verified:false,remaining:remaining.length};
-  await this.api('/releases/'+releaseId,{method:'DELETE',missing:true});if(await this.api('/releases/'+releaseId,{missing:true}))fail('GitHub has not confirmed workspace deletion.');return {verified:true,remaining:0};
+  await this.api('/releases/'+releaseId,{method:'DELETE',missing:true});if(await this.api('/releases/'+releaseId,{missing:true}))fail('GitHub has not confirmed workspace deletion.');this.knownReleases.delete(job);return {verified:true,remaining:0};
  }
 }
 
