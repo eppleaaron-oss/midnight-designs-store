@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-19T02:37:34.139Z",
-  "lastSyncedAt": "2026-10-19T02:37:34.139Z",
+  "updatedAt": "2026-10-19T02:44:06.282Z",
+  "lastSyncedAt": "2026-10-19T02:44:06.282Z",
   "products": [
     {
       "id": "482918795",
@@ -29,8 +29,8 @@
           "currency": "USD",
           "catalogVariantId": 46409,
           "size": "M",
-          "color": "White",
-          "colorCode": "#ffffff",
+          "color": "Black",
+          "colorCode": "#000000",
           "supplierBaseColor": "White",
           "availability": "active",
           "images": [
