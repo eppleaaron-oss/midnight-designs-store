@@ -55,3 +55,8 @@ test('a crash between saving an item and its batch pointer recovers only the exa
 test('authorization cannot expand to an unrelated product when resuming held work',async t=>{
  const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();await assert.rejects(f.batch.control({id:f.batch.snapshot().id,action:'resume',recipes:[{product:999,layout:{number:5},sizes:[],audience:'unisex'}]}),/outside the authorized/);assert.equal(f.counts().made,0);
 });
+
+test('batch charges apply only to its exact frozen product and failures hold the batch',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.recipes[0].charges={verified:true,extraCents:0,shippingCents:null,source:'Verified included print'};await f.start();await f.batch.tick();const read=f.basic.batchCurrent;f.basic.batchCurrent=()=>({...read(),pricing:{status:'held'}});let called=0;
+ f.basic.confirmBatchCharges=async(id,key,charges)=>{called++;assert.equal(id,'made1');assert.equal(key,'frozen:made1');assert.equal(charges.extraCents,0);throw Error('Fresh USD supplier quotes are required.');};await f.batch.tick();assert.equal(called,1);assert.equal(f.batch.snapshot().status,'blocked');assert.match(f.batch.snapshot().error,/Fresh USD/);assert.equal(f.counts().approved,0);
+});
