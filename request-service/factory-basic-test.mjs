@@ -85,6 +85,15 @@ test('matching size templates reuse exact rendered pixels while retaining separa
  const remote=f.db.prepare("SELECT count(*) records,count(DISTINCT asset_id) assets FROM factory_basic_remote_assets WHERE job=? AND kind='print'").get(item.job);assert.equal(remote.records,4);assert.equal(remote.assets,2);const {factoryQuality}=await import('./factory-quality.mjs'),q=factoryQuality({db:f.db}),other=f.db.prepare('SELECT id FROM factory_print_files ORDER BY rowid DESC LIMIT 1').get();for(const trigger of f.db.prepare("SELECT name,sql FROM sqlite_master WHERE type='trigger' AND tbl_name='factory_print_files'").all())if(trigger.sql.includes('immutable'))f.db.exec('DROP TRIGGER "'+trigger.name.replaceAll('"','""')+'"');f.db.prepare('UPDATE factory_print_files SET data=? WHERE id=?').run(Buffer.from('corrupted duplicate'),other.id);await assert.rejects(q.check(item.job),/missing, changed or incorrectly sized/,'A valid matching file cannot hide corruption in another variant');
 });
 
+test('an interrupted print attachment checkpoint recovers exact file IDs and checksums before advancing',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.step();await f.step();await f.step();
+ const original=f.db.prepare('SELECT id,sha256 FROM factory_print_files ORDER BY rowid LIMIT 1').get();f.db.prepare("DELETE FROM factory_basic_remote_assets WHERE job=? AND kind='print' AND file=?").run(item.job,original.id);stripBasicWorkingPixels(f.db);
+ await f.service.basicGithub.hydrate(item.job);assert.equal(f.db.prepare('SELECT length(data) n FROM factory_print_files WHERE id=?').get(original.id).n,0,'Unconfirmed bytes remain for deterministic regeneration, never a fake completion');
+ const step=await f.step();assert.ok(['queued','retry_wait'].includes(step.data.status));const restored=f.db.prepare('SELECT sha256,length(data) n FROM factory_print_files WHERE id=?').get(original.id);assert.equal(restored.sha256,original.sha256);assert.ok(restored.n>0);assert.ok(f.db.prepare("SELECT asset_id FROM factory_basic_remote_assets WHERE job=? AND kind='print' AND file=?").get(item.job,original.id));
+ if(!step.data.result?.filesSaved)for(let i=0;i<4;i++){const r=await f.step();if(r.data.result?.filesSaved)break;}
+ assert.equal(f.counts().creates,0,'Recovering files cannot create another supplier product');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);assert.equal((await f.basic()).data.active.job,item.job);
+});
+
 test('Basic creates one real tracked recipe, retrieves model mockups before approval, verifies publication and releases working capacity',async t=>{
  const f=await fixture(t),item=await f.start();
  const duplicate=await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'});assert.equal(duplicate.status,409);
