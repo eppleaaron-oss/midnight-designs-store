@@ -9,7 +9,7 @@ export async function enrich({token=process.env.PRINTFUL_TOKEN,storeId=process.e
  for(const p of catalog.products){const detail=await get(endpoint+'/products/'+encodeURIComponent(p.id));const ids=new Set(detail.sync_variants.map(v=>v.product?.product_id).filter(Boolean));if(ids.size!==1)throw Error('Product requires manual verification of mixed catalog types: '+p.id);const id=[...ids][0];p.catalogProductId=id;
   if(!byId.has(id)){const r=await get('products/'+id);byId.set(id,r);specs[id]=information(r)}
   const variants=byId.get(id).variants;
-  for(const v of p.variants){const sync=detail.sync_variants.find(x=>String(x.id)===String(v.id));const base=variants.find(x=>String(x.id)===String(sync?.variant_id));if(!base)throw Error('Variant specifications missing for '+v.id);Object.assign(v,{catalogVariantId:base.id,size:base.size||null,color:base.color||null,colorCode:base.color_code||null});}
+  for(const v of p.variants){const sync=detail.sync_variants.find(x=>String(x.id)===String(v.id));const base=variants.find(x=>String(x.id)===String(sync?.variant_id));if(!base)throw Error('Variant specifications missing for '+v.id);const approvedFactory=typeof p.factoryExternalId==='string'&&p.factoryExternalId.startsWith('midnight-factory-')&&Object.hasOwn(v,'supplierBaseColor');if(approvedFactory){if(!v.color||v.supplierBaseColor!==(base.color||null))throw Error('Approved factory supplier base color changed for '+v.id);Object.assign(v,{catalogVariantId:base.id,size:base.size||null,supplierBaseColor:base.color||null});}else Object.assign(v,{catalogVariantId:base.id,size:base.size||null,color:base.color||null,colorCode:base.color_code||null});}
   await new Promise(r=>setTimeout(r,400));
  }
  const metadata={updatedAt:new Date().toISOString(),products:specs};
