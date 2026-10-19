@@ -22,3 +22,13 @@ test('the inline Basic worker uses only loopback, a scoped runtime secret and th
  const worker=startBasicWorker({server:{address:()=>({port:3000})},token:'fixture-internal-secret-'.repeat(3),spawnImpl(...a){args=a;return child;}});
  assert.equal(args[2].env.FACTORY_BACKEND_URL,'http://127.0.0.1:3000');assert.equal(args[2].env.FACTORY_BASIC_ONLY,'1');assert.equal(args[2].env.OWNER_PASSWORD_HASH,undefined);assert.equal(args[2].env.PRINTFUL_TOKEN,undefined);assert.equal(args[2].env.FACTORY_BACKUP_GITHUB_TOKEN,undefined);await worker.close();
 });
+
+
+test('an acknowledged release ID is reused even while the listing omits it',async()=>{
+ const g=githubWorkingFixture(),original=g.fetch;let writes=0;const fetchImpl=async(url,o={})=>{const p=new URL(url).pathname;if(p.endsWith('/releases')&&(o.method||'GET')==='GET')return new Response('[]',{headers:{'Content-Type':'application/json'}});if(p.endsWith('/releases')&&o.method==='POST')writes++;return original(url,o);};
+ const store=new BasicGithubAssets(config,{fetchImpl,sleep:async()=>{}}),job=randomUUID();const release=await store.release(job);for(const file of ['front','back']){const data=Buffer.from(file),saved=await store.put(job,'print',file,data,createHash('sha256').update(data).digest('hex'));assert.equal(saved.release,release.id);}assert.equal(writes,1,'Stale listings cannot create another release after POST acknowledgement');assert.equal(g.releases.size,1);
+});
+test('identical authenticated recovery uploads can resume in the canonical release; unrelated working duplicates remain held',async()=>{
+ const g=githubWorkingFixture(),store=new BasicGithubAssets(config,{fetchImpl:g.fetch,sleep:async()=>{}}),job='recovery-v2-'+'ab'.repeat(32);for(const id of [102,101])g.releases.set(id,{id,draft:true,tag_name:'md-basic-'+job,body:store.body(job)});assert.equal((await store.find(job)).id,101);assert.equal(g.releases.size,2,'Recovery selection never deletes a candidate');
+ const working=randomUUID();for(const id of [201,202])g.releases.set(id,{id,draft:true,tag_name:'md-basic-'+working,body:store.body(working)});await assert.rejects(store.find(working),/Duplicate working releases/);g.releases.get(102).body='foreign';await assert.rejects(store.find(job),/not the tracked/);
+});
