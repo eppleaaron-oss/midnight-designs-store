@@ -112,6 +112,16 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
   }catch(e){run("UPDATE factory_basic_items SET status='held',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);throw e;}
  }
  function prepareReview(job,p){if(!row(job))return null;if(publishing.mode()!=='review')return {wait:'Basic requires review mode.'};quality.assert(job);run("UPDATE factory_listings SET approved=1,approval_mode='basic_preview',fingerprint=?,status='preparing_mockups',updated=? WHERE job=?",p.fingerprint,now(),job);return {preparedForMockups:true,note:'Preparing the unpublished supplier draft and real mockups. Storefront approval has not been given.'};}
+ async function approveItem(r,b){
+    if(remote()){let result;do{result=await workspace.hydrate(r.job);}while(result?.defer);}
+    if(publishing.mode()!=='review')fail(409,'Basic requires review mode before approving.');
+    if(b.confirm!==true||!detail(r).canApprove||detail(r).temporaryPixelsMissing)fail(409,'Wait for the completed mockups, variants, listing and price before approving.');
+    if(!JSON.parse(r.recipe).hasModelOptions&&b.acceptMissingModel!==true)fail(409,'Acknowledge the missing people/model option after reviewing the actual product images.');
+    const p=publishing.prepared(r.job);quality.assert(r.job);publishing.verifiedMockups(r.job,p.files.map(d=>d.variant));
+    if(p.fingerprint!==p.listing.fingerprint)fail(409,'Files, listing or prices changed. Prepare and review the updated product first.');
+    run("UPDATE factory_basic_items SET decision='approved',status='publishing',error='',updated=? WHERE id=?",now(),r.id);
+    run("UPDATE factory_jobs SET status='queued',error='',updated=? WHERE id=?",now(),r.job);run("UPDATE factory_job_runtime SET available=0,error='' WHERE job=?",r.job);
+ }
  function beforePublication(job){const r=row(job);if(!r)return null;if(r.closed||r.decision==='disapproved')return {wait:'This Basic item is closed or disapproved.'};if(r.decision!=='approved'){run("UPDATE factory_basic_items SET status='awaiting_review',updated=? WHERE job=?",now(),job);return {wait:'Review the real mockups and choose Approve or Disapprove on Basic.'};}quality.assert(job);return null;}
  async function cleanup(r){
   if(cleaning)return;cleaning=true;
@@ -137,7 +147,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
  function options(job){const r=row(job);if(!r)return {};const p=JSON.parse(r.recipe);return p.modelGroups.length?{option_groups:p.modelGroups}:{};}
  function orderMedia(job,media){const r=row(job);if(!r)return media;const groups=JSON.parse(r.recipe).modelGroups;return [...media].sort((a,b)=>Number(groups.includes(b.style))-Number(groups.includes(a.style)));}
  function inspectionSignature(p){return hash([p.set.parts,p.product.id,p.audience,p.allowUnspecifiedAudience===true,p.variants.map(v=>v.id),p.placements,p.fill,...(p.numericLayout?[p.numericLayout.signature]:[])]);}
- return {create,catalog,inspectionSignature,verifyLayoutReceipt:(b,p)=>{if(p.numericLayout){if(p.numericLayout.requiresAcceptance)fail(409,'Accept the inspected size reduction before creating this outfit.');sizing.verifyReceipt(b.inspectionToken,inspectionSignature(p));sizing.saveLayout(p);}},setOutfits(o){outfits=o;},currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),previewAllowed:job=>{const r=row(job);return !!r&&!r.closed&&r.decision===null&&get('SELECT step FROM factory_job_runtime WHERE job=?',job)?.step===3&&publishing.mode()==='review';},assertPreview:job=>quality.assert(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',publisherManaged:()=>workspace?.snapshot().managed===true,publisherWait:job=>workspace?.publisherWait(job)||null,verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
+ return {batchCurrent:()=>detail(active()),async approveBatch(id,recipeKey,b){const r=get('SELECT * FROM factory_basic_items WHERE id=?',id);if(!r||r.id!==active()?.id||r.recipe_key!==recipeKey||r.closed||r.decision)fail(409,'Batch authorization no longer matches the active frozen recipe.');await approveItem(r,{...b,confirm:true});await checkpoint(r.job);return detail(get('SELECT * FROM factory_basic_items WHERE id=?',id));},create,catalog,inspectionSignature,verifyLayoutReceipt:(b,p)=>{if(p.numericLayout){if(p.numericLayout.requiresAcceptance)fail(409,'Accept the inspected size reduction before creating this outfit.');sizing.verifyReceipt(b.inspectionToken,inspectionSignature(p));sizing.saveLayout(p);}},setOutfits(o){outfits=o;},currentJob:()=>active()?.job||null,githubReady:remote,setWorkspace(w){workspace=w;},workspaceReady:job=>remote()&&!!row(job),previewAllowed:job=>{const r=row(job);return !!r&&!r.closed&&r.decision===null&&get('SELECT step FROM factory_job_runtime WHERE job=?',job)?.step===3&&publishing.mode()==='review';},assertPreview:job=>quality.assert(job),checkpoint,restore:job=>remote()?workspace.hydrate(job):Promise.resolve(),storeToken:()=>workspace?.storeToken()||'',publisherManaged:()=>workspace?.snapshot().managed===true,publisherWait:job=>workspace?.publisherWait(job)||null,verifyFinalMedia:job=>remote()?workspace.verifyFinalMedia(job):null,finalMedia:(job,media,supplier)=>remote()?workspace.finalMedia(job,media,supplier):null,mediaUrl:file=>workspace?.mediaUrl(file)||null,fileData:(kind,id)=>workspace?.file(kind,id)||null,owns:job=>!!row(job),permits:job=>!active()||active().job===job,prepareReview,beforePublication,settled,options,orderMedia,snapshot,inspect,
   async tick(){const r=active();if(r?.job&&(r.decision==='disapproved'||get('SELECT status FROM factory_listings WHERE job=?',r.job)?.status==='published'))await settled(r.job);},
   async handle(req,res,path,method,url){
    if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
@@ -148,6 +158,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
    }
    if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'factory-basic',60);const b=await body(req);
    if(path===ROOT+'/layouts/save'){const p=await inspect(b);if(!p.numericLayout)fail(400,'Choose and inspect a layout first.');sizing.verifyReceipt(b.inspectionToken,inspectionSignature(p));sizing.saveLayout(p);await checkpoint();send(res,200,await inspect(b));return true;}
+   if(path===ROOT+'/layouts/profiles'){if(!Array.isArray(b.profiles)||!b.profiles.length||b.profiles.length>128)fail(400,'Supply 1–128 reviewed area profiles.');const p=await inspect({...b,layout:null,geometryOnly:true}),bp=await blueprints.load(b.product,'default');db.exec('BEGIN IMMEDIATE');try{for(const profile of b.profiles)sizing.saveProfile(p,bp,profile);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}await checkpoint();send(res,200,await inspect({...b,layout:null,geometryOnly:true}));return true;}
    if(path===ROOT+'/layouts/profile'){const p=await inspect({...b,layout:null,geometryOnly:true});const bp=await blueprints.load(b.product,'default');sizing.saveProfile(p,bp,b);await checkpoint();send(res,200,await inspect({...b,layout:null,geometryOnly:true}));return true;}
    if(path===ROOT+'/inspect'){send(res,200,await inspect(b));return true;}
    if(path===ROOT+'/random'){
@@ -171,14 +182,7 @@ export function factoryBasic({db,auth,body,send,fail,limit,origin,manager,ideas,
     for(const p of Object.values(plan.placements))if(p.artworkId)p.withoutEnlargement=true;
     run('UPDATE factory_render_plans SET plan=? WHERE job=?',JSON.stringify(plan),r.job);run("UPDATE factory_jobs SET status='queued',error='',updated=? WHERE id=?",now(),r.job);run("UPDATE factory_job_runtime SET available=0,error='' WHERE job=?",r.job);run("UPDATE factory_basic_items SET error='',updated=? WHERE id=?",now(),r.id);run("UPDATE factory_settings SET state='running',updated=? WHERE id=1",now());
    }else if(path===ROOT+'/approve'){
-    if(remote()){let result;do{result=await workspace.hydrate(r.job);}while(result?.defer);}
-    if(publishing.mode()!=='review')fail(409,'Basic requires review mode before approving.');
-    if(b.confirm!==true||!detail(r).canApprove||detail(r).temporaryPixelsMissing)fail(409,'Wait for the completed mockups, variants, listing and price before approving.');
-    if(!JSON.parse(r.recipe).hasModelOptions&&b.acceptMissingModel!==true)fail(409,'Acknowledge the missing people/model option after reviewing the actual product images.');
-    const p=publishing.prepared(r.job);quality.assert(r.job);publishing.verifiedMockups(r.job,p.files.map(d=>d.variant));
-    if(p.fingerprint!==p.listing.fingerprint)fail(409,'Files, listing or prices changed. Prepare and review the updated product first.');
-    run("UPDATE factory_basic_items SET decision='approved',status='publishing',error='',updated=? WHERE id=?",now(),r.id);
-    run("UPDATE factory_jobs SET status='queued',error='',updated=? WHERE id=?",now(),r.job);run("UPDATE factory_job_runtime SET available=0,error='' WHERE job=?",r.job);
+    await approveItem(r,b);
    }else if(path===ROOT+'/disapprove'){
     if(b.confirm!==true)fail(400,'Confirm disapproval.');if(r.decision==='approved'||j?.status==='running'||get('SELECT status FROM factory_listings WHERE job=?',r.job)?.status==='catalog_pending')fail(409,'Finish the current operation before disapproving. Published products are kept live.');
     run("UPDATE factory_basic_items SET decision='disapproved',status='cleaning',updated=? WHERE id=?",now(),r.id);

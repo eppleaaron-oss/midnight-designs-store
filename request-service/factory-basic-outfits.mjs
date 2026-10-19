@@ -1,3 +1,4 @@
+import {factoryBasicBatch} from './factory-basic-batch.mjs';
 import {randomUUID} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {HOODIE_COLLECTION_SLOTS,COLLECTION_INSTRUCTIONS} from './factory-hoodie-collection.mjs';
@@ -22,7 +23,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
  const now=()=>new Date(clock()).toISOString(),open=()=>get("SELECT * FROM factory_basic_outfit_runs WHERE status IN ('running','paused','held') LIMIT 1");
  const sourceProduct=id=>{try{return JSON.parse(readFileSync(new URL('../products.json',import.meta.url),'utf8')).products.find(p=>String(p.id)===String(id));}catch{return null;}};
  const requestKey=p=>'basic-outfit_'+p.id+(p.revision>1?'_r'+p.revision:'');
- let planning=false,ticking=false;
+ let planning=false,ticking=false,batch;
  function pieces(id) {
   return all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=? ORDER BY ordinal',id).map(p=>{
    const item=p.item&&get('SELECT id,job,status,closed,decision,error,cleanup FROM factory_basic_items WHERE id=?',p.item);
@@ -32,7 +33,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   });
  }
  function summary(r) {if(!r)return null;const list=pieces(r.id);const source=all("SELECT store_product FROM factory_outfit_items WHERE outfit=? AND job='' AND approved=1",r.id).map(i=>sourceProduct(i.store_product)).filter(Boolean);return {...r,reusedProducts:source.map(p=>({id:p.id,name:p.name,image:p.image})),pieces:list,done:list.filter(p=>p.item?.closed).length,total:list.length,published:list.filter(p=>p.item?.status==='published').length};}
- function snapshot() {return {active:summary(open()),plans:all("SELECT * FROM factory_basic_outfit_runs WHERE status='planned' ORDER BY created,rowid LIMIT 100").map(summary),recent:all("SELECT * FROM factory_basic_outfit_runs WHERE status NOT IN ('planned','converted') ORDER BY created DESC,rowid DESC LIMIT 20").map(summary),oneProductAtATime:true,reviewPerPiece:true};}
+ function snapshot() {return {batch:batch?.snapshot()||null,active:summary(open()),plans:all("SELECT * FROM factory_basic_outfit_runs WHERE status='planned' ORDER BY created,rowid LIMIT 100").map(summary),recent:all("SELECT * FROM factory_basic_outfit_runs WHERE status NOT IN ('planned','converted') ORDER BY created DESC,rowid DESC LIMIT 20").map(summary),oneProductAtATime:true,reviewPerPiece:true};}
  function attach(p,item) {
   run('UPDATE factory_basic_outfit_pieces SET item=?,error=\'\' WHERE id=?',item.id,p.id);
   const template=item.job&&get('SELECT templates FROM factory_job_profiles WHERE job=?',item.job);
@@ -87,7 +88,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   if(typeof b.requestKey!=='string'||!/^[-a-zA-Z0-9_]{16,100}$/.test(b.requestKey))fail(400,'A stable outfit request ID is required.');
   if(b.sourcePlanId!==undefined&&!get("SELECT id FROM factory_basic_outfit_runs WHERE id=? AND status IN ('planned','converted')",String(b.sourcePlanId)))fail(409,'The selected collection plan is no longer available.');
   const replay=get('SELECT * FROM factory_basic_outfit_runs WHERE request_key=?',b.requestKey);if(replay)return summary(replay);
-  if(planning||ticking||open()||get('SELECT id FROM factory_basic_items WHERE closed=0'))fail(409,'Finish the current item or outfit before starting another.');
+  if(planning||ticking||batch?.inProgress()||open()||get('SELECT id FROM factory_basic_items WHERE closed=0'))fail(409,'Finish the current item or outfit before starting another.');
   if(typeof b.name!=='string'||!b.name.trim()||b.name.length>100||!Array.isArray(b.pieces)||b.pieces.length<2||b.pieces.length>(b.reuseExistingHoodie===true?19:20)||new Set(b.pieces.map(p=>p.product)).size!==b.pieces.length)fail(400,'Name the outfit and choose 2–20 distinct supplier products.');
   const blockers=basic.snapshot().blockers;if(blockers.length)fail(409,blockers.map(x=>x.message).join(' '));
   if(get("SELECT id FROM factory_jobs WHERE status IN ('queued','running','retry_wait') LIMIT 1"))fail(409,'Finish or pause existing production before starting an outfit.');
@@ -134,11 +135,13 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   }finally{planning=false;}
   await tick();return summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',p.outfit));
  }
- return {snapshot,activeId:()=>open()?.id||null,tick,async handle(req,res,path,method) {
+ batch=factoryBasicBatch({db,basic,summary,attach,open,clock});
+ return {snapshot,activeId:()=>open()?.id||batch.activeOutfit()||null,tick:async()=>{if(batch.inProgress())await batch.tick();else await tick();},async handle(req,res,path,method) {
   if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
   if(method==='GET'&&path===ROOT){send(res,200,snapshot());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'basic-outfits',30);const b=await body(req);
   if(path===ROOT+'/assign-plan-source'){const r=get("SELECT * FROM factory_basic_outfit_runs WHERE id=? AND status='planned'",String(b.id||'')),set=basic.snapshot().sets.find(s=>s.id===b.setId);if(!r||!set)fail(400,'Choose a saved request and an existing original artwork set.');if(all("SELECT p.choice FROM factory_basic_outfit_pieces p JOIN factory_basic_outfit_runs r ON r.id=p.outfit WHERE p.ordinal=0 AND p.outfit<>? AND r.status!='converted'",r.id).some(p=>JSON.parse(p.choice).setId===set.id))fail(409,'This source already has a matching collection request. Open that request instead.');const source=set.source==='printful'?sourceProduct(set.id.replace(/^pf:/,'')):null;db.exec('BEGIN IMMEDIATE');try{for(const p of all('SELECT id,choice FROM factory_basic_outfit_pieces WHERE outfit=?',r.id)){const c=JSON.parse(p.choice);c.setId=set.id;c.layout=null;c.inspectionToken=null;run("UPDATE factory_basic_outfit_pieces SET choice=?,signature='',error='Native layout inspection required.' WHERE id=?",JSON.stringify(c),p.id);}run("DELETE FROM factory_outfit_items WHERE outfit=? AND job=''",r.id);if(source&&/hoodie/i.test(source.name)&&source.catalogProductId===set.catalog)run('INSERT INTO factory_outfit_items(id,outfit,role,template,job,store_product,approved) VALUES(?,?,?,?,?,?,1)',randomUUID(),r.id,'hoodies','','',String(source.id));run('UPDATE factory_outfits SET artwork_collection=? WHERE id=?',set.name,r.id);run("UPDATE factory_basic_outfit_runs SET error='Source assigned. Inspect native layouts before starting.',updated=? WHERE id=?",now(),r.id);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}await basic.checkpoint();send(res,200,snapshot());return true;}
+  if(path===ROOT+'/publish-plans'||path===ROOT+'/batch-control'){try{send(res,200,await(path.endsWith('/publish-plans')?batch.start(b):batch.control(b)));}catch(e){if(e.status)throw e;fail(409,e.message);}return true;}
   if(path===ROOT+'/plan-hoodie-collections'){send(res,200,await planCollections(b));return true;}
   if(path===ROOT+'/replace'){send(res,200,await replace(b));return true;}
   if(path===ROOT+'/create'){send(res,200,await create(b));return true;}
