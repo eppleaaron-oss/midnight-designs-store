@@ -74,3 +74,16 @@ test('supplier-only pieces advance the finite batch without being counted as sto
  for(let i=0;i<2;i++){const c=f.basic.batchCurrent();f.run("UPDATE factory_basic_items SET closed=1,status='supplier_created',decision='supplier_only',cleanup=? WHERE id=?",JSON.stringify({verified:true,retainedSupplierProduct:'printful:'+i}),c.id);await f.batch.tick();}
  const s=f.batch.snapshot();assert.equal(s.status,'complete');assert.equal(s.printfulCreated,2);assert.equal(s.published,0);assert.equal(f.counts().approved,0);assert.equal(f.counts().made,2);
 });
+
+test('a narrowed outfit batch retains started work, every design family and the exact total across restarts',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.addPlan('q');await f.start(['p','q']);await f.batch.tick();
+ const id=f.batch.snapshot().id;
+ await assert.rejects(f.batch.control({id,action:'pause',scope:{pieceIds:['p_0','q_0'],total:2}}),/Pause the existing/);
+ await f.batch.control({id,action:'pause'});
+ await assert.rejects(f.batch.control({id,action:'pause',scope:{pieceIds:['p_1','q_0'],total:2}}),/started and completed/);
+ await assert.rejects(f.batch.control({id,action:'pause',scope:{pieceIds:['p_0'],total:1}}),/every design family/);
+ await assert.rejects(f.batch.control({id,action:'pause',scope:{pieceIds:['p_0','q_0'],total:230}}),/total must equal/);
+ const scoped=await f.batch.control({id,action:'pause',scope:{pieceIds:['p_0','q_0'],total:2}});assert.equal(scoped.total,2);assert.equal(scoped.collectionTotal,2);assert.equal(scoped.plans[0].total,1);
+ await assert.rejects(f.batch.control({id,action:'pause',scope:{pieceIds:['p_0','p_1','q_0'],total:3}}),/only narrow/);
+ f.restart();assert.equal(f.batch.snapshot().total,2);await f.batch.control({id,action:'resume'});f.finish();await f.batch.tick();assert.equal(f.basic.batchCurrent().request_key,'basic-outfit_q_0');f.finish();await f.batch.tick();assert.equal(f.batch.snapshot().status,'complete');assert.equal(f.counts().made,2);assert.equal(f.get('SELECT item FROM factory_basic_outfit_pieces WHERE id=?','p_1').item,null);
+});

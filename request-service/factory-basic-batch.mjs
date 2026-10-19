@@ -11,12 +11,14 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
  CREATE TABLE IF NOT EXISTS factory_basic_batch_holds(batch TEXT NOT NULL,piece TEXT NOT NULL,reason TEXT NOT NULL,PRIMARY KEY(batch,piece));
  CREATE TABLE IF NOT EXISTS factory_basic_batch_items(batch TEXT NOT NULL,item TEXT NOT NULL,recipe_key TEXT NOT NULL,PRIMARY KEY(batch,item));`);
  if(!db.prepare('PRAGMA table_info(factory_basic_batches)').all().some(c=>c.name==='target'))db.exec("ALTER TABLE factory_basic_batches ADD COLUMN target TEXT NOT NULL DEFAULT 'storefront'");
+ if(!db.prepare('PRAGMA table_info(factory_basic_batches)').all().some(c=>c.name==='scope'))db.exec("ALTER TABLE factory_basic_batches ADD COLUMN scope TEXT");
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),run=(q,...a)=>db.prepare(q).run(...a);
  const now=()=>new Date(clock()).toISOString(),active=()=>get("SELECT * FROM factory_basic_batches WHERE status IN ('running','paused','blocked') LIMIT 1");
  let busy=false;
+ const selected=(r,p)=>!r.scope||JSON.parse(r.scope).pieceIds.includes(p.id);
  function snapshot(row){const r=row||active()||get('SELECT * FROM factory_basic_batches ORDER BY created DESC LIMIT 1');if(!r)return null;
-  const plans=JSON.parse(r.plans).map(id=>summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',id))).filter(Boolean),items=plans.flatMap(p=>p.pieces);
-  return {...r,plans:plans.map(p=>({id:p.id,name:p.name,total:p.total,published:p.published,printfulCreated:p.pieces.filter(piece=>piece.item?.cleanup?.verified&&['published','supplier_created'].includes(piece.item.status)).length})),printfulCreated:items.filter(p=>p.item?.cleanup?.verified&&['published','supplier_created'].includes(p.item.status)).length,recipes:JSON.parse(r.recipes),acceptMissingModel:!!r.accept_missing_model,total:items.length,published:items.filter(p=>p.item?.status==='published'&&p.item.cleanup?.verified).length,activeItem:items.find(p=>p.item&&!p.item.closed)?.item.id||null,holds:all('SELECT piece,reason FROM factory_basic_batch_holds WHERE batch=?',r.id)};
+  const plans=JSON.parse(r.plans).map(id=>summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',id))).filter(Boolean),items=plans.flatMap(p=>p.pieces).filter(p=>selected(r,p)),scope=r.scope?JSON.parse(r.scope):null;
+  return {...r,scope,newTotal:items.length,existingCount:scope?.existingIds.length||0,collectionTotal:items.length+(scope?.existingIds.length||0),plans:plans.map(p=>({id:p.id,name:p.name,total:p.pieces.filter(piece=>selected(r,piece)).length,published:p.pieces.filter(piece=>selected(r,piece)&&piece.item?.status==='published'&&piece.item.cleanup?.verified).length,printfulCreated:p.pieces.filter(piece=>selected(r,piece)&&piece.item?.cleanup?.verified&&['published','supplier_created'].includes(piece.item.status)).length})),printfulCreated:items.filter(p=>p.item?.cleanup?.verified&&['published','supplier_created'].includes(p.item.status)).length,recipes:JSON.parse(r.recipes),acceptMissingModel:!!r.accept_missing_model,total:items.length,published:items.filter(p=>p.item?.status==='published'&&p.item.cleanup?.verified).length,activeItem:items.find(p=>p.item&&!p.item.closed)?.item.id||null,holds:all('SELECT piece,reason FROM factory_basic_batch_holds WHERE batch=?',r.id)};
  }
  async function start(b){
   if(b.confirm!==true||typeof b.requestKey!=='string'||!/^[-a-zA-Z0-9_]{16,100}$/.test(b.requestKey))throw Error('Confirm this finite publication batch with a stable request key.');
@@ -51,6 +53,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
    for(const planId of JSON.parse(r.plans)){
     const plan=get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',planId);if(!plan)continue;
     for(const raw of all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=? ORDER BY ordinal',planId)){
+     if(!selected(r,raw))continue;
      const p={...raw,choice:JSON.parse(raw.choice)},key='basic-outfit_'+p.id+(p.revision>1?'_r'+p.revision:'');
      let item=p.item?get('SELECT * FROM factory_basic_items WHERE id=?',p.item):get('SELECT * FROM factory_basic_items WHERE request_key=?',key);
      if(!item){
@@ -87,6 +90,19 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
  }
  async function control(b){const r=active();if(!r||r.id!==b.id)throw Error('Publication batch not found.');if(!['pause','resume','cancel'].includes(b.action))throw Error('Choose pause, resume or cancel.');
   if(b.action==='cancel'&&basic.batchCurrent())throw Error('Finish the current item before cancelling the remaining batch.');
+  if(b.scope!==undefined){
+   if(b.action!=='pause'||r.status!=='paused')throw Error('Pause the existing batch before narrowing its scope.');
+   const ids=b.scope?.pieceIds;
+   if(!Array.isArray(ids)||!ids.length||new Set(ids).size!==ids.length)throw Error('Choose distinct existing pieces.');
+   const plans=JSON.parse(r.plans).map(id=>summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',id))).filter(Boolean),pieces=plans.flatMap(p=>p.pieces),allowed=new Set(pieces.filter(p=>selected(r,p)).map(p=>p.id));
+   if(ids.some(id=>!allowed.has(id)))throw Error('Scope can only narrow the current authorized pieces.');
+   if(pieces.some(p=>p.item&&!ids.includes(p.id)))throw Error('Keep all started and completed pieces in this batch scope.');
+   if(plans.some(p=>!p.pieces.some(piece=>ids.includes(piece.id))))throw Error('Keep every design family represented.');
+   const existingIds=[...new Set(plans.flatMap(p=>p.reusedProducts||[]).map(p=>String(p.id)))];
+   if(!Number.isSafeInteger(b.scope.total)||b.scope.total!==ids.length+existingIds.length)throw Error('The total must equal selected pieces plus reused original products.');
+   run('UPDATE factory_basic_batches SET scope=? WHERE id=?',JSON.stringify({pieceIds:ids,existingIds,total:b.scope.total}),r.id);
+   run('DELETE FROM factory_basic_batch_holds WHERE batch=? AND piece NOT IN (SELECT value FROM json_each(?))',r.id,JSON.stringify(ids));
+  }
   if(b.recipes!==undefined){if(b.action!=='resume'||!Array.isArray(b.recipes)||!b.recipes.length||b.recipes.length>19||new Set(b.recipes.map(p=>p.product)).size!==b.recipes.length)throw Error('Supply distinct recipes while resuming this batch.');
    const allowed=new Set(JSON.parse(r.plans).flatMap(id=>all('SELECT choice FROM factory_basic_outfit_pieces WHERE outfit=?',id).map(p=>JSON.parse(p.choice).product)));
    if(b.recipes.some(p=>!allowed.has(p.product)||!p.layout||!Array.isArray(p.sizes)||typeof p.audience!=='string'))throw Error('A resumed recipe is outside the authorized product slots.');run('UPDATE factory_basic_batches SET recipes=? WHERE id=?',JSON.stringify(b.recipes),r.id);}
