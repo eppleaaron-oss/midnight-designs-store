@@ -40,6 +40,12 @@ const unavailable={7:'Two graphics on the same chest panel need a multi-element 
 export const BASIC_LAYOUTS=[...CLOTHING_LAYOUTS.map(l=>({...l,version:BASIC_LAYOUT_VERSION,slots:definitions[l.number]||[],pattern:[25,48,64,66].includes(l.number),supported:!!definitions[l.number],reason:unavailable[l.number]||null})),{
  number:67,category:'footwear',name:'Coordinated Canvas Pair',version:BASIC_LAYOUT_VERSION,supported:true,reason:null,pattern:false,
  slots:[{...slot('shoe_left','shoe_quarters_left','accent','outer_canvas'),widthIn:3,heightIn:4},{...slot('shoe_right','shoe_quarters_right','accent','outer_canvas'),widthIn:3,heightIn:4},{...slot('tongue_left','shoe_tongue_left','tiny','tongue',true),widthIn:1.25,heightIn:2},{...slot('tongue_right','shoe_tongue_right','tiny','tongue',true),widthIn:1.25,heightIn:2}]
+},{
+ number:68,category:'headwear',name:'Reversible Crown Motifs',version:BASIC_LAYOUT_VERSION,supported:true,reason:null,pattern:false,
+ slots:[{...slot('front','outside_front','accent','center'),widthIn:2,heightIn:1.5},{...slot('back','outside_back','accent','center',true),widthIn:2,heightIn:1.5}]
+},{
+ number:69,category:'facewear',name:'Face Covering Focal Graphic',version:BASIC_LAYOUT_VERSION,supported:true,reason:null,pattern:false,
+ slots:[{...slot('front','front','center','center'),widthIn:4,heightIn:5}]
 }];
 export const panelKind=s=>String(s).replace(/_dtfabric$/,'').replace(/^top_front$/,'front').replace(/^top_back$/,'back').replace(/^default$/,'front').replace(/^left_sleeve$/,'sleeve_left').replace(/^right_sleeve$/,'sleeve_right').replace(/^left_leg$/,'leg_left').replace(/^right_leg$/,'leg_right').replace(/^(left|right)_hood$/,'hood');
 export const exterior=areas=>areas.filter(a=>!/(^|_)label|^inside_label/i.test(a.placement));
