@@ -309,3 +309,9 @@ test('Printful-only recovers an accepted POST without duplicates and holds misma
 test('Printful-only authorization is bound to the frozen batch recipe',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);assert.equal((await f.basic()).data.active.productionTarget,'printful');f.db.prepare("UPDATE factory_basic_batch_items SET recipe_key='different'").run();assert.equal((await f.basic()).data.active.productionTarget,'storefront');
 });
+
+test('Printful-only cleanup retries automatically after attachment deletion fails, retaining the supplier product',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);await readySupplier(f,item);await f.step();
+ f.git.failDelete=true;const claim=await f.machine('claim');assert.equal(claim.data.job,item.job);const result=await f.machine('step',{job:item.job,lease:claim.data.lease});assert.notEqual(result.status,200);assert.equal((await f.basic()).data.active.status,'cleanup_failed');assert.equal(f.counts().creates,1);
+ f.git.failDelete=false;await f.service.basic.tick();assert.equal((await f.basic()).data.active,null);assert.equal((await f.basic()).data.recent[0].status,'supplier_created');assert.equal(f.counts().deletes,0);assert.equal(f.counts().creates,1);
+});
