@@ -1,7 +1,47 @@
 {
-  "updatedAt": "2026-10-19T01:57:21.910Z",
-  "lastSyncedAt": "2026-10-19T01:57:21.910Z",
+  "updatedAt": "2026-10-19T02:37:34.139Z",
+  "lastSyncedAt": "2026-10-19T02:37:34.139Z",
   "products": [
+    {
+      "id": "482918795",
+      "catalogProductId": 1482,
+      "name": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt",
+      "description": "Rose Eclipse artwork on All-Over Print Oversized Cotton T-Shirt. Printed background: Black.",
+      "category": "shirts",
+      "tags": [
+        "shirts"
+      ],
+      "collections": [
+        "Rose Eclipse"
+      ],
+      "outfitId": null,
+      "factoryExternalId": "midnight-factory-1be3784b-c798-4f26-b5dc-a917a65a10b9",
+      "image": "https://midnight-designs.store/images/factory/482918795/288ec04b8b0ed17d9f514bac190cd0bedb6aa0fc32884e2e2d27a9c499d3496e.jpg",
+      "images": [
+        "https://midnight-designs.store/images/factory/482918795/288ec04b8b0ed17d9f514bac190cd0bedb6aa0fc32884e2e2d27a9c499d3496e.jpg",
+        "https://midnight-designs.store/images/factory/482918795/d40c648b8362d5a69fe0540f1249711ff821abc7240e624b65639fbb7799e490.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5581802986",
+          "name": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt / Black / M",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46409,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "supplierBaseColor": "White",
+          "availability": "active",
+          "images": [
+            "https://midnight-designs.store/images/factory/482918795/288ec04b8b0ed17d9f514bac190cd0bedb6aa0fc32884e2e2d27a9c499d3496e.jpg",
+            "https://midnight-designs.store/images/factory/482918795/d40c648b8362d5a69fe0540f1249711ff821abc7240e624b65639fbb7799e490.jpg"
+          ],
+          "image": "https://midnight-designs.store/images/factory/482918795/288ec04b8b0ed17d9f514bac190cd0bedb6aa0fc32884e2e2d27a9c499d3496e.jpg"
+        }
+      ],
+      "url": "products/482918795.html"
+    },
     {
       "id": "482797453",
       "catalogProductId": 1419,
