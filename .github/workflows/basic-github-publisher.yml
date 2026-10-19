@@ -16,7 +16,7 @@ jobs:
   connect:
     if: github.repository == 'eppleaaron-oss/midnight-designs-store' && github.ref == 'refs/heads/main' && github.event.repository.private == false
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,4 +25,5 @@ jobs:
       - name: Connect approved store publishing
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          BASIC_PUBLISHER_MINUTES: 345
         run: node request-service/factory-github-publisher-client.mjs
