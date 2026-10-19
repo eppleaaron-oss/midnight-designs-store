@@ -19,10 +19,10 @@ import {stripBasicWorkingPixels,clearBasicWorkingFiles} from './factory-basic-st
 const origin='http://localhost:3000',workerToken='basic-fixture-worker-'.repeat(3),salt='fb'.repeat(16),passwordHash=salt+':'+scryptSync('basic-fixture-password',salt,64).toString('hex');
 const rule={absorbShipping:false,rounding:'99',paymentFeeBps:290,platformFeeBps:0,marginBps:3500,discountBps:0,paymentFixedCents:30,platformFixedCents:0,minimumProfitCents:1000,minimumPriceCents:0,maximumPriceCents:15000};
 const response=result=>new Response(JSON.stringify({result}),{headers:{'Content-Type':'application/json'}});
-async function fixture(t,{durable=true,models=true,githubWorkspace=false,managedPublisher=false,outfitProducts=false,largePanels=false}={}){
+async function fixture(t,{durable=true,models=true,githubWorkspace=false,managedPublisher=false,outfitProducts=false,largePanels=false,unknownAudience=false}={}){
  const git=githubWorkingFixture(),env={FACTORY_BACKUP_REPO:'owner/private-data',FACTORY_BACKUP_GITHUB_TOKEN:'private-fixture-token'},photos=new Map();
  const png=await sharp({create:{width:30,height:24,channels:4,background:'#a73434'}}).png().toBuffer();let clock=Date.now(),manifest=null,live=false,creates=0,taskCreates=0,deletes=0,removed=false;
- const variants=[{id:3280,size:'S',color:'White',price:'15.00',in_stock:true},{id:3281,size:'M',color:'White',price:'16.00',in_stock:true}],product={id:328,title:'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'};
+ const variants=[{id:3280,size:'S',color:'White',price:'15.00',in_stock:true},{id:3281,size:'M',color:'White',price:'16.00',in_stock:true}],product={id:328,title:unknownAudience?'All-Over Print Oversized Cotton T-Shirt':'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'};
  const jacket={id:390,title:'All-Over Print Unisex Bomber Jacket',type_name:'Jacket',type:'CUT-SEW',currency:'USD'},jacketVariants=variants.map(v=>({...v,id:v.id+620})),supplierProducts=new Map(),removedProducts=new Set();
  let supplierPayload;
  const fetchImpl=async(url,o={})=>{
@@ -246,4 +246,11 @@ test('collection slots permit 20 distinct products handled by one creator and pr
  await api.handle({headers:{origin}},{},'/api/owner/ai-factory/basic/outfits/create','POST');assert.equal(captured.status,200);assert.equal(captured.data.total,20);assert.equal(captured.data.status,'held');assert.equal(captured.data.pieces[1].choice.audience,'women');assert.equal(new Set(captured.data.pieces.map(p=>p.role)).size,1);
  assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,0);
  const p=captured.data.pieces;f.db.prepare('INSERT INTO factory_outfit_items(id,outfit,role,template,job) VALUES(?,?,?,?,?)').run(p[0].id,captured.data.id,'shirts','','');f.db.prepare('INSERT INTO factory_outfit_items(id,outfit,role,template,job) VALUES(?,?,?,?,?)').run(p[1].id,captured.data.id,'shirts','','');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_outfit_items WHERE outfit=?').get(captured.data.id).n,2,'the database permits independent products sharing one worker');
+});
+
+
+test('an explicitly allowed unspecified supplier audience remains allowed in the real worker without inventing gender tags',async t=>{
+ const f=await fixture(t,{unknownAudience:true});const b={requestKey:randomUUID(),setId:f.set,product:328,sizes:['M'],audience:'unisex'};assert.equal((await f.basic('/create',b)).status,409,'Unspecified products require explicit permission');
+ const created=await f.basic('/create',{...b,allowUnspecifiedAudience:true});assert.equal(created.status,200,JSON.stringify(created.data));const item=created.data;const selection=JSON.parse(f.db.prepare('SELECT selection FROM factory_job_audiences WHERE job=?').get(item.job).selection);assert.equal(selection.allowUnspecifiedAudience,true);
+ const visual=await f.preview(item);assert.equal(visual.canApprove,true);assert.deepEqual(visual.listing.copy.tags,['shirts']);assert.equal(f.counts().creates,1);assert.equal(f.counts().taskCreates,1);
 });
