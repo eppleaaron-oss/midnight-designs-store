@@ -42,6 +42,8 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
      const piece=all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=?',recipe.outfitId||'').find(p=>plans.includes(p.outfit)&&current.request_key==='basic-outfit_'+p.id+(p.revision>1?'_r'+p.revision:'')&&recipe.product===JSON.parse(p.choice).product&&recipe.set.id===JSON.parse(p.choice).setId);
      if(piece){attach(piece,current);run('INSERT INTO factory_basic_batch_items VALUES(?,?,?)',r.id,current.id,current.recipe_key);authorization={recipe_key:current.recipe_key};await basic.checkpoint(current.job);}else return;
     }
+    const frozen=JSON.parse(get('SELECT recipe FROM factory_basic_items WHERE id=?',current.id).recipe),charges=JSON.parse(r.recipes).find(p=>p.product===frozen.product)?.charges;
+    if(current.pricing?.status==='held'&&charges){try{await basic.confirmBatchCharges(current.id,authorization.recipe_key,charges);}catch(e){run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);await basic.checkpoint();}return;}
     if(current.canApprove){try{await basic.approveBatch(current.id,authorization.recipe_key,{acceptMissingModel:!!r.accept_missing_model});}catch(e){run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);}}return;
    }
    const recipes=new Map(JSON.parse(r.recipes).map(p=>[p.product,p]));let changed=false;
