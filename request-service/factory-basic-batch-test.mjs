@@ -60,3 +60,11 @@ test('batch charges apply only to its exact frozen product and failures hold the
  const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.recipes[0].charges={verified:true,extraCents:0,shippingCents:null,source:'Verified included print'};await f.start();await f.batch.tick();const read=f.basic.batchCurrent;f.basic.batchCurrent=()=>({...read(),pricing:{status:'held'}});let called=0;
  f.basic.confirmBatchCharges=async(id,key,charges)=>{called++;assert.equal(id,'made1');assert.equal(key,'frozen:made1');assert.equal(charges.extraCents,0);throw Error('Fresh USD supplier quotes are required.');};await f.batch.tick();assert.equal(called,1);assert.equal(f.batch.snapshot().status,'blocked');assert.match(f.batch.snapshot().error,/Fresh USD/);assert.equal(f.counts().approved,0);
 });
+
+
+test('an explicitly mapped supplier default source reaches the frozen native layout without changing another collection',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('stag','pf:stag');f.recipes[0].layout={number:1,assignments:{front:'front',back:'back',sleeve_left:null}};
+ const p=f.get('SELECT choice FROM factory_basic_outfit_pieces WHERE id=?','stag_0');f.run('UPDATE factory_basic_outfit_pieces SET choice=? WHERE id=?',JSON.stringify({...JSON.parse(p.choice),sourceParts:{front:'default'}}),'stag_0');
+ const inspect=f.basic.inspect;f.basic.inspect=async choice=>{assert.deepEqual(choice.layout.assignments,{front:'default',back:'back',sleeve_left:null});assert.equal(choice.setId,'pf:stag');return inspect(choice);};
+ await f.start(['stag']);await f.batch.tick();assert.equal(f.counts().made,1);assert.equal(f.batch.snapshot().recipes[0].layout.assignments.front,'front','The shared recipe remains unchanged');
+});

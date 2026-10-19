@@ -64,7 +64,8 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
      const recipe=recipes.get(p.choice.product);if(!recipe){hold(r.id,p,'Product-specific native layout is not prepared. No product was created.');changed=true;continue;}
      if(p.choice.setId.startsWith('unresolved:')){hold(r.id,p,'Original artwork set is missing. A garment screenshot cannot be used as print artwork.');changed=true;continue;}
      try{
-      const choice={...p.choice,...recipe,setId:p.choice.setId,layout:recipe.layout},checked=await basic.inspect(choice);
+      const layout=p.choice.sourceParts?{...recipe.layout,assignments:Object.fromEntries(Object.entries(recipe.layout.assignments||{}).map(([slot,part])=>[slot,p.choice.sourceParts[part]||part]))}:recipe.layout;
+      const choice={...p.choice,...recipe,setId:p.choice.setId,layout},checked=await basic.inspect(choice);
       if(!checked.numericLayout||checked.numericLayout.requiresAcceptance)throw Error('The actual artwork needs a newly inspected size or placement.');
       const signature=basic.inspectionSignature(checked);run("UPDATE factory_basic_outfit_pieces SET choice=?,signature=?,error='' WHERE id=?",JSON.stringify(choice),signature,p.id);
       run('UPDATE factory_basic_batches SET current_plan=?,error=\'\',updated=? WHERE id=?',planId,now(),r.id);await basic.checkpoint();
