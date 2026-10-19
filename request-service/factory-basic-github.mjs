@@ -82,7 +82,15 @@ export function factoryBasicGithub({db,backups,basic,fetchImpl=fetch,sleep=wait,
  async function load(job,f,known=null){const a=get('SELECT * FROM factory_basic_remote_assets WHERE job=? AND kind=? AND file=?',job,f.kind,f.id);if(!a)fail('A required working file has no confirmed GitHub attachment. Resume or review this item.');const data=known||await assets.read(a.asset_id,job,f.kind,JSON.parse(a.selector).contextFile||f.id,a.sha256);if(hash(data)!==a.sha256)fail('Recovered working pixels do not match this tracked file.');if(f.kind==='print')run('UPDATE factory_print_files SET data=? WHERE id=? AND length(data)=0',data,f.id);else if(f.kind==='mockup')run('UPDATE factory_mockups SET data=? WHERE id=? AND length(data)=0',data,f.id);else run('UPDATE factory_mockup_downloads SET data=? WHERE job=? AND variant=? AND task_key=? AND url=? AND length(data)=0',data,job,f.selector.variant,f.selector.task_key,f.selector.url);return data;}
  async function hydrate(job){if(!ready()||!owns(job))return;const files=records(job),cache=new Map();
   for(const f of files.filter(f=>f.length)){const data=bytes(job,f);if(hash(data)!==f.sha256)fail('Working pixels changed after their saved checksum.');cache.set(f.kind+':'+f.sha256,data);}
-  let downloaded=0,remaining=0;for(const f of files.filter(f=>!f.length)){const key=f.kind+':'+f.sha256,known=cache.get(key);if(!known&&downloaded>=4){remaining++;continue;}const data=await load(job,f,known);if(!known)downloaded++;cache.set(key,data);}
+  let downloaded=0,remaining=0;for(const f of files.filter(f=>!f.length)){const key=f.kind+':'+f.sha256,known=cache.get(key);
+   if(f.kind==='print'&&!get('SELECT file FROM factory_basic_remote_assets WHERE job=? AND kind=? AND file=?',job,f.kind,f.id)){
+    // A lease can expire after rendering but before the attachment checkpoint.
+    // Recover identical verified bytes, or let the files step regenerate the
+    // same file ID and enforce its previously recorded checksum.
+    if(known){if(hash(known)!==f.sha256)fail('Recovered print pixels do not match their recorded checksum.');run('UPDATE factory_print_files SET data=? WHERE id=? AND length(data)=0',known,f.id);continue;}
+    if(get('SELECT step FROM factory_job_runtime WHERE job=?',job)?.step===2)continue;
+   }
+   if(!known&&downloaded>=4){remaining++;continue;}const data=await load(job,f,known);if(!known)downloaded++;cache.set(key,data);}
   return remaining?{defer:true,note:'Restoring this item’s verified GitHub working files.'}:null;}
  async function finalMedia(job,media,supplierId){
   const mapped=new Map(all('SELECT * FROM factory_basic_final_media WHERE job=?',job).map(x=>[x.file,x]));let count=0;
