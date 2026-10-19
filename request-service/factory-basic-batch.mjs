@@ -10,12 +10,13 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
  CREATE UNIQUE INDEX IF NOT EXISTS factory_basic_one_batch ON factory_basic_batches((1)) WHERE status IN ('running','paused','blocked');
  CREATE TABLE IF NOT EXISTS factory_basic_batch_holds(batch TEXT NOT NULL,piece TEXT NOT NULL,reason TEXT NOT NULL,PRIMARY KEY(batch,piece));
  CREATE TABLE IF NOT EXISTS factory_basic_batch_items(batch TEXT NOT NULL,item TEXT NOT NULL,recipe_key TEXT NOT NULL,PRIMARY KEY(batch,item));`);
+ if(!db.prepare('PRAGMA table_info(factory_basic_batches)').all().some(c=>c.name==='target'))db.exec("ALTER TABLE factory_basic_batches ADD COLUMN target TEXT NOT NULL DEFAULT 'storefront'");
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),run=(q,...a)=>db.prepare(q).run(...a);
  const now=()=>new Date(clock()).toISOString(),active=()=>get("SELECT * FROM factory_basic_batches WHERE status IN ('running','paused','blocked') LIMIT 1");
  let busy=false;
  function snapshot(row){const r=row||active()||get('SELECT * FROM factory_basic_batches ORDER BY created DESC LIMIT 1');if(!r)return null;
   const plans=JSON.parse(r.plans).map(id=>summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',id))).filter(Boolean),items=plans.flatMap(p=>p.pieces);
-  return {...r,plans:plans.map(p=>({id:p.id,name:p.name,total:p.total,published:p.published})),recipes:JSON.parse(r.recipes),acceptMissingModel:!!r.accept_missing_model,total:items.length,published:items.filter(p=>p.item?.status==='published'&&p.item.cleanup?.verified).length,activeItem:items.find(p=>p.item&&!p.item.closed)?.item.id||null,holds:all('SELECT piece,reason FROM factory_basic_batch_holds WHERE batch=?',r.id)};
+  return {...r,plans:plans.map(p=>({id:p.id,name:p.name,total:p.total,published:p.published,printfulCreated:p.pieces.filter(piece=>piece.item?.cleanup?.verified&&['published','supplier_created'].includes(piece.item.status)).length})),printfulCreated:items.filter(p=>p.item?.cleanup?.verified&&['published','supplier_created'].includes(p.item.status)).length,recipes:JSON.parse(r.recipes),acceptMissingModel:!!r.accept_missing_model,total:items.length,published:items.filter(p=>p.item?.status==='published'&&p.item.cleanup?.verified).length,activeItem:items.find(p=>p.item&&!p.item.closed)?.item.id||null,holds:all('SELECT piece,reason FROM factory_basic_batch_holds WHERE batch=?',r.id)};
  }
  async function start(b){
   if(b.confirm!==true||typeof b.requestKey!=='string'||!/^[-a-zA-Z0-9_]{16,100}$/.test(b.requestKey))throw Error('Confirm this finite publication batch with a stable request key.');
@@ -27,7 +28,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
   for(const recipe of b.recipes){if(!Number.isSafeInteger(recipe.product)||!recipe.layout||!Array.isArray(recipe.sizes)||typeof recipe.audience!=='string')throw Error('Every product needs an exact numeric layout, audience and size selection.');
    if(!plans.some(p=>all('SELECT choice FROM factory_basic_outfit_pieces WHERE outfit=?',p.id).some(x=>JSON.parse(x.choice).product===recipe.product)))throw Error('A recipe is outside the selected collection requests.');}
   const id=randomUUID();db.exec('BEGIN IMMEDIATE');try{
-   run("INSERT INTO factory_basic_batches VALUES(?,?,?,?, 'running',?,NULL,'',?,?)",id,b.requestKey,JSON.stringify(b.planIds),JSON.stringify(b.recipes),Number(b.acceptMissingModel===true),now(),now());
+   run("INSERT INTO factory_basic_batches(id,request_key,plans,recipes,status,accept_missing_model,current_plan,error,created,updated) VALUES(?,?,?,?, 'running',?,NULL,'',?,?)",id,b.requestKey,JSON.stringify(b.planIds),JSON.stringify(b.recipes),Number(b.acceptMissingModel===true),now(),now());
    for(const plan of plans)for(const p of all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=?',plan.id))run("INSERT OR IGNORE INTO factory_outfit_items(id,outfit,role,template,job,revision,approved) VALUES(?,?,?,'','',?,0)",p.id,p.outfit,p.role,p.revision);
    db.exec('COMMIT');
   }catch(e){db.exec('ROLLBACK');throw e;}
@@ -44,7 +45,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
     }
     const frozen=JSON.parse(get('SELECT recipe FROM factory_basic_items WHERE id=?',current.id).recipe),charges=JSON.parse(r.recipes).find(p=>p.product===frozen.product)?.charges;
     if(current.pricing?.status==='held'&&charges){try{await basic.confirmBatchCharges(current.id,authorization.recipe_key,charges);}catch(e){run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);await basic.checkpoint();}return;}
-    if(current.canApprove){try{await basic.approveBatch(current.id,authorization.recipe_key,{acceptMissingModel:!!r.accept_missing_model});}catch(e){run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);}}return;
+    if(r.target!=='printful'&&current.canApprove){try{await basic.approveBatch(current.id,authorization.recipe_key,{acceptMissingModel:!!r.accept_missing_model});}catch(e){run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);}}return;
    }
    const recipes=new Map(JSON.parse(r.recipes).map(p=>[p.product,p]));let changed=false;
    for(const planId of JSON.parse(r.plans)){
@@ -57,7 +58,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
       item=all("SELECT * FROM factory_basic_items WHERE decision='approved' AND closed=1 AND status='published' ORDER BY created").find(i=>{const recipe=JSON.parse(i.recipe);return recipe.set.id===p.choice.setId&&recipe.product===p.choice.product&&JSON.parse(i.cleanup||'{}').verified;});
      }
      if(item){if(!p.item){attach(p,item);changed=true;}
-      if(item.closed&&item.status==='published'&&JSON.parse(item.cleanup||'{}').verified){const listing=get('SELECT store_id FROM factory_listings WHERE job=?',item.job);run('UPDATE factory_outfit_items SET store_product=?,approved=1 WHERE id=?',listing?.store_id||null,p.id);run('DELETE FROM factory_basic_batch_holds WHERE batch=? AND piece=?',r.id,p.id);continue;}
+      if(item.closed&&(item.status==='published'||r.target==='printful'&&item.status==='supplier_created')&&JSON.parse(item.cleanup||'{}').verified){const listing=get('SELECT store_id FROM factory_listings WHERE job=?',item.job);run('UPDATE factory_outfit_items SET store_product=?,approved=? WHERE id=?',listing?.store_id||null,Number(item.status==='published'),p.id);run('DELETE FROM factory_basic_batch_holds WHERE batch=? AND piece=?',r.id,p.id);continue;}
       if(!item.closed)return;hold(r.id,p,'This piece was rejected or has not completed verified cleanup.');changed=true;continue;
      }
      if(get('SELECT piece FROM factory_basic_batch_holds WHERE batch=? AND piece=?',r.id,p.id))continue;
@@ -80,7 +81,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
     }
     const finished=summary(plan);if(finished.pieces.every(p=>p.item?.status==='published'&&p.item.cleanup?.verified))run('UPDATE factory_outfits SET published=1 WHERE id=?',planId);
    }
-   const report=snapshot(),complete=report.published===report.total;run('UPDATE factory_basic_batches SET status=?,current_plan=NULL,error=?,updated=? WHERE id=?',complete?'complete':'blocked',complete?'':'Unfinished products are held with their exact reasons.',now(),r.id);changed=true;
+   const report=snapshot(),complete=(r.target==='printful'?report.printfulCreated:report.published)===report.total;run('UPDATE factory_basic_batches SET status=?,current_plan=NULL,error=?,updated=? WHERE id=?',complete?'complete':'blocked',complete?'':'Unfinished products are held with their exact reasons.',now(),r.id);changed=true;
    if(changed)await basic.checkpoint();
   }finally{busy=false;}
  }
@@ -89,6 +90,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
   if(b.recipes!==undefined){if(b.action!=='resume'||!Array.isArray(b.recipes)||!b.recipes.length||b.recipes.length>19||new Set(b.recipes.map(p=>p.product)).size!==b.recipes.length)throw Error('Supply distinct recipes while resuming this batch.');
    const allowed=new Set(JSON.parse(r.plans).flatMap(id=>all('SELECT choice FROM factory_basic_outfit_pieces WHERE outfit=?',id).map(p=>JSON.parse(p.choice).product)));
    if(b.recipes.some(p=>!allowed.has(p.product)||!p.layout||!Array.isArray(p.sizes)||typeof p.audience!=='string'))throw Error('A resumed recipe is outside the authorized product slots.');run('UPDATE factory_basic_batches SET recipes=? WHERE id=?',JSON.stringify(b.recipes),r.id);}
+  if(b.target!==undefined){if(b.target!=='printful'||b.confirm!==true||b.action!=='resume')throw Error('Confirm the finite Printful-only batch explicitly.');if(get('SELECT state FROM factory_settings WHERE id=1').state!=='paused'||get("SELECT id FROM factory_jobs WHERE status='running' LIMIT 1"))throw Error('Pause and finish the worker step before changing destination.');run("UPDATE factory_basic_batches SET target='printful' WHERE id=?",r.id);}
   if(b.action==='resume')run('DELETE FROM factory_basic_batch_holds WHERE batch=?',r.id);
   run('UPDATE factory_basic_batches SET status=?,error=\'\',updated=? WHERE id=?',b.action==='pause'?'paused':b.action==='cancel'?'cancelled':'running',now(),r.id);await basic.checkpoint();return snapshot();
  }
