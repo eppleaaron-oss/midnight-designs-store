@@ -80,6 +80,8 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
  db.exec(`CREATE TABLE IF NOT EXISTS factory_render_plans(job TEXT PRIMARY KEY,plan TEXT NOT NULL,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_files(file TEXT PRIMARY KEY,signature TEXT NOT NULL,recipe TEXT NOT NULL,source_sha TEXT,created TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_render_quality(file TEXT PRIMARY KEY,signature TEXT NOT NULL,required_dpi INTEGER NOT NULL,effective_dpi REAL);`);
+ if(!db.prepare('PRAGMA table_info(factory_render_files)').all().some(c=>c.name==='pixel_signature'))db.exec('ALTER TABLE factory_render_files ADD COLUMN pixel_signature TEXT');
+ db.exec('CREATE INDEX IF NOT EXISTS factory_render_pixel_signature ON factory_render_files(pixel_signature)');
  const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString(),fileLimits=printFileLimits();let busy=false,editor=null,pipeline=null,diagnostics=null,basic=null;
  function saveRunPlan(job,c,slot,art,placementPlan){pipeline?.configureRun(job,c.qc);
   const map=new Map(art.map(a=>[a.name,a.id]));if((placementPlan||[]).some(p=>p.artwork&&!map.has(p.artwork)))error('A named artwork in the placement plan is missing.');
@@ -106,7 +108,7 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    for(const a of rows){assertBrandingPlacement(db,job,placement,a);if(allowedIds&&!allowedIds.includes(a.id))error('Artwork is not assigned to this job.');if(a.product!==null&&a.product!==undefined&&a.product!==d.product)error('Artwork is restricted to a different product.');}
    if(!rows.length&&r.fillOnly!==true)error('This area needs artwork or an explicit fill-only choice.');
    const a=rows[0]||null,recipe={...r,background:Object.hasOwn(plan,'background')?plan.background:'Black'},proof=sourceProof(recipe,rows),signature=hash(JSON.stringify([d.product,d.variant,d.technique,area,recipe,proof.sha,proof.permissions]));
-   return {d,area,a,rows,proof,recipe,signature};
+   const pixelSignature=hash(JSON.stringify([d.product,d.technique,area,recipe,proof.sha,proof.permissions]));return {d,area,a,rows,proof,recipe,signature,pixelSignature};
   });
  }
  async function prepare(requests){
@@ -116,13 +118,17 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    for(const x of work){const cached=get('SELECT f.id,f.sha256,f.data FROM factory_render_files r JOIN factory_print_files f ON f.id=r.file WHERE r.signature=? AND f.draft=? AND f.placement=? AND f.id=(SELECT id FROM factory_print_files WHERE draft=? AND placement=? ORDER BY created DESC,rowid DESC LIMIT 1)',x.signature,x.d.id,x.area.placement,x.d.id,x.area.placement);if(cached&&get('SELECT file FROM factory_render_quality WHERE file=?',cached.id)&&hash(Buffer.from(cached.data))===cached.sha256){pending.push({...x,cached});continue;}
     const read=a=>{const data=Buffer.from(get('SELECT data FROM factory_artwork WHERE id=?',a.id).data);if(hash(data)!==a.sha256)error('The original artwork checksum changed. Restore its original version before rendering.');return data;};
     const source=x.recipe.elements?x.rows.map((a,i)=>({data:read(a),recipe:x.recipe.elements[i],permissions:a.effectivePermissions})):x.a?read(x.a):null;
-    const result=await renderArea(x.area,source,x.recipe,x.a?x.a.effectivePermissions:{});renderedBytes+=result.data.length;if(renderedBytes>64*1024*1024)error('This rendering batch exceeds 64 MB. Prepare smaller variant sets to stay within the renderer memory budget.');if(storedBytes+renderedBytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');pending.push({...x,result,placeholder:cached&&cached.data.length===0?cached.id:null,expectedSha:cached?.sha256});}
+    // Reuse pixels only when native area, full recipe, source proof and current
+    // permissions match exactly. Variant-specific file and QC records stay separate.
+    const sibling=get('SELECT f.data,f.sha256,q.effective_dpi FROM factory_render_files r JOIN factory_print_files f ON f.id=r.file JOIN factory_render_quality q ON q.file=f.id AND q.signature=r.signature WHERE r.pixel_signature=? AND f.width=? AND f.height=? AND length(f.data)>0 LIMIT 1',x.pixelSignature,x.area.width,x.area.height);
+    const reused=!!sibling&&hash(Buffer.from(sibling.data))===sibling.sha256;
+    const result=reused?{data:Buffer.from(sibling.data),sha256:sibling.sha256,width:x.area.width,height:x.area.height,effectiveDpi:sibling.effective_dpi}:await renderArea(x.area,source,x.recipe,x.a?x.a.effectivePermissions:{});x.reusedPixels=reused;renderedBytes+=result.data.length;if(renderedBytes>64*1024*1024)error('This rendering batch exceeds 64 MB. Prepare smaller variant sets to stay within the renderer memory budget.');if(storedBytes+renderedBytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');pending.push({...x,result,placeholder:cached&&cached.data.length===0?cached.id:null,expectedSha:cached?.sha256});}
    // Recheck permissions and draft changes after asynchronous rendering before storing any of the batch.
    const checked=requests.flatMap(r=>inputs(r.draft,r.plan,r.allowedIds,r.job));if(checked.some((x,i)=>x.signature!==work[i].signature))error('Artwork permissions or blueprint changed during rendering. Retry with the updated settings.');
    const newFiles=pending.filter(x=>!x.cached),bytes=newFiles.reduce((n,x)=>n+x.result.data.length,0);
    if(get('SELECT count(*) n,COALESCE(sum(length(data)),0) bytes FROM factory_print_files').n+newFiles.filter(x=>!x.placeholder).length>fileLimits.files||get('SELECT COALESCE(sum(length(data)),0) bytes FROM factory_print_files').bytes+bytes>fileLimits.bytes)error('Print-file storage limit reached. Increase the configured quota only after confirming free persistent disk capacity.');
-   db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){if(x.placeholder&&x.result.sha256!==x.expectedSha)error('Recovered print pixels do not match the saved recipe checksum. Review this tracked item.');const id=x.placeholder||randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,sha256=excluded.sha256',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT OR REPLACE INTO factory_render_files VALUES(?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.proof.sha,now());run('INSERT OR REPLACE INTO factory_render_quality VALUES(?,?,?,?)',id,x.signature,x.area.dpi,Number.isFinite(x.result.effectiveDpi)?x.result.effectiveDpi:null);x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
-   return {rendered:newFiles.length,files:pending.map(x=>({id:x.id||x.cached.id,draft:x.d.id,placement:x.area.placement,width:x.area.width,height:x.area.height,sha256:x.result?.sha256||x.cached.sha256,url:'/api/owner/ai-factory/blueprints/file/'+(x.id||x.cached.id)})),reviewRequired:true};
+   db.exec('BEGIN IMMEDIATE');try{for(const x of newFiles){if(x.placeholder&&x.result.sha256!==x.expectedSha)error('Recovered print pixels do not match the saved recipe checksum. Review this tracked item.');const id=x.placeholder||randomUUID();run('INSERT INTO factory_print_files VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,sha256=excluded.sha256',id,x.d.id,x.area.placement,x.result.width,x.result.height,x.result.data,x.result.sha256,now());run('INSERT OR REPLACE INTO factory_render_files(file,signature,recipe,source_sha,created,pixel_signature) VALUES(?,?,?,?,?,?)',id,x.signature,JSON.stringify(x.recipe),x.proof.sha,now(),x.pixelSignature);run('INSERT OR REPLACE INTO factory_render_quality VALUES(?,?,?,?)',id,x.signature,x.area.dpi,Number.isFinite(x.result.effectiveDpi)?x.result.effectiveDpi:null);x.id=id;}db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
+   return {rendered:newFiles.length,reusedPixels:newFiles.filter(x=>x.reusedPixels).length,files:pending.map(x=>({id:x.id||x.cached.id,draft:x.d.id,placement:x.area.placement,width:x.area.width,height:x.area.height,sha256:x.result?.sha256||x.cached.sha256,url:'/api/owner/ai-factory/blueprints/file/'+(x.id||x.cached.id)})),reviewRequired:true};
   }finally{busy=false;}
  }
  async function resolveJobColor(job){
@@ -177,9 +183,9 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    return {job,draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};});
   // Save each native area independently. A full product can exceed an in-memory
   // atomic batch; matching saved recipes let interrupted jobs resume safely.
-  const result={rendered:0,files:[],reviewRequired:true};let processed=0;const total=requests.reduce((n,r)=>n+Object.keys(r.plan.placements).length,0);
+  const result={rendered:0,reusedPixels:0,files:[],reviewRequired:true};let processed=0;const total=requests.reduce((n,r)=>n+Object.keys(r.plan.placements).length,0);
   for(const request of requests)for(const [placement,recipe] of Object.entries(request.plan.placements)){
-   const saved=await prepare([{...request,plan:{...request.plan,placements:{[placement]:recipe}}}]);result.rendered+=saved.rendered;result.files.push(...saved.files);processed++;if(basic?.workspaceReady(job)&&result.rendered>=2&&processed<total)return {...result,defer:true,note:'Saving this item’s print areas in small recoverable batches.'};
+   const saved=await prepare([{...request,plan:{...request.plan,placements:{[placement]:recipe}}}]);result.rendered+=saved.rendered;result.reusedPixels+=saved.reusedPixels||0;result.files.push(...saved.files);processed++;if(basic?.workspaceReady(job)&&result.rendered-result.reusedPixels>=2&&processed<total)return {...result,defer:true,note:'Saving this item’s print areas in small recoverable batches.'};
   }
   return result;
  }
