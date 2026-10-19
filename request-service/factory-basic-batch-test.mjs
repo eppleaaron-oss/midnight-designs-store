@@ -87,3 +87,16 @@ test('a narrowed outfit batch retains started work, every design family and the 
  await assert.rejects(f.batch.control({id,action:'pause',scope:{pieceIds:['p_0','p_1','q_0'],total:3}}),/only narrow/);
  f.restart();assert.equal(f.batch.snapshot().total,2);await f.batch.control({id,action:'resume'});f.finish();await f.batch.tick();assert.equal(f.basic.batchCurrent().request_key,'basic-outfit_q_0');f.finish();await f.batch.tick();assert.equal(f.batch.snapshot().status,'complete');assert.equal(f.counts().made,2);assert.equal(f.get('SELECT item FROM factory_basic_outfit_pieces WHERE id=?','p_1').item,null);
 });
+
+test('assistant outfit layouts override shared recipes only for selected unstarted pieces and survive restart',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.addPlan('q');await f.start(['p','q']);const id=f.batch.snapshot().id;
+ const layout={number:9,assignments:{back:'back'},overrides:{back:{widthIn:7,heightIn:9}},scaleMode:'fixed',measureVisible:true,acceptReduction:true};
+ await assert.rejects(f.batch.control({id,action:'pause',designPlans:[{pieceId:'p_0',layout,note:'One scene on the back, no repeats.'}]}),/Pause new/);
+ await f.batch.control({id,action:'pause'});
+ await assert.rejects(f.batch.control({id,action:'pause',designPlans:[{pieceId:'p_0',layout,note:'Valid first plan.'},{pieceId:'outside',layout,note:'Invalid second plan.'}]}),/selected pieces/);
+ assert.equal(JSON.parse(f.get('SELECT choice FROM factory_basic_outfit_pieces WHERE id=?','p_0').choice).designerPlan,undefined,'invalid requests save no partial plans');
+ await f.batch.control({id,action:'pause',designPlans:[{pieceId:'p_0',layout,note:'One scene on the back, no repeats.'}]});f.restart();
+ const prior=f.basic.inspect;f.basic.inspect=async c=>{assert.equal(c.layout.number,9);assert.equal(c.designerPlan.planner,'assistant');return prior(c);};await f.batch.control({id,action:'resume'});await f.batch.tick();assert.equal(f.counts().made,1);
+ await f.batch.control({id,action:'pause'});await assert.rejects(f.batch.control({id,action:'pause',designPlans:[{pieceId:'p_0',layout,note:'Change started work.'}]}),/have not started/);
+ assert.equal(JSON.parse(f.get('SELECT choice FROM factory_basic_outfit_pieces WHERE id=?','q_0').choice).designerPlan,undefined);assert.equal(f.batch.snapshot().recipes[0].layout.number,5);
+});

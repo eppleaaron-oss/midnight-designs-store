@@ -68,7 +68,8 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
      const recipe=recipes.get(p.choice.product);if(!recipe){hold(r.id,p,'Product-specific native layout is not prepared. No product was created.');changed=true;continue;}
      if(p.choice.setId.startsWith('unresolved:')){hold(r.id,p,'Original artwork set is missing. A garment screenshot cannot be used as print artwork.');changed=true;continue;}
      try{
-      const layout=p.choice.sourceParts?{...recipe.layout,assignments:Object.fromEntries(Object.entries(recipe.layout.assignments||{}).map(([slot,part])=>[slot,p.choice.sourceParts[part]||part]))}:recipe.layout;
+      const planned=p.choice.designerPlan?.layout||recipe.layout;
+      const layout=p.choice.sourceParts?{...planned,assignments:Object.fromEntries(Object.entries(planned.assignments||{}).map(([slot,part])=>[slot,p.choice.sourceParts[part]||part]))}:planned;
       const choice={...p.choice,...recipe,setId:p.choice.setId,layout},checked=await basic.inspect(choice);
       if(!checked.numericLayout||checked.numericLayout.requiresAcceptance)throw Error('The actual artwork needs a newly inspected size or placement.');
       const signature=basic.inspectionSignature(checked);run("UPDATE factory_basic_outfit_pieces SET choice=?,signature=?,error='' WHERE id=?",JSON.stringify(choice),signature,p.id);
@@ -90,6 +91,19 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
  }
  async function control(b){const r=active();if(!r||r.id!==b.id)throw Error('Publication batch not found.');if(!['pause','resume','cancel'].includes(b.action))throw Error('Choose pause, resume or cancel.');
   if(b.action==='cancel'&&basic.batchCurrent())throw Error('Finish the current item before cancelling the remaining batch.');
+  if(b.designPlans!==undefined){
+   if(b.action!=='pause'||r.status!=='paused'||busy)throw Error('Pause new production before saving designer plans.');
+   if(!Array.isArray(b.designPlans)||!b.designPlans.length||b.designPlans.length>600||new Set(b.designPlans.map(p=>p.pieceId)).size!==b.designPlans.length)throw Error('Supply distinct selected outfit pieces.');
+   const allowed=new Map(JSON.parse(r.plans).flatMap(id=>all('SELECT * FROM factory_basic_outfit_pieces WHERE outfit=?',id)).filter(p=>selected(r,p)).map(p=>[p.id,p]));
+   const updates=b.designPlans.map(plan=>{const piece=allowed.get(plan.pieceId);
+    if(!piece||piece.item||get('SELECT id FROM factory_basic_items WHERE request_key=?','basic-outfit_'+piece.id+(piece.revision>1?'_r'+piece.revision:'')))throw Error('Designer plans may change only selected pieces that have not started.');
+    if(!plan.layout||!Number.isSafeInteger(plan.layout.number)||typeof plan.note!=='string'||!plan.note.trim()||plan.note.length>1500||JSON.stringify(plan.layout).length>10000)throw Error('Each designer plan needs a measured layout and a design explanation.');
+    if(plan.layout.scaleMode!=='fixed'||plan.layout.measureVisible!==true||plan.layout.acceptReduction!==true)throw Error('Designer layouts must preserve proportions and accept only printable size fitting.');
+    const choice=JSON.parse(piece.choice);return {piece,choice:{...choice,designerPlan:{planner:'assistant',version:'midnight-outfit-designer-1',layout:plan.layout,note:plan.note.trim(),created:now()}}};
+   });
+   db.exec('BEGIN IMMEDIATE');try{for(const {piece,choice}of updates)run("UPDATE factory_basic_outfit_pieces SET choice=?,signature='',error='' WHERE id=?",JSON.stringify(choice),piece.id);db.exec('COMMIT');}catch(e){db.exec('ROLLBACK');throw e;}
+   run('DELETE FROM factory_basic_batch_holds WHERE batch=? AND piece IN (SELECT value FROM json_each(?))',r.id,JSON.stringify(updates.map(p=>p.piece.id)));
+  }
   if(b.scope!==undefined){
    if(b.action!=='pause'||r.status!=='paused')throw Error('Pause the existing batch before narrowing its scope.');
    const ids=b.scope?.pieceIds;
