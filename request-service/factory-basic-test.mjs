@@ -24,7 +24,7 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
  const png=await sharp({create:{width:30,height:24,channels:4,background:'#a73434'}}).png().toBuffer();let clock=Date.now(),manifest=null,live=false,creates=0,taskCreates=0,deletes=0,removed=false;
  const variants=[{id:3280,size:'S',color:'White',price:'15.00',in_stock:true},{id:3281,size:'M',color:'White',price:'16.00',in_stock:true}],product={id:328,title:unknownAudience?'All-Over Print Oversized Cotton T-Shirt':'All-Over Print Unisex T-Shirt',type_name:'T-Shirt',type:'CUT-SEW',currency:'USD'};
  const jacket={id:390,title:'All-Over Print Unisex Bomber Jacket',type_name:'Jacket',type:'CUT-SEW',currency:'USD'},jacketVariants=variants.map(v=>({...v,id:v.id+620})),supplierProducts=new Map(),removedProducts=new Set();
- let supplierPayload;
+ let supplierPayload,supplierFileStatus="ok",wrongSupplierFile=false,dedupSupplierFiles=false,loseSupplierAck=false;
  const fetchImpl=async(url,o={})=>{
   url=String(url);
   if(url.startsWith('https://api.github.com/repos/owner/private-data')||url.startsWith('https://uploads.github.com/repos/owner/private-data'))return git.fetch(url,o);
@@ -37,12 +37,12 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
   if(url.includes('/mockup-generator/printfiles/'))return response({available_placements:{front:'Front',back:'Back'},printfiles:[{printfile_id:1,width:largePanels?120:12,height:largePanels?80:8,dpi:150}],variant_printfiles:(url.includes('/390')?jacketVariants:variants).map(v=>({variant_id:v.id,placements:{front:1,back:1}})),option_groups:models?["Men's","Women's",'Flat']:['Flat']});
   if(url.includes('/mockup-generator/templates/'))return response({templates:[],variant_mapping:[]});
   if(url.includes('/store/products/@')){const external=decodeURIComponent(url.split('/@')[1]),found=[...supplierProducts].find(([id,p])=>p.sync_product.external_id===external&&!removedProducts.has(id));return found?response({sync_product:{id:found[0],external_id:external}}):new Response('{}',{status:404});}
-  if(url==='https://api.printful.com/store/products'&&o.method==='POST'){supplierPayload=JSON.parse(o.body);creates++;const id=500+creates;supplierProducts.set(id,supplierPayload);return response({id});}
+  if(url==='https://api.printful.com/store/products'&&o.method==='POST'){supplierPayload=JSON.parse(o.body);creates++;const id=500+creates;supplierProducts.set(id,supplierPayload);if(loseSupplierAck){loseSupplierAck=false;return new Response("{}",{status:503});}return response({id});}
   if(/^https:\/\/api.printful.com\/store\/products\/\d+$/.test(url)){
    const id=Number(url.split('/').at(-1)),payload=supplierProducts.get(id);if(!payload)return new Response('{}',{status:404});
    if(o.method==='DELETE'){deletes++;removed=true;removedProducts.add(id);return response({});}
    if(removedProducts.has(id))return new Response('{}',{status:404});
-   return response({sync_product:{id,external_id:payload.sync_product.external_id},sync_variants:payload.sync_variants.map((v,i)=>({id:601+i,variant_id:v.variant_id,synced:true,is_ignored:false,availability_status:'active',currency:'USD',size:[...variants,...jacketVariants].find(x=>x.id===v.variant_id).size,color:'White',retail_price:v.retail_price,files:v.files.map(f=>({...f,status:'ok'}))}))});
+   return response({sync_product:{id,external_id:payload.sync_product.external_id},sync_variants:payload.sync_variants.map((v,i)=>({id:601+i,variant_id:v.variant_id,synced:true,is_ignored:false,availability_status:'active',currency:'USD',size:[...variants,...jacketVariants].find(x=>x.id===v.variant_id).size,color:'White',retail_price:v.retail_price,files:v.files.map((f,n)=>({...f,id:900+n,url:wrongSupplierFile?origin+'/factory-print-file/'+'a'.repeat(64):dedupSupplierFiles?payload.sync_variants[0].files.find(first=>first.type===f.type).url:f.url,status:supplierFileStatus}))}))});
   }
   if(o.method==='HEAD'&&url.includes('/factory-print-file/')){const key=new URL(url).pathname.split('/').at(-1),row=service.db.prepare('SELECT f.sha256 FROM factory_file_links l JOIN factory_print_files f ON f.id=l.file WHERE l.hash=?').get(createHash('sha256').update(key).digest('hex'));return new Response(null,{headers:{'Content-Type':'image/png','X-Midnight-Print-Sha256':row?.sha256||''}});}
   if(url.includes('/mockup-generator/create-task/')){const b=JSON.parse(o.body);if(models)assert.deepEqual(b.option_groups,["Men's","Women's"]);else assert.equal(b.option_groups,undefined);taskCreates++;return response({task_key:'basic-'+b.variant_ids[0],status:'pending'});}
@@ -72,7 +72,7 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
   for(let i=0;i<8;i++){const result=await step();if(result.data.status==='waiting_input')break;}
   const current=(await basic()).data.active;assert.equal(current.canApprove,true,JSON.stringify(current));return current;
  }
- return {service,db,git,photos,store,fetchImpl,backupConfig:githubBackupConfig(env,passwordHash),call,basic,api,machine,step,start,preview,set,artwork,png,url,live:()=>{live=true;},publisher:()=>service.basicGithub.connectPublisher('workflow-fixture-token-'.repeat(2),'1002',clock+300000),counts:()=>({creates,taskCreates,deletes}),manifest:()=>manifest};
+ return {service,db,git,photos,store,fetchImpl,backupConfig:githubBackupConfig(env,passwordHash),call,basic,api,machine,step,start,preview,set,artwork,png,url,live:()=>{live=true;},publisher:()=>service.basicGithub.connectPublisher('workflow-fixture-token-'.repeat(2),'1002',clock+300000),supplierFiles:(status,wrong=false,dedup=false)=>{supplierFileStatus=status;wrongSupplierFile=wrong;dedupSupplierFiles=dedup;},loseSupplierAck:()=>{loseSupplierAck=true;},counts:()=>({creates,taskCreates,deletes}),manifest:()=>manifest};
 }
 
 test('matching size templates reuse exact rendered pixels while retaining separate files and quality proofs',async t=>{
@@ -273,4 +273,45 @@ test('an explicitly allowed unspecified supplier audience remains allowed in the
  const f=await fixture(t,{unknownAudience:true});const b={requestKey:randomUUID(),setId:f.set,product:328,sizes:['M'],audience:'unisex'};assert.equal((await f.basic('/create',b)).status,409,'Unspecified products require explicit permission');
  const created=await f.basic('/create',{...b,allowUnspecifiedAudience:true});assert.equal(created.status,200,JSON.stringify(created.data));const item=created.data;const selection=JSON.parse(f.db.prepare('SELECT selection FROM factory_job_audiences WHERE job=?').get(item.job).selection);assert.equal(selection.allowUnspecifiedAudience,true);
  const visual=await f.preview(item);assert.equal(visual.canApprove,true);assert.deepEqual(visual.listing.copy.tags,['shirts']);assert.equal(f.counts().creates,1);assert.equal(f.counts().taskCreates,1);
+});
+
+function supplierBatch(f,item){
+ const r=f.db.prepare('SELECT recipe FROM factory_basic_items WHERE id=?').get(item.id),recipe=JSON.parse(r.recipe);recipe.outfitId='supplier-test-plan';
+ f.db.prepare('UPDATE factory_basic_items SET recipe=? WHERE id=?').run(JSON.stringify(recipe),item.id);
+ f.db.prepare('INSERT INTO factory_basic_outfit_runs VALUES(?,?,?,?,?,?,?)').run('supplier-test-plan','supplier-test-plan-key','Supplier test','planned','','2026-10-19','2026-10-19');
+ f.db.prepare('INSERT INTO factory_basic_outfit_pieces(id,outfit,ordinal,role,choice,signature,item,error,revision) VALUES(?,?,0,?,?,?,?,?,1)').run('supplier-test-piece','supplier-test-plan','shirts',JSON.stringify({product:328,setId:f.set}),'',item.id,'');
+ f.db.prepare("INSERT INTO factory_basic_batches(id,request_key,plans,recipes,status,accept_missing_model,error,created,updated) VALUES(?,?,?,?,'paused',0,'',?,?)").run('supplier-test-batch','supplier-test-batch-key',JSON.stringify(['supplier-test-plan']),JSON.stringify([{product:328,layout:{number:5},sizes:[],audience:'unisex'}]),'2026-10-19','2026-10-19');
+ f.db.prepare('INSERT INTO factory_basic_batch_items VALUES(?,?,?)').run('supplier-test-batch',item.id,item.recipe_key);
+}
+async function targetSupplier(f){
+ assert.equal((await f.api('control',{action:'pause'})).status,200);
+ const changed=await f.basic('/outfits/batch-control',{id:'supplier-test-batch',action:'resume',target:'printful',confirm:true});assert.equal(changed.status,200,JSON.stringify(changed.data));
+ assert.equal((await f.basic('/control',{action:'resume'})).status,200);
+}
+async function readySupplier(f,item){
+ for(let i=0;i<12;i++){const result=await f.step();if(result.data.status==='waiting_input'){assert.match(result.data.result.wait,/Pricing/);break;}}
+ assert.equal(f.counts().taskCreates,0);
+ assert.equal((await f.api('pricing/confirm-quotes',{job:item.job,extraCents:0,shippingCents:null,source:'Verified supplier included print charges',verified:true})).status,200);
+ assert.equal((await f.basic('/resume',{id:item.id})).status,200);await f.step();
+}
+test('Printful-only batch verifies real supplier files and cleans working storage without mockups or storefront publication',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);
+ assert.equal((await f.basic('/outfits/batch-control',{id:'supplier-test-batch',action:'resume',target:'printful'})).status,409);
+ assert.equal((await f.basic()).data.active.productionTarget,'storefront');await targetSupplier(f);await readySupplier(f,item);await f.step();
+ assert.equal(f.counts().creates,1);assert.equal((await f.basic()).data.active.listing.supplier_id,'501');assert.ok(workingAssets(f.git).length);
+ f.supplierFiles('waiting');assert.equal((await f.step()).data.status,'retry_wait');assert.ok((await f.basic()).data.active.storage.printBytes>0);
+ f.supplierFiles('ok',false,true);await f.step();const saved=(await f.basic()).data,done=saved.recent[0];assert.equal(saved.active,null);assert.equal(done.status,'supplier_created');assert.equal(done.cleanup.verified,true);assert.equal(done.cleanup.retainedSupplierProduct,'501');assert.equal(done.cleanup.supplierReceipt.variants.length,2);assert.equal(done.listing.store_id,null);assert.equal(f.manifest(),null);assert.equal(f.counts().taskCreates,0);assert.equal(f.counts().deletes,0);assert.equal(workingAssets(f.git).length,0);assert.ok(f.db.prepare('SELECT length(data) n FROM factory_artwork WHERE id=?').get(f.artwork).n>0);assert.equal(saved.outfitQueue.batch.printfulCreated,1);assert.equal(saved.outfitQueue.batch.published,0);
+});
+test('Printful-only recovers an accepted POST without duplicates and holds mismatched file references',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);await readySupplier(f,item);f.loseSupplierAck();assert.equal((await f.step()).data.status,'retry_wait');await f.step();assert.equal(f.counts().creates,1);
+ f.supplierFiles('ok',true);const held=await f.step();assert.equal(held.data.status,'waiting_input');assert.match(held.data.result.wait,/reference differs/);assert.ok((await f.basic()).data.active.storage.printBytes>0);assert.equal(f.manifest(),null);f.supplierFiles('ok');await f.basic('/resume',{id:item.id});await f.step();assert.equal((await f.basic()).data.recent[0].status,'supplier_created');assert.equal(f.counts().creates,1);
+});
+test('Printful-only authorization is bound to the frozen batch recipe',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);assert.equal((await f.basic()).data.active.productionTarget,'printful');f.db.prepare("UPDATE factory_basic_batch_items SET recipe_key='different'").run();assert.equal((await f.basic()).data.active.productionTarget,'storefront');
+});
+
+test('Printful-only cleanup retries automatically after attachment deletion fails, retaining the supplier product',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);await readySupplier(f,item);await f.step();
+ f.git.failDelete=true;const claim=await f.machine('claim');assert.equal(claim.data.job,item.job);const result=await f.machine('step',{job:item.job,lease:claim.data.lease});assert.notEqual(result.status,200);assert.equal((await f.basic()).data.active.status,'cleanup_failed');assert.equal(f.counts().creates,1);
+ f.git.failDelete=false;await f.service.basic.tick();assert.equal((await f.basic()).data.active,null);assert.equal((await f.basic()).data.recent[0].status,'supplier_created');assert.equal(f.counts().deletes,0);assert.equal(f.counts().creates,1);
 });

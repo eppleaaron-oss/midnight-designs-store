@@ -68,3 +68,9 @@ test('an explicitly mapped supplier default source reaches the frozen native lay
  const inspect=f.basic.inspect;f.basic.inspect=async choice=>{assert.deepEqual(choice.layout.assignments,{front:'default',back:'back',sleeve_left:null});assert.equal(choice.setId,'pf:stag');return inspect(choice);};
  await f.start(['stag']);await f.batch.tick();assert.equal(f.counts().made,1);assert.equal(f.batch.snapshot().recipes[0].layout.assignments.front,'front','The shared recipe remains unchanged');
 });
+
+test('supplier-only pieces advance the finite batch without being counted as storefront published',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();f.run("UPDATE factory_basic_batches SET target='printful'");await f.batch.tick();
+ for(let i=0;i<2;i++){const c=f.basic.batchCurrent();f.run("UPDATE factory_basic_items SET closed=1,status='supplier_created',decision='supplier_only',cleanup=? WHERE id=?",JSON.stringify({verified:true,retainedSupplierProduct:'printful:'+i}),c.id);await f.batch.tick();}
+ const s=f.batch.snapshot();assert.equal(s.status,'complete');assert.equal(s.printfulCreated,2);assert.equal(s.published,0);assert.equal(f.counts().approved,0);assert.equal(f.counts().made,2);
+});
