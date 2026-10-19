@@ -39,6 +39,47 @@
         }
       ],
       "url": "products/482918795.html"
+    },
+    "482923908": {
+      "id": "482923908",
+      "catalogProductId": 1479,
+      "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",
+      "description": "Rose Eclipse artwork on All-Over Print Unisex Cotton Wide-Leg Pants. Printed background: Black.",
+      "category": "pants",
+      "tags": [
+        "pants",
+        "unisex"
+      ],
+      "collections": [
+        "Rose Eclipse"
+      ],
+      "outfitId": null,
+      "factoryExternalId": "midnight-factory-00fba902-955b-41ca-be37-b3513e120ecf",
+      "image": "https://midnight-designs.store/images/factory/482923908/e295cc47dd0d5f0806e97e9b822bc4b004087c9d8510b634ba3bb47e80f6f5e7.jpg",
+      "images": [
+        "https://midnight-designs.store/images/factory/482923908/e295cc47dd0d5f0806e97e9b822bc4b004087c9d8510b634ba3bb47e80f6f5e7.jpg",
+        "https://midnight-designs.store/images/factory/482923908/900aea8935a4145d48a725b5c968b584af24ebbee044f90620edecb10e1abb16.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5581851703",
+          "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants / Black / M",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46253,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "supplierBaseColor": "White",
+          "availability": "active",
+          "images": [
+            "https://midnight-designs.store/images/factory/482923908/e295cc47dd0d5f0806e97e9b822bc4b004087c9d8510b634ba3bb47e80f6f5e7.jpg",
+            "https://midnight-designs.store/images/factory/482923908/900aea8935a4145d48a725b5c968b584af24ebbee044f90620edecb10e1abb16.jpg"
+          ],
+          "image": "https://midnight-designs.store/images/factory/482923908/e295cc47dd0d5f0806e97e9b822bc4b004087c9d8510b634ba3bb47e80f6f5e7.jpg"
+        }
+      ],
+      "url": "products/482923908.html"
     }
   }
 }
