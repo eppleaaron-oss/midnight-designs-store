@@ -6,6 +6,7 @@ import {mkdtemp,rm,stat,writeFile,readFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {GithubSnapshotStore,githubBackupConfig,factoryGithubBackups,prepareGithubRecovery} from './factory-github-backup.mjs';
+import {githubWorkingFixture} from './factory-github-fixture.mjs';
 import {durableQueueStorage} from './factory-storage.mjs';
 import {createService} from './server.mjs';
 
@@ -13,13 +14,14 @@ const config={repo:'owner/private-data',token:'private-fixture-token',key:Buffer
 const objectHash=b=>{const bytes=Buffer.from(b);return createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');};
 const reply=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json',...headers}});
 function github(){
+ const working=githubWorkingFixture();
  const blobs=new Map(),trees=new Map([['b'.repeat(40),new Map()]]),commits=new Map([['a'.repeat(40),{tree:{sha:'b'.repeat(40)},parents:[]}]]),calls=[];
- const g={head:'a'.repeat(40),private:true,blobs,trees,commits,calls,rate:false,conflict:false,failRef:false,dropResponse:false,failReads:false};
+ const g={head:'a'.repeat(40),private:true,blobs,trees,commits,calls,rate:false,conflict:false,failRef:false,dropResponse:false,failReads:false,releases:working.releases,assets:working.assets};
  g.fetch=async(url,options={})=>{
-  assert.equal(options.headers.Authorization,'Bearer '+config.token);const u=new URL(url);assert.equal(u.origin,'https://api.github.com');const path=u.pathname.slice('/repos/owner/private-data'.length),method=options.method||'GET',body=options.body?JSON.parse(options.body):null;calls.push({path,method,body});
+  if(new URL(url).pathname.includes('/releases')){working.private=g.private;return working.fetch(url,options);}assert.equal(options.headers.Authorization,'Bearer '+config.token);const u=new URL(url);assert.equal(u.origin,'https://api.github.com');const path=u.pathname.slice('/repos/owner/private-data'.length),method=options.method||'GET',body=options.body?JSON.parse(options.body):null;calls.push({path,method,body});
   if(g.rate)return reply({message:'Do not surface secret provider responses'},429,{'retry-after':'120'});
   if(g.failReads&&method==='GET')throw Error('Sensitive network detail');
-  if(path==='')return reply({id:123,private:g.private,visibility:g.private?'private':'public',default_branch:'main',size:2});
+  if(path==='')return reply({id:123,private:g.private,visibility:g.private?'private':'public',default_branch:'main',size:g.size||2});
   if(path==='/git/ref/heads/main'){if(g.staleReads>0){g.staleReads--;return reply({object:{sha:g.staleHead}});}return reply({object:{sha:g.head}});}
   if(path.startsWith('/git/commits/')&&method==='GET')return reply(commits.get(path.split('/').at(-1)));
   if(path==='/contents/factory-backup/latest.enc'){const commit=commits.get(u.searchParams.get('ref')),tree=trees.get(commit.tree.sha),sha=tree.get('factory-backup/latest.enc');if(!sha)return reply({message:'Not Found'},404);const data=blobs.get(sha),download=g.alteredContents?Buffer.from(data.toString('utf8')):data;return reply({sha,encoding:'base64',content:download.toString('base64'),size:download.length});}
@@ -135,3 +137,19 @@ test('real authenticated backend saves and recovers its complete schema, with pr
 });
 
 test('a changed remote checkpoint holds the old backend before another side effect',async t=>{const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});f.gh.head='c'.repeat(40);const before=f.gh.calls.filter(c=>c.method!=='GET').length;await assert.rejects(f.store.assertCurrent(),/changed on another backend/);assert.equal(f.store.hold,true);assert.equal(f.gh.calls.filter(c=>c.method!=='GET').length,before);});
+
+
+test('an over-limit history still restores the legacy snapshot without making any writes',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});f.gh.size=1024*1024+1;const count=f.gh.calls.length;const reader=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch,sleep:async()=>{}}),path=join(f.dir,'full-history.sqlite');await reader.restore(path);assert.equal(f.gh.calls.slice(count).some(c=>c.method!=='GET'),false);const restored=new DatabaseSync(path);try{assert.equal(restored.prepare('SELECT status FROM factory_jobs').get().status,'awaiting_review');}finally{restored.close();}await assert.rejects(reader.snapshot(f.db),/1 GB safety limit/);
+});
+test('release snapshots migrate a full history, restore after restart and retain only two verified generations',async t=>{
+ const f=await fixture(t,{large:true});await f.store.snapshot(f.db,{initialize:true});const legacyHead=f.gh.head,legacyBytes=[...f.gh.blobs.values()].reduce((n,b)=>n+b.length,0);f.gh.size=1024*1024+1;const writer=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.connect();f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');await writer.snapshot(f.db);assert.equal(writer.manifest.format,2);assert.ok(writer.manifest.release.id);assert.notEqual(f.gh.head,legacyHead);assert.ok([...f.gh.blobs.values()].reduce((n,b)=>n+b.length,0)-legacyBytes<65536,'Bulk snapshots do not enter Git history');
+ const unrelated={id:9999,tag_name:'owner-release',draft:true,body:'keep'};f.gh.releases.set(unrelated.id,unrelated);
+ for(const status of ['published','reviewed']){f.db.prepare('UPDATE factory_jobs SET status=?').run(status);await writer.snapshot(f.db);}assert.equal(f.gh.releases.size,3,'Two recovery generations plus the unrelated release');assert.ok(f.gh.releases.has(unrelated.id));
+ const path=join(f.dir,'release-recovery.sqlite'),reader=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await reader.restore(path);const db=new DatabaseSync(path);try{assert.equal(db.prepare('SELECT status FROM factory_jobs').get().status,'reviewed');assert.deepEqual(Buffer.from(db.prepare('SELECT data FROM factory_artwork').get().data),f.artwork);}finally{db.close();}
+ const writes=f.gh.calls.filter(c=>c.method!=='GET').length;await writer.snapshot(f.db);assert.equal(f.gh.calls.filter(c=>c.method!=='GET').length,writes,'An unchanged snapshot uploads nothing');
+ const data=f.gh.assets.get(writer.manifest.chunks[0].asset).data;data[30]^=1;const damaged=join(f.dir,'damaged-release.sqlite');await assert.rejects(reader.restore(damaged),/could not be verified/);await assert.rejects(stat(damaged),{code:'ENOENT'});
+});
+test('a failed release checkpoint preserves the last recoverable generation and every working release',async t=>{
+ const f=await fixture(t),writer=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.snapshot(f.db,{initialize:true});const first=writer.manifest.release.id,head=f.gh.head;f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');f.gh.failRef=true;await assert.rejects(writer.snapshot(f.db),/HTTP 500/);assert.equal(f.gh.head,head);assert.ok(f.gh.releases.has(first));const reader=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await reader.restore(join(f.dir,'failed-write-recovery.sqlite'));assert.equal(reader.manifest.release.id,first);
+});
