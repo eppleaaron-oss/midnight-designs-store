@@ -315,3 +315,14 @@ test('Printful-only cleanup retries automatically after attachment deletion fail
  f.git.failDelete=true;const claim=await f.machine('claim');assert.equal(claim.data.job,item.job);const result=await f.machine('step',{job:item.job,lease:claim.data.lease});assert.notEqual(result.status,200);assert.equal((await f.basic()).data.active.status,'cleanup_failed');assert.equal(f.counts().creates,1);
  f.git.failDelete=false;await f.service.basic.tick();assert.equal((await f.basic()).data.active,null);assert.equal((await f.basic()).data.recent[0].status,'supplier_created');assert.equal(f.counts().deletes,0);assert.equal(f.counts().creates,1);
 });
+
+test('Printful-only cleanup waits for the supplier receipt checkpoint before deleting recoverable files',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);await readySupplier(f,item);await f.step();
+ let release,entered=false;const gate=new Promise(r=>{release=r;}),checkpoint=f.service.basicGithub.checkpoint,snapshot=f.service.githubBackups.snapshot;
+ f.service.basicGithub.checkpoint=async job=>{if(f.db.prepare('SELECT job FROM factory_supplier_receipts WHERE job=?').get(item.job)&&!entered){entered=true;await gate;}return checkpoint(job);};
+ f.service.githubBackups.snapshot=()=>({...snapshot(),running:entered});
+ const claim=await f.machine('claim'),step=f.machine('step',{job:item.job,lease:claim.data.lease});
+ for(let i=0;i<100&&!entered;i++)await new Promise(r=>setTimeout(r,5));assert.equal(entered,true);
+ await f.service.basic.tick();assert.ok(f.db.prepare('SELECT sum(length(data)) n FROM factory_print_files').get().n>0,'Pending durable receipt must retain all print pixels');assert.ok(workingAssets(f.git).length>0,'Pending receipt must retain its recovery attachments');
+ f.service.githubBackups.snapshot=snapshot;release();assert.equal((await step).status,200);assert.equal((await f.basic()).data.active,null);assert.equal(f.counts().creates,1);assert.equal(f.counts().deletes,0);
+});
