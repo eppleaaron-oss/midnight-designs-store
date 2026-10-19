@@ -153,3 +153,11 @@ test('Basic persists exact inspected numeric profiles per product and layout and
  const templateKey=fresh.layoutOptions.areas[0].key;assert.ok(templateKey);assert.equal(profile.variants[0].areas[0].width,1800);assert.equal(profile.variants[0].areas[0].printfile_id,1);
  const {basicSizing}=await import('./factory-basic-sizing.mjs'),sizing=basicSizing({db:f.db,workflow:null}),bp=(await f.api('blueprints/product/328')).data;bp.layouts={templates:[{template_id:91,image_url:'https://files.cdn.printful.com/new-template.png',template_width:1800,template_height:2400,print_area_width:1800,print_area_height:2400,print_area_left:0,print_area_top:0}],variant_mapping:[{variant_id:3281,templates:[{placement:'front',template_id:91},{placement:'back',template_id:91}]}]};assert.equal(sizing.options(fresh,bp).savedProfiles[0].compatible,false,'a different exact supplier template invalidates a same-size profile');
 });
+
+
+test('multiple reviewed native maps save atomically and reject an invalid map without partial writes',async t=>{
+ const f=await fixture(t,{shoes:true}),base=await f.basic('/inspect',{...f.choice,geometryOnly:true}),areas=base.data.layoutOptions.areas;
+ const profile=areaKey=>({areaKey,reviewed:true,orientation:'wearer',reference:'Reviewed fixture native guideline',anchor:'outer_canvas',safeRect:{x:1,y:1,width:10,height:10},xIn:5,yIn:5});
+ const invalid=await f.basic('/layouts/profiles',{...f.choice,profiles:[profile(areas[0].key),{...profile(areas[1].key),xIn:99}]});assert.equal(invalid.status,409);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_basic_geometry').get().n,0);
+ assert.equal((await f.basic('/layouts/profiles',{...f.choice,profiles:areas.slice(0,2).map(a=>profile(a.key))})).status,200);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_basic_geometry').get().n,2);
+});

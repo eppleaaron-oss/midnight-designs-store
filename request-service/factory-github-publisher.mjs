@@ -27,6 +27,7 @@ export function factoryGithubPublisher({workspace,db,body,send,fail,limit,fetchI
   if(typeof token!=='string'||token.length<20||token.length>500||/[\r\n]/.test(token))fail(400,'GitHub workflow credential is missing.');
   await workspace.connectPublisher(token,String(claims.run_id),claims.exp*1000);
   const pending=!!db.prepare("SELECT b.id FROM factory_basic_items b LEFT JOIN factory_listings l ON l.job=b.job WHERE b.closed=0 AND b.decision='approved' AND coalesce(l.status,'')<>'published'").get();
-  send(res,200,{connected:true,pending});return true;
+  const hasBatch=db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='factory_basic_batches'").get(),batch=!!(hasBatch&&db.prepare("SELECT id FROM factory_basic_batches WHERE status='running' LIMIT 1").get());
+  send(res,200,{connected:true,pending:pending||batch,batch});return true;
  }};
 }
