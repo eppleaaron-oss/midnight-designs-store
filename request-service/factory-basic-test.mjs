@@ -1,3 +1,7 @@
+// Recovery attachments persist after item cleanup; only that item's working
+// attachments must disappear. Backup retention is covered by backup tests.
+const workingReleases=g=>[...g.releases.values()].filter(r=>!r.tag_name.startsWith('md-basic-recovery-v2-'));
+const workingAssets=g=>[...g.assets.values()].filter(a=>workingReleases(g).some(r=>r.id===a.release));
 import {factoryBasicGithub} from './factory-basic-github.mjs';
 import {GithubSnapshotStore,githubBackupConfig} from './factory-github-backup.mjs';
 import {githubWorkingFixture} from './factory-github-fixture.mjs';
@@ -84,19 +88,19 @@ test('Basic creates one real tracked recipe, retrieves model mockups before appr
 
 test('GitHub Basic needs no paid disk or AI budget, restores exact temporary attachments, publishes permanent photos, and deletes every working attachment',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true});assert.equal((await f.basic()).data.blockers.length,0);assert.equal((await f.basic()).data.readiness.storageDurable,false);assert.equal((await f.basic()).data.settings.daily_budget,0);
- const item=await f.start(),preview=await f.preview(item);assert.equal(preview.mockups.length,4);assert.ok(f.git.assets.size>0);assert.ok(f.git.releases.size>0);assert.equal(f.photos.size,0,'unapproved photos never enter the public repository');
+ const item=await f.start(),preview=await f.preview(item);assert.equal(preview.mockups.length,4);assert.ok(workingAssets(f.git).length>0);assert.ok(workingReleases(f.git).length>0);assert.equal(f.photos.size,0,'unapproved photos never enter the public repository');
  const dir=await mkdtemp(join(tmpdir(),'midnight-basic-github-'));t.after(()=>rm(dir,{recursive:true,force:true}));const path=join(dir,'restore.sqlite');await new GithubSnapshotStore(f.backupConfig,{fetchImpl:f.git.fetch,sleep:async()=>{}}).restore(path);const restored=new DatabaseSync(path);t.after(()=>restored.close());restored.function('factory_history_actor',()=>'{"type":"system","name":"Recovery test"}');
  assert.equal(restored.prepare('SELECT sum(length(data)) n FROM factory_print_files').get().n,0,'working print bytes are absent from versioned Git snapshots');assert.equal(restored.prepare('SELECT sum(length(data)) n FROM factory_mockups').get().n,0);assert.ok(restored.prepare('SELECT length(data) n FROM factory_artwork WHERE id=?').get(f.artwork).n>0,'original is retained');
  const remote=factoryBasicGithub({db:restored,backups:{connection:()=>f.backupConfig,snapshot:()=>({initialized:true}),checkpoint:async()=>{}},env:{FACTORY_BACKUP_GITHUB_TOKEN:'private-fixture-token'},fetchImpl:f.fetchImpl,sleep:async()=>{}});let result;do{result=await remote.hydrate(item.job);}while(result?.defer);assert.ok(restored.prepare('SELECT sum(length(data)) n FROM factory_print_files').get().n>0);assert.deepEqual(restored.prepare('SELECT task_key FROM factory_mockup_tasks ORDER BY variant').all(),f.db.prepare('SELECT task_key FROM factory_mockup_tasks ORDER BY variant').all());
- assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,200);assert.equal((await f.step()).data.status,'retry_wait');assert.ok(f.photos.size>0);assert.ok(f.git.assets.size>0,'working files stay until the store actually verifies');f.live();assert.equal((await f.step()).data.status,'completed');
- const done=(await f.basic()).data;assert.equal(done.active,null);assert.equal(done.recent[0].cleanup.github.verified,true);assert.ok(done.recent[0].cleanup.github.releasedRemoteBytes>0);assert.equal(f.git.assets.size,0);assert.equal(f.git.releases.size,0);assert.equal(f.db.prepare('SELECT sum(length(data)) n FROM factory_mockups WHERE job=?').get(item.job).n,0);assert.ok(f.photos.size>0);assert.ok(f.manifest().products['501'].images.every(u=>u.startsWith('https://midnight-designs.store/images/factory/501/')));assert.equal(f.counts().creates,1);assert.equal(f.counts().taskCreates,2);
+ assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,200);assert.equal((await f.step()).data.status,'retry_wait');assert.ok(f.photos.size>0);assert.ok(workingAssets(f.git).length>0,'working files stay until the store actually verifies');f.live();assert.equal((await f.step()).data.status,'completed');
+ const done=(await f.basic()).data;assert.equal(done.active,null);assert.equal(done.recent[0].cleanup.github.verified,true);assert.ok(done.recent[0].cleanup.github.releasedRemoteBytes>0);assert.equal(workingAssets(f.git).length,0);assert.equal(workingReleases(f.git).length,0);assert.equal(f.db.prepare('SELECT sum(length(data)) n FROM factory_mockups WHERE job=?').get(item.job).n,0);assert.ok(f.photos.size>0);assert.ok(f.manifest().products['501'].images.every(u=>u.startsWith('https://midnight-designs.store/images/factory/501/')));assert.equal(f.counts().creates,1);assert.equal(f.counts().taskCreates,2);
  const image=preview.mockups[0],redirect=await fetch(f.url+image.url,{redirect:'manual'});assert.equal(redirect.status,302);assert.ok(redirect.headers.get('location').startsWith('https://midnight-designs.store/images/factory/'));
 });
 
 test('GitHub rejection preserves originals and holds the next item until remote deletion really succeeds',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.preview(item);f.git.failDelete=true;
- assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,503);assert.equal((await f.basic()).data.active.status,'cleanup_failed');assert.ok(f.git.assets.size>0);assert.equal((await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'})).status,409);assert.equal(f.photos.size,0);
- f.git.failDelete=false;assert.equal((await f.basic('/resume',{id:item.id})).status,200);const d=(await f.basic()).data;assert.equal(d.active,null);assert.equal(d.recent[0].decision,'disapproved');assert.equal(d.recent[0].cleanup.github.verified,true);assert.equal(f.git.assets.size,0);assert.ok(f.db.prepare('SELECT length(data) n FROM factory_artwork WHERE id=?').get(f.artwork).n>0);assert.equal(f.counts().deletes,1);
+ assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,503);assert.equal((await f.basic()).data.active.status,'cleanup_failed');assert.ok(workingAssets(f.git).length>0);assert.equal((await f.basic('/create',{requestKey:randomUUID(),setId:f.set,product:328,audience:'unisex'})).status,409);assert.equal(f.photos.size,0);
+ f.git.failDelete=false;assert.equal((await f.basic('/resume',{id:item.id})).status,200);const d=(await f.basic()).data;assert.equal(d.active,null);assert.equal(d.recent[0].decision,'disapproved');assert.equal(d.recent[0].cleanup.github.verified,true);assert.equal(workingAssets(f.git).length,0);assert.ok(f.db.prepare('SELECT length(data) n FROM factory_artwork WHERE id=?').get(f.artwork).n>0);assert.equal(f.counts().deletes,1);
 });
 
 test('Disapproval deletes only its owned unpublished supplier draft, originals survive, and failed cleanup keeps the next item locked',async t=>{
@@ -109,16 +113,16 @@ test('cleanup waits for GitHub, retains reclaimed bytes across retries, and rele
  const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.preview(item);
  f.git.failDelete=true;assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,503);
  const first=(await f.basic()).data.active;assert.equal(first.cleanup.verified,false);assert.equal(first.cleanup.localVerified,true);assert.ok(first.cleanup.reclaimedBytes>0);assert.ok(first.cleanup.files.length>0);
- const remaining=f.git.assets.size;f.store.hold=true;
- await assert.rejects(f.service.basic.tick(),/GitHub/);const held=(await f.basic()).data.active;assert.equal(held.cleanup.reclaimedBytes,first.cleanup.reclaimedBytes);assert.deepEqual(held.cleanup.files,first.cleanup.files);assert.equal(held.cleanup.verified,false);assert.equal(held.closed,0);assert.equal(f.git.assets.size,remaining);
+ const remaining=workingAssets(f.git).length;f.store.hold=true;
+ await assert.rejects(f.service.basic.tick(),/GitHub/);const held=(await f.basic()).data.active;assert.equal(held.cleanup.reclaimedBytes,first.cleanup.reclaimedBytes);assert.deepEqual(held.cleanup.files,first.cleanup.files);assert.equal(held.cleanup.verified,false);assert.equal(held.closed,0);assert.equal(workingAssets(f.git).length,remaining);
  f.store.hold=false;f.git.failDelete=false;f.git.staleReadsAfterWrite=3;
- assert.equal((await f.basic('/resume',{id:item.id})).status,200);const state=(await f.basic()).data;assert.equal(state.active,null);assert.equal(state.recent[0].cleanup.verified,true);assert.equal(state.recent[0].cleanup.reclaimedBytes,first.cleanup.reclaimedBytes);assert.deepEqual(state.recent[0].cleanup.files,first.cleanup.files);assert.equal(f.git.assets.size,0);assert.equal(state.recent[0].error,'');assert.equal(f.store.hold,false);assert.equal(f.counts().deletes,1);
+ assert.equal((await f.basic('/resume',{id:item.id})).status,200);const state=(await f.basic()).data;assert.equal(state.active,null);assert.equal(state.recent[0].cleanup.verified,true);assert.equal(state.recent[0].cleanup.reclaimedBytes,first.cleanup.reclaimedBytes);assert.deepEqual(state.recent[0].cleanup.files,first.cleanup.files);assert.equal(workingAssets(f.git).length,0);assert.equal(state.recent[0].error,'');assert.equal(f.store.hold,false);assert.equal(f.counts().deletes,1);
 });
 test('a failed final checkpoint never reports verified cleanup and retries without losing the original cleanup record',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.preview(item);let failFinal=true;
  f.service.basic.setWorkspace({...f.service.basicGithub,async checkpoint(job){if(failFinal&&f.db.prepare('SELECT closed FROM factory_basic_items WHERE id=?').get(item.id).closed){failFinal=false;throw Object.assign(Error('Checkpoint confirmation delayed'),{status:503});}return f.service.basicGithub.checkpoint(job);}});
  assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,503);const held=(await f.basic()).data.active;
- assert.equal(held.closed,0);assert.equal(held.cleanup.verified,false);assert.equal(held.cleanup.github.verified,true);assert.ok(held.cleanup.reclaimedBytes>0);assert.equal(f.git.assets.size,0);
+ assert.equal(held.closed,0);assert.equal(held.cleanup.verified,false);assert.equal(held.cleanup.github.verified,true);assert.ok(held.cleanup.reclaimedBytes>0);assert.equal(workingAssets(f.git).length,0);
  assert.equal((await f.basic('/resume',{id:item.id})).status,200);const done=(await f.basic()).data;assert.equal(done.active,null);assert.equal(done.recent[0].cleanup.verified,true);assert.equal(done.recent[0].cleanup.reclaimedBytes,held.cleanup.reclaimedBytes);assert.deepEqual(done.recent[0].cleanup.files,held.cleanup.files);assert.equal(f.counts().deletes,1);assert.equal(done.recent[0].error,'');
 });
 
@@ -148,7 +152,7 @@ test('Basic follows private installations’ existing login setting and preserve
 test('the GitHub workflow can connect publishing without another owner token and expired connections defer safely',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true,managedPublisher:true});const state=(await f.basic()).data;assert.equal(state.github.managed,true);assert.equal(state.github.storageTest.verified,true);assert.equal(state.github.storageTest.remainingAssets,0);assert.equal(state.github.publisherOnline,false);assert.equal(state.blockers.length,0);
  const item=await f.start();await f.preview(item);await f.basic('/approve',{id:item.id,confirm:true});const waiting=await f.step();assert.equal(waiting.data.status,'retry_wait');assert.match(waiting.data.result.note,/GitHub publishing connection/);assert.equal(f.manifest(),null);
- await f.publisher();assert.equal((await f.step()).data.status,'retry_wait');assert.ok(f.manifest());f.live();await f.publisher();assert.equal((await f.step()).data.status,'completed');assert.equal((await f.basic()).data.active,null);assert.equal(f.git.assets.size,0);
+ await f.publisher();assert.equal((await f.step()).data.status,'retry_wait');assert.ok(f.manifest());f.live();await f.publisher();assert.equal((await f.step()).data.status,'completed');assert.equal((await f.basic()).data.active,null);assert.equal(workingAssets(f.git).length,0);
 });
 
 
@@ -163,11 +167,11 @@ test('GitHub outfit produces two coordinated pieces serially, waits for owner de
  await f.service.basicOutfits.tick();assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1);
  assert.equal((await f.api('outfits/publish',{id:outfit.id,published:true})).status,409);const legacyPiece=f.db.prepare('SELECT id FROM factory_outfit_items WHERE outfit=?').get(outfit.id);assert.equal((await f.api('outfits/replace',{itemId:legacyPiece.id})).status,409);
  await f.preview(first);await f.service.basicOutfits.tick();assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,1,'owner review holds the next piece');
- await f.basic('/approve',{id:first.id,confirm:true});await f.step();f.live();assert.equal((await f.step()).data.status,'completed');assert.equal(f.git.assets.size,0);
+ await f.basic('/approve',{id:first.id,confirm:true});await f.step();f.live();assert.equal((await f.step()).data.status,'completed');assert.equal(workingAssets(f.git).length,0);
  await f.service.basicOutfits.tick();const second=(await f.basic()).data.active;assert.ok(second);assert.notEqual(second.id,first.id);assert.equal(second.recipe.product,390);
  f.db.prepare('UPDATE factory_basic_outfit_pieces SET item=NULL WHERE item=?').run(second.id);await f.service.basicOutfits.tick();assert.equal(f.db.prepare('SELECT count(*) n FROM factory_jobs').get().n,2,'lost queue pointer reconciles without a duplicate job');
  await f.preview(second);await f.basic('/approve',{id:second.id,confirm:true});for(let i=0;i<4;i++){if((await f.step()).data.status==='completed')break;}
- await f.service.basicOutfits.tick();const done=(await f.basic()).data;assert.equal(done.active,null);assert.equal(done.outfitQueue.active,null);assert.equal(done.outfitQueue.recent[0].status,'complete');assert.equal(done.outfitQueue.recent[0].published,2);assert.equal(f.git.assets.size,0);assert.equal(f.git.releases.size,0);assert.equal(f.counts().creates,2);
+ await f.service.basicOutfits.tick();const done=(await f.basic()).data;assert.equal(done.active,null);assert.equal(done.outfitQueue.active,null);assert.equal(done.outfitQueue.recent[0].status,'complete');assert.equal(done.outfitQueue.recent[0].published,2);assert.equal(workingAssets(f.git).length,0);assert.equal(workingReleases(f.git).length,0);assert.equal(f.counts().creates,2);
  const publicOutfits=(await f.call('/api/outfits')).data.outfits;assert.equal(publicOutfits.length,1);assert.equal(publicOutfits[0].id,outfit.id);assert.equal(publicOutfits[0].products.length,2);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_artwork').get().n,1);
 });
 
@@ -207,7 +211,7 @@ test('Basic saves real previews with no price rules, but cannot create a supplie
  assert.equal(current.listing.supplier_id,null);assert.equal(current.canApprove,false);assert.equal(current.listing.approved,0);assert.equal(f.counts().creates,0);assert.equal(f.manifest(),null);
  assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,409,'visual previews never bypass prices or owner approval');
  assert.throws(()=>f.service.publishingEngine.prepared(item.job),/Pricing hold/);
- assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,200);assert.equal((await f.basic()).data.active,null);assert.equal(f.git.assets.size,0);assert.equal(f.counts().deletes,0,'no supplier product exists to delete');
+ assert.equal((await f.basic('/disapprove',{id:item.id,confirm:true})).status,200);assert.equal((await f.basic()).data.active,null);assert.equal(workingAssets(f.git).length,0);assert.equal(f.counts().deletes,0,'no supplier product exists to delete');
  assert.ok(f.db.prepare('SELECT length(data) bytes FROM factory_artwork WHERE id=?').get(f.artwork).bytes>0);
 });
 

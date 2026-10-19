@@ -1,3 +1,4 @@
+import {BasicGithubAssets} from './factory-basic-github.mjs';
 import {stripBasicWorkingPixels} from './factory-basic-storage.mjs';
 import {backup,DatabaseSync} from 'node:sqlite';
 import {createCipheriv,createDecipheriv,createHash,createHmac,hkdfSync,randomBytes} from 'node:crypto';
@@ -32,7 +33,7 @@ export function githubBackupConfig(env={},passwordHash=''){
   if(!candidate.equals(key)&&!recoveryKeys.some(k=>k.key.equals(candidate)))recoveryKeys.push({key:candidate,source:'original backend owner hash'});
  }
  const fingerprint=passwordHash?digest(passwordHash).slice(0,4)+'…'+digest(passwordHash).slice(-4):'unavailable';
- return {repo:env.FACTORY_BACKUP_REPO,token,key,keySource,recoveryKeys,ownerFingerprint:fingerprint,interval,maxBytes:maxMB*1024*1024};
+ return {repo:env.FACTORY_BACKUP_REPO,token,key,keySource,recoveryKeys,ownerFingerprint:fingerprint,interval,maxBytes:maxMB*1024*1024,releaseSnapshots:true};
 }
 function seal(bytes,key,context){const iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',key,iv);cipher.setAAD(Buffer.from(context));const encrypted=Buffer.concat([cipher.update(bytes),cipher.final()]);return Buffer.concat([iv,cipher.getAuthTag(),encrypted]);}
 function unseal(bytes,key,context){try{if(bytes.length<29)throw Error();const decipher=createDecipheriv('aes-256-gcm',key,bytes.subarray(0,12));decipher.setAAD(Buffer.from(context));decipher.setAuthTag(bytes.subarray(12,28));return Buffer.concat([decipher.update(bytes.subarray(28)),decipher.final()]);}catch{throw problem('Backup authentication failed. Check the original encryption key; the local database was not replaced.');}}
@@ -55,7 +56,7 @@ export class GithubSnapshotStore{
    if(response.status===204)return {};try{return await response.json();}catch{throw problem('GitHub returned an unreadable backup response.');}
   }
  }
- async privateRepository(){const repo=await this.api('');if(repo.private!==true||repo.visibility&&repo.visibility!=='private')throw problem('Factory backups require a private GitHub repository.');if(!Number.isSafeInteger(repo.id)||repo.id<1)throw problem('GitHub did not identify the private backup repository.');if(this.repositoryId!==null&&this.repositoryId!==repo.id)throw problem('Backup repository identity changed.');if(repo.size>1024*1024)throw problem('GitHub backup repository exceeds the 1 GB safety limit. Export and review storage before saving more snapshots.');this.repositoryId=repo.id;return repo;}
+ async privateRepository({write=false}={}){const repo=await this.api('');if(repo.private!==true||repo.visibility&&repo.visibility!=='private')throw problem('Factory backups require a private GitHub repository.');if(!Number.isSafeInteger(repo.id)||repo.id<1)throw problem('GitHub did not identify the private backup repository.');if(this.repositoryId!==null&&this.repositoryId!==repo.id)throw problem('Backup repository identity changed.');if(write&&repo.size>1024*1024)throw problem('GitHub backup repository exceeds the 1 GB safety limit. Export and review storage before saving more snapshots.');this.repositoryId=repo.id;return repo;}
  async connect(){
   if(this.head)return this.manifest;
   const repo=await this.privateRepository();this.branch=repo.default_branch;
@@ -96,9 +97,9 @@ export class GithubSnapshotStore{
   }
  }
  async assertCurrent(){await this.connect();while(!await this.confirmHead(this.head,this.previousHead)){};}
- validateManifest(m){if(m?.format!==1||!Number.isSafeInteger(m.bytes)||m.bytes<512||m.bytes>this.maxBytes||!/^[a-f0-9]{64}$/.test(m.sha256)||!Array.isArray(m.chunks)||m.chunks.length!==Math.ceil(m.bytes/CHUNK)||!Number.isFinite(Date.parse(m.created)))throw problem('Backup manifest is invalid or exceeds the configured size limit.');let size=0;for(const c of m.chunks){if(!/^[a-f0-9]{64}$/.test(c.id)||!sha(c.sha)||!Number.isSafeInteger(c.bytes)||c.bytes<1||c.bytes>CHUNK)throw problem('Backup chunk manifest is invalid.');size+=c.bytes;}if(size!==m.bytes)throw problem('Backup size does not match its manifest.');}
+ validateManifest(m){if(![1,2].includes(m?.format)||!Number.isSafeInteger(m.bytes)||m.bytes<512||m.bytes>this.maxBytes||!/^[a-f0-9]{64}$/.test(m.sha256)||!Array.isArray(m.chunks)||m.chunks.length!==Math.ceil(m.bytes/CHUNK)||!Number.isFinite(Date.parse(m.created)))throw problem('Backup manifest is invalid or exceeds the configured size limit.');if(m.format===2&&(!/^recovery-v2-[a-f0-9]{64}$/.test(m.release?.job)||!Number.isSafeInteger(m.release?.id)))throw problem('Backup release identity is invalid.');let size=0;for(const c of m.chunks){if(!/^[a-f0-9]{64}$/.test(c.id)||!sha(c.sha)||!Number.isSafeInteger(c.bytes)||c.bytes<1||c.bytes>CHUNK)throw problem('Backup chunk manifest is invalid.');if(m.format===2&&(!Number.isSafeInteger(c.asset)||c.asset<1||!/^[a-f0-9]{64}$/.test(c.encodedSha)))throw problem('Backup release chunk is invalid.');size+=c.bytes;}if(size!==m.bytes)throw problem('Backup size does not match its manifest.');}
  async snapshot(db,{initialize=false}={}){
-  await this.connect();await this.privateRepository();
+  await this.connect();await this.privateRepository({write:!this.releaseSnapshots});
   if(this.hold)throw problem('Backup conflict requires an owner review. Existing GitHub snapshots were preserved.');
   await this.assertCurrent();
   if(!this.manifest&&!initialize)throw problem('No Factory backup exists yet. Save the first backup explicitly from the owner page.',409);
@@ -106,24 +107,33 @@ export class GithubSnapshotStore{
   const folder=await mkdtemp(join(tmpdir(),'midnight-snapshot-'));let file;
   try{
    const path=join(folder,'snapshot.sqlite');await backup(db,path);const copy=new DatabaseSync(path);try{stripBasicWorkingPixels(copy);copy.exec('VACUUM');}finally{copy.close();}const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
-   file=await open(path,'r');const previous=new Map((this.manifest?.chunks||[]).map(c=>[c.id,c])),chunks=[],tree=[],added=new Set(),hash=createHash('sha256');let offset=0;
-   while(offset<size){const data=Buffer.alloc(Math.min(CHUNK,size-offset));let used=0;while(used<data.length){const {bytesRead}=await file.read(data,used,data.length-used,offset+used);if(!bytesRead)throw problem('Unable to read a complete SQLite snapshot.');used+=bytesRead;}hash.update(data);const id=createHmac('sha256',this.key).update(data).digest('hex');let entry=previous.get(id);
-    if(!entry){const encrypted=seal(deflateSync(data),this.key,'chunk-v1:'+id),blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:encrypted.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm a backup chunk.');entry={id,sha:blob.sha,bytes:data.length};previous.set(id,entry);}
-    chunks.push(entry);if(!added.has(id)){tree.push({path:ROOT+'/chunks/'+id+'.bin',mode:'100644',type:'blob',sha:entry.sha});added.add(id);}offset+=data.length;
+   file=await open(path,'r');
+   const assets=this.releaseSnapshots?new BasicGithubAssets(this,{fetchImpl:this.fetch,sleep:this.sleep,clock:this.clock}):null;let release=null;
+   if(assets){const whole=createHash('sha256');for(let offset=0;offset<size;){const data=Buffer.alloc(Math.min(CHUNK,size-offset));const {bytesRead}=await file.read(data,0,data.length,offset);if(!bytesRead)throw problem('Unable to read the recovery snapshot.');whole.update(data.subarray(0,bytesRead));offset+=bytesRead;}const checksum=whole.digest('hex');if(this.manifest?.sha256===checksum)return {commit:this.head,manifest:this.manifest,unchanged:true};const job='recovery-v2-'+checksum,r=await assets.release(job);release={job,id:r.id};}
+   const previous=new Map((this.manifest?.chunks||[]).map(c=>[c.id,c])),chunks=[],tree=[],added=new Set(),hash=createHash('sha256');let offset=0;
+   while(offset<size){const data=Buffer.alloc(Math.min(CHUNK,size-offset));let used=0;while(used<data.length){const {bytesRead}=await file.read(data,used,data.length-used,offset+used);if(!bytesRead)throw problem('Unable to read a complete SQLite snapshot.');used+=bytesRead;}hash.update(data);const id=createHmac('sha256',this.key).update(data).digest('hex');let entry=assets?null:previous.get(id);
+    if(assets){const compressed=deflateSync(data),encodedSha=digest(compressed),saved=await assets.put(release.job,'backup',id,compressed,encodedSha);entry={id,sha:gitBlobSha(compressed),bytes:data.length,asset:saved.asset,encodedSha};}
+    else if(!entry){const encrypted=seal(deflateSync(data),this.key,'chunk-v1:'+id),blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:encrypted.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm a backup chunk.');entry={id,sha:blob.sha,bytes:data.length};previous.set(id,entry);}
+    chunks.push(entry);if(!assets&&!added.has(id)){tree.push({path:ROOT+'/chunks/'+id+'.bin',mode:'100644',type:'blob',sha:entry.sha});added.add(id);}offset+=data.length;
    }
    const checksum=hash.digest('hex');if(this.manifest?.sha256===checksum)return {commit:this.head,manifest:this.manifest,unchanged:true};
-   const manifest={format:1,created:new Date(this.clock()).toISOString(),bytes:size,sha256:checksum,chunks};const encrypted=seal(Buffer.from(JSON.stringify(manifest)),this.key,'manifest-v1');
+   const manifest={format:assets?2:1,...(release?{release,previousRelease:this.manifest?.release||null}:{}),created:new Date(this.clock()).toISOString(),bytes:size,sha256:checksum,chunks};const encrypted=seal(Buffer.from(JSON.stringify(manifest)),this.key,'manifest-v1');
    const blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:encrypted.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm the backup manifest.');tree.push({path:MANIFEST,mode:'100644',type:'blob',sha:blob.sha});
-   const ids=new Set(chunks.map(c=>c.id));for(const id of previous.keys())if(!ids.has(id))tree.push({path:ROOT+'/chunks/'+id+'.bin',mode:'100644',type:'blob',sha:null});
+   const ids=new Set(chunks.map(c=>c.id));for(const id of previous.keys())if(this.manifest?.format!==2&&!ids.has(id))tree.push({path:ROOT+'/chunks/'+id+'.bin',mode:'100644',type:'blob',sha:null});
    const nextTree=await this.api('/git/trees',{method:'POST',body:{base_tree:this.tree,tree}});if(!sha(nextTree.sha))throw problem('GitHub did not confirm the backup tree.');
    const commit=await this.api('/git/commits',{method:'POST',body:{message:'Save encrypted Factory recovery snapshot',tree:nextTree.sha,parents:[this.head]}});if(!sha(commit.sha))throw problem('GitHub did not confirm the backup commit.');
-   await this.privateRepository();
+   await this.privateRepository({write:!assets});
+   const retired=this.manifest?.previousRelease;
    const parentHead=this.head;
    try{const accepted=await this.api('/git/refs/heads/'+encodeURIComponent(this.branch),{method:'PATCH',body:{sha:commit.sha,force:false}});if(accepted.object?.sha!==commit.sha)await this.confirmHead(commit.sha,parentHead);}catch(e){if(e.conflict){this.hold=true;throw problem('GitHub changed during backup. The existing snapshot was preserved; owner review is required.',503,{conflict:true});}try{await this.confirmHead(commit.sha,parentHead);}catch{throw e;}}
    // The write response acknowledges this exact ref. A stale GET of its parent
    // is a bounded consistency wait, not evidence of a competing backend.
    this.previousHead=parentHead;this.head=commit.sha;this.tree=nextTree.sha;this.manifest=manifest;
-   await this.confirmHead(this.head,parentHead);return {commit:this.head,manifest};
+   await this.confirmHead(this.head,parentHead);
+   // Only the explicitly tracked third generation is disposable. Leave legacy
+   // Git history, unrelated working releases, and concurrent uploads untouched.
+   if(assets&&retired&&retired.id!==release.id&&retired.id!==manifest.previousRelease?.id){try{await this.assertCurrent();await assets.remove(retired.job,retired.id);}catch(e){if(this.hold)throw e;}}
+   return {commit:this.head,manifest};
   }finally{await file?.close();await rm(folder,{recursive:true,force:true});}
  }
  async restore(dbPath){
@@ -132,7 +142,8 @@ export class GithubSnapshotStore{
   await mkdir(dirname(dbPath),{recursive:true,mode:0o700});const folder=await mkdtemp(join(dirname(dbPath),'.midnight-restore-'));const temporary=join(folder,'restored.sqlite');let file;
   try{
    file=await open(temporary,'wx',0o600);const hash=createHash('sha256');
-   for(const c of this.manifest.chunks){const blob=await this.api('/git/blobs/'+c.sha);if(blob.encoding!=='base64'||typeof blob.content!=='string'||blob.size>CHUNK+65536||blob.content.length>Math.ceil((CHUNK+65536)/3)*4+10000)throw problem('Backup chunk is invalid.');let data;try{data=inflateSync(unseal(Buffer.from(blob.content.replace(/\s/g,''),'base64'),this.key,'chunk-v1:'+c.id),{maxOutputLength:c.bytes});}catch{throw problem('Backup chunk could not be verified. Recovery was stopped.');}if(data.length!==c.bytes||createHmac('sha256',this.key).update(data).digest('hex')!==c.id)throw problem('Backup chunk checksum failed.');hash.update(data);await file.writeFile(data);}
+   const assets=this.manifest.format===2?new BasicGithubAssets(this,{fetchImpl:this.fetch,sleep:this.sleep,clock:this.clock}):null;if(assets){const r=await assets.api('/releases/'+this.manifest.release.id);assets.owned(r,this.manifest.release.job);}
+   for(const c of this.manifest.chunks){if(assets){let data;try{const compressed=await assets.read(c.asset,this.manifest.release.job,'backup',c.id,c.encodedSha);data=inflateSync(compressed,{maxOutputLength:c.bytes});}catch{throw problem('Backup release chunk could not be verified. Recovery was stopped.');}if(data.length!==c.bytes||createHmac('sha256',this.key).update(data).digest('hex')!==c.id)throw problem('Backup chunk checksum failed.');hash.update(data);await file.writeFile(data);continue;}const blob=await this.api('/git/blobs/'+c.sha);if(blob.encoding!=='base64'||typeof blob.content!=='string'||blob.size>CHUNK+65536||blob.content.length>Math.ceil((CHUNK+65536)/3)*4+10000)throw problem('Backup chunk is invalid.');let data;try{data=inflateSync(unseal(Buffer.from(blob.content.replace(/\s/g,''),'base64'),this.key,'chunk-v1:'+c.id),{maxOutputLength:c.bytes});}catch{throw problem('Backup chunk could not be verified. Recovery was stopped.');}if(data.length!==c.bytes||createHmac('sha256',this.key).update(data).digest('hex')!==c.id)throw problem('Backup chunk checksum failed.');hash.update(data);await file.writeFile(data);}
    await file.sync();await file.close();file=null;if(hash.digest('hex')!==this.manifest.sha256)throw problem('Complete backup checksum failed.');
    const check=new DatabaseSync(temporary,{readOnly:true});try{if(check.prepare('PRAGMA integrity_check').all().some(r=>r.integrity_check!=='ok'))throw problem('SQLite recovery validation failed.');}finally{check.close();}
    // A hard link installs the completed file atomically without overwriting a
