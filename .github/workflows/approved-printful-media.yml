@@ -1,0 +1,45 @@
+name: Import approved Printful products and all mockup views
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '29 */6 * * *'
+  push:
+    branches: [main]
+    paths: ['scripts/sync-approved-printful-media.mjs', '.github/workflows/approved-printful-media.yml']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  import:
+    if: github.ref == 'refs/heads/main' && (github.actor == github.repository_owner || github.actor == 'github-actions[bot]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --prefix request-service
+      - run: node --test scripts/approved-printful-media-test.mjs
+      - name: Configure checkpoint identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Save supplier products and every reported mockup view
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/sync-approved-printful-media.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: printful-media-import-progress
+          path: printful-media-progress.json
+          retention-days: 7
