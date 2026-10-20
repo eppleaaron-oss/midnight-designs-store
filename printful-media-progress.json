@@ -12310,10 +12310,127 @@
     "dac7e99f8e14ea02c743daa539c61042d6511f69f8c6e93ae181414888454ff7": {
       "productId": "480761362",
       "variant": 46226,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T18:31:39.301Z",
       "attempts": 1,
-      "key": "gt-987507545"
+      "key": "gt-987507545",
+      "photos": 6,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480761362-46226-all-dac7e99f8e-0.jpg",
+          "sha256": "abe2a9710bc9768700864d244caf079e7e897f4beec0271c4f51791742a002c5",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568437497",
+            "5568437500",
+            "5568437502",
+            "5568437503",
+            "5568437504"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761362-46226-all-dac7e99f8e-1.jpg",
+          "sha256": "f9a0e562d54c7079085530c59db2accc23b1b5292888ddfc2a00b52c79a0318b",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568437497",
+            "5568437500",
+            "5568437502",
+            "5568437503",
+            "5568437504"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761362-46226-all-dac7e99f8e-2.jpg",
+          "sha256": "8f0114f6554cd25ee47a5c8b9154024c2d8d13cf19eeabb86a7013097ae06d57",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568437497",
+            "5568437500",
+            "5568437502",
+            "5568437503",
+            "5568437504"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761362-46226-all-dac7e99f8e-3.jpg",
+          "sha256": "5da74faaa20daedb35fc5dc4c14a6668afe6c9bd1613dcd73d08555f2a49aac1",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568437497",
+            "5568437500",
+            "5568437502",
+            "5568437503",
+            "5568437504"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761362-46226-all-dac7e99f8e-4.jpg",
+          "sha256": "0ab7ba998ded1a98f1e19f120dc8d3d5d6765c83cef2dc77175adfb39549271a",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568437497",
+            "5568437500",
+            "5568437502",
+            "5568437503",
+            "5568437504"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761362-46226-all-dac7e99f8e-5.jpg",
+          "sha256": "9501e88164f3f8f46db13a40d82d531406712740dc95c60922e0831cfa967718",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568437497",
+            "5568437500",
+            "5568437502",
+            "5568437503",
+            "5568437504"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -12344,5 +12461,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T18:32:13.947Z"
+  "updatedAt": "2026-10-20T18:32:28.624Z"
 }
