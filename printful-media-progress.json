@@ -81,10 +81,11 @@
     "3908b471aa9bc3fe076db3fac1c0b5bc5d90a5d408990f89a839677c24152e8d": {
       "productId": "483392618",
       "variant": 46253,
-      "state": "submitting",
-      "created": "2026-10-20T17:03:59.198Z"
+      "state": "pending",
+      "created": "2026-10-20T17:03:59.198Z",
+      "key": "gt-987456674"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:03:59.198Z"
+  "updatedAt": "2026-10-20T17:04:33.732Z"
 }
