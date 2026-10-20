@@ -146,13 +146,112 @@
     "da9f54670b733187f2e9c43b7d0d281c50175c5ffa3ebc44bd9b59452d88e8e7": {
       "productId": "483378457",
       "variant": 46409,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:06:02.270Z",
-      "key": "gt-987457975"
+      "key": "gt-987457975",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483378457-46409-all-0.jpg",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483378457-46409-all-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483378457-46409-all-2.jpg",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483378457-46409-all-3.jpg",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
     "483385402": "Printful HTTP 400: You are attempting to generate 636 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body"
   },
-  "updatedAt": "2026-10-20T17:06:36.504Z"
+  "updatedAt": "2026-10-20T17:06:49.669Z"
 }
