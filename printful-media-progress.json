@@ -26479,10 +26479,418 @@
     "6ce06269d1296aa32774573232074da2fc12fe79296821455d463be25838064b": {
       "productId": "480744091",
       "variant": 11414,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:12:43.894Z",
       "attempts": 1,
-      "key": "gt-987567776"
+      "key": "gt-987567776",
+      "photos": 27,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-0.jpg",
+          "sha256": "22df3b6bf3839d50edb4bbce642cd2299cd2a88430ca513d25663f4a10bc5c55",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-1.jpg",
+          "sha256": "ce927a2c390ecbc0734bb573e1286d7309104cf6e00e52dacc17555ae1a6096d",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-2.jpg",
+          "sha256": "2bd0bbb14b519eafe09458eb7ee5d0863be93c2ab88e2278f526272b338d641b",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-3.jpg",
+          "sha256": "d6286852d9dba4af684b61b2c68d8056eb7382e4fab4fa17a83452101cf360a4",
+          "view": "Folded",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-4.jpg",
+          "sha256": "fa31147fb1e9d26a85f177d5a65f57b0861811e33db38167e861760f3ddca804",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-5.jpg",
+          "sha256": "ee9d681afff1f1b2367e6ed5a6f028dea3e7e96ce00849f074d57b4b33bb9115",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-6.jpg",
+          "sha256": "5cfb1eee3018c1b4d9fe4cfcbeb8049053da2603bf9adaf03f99d8d38b908f95",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-7.jpg",
+          "sha256": "a2c06918a8a22bdbe48e1ada76b95a95f0231dc8cce2d4f3945e58cf1f893f97",
+          "view": "Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-8.jpg",
+          "sha256": "5b525f6d6e88d038cf97a50a7a9ce180b2817620f00e7d1938653a38d8958712",
+          "view": "Left",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-9.jpg",
+          "sha256": "32551f3ae3a6863fedf8994874732f3ad1fdf0ff526c0c1a2f59babed316e7e3",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-10.jpg",
+          "sha256": "59bd7def6a481dc7ef2d2988b314fbe36c77fd4e63a422ce3544a6f38f52903c",
+          "view": "Left",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-11.jpg",
+          "sha256": "4a8da03bdce6e04dd396e9d61e0715ce8883063c43905a23c4a9a962f15cb46a",
+          "view": "Front",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-12.jpg",
+          "sha256": "09e43d3b78683328f4e246e8cba6bfd085f1cab76c1d73acccb01615170fb8b6",
+          "view": "Left",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-13.jpg",
+          "sha256": "d6a5cb824112fbee2ff2daa18a7404cd8090de896dc6cdae235e0f96e718ae51",
+          "view": "Front",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-14.jpg",
+          "sha256": "4bbc32690d4b83533dd5c9d5dc1eaafab9995762709f26ce4f1b9eeb9c4fc92d",
+          "view": "Left",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-15.jpg",
+          "sha256": "63c01be741df7d4b1d3c3a7d04a8f0b9ba864c9cef54e5887667ea948fd71141",
+          "view": "Front",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-16.jpg",
+          "sha256": "d03814db17bd4fcea54b58ee395041693845f2533f0dec27c990060681b7e64f",
+          "view": "Left",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-17.jpg",
+          "sha256": "1faa2ee43a4203a38daf0483dcff1e16a312f495767ed3c1fa1e570ee1b64a61",
+          "view": "Back",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-18.jpg",
+          "sha256": "b34b251a42f46d7d02b9f7889555376a643d1f6738421f4b45b2cca3c7ef422e",
+          "view": "Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-19.jpg",
+          "sha256": "c4efa203aca741ea5543b46077241a097295ae66c6559bff8c3198b90ecfda21",
+          "view": "Left",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-20.jpg",
+          "sha256": "d2a21ad89c9e4b520c8a5f15012ec7a35225c22ab58d6d455f7b4cb983dd3863",
+          "view": "Left",
+          "style": "Girl's",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-21.jpg",
+          "sha256": "d0a358ea46e7f4482a9da9f6050268d04d7f8d690f8194f054b7e2f740d88a55",
+          "view": "Folded",
+          "style": "Halloween",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-22.jpg",
+          "sha256": "28c04ed10ae686f6566f2e3f59251f5fc6543e68e8a5723970ed536f5f8fa829",
+          "view": "Front",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-23.jpg",
+          "sha256": "c85a7998007b9de996037318146be2374100ca06d5a0a82f0e4fb944c6d61b65",
+          "view": "Left",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-24.jpg",
+          "sha256": "6a2cd23ddddbd8560c566e8332125b74bdffd6ee61438ebec47c25c1f1625223",
+          "view": "Folded",
+          "style": "Holiday season",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-25.jpg",
+          "sha256": "5d2e99b062bdd2687d303d8e3146cfef1802d5e5f4fad345fe4af1b5b2044302",
+          "view": "Front",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744091-11414-all-6ce06269d1-26.jpg",
+          "sha256": "816d17ebdeaaea61d4099f9ae23022418d661cb74613662ef8e9fffc11480ea0",
+          "view": "Left",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -26515,5 +26923,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:13:18.469Z"
+  "updatedAt": "2026-10-20T20:13:41.589Z"
 }
