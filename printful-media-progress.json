@@ -5730,11 +5730,12 @@
     "fe92a07f8eabd7b4e05a1a5347e707a3a763fbda1dee2fa8dad0530d54ff2899": {
       "productId": "483213237",
       "variant": 23675,
-      "state": "submitting",
+      "state": "empty",
       "created": "2026-10-20T17:48:05.057Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful HTTP 400: No variants to generate. Option filters may exclude all variants or variants are not available. Alternatively, make sure that variants belong to given product id."
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:48:05.057Z"
+  "updatedAt": "2026-10-20T17:48:38.925Z"
 }
