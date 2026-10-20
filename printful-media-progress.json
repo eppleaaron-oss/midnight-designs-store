@@ -36833,6 +36833,7 @@
     }
   },
   "errors": {
+    "480738724": "Printful rate limit did not clear.",
     "480738731": "Permanently accepted print file unavailable: right_leg",
     "480738737": "Printful rate limit did not clear.",
     "480738743": "Printful rate limit did not clear.",
@@ -36873,5 +36874,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T21:50:25.804Z"
+  "updatedAt": "2026-10-20T21:50:27.636Z"
 }
