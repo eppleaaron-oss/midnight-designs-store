@@ -146,12 +146,13 @@
     "da9f54670b733187f2e9c43b7d0d281c50175c5ffa3ebc44bd9b59452d88e8e7": {
       "productId": "483378457",
       "variant": 46409,
-      "state": "submitting",
-      "created": "2026-10-20T17:06:02.270Z"
+      "state": "pending",
+      "created": "2026-10-20T17:06:02.270Z",
+      "key": "gt-987457975"
     }
   },
   "errors": {
     "483385402": "Printful HTTP 400: You are attempting to generate 636 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body"
   },
-  "updatedAt": "2026-10-20T17:06:02.270Z"
+  "updatedAt": "2026-10-20T17:06:36.504Z"
 }
