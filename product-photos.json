@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T19:22:56.053Z",
+  "updatedAt": "2026-10-20T17:03:56.484Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,55 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "483397425": {
+      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts",
+      "originalImage": "assets/product-photos/483397425-46347-all-0.jpg",
+      "catalogProductId": 1481,
+      "photos": [
+        {
+          "image": "assets/product-photos/483397425-46347-all-0.jpg",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584841489",
+            "5584841533",
+            "5584841676",
+            "5584841890",
+            "5584841982",
+            "5584842159",
+            "5584842206"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483397425-46347-all-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584841489",
+            "5584841533",
+            "5584841676",
+            "5584841890",
+            "5584841982",
+            "5584842159",
+            "5584842206"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "8d7d7ad5f436d21e8f58bc745db78a7c35f3d713ef3aacad1669e870cb405e37"
     }
   }
 }

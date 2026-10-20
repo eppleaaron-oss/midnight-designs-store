@@ -1,7 +1,149 @@
 {
-  "updatedAt": "2026-10-20T11:47:05.695Z",
-  "lastSyncedAt": "2026-10-20T11:47:05.695Z",
+  "updatedAt": "2026-10-20T17:03:56.486Z",
+  "lastSyncedAt": "2026-10-20T17:03:56.486Z",
   "products": [
+    {
+      "id": "483397425",
+      "catalogProductId": 1481,
+      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts",
+      "category": "shorts",
+      "image": "assets/product-photos/483397425-46347-all-0.jpg",
+      "images": [
+        "assets/product-photos/483397425-46347-all-0.jpg",
+        "assets/product-photos/483397425-46347-all-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5584841489",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / 2XL",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 46350,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        },
+        {
+          "id": "5584841533",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / 3XL",
+          "price": 44.99,
+          "currency": "USD",
+          "catalogVariantId": 46351,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        },
+        {
+          "id": "5584841676",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / L",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46348,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        },
+        {
+          "id": "5584841890",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / M",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46347,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        },
+        {
+          "id": "5584841982",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / S",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46346,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        },
+        {
+          "id": "5584842159",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / XL",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46349,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        },
+        {
+          "id": "5584842206",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts / White / XS",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46345,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483397425-46347-all-0.jpg",
+            "assets/product-photos/483397425-46347-all-1.jpg"
+          ],
+          "image": "assets/product-photos/483397425-46347-all-0.jpg"
+        }
+      ],
+      "url": "products/483397425.html",
+      "factoryExternalId": "midnight-factory-1b06f138-8b39-4e4e-8931-8e23746bcbcd",
+      "description": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shorts"
+      ],
+      "collections": [
+        "Even in Darkness / Still Growing matching collection"
+      ],
+      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6"
+    },
     {
       "id": "482923908",
       "catalogProductId": 1479,

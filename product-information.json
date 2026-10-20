@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T11:49:19.548Z",
+  "updatedAt": "2026-10-20T17:03:56.934Z",
   "products": {
     "242": {
       "catalogProductId": 242,
@@ -1966,6 +1966,93 @@
         }
       ],
       "verifiedAt": "2026-10-20T11:47:07.275Z"
+    },
+    "1481": {
+      "catalogProductId": 1481,
+      "title": "All-Over Print Unisex Cotton Shorts",
+      "description": "Upgrade your casual look with these Unisex Cotton Shorts. Made from soft, breathable cotton, they deliver all-day comfort while maintaining a relaxed fit.",
+      "materials": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 8.85 oz./yd.² (300 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Unisex fit"
+      ],
+      "features": [
+        "95% cotton, 5% elastane",
+        "Fabric weight: 8.85 oz./yd.² (300 g/m²)",
+        "Heavyweight cotton-spandex blend with a medium soft feel",
+        "Unisex fit",
+        "Blank product components sourced from Mexico"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over cotton"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 46350,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / 2XL)"
+        },
+        {
+          "id": 46351,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / 3XL)"
+        },
+        {
+          "id": 46348,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / L)"
+        },
+        {
+          "id": 46347,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / M)"
+        },
+        {
+          "id": 46346,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / S)"
+        },
+        {
+          "id": 46349,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / XL)"
+        },
+        {
+          "id": 46345,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Cotton Shorts (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-20T17:03:56.934Z"
     },
     "1482": {
       "catalogProductId": 1482,
