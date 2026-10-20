@@ -31,10 +31,11 @@
     "b4523e5ef4b702ef98426a7f7f0aaaf44a25be41da5c7ebb68b9f2582c0f8b8c": {
       "productId": "483397425",
       "variant": 46347,
-      "state": "submitting",
-      "created": "2026-10-20T17:03:02.369Z"
+      "state": "pending",
+      "created": "2026-10-20T17:03:02.369Z",
+      "key": "gt-987455963"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:03:02.370Z"
+  "updatedAt": "2026-10-20T17:03:36.615Z"
 }
