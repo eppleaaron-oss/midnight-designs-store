@@ -31,11 +31,54 @@
     "b4523e5ef4b702ef98426a7f7f0aaaf44a25be41da5c7ebb68b9f2582c0f8b8c": {
       "productId": "483397425",
       "variant": 46347,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:03:02.369Z",
-      "key": "gt-987455963"
+      "key": "gt-987455963",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483397425-46347-all-0.jpg",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584841489",
+            "5584841533",
+            "5584841676",
+            "5584841890",
+            "5584841982",
+            "5584842159",
+            "5584842206"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483397425-46347-all-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584841489",
+            "5584841533",
+            "5584841676",
+            "5584841890",
+            "5584841982",
+            "5584842159",
+            "5584842206"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:03:36.615Z"
+  "updatedAt": "2026-10-20T17:03:54.663Z"
 }
