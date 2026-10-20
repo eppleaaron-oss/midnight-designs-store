@@ -36834,9 +36834,10 @@
     "3e3f7d480983857fd337cdf9c1baf44e54adab25c4478d95127661a83e883936": {
       "productId": "480738718",
       "variant": 9051,
-      "state": "submitting",
+      "state": "uncertain",
       "created": "2026-10-20T21:50:30.051Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful rate limit did not clear."
     }
   },
   "errors": {
@@ -36881,5 +36882,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T21:50:30.051Z"
+  "updatedAt": "2026-10-20T21:53:45.249Z"
 }
