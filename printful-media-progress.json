@@ -5675,12 +5675,59 @@
     "ca5130c0117793537bc1a135f4faca879316d4efaf782c9b7898eeb8248bb463": {
       "productId": "483213237",
       "variant": 23675,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:46:43.385Z",
       "attempts": 1,
-      "key": "gt-987482965"
+      "key": "gt-987482965",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483213237-23675-all-ca5130c011-0.jpg",
+          "sha256": "50e7e1f0079abf3c58cd526fe5dcaadb90760d75c014f69d9a7401de51794c0b",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5583750555",
+            "5583750574",
+            "5583750624",
+            "5583750670",
+            "5583750675",
+            "5583750678",
+            "5583750685",
+            "5583750712"
+          ],
+          "alt": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483213237-23675-all-ca5130c011-1.jpg",
+          "sha256": "ad9ddaf6e36165bce1b7e24f782e5504367965dbd12688e54de7933d71718b2b",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5583750555",
+            "5583750574",
+            "5583750624",
+            "5583750670",
+            "5583750675",
+            "5583750678",
+            "5583750685",
+            "5583750712"
+          ],
+          "alt": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:47:49.426Z"
+  "updatedAt": "2026-10-20T17:48:03.467Z"
 }
