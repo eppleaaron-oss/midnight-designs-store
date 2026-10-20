@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:26:21.357Z",
+  "updatedAt": "2026-10-20T17:34:19.922Z",
   "products": {
     "242": {
       "catalogProductId": 242,
@@ -943,6 +943,280 @@
         }
       ],
       "verifiedAt": "2026-10-20T11:47:55.318Z"
+    },
+    "513": {
+      "catalogProductId": 513,
+      "title": "Men's High Top Canvas Shoes",
+      "description": "Step up your shoe game with the High Top Canvas Shoes. These handmade, trendy shoes are sure to spice up your outfit. Get yours now!",
+      "materials": [
+        "100% polyester, canvas upper side",
+        "Breathable lining, soft insole"
+      ],
+      "materialsNote": null,
+      "fit": [],
+      "features": [
+        "100% polyester, canvas upper side",
+        "Ethylene-vinyl acetate (EVA) rubber outsole",
+        "Breathable lining, soft insole",
+        "Faux leather toe cap",
+        "Padded collar, lace-up front",
+        "Soles and laces in matching colors",
+        "Blank product sourced from China"
+      ],
+      "notes": [
+        "Important: This product is available in the following countries: United States, Canada, Australia, United Kingdom, New Zealand, Japan, Austria, Andorra, Belgium, Bulgaria, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Holy See (Vatican city), Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Liechtenstein, Luxemburg, Malta, Monaco, Netherlands, Norway, Poland, Portugal, San Marino, Slovakia, Slovenia, Switzerland, Spain, Sweden, and Turkey. If your shipping address is outside these countries, please choose a different product.",
+        "Disclaimer: The shoes will have a glue-like smell when opening the box. The smell will disappear a few days after the shoes are unpacked."
+      ],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "Sublimation"
+      ],
+      "care": [],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 17460,
+          "size": "10",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 10)"
+        },
+        {
+          "id": 17461,
+          "size": "10.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 10.5)"
+        },
+        {
+          "id": 17462,
+          "size": "11",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 11)"
+        },
+        {
+          "id": 17463,
+          "size": "11.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 11.5)"
+        },
+        {
+          "id": 17464,
+          "size": "12",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 12)"
+        },
+        {
+          "id": 17465,
+          "size": "12.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 12.5)"
+        },
+        {
+          "id": 17466,
+          "size": "13",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 13)"
+        },
+        {
+          "id": 17450,
+          "size": "5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 5)"
+        },
+        {
+          "id": 17451,
+          "size": "5.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 5.5)"
+        },
+        {
+          "id": 17452,
+          "size": "6",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 6)"
+        },
+        {
+          "id": 17453,
+          "size": "6.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 6.5)"
+        },
+        {
+          "id": 17454,
+          "size": "7",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 7)"
+        },
+        {
+          "id": 17455,
+          "size": "7.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 7.5)"
+        },
+        {
+          "id": 17456,
+          "size": "8",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 8)"
+        },
+        {
+          "id": 17457,
+          "size": "8.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 8.5)"
+        },
+        {
+          "id": 17458,
+          "size": "9",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 9)"
+        },
+        {
+          "id": 17459,
+          "size": "9.5",
+          "color": "Black",
+          "colorCode": "#000000",
+          "name": "Men's High Top Canvas Shoes (Black / 9.5)"
+        },
+        {
+          "id": 12913,
+          "size": "10",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 10)"
+        },
+        {
+          "id": 12914,
+          "size": "10.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 10.5)"
+        },
+        {
+          "id": 12915,
+          "size": "11",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 11)"
+        },
+        {
+          "id": 12916,
+          "size": "11.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 11.5)"
+        },
+        {
+          "id": 12918,
+          "size": "12",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 12)"
+        },
+        {
+          "id": 12919,
+          "size": "12.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 12.5)"
+        },
+        {
+          "id": 12920,
+          "size": "13",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 13)"
+        },
+        {
+          "id": 12903,
+          "size": "5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 5)"
+        },
+        {
+          "id": 12904,
+          "size": "5.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 5.5)"
+        },
+        {
+          "id": 12905,
+          "size": "6",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 6)"
+        },
+        {
+          "id": 12906,
+          "size": "6.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 6.5)"
+        },
+        {
+          "id": 12907,
+          "size": "7",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 7)"
+        },
+        {
+          "id": 12908,
+          "size": "7.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 7.5)"
+        },
+        {
+          "id": 12909,
+          "size": "8",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 8)"
+        },
+        {
+          "id": 12910,
+          "size": "8.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 8.5)"
+        },
+        {
+          "id": 12911,
+          "size": "9",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 9)"
+        },
+        {
+          "id": 12912,
+          "size": "9.5",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "Men's High Top Canvas Shoes (White / 9.5)"
+        }
+      ],
+      "verifiedAt": "2026-10-20T17:34:19.922Z"
     },
     "618": {
       "catalogProductId": 618,
