@@ -3052,11 +3052,12 @@
     "e019e6c11aecfd8d8911f42ead11ad34740000bda8c1d44d31f0c8d8c446d401": {
       "productId": "483366087",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:28:35.932Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987473004"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:28:35.932Z"
+  "updatedAt": "2026-10-20T17:29:41.955Z"
 }
