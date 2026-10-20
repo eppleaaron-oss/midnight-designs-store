@@ -4607,11 +4607,12 @@
     "2d67812be96cddf3d44f09975a8ce53c372ce4129b6e66805628525a2a64f3a1": {
       "productId": "483370819",
       "variant": 11414,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:40:39.050Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987479362"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:40:39.050Z"
+  "updatedAt": "2026-10-20T17:41:13.024Z"
 }
