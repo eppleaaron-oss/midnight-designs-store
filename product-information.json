@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:20:40.085Z",
+  "updatedAt": "2026-10-20T17:26:21.357Z",
   "products": {
     "242": {
       "catalogProductId": 242,
@@ -1271,6 +1271,65 @@
         }
       ],
       "verifiedAt": "2026-10-20T11:47:38.314Z"
+    },
+    "654": {
+      "catalogProductId": 654,
+      "title": "All-Over Print Reversible Bucket Hat",
+      "description": "This reversible bucket hat can be worn on both sides, making it easy to match with different outfits. Made of breathable premium fabric, this hat will become your go-to streetwear accessory.",
+      "materials": [
+        "100% polyester",
+        "Fabric weight: 8.1 oz/yd² (275 g/m²)"
+      ],
+      "materialsNote": null,
+      "fit": [],
+      "features": [
+        "100% polyester",
+        "Fabric weight: 8.1 oz/yd² (275 g/m²)",
+        "Moisture-wicking and breathable fabric",
+        "Linen feel material",
+        "Reversible",
+        "Available in 3 sizes: XS, S/M, and L/XL",
+        "Blank product components sourced from China"
+      ],
+      "notes": [],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 16361,
+          "size": "L/XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Reversible Bucket Hat (White / L/XL)"
+        },
+        {
+          "id": 16360,
+          "size": "S/M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Reversible Bucket Hat (White / S/M)"
+        },
+        {
+          "id": 19255,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Reversible Bucket Hat (White / XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-20T17:26:21.357Z"
     },
     "659": {
       "catalogProductId": 659,
