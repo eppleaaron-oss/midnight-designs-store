@@ -1902,11 +1902,12 @@
     "7f911739aacfe46ed940e470b8abeef969d98976918f0603e40f16da2a27c0db": {
       "productId": "483385402",
       "variant": 10879,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:18:28.959Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987467037"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:18:28.959Z"
+  "updatedAt": "2026-10-20T17:19:02.597Z"
 }
