@@ -1224,7 +1224,7 @@
     "3a7639197e1daa8cefe4adfc55711f4e920bc7342706ef0dd054c53d771f8065": {
       "productId": "483356322",
       "variant": 46347,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:34:22.618Z",
       "attempts": 2,
       "previousSubmission": {
@@ -1234,7 +1234,52 @@
         "created": "2026-10-20T17:12:44.856Z"
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "key": "gt-987475911"
+      "key": "gt-987475911",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483356322-46347-all-3a7639197e-0.jpg",
+          "sha256": "232cc36abd797bc0afb83cc829b8ae7115be3cf1e3abf551adc388e39e3863c8",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584583396",
+            "5584583397",
+            "5584583398",
+            "5584583399",
+            "5584583400",
+            "5584583401",
+            "5584583402"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483356322-46347-all-3a7639197e-1.jpg",
+          "sha256": "2ef5ca73f5c3638d46b6957dcff9aa72dc40f1b4e4f1b685e46960bc58a50638",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584583396",
+            "5584583397",
+            "5584583398",
+            "5584583399",
+            "5584583400",
+            "5584583401",
+            "5584583402"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "1ce264acd0b2a1c608b9c7786f0827c39ceb5440d2b922a48081cc6d1d3bee90": {
       "productId": "483352723",
@@ -3856,5 +3901,5 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:34:56.480Z"
+  "updatedAt": "2026-10-20T17:35:04.439Z"
 }
