@@ -14,3 +14,12 @@
 /* Override shared compact navigation without losing comfortable touch targets. */
 @media(max-width:1000px){body.home .nav .links{gap:14px;width:auto}body.home .nav .links a{border:0;font-size:11px;letter-spacing:.1em;padding:8px 0;flex:initial}body.home .nav .brand{font-size:29px}}
 @media(max-width:600px){body.home .nav .links{order:2;flex:1 1 100%;width:100%;gap:10px}body.home .nav .links a{font-size:10px}body.home .nav .brand{font-size:28px}.home .eyebrow{font-size:9px}}
+
+/* Keep catalog artwork at its original brightness against a warm neutral surface. */
+.home .home-featured .product-image{background:#e7dfd0}
+.home .home-featured .product-image img{mix-blend-mode:normal;filter:none;opacity:1}
+/* Preserve the complete back artwork rather than magnifying a small sleeve crop. */
+.home .shop-story{align-items:stretch}
+.home .shop-story>img{height:auto;aspect-ratio:3/2;object-fit:contain;background:#15120f;align-self:center}
+.home .shop-story>div{align-self:center}
+@media(max-width:600px){.home .shop-story>img{height:auto;aspect-ratio:3/2}}
