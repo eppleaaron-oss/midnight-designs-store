@@ -9518,9 +9518,10 @@
     "9e6482b69770d8eb9158d1c1e08bb53a47589ca2c754d38a93c135d4ef41c9b5": {
       "productId": "480876926",
       "variant": 16261,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T18:12:27.532Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987497116"
     }
   },
   "errors": {
@@ -9551,5 +9552,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T18:12:27.532Z"
+  "updatedAt": "2026-10-20T18:13:33.690Z"
 }
