@@ -3902,11 +3902,12 @@
     "0c677a1ecc7ce9e88367a68c0bad594e8c09f0b3124cbb72082a674e915963ed": {
       "productId": "483352723",
       "variant": 10879,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:35:10.316Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987476658"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:35:10.316Z"
+  "updatedAt": "2026-10-20T17:36:16.599Z"
 }
