@@ -81,6 +81,88 @@
       ],
       "url": "products/482923908.html"
     },
+    "483361602": {
+      "id": "483361602",
+      "catalogProductId": 279,
+      "name": "Rose Eclipse All-Over Print Backpack",
+      "category": "accessories",
+      "image": "assets/product-photos/483361602-9063-all-0.jpg",
+      "images": [
+        "assets/product-photos/483361602-9063-all-0.jpg",
+        "assets/product-photos/483361602-9063-all-1.jpg",
+        "assets/product-photos/483361602-9063-all-2.jpg",
+        "assets/product-photos/483361602-9063-all-3.jpg",
+        "assets/product-photos/483361602-9063-all-4.jpg",
+        "assets/product-photos/483361602-9063-all-5.jpg",
+        "assets/product-photos/483361602-9063-all-6.jpg",
+        "assets/product-photos/483361602-9063-all-7.jpg",
+        "assets/product-photos/483361602-9063-all-8.jpg",
+        "assets/product-photos/483361602-9063-all-9.jpg",
+        "assets/product-photos/483361602-9063-all-10.jpg",
+        "assets/product-photos/483361602-9063-all-11.jpg",
+        "assets/product-photos/483361602-9063-all-12.jpg",
+        "assets/product-photos/483361602-9063-all-13.jpg",
+        "assets/product-photos/483361602-9063-all-14.jpg",
+        "assets/product-photos/483361602-9063-all-15.jpg",
+        "assets/product-photos/483361602-9063-all-16.jpg",
+        "assets/product-photos/483361602-9063-all-17.jpg",
+        "assets/product-photos/483361602-9063-all-18.jpg",
+        "assets/product-photos/483361602-9063-all-19.jpg",
+        "assets/product-photos/483361602-9063-all-20.jpg",
+        "assets/product-photos/483361602-9063-all-21.jpg",
+        "assets/product-photos/483361602-9063-all-22.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5584601867",
+          "name": "Rose Eclipse All-Over Print Backpack / White / One size",
+          "price": 60.99,
+          "currency": "USD",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483361602-9063-all-0.jpg",
+            "assets/product-photos/483361602-9063-all-1.jpg",
+            "assets/product-photos/483361602-9063-all-2.jpg",
+            "assets/product-photos/483361602-9063-all-3.jpg",
+            "assets/product-photos/483361602-9063-all-4.jpg",
+            "assets/product-photos/483361602-9063-all-5.jpg",
+            "assets/product-photos/483361602-9063-all-6.jpg",
+            "assets/product-photos/483361602-9063-all-7.jpg",
+            "assets/product-photos/483361602-9063-all-8.jpg",
+            "assets/product-photos/483361602-9063-all-9.jpg",
+            "assets/product-photos/483361602-9063-all-10.jpg",
+            "assets/product-photos/483361602-9063-all-11.jpg",
+            "assets/product-photos/483361602-9063-all-12.jpg",
+            "assets/product-photos/483361602-9063-all-13.jpg",
+            "assets/product-photos/483361602-9063-all-14.jpg",
+            "assets/product-photos/483361602-9063-all-15.jpg",
+            "assets/product-photos/483361602-9063-all-16.jpg",
+            "assets/product-photos/483361602-9063-all-17.jpg",
+            "assets/product-photos/483361602-9063-all-18.jpg",
+            "assets/product-photos/483361602-9063-all-19.jpg",
+            "assets/product-photos/483361602-9063-all-20.jpg",
+            "assets/product-photos/483361602-9063-all-21.jpg",
+            "assets/product-photos/483361602-9063-all-22.jpg"
+          ],
+          "image": "assets/product-photos/483361602-9063-all-0.jpg"
+        }
+      ],
+      "url": "products/483361602.html",
+      "factoryExternalId": "midnight-factory-2b3c0ce1-3b1b-435b-932e-5d70f68335aa",
+      "description": "Rose Eclipse All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "accessories"
+      ],
+      "collections": [
+        "Rose Eclipse matching collection"
+      ],
+      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d"
+    },
     "483370819": {
       "id": "483370819",
       "catalogProductId": 420,
