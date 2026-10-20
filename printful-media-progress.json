@@ -7841,10 +7841,213 @@
     "c9299ac267a77489339934f6d96843ff71966f383e2f508f5df61114996603a7": {
       "productId": "480883426",
       "variant": 9732,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T18:04:12.196Z",
       "attempts": 1,
-      "key": "gt-987492715"
+      "key": "gt-987492715",
+      "photos": 8,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-0.jpg",
+          "sha256": "7cbd62548c90fb286b29d6b9f9e082e056c11c1b81624ded8d8297b760b1ce03",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-1.jpg",
+          "sha256": "3a2c33e479658e269a299426bc081524a1786a3063bad044636537955d986bc8",
+          "view": "Right Front",
+          "style": "Women's Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-2.jpg",
+          "sha256": "9cb1b1f2663197c7783d73b09349615337c8ddf6feb4157899a484897432ce71",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-3.jpg",
+          "sha256": "360f1d557a377da3535ae659dc0abd10b75ffddc10c3ab037ddb2bcc657186bf",
+          "view": "Right Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-4.jpg",
+          "sha256": "221603a6647632eb9969db419eb41f89562e435c27933421a3ebea5dcc028ab5",
+          "view": "Right Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-5.jpg",
+          "sha256": "f5ad9bc53b2a9f0abe1f2a1612ae6db8209b58d66e465f8918e86c9e4b525281",
+          "view": "Right Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-6.jpg",
+          "sha256": "8b983b72ad2b74b4be7a540f4d8338cd772384c4b3da711587a7139ef1d7e051",
+          "view": "Right Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883426-9732-all-c9299ac267-7.jpg",
+          "sha256": "1f154bbee6608d209305a7eb0227d81f062d5edb95e8402a427cbcfdd512c90c",
+          "view": "Right Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568929679",
+            "5568929685",
+            "5568929696",
+            "5568929704",
+            "5568929712",
+            "5568929716",
+            "5568929720",
+            "5568929723",
+            "5568929727",
+            "5568929732",
+            "5568929739"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -7875,5 +8078,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T18:05:18.381Z"
+  "updatedAt": "2026-10-20T18:05:33.247Z"
 }
