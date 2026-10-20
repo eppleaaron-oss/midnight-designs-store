@@ -17672,6 +17672,13 @@
           "kind": "production-mockup"
         }
       ]
+    },
+    "f14c9466df7fdaf94f21e3b76089017f8aa5fd8c4cd29482ea5810ff9c961be0": {
+      "productId": "480760815",
+      "variant": 9732,
+      "state": "submitting",
+      "created": "2026-10-20T19:07:37.785Z",
+      "attempts": 1
     }
   },
   "errors": {
@@ -17703,5 +17710,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:07:34.892Z"
+  "updatedAt": "2026-10-20T19:07:37.785Z"
 }
