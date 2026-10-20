@@ -14902,10 +14902,118 @@
     "e38754b9ac2024591854ae3abe3affe06d2ebc6aa38ce56f5e703935e3817d0d": {
       "productId": "480761332",
       "variant": 9806,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T18:48:42.530Z",
       "attempts": 1,
-      "key": "gt-987517710"
+      "key": "gt-987517710",
+      "photos": 5,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480761332-9806-all-e38754b9ac-0.jpg",
+          "sha256": "bcb967ccf2b3b2cb448900db87f286c7d7574541c921199d329f3bcddf047048",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568437263",
+            "5568437264",
+            "5568437266",
+            "5568437267",
+            "5568437268",
+            "5568437269",
+            "5568437271"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761332-9806-all-e38754b9ac-1.jpg",
+          "sha256": "c0453d224f6b7d29fd96879eee42c9494288301703dcd0faf48ebd7b1984f6ec",
+          "view": "Right",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568437263",
+            "5568437264",
+            "5568437266",
+            "5568437267",
+            "5568437268",
+            "5568437269",
+            "5568437271"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761332-9806-all-e38754b9ac-2.jpg",
+          "sha256": "a990adac7b2630c9a673e6ae0150ff8a0481ff80f7a28442c6d4e6e69f8b5549",
+          "view": "Right",
+          "style": "Sneakers 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568437263",
+            "5568437264",
+            "5568437266",
+            "5568437267",
+            "5568437268",
+            "5568437269",
+            "5568437271"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761332-9806-all-e38754b9ac-3.jpg",
+          "sha256": "4337c797241ca84f25fe3edb8a446cfb218fa544ff70851bb848d369e5abf8ad",
+          "view": "Right Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568437263",
+            "5568437264",
+            "5568437266",
+            "5568437267",
+            "5568437268",
+            "5568437269",
+            "5568437271"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Right Back",
+          "label": "On-person · Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761332-9806-all-e38754b9ac-4.jpg",
+          "sha256": "003063da1d30ea225d69e0e4da1ead56bb8c2bc10571e5213b5824c428098d57",
+          "view": "Zoomed-in",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568437263",
+            "5568437264",
+            "5568437266",
+            "5568437267",
+            "5568437268",
+            "5568437269",
+            "5568437271"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Zoomed-in",
+          "label": "On-person · Zoomed-in",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -14936,5 +15044,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T18:49:18.232Z"
+  "updatedAt": "2026-10-20T18:49:31.486Z"
 }
