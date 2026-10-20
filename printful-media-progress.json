@@ -4,10 +4,11 @@
     "c1f745e267b639638377e5ca132153f2c098c177a3fbfed5df5674995033e4a2": {
       "productId": "483397425",
       "variant": 46347,
-      "state": "submitting",
-      "created": "2026-10-20T16:59:42.934Z"
+      "state": "uncertain",
+      "created": "2026-10-20T16:59:42.934Z",
+      "error": "Printful HTTP 400: Invalid file option: template_type"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T16:59:42.934Z"
+  "updatedAt": "2026-10-20T17:00:17.567Z"
 }
