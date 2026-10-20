@@ -24992,10 +24992,38 @@
     "8a4d729181a022598554a6927594cb85a09fa0adde05102dc4964b377c96af37": {
       "productId": "480760460",
       "variant": 9732,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:00:42.192Z",
       "attempts": 1,
-      "key": "gt-987559007"
+      "key": "gt-987559007",
+      "photos": 1,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760460-9732-all-8a4d729181-0.jpg",
+          "sha256": "96c1def44f990bd19608c99550b4c0f64c19253de73e611898396ccd8997e9ec",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568431695",
+            "5568431701",
+            "5568431702",
+            "5568431707",
+            "5568431709",
+            "5568431711",
+            "5568431716",
+            "5568431717",
+            "5568431723",
+            "5568431726",
+            "5568431735"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -25028,5 +25056,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:01:16.326Z"
+  "updatedAt": "2026-10-20T20:01:29.151Z"
 }
