@@ -15,7 +15,7 @@ export function approvedFactory(state){
  return out;
 }
 export function requests(product,detail,mapping,factory=false){
- return [...new Set(product.variants.map(v=>v.color))].map(color=>{
+ return [...new Set(product.variants.map(v=>v.color))].flatMap(color=>{
   const retail=product.variants.find(v=>v.color===color&&v.size==='M')||product.variants.find(v=>v.color===color),source=detail.sync_variants.find(v=>String(v.id)===retail.id&&v.variant_id===retail.catalogVariantId);
   if(!source||source.product?.product_id!==product.catalogProductId)throw Error('Supplier variant identity mismatch.');
   const map=mapping.variant_printfiles?.find(v=>v.variant_id===retail.catalogVariantId);if(!map)throw Error('Exact variant print mapping unavailable.');
@@ -27,8 +27,11 @@ export function requests(product,detail,mapping,factory=false){
    return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width,height,top:Math.round((area.height-height)/2),left:Math.round((area.width-width)/2)}};
   });if(!files.length)throw Error('No accepted production print files.');
   const strings=v=>(v||[]).filter(x=>typeof x==='string');
-  const payload={variant_ids:[retail.catalogVariantId],format:'jpg',width:2000,files,product_options:Object.fromEntries((source.options||[]).filter(o=>o.id!=='license_type').map(o=>[o.id,o.value])),...(strings(mapping.option_groups).length?{option_groups:strings(mapping.option_groups)}:{}),...(strings(mapping.options).length?{options:strings(mapping.options)}:{})};
-  return {color,retail,payload,key:digest([ENGINE,product.id,source.variant_id,payload])};
+  const split=(values,size)=>values.length?Array.from({length:Math.ceil(values.length/size)},(_,i)=>values.slice(i*size,(i+1)*size)):[[]],result=[];
+  for(const options of split(strings(mapping.options),40))for(const groups of split(strings(mapping.option_groups),Math.max(1,Math.floor(400/Math.max(1,options.length))))){
+   const payload={variant_ids:[retail.catalogVariantId],format:'jpg',width:2000,files,product_options:Object.fromEntries((source.options||[]).filter(o=>o.id!=='license_type').map(o=>[o.id,o.value])),...(groups.length?{option_groups:groups}:{}),...(options.length?{options}: {})};
+   result.push({color,retail,payload,key:digest([ENGINE,product.id,source.variant_id,payload])});
+  }return result;
  });
 }
 export function candidates(task,variant){const out=[],seen=new Set();for(const m of task.mockups||[]){if(m.variant_ids?.length&&!m.variant_ids.includes(variant))continue;for(const c of [{url:m.mockup_url,view:m.display_name||m.placement,style:'Default'},...(m.extra||[]).map(e=>({url:e.url,view:e.option||e.title||m.display_name||m.placement,style:e.option_group||'Product'}))]){if(typeof c.url!=='string'||!c.url.startsWith('https://')||seen.has(c.url))continue;seen.add(c.url);out.push(c);}}return out;}
@@ -67,19 +70,21 @@ export async function run(){
    const gallery=[];
    for(const j of jobs){let record=ledger.jobs[j.key];
     if(record?.state==='downloaded'&&record.savedPhotos?.length){let intact=true;for(const photo of record.savedPhotos)try{await fs.access(photo.image);}catch{intact=false;}if(intact){gallery.push(...record.savedPhotos);continue;}}
+    if(record?.state==='empty')continue;
     if(record?.state==='rejected')throw Error(record.error||'Supplier rejected this mockup request.');
     if(record?.state==='submitting'||record?.state==='uncertain')throw Error('A mockup submission needs reconciliation; no duplicate task sent.');
-    if(!record){record=ledger.jobs[j.key]={productId:id,variant:j.retail.catalogVariantId,state:'submitting',created:new Date().toISOString()};await checkpoint('Checkpoint Printful mockup intent '+id);await delay(32000);try{const task=await api('mockup-generator/create-task/'+p.catalogProductId,j.payload);if(!task?.task_key)throw Error('Printful returned no task key.');Object.assign(record,{key:task.task_key,state:'pending'});created++;await checkpoint('Save accepted Printful mockup task '+id);}catch(e){record.state=[400,401,403,404,422].includes(e.status)?'rejected':'uncertain';record.error=e.message;await checkpoint('Record uncertain Printful mockup submission '+id);throw e;}}
+    if(!record){record=ledger.jobs[j.key]={productId:id,variant:j.retail.catalogVariantId,state:'submitting',created:new Date().toISOString()};await checkpoint('Checkpoint Printful mockup intent '+id);await delay(32000);try{const task=await api('mockup-generator/create-task/'+p.catalogProductId,j.payload);if(!task?.task_key)throw Error('Printful returned no task key.');Object.assign(record,{key:task.task_key,state:'pending'});created++;await checkpoint('Save accepted Printful mockup task '+id);}catch(e){record.state=e.status===400&&/No variants to generate|filters may exclude/i.test(e.message)?'empty':[400,401,403,404,422].includes(e.status)?'rejected':'uncertain';record.error=e.message;await checkpoint('Record Printful mockup submission outcome '+id);if(record.state==='empty')continue;throw e;}}
     let task;for(let n=0;n<120;n++){task=await api('mockup-generator/task?task_key='+encodeURIComponent(record.key));if(task.status!=='pending')break;await delay(5000);}
     if(task.status!=='completed')throw Error('Mockup task '+task.status+': '+(task.error||'Not complete yet.'));
     const available=candidates(task,j.retail.catalogVariantId);if(!available.length)throw Error('Completed task returned no matching mockups.');
     const savedPhotos=[];for(const [index,c]of available.entries()){
-     const name='assets/product-photos/'+id+'-'+j.retail.catalogVariantId+'-all-'+index+'.jpg';
+     const name='assets/product-photos/'+id+'-'+j.retail.catalogVariantId+'-all-'+j.key.slice(0,10)+'-'+index+'.jpg';
      const r=await fetch(c.url,{signal:AbortSignal.timeout(60000)});if(!r.ok)throw Error('Mockup download HTTP '+r.status);const bytes=Buffer.from(await r.arrayBuffer());if(bytes.length>30*1024*1024)throw Error('Mockup download exceeds its image limit.');const data=await sharp(bytes,{limitInputPixels:40000000}).rotate().resize({width:2000,height:2000,fit:'inside',withoutEnlargement:true}).jpeg({quality:86,mozjpeg:true}).toBuffer();await fs.writeFile(name,data);
      const fit=/lifestyle|men|women|male|female|model|person|child|kid|couple/i.test(c.style),color=isFactory?'Black':j.color;
-     savedPhotos.push({image:name,view:c.view||'Product view',style:c.style,category:fit?'fit':'product',color,catalogVariantId:j.retail.catalogVariantId,storeVariantIds:p.variants.filter(v=>v.color===j.color).map(v=>v.id),alt:p.name+' · '+(c.view||'Product view'),label:(fit?'On-person · ':'')+(c.view||'Product view'),kind:'production-mockup'});
+     savedPhotos.push({image:name,sha256:createHash('sha256').update(data).digest('hex'),view:c.view||'Product view',style:c.style,category:fit?'fit':'product',color,catalogVariantId:j.retail.catalogVariantId,storeVariantIds:p.variants.filter(v=>v.color===j.color).map(v=>v.id),alt:p.name+' · '+(c.view||'Product view'),label:(fit?'On-person · ':'')+(c.view||'Product view'),kind:'production-mockup'});
     }gallery.push(...savedPhotos);record.state='downloaded';record.photos=available.length;record.savedPhotos=savedPhotos;await checkpoint('Retain downloaded mockup views '+id);
    }
+   const uniquePhotos=new Set();for(let n=gallery.length-1;n>=0;n--){const g=gallery[n],key=g.sha256?g.sha256+':'+g.storeVariantIds.join(','):g.image;if(uniquePhotos.has(key))gallery.splice(n,1);else uniquePhotos.add(key);}
    if(!gallery.length)throw Error('No saved mockups.');
    const current=catalog.products.find(v=>v.id===id);let product={...p,...(current||{}),variants:p.variants.map(v=>({...v,...(current?.variants.find(old=>old.id===v.id)||{}),availability:v.availability})),url:'products/'+id+'.html'};
    if(isFactory){const image=prior?.image||gallery[0].image;product={...product,...(prior||{}),id,catalogProductId:p.catalogProductId,factoryExternalId:external,name:p.name,description:prior?.description||p.name+'. Coordinated original artwork with a black printed background.',category:prior?.category||approval.role,tags:prior?.tags||[approval.role],collections:prior?.collections||[approval.collection],outfitId:prior?.outfitId||approval.outfit,image,images:[...new Set([...gallery.map(g=>g.image),...(prior?.images||[])])],variants:p.variants.map(v=>({...v,color:'Black',colorCode:'#000000',supplierBaseColor:v.color,images:gallery.filter(g=>g.storeVariantIds.includes(v.id)).map(g=>g.image),image:gallery.find(g=>g.storeVariantIds.includes(v.id))?.image}))};manifest.products[id]=product;await write('factory-listings.json',manifest);}
