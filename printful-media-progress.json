@@ -1902,12 +1902,99 @@
     "7f911739aacfe46ed940e470b8abeef969d98976918f0603e40f16da2a27c0db": {
       "productId": "483385402",
       "variant": 10879,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:18:28.959Z",
       "attempts": 1,
-      "key": "gt-987467037"
+      "key": "gt-987467037",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483385402-10879-all-7f911739aa-0.jpg",
+          "sha256": "73b8d62da15f8156874ebaac92e5156287e957351af5b7c89ce518b57744e2dc",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · sleeve_left",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-7f911739aa-1.jpg",
+          "sha256": "d75053fe2b7ac1d48aae6f9e065d9bbab6b09b6c38db512f42124ed65cca9429",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-7f911739aa-2.jpg",
+          "sha256": "72349a93d4728df3495ec0fa087cc93112fcb3c60fe4342f518f95510e1d22cf",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-7f911739aa-3.jpg",
+          "sha256": "325b99035a952a47be7b4d6675fac4c4320dcae64e5c38161c9cbbd3a63c10c2",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:19:02.597Z"
+  "updatedAt": "2026-10-20T17:19:15.877Z"
 }
