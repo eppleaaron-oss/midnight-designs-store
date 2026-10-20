@@ -1229,7 +1229,8 @@
     }
   },
   "errors": {
+    "483375173": "Printful HTTP 400: You are attempting to generate 512 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body",
     "483385402": "Printful HTTP 400: You are attempting to generate 636 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body"
   },
-  "updatedAt": "2026-10-20T17:13:14.876Z"
+  "updatedAt": "2026-10-20T17:13:18.765Z"
 }
