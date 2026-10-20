@@ -19396,10 +19396,73 @@
     "31acbfd767e91c591b4e5aea94dc6d666d07e088b7bcab7839939648326967c1": {
       "productId": "480760783",
       "variant": 24564,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:19:43.192Z",
       "attempts": 1,
-      "key": "gt-987535831"
+      "key": "gt-987535831",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760783-24564-all-31acbfd767-0.jpg",
+          "sha256": "8d2684a46a5fdb52e8458d09c0dc7f18318c5a2acc4f291094b83b9a3b1c6715",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568433539"
+          ],
+          "alt": "Ashen Cathedral Utility Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760783-24564-all-31acbfd767-1.jpg",
+          "sha256": "38c24a08dedbd4a05ff21b2a917a66ec70e6c777e51ac521be6bcc11db736f11",
+          "view": "Left Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568433539"
+          ],
+          "alt": "Ashen Cathedral Utility Backpack · Left Front",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760783-24564-all-31acbfd767-2.jpg",
+          "sha256": "174d461f8ca8cd8694abdb21566f841864ab682c440c000480538a4b00eef8e7",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568433539"
+          ],
+          "alt": "Ashen Cathedral Utility Backpack · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760783-24564-all-31acbfd767-3.jpg",
+          "sha256": "9b9fa551bdc72ab3923e6ec0c8f81f3989112a52296cd42905cb9743037d7dbc",
+          "view": "Front 2",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568433539"
+          ],
+          "alt": "Ashen Cathedral Utility Backpack · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -19431,5 +19494,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:20:50.527Z"
+  "updatedAt": "2026-10-20T19:21:05.072Z"
 }
