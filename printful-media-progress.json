@@ -2113,12 +2113,117 @@
     "6fa7a1f617bd667c119a7f886ad6ab53beebc3d2a1c904b1a0a53416f6050640": {
       "productId": "483375173",
       "variant": 16361,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:20:42.701Z",
       "attempts": 1,
-      "key": "gt-987468148"
+      "key": "gt-987468148",
+      "photos": 6,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483375173-16361-all-6fa7a1f617-0.jpg",
+          "sha256": "1b3332a7a102ea86881e209c233224eca80172859014c45814f3c71b10b9bef7",
+          "view": "outside_back",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · outside_back",
+          "label": "outside_back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-6fa7a1f617-1.jpg",
+          "sha256": "fbf2c45fff169500501fe710d38e27737a48e47955d01a66da1ba716ee572701",
+          "view": "Back Outside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Back Outside",
+          "label": "On-person · Back Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-6fa7a1f617-2.jpg",
+          "sha256": "6033ae1c20a3f51b2cf41950a8a898112d1f9b5f0fca2b58c980285edb9bdf5f",
+          "view": "Back Outside",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Back Outside",
+          "label": "On-person · Back Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-6fa7a1f617-3.jpg",
+          "sha256": "1b3332a7a102ea86881e209c233224eca80172859014c45814f3c71b10b9bef7",
+          "view": "inside_back",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · inside_back",
+          "label": "inside_back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-6fa7a1f617-4.jpg",
+          "sha256": "fbf2c45fff169500501fe710d38e27737a48e47955d01a66da1ba716ee572701",
+          "view": "Back Inside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Back Inside",
+          "label": "On-person · Back Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-6fa7a1f617-5.jpg",
+          "sha256": "c2d17ecf3fd7703f9573edafb91670624f0537888f59d7558efe708d406d844d",
+          "view": "Back Inside",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Back Inside",
+          "label": "On-person · Back Inside",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:21:16.893Z"
+  "updatedAt": "2026-10-20T17:21:30.750Z"
 }
