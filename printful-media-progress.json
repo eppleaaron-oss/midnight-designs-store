@@ -18,13 +18,14 @@
     "99e7c14a1c4697fa5911473c4950d54e2a1083c1af3a9b3644b0c8a39279ea1c": {
       "productId": "483385402",
       "variant": 10879,
-      "state": "submitting",
-      "created": "2026-10-20T17:00:59.000Z"
+      "state": "uncertain",
+      "created": "2026-10-20T17:00:59.000Z",
+      "error": "Printful HTTP 400: Invalid file option: template_type"
     }
   },
   "errors": {
     "483392618": "Printful HTTP 400: Invalid file option: template_type",
     "483397425": "Printful HTTP 400: Invalid file option: template_type"
   },
-  "updatedAt": "2026-10-20T17:00:59.000Z"
+  "updatedAt": "2026-10-20T17:02:05.361Z"
 }
