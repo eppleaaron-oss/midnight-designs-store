@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-20T21:17:41.626Z",
-  "lastSyncedAt": "2026-10-20T21:17:41.626Z",
+  "updatedAt": "2026-10-20T21:22:29.526Z",
+  "lastSyncedAt": "2026-10-20T21:22:29.526Z",
   "products": [
     {
       "id": "483352723",
@@ -12643,6 +12643,8 @@
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png",
       "images": [
+        "assets/product-photos/480743395-23675-all-75a6a65126-0.jpg",
+        "assets/product-photos/480743395-23675-all-75a6a65126-1.jpg",
         "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png"
       ],
       "variants": [
