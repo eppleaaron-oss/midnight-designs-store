@@ -21747,10 +21747,118 @@
     "7d112b81b656dcb3ddd5fac02dc763bab703456f32b13f1d2b24af8493f0b880": {
       "productId": "480760541",
       "variant": 9806,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:33:30.251Z",
       "attempts": 1,
-      "key": "gt-987543220"
+      "key": "gt-987543220",
+      "photos": 5,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760541-9806-all-7d112b81b6-0.jpg",
+          "sha256": "4c5a8b46d7d9c325bd9722aa41002fb831edf806288d9bbc483825c487d6a345",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568432295",
+            "5568432298",
+            "5568432301",
+            "5568432302",
+            "5568432303",
+            "5568432304",
+            "5568432305"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760541-9806-all-7d112b81b6-1.jpg",
+          "sha256": "24f609f6869b7b039311c86bcf321b004d27029448f7540d5c71638be4ad3cdd",
+          "view": "Right",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568432295",
+            "5568432298",
+            "5568432301",
+            "5568432302",
+            "5568432303",
+            "5568432304",
+            "5568432305"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760541-9806-all-7d112b81b6-2.jpg",
+          "sha256": "b0b9b689e9a93294599f040b91d919c5a5d7de66a0c23a21d7bace085e8d8fa1",
+          "view": "Right",
+          "style": "Sneakers 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568432295",
+            "5568432298",
+            "5568432301",
+            "5568432302",
+            "5568432303",
+            "5568432304",
+            "5568432305"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760541-9806-all-7d112b81b6-3.jpg",
+          "sha256": "a4967b9266f4c74f8e110eec75885e3c8aa405fbb2c720c74119272e347dbea7",
+          "view": "Right Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568432295",
+            "5568432298",
+            "5568432301",
+            "5568432302",
+            "5568432303",
+            "5568432304",
+            "5568432305"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Right Back",
+          "label": "On-person · Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760541-9806-all-7d112b81b6-4.jpg",
+          "sha256": "05d945a71dba1ffcde85c1c0f6df60ce5ff8b0f4c06569deb8c5a30cfa77d5d9",
+          "view": "Zoomed-in",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568432295",
+            "5568432298",
+            "5568432301",
+            "5568432302",
+            "5568432303",
+            "5568432304",
+            "5568432305"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Zoomed-in",
+          "label": "On-person · Zoomed-in",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -21782,5 +21890,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:34:04.279Z"
+  "updatedAt": "2026-10-20T19:34:17.656Z"
 }
