@@ -4396,11 +4396,12 @@
     "acc949010702ba44bf0ce9694892347497ef0dee88664c2c7c743ca601fbe9d1": {
       "productId": "483352723",
       "variant": 10879,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:36:37.029Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987477149"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:36:37.029Z"
+  "updatedAt": "2026-10-20T17:37:10.785Z"
 }
