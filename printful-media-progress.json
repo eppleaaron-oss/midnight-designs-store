@@ -23894,10 +23894,63 @@
     "d3dfc32127c53d16c7c899df2ae58af02081e3aa5bb825b89f04b56012405d5e": {
       "productId": "480760509",
       "variant": 16261,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:46:51.501Z",
       "attempts": 1,
-      "key": "gt-987551053"
+      "key": "gt-987551053",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760509-16261-all-d3dfc32127-0.jpg",
+          "sha256": "3cf6201404fd5996a9b7ac472e200aa4dac6bad0898eb246cdae49b2d6c30bc1",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568432021",
+            "5568432022",
+            "5568432023",
+            "5568432027",
+            "5568432028",
+            "5568432029",
+            "5568432030",
+            "5568432031",
+            "5568432032",
+            "5568432038",
+            "5568432043"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760509-16261-all-d3dfc32127-1.jpg",
+          "sha256": "c4e7e148d777aa0bb93c1f8ff7a509bcfbe693344c82367de8f43dc3ab2fb65e",
+          "view": "Left Front",
+          "style": "Women's Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568432021",
+            "5568432022",
+            "5568432023",
+            "5568432027",
+            "5568432028",
+            "5568432029",
+            "5568432030",
+            "5568432031",
+            "5568432032",
+            "5568432038",
+            "5568432043"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -23930,5 +23983,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:47:25.870Z"
+  "updatedAt": "2026-10-20T19:47:38.871Z"
 }
