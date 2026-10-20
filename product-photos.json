@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:03:56.484Z",
+  "updatedAt": "2026-10-20T17:04:48.504Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,63 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "483392618": {
+      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants",
+      "originalImage": "assets/product-photos/483392618-46253-all-0.jpg",
+      "catalogProductId": 1479,
+      "photos": [
+        {
+          "image": "assets/product-photos/483392618-46253-all-0.jpg",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5584810538",
+            "5584810549",
+            "5584810552",
+            "5584810556",
+            "5584810598",
+            "5584810600",
+            "5584810602",
+            "5584810604",
+            "5584810612",
+            "5584810629",
+            "5584810631"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483392618-46253-all-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5584810538",
+            "5584810549",
+            "5584810552",
+            "5584810556",
+            "5584810598",
+            "5584810600",
+            "5584810602",
+            "5584810604",
+            "5584810612",
+            "5584810629",
+            "5584810631"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "03c5497d3d5b16714118453e4d6de6cccafcdf3f6e9474f566084c8e8615f310"
     },
     "483397425": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts",
