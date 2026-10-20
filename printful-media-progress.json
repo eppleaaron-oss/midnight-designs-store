@@ -2441,11 +2441,12 @@
     "e754b685bd212f1154a52034b9be638b9f8d6de93acaa063fa83de402861d1d6": {
       "productId": "483375173",
       "variant": 16361,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:22:58.912Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987469357"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:22:58.912Z"
+  "updatedAt": "2026-10-20T17:23:32.641Z"
 }
