@@ -68,9 +68,9 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
      const recipe=recipes.get(p.choice.product);if(!recipe){hold(r.id,p,'Product-specific native layout is not prepared. No product was created.');changed=true;continue;}
      if(p.choice.setId.startsWith('unresolved:')){hold(r.id,p,'Original artwork set is missing. A garment screenshot cannot be used as print artwork.');changed=true;continue;}
      try{
-      const planned=p.choice.designerPlan?.layout||recipe.layout;
+      const planned=p.choice.ownerRecipe?.layout||p.choice.designerPlan?.layout||recipe.layout;
       const layout=p.choice.sourceParts?{...planned,assignments:Object.fromEntries(Object.entries(planned.assignments||{}).map(([slot,part])=>[slot,p.choice.sourceParts[part]||part]))}:planned;
-      const choice={...p.choice,...recipe,setId:p.choice.setId,layout},checked=await basic.inspect(choice);
+      const choice={...p.choice,...recipe,...(p.choice.ownerRecipe||{}),setId:p.choice.setId,layout},checked=await basic.inspect(choice);
       if(!checked.numericLayout||checked.numericLayout.requiresAcceptance)throw Error('The actual artwork needs a newly inspected size or placement.');
       const signature=basic.inspectionSignature(checked);run("UPDATE factory_basic_outfit_pieces SET choice=?,signature=?,error='' WHERE id=?",JSON.stringify(choice),signature,p.id);
       run('UPDATE factory_basic_batches SET current_plan=?,error=\'\',updated=? WHERE id=?',planId,now(),r.id);await basic.checkpoint();
@@ -124,5 +124,13 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
   if(b.action==='resume')run('DELETE FROM factory_basic_batch_holds WHERE batch=?',r.id);
   run('UPDATE factory_basic_batches SET status=?,error=\'\',updated=? WHERE id=?',b.action==='pause'?'paused':b.action==='cancel'?'cancelled':'running',now(),r.id);await basic.checkpoint();return snapshot();
  }
- return {start,tick,control,snapshot,inProgress:()=>!!active(),activeOutfit:()=>active()?.current_plan||null};
+ function editPiece(id,choice,signature,note){
+  if(busy)throw Object.assign(Error('The factory is saving a production step. Try applying this edit again shortly.'),{status:409});
+  const p=get('SELECT * FROM factory_basic_outfit_pieces WHERE id=?',id);
+  if(!p||p.item||get('SELECT id FROM factory_basic_items WHERE request_key=?','basic-outfit_'+p.id+(p.revision>1?'_r'+p.revision:'')))throw Object.assign(Error('This piece already started. Its production recipe is preserved.'),{status:409});
+  const old=JSON.parse(p.choice);if(old.product!==choice.product||old.setId!==choice.setId)throw Object.assign(Error('Keep the original garment and design family for this waiting piece.'),{status:409});
+  run("UPDATE factory_basic_outfit_pieces SET choice=?,signature=?,error='' WHERE id=?",JSON.stringify({...old,layout:choice.layout,ownerRecipe:{...choice,inspectionToken:null},editorNote:note}),signature,id);
+  run('DELETE FROM factory_basic_batch_holds WHERE piece=?',id);
+ }
+ return {editPiece,start,tick,control,snapshot,inProgress:()=>!!active(),activeOutfit:()=>active()?.current_plan||null};
 }
