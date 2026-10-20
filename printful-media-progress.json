@@ -23137,10 +23137,73 @@
     "0a9c12c0d752d742b0ffb77d2924b5d87d0f54d8e97587934abf23dfe1094e9b": {
       "productId": "480760516",
       "variant": 9051,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:44:29.978Z",
       "attempts": 1,
-      "key": "gt-987549535"
+      "key": "gt-987549535",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760516-9051-all-0a9c12c0d7-0.jpg",
+          "sha256": "30049cfc95f9c31f18cc6075a7fd44b2e5bb96da3a5a39dd6899cc7a9cf8453f",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568432059",
+            "5568432060",
+            "5568432061",
+            "5568432062",
+            "5568432064",
+            "5568432065"
+          ],
+          "alt": "Ashen Cathedral Men's Tank Top · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760516-9051-all-0a9c12c0d7-1.jpg",
+          "sha256": "d7f599c7247360c7e1e0c2c5c6afd87dce08265a23d7cdd75527c8952797d107",
+          "view": "Right Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568432059",
+            "5568432060",
+            "5568432061",
+            "5568432062",
+            "5568432064",
+            "5568432065"
+          ],
+          "alt": "Ashen Cathedral Men's Tank Top · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760516-9051-all-0a9c12c0d7-2.jpg",
+          "sha256": "5ca942671f457b60b0f97451b1fb78e814df5ca501fe8a19b4ce10e40d3444c5",
+          "view": "Right Front",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568432059",
+            "5568432060",
+            "5568432061",
+            "5568432062",
+            "5568432064",
+            "5568432065"
+          ],
+          "alt": "Ashen Cathedral Men's Tank Top · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -23173,5 +23236,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:45:03.882Z"
+  "updatedAt": "2026-10-20T19:45:17.039Z"
 }
