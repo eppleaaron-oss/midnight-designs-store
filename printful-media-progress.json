@@ -2226,11 +2226,12 @@
     "d15bacc240cde1b29fa895e6dce6c09c1cc4a010e0167076104e70273e796b52": {
       "productId": "483375173",
       "variant": 16361,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:21:32.877Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987468928"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:21:32.877Z"
+  "updatedAt": "2026-10-20T17:22:39.503Z"
 }
