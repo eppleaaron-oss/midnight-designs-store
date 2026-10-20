@@ -30861,10 +30861,57 @@
     "1b3126aceb50a8f3d9433bde3d62c0949d8285386c3e927fa680ed4029606be4": {
       "productId": "480743760",
       "variant": 23675,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:36:33.469Z",
       "attempts": 1,
-      "key": "gt-987584312"
+      "key": "gt-987584312",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743760-23675-all-1b3126aceb-0.jpg",
+          "sha256": "0997b2fef42f5cc7850df0c969e31de75cebfc9fdb68e81e163f9c100a1fe2da",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568321663",
+            "5568321680",
+            "5568321687",
+            "5568321690",
+            "5568321695",
+            "5568321710",
+            "5568321713",
+            "5568321716"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743760-23675-all-1b3126aceb-1.jpg",
+          "sha256": "bf98d85c4cd7e3b7a4ddfd59553cf84b72989e2fa811fa3fadc622551e2def24",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568321663",
+            "5568321680",
+            "5568321687",
+            "5568321690",
+            "5568321695",
+            "5568321710",
+            "5568321713",
+            "5568321716"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -30898,5 +30945,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:37:07.532Z"
+  "updatedAt": "2026-10-20T20:37:21.004Z"
 }
