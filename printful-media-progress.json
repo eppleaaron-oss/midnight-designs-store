@@ -1224,7 +1224,7 @@
     "3a7639197e1daa8cefe4adfc55711f4e920bc7342706ef0dd054c53d771f8065": {
       "productId": "483356322",
       "variant": 46347,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:34:22.618Z",
       "attempts": 2,
       "previousSubmission": {
@@ -1233,7 +1233,8 @@
         "state": "submitting",
         "created": "2026-10-20T17:12:44.856Z"
       },
-      "note": "Retry of an unconfirmed image-only task; supplier products are never created here."
+      "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
+      "key": "gt-987475911"
     },
     "1ce264acd0b2a1c608b9c7786f0827c39ceb5440d2b922a48081cc6d1d3bee90": {
       "productId": "483352723",
@@ -3855,5 +3856,5 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:34:22.618Z"
+  "updatedAt": "2026-10-20T17:34:56.480Z"
 }
