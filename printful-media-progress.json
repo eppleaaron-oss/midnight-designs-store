@@ -35816,10 +35816,76 @@
     "54986c27243299e0a29b196e5cb1715d1c78f13ba1e85da7deb0c92d8ca41e6c": {
       "productId": "480743466",
       "variant": 15751,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T21:11:43.088Z",
       "attempts": 1,
-      "key": "gt-987603063"
+      "key": "gt-987603063",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743466-15751-all-54986c2724-0.jpg",
+          "sha256": "10ac62fcb4b9e5e2b7b726fcbb8a997aca23bb892c7d3b6c21561871435d0748",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 15751,
+          "storeVariantIds": [
+            "5568318820",
+            "5568318823",
+            "5568318825",
+            "5568318828",
+            "5568318832",
+            "5568318834",
+            "5568318839"
+          ],
+          "alt": "Ashen Cathedral Unisex Track Pants · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743466-15751-all-54986c2724-1.jpg",
+          "sha256": "78653d2c6eb6291ea929d919cdc45e9ac788a9974d7ac0416abb07a48fd86b58",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 15751,
+          "storeVariantIds": [
+            "5568318820",
+            "5568318823",
+            "5568318825",
+            "5568318828",
+            "5568318832",
+            "5568318834",
+            "5568318839"
+          ],
+          "alt": "Ashen Cathedral Unisex Track Pants · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743466-15751-all-54986c2724-2.jpg",
+          "sha256": "9b352cc55a74602f23b004a1dd4da1c661ddad1eab412923a06e66f470733616",
+          "view": "Zoomed-in",
+          "style": "Men's Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 15751,
+          "storeVariantIds": [
+            "5568318820",
+            "5568318823",
+            "5568318825",
+            "5568318828",
+            "5568318832",
+            "5568318834",
+            "5568318839"
+          ],
+          "alt": "Ashen Cathedral Unisex Track Pants · Zoomed-in",
+          "label": "On-person · Zoomed-in",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -35853,5 +35919,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T21:12:17.111Z"
+  "updatedAt": "2026-10-20T21:12:30.380Z"
 }
