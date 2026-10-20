@@ -24,7 +24,7 @@ export function requests(product,detail,mapping,factory=false){
    if(!area||f.status!=='ok'||f.is_temporary||!f.width||!f.height||!f.hash||!/^https:\/\/files\.cdn\.printful\.com\//.test(f.preview_url||''))throw Error('Permanently accepted print file unavailable: '+f.type);
    if(factory&&(f.width!==area.width||f.height!==area.height))throw Error('Factory native print file dimensions changed: '+placement);
    const scale=factory?1:area.fill_mode==='fit'?Math.min(area.width/f.width,area.height/f.height):Math.max(area.width/f.width,area.height/f.height),width=Math.round(f.width*scale),height=Math.round(f.height*scale);
-   return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width,height,top:Math.round((area.height-height)/2),left:Math.round((area.width-width)/2)},...(factory?{options:[{id:'template_type',value:'native'}]}:{})};
+   return {placement,image_url:f.preview_url,position:{area_width:area.width,area_height:area.height,width,height,top:Math.round((area.height-height)/2),left:Math.round((area.width-width)/2)}};
   });if(!files.length)throw Error('No accepted production print files.');
   const strings=v=>(v||[]).filter(x=>typeof x==='string');
   const payload={variant_ids:[retail.catalogVariantId],format:'jpg',width:2000,files,product_options:Object.fromEntries((source.options||[]).filter(o=>o.id!=='license_type').map(o=>[o.id,o.value])),...(strings(mapping.option_groups).length?{option_groups:strings(mapping.option_groups)}:{}),...(strings(mapping.options).length?{options:strings(mapping.options)}:{})};
@@ -39,7 +39,7 @@ export async function run(){
  let last=0;
  async function api(path,payload){for(let attempt=0;attempt<5;attempt++){
   await delay(Math.max(0,350-(Date.now()-last)));last=Date.now();const r=await fetch('https://api.printful.com/'+path,{method:payload?'POST':'GET',headers:{...headers,'Content-Type':'application/json'},body:payload?JSON.stringify(payload):undefined,signal:AbortSignal.timeout(90000)});const d=await r.json();if(r.ok)return d.result;
-  if(r.status===429||!payload&&r.status>=500){await delay(Math.max(32000,Number(r.headers.get('retry-after')||0)*1000));continue;}throw Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.result||'Request failed').slice(0,300));
+  if(r.status===429||!payload&&r.status>=500){await delay(Math.max(32000,Number(r.headers.get('retry-after')||0)*1000));continue;}throw Object.assign(Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.result||'Request failed').slice(0,300)),{status:r.status});
  }throw Error('Printful rate limit did not clear.');}
  const backend=await fetch('https://midnight-designs-backend.onrender.com/api/owner/ai-factory/basic',{signal:AbortSignal.timeout(60000)});if(!backend.ok)throw Error('Factory receipt audit unavailable.');const approved=approvedFactory(await backend.json());
  let catalog=await read('products.json',{products:[]}),photos=await read('product-photos.json',{products:{}}),manifest=await read('factory-listings.json',{products:{}}),ledger=await read('printful-media-progress.json',{engine:ENGINE,jobs:{},errors:{}}),specs=await read('product-information.json',{products:{}});ledger.errors={};
@@ -67,8 +67,9 @@ export async function run(){
    const gallery=[];
    for(const j of jobs){let record=ledger.jobs[j.key];
     if(record?.state==='downloaded'&&record.savedPhotos?.length){let intact=true;for(const photo of record.savedPhotos)try{await fs.access(photo.image);}catch{intact=false;}if(intact){gallery.push(...record.savedPhotos);continue;}}
+    if(record?.state==='rejected')throw Error(record.error||'Supplier rejected this mockup request.');
     if(record?.state==='submitting'||record?.state==='uncertain')throw Error('A mockup submission needs reconciliation; no duplicate task sent.');
-    if(!record){record=ledger.jobs[j.key]={productId:id,variant:j.retail.catalogVariantId,state:'submitting',created:new Date().toISOString()};await checkpoint('Checkpoint Printful mockup intent '+id);await delay(32000);try{const task=await api('mockup-generator/create-task/'+p.catalogProductId,j.payload);if(!task?.task_key)throw Error('Printful returned no task key.');Object.assign(record,{key:task.task_key,state:'pending'});created++;await checkpoint('Save accepted Printful mockup task '+id);}catch(e){record.state='uncertain';record.error=e.message;await checkpoint('Record uncertain Printful mockup submission '+id);throw e;}}
+    if(!record){record=ledger.jobs[j.key]={productId:id,variant:j.retail.catalogVariantId,state:'submitting',created:new Date().toISOString()};await checkpoint('Checkpoint Printful mockup intent '+id);await delay(32000);try{const task=await api('mockup-generator/create-task/'+p.catalogProductId,j.payload);if(!task?.task_key)throw Error('Printful returned no task key.');Object.assign(record,{key:task.task_key,state:'pending'});created++;await checkpoint('Save accepted Printful mockup task '+id);}catch(e){record.state=[400,401,403,404,422].includes(e.status)?'rejected':'uncertain';record.error=e.message;await checkpoint('Record uncertain Printful mockup submission '+id);throw e;}}
     let task;for(let n=0;n<120;n++){task=await api('mockup-generator/task?task_key='+encodeURIComponent(record.key));if(task.status!=='pending')break;await delay(5000);}
     if(task.status!=='completed')throw Error('Mockup task '+task.status+': '+(task.error||'Not complete yet.'));
     const available=candidates(task,j.retail.catalogVariantId);if(!available.length)throw Error('Completed task returned no matching mockups.');
