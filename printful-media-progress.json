@@ -26312,10 +26312,73 @@
     "2fc5c2ad30278020fba3eb0a04d5e1a4b2536483d13d05aae9e58596d6ffbf3f": {
       "productId": "480744102",
       "variant": 24564,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:07:36.992Z",
       "attempts": 1,
-      "key": "gt-987564249"
+      "key": "gt-987564249",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480744102-24564-all-2fc5c2ad30-0.jpg",
+          "sha256": "7ea2f2b590d5ad994b9ffd5a88138addfc93b968e4542aa99893490bf7c5d23a",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568324353"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744102-24564-all-2fc5c2ad30-1.jpg",
+          "sha256": "610729581ea0f6962474708a2878c004a637d69534a2c40a665ab246dd0cec20",
+          "view": "Right Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568324353"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Right Front",
+          "label": "Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744102-24564-all-2fc5c2ad30-2.jpg",
+          "sha256": "4dbe7833f8f19aa7545663470486fc319eb3108e67478cbc3b296763f9ea5c67",
+          "view": "Product details 2",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568324353"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Product details 2",
+          "label": "Product details 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744102-24564-all-2fc5c2ad30-3.jpg",
+          "sha256": "249048f7e40cfc5667c4bd51c65aa564bd81dd6412dce691b6ad426da855ef0a",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568324353"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -26348,5 +26411,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:08:11.172Z"
+  "updatedAt": "2026-10-20T20:08:25.551Z"
 }
