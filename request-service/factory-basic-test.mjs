@@ -77,8 +77,7 @@ async function fixture(t,{durable=true,models=true,githubWorkspace=false,managed
 
 test('matching size templates reuse exact rendered pixels while retaining separate files and quality proofs',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.step();await f.step();
- const first=await f.step();assert.equal(first.data.result.rendered,2);assert.equal(first.data.result.defer,true);
- const second=await f.step();assert.equal(second.data.result.reusedPixels,2);assert.equal(second.data.result.filesSaved,true);assert.equal(second.data.result.quality.decodedFiles,2,'Identical native PNGs are fully decoded once while every variant retains its proof');
+ const first=await f.step();assert.equal(first.data.result.rendered,4);assert.equal(first.data.result.reusedPixels,2);assert.equal(first.data.result.filesSaved,true,'A small multi-size garment finishes in one recoverable rendering slice');assert.equal(first.data.result.quality.decodedFiles,2,'Identical native PNGs are fully decoded once while every variant retains its proof');
  const rows=f.db.prepare('SELECT f.id,f.draft,f.placement,f.sha256,q.signature,r.pixel_signature FROM factory_print_files f JOIN factory_render_files r ON r.file=f.id JOIN factory_render_quality q ON q.file=f.id').all();
  assert.equal(rows.length,4);assert.equal(new Set(rows.map(r=>r.id)).size,4);assert.equal(new Set(rows.map(r=>r.draft)).size,2);
  for(const placement of ['front','back']){const pair=rows.filter(r=>r.placement===placement);assert.equal(pair[0].sha256,pair[1].sha256);assert.equal(pair[0].pixel_signature,pair[1].pixel_signature);assert.notEqual(pair[0].signature,pair[1].signature,'Supplier variant remains part of the final quality proof');}
@@ -87,6 +86,8 @@ test('matching size templates reuse exact rendered pixels while retaining separa
 
 test('an interrupted print attachment checkpoint recovers exact file IDs and checksums before advancing',async t=>{
  const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();await f.step();await f.step();await f.step();
+ // Simulate interruption after native bytes were saved but before the files-step advancement was committed.
+ f.db.prepare('UPDATE factory_job_runtime SET step=2 WHERE job=?').run(item.job);f.db.prepare("DELETE FROM factory_job_checkpoints WHERE job=? AND step='files'").run(item.job);
  const original=f.db.prepare('SELECT id,sha256 FROM factory_print_files ORDER BY rowid LIMIT 1').get();f.db.prepare("DELETE FROM factory_basic_remote_assets WHERE job=? AND kind='print' AND file=?").run(item.job,original.id);stripBasicWorkingPixels(f.db);
  await f.service.basicGithub.hydrate(item.job);assert.equal(f.db.prepare('SELECT length(data) n FROM factory_print_files WHERE id=?').get(original.id).n,0,'Unconfirmed bytes remain for deterministic regeneration, never a fake completion');
  const step=await f.step();assert.ok(['queued','retry_wait'].includes(step.data.status));const restored=f.db.prepare('SELECT sha256,length(data) n FROM factory_print_files WHERE id=?').get(original.id);assert.equal(restored.sha256,original.sha256);assert.ok(restored.n>0);assert.ok(f.db.prepare("SELECT asset_id FROM factory_basic_remote_assets WHERE job=? AND kind='print' AND file=?").get(item.job,original.id));
