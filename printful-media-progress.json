@@ -31610,10 +31610,213 @@
     "4231254d6c12945d4b16ae9855d4c365a07c99c813eb27fbb5d9d8ff9b438bf2": {
       "productId": "480743736",
       "variant": 9732,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:44:26.292Z",
       "attempts": 1,
-      "key": "gt-987588905"
+      "key": "gt-987588905",
+      "photos": 8,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-0.jpg",
+          "sha256": "133aa4d808242250e20d167ccd2be0860c8c479dc36a5c7c50ca77a6dcc4e62a",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-1.jpg",
+          "sha256": "bc65d0474a1baee460ff6e0c07ef62bff57f757c9d6b2cc75e218653c9bab029",
+          "view": "Right Front",
+          "style": "Women's Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-2.jpg",
+          "sha256": "f2e80a88a52020b90a5a11b4b02dfed36b286154e271578a4e8f332729db2097",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-3.jpg",
+          "sha256": "17131824794e1fb0606852d9a99034e85d6b58f6c439175156820865ea44e650",
+          "view": "Right Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-4.jpg",
+          "sha256": "37e4e56fef2d3537dc3e8582fcea043504b45064a616ffaeeae6bf5f901de1ef",
+          "view": "Right Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-5.jpg",
+          "sha256": "17c20d03a78ac08bce3bd352b964bfcedb4c642a78be5cb311bcbff62fe1b24c",
+          "view": "Right Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-6.jpg",
+          "sha256": "d35128889628b789476fa817ca7f96ea8dbf410845b19bec909604ade9f91d93",
+          "view": "Right Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743736-9732-all-4231254d6c-7.jpg",
+          "sha256": "b5a65321702f67c566bcca682b9cdd10623d8c609f05c3ab4c276fb70a956189",
+          "view": "Right Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568321426",
+            "5568321427",
+            "5568321428",
+            "5568321431",
+            "5568321432",
+            "5568321442",
+            "5568321444",
+            "5568321446",
+            "5568321455",
+            "5568321461",
+            "5568321464"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -31647,5 +31850,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:45:32.571Z"
+  "updatedAt": "2026-10-20T20:45:47.460Z"
 }
