@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T18:36:58.799Z",
+  "updatedAt": "2026-10-20T18:37:51.517Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,100 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480761351": {
+      "name": "Blood Moon Reaper Bandana",
+      "originalImage": "https://files.cdn.printful.com/files/44a/44afe848535fbbda9dc0acf9069e0c81_preview.png",
+      "catalogProductId": 630,
+      "photos": [
+        {
+          "image": "assets/product-photos/480761351-16032-all-c69ef7109c-0.jpg",
+          "sha256": "86df59dbecf161edb63514327d20ec4206f1cb04cfc25207351177071fc75fd1",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568437419",
+            "5568437420",
+            "5568437421"
+          ],
+          "alt": "Blood Moon Reaper Bandana · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761351-16032-all-c69ef7109c-1.jpg",
+          "sha256": "fd11a36ca4046222851b9cc0dfb66271d76cfa5a074dc75c20aa3ca7d7704926",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568437419",
+            "5568437420",
+            "5568437421"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761351-16032-all-c69ef7109c-2.jpg",
+          "sha256": "f61f3099713e6af535bacbdcbb76d4a919ad40992c465e47322ed04ac072ce4d",
+          "view": "Front",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568437419",
+            "5568437420",
+            "5568437421"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761351-16032-all-c69ef7109c-3.jpg",
+          "sha256": "a99f33c04ef7401d5a13ccc29e75e3dfe56eb2b5054bf11687a6b6146df01bba",
+          "view": "Front",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568437419",
+            "5568437420",
+            "5568437421"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761351-16032-all-c69ef7109c-4.jpg",
+          "sha256": "56a1d542a22022c13b7ea25d03529acb91cc040108c5e6b4d4720d6ca09e14b5",
+          "view": "Front",
+          "style": "Lifestyle 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568437419",
+            "5568437420",
+            "5568437421"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "6862018c9fae55ea4f9a1bfb0ddacb958ec8a8373810ccaba9243f1dfb7aff82"
     },
     "480761355": {
       "name": "Blood Moon Reaper Utility Backpack",
