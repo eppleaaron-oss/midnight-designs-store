@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T20:54:48.012Z",
+  "updatedAt": "2026-10-20T20:58:30.812Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,100 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480743719": {
+      "name": "Ashen Cathedral Bandana",
+      "originalImage": "https://files.cdn.printful.com/files/3cb/3cb8aec6cd8306e1f334df13379de507_preview.png",
+      "catalogProductId": 630,
+      "photos": [
+        {
+          "image": "assets/product-photos/480743719-16032-all-12ba09a954-0.jpg",
+          "sha256": "3b21cdaed5ff82a4d58343742f451b1ca2196d029f706ecadc9ac9fc579a5fe6",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568321350",
+            "5568321351",
+            "5568321352"
+          ],
+          "alt": "Ashen Cathedral Bandana · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743719-16032-all-12ba09a954-1.jpg",
+          "sha256": "2d9e4cdfe81f05b2312740cce64d0abbf0ac9b942dad554539a8b1935fa3698e",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568321350",
+            "5568321351",
+            "5568321352"
+          ],
+          "alt": "Ashen Cathedral Bandana · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743719-16032-all-12ba09a954-2.jpg",
+          "sha256": "6d0daae9a32716b6425770ae4d3966025e48d65545a695cdd8922c3511ef1e54",
+          "view": "Front",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568321350",
+            "5568321351",
+            "5568321352"
+          ],
+          "alt": "Ashen Cathedral Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743719-16032-all-12ba09a954-3.jpg",
+          "sha256": "0e71f113180da533b73481a82256e80973d4a159bfb14e86eabd62af8ae9c4d5",
+          "view": "Front",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568321350",
+            "5568321351",
+            "5568321352"
+          ],
+          "alt": "Ashen Cathedral Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743719-16032-all-12ba09a954-4.jpg",
+          "sha256": "b707efc58a91d42548bedfc4168698aa0e8426e2dfee4b2de272e618ee59bbb2",
+          "view": "Front",
+          "style": "Lifestyle 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568321350",
+            "5568321351",
+            "5568321352"
+          ],
+          "alt": "Ashen Cathedral Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "547812afb6fb2b569dba3e0938baaac20f9ded537a70a8b245e37b530831f288"
     },
     "480743722": {
       "name": "Ashen Cathedral Utility Backpack",
