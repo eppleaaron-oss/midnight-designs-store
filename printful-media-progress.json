@@ -15917,6 +15917,13 @@
       "created": "2026-10-20T18:55:36.322Z",
       "attempts": 1,
       "error": "Printful HTTP 400: No variants to generate. Option filters may exclude all variants or variants are not available. Alternatively, make sure that variants belong to given product id."
+    },
+    "b25329cfc2e4857f8283ab99d2068ec142bee2b647eecac36bb97080cdbee42a": {
+      "productId": "480760864",
+      "variant": 9051,
+      "state": "submitting",
+      "created": "2026-10-20T18:56:14.363Z",
+      "attempts": 1
     }
   },
   "errors": {
@@ -15948,5 +15955,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T18:56:12.067Z"
+  "updatedAt": "2026-10-20T18:56:14.363Z"
 }
