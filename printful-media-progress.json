@@ -10839,10 +10839,238 @@
     "a149a6c997fa7f0d176edd8b7fa18fd9a7d702de794428c9c4032a7fb6fb734c": {
       "productId": "480876879",
       "variant": 9732,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T18:23:54.273Z",
       "attempts": 1,
-      "key": "gt-987503573"
+      "key": "gt-987503573",
+      "photos": 9,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-0.jpg",
+          "sha256": "700e5aa742d6a6b0e38793376da946e0ed726a02208787d0d89348b8b501ca88",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-1.jpg",
+          "sha256": "4602254c8eec815cd04b7c1463baaa70560f8681eb81d68bdf421c6d5978ae51",
+          "view": "Left",
+          "style": "Men's Lifestyle 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-2.jpg",
+          "sha256": "4f8a0f7fa11f3a40fbf30c1d014d65f615c389303f87f911e0bc544e0f933ded",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · sleeve_left",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-3.jpg",
+          "sha256": "9e5f39af3bc58da9ef79804b0662bab066041554d5b2f941877a3b431aa3e703",
+          "view": "Left Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-4.jpg",
+          "sha256": "d0ffea8318de959ef399a6d2e4991d7f9d23bc165017f80763d0ae609caf9d03",
+          "view": "Left Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-5.jpg",
+          "sha256": "57c7475294cbea62d546c117665164f333174b8c5eb0e741f8dcb96d2f353611",
+          "view": "Left Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-6.jpg",
+          "sha256": "6253f89e8d5873be4beb4afe6fcc63719dc8d9df81b03a28f6717f557371b4cc",
+          "view": "Left Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-7.jpg",
+          "sha256": "aacc424da7c2f95290e2d4eb1f53812b6bbdda66b4e5d4eff5f0d94a28b83fd4",
+          "view": "Left Front",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480876879-9732-all-a149a6c997-8.jpg",
+          "sha256": "57a75f53f40e26b2935e0e9c6b35d3f93c123aca3045e30454740d7bac961e9b",
+          "view": "Left Front",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568891856",
+            "5568891874",
+            "5568891923",
+            "5568891929",
+            "5568891932",
+            "5568891935",
+            "5568891940",
+            "5568891943",
+            "5568891947",
+            "5568891951",
+            "5568891955"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -10873,5 +11101,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T18:25:01.673Z"
+  "updatedAt": "2026-10-20T18:25:16.206Z"
 }
