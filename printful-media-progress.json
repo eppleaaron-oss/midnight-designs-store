@@ -2851,8 +2851,15 @@
           "kind": "production-mockup"
         }
       ]
+    },
+    "f3764ffae9fcf64822a530c0a000c4fa2005f8f967a41e5ec129b51625f93183": {
+      "productId": "483366087",
+      "variant": 12913,
+      "state": "submitting",
+      "created": "2026-10-20T17:27:45.064Z",
+      "attempts": 1
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:27:43.015Z"
+  "updatedAt": "2026-10-20T17:27:45.064Z"
 }
