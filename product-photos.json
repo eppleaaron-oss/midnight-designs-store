@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:38:47.855Z",
+  "updatedAt": "2026-10-20T17:43:40.103Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -5726,7 +5726,8 @@
       "catalogProductId": 420,
       "photos": [
         {
-          "image": "assets/product-photos/483370819-11414-all-0.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-0.jpg",
+          "sha256": "78fd9e526310e0c04ac61d1f0efaf53e92ae1979053d74ebc3c26e27e82d7c51",
           "view": "default",
           "style": "Default",
           "category": "product",
@@ -5740,7 +5741,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-1.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-1.jpg",
+          "sha256": "ca98c1b8c56eef5affc1633d301a758cce64db2281925532b61eedeca5f734d0",
           "view": "Front",
           "style": "Flat",
           "category": "product",
@@ -5754,7 +5756,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-2.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-2.jpg",
+          "sha256": "8a1f91208ed9cd7d85a41f05ce8801cfe81c7750567165aaa7311329dda37c66",
           "view": "Back",
           "style": "Flat",
           "category": "product",
@@ -5768,7 +5771,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-3.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-3.jpg",
+          "sha256": "f6d3fd94883fadc83c23b22e9a978cfbd6caa6abdd34395d94ba053080e436e0",
           "view": "Folded",
           "style": "Flat",
           "category": "product",
@@ -5782,21 +5786,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-4.jpg",
-          "view": "On Tube",
-          "style": "Flat",
-          "category": "product",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · On Tube",
-          "label": "On Tube",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-5.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-4.jpg",
+          "sha256": "f10c8df731def571bd28af9dec34bf26cec42c1b8583ab66498a085f52be0fb6",
           "view": "Front",
           "style": "Women's",
           "category": "fit",
@@ -5810,7 +5801,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-6.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-5.jpg",
+          "sha256": "bb1022671ee94b71623bbf205b840370a8ae8b9d90ab45a9e6e244b62f464581",
           "view": "Left",
           "style": "Women's",
           "category": "fit",
@@ -5824,21 +5816,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-7.jpg",
-          "view": "Right",
-          "style": "Women's",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-8.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-6.jpg",
+          "sha256": "9a9c7f58a0ebae17815a4414f1afbbc02c438a976d4a7bf017e6465cce44dfc9",
           "view": "Left",
           "style": "Women's 2",
           "category": "fit",
@@ -5852,21 +5831,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-9.jpg",
-          "view": "Right",
-          "style": "Women's 2",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-10.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-7.jpg",
+          "sha256": "59a5316162bfcf276256882cc8a9668e51f05a9c63ee0e0479357cb9f3a9c74a",
           "view": "Front",
           "style": "Men's 2",
           "category": "fit",
@@ -5880,21 +5846,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-11.jpg",
-          "view": "Right",
-          "style": "Men's 2",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-12.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-8.jpg",
+          "sha256": "b07743051478012ff0a96e3fb44840cd0c71157c0fdbb92c799239f47b4c5f44",
           "view": "Left",
           "style": "Men's 2",
           "category": "fit",
@@ -5908,21 +5861,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-13.jpg",
-          "view": "Right",
-          "style": "Men's",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-14.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-9.jpg",
+          "sha256": "1fd143ce3fb6f93071349d7db389ea183fb9de510014aeae807d41e0681fd457",
           "view": "Left",
           "style": "Men's",
           "category": "fit",
@@ -5936,7 +5876,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-15.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-10.jpg",
+          "sha256": "b4b1a7b94666a1252ed60e98a93d0d7d043fe02958a435598dd75ee6db897895",
           "view": "Left",
           "style": "Men's 4",
           "category": "fit",
@@ -5950,21 +5891,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-16.jpg",
-          "view": "Right",
-          "style": "Men's 4",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-17.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-11.jpg",
+          "sha256": "7bcc22d4146dfc4ba3028c1bbd2e5dafeed5fa271558556b8391e306cd66491d",
           "view": "Front",
           "style": "Women's 3",
           "category": "fit",
@@ -5978,21 +5906,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-18.jpg",
-          "view": "Right",
-          "style": "Women's 3",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-19.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-12.jpg",
+          "sha256": "a7a72e1d18853ab7d7ac1933e1c146bb5125bc599dd3160baa2091d0673afa95",
           "view": "Left",
           "style": "Women's 3",
           "category": "fit",
@@ -6006,7 +5921,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-20.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-13.jpg",
+          "sha256": "9559abc282eed90f16d82b8beefe6532f082cfe15703badaba76c392570d4994",
           "view": "Front",
           "style": "Women's 4",
           "category": "fit",
@@ -6020,7 +5936,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-21.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-14.jpg",
+          "sha256": "9614f0cf38ef4f366cf94696804b56571510515ddf869481143018aea331cce1",
           "view": "Left",
           "style": "Women's 4",
           "category": "fit",
@@ -6034,35 +5951,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-22.jpg",
-          "view": "Right",
-          "style": "Women's 4",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-23.jpg",
-          "view": "Right",
-          "style": "Lifestyle 1",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-24.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-15.jpg",
+          "sha256": "1c7296c781513fca23dba178abe57145504fcd059f5cafd8735f26dbb3b61fa7",
           "view": "Front",
           "style": "Men's 5",
           "category": "fit",
@@ -6076,7 +5966,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-25.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-16.jpg",
+          "sha256": "9856c1d0f70f668ea30b93bd99a0d488446950d0169d28c1f6e52dc5d76d8da1",
           "view": "Left",
           "style": "Men's 5",
           "category": "fit",
@@ -6090,21 +5981,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-26.jpg",
-          "view": "Right",
-          "style": "Men's 5",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-27.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-17.jpg",
+          "sha256": "7d56930e355d1fc39fc820c29474f95bc7861c1bcb183e77fa2507f9f060ffeb",
           "view": "Back",
           "style": "Lifestyle 2",
           "category": "fit",
@@ -6118,21 +5996,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-28.jpg",
-          "view": "Right",
-          "style": "Lifestyle 2",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-29.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-18.jpg",
+          "sha256": "96d7ff3a09c79c499eae3f925fa1b7b73960f6dce6daf7fdb1c2c1fcdd5c14f7",
           "view": "Front",
           "style": "Men's 3",
           "category": "fit",
@@ -6146,21 +6011,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-30.jpg",
-          "view": "Right",
-          "style": "Men's 3",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-31.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-19.jpg",
+          "sha256": "38cdd8cae9f1e5e3c164ebbcde33a94fc22472123c630416ba3ae8ec85c89d2a",
           "view": "Left",
           "style": "Men's 3",
           "category": "fit",
@@ -6174,7 +6026,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-32.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-20.jpg",
+          "sha256": "38641373caa10c3dd9a862bdb076bfda9324c64a3416bfaa1020c23d34e902b6",
           "view": "Left",
           "style": "Girl's",
           "category": "product",
@@ -6188,49 +6041,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-33.jpg",
-          "view": "Right",
-          "style": "Girl's",
-          "category": "product",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-34.jpg",
-          "view": "Left Front",
-          "style": "Girl's",
-          "category": "product",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Left Front",
-          "label": "Left Front",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-35.jpg",
-          "view": "Right Front",
-          "style": "Girl's",
-          "category": "product",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right Front",
-          "label": "Right Front",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-36.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-21.jpg",
+          "sha256": "e0600f7fd753e9b5b14e2c62d214bd169af7c3c4fe016503f49d6f3e9f9e4c8a",
           "view": "Folded",
           "style": "Halloween",
           "category": "product",
@@ -6244,7 +6056,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-37.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-22.jpg",
+          "sha256": "3ca1da0e1a5fae61922b7f8159574144aff622f37f75f48ed444d0173bb5d951",
           "view": "Front",
           "style": "Men's 6",
           "category": "fit",
@@ -6258,21 +6071,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-38.jpg",
-          "view": "Right",
-          "style": "Men's 6",
-          "category": "fit",
-          "color": "Black",
-          "catalogVariantId": 11414,
-          "storeVariantIds": [
-            "5584634678"
-          ],
-          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
-          "label": "On-person · Right",
-          "kind": "production-mockup"
-        },
-        {
-          "image": "assets/product-photos/483370819-11414-all-39.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-23.jpg",
+          "sha256": "df32a64e452ddeb4f732871e895fe106ce5d9e0c2187823399bee61325da6e80",
           "view": "Left",
           "style": "Men's 6",
           "category": "fit",
@@ -6286,7 +6086,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-40.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-24.jpg",
+          "sha256": "e02854176c8456a9a221dfa7a671b06f3a5328d72e713a2db3c19ef0649982e1",
           "view": "Folded",
           "style": "Holiday season",
           "category": "product",
@@ -6300,7 +6101,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-41.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-25.jpg",
+          "sha256": "bffb396dd2a69f68fdf66b3131306fc4fd89bcfe3ad89f04893589a6c7d18455",
           "view": "Front",
           "style": "Women's 5",
           "category": "fit",
@@ -6314,7 +6116,8 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-42.jpg",
+          "image": "assets/product-photos/483370819-11414-all-2d67812be9-26.jpg",
+          "sha256": "1a71d45c3e3d0553a3d014f538217b288d88f8c65c34c20773ac105406a2c091",
           "view": "Left",
           "style": "Women's 5",
           "category": "fit",
@@ -6328,7 +6131,248 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483370819-11414-all-43.jpg",
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-0.jpg",
+          "sha256": "1ee37ca9d24b5b199164d93df005983c2fd53ac3e5c178f2638443acad52d8e8",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-1.jpg",
+          "sha256": "5b69b85c2f25021dfd63c15966da57ecf80b760031088084072d8e6ede0a0a94",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-2.jpg",
+          "sha256": "6ab85d83f54ec84938e9680c02a8ef5392a02ec4a411807b2f783981c0de7afe",
+          "view": "Right",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-3.jpg",
+          "sha256": "00f0130c013d0509714faee3fbd900b8e66da5aad8222757fe341636dd7cbc52",
+          "view": "Right",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-4.jpg",
+          "sha256": "9008738e21c028530b6be597db0c06df3cc246b7c5233205ff530945f84b349d",
+          "view": "Right",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-5.jpg",
+          "sha256": "7f4e21d7c98bb4da4f67691662d58ef5566c2fa1415904fe5cafa5a0d4b16598",
+          "view": "Right",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-6.jpg",
+          "sha256": "e69ce3ffb69efea75e5917cb9552d2d706ac4cd13205404cdea5b0ab4dc2eb2a",
+          "view": "Right",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-7.jpg",
+          "sha256": "12aff4c8d6ec0ba57c7f343c9f4e4884fb44c02b752137031b2941c00f85182e",
+          "view": "Right",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-8.jpg",
+          "sha256": "d3b7ee9327060e9922344f20f1176ad68451afed40258fb2bdf2722460181d50",
+          "view": "Right",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-9.jpg",
+          "sha256": "3194e1e1a10d2ec9390fdea3a082d0230e701d6013f1308212ffdd6a22590ed7",
+          "view": "Right",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-10.jpg",
+          "sha256": "8e81addd23c5bfad14f3e958d1c364ca15b647059557d0b7825b4608fe0a7285",
+          "view": "Right",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-11.jpg",
+          "sha256": "4359456dcd223810718f6a49449ccfac40f7926cf43af496fcdae816ac17a680",
+          "view": "Right",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-12.jpg",
+          "sha256": "67c20a7bded37a3e9f5c384cb7e48d006669e831335d3e93ccfa13bb06d007c3",
+          "view": "Right",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-13.jpg",
+          "sha256": "1ed3bb779a0bc40f8385f16d820079ce953eb52aa48a62bd8563a7fccdaf3282",
+          "view": "Left Front",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Left Front",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-14.jpg",
+          "sha256": "04d1f3b3c5c4074bcd14b36f95d7cf5ed73da549f05b27483b92b365aae14d14",
+          "view": "Right Front",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right Front",
+          "label": "Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-15.jpg",
+          "sha256": "5ffbeb36f0612bd39e500c7fc1c55f3c976c61542f7e0060b4c366d3debecf2f",
+          "view": "Right",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483370819-11414-all-0ba0b8b023-16.jpg",
+          "sha256": "f783b2029f145e93284aebae302ad918a3df022707fa55f8d4e1c61bb798b1b4",
           "view": "Right",
           "style": "Women's 5",
           "category": "fit",
@@ -6343,7 +6387,7 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "01a22a0ba66d75125fc8655a2bfce2f0fd4b5cd6741d6c2cca26517d64817418"
+      "allReportedViews": "248c8a491b745ae933bec29e8b05906942efe052076dc7aabd52f6c3c60693ac"
     },
     "483375173": {
       "name": "Rose Eclipse All-Over Print Reversible Bucket Hat",
