@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:57:21.138Z",
+  "updatedAt": "2026-10-20T17:59:20.944Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,59 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480883493": {
+      "name": "Ashen Cathedral Men's Long Sleeve Shirt",
+      "originalImage": "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png",
+      "catalogProductId": 920,
+      "photos": [
+        {
+          "image": "assets/product-photos/480883493-23675-all-6f919fff5d-0.jpg",
+          "sha256": "2384d1282522d550b4e8b983c419c08ac60620c661341946b84c645d6fb53887",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568929849",
+            "5568929852",
+            "5568929858",
+            "5568929863",
+            "5568929924",
+            "5568929931",
+            "5568929934",
+            "5568929937"
+          ],
+          "alt": "Ashen Cathedral Men's Long Sleeve Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480883493-23675-all-6f919fff5d-1.jpg",
+          "sha256": "89334cb71fe1f08ee7c30b1d570916a95fd14927efbc69fba7b38956bfa9853d",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568929849",
+            "5568929852",
+            "5568929858",
+            "5568929863",
+            "5568929924",
+            "5568929931",
+            "5568929934",
+            "5568929937"
+          ],
+          "alt": "Ashen Cathedral Men's Long Sleeve Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "65e38ee299ae583433192793fc4884151e3d77d6c60e23f57ec3dec63bf46913"
     },
     "480883542": {
       "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
