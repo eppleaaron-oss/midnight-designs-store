@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-20T18:31:36.345Z",
-  "lastSyncedAt": "2026-10-20T18:31:36.345Z",
+  "updatedAt": "2026-10-20T18:32:30.795Z",
+  "lastSyncedAt": "2026-10-20T18:32:30.795Z",
   "products": [
     {
       "id": "483352723",
@@ -7158,6 +7158,12 @@
       "category": "Other pieces",
       "image": "https://files.cdn.printful.com/files/502/502dd8635197a887dc7167b379e5f9c3_preview.png",
       "images": [
+        "assets/product-photos/480761362-46226-all-dac7e99f8e-0.jpg",
+        "assets/product-photos/480761362-46226-all-dac7e99f8e-1.jpg",
+        "assets/product-photos/480761362-46226-all-dac7e99f8e-2.jpg",
+        "assets/product-photos/480761362-46226-all-dac7e99f8e-3.jpg",
+        "assets/product-photos/480761362-46226-all-dac7e99f8e-4.jpg",
+        "assets/product-photos/480761362-46226-all-dac7e99f8e-5.jpg",
         "https://files.cdn.printful.com/files/502/502dd8635197a887dc7167b379e5f9c3_preview.png"
       ],
       "variants": [
