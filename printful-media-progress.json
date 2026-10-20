@@ -2487,10 +2487,18 @@
       "productId": "483375173",
       "variant": 16361,
       "state": "submitting",
-      "created": "2026-10-20T17:23:47.626Z",
-      "attempts": 1
+      "created": "2026-10-20T17:24:41.257Z",
+      "attempts": 2,
+      "previousSubmission": {
+        "productId": "483375173",
+        "variant": 16361,
+        "state": "submitting",
+        "created": "2026-10-20T17:23:47.626Z",
+        "attempts": 1
+      },
+      "note": "Retry of an unconfirmed image-only task; supplier products are never created here."
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:24:37.837Z"
+  "updatedAt": "2026-10-20T17:24:41.257Z"
 }
