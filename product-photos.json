@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:14:56.827Z",
+  "updatedAt": "2026-10-20T17:16:20.867Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,115 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "483204573": {
+      "name": "Still Waters Run Deep Oversized Cotton T-Shirt",
+      "originalImage": "assets/product-photos/483204573-46409-all-b65140951e-0.jpg",
+      "catalogProductId": 1482,
+      "photos": [
+        {
+          "image": "assets/product-photos/483204573-46409-all-b65140951e-0.jpg",
+          "sha256": "e92a69800691507768f6942d863a3ad30ca4b8cdc4be516f84dff8fe9b7f24f7",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5583703739",
+            "5583703740",
+            "5583703750",
+            "5583703783",
+            "5583703787",
+            "5583703791",
+            "5583703796",
+            "5583703798",
+            "5583703810",
+            "5583703832",
+            "5583703839"
+          ],
+          "alt": "Still Waters Run Deep Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483204573-46409-all-b65140951e-1.jpg",
+          "sha256": "98673156f5da60a5007546baa3be2515a973b84bb639fd230bb597c1fdd254e4",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5583703739",
+            "5583703740",
+            "5583703750",
+            "5583703783",
+            "5583703787",
+            "5583703791",
+            "5583703796",
+            "5583703798",
+            "5583703810",
+            "5583703832",
+            "5583703839"
+          ],
+          "alt": "Still Waters Run Deep Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483204573-46409-all-b65140951e-2.jpg",
+          "sha256": "32bf313ee1f0662dd4d7832803ea461c741aea1d603b25f3ddc6fc09a68bba88",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5583703739",
+            "5583703740",
+            "5583703750",
+            "5583703783",
+            "5583703787",
+            "5583703791",
+            "5583703796",
+            "5583703798",
+            "5583703810",
+            "5583703832",
+            "5583703839"
+          ],
+          "alt": "Still Waters Run Deep Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483204573-46409-all-b65140951e-3.jpg",
+          "sha256": "913c6621d00e05d02d81978c14eaf2e04f275bedcb379241e6155f60208b320d",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5583703739",
+            "5583703740",
+            "5583703750",
+            "5583703783",
+            "5583703787",
+            "5583703791",
+            "5583703796",
+            "5583703798",
+            "5583703810",
+            "5583703832",
+            "5583703839"
+          ],
+          "alt": "Still Waters Run Deep Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "45c46de2cbe66bfacab96c4d6c7eb2c3d5a5d0ecfcb906b32da31bbe7062c588"
     },
     "483213237": {
       "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt",
