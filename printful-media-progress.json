@@ -23955,10 +23955,63 @@
     "3765e58499e2cf6fd558c1886d88e64b1acacd15d006c5a2ad9e82457cc30454": {
       "productId": "480760509",
       "variant": 16261,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:47:40.783Z",
       "attempts": 1,
-      "key": "gt-987551769"
+      "key": "gt-987551769",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760509-16261-all-3765e58499-0.jpg",
+          "sha256": "9160d3393a7099d310dcc24f3fc7109a98323d8fe0df7f296c11cd5191120b63",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568432021",
+            "5568432022",
+            "5568432023",
+            "5568432027",
+            "5568432028",
+            "5568432029",
+            "5568432030",
+            "5568432031",
+            "5568432032",
+            "5568432038",
+            "5568432043"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760509-16261-all-3765e58499-1.jpg",
+          "sha256": "48908a45c762633e16763a18efd907c67668981150863de48898d740ed802408",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568432021",
+            "5568432022",
+            "5568432023",
+            "5568432027",
+            "5568432028",
+            "5568432029",
+            "5568432030",
+            "5568432031",
+            "5568432032",
+            "5568432038",
+            "5568432043"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · back",
+          "label": "back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -23991,5 +24044,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:48:47.055Z"
+  "updatedAt": "2026-10-20T19:49:00.076Z"
 }
