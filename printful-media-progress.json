@@ -2226,12 +2226,219 @@
     "d15bacc240cde1b29fa895e6dce6c09c1cc4a010e0167076104e70273e796b52": {
       "productId": "483375173",
       "variant": 16361,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:21:32.877Z",
       "attempts": 1,
-      "key": "gt-987468928"
+      "key": "gt-987468928",
+      "photos": 12,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-0.jpg",
+          "sha256": "d1c616b40a326264a9393e5d7386a4d29f359e83d6963a1bbfccd3c16cec1164",
+          "view": "outside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · outside_front",
+          "label": "outside_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-1.jpg",
+          "sha256": "25cb9380f9db60bb8fc0e137aa90d9554da6f5a196fba72c5962a21196e0456c",
+          "view": "Front Outside",
+          "style": "Product specs",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-2.jpg",
+          "sha256": "4f3a852b84a69ec1c8e3f4def2f08b3c2c75973391a282fe5a9518638ae42e1b",
+          "view": "Front Outside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "On-person · Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-3.jpg",
+          "sha256": "639f1344b765b4a8dcbfa0f5a084d81c18ba903344516e73397ec27bd0e85c54",
+          "view": "Front 2 Outside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front 2 Outside",
+          "label": "On-person · Front 2 Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-4.jpg",
+          "sha256": "0fe41cbe6d4a2c50590dcf5f321a3bb234659a2ef76671bc8f0488ce5e6aeb1e",
+          "view": "Front Outside",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "On-person · Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-5.jpg",
+          "sha256": "4d0ee594f3c4b85c2f01df266b7a067a971136885c78aa98aaae4716fd0e5aa9",
+          "view": "Front Outside",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "On-person · Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-6.jpg",
+          "sha256": "1b3332a7a102ea86881e209c233224eca80172859014c45814f3c71b10b9bef7",
+          "view": "inside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · inside_front",
+          "label": "inside_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-7.jpg",
+          "sha256": "bf6ac6d2502872f495f0110eaa16b5447cc70f95f091cfb7d3e407c2bfcd5a85",
+          "view": "Front Inside",
+          "style": "Product specs",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "Front Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-8.jpg",
+          "sha256": "4cbe8c97cd9f9cbc4bbb9877ec61bce0650f938025f81b58974d22c610ba3c46",
+          "view": "Front Inside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "On-person · Front Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-9.jpg",
+          "sha256": "9def2b19e204938daa5a1d379aa835c30014c6f6831d993736d6856874298beb",
+          "view": "Front 2 Inside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front 2 Inside",
+          "label": "On-person · Front 2 Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-10.jpg",
+          "sha256": "7a06e4c5900f287ecd3b3d9cdd6422bbbfee7a14396b6350d48d8dd3c0d6a768",
+          "view": "Front Inside",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "On-person · Front Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483375173-16361-all-d15bacc240-11.jpg",
+          "sha256": "2997645bd254bc536a2615b8768dbdd72be7fdecb8179793ab7b49ff5491cb4b",
+          "view": "Front Inside",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "On-person · Front Inside",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:22:39.503Z"
+  "updatedAt": "2026-10-20T17:22:55.174Z"
 }
