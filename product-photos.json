@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:34:19.476Z",
+  "updatedAt": "2026-10-20T17:35:07.641Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3593,6 +3593,57 @@
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "ed38e4ae2d111bc6ca8f0b768e020120c01489257ce3c832e8ba25a941628416"
+    },
+    "483356322": {
+      "name": "Rose Eclipse All-Over Print Unisex Cotton Shorts",
+      "originalImage": "assets/product-photos/483356322-46347-all-3a7639197e-0.jpg",
+      "catalogProductId": 1481,
+      "photos": [
+        {
+          "image": "assets/product-photos/483356322-46347-all-3a7639197e-0.jpg",
+          "sha256": "232cc36abd797bc0afb83cc829b8ae7115be3cf1e3abf551adc388e39e3863c8",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584583396",
+            "5584583397",
+            "5584583398",
+            "5584583399",
+            "5584583400",
+            "5584583401",
+            "5584583402"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483356322-46347-all-3a7639197e-1.jpg",
+          "sha256": "2ef5ca73f5c3638d46b6957dcff9aa72dc40f1b4e4f1b685e46960bc58a50638",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5584583396",
+            "5584583397",
+            "5584583398",
+            "5584583399",
+            "5584583400",
+            "5584583401",
+            "5584583402"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "a26f524194d4d1e73ec29d5b9a31ae3fe5290a8f4726a43400029998b04c0cfa"
     },
     "483361602": {
       "name": "Rose Eclipse All-Over Print Backpack",
