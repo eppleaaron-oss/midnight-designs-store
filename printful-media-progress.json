@@ -22647,10 +22647,113 @@
     "4f43038ff3e2741e7c575a3ed4f7e297135f915b40926940a64979cc53f8a0da": {
       "productId": "480760520",
       "variant": 16400,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:38:56.082Z",
       "attempts": 1,
-      "key": "gt-987546767"
+      "key": "gt-987546767",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760520-16400-all-4f43038ff3-0.jpg",
+          "sha256": "9e442908837e5b5b70d41b4278d9610620a3af53a4da3bfc2c1a49afe1280b62",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568432076",
+            "5568432077",
+            "5568432087",
+            "5568432088",
+            "5568432092",
+            "5568432102",
+            "5568432107",
+            "5568432117",
+            "5568432122",
+            "5568432127",
+            "5568432132"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760520-16400-all-4f43038ff3-1.jpg",
+          "sha256": "92e7195c77e9a356f949b0ccc365eac87052e318e49e613a73931dc4dafab1cb",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568432076",
+            "5568432077",
+            "5568432087",
+            "5568432088",
+            "5568432092",
+            "5568432102",
+            "5568432107",
+            "5568432117",
+            "5568432122",
+            "5568432127",
+            "5568432132"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760520-16400-all-4f43038ff3-2.jpg",
+          "sha256": "1b760e2ac75d555ead1c03a91fda86553c0dab04a308d6ba5baac40e6987b4b5",
+          "view": "Right",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568432076",
+            "5568432077",
+            "5568432087",
+            "5568432088",
+            "5568432092",
+            "5568432102",
+            "5568432107",
+            "5568432117",
+            "5568432122",
+            "5568432127",
+            "5568432132"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480760520-16400-all-4f43038ff3-3.jpg",
+          "sha256": "afc8924709cdf091236c69068a54dbbb25bb65dc47e1c7a21678c460f7addb26",
+          "view": "Right Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568432076",
+            "5568432077",
+            "5568432087",
+            "5568432088",
+            "5568432092",
+            "5568432102",
+            "5568432107",
+            "5568432117",
+            "5568432122",
+            "5568432127",
+            "5568432132"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -22683,5 +22786,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:40:02.467Z"
+  "updatedAt": "2026-10-20T19:40:16.339Z"
 }
