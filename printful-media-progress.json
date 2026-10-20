@@ -1455,9 +1455,42 @@
     "088f586797f60a3282789a16f86f379500cad5b78827915311bdaa9394066c75": {
       "productId": "482923908",
       "variant": 46253,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:16:26.697Z",
-      "key": "gt-987465776"
+      "key": "gt-987465776",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/482923908-46253-all-088f586797-0.jpg",
+          "sha256": "7f34991fe1dd11b51351f7fbcbdbd5ba18488a8078c01c840b4fac72463f347f",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5581851703"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482923908-46253-all-088f586797-1.jpg",
+          "sha256": "0b1e0f27786d5d8bb2001a1509e5e8b4445ce97282fea362c2d0552c96710579",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5581851703"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "6befd48872c6f5784af464e16769086229900fc74d4342a2f50a4526d4369aba": {
       "productId": "483385402",
@@ -5737,5 +5770,5 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:48:40.979Z"
+  "updatedAt": "2026-10-20T17:48:44.768Z"
 }
