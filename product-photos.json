@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T20:58:30.812Z",
+  "updatedAt": "2026-10-20T21:01:36.759Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,675 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480743714": {
+      "name": "Ashen Cathedral Neck Gaiter",
+      "originalImage": "https://files.cdn.printful.com/files/0a4/0a420d1c18fda3cea442bcd82fd03446_preview.png",
+      "catalogProductId": 420,
+      "photos": [
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-0.jpg",
+          "sha256": "d2a497c353614750e6aea285c3023107a3b13897d6477008a1977db3f14d87c9",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-1.jpg",
+          "sha256": "8294389b23f967fd6d4609c9c23b5b19323f119e249cd51d1eab8dd7dc68f127",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-2.jpg",
+          "sha256": "4b2a04c5213b010af9ee16ab880d9da495f0740c5008029f8200b83f8e9eb54c",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-3.jpg",
+          "sha256": "fbb24c5b87cf395f151a5d9aa013758430549e630a6b496ac5972b092b7e76a2",
+          "view": "Folded",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-4.jpg",
+          "sha256": "eb431bd54afebe37d0acbaac5ce805379575bc95a2e79a44a3e7adcf484b0aab",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-5.jpg",
+          "sha256": "071a29fd14718a4a839ea88fb2488a9c6649ef4a510f7c9b6ccfcdcff5c09944",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-6.jpg",
+          "sha256": "56c63a046d8e9bf15111d131510cd0b959cec14e2210d689ddcf82edebf652d1",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-7.jpg",
+          "sha256": "5877ac3964ebabfe6f2628ec97cab4f5e80d74379170802935b609fb584863c2",
+          "view": "Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-8.jpg",
+          "sha256": "ac9d072b7a8801b6811df7bec9e770609776ce077c0ad3a67cce842b8806fc9e",
+          "view": "Left",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-9.jpg",
+          "sha256": "fed77f390509b1153163561fb637dad1f715bd76e570686f583c8f8038d55b67",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-10.jpg",
+          "sha256": "ec0b7608b62b98b680612b00f01309cbb2d463e2c33e0931e5cdfa4cddd9aa4c",
+          "view": "Left",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-11.jpg",
+          "sha256": "4ff5dfd810664c4fe2526d962d77ccb25864dce2af84b772669fde12ab92350e",
+          "view": "Front",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-12.jpg",
+          "sha256": "960091155ab178359d9c866e23699c8786e2b225811554fb88a95544d8e320cd",
+          "view": "Left",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-13.jpg",
+          "sha256": "ec71593e9f0325fc995ee106c6b026571f6fcc2da29f35ab8e8090b0a86d8d05",
+          "view": "Front",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-14.jpg",
+          "sha256": "30b80cf21712f64b35e6e260b02e617c9a5f6e445f16e2c608f7c97f76031f51",
+          "view": "Left",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-15.jpg",
+          "sha256": "002ebd023ee9a107197b8aa432ae96e75d2c7159267bdeefcd373d15de55556a",
+          "view": "Front",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-16.jpg",
+          "sha256": "763b2fe893e871919bccd3dd31aff477decd1993fbbb8d65705f3dbb60b0b035",
+          "view": "Left",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-17.jpg",
+          "sha256": "5ea4d04b1a827b1c0a5ba0fae745862d67cdebf8b1ab60c9c6605d427cd26786",
+          "view": "Back",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-18.jpg",
+          "sha256": "30872010fcdcfeeec3d79d2ade0b22d34eac5842dbf4b26de01b009bf78e33ee",
+          "view": "Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-19.jpg",
+          "sha256": "061122aa11575bffec36295c21d8a51ca590c3da75b7fb5b2c7d45747cc35497",
+          "view": "Left",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-20.jpg",
+          "sha256": "305d94af4938706039b29049562ba77ec561ba7cdbd54d0eafb32e7e12a42964",
+          "view": "Left",
+          "style": "Girl's",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-21.jpg",
+          "sha256": "96c9b727383518f47c375314abd060efbe7476a17982a3256de141da0b736ba0",
+          "view": "Folded",
+          "style": "Halloween",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-22.jpg",
+          "sha256": "a0f2b57414ac67b9c0d5280edcf479ab0d882afc459bca51959beb1cc04fbb92",
+          "view": "Front",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-23.jpg",
+          "sha256": "8b96d84ba9d199e73314bb9c023722c4301cc3271ab45bedebd115b8bdbc4c5b",
+          "view": "Left",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-24.jpg",
+          "sha256": "f450706c71508a2ff4b22e7ddaf7263c2e0be2c16723df6e2cb07cbdbbb959bc",
+          "view": "Folded",
+          "style": "Holiday season",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-25.jpg",
+          "sha256": "0f8b1ba190ca34a486d6ac71aae36c68aabec7a2cfaf1b41ee3c190c48c0c772",
+          "view": "Front",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-e65bdd100b-26.jpg",
+          "sha256": "e7d5108d3bccf4540c3c335efbf6a5f997a3ff0b789737a12488f59fb8da49e5",
+          "view": "Left",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-0.jpg",
+          "sha256": "0d4d698b4d64ca5d39b09c01d18d037e1649746a97f84bfc6eed44ee02f26f01",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-1.jpg",
+          "sha256": "aa56d295af29df9347c213cc02dcefdd1bc0d150ed098fe479167585413b1020",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-2.jpg",
+          "sha256": "23380260675d1511b4bfa00cb5a4094e7b45f9cc39318b9163f91d24b787770e",
+          "view": "Right",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-3.jpg",
+          "sha256": "6564444728157b7d3032d899e79175cc341481b0af998941269692a767206330",
+          "view": "Right",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-4.jpg",
+          "sha256": "a91d001f2a5772a4076091ab4ef5fe541f2afe1931c23265c2c943a5e4b5a790",
+          "view": "Right",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-5.jpg",
+          "sha256": "fe8979a99f960f028ac445ea66419e1edd30764c1db82811eebe1ec2df53077d",
+          "view": "Right",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-6.jpg",
+          "sha256": "435067763a2d9514ef7aea1469cb0f4be5a08f6271ac99d45d131950a536ef2a",
+          "view": "Right",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-7.jpg",
+          "sha256": "99f47022a571bb86147bbdb09723f53bd25c19f5a7ba227dda1cf487e717de71",
+          "view": "Right",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-8.jpg",
+          "sha256": "86c9ff900192189ac825f6d214847c8693f75a4d82f32b5c967c868cf790a966",
+          "view": "Right",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-9.jpg",
+          "sha256": "e7e0994822d7c8bb37f13163e19905beb74cc86ef59f964a3e78c887006fe44d",
+          "view": "Right",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-10.jpg",
+          "sha256": "f595f76385facd1864d4d85beda83d6b5ded6edb815b468b47767120a5a2831b",
+          "view": "Right",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-11.jpg",
+          "sha256": "a5f864909badc5bc14a7d718372fa43056ebbc44f97ffddfee3ef72bc7b08b4e",
+          "view": "Right",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-12.jpg",
+          "sha256": "dc549a001af8ac4fb7ca3e202d38e4de9d4ae4576526504e1312bd25c382a1cd",
+          "view": "Right",
+          "style": "Girl's",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-13.jpg",
+          "sha256": "f2bc8758615806bd9b8a6c0bfaff62ac9017829cbeacd314dce9edb686d5345a",
+          "view": "Left Front",
+          "style": "Girl's",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Left Front",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-14.jpg",
+          "sha256": "8a62524dd02cf11f18c1593db8acaf990c685c6c25cb8578606409b7e3f170e6",
+          "view": "Right Front",
+          "style": "Girl's",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right Front",
+          "label": "Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-15.jpg",
+          "sha256": "a6f71f0f6f30df405140547fcf26ec273690b72ae10de37ca4dc92b1f444c26f",
+          "view": "Right",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743714-11414-all-3627c56f8f-16.jpg",
+          "sha256": "05b48503c576e5de67e296189d873062e2821dbf527be3870a82ceb39fbc4deb",
+          "view": "Right",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568321305"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "a6745c6820b7c6a7196510335c2a2c7692a52828dfc20fd9294d22eaf4573f06"
     },
     "480743719": {
       "name": "Ashen Cathedral Bandana",
