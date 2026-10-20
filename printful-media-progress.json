@@ -3736,12 +3736,108 @@
     "8e23dae3cb1219cc72a62982ea768aff83d81971ffb60c7d2bcdc7e771ec3a79": {
       "productId": "483366087",
       "variant": 12913,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:32:23.009Z",
       "attempts": 1,
-      "key": "gt-987474731"
+      "key": "gt-987474731",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483366087-12913-all-8e23dae3cb-0.jpg",
+          "sha256": "bbb833be91cfd920f96457646790c0ad16fec69ac2f2188fde5953c2302d30dd",
+          "view": "shoe_quarters_right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5584619188",
+            "5584619190",
+            "5584619191",
+            "5584619194",
+            "5584619198",
+            "5584619221",
+            "5584619240",
+            "5584619254",
+            "5584619260",
+            "5584619288",
+            "5584619289",
+            "5584619290",
+            "5584619291",
+            "5584619292",
+            "5584619315",
+            "5584619331",
+            "5584619332"
+          ],
+          "alt": "Rose Eclipse Men's High Top Canvas Shoes · shoe_quarters_right",
+          "label": "shoe_quarters_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483366087-12913-all-8e23dae3cb-1.jpg",
+          "sha256": "4667beb55c855842271eb828c40d978b7e60a9537af819a4e601159ef277c6cd",
+          "view": "Right Inside",
+          "style": "Flat 2",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5584619188",
+            "5584619190",
+            "5584619191",
+            "5584619194",
+            "5584619198",
+            "5584619221",
+            "5584619240",
+            "5584619254",
+            "5584619260",
+            "5584619288",
+            "5584619289",
+            "5584619290",
+            "5584619291",
+            "5584619292",
+            "5584619315",
+            "5584619331",
+            "5584619332"
+          ],
+          "alt": "Rose Eclipse Men's High Top Canvas Shoes · Right Inside",
+          "label": "Right Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483366087-12913-all-8e23dae3cb-2.jpg",
+          "sha256": "aca2ce570388ab2623f5d975195b2ac49f8cf08ba9c39164b42cfd6f6b6d1e46",
+          "view": "Right Outside",
+          "style": "Flat 2",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5584619188",
+            "5584619190",
+            "5584619191",
+            "5584619194",
+            "5584619198",
+            "5584619221",
+            "5584619240",
+            "5584619254",
+            "5584619260",
+            "5584619288",
+            "5584619289",
+            "5584619290",
+            "5584619291",
+            "5584619292",
+            "5584619315",
+            "5584619331",
+            "5584619332"
+          ],
+          "alt": "Rose Eclipse Men's High Top Canvas Shoes · Right Outside",
+          "label": "Right Outside",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:32:56.692Z"
+  "updatedAt": "2026-10-20T17:33:09.640Z"
 }
