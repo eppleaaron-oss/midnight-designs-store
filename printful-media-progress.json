@@ -24,8 +24,9 @@
     }
   },
   "errors": {
+    "483385402": "Printful HTTP 400: Invalid file option: template_type",
     "483392618": "Printful HTTP 400: Invalid file option: template_type",
     "483397425": "Printful HTTP 400: Invalid file option: template_type"
   },
-  "updatedAt": "2026-10-20T17:02:05.361Z"
+  "updatedAt": "2026-10-20T17:02:10.663Z"
 }
