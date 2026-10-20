@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T18:32:30.791Z",
+  "updatedAt": "2026-10-20T18:36:58.799Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,240 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480761355": {
+      "name": "Blood Moon Reaper Utility Backpack",
+      "originalImage": "https://files.cdn.printful.com/files/789/7891fe32ac9f9c86a1df333051ab481d_preview.png",
+      "catalogProductId": 963,
+      "photos": [
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-0.jpg",
+          "sha256": "99cbe9a2ed12ac0071832182e53d3bde28fc9bcc53495d58772a61c69c80b9a2",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-1.jpg",
+          "sha256": "65c0ca03838de2fe6df65e4d2d20e0de21815e5785d20c2d8a0706b8e9f48dbf",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-2.jpg",
+          "sha256": "d95a186207ae936b317a7ffa16e11e0549fe7b802e59b42335993cc18766ada5",
+          "view": "Bottom",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Bottom",
+          "label": "Bottom",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-3.jpg",
+          "sha256": "9bb9305f05f6761b0d9fe154afe0c28566c04aaa9bdf9a354fa98418b6b81437",
+          "view": "Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-4.jpg",
+          "sha256": "835a3380f1ff5236f06dd4f8703a9f8c2df62b9739acf14e7e755f213626716d",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-5.jpg",
+          "sha256": "20b698634ad86889ee3f64fe808e82104c7cbcfd0a1e7afe1354f5e92fb3aae5",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-def2f094ee-6.jpg",
+          "sha256": "143bb485929c11afcd8c3ad7352cff3233deba686d3f1c9f4a17f8c7a415ba33",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-566cbdb149-0.jpg",
+          "sha256": "aea311dbdd01733d83a2df209b47570afb1e88ae79b373ebccb7d963460628d8",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-566cbdb149-1.jpg",
+          "sha256": "aee38b06095150b50a8efe8ccf7ca5d22029c50e8b41162cde043de7d95164e4",
+          "view": "Left Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Left Front",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-566cbdb149-2.jpg",
+          "sha256": "2b9f933894ac279d0fd121550ed2c84127a774ac6e5ebf5d682c1dfd4ae3891e",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-566cbdb149-3.jpg",
+          "sha256": "946dd1f2a7a98ece85158aea711f30144449f28da087bab306bbee0fa4214798",
+          "view": "Front 2",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-8cf53cf316-0.jpg",
+          "sha256": "7ea2f2b590d5ad994b9ffd5a88138addfc93b968e4542aa99893490bf7c5d23a",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-8cf53cf316-1.jpg",
+          "sha256": "610729581ea0f6962474708a2878c004a637d69534a2c40a665ab246dd0cec20",
+          "view": "Right Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Right Front",
+          "label": "Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-8cf53cf316-2.jpg",
+          "sha256": "4dbe7833f8f19aa7545663470486fc319eb3108e67478cbc3b296763f9ea5c67",
+          "view": "Product details 2",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Product details 2",
+          "label": "Product details 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480761355-24564-all-8cf53cf316-3.jpg",
+          "sha256": "249048f7e40cfc5667c4bd51c65aa564bd81dd6412dce691b6ad426da855ef0a",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568437465"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "7da9bf10cde7b4fbae307ad4867f94490c8216d2dcbdae643271e73a2a207a54"
     },
     "480761362": {
       "name": "Blood Moon Reaper Cotton Crop Top",
