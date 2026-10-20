@@ -881,11 +881,17 @@
           "kind": "production-mockup"
         }
       ]
+    },
+    "a4defd70e214a8c9f097e31039e89e44373e14bd7fb2e4ed315b818082c94b8b": {
+      "productId": "483366087",
+      "variant": 12913,
+      "state": "submitting",
+      "created": "2026-10-20T17:11:06.884Z"
     }
   },
   "errors": {
     "483375173": "Printful HTTP 400: You are attempting to generate 512 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body",
     "483385402": "Printful HTTP 400: You are attempting to generate 636 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body"
   },
-  "updatedAt": "2026-10-20T17:09:18.320Z"
+  "updatedAt": "2026-10-20T17:11:06.884Z"
 }
