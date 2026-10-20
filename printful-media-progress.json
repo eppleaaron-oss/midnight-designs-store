@@ -37015,6 +37015,7 @@
     }
   },
   "errors": {
+    "480738518": "Printful rate limit did not clear.",
     "480738528": "Printful rate limit did not clear.",
     "480738534": "Printful rate limit did not clear.",
     "480738540": "Printful rate limit did not clear.",
@@ -37060,5 +37061,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T23:02:01.476Z"
+  "updatedAt": "2026-10-20T23:02:03.481Z"
 }
