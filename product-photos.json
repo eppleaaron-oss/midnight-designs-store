@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:46:40.899Z",
+  "updatedAt": "2026-10-20T17:48:40.824Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3547,7 +3547,7 @@
       "catalogProductId": 920,
       "photos": [
         {
-          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+          "image": "assets/product-photos/483213237-23675-all-ca5130c011-0.jpg",
           "sha256": "50e7e1f0079abf3c58cd526fe5dcaadb90760d75c014f69d9a7401de51794c0b",
           "view": "front",
           "style": "Default",
@@ -3569,7 +3569,7 @@
           "kind": "production-mockup"
         },
         {
-          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg",
+          "image": "assets/product-photos/483213237-23675-all-ca5130c011-1.jpg",
           "sha256": "ad9ddaf6e36165bce1b7e24f782e5504367965dbd12688e54de7933d71718b2b",
           "view": "Back",
           "style": "Flat",
@@ -3592,7 +3592,7 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "ed38e4ae2d111bc6ca8f0b768e020120c01489257ce3c832e8ba25a941628416"
+      "allReportedViews": "7834675a479d8ed8717375a87c8b0514d6f03924b947f12824d3c14643377d5e"
     },
     "483352723": {
       "name": "Rose Eclipse All-Over Print Unisex Bomber Jacket",
