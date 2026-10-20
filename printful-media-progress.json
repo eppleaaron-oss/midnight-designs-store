@@ -4491,12 +4491,120 @@
     "ad83070a56d6f1662ca3e9659476fb7bc268c0e84c6d66279fb2f3d2643da7a9": {
       "productId": "483352723",
       "variant": 10879,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:37:26.125Z",
       "attempts": 1,
-      "key": "gt-987477910"
+      "key": "gt-987477910",
+      "photos": 5,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-0.jpg",
+          "sha256": "db8a0685c21252911de1b2bd46743ff3a01a4140dc7cfff21469b76ea1d72762",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-1.jpg",
+          "sha256": "5cff813e3ca31393a26006c1984c11f7a23489106d47d997d13d548def1fab84",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-2.jpg",
+          "sha256": "a77a712af138251732bb3d7b61b627541d2c4d0489eca233788530ed866f93c1",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-3.jpg",
+          "sha256": "a3d98a576454906278b6ef68bac5ce3ec3c9c52330f2cc1cb327f5f281971489",
+          "view": "Right",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-4.jpg",
+          "sha256": "236f09681e955d88d9ae6fffcd201f78f4942247738f7e1b3b8f2731c971a5ef",
+          "view": "details",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · details",
+          "label": "details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:38:32.505Z"
+  "updatedAt": "2026-10-20T17:38:45.968Z"
 }
