@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:16:20.872Z",
+  "updatedAt": "2026-10-20T17:20:40.085Z",
   "products": {
     "242": {
       "catalogProductId": 242,
@@ -705,6 +705,99 @@
         }
       ],
       "verifiedAt": "2026-10-20T11:47:25.391Z"
+    },
+    "390": {
+      "catalogProductId": 390,
+      "title": "All-Over Print Unisex Bomber Jacket",
+      "description": "Add a little zing to your wardrobe with this vibrant All-Over Print Bomber Jacket. Wear it on a basic t-shirt, or layer it on top of a warm hoodie—it’ll look great either way. With a brushed fleece inside, and a relaxed unisex fit, this Bomber Jacket is just the stuff of the dreams, so be quick to grab yourself one!",
+      "materials": [
+        "100% polyester",
+        "Fabric weight: 7.37 oz./yd.² (250 g/m²), weight may vary by 5%"
+      ],
+      "materialsNote": null,
+      "fit": [
+        "Unisex fit"
+      ],
+      "features": [
+        "100% polyester",
+        "Fabric weight: 7.37 oz./yd.² (250 g/m²), weight may vary by 5%",
+        "Brushed fleece fabric inside",
+        "Unisex fit",
+        "Overlock seams",
+        "Sturdy neck tape",
+        "Silver YKK zipper",
+        "2 self-fabric pockets",
+        "Blank product components sourced from the US and China"
+      ],
+      "notes": [
+        "Disclaimer: In areas where the fabric is double-layered (like pockets), details from the inner fabric layer may subtly show through, especially with lighter designs."
+      ],
+      "fabricNote": null,
+      "dimensions": null,
+      "techniques": [
+        "All-over synthetic"
+      ],
+      "care": [
+        "Wash in cold water with similar colors.",
+        "Avoid bleach and dry-cleaning.",
+        "Use low heat when ironing.",
+        "Follow the care label for drying instructions."
+      ],
+      "careNote": "Follow the care label attached to your item if it gives different instructions.",
+      "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
+      "fabricSource": null,
+      "catalogVariants": [
+        {
+          "id": 10882,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (2XL)"
+        },
+        {
+          "id": 10883,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (3XL)"
+        },
+        {
+          "id": 10880,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (L)"
+        },
+        {
+          "id": 10879,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (M)"
+        },
+        {
+          "id": 10878,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (S)"
+        },
+        {
+          "id": 10881,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (XL)"
+        },
+        {
+          "id": 10877,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "name": "All-Over Print Unisex Bomber Jacket (XS)"
+        }
+      ],
+      "verifiedAt": "2026-10-20T17:20:40.085Z"
     },
     "400": {
       "catalogProductId": 400,
