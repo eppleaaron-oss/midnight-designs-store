@@ -18147,10 +18147,38 @@
     "5f4f1e333cf4eb437ca521a7022f2a60ef12b4adb1a9467ba90ece94172476cc": {
       "productId": "480760815",
       "variant": 9732,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T19:12:45.684Z",
       "attempts": 1,
-      "key": "gt-987531552"
+      "key": "gt-987531552",
+      "photos": 1,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480760815-9732-all-5f4f1e333c-0.jpg",
+          "sha256": "c9fa292fc6bb700f4384885e988ce17c6ce5bada114eaadd3939cd7755c51d4c",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9732,
+          "storeVariantIds": [
+            "5568433701",
+            "5568433718",
+            "5568433726",
+            "5568433727",
+            "5568433735",
+            "5568433750",
+            "5568433756",
+            "5568433763",
+            "5568433770",
+            "5568433773",
+            "5568433774"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -18182,5 +18210,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:13:19.642Z"
+  "updatedAt": "2026-10-20T19:13:32.293Z"
 }
