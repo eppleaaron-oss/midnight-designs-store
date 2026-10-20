@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T21:01:36.759Z",
+  "updatedAt": "2026-10-20T21:06:12.383Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,984 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480743473": {
+      "name": "Ashen Cathedral Yoga Leggings",
+      "originalImage": "https://files.cdn.printful.com/files/608/6086cb5ce0e8db201a1acc2f847f3c6f_preview.png",
+      "catalogProductId": 242,
+      "photos": [
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-0.jpg",
+          "sha256": "2f9f8b058541b36c314c37c4d70e9c2eb62c9dd6befff64921fb3f1a7c7310be",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-1.jpg",
+          "sha256": "f4073509ad93a5ce89a3287d69432fc9e3d2112e0c518f49fa57e9f9cf585539",
+          "view": "Front",
+          "style": "Fitness Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-2.jpg",
+          "sha256": "3eb778c7849c167783c5d7578be8b983f93a5de9e1518ed8c4ba5efa1f629c62",
+          "view": "Front",
+          "style": "Fitness Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-3.jpg",
+          "sha256": "7d9c48160fa06f0fcaf490bbd7c142c3d231c4c6fe9815b6a98a9c5bbc9f6441",
+          "view": "Front",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-4.jpg",
+          "sha256": "cf00c77e9611f9adb7d1b20fb901d876159cc2edc7be8234c85d12f1d34fdbe5",
+          "view": "Front",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-5.jpg",
+          "sha256": "7294b836bf51b2cff0ac033badac698235724e0310722b87794b2cc0358e7806",
+          "view": "Front",
+          "style": "Lifestyle 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-6.jpg",
+          "sha256": "f073671dc0b34be75c4c098d078ec002e5dcf1df30c7c5a259e44e8a65de4cbc",
+          "view": "Front",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-7.jpg",
+          "sha256": "0ca293ba98c470f078c5fc8f05e870b5161d661f71ab8ea29be134fc417cb6db",
+          "view": "Front",
+          "style": "Halloween",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-8.jpg",
+          "sha256": "6ad081811edeb62e99f55082e33b3adfc52f19e5b2f161e745050e36b0a54f9b",
+          "view": "Front",
+          "style": "Holiday season",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-9.jpg",
+          "sha256": "096c663b44d0edec2efc6c6811af26aeb3e80638eb613835ca7293a5c398b23f",
+          "view": "Front",
+          "style": "Spring/summer vibes",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-10.jpg",
+          "sha256": "d4538bdc05403cb35e3b6c2bd92da1c456ae59fcdd4425dee37c873d7ef9baa5",
+          "view": "Front",
+          "style": "Lifestyle 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-11.jpg",
+          "sha256": "1120ff8bbca9ae99c77054c232b3489884dce21cb0cb16f3f3ead4465cc4b561",
+          "view": "Front",
+          "style": "Lifestyle 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-12.jpg",
+          "sha256": "a4e447a36af98ccc75d2380252a55063272afde3571e767665dff6ed0fe7ad6f",
+          "view": "Front",
+          "style": "Lifestyle 7",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-13.jpg",
+          "sha256": "aa840c2904367186f9302da7678ca43f97a6889aefaacb287e4e90d8f01823f9",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-14.jpg",
+          "sha256": "6a93ad93d2b35a2d8f300441ae14364e13354d16f5d8c3774993af3184786526",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-15.jpg",
+          "sha256": "13775a77c87f111ffaa972e499882e54039b8d9e090eec9833a410d5f977ad91",
+          "view": "Back",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-16.jpg",
+          "sha256": "f3721bae3b8bf7e906eb7db8422f7d0791fe767ce9f71b5437fa0dd8d8e899b9",
+          "view": "belt_front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · belt_front",
+          "label": "belt_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-17.jpg",
+          "sha256": "875095d75451878ab3ca7ea98a3b5dfdce66bbf20f096e374fa4b1950e8d0778",
+          "view": "Front",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-18.jpg",
+          "sha256": "b69bef5ba3513f8e5873069fd5673b2d0694d9add2d3b549cc0ed3370ca042c6",
+          "view": "Front",
+          "style": "Lifestyle 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-19.jpg",
+          "sha256": "a0fa368fb0566c8e2e2c1890d22243d7f964aae440c3d802a10be5ca2b32adb7",
+          "view": "belt_back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · belt_back",
+          "label": "belt_back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-20.jpg",
+          "sha256": "b67b8f75a0fe6d4240e90b590d473fa0d899864164398b42b6769656540294dd",
+          "view": "Back",
+          "style": "Fitness Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-21.jpg",
+          "sha256": "b5676c89ce999e6ea71da69b7d434bfacc0d1cd17fc08d706d8411258e7fdbad",
+          "view": "Back",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-22.jpg",
+          "sha256": "8c41edec494657660bf37f16c124de392782bc5a0fb05e0f352323cb7aad66e5",
+          "view": "Back",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-23.jpg",
+          "sha256": "62589db791c2084794b4dbff50a0f4dfe0cae2d64dc26fd852999d312c133286",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-24.jpg",
+          "sha256": "426696e69c27d5fec344dc410e768d9f59b9f135786305db0eb08e371c1d4c48",
+          "view": "Back",
+          "style": "Lifestyle 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-25.jpg",
+          "sha256": "19d4b0743b42ab3916e2169b02a75dcb63f3a1a77fc4112a1b2aa3d93fbace24",
+          "view": "Back",
+          "style": "Lifestyle 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-26.jpg",
+          "sha256": "ce14df2f63e1c8f396592a5bec7cd71c1395303faa8203bf4a223a9eb7bc55e8",
+          "view": "Back",
+          "style": "Lifestyle 6",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-27.jpg",
+          "sha256": "6510efd780f8bb614888abd564ba8368abcd8a91fcb6116816bbcd9af353f15a",
+          "view": "Back",
+          "style": "Lifestyle 7",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-8caa82fcfc-28.jpg",
+          "sha256": "548083d858c35cc282970aec4b28d88614365500e9bdd0fe604c79d5975b791f",
+          "view": "Back 2",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Back 2",
+          "label": "On-person · Back 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-0.jpg",
+          "sha256": "cb59c89954f5bdc45d8ce846dc5a23ec84add0027bfc66db3263db169aecfb5a",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-1.jpg",
+          "sha256": "7dfdb48c76c7da6c9dc86b071449ed19435fc1e23da0b59353e179071ac5447a",
+          "view": "Left",
+          "style": "Fitness Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-2.jpg",
+          "sha256": "fbb89d945da3901d637d50757d475c5ed077c0c782015e9ecf29e02677fa4d2b",
+          "view": "Left",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-3.jpg",
+          "sha256": "fc7b5da8b8767be86aca808aa67a377a3c599cb5d9cc86a1787d7e80d9c5b621",
+          "view": "Front 2",
+          "style": "Holiday season",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front 2",
+          "label": "Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-4.jpg",
+          "sha256": "c3972825d7fa5b793867c6c07a5070a37dd5472ccbd2c9e716b706179c8ebfeb",
+          "view": "Front 2",
+          "style": "Spring/summer vibes",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front 2",
+          "label": "Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-5.jpg",
+          "sha256": "96894f21c542adea59fe343c6078196b5b74552264908a976b8e6e37b63073ed",
+          "view": "Left",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-6.jpg",
+          "sha256": "8bde00f610f09974713994a9ff48cba8f61c8873c2ad9ca1822bbd5c1e09f157",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-7.jpg",
+          "sha256": "dd1a5b3a4145b1fde6f25318a5653ee083a548dda3d0b224a29c827bcffe8238",
+          "view": "belt_front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · belt_front",
+          "label": "belt_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-ef7b2ca597-8.jpg",
+          "sha256": "a03b63710c0c01bedcdc0750d4305bb97ffe703ace2c0b2924ead93063f3ccfe",
+          "view": "Front 2",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-3aa2b92874-0.jpg",
+          "sha256": "5fd9751cf6ba7fe63ade15837d4629b558e29c50a288a972c1d1aadc670e5ec3",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-3aa2b92874-1.jpg",
+          "sha256": "61c000338f460cf78845b69a88d4e755cee30b6536ab9bea44d9dd3255a680a0",
+          "view": "Left Front",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left Front",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-3aa2b92874-2.jpg",
+          "sha256": "f5e72feb361eb940e986ba1bfeed617f36dbbee450027301fb6aeee50c0a9f1c",
+          "view": "Left Back",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left Back",
+          "label": "Left Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-3aa2b92874-3.jpg",
+          "sha256": "bd49241ca2a7d5d00afb2f6ddee8acf2b785179a47fe6531391fbee347361546",
+          "view": "Left Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-0.jpg",
+          "sha256": "dd3ac4b07bdf41142331f87d426d4cecd024183e90c05d6714c110d83297a887",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-1.jpg",
+          "sha256": "d61c4fd214fba5236b6883010b699698e3087927b70f2705596149577b169e4c",
+          "view": "Right Front",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right Front",
+          "label": "Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-2.jpg",
+          "sha256": "e7381d73cc548a205c6858fba4d5b2acc55c7048d0aa020b74af6098ecc49c2f",
+          "view": "Right Back",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right Back",
+          "label": "Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-3.jpg",
+          "sha256": "ae7f85c59afcfbdd2a42ba9f41ca575ceac6a643534ef7cf06a11822ce15e6e4",
+          "view": "Right",
+          "style": "Lifestyle 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-4.jpg",
+          "sha256": "e6195ac79a5edb322ef4fb3f5e4fb5a854f890d7b28cb3f3854d03b45fb0751a",
+          "view": "Right",
+          "style": "Lifestyle 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-5.jpg",
+          "sha256": "06304758763193d3963e169bd9960069dc3f8b0a5e15c77de94c23c24343b189",
+          "view": "belt_front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · belt_front",
+          "label": "belt_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-6.jpg",
+          "sha256": "7631c7b6f414c9002f142c9982382a966e9347bd4269b3a583e8f2e290f98e0f",
+          "view": "Right",
+          "style": "Fitness Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-7.jpg",
+          "sha256": "dec6fe5e9b6c0e96ec4d38a2efc0ab0f5a34e07bd274dbd24dea4001ba2babae",
+          "view": "Right",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743473-8355-all-6d3064e756-8.jpg",
+          "sha256": "3ae39ec85f7f000670c4f848671812ff33003cd26851030f6377e95663363661",
+          "view": "Right Front",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568318963",
+            "5568318966",
+            "5568318970",
+            "5568318973",
+            "5568318975"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · Right Front",
+          "label": "Right Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "b81d70cef4eaa88d268f41225e5d2b6ca64d4d1284fd00ef730bdfd00c5e8dcd"
     },
     "480743714": {
       "name": "Ashen Cathedral Neck Gaiter",
