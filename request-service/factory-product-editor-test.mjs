@@ -41,3 +41,10 @@ test('editor rejects cross-origin writes and saved revision races',async t=>{
  const f=fixture(t);await assert.rejects(f.editor.handle({headers:{origin:'http://other'},payload:{}},{},'/api/owner/ai-factory/product-editor/save','POST'),/Origin/);
  const d=await f.call('save',{source:'piece:piece1',choice:{...f.c,inspectionToken:'receipt'},note:''});f.change(()=>f.db.prepare('UPDATE factory_product_edits SET revision=2 WHERE id=?').run(d.id));await assert.rejects(f.call('apply',{id:d.id,revision:1}),/during inspection/);assert.equal(f.applied(),null);
 });
+
+test('large recovery backups do not block saving, and failures remain visible without claiming durability',async t=>{
+ const f=fixture(t);let rejectBackup;f.basic.checkpoint=()=>new Promise((_,reject)=>{rejectBackup=reject;});
+ const saved=await f.call('save',{source:'piece:piece1',choice:{...f.c,inspectionToken:'receipt'},note:'Persist recipe promptly'});
+ assert.equal(saved.recoveryPending,true);assert.equal(f.editor.library().edits.length,1);assert.equal(f.editor.library().recovery.pending,true);
+ rejectBackup(Error('Recovery service unavailable'));await new Promise(resolve=>setImmediate(resolve));assert.equal(f.editor.library().recovery.pending,false);assert.match(f.editor.library().recovery.error,/Recovery service unavailable/);assert.equal(f.editor.library().edits[0].note,'Persist recipe promptly');
+});
