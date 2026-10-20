@@ -81,11 +81,62 @@
     "3908b471aa9bc3fe076db3fac1c0b5bc5d90a5d408990f89a839677c24152e8d": {
       "productId": "483392618",
       "variant": 46253,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:03:59.198Z",
-      "key": "gt-987456674"
+      "key": "gt-987456674",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483392618-46253-all-0.jpg",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5584810538",
+            "5584810549",
+            "5584810552",
+            "5584810556",
+            "5584810598",
+            "5584810600",
+            "5584810602",
+            "5584810604",
+            "5584810612",
+            "5584810629",
+            "5584810631"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483392618-46253-all-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5584810538",
+            "5584810549",
+            "5584810552",
+            "5584810556",
+            "5584810598",
+            "5584810600",
+            "5584810602",
+            "5584810604",
+            "5584810612",
+            "5584810629",
+            "5584810631"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:04:33.732Z"
+  "updatedAt": "2026-10-20T17:04:46.478Z"
 }
