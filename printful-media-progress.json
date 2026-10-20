@@ -1,0 +1,13 @@
+{
+  "engine": "printful-all-reported-views-v1",
+  "jobs": {
+    "c1f745e267b639638377e5ca132153f2c098c177a3fbfed5df5674995033e4a2": {
+      "productId": "483397425",
+      "variant": 46347,
+      "state": "submitting",
+      "created": "2026-10-20T16:59:42.934Z"
+    }
+  },
+  "errors": {},
+  "updatedAt": "2026-10-20T16:59:42.934Z"
+}
