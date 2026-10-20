@@ -1,7 +1,166 @@
 {
-  "updatedAt": "2026-10-20T17:12:42.406Z",
-  "lastSyncedAt": "2026-10-20T17:12:42.406Z",
+  "updatedAt": "2026-10-20T17:14:56.828Z",
+  "lastSyncedAt": "2026-10-20T17:14:56.828Z",
   "products": [
+    {
+      "id": "483213237",
+      "catalogProductId": 920,
+      "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt",
+      "category": "shirts",
+      "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+      "images": [
+        "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+        "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5583750555",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / 2XL",
+          "price": 54.99,
+          "currency": "USD",
+          "catalogVariantId": 23678,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750574",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / 3XL",
+          "price": 57.99,
+          "currency": "USD",
+          "catalogVariantId": 23679,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750624",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / 4XL",
+          "price": 59.99,
+          "currency": "USD",
+          "catalogVariantId": 23680,
+          "size": "4XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750670",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / L",
+          "price": 49.99,
+          "currency": "USD",
+          "catalogVariantId": 23676,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750675",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / M",
+          "price": 49.99,
+          "currency": "USD",
+          "catalogVariantId": 23675,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750678",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / S",
+          "price": 49.99,
+          "currency": "USD",
+          "catalogVariantId": 23674,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750685",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / XL",
+          "price": 49.99,
+          "currency": "USD",
+          "catalogVariantId": 23677,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        },
+        {
+          "id": "5583750712",
+          "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt / XS",
+          "price": 49.99,
+          "currency": "USD",
+          "catalogVariantId": 23673,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": null,
+          "images": [
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
+            "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
+          ],
+          "image": "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg"
+        }
+      ],
+      "url": "products/483213237.html",
+      "factoryExternalId": "midnight-factory-9e82cbfe-c4d4-47ae-8852-d7e3bec02ded",
+      "description": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shirts"
+      ],
+      "collections": [
+        "Rose Eclipse matching collection"
+      ],
+      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d"
+    },
     {
       "id": "483361602",
       "catalogProductId": 279,
