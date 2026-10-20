@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:04:48.504Z",
+  "updatedAt": "2026-10-20T17:06:51.854Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,111 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "483378457": {
+      "name": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt",
+      "originalImage": "assets/product-photos/483378457-46409-all-0.jpg",
+      "catalogProductId": 1482,
+      "photos": [
+        {
+          "image": "assets/product-photos/483378457-46409-all-0.jpg",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483378457-46409-all-1.jpg",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483378457-46409-all-2.jpg",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483378457-46409-all-3.jpg",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "15994ca5ab2038b12a15b92490699896896a160841bd052b1fe0258e5fd3c3b7"
     },
     "483392618": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants",
