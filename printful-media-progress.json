@@ -5559,11 +5559,12 @@
     "27bacd5b7c0d14dd45c1069f14b98c8472af21f0a7f0422be8276bcc8bdd18a0": {
       "productId": "483361602",
       "variant": 9063,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-20T17:45:50.973Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-987482264"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:45:50.973Z"
+  "updatedAt": "2026-10-20T17:46:24.835Z"
 }
