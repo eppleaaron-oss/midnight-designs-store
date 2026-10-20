@@ -26383,10 +26383,98 @@
     "f0c39dbf39b212d5f1f1ab37d7e427a774d48bc2247cdb63bff59f60e747e874": {
       "productId": "480744093",
       "variant": 16032,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:08:31.609Z",
       "attempts": 1,
-      "key": "gt-987565386"
+      "key": "gt-987565386",
+      "photos": 5,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480744093-16032-all-f0c39dbf39-0.jpg",
+          "sha256": "86df59dbecf161edb63514327d20ec4206f1cb04cfc25207351177071fc75fd1",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568324228",
+            "5568324229",
+            "5568324230"
+          ],
+          "alt": "Blood Moon Reaper Bandana · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744093-16032-all-f0c39dbf39-1.jpg",
+          "sha256": "fd11a36ca4046222851b9cc0dfb66271d76cfa5a074dc75c20aa3ca7d7704926",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568324228",
+            "5568324229",
+            "5568324230"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744093-16032-all-f0c39dbf39-2.jpg",
+          "sha256": "f61f3099713e6af535bacbdcbb76d4a919ad40992c465e47322ed04ac072ce4d",
+          "view": "Front",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568324228",
+            "5568324229",
+            "5568324230"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744093-16032-all-f0c39dbf39-3.jpg",
+          "sha256": "a99f33c04ef7401d5a13ccc29e75e3dfe56eb2b5054bf11687a6b6146df01bba",
+          "view": "Front",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568324228",
+            "5568324229",
+            "5568324230"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480744093-16032-all-f0c39dbf39-4.jpg",
+          "sha256": "56a1d542a22022c13b7ea25d03529acb91cc040108c5e6b4d4720d6ca09e14b5",
+          "view": "Front",
+          "style": "Lifestyle 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568324228",
+            "5568324229",
+            "5568324230"
+          ],
+          "alt": "Blood Moon Reaper Bandana · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -26419,5 +26507,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:09:38.000Z"
+  "updatedAt": "2026-10-20T20:09:52.526Z"
 }
