@@ -35027,10 +35027,412 @@
     "4e1e7d785161a983a4afc3d532a9d3df77b4dee7b63c6a0623088fa2a34e10f2": {
       "productId": "480743470",
       "variant": 9806,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T21:06:15.036Z",
       "attempts": 1,
-      "key": "gt-987600707"
+      "key": "gt-987600707",
+      "photos": 19,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-0.jpg",
+          "sha256": "fa00bfe651b26b955e885b292c73fe54267f5e19e0aeab4455803f4641343844",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-1.jpg",
+          "sha256": "22eb4fc1562da40fb1cc26be15d5e01adac82df8f2c9645c312a38232e48b434",
+          "view": "Front",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-2.jpg",
+          "sha256": "18d3affc0d9d618804ec85c98681ab48efcfa447347fd296749d742be64c63cf",
+          "view": "Left",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-3.jpg",
+          "sha256": "0fd0006228ac87cfc9fdb055eb222b317b9b1a8c97fb4cb8bbd27a269d99e51b",
+          "view": "Front",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-4.jpg",
+          "sha256": "fe9be69e8b1c47211df8eb02ac802e95c7ce406494ecdbe8a89d6e33e3e4e7f7",
+          "view": "Left",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-5.jpg",
+          "sha256": "5188ca7b7cae5d19883ec3294c843ed864c8fb245d74f45076759d69f1822b02",
+          "view": "Left",
+          "style": "Sneakers 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-6.jpg",
+          "sha256": "02aa28fa87e0441f7e3cfbf97debf5a5e66f96d26daa3fe452a6525a4f27c3b6",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-7.jpg",
+          "sha256": "8d37a8a0dd676d8ffb05209272eec42c5bc6fa58a2346dcfd38f47a1b08569a4",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-8.jpg",
+          "sha256": "cf8f471b60c5e5313ba73adfed0ec91f18784f26a26a6a30599c71ca4cd8ef52",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-9.jpg",
+          "sha256": "894a434537adba7f15792a546176082b00fa63a9600bfd8852e67da4531245b9",
+          "view": "Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-10.jpg",
+          "sha256": "2941213db25742a0c7683cf4e46659c1d3e3160a80c099d7a7cedd44a8bab38e",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-11.jpg",
+          "sha256": "36aba0ac4cd0f6c7cdd7ffeb5a1e00002dc2df2930ac1ca0ac4e32e2bd760bf8",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-12.jpg",
+          "sha256": "b3743f90004b7f34580f8e08efbc006a69008d65d11de02b88fc9571fb7ac9e7",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · back",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-13.jpg",
+          "sha256": "b1c8211a5bee451a787bc5ff1e2927158171dab06ac2d4d631e6cfe07feef828",
+          "view": "Back",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-14.jpg",
+          "sha256": "ef6f7cec00ed4c3209af195c77ab2ae28808ccb378c98b04f0d560c7320150ba",
+          "view": "Back",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-15.jpg",
+          "sha256": "8cf0cdfc029390832d2198aee672203ab0496a979194c8ef0647d8f27cd4b441",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-16.jpg",
+          "sha256": "70b57e87aa2b194719c9602dcc6d03d38fc7dfeaeb11eac139b1357e3970e975",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-17.jpg",
+          "sha256": "147a99406e0139229dce26f4c2dba41d09bb80538e0b661641892617e8c44dd8",
+          "view": "Front 2",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743470-9806-all-4e1e7d7851-18.jpg",
+          "sha256": "73704cdbf7eb0751c08459c37e0de0d477c2b7752a03010753c2ee18ff1a8c86",
+          "view": "Front",
+          "style": "Duet",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568318910",
+            "5568318913",
+            "5568318915",
+            "5568318917",
+            "5568318919",
+            "5568318921",
+            "5568318924"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -35064,5 +35466,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T21:07:21.281Z"
+  "updatedAt": "2026-10-20T21:07:37.834Z"
 }
