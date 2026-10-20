@@ -31292,10 +31292,76 @@
     "a926f3e17b6fb099d1521b6a30642c6863f4a6846725cfc1bba4fcff91010ee8": {
       "productId": "480743745",
       "variant": 9954,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:41:33.951Z",
       "attempts": 1,
-      "key": "gt-987587042"
+      "key": "gt-987587042",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743745-9954-all-a926f3e17b-0.jpg",
+          "sha256": "8ed84a197a1a657e2d668a83a25d0c9d31b9422fc7fd98ea5f42d5b406c1fea5",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5568321474",
+            "5568321476",
+            "5568321566",
+            "5568321580",
+            "5568321581",
+            "5568321590",
+            "5568321600"
+          ],
+          "alt": "Blood Moon Reaper Men's Athletic T-Shirt · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743745-9954-all-a926f3e17b-1.jpg",
+          "sha256": "9ff00fffc6c7066cc3c70df2d4a9f57558af8cc465016b94037e1ca9150284e1",
+          "view": "Right",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5568321474",
+            "5568321476",
+            "5568321566",
+            "5568321580",
+            "5568321581",
+            "5568321590",
+            "5568321600"
+          ],
+          "alt": "Blood Moon Reaper Men's Athletic T-Shirt · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743745-9954-all-a926f3e17b-2.jpg",
+          "sha256": "10316385b38d85554e7465b8233c8cf45e4effab5a54d1e4a10a99170523ee9a",
+          "view": "Right",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5568321474",
+            "5568321476",
+            "5568321566",
+            "5568321580",
+            "5568321581",
+            "5568321590",
+            "5568321600"
+          ],
+          "alt": "Blood Moon Reaper Men's Athletic T-Shirt · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -31329,5 +31395,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:42:07.973Z"
+  "updatedAt": "2026-10-20T20:42:21.359Z"
 }
