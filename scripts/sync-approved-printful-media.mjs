@@ -28,13 +28,17 @@ export function requests(product,detail,mapping,factory=false){
   });if(!files.length)throw Error('No accepted production print files.');
   const strings=v=>(v||[]).filter(x=>typeof x==='string');
   const split=(values,size)=>values.length?Array.from({length:Math.ceil(values.length/size)},(_,i)=>values.slice(i*size,(i+1)*size)):[[]],result=[];
-  for(const options of split(strings(mapping.options),40))for(const groups of split(strings(mapping.option_groups),Math.max(1,Math.floor(400/Math.max(1,options.length))))){
+  for(const options of split(strings(mapping.options),4))for(const groups of split(strings(mapping.option_groups),Math.max(1,Math.floor(400/Math.max(1,options.length))))){
    const payload={variant_ids:[retail.catalogVariantId],format:'jpg',width:2000,files,product_options:Object.fromEntries((source.options||[]).filter(o=>o.id!=='license_type').map(o=>[o.id,o.value])),...(groups.length?{option_groups:groups}:{}),...(options.length?{options}: {})};
    result.push({color,retail,payload,key:digest([ENGINE,product.id,source.variant_id,payload])});
   }return result;
  });
 }
 export function candidates(task,variant){const out=[],seen=new Set();for(const m of task.mockups||[]){if(m.variant_ids?.length&&!m.variant_ids.includes(variant))continue;for(const c of [{url:m.mockup_url,view:m.display_name||m.placement,style:'Default'},...(m.extra||[]).map(e=>({url:e.url,view:e.option||e.title||m.display_name||m.placement,style:e.option_group||'Product'}))]){if(typeof c.url!=='string'||!c.url.startsWith('https://')||seen.has(c.url))continue;seen.add(c.url);out.push(c);}}return out;}
+export function splitMockupRequest(job,productId){
+ const field=job.payload.options?.length>1?'options':job.payload.option_groups?.length>1?'option_groups':null;if(!field)return [];
+ const values=job.payload[field],middle=Math.ceil(values.length/2);return [values.slice(0,middle),values.slice(middle)].map(v=>{const payload={...job.payload,[field]:v};return {...job,payload,key:digest([ENGINE,productId,job.retail.catalogVariantId,payload])};});
+}
 export async function run(){
  const token=process.env.PRINTFUL_TOKEN,repo=process.env.GITHUB_REPOSITORY;if(!token||!repo||process.env.GITHUB_REF!=='refs/heads/main')throw Error('Run the protected main-branch media workflow.');
  const sharp=createRequire(new URL('../request-service/package.json',import.meta.url))('sharp'),headers={Authorization:'Bearer '+token,...(process.env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':process.env.PRINTFUL_STORE_ID}:{})};
@@ -71,9 +75,10 @@ export async function run(){
    for(const j of jobs){let record=ledger.jobs[j.key];
     if(record?.state==='downloaded'&&record.savedPhotos?.length){let intact=true;for(const photo of record.savedPhotos)try{await fs.access(photo.image);}catch{intact=false;}if(intact){gallery.push(...record.savedPhotos);continue;}}
     if(record?.state==='empty')continue;
+    if(record?.state==='partitioned'||record?.state==='rejected'&&/maximum files|attempting to generate/i.test(record.error||'')){const parts=splitMockupRequest(j,id);if(!parts.length)throw Error(record.error);record.state='partitioned';jobs.push(...parts);continue;}
     if(record?.state==='rejected')throw Error(record.error||'Supplier rejected this mockup request.');
-    if(record?.state==='submitting'||record?.state==='uncertain')throw Error('A mockup submission needs reconciliation; no duplicate task sent.');
-    if(!record){record=ledger.jobs[j.key]={productId:id,variant:j.retail.catalogVariantId,state:'submitting',created:new Date().toISOString()};await checkpoint('Checkpoint Printful mockup intent '+id);await delay(32000);try{const task=await api('mockup-generator/create-task/'+p.catalogProductId,j.payload);if(!task?.task_key)throw Error('Printful returned no task key.');Object.assign(record,{key:task.task_key,state:'pending'});created++;await checkpoint('Save accepted Printful mockup task '+id);}catch(e){record.state=e.status===400&&/No variants to generate|filters may exclude/i.test(e.message)?'empty':[400,401,403,404,422].includes(e.status)?'rejected':'uncertain';record.error=e.message;await checkpoint('Record Printful mockup submission outcome '+id);if(record.state==='empty')continue;throw e;}}
+    let previous=null;if(record?.state==='submitting'||record?.state==='uncertain'){if((record.attempts||1)>=2)throw Error('Image generation retry limit reached; review the preserved image task record.');previous={...record};record=null;}
+    if(!record){record=ledger.jobs[j.key]={productId:id,variant:j.retail.catalogVariantId,state:'submitting',created:new Date().toISOString(),attempts:previous?(previous.attempts||1)+1:1,...(previous?{previousSubmission:previous,note:'Retry of an unconfirmed image-only task; supplier products are never created here.'}:{})};await checkpoint('Checkpoint Printful mockup intent '+id);await delay(32000);try{const task=await api('mockup-generator/create-task/'+p.catalogProductId,j.payload);if(!task?.task_key)throw Error('Printful returned no task key.');Object.assign(record,{key:task.task_key,state:'pending'});created++;await checkpoint('Save accepted Printful mockup task '+id);}catch(e){record.state=e.status===400&&/maximum files|attempting to generate/i.test(e.message)&&splitMockupRequest(j,id).length?'partitioned':e.status===400&&/No variants to generate|filters may exclude/i.test(e.message)?'empty':[400,401,403,404,422].includes(e.status)?'rejected':'uncertain';record.error=e.message;await checkpoint('Record Printful mockup submission outcome '+id);if(record.state==='partitioned'){jobs.push(...splitMockupRequest(j,id));continue;}if(record.state==='empty')continue;throw e;}}
     let task;for(let n=0;n<120;n++){task=await api('mockup-generator/task?task_key='+encodeURIComponent(record.key));if(task.status!=='pending')break;await delay(5000);}
     if(task.status!=='completed')throw Error('Mockup task '+task.status+': '+(task.error||'Not complete yet.'));
     const available=candidates(task,j.retail.catalogVariantId);if(!available.length)throw Error('Completed task returned no matching mockups.');
