@@ -5559,12 +5559,120 @@
     "27bacd5b7c0d14dd45c1069f14b98c8472af21f0a7f0422be8276bcc8bdd18a0": {
       "productId": "483361602",
       "variant": 9063,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:45:50.973Z",
       "attempts": 1,
-      "key": "gt-987482264"
+      "key": "gt-987482264",
+      "photos": 7,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-0.jpg",
+          "sha256": "aa9f751f0cbe51dff227a9afd2e6e01b7b8238538e962af23a79a9f4bf517202",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-1.jpg",
+          "sha256": "82c33592b7d604b4c94104c73f59011762212feb7a0f3d3261386c6f1cef8a4d",
+          "view": "Right",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-2.jpg",
+          "sha256": "9ff5c807f274bd31433b0205ba1533d9606a4cf9b8c29a895c7e5c6d8dc53313",
+          "view": "Right",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-3.jpg",
+          "sha256": "f237c12323f1362617323d046232f1eb77b6820889ebc20f7ce3d56d3cd27f9e",
+          "view": "Right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-4.jpg",
+          "sha256": "2c7aa446fb6f91a5ea11b1e4fdd68fe8cb1085a6da546139247d388c0b56af9d",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-5.jpg",
+          "sha256": "13dfeea7e418406fcb5d460c920e050f7a0086da41c1efe5d94c50cf26b37e4f",
+          "view": "Right",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483361602-9063-all-27bacd5b7c-6.jpg",
+          "sha256": "94f79bcfe8041fb1b6d87fcdc64339a58db6761c6f864ba17c7a743cb9065ab4",
+          "view": "pocket",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · pocket",
+          "label": "pocket",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:46:24.835Z"
+  "updatedAt": "2026-10-20T17:46:39.159Z"
 }
