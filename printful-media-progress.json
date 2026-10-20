@@ -30800,10 +30800,63 @@
     "71e3fd54415578001019bd4e9aca67c5a7fee7aa404ad1f77465f9e08a6668de": {
       "productId": "480743769",
       "variant": 16261,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:35:09.545Z",
       "attempts": 1,
-      "key": "gt-987583819"
+      "key": "gt-987583819",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743769-16261-all-71e3fd5441-0.jpg",
+          "sha256": "446a7f63203ed4db4a6b9b3e1aa75a792be42754c9e5aba1bc482ba68491a46a",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568321745",
+            "5568321756",
+            "5568321774",
+            "5568321775",
+            "5568321777",
+            "5568321787",
+            "5568321790",
+            "5568321793",
+            "5568321795",
+            "5568321796",
+            "5568321808"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743769-16261-all-71e3fd5441-1.jpg",
+          "sha256": "ae81e7c8ab62f40c0b25fbd3f2bf1a357d41814fe622a3b83a33f46e0b1f51be",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568321745",
+            "5568321756",
+            "5568321774",
+            "5568321775",
+            "5568321777",
+            "5568321787",
+            "5568321790",
+            "5568321793",
+            "5568321795",
+            "5568321796",
+            "5568321808"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · back",
+          "label": "back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -30837,5 +30890,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:36:15.687Z"
+  "updatedAt": "2026-10-20T20:36:29.002Z"
 }
