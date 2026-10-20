@@ -21,6 +21,12 @@
       "state": "uncertain",
       "created": "2026-10-20T17:00:59.000Z",
       "error": "Printful HTTP 400: Invalid file option: template_type"
+    },
+    "f1ffe7a14f6301d8483530206500ea3edb92f80d9512d7a4ea84b0bf148edff8": {
+      "productId": "483378457",
+      "variant": 46409,
+      "state": "submitting",
+      "created": "2026-10-20T17:02:12.899Z"
     }
   },
   "errors": {
@@ -28,5 +34,5 @@
     "483392618": "Printful HTTP 400: Invalid file option: template_type",
     "483397425": "Printful HTTP 400: Invalid file option: template_type"
   },
-  "updatedAt": "2026-10-20T17:02:10.663Z"
+  "updatedAt": "2026-10-20T17:02:12.899Z"
 }
