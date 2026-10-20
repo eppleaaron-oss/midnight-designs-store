@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T20:50:46.571Z",
+  "updatedAt": "2026-10-20T20:51:40.244Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,129 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480743729": {
+      "name": "Ashen Cathedral Cotton Crop Top",
+      "originalImage": "https://files.cdn.printful.com/files/194/194bf317bb4c8ee9ca853f6cf7a98f26_preview.png",
+      "catalogProductId": 1474,
+      "photos": [
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-0.jpg",
+          "sha256": "c9c18c9976acdd26e82908f09989c9b091df09aec47292a19bf53cd162611cc2",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-1.jpg",
+          "sha256": "502e22fda87fd261d8025bffb792b20678d33eb3aaff934f3316096550c760c4",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-2.jpg",
+          "sha256": "a6272254a668cd5ae12d67179d1f0ab953dbe8cd8dbdbf8bb734ccde50742847",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-3.jpg",
+          "sha256": "8e9d3af47ecfadc0ad3142cfd6f794d9f0a06c1815b49663f87590810a37c2f2",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-4.jpg",
+          "sha256": "0543fd9849d367e9314bddf7a903cda764e2b4413935d5dd791e95b781750fc4",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-5.jpg",
+          "sha256": "c3a64fc4bde3a8870eeb699d91a4680db0ac592cce892cdebf0ed32bf11c3e86",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "3fbf36f06801ca697c91e0745ac841bca5a5e13ebebda464a817d2cd5b89855f"
     },
     "480743736": {
       "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
