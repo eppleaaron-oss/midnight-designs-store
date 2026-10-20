@@ -18139,9 +18139,10 @@
     "e8760bdf897e01b027f872c53b0e03bed4c21eba752a8773b1abbc068aaa4e7c": {
       "productId": "480760815",
       "variant": 9732,
-      "state": "submitting",
+      "state": "partitioned",
       "created": "2026-10-20T19:11:37.858Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful HTTP 400: You are attempting to generate 672 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body"
     }
   },
   "errors": {
@@ -18173,5 +18174,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T19:11:37.858Z"
+  "updatedAt": "2026-10-20T19:12:43.971Z"
 }
