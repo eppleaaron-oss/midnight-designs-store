@@ -136,7 +136,7 @@ export function factoryBasicOutfits({db,basic,auth,body,send,fail,limit,origin,c
   await tick();return summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',p.outfit));
  }
  batch=factoryBasicBatch({db,basic,summary,attach,open,clock});
- return {snapshot,activeId:()=>open()?.id||batch.activeOutfit()||null,tick:async()=>{if(batch.inProgress())await batch.tick();else await tick();},async handle(req,res,path,method) {
+ return {snapshot,editPiece:(...args)=>{if(planning||ticking)fail(409,'An outfit step is being saved. Retry shortly.');return batch.editPiece(...args);},activeId:()=>open()?.id||batch.activeOutfit()||null,tick:async()=>{if(batch.inProgress())await batch.tick();else await tick();},async handle(req,res,path,method) {
   if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
   if(method==='GET'&&path===ROOT){send(res,200,snapshot());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'basic-outfits',30);const b=await body(req);

@@ -100,3 +100,12 @@ test('assistant outfit layouts override shared recipes only for selected unstart
  await f.batch.control({id,action:'pause'});await assert.rejects(f.batch.control({id,action:'pause',designPlans:[{pieceId:'p_0',layout,note:'Change started work.'}]}),/have not started/);
  assert.equal(JSON.parse(f.get('SELECT choice FROM factory_basic_outfit_pieces WHERE id=?','q_0').choice).designerPlan,undefined);assert.equal(f.batch.snapshot().recipes[0].layout.number,5);
 });
+
+test('owner editor recipes override batch defaults, preserve source families, and cannot edit started pieces',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();
+ const choice={product:1,setId:'source:p',audience:'unisex',sizes:['M'],layout:{number:9,assignments:{back:'back'}}};
+ f.batch.editPiece('p_0',choice,'inspected','Larger back');
+ const saved=JSON.parse(f.get("SELECT choice FROM factory_basic_outfit_pieces WHERE id='p_0'").choice);assert.equal(saved.ownerRecipe.layout.number,9);assert.deepEqual(saved.ownerRecipe.sizes,['M']);
+ let observed;const create=f.basic.create;f.basic.create=async(c,ctx)=>{observed=c;return create(c,ctx);};await f.batch.tick();assert.equal(observed.layout.number,9);assert.deepEqual(observed.sizes,['M']);
+ assert.throws(()=>f.batch.editPiece('p_0',choice,'inspected',''),/already started/);assert.throws(()=>f.batch.editPiece('p_1',{...choice,product:2,setId:'other'},'bad',''),/original garment and design family/);
+});
