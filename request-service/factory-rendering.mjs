@@ -183,9 +183,9 @@ export function factoryRendering({db,auth,body,send,fail,limit,origin,plans=JSON
    return {job,draft:id,plan:{background:plan.background,placements},allowedIds:selection.artworkIds};});
   // Save each native area independently. A full product can exceed an in-memory
   // atomic batch; matching saved recipes let interrupted jobs resume safely.
-  const result={rendered:0,reusedPixels:0,files:[],reviewRequired:true};let processed=0;const total=requests.reduce((n,r)=>n+Object.keys(r.plan.placements).length,0);
+  const result={rendered:0,reusedPixels:0,files:[],reviewRequired:true},sliceStarted=Date.now();let processed=0;const total=requests.reduce((n,r)=>n+Object.keys(r.plan.placements).length,0);
   for(const request of requests)for(const [placement,recipe] of Object.entries(request.plan.placements)){
-   const saved=await prepare([{...request,plan:{...request.plan,placements:{[placement]:recipe}}}]);result.rendered+=saved.rendered;result.reusedPixels+=saved.reusedPixels||0;result.files.push(...saved.files);processed++;if(basic?.workspaceReady(job)&&result.rendered-result.reusedPixels>=2&&processed<total)return {...result,defer:true,note:'Saving this item’s print areas in small recoverable batches.'};
+   const saved=await prepare([{...request,plan:{...request.plan,placements:{[placement]:recipe}}}]);result.rendered+=saved.rendered;result.reusedPixels+=saved.reusedPixels||0;result.files.push(...saved.files);processed++;if(basic?.workspaceReady(job)&&processed<total&&(result.rendered-result.reusedPixels>=8||result.rendered-result.reusedPixels>0&&Date.now()-sliceStarted>=30000))return {...result,defer:true,note:'Saving this item’s completed print areas before continuing the timed rendering slice.'};
   }
   return result;
  }
