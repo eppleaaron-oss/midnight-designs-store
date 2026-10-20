@@ -1997,12 +1997,120 @@
     "f05869bce3484051c9f066c9d33f7c193dd9bc76a306ccb889627783702044f1": {
       "productId": "483385402",
       "variant": 10879,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T17:19:17.763Z",
       "attempts": 1,
-      "key": "gt-987467697"
+      "key": "gt-987467697",
+      "photos": 5,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483385402-10879-all-f05869bce3-0.jpg",
+          "sha256": "db8a0685c21252911de1b2bd46743ff3a01a4140dc7cfff21469b76ea1d72762",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-f05869bce3-1.jpg",
+          "sha256": "51cf193e9a0f8460fe92beaf3d3b3cab6ae29a3e3a8b828188f29e45265ea031",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-f05869bce3-2.jpg",
+          "sha256": "a77a712af138251732bb3d7b61b627541d2c4d0489eca233788530ed866f93c1",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-f05869bce3-3.jpg",
+          "sha256": "bf91df126a56075a1cdbd12446292ec4163f05c0f28b145421739dcf5140d302",
+          "view": "Right",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483385402-10879-all-f05869bce3-4.jpg",
+          "sha256": "deac19902ee5fc4073cb663d273003fe7c2f87c4987eb741233571146b530d1a",
+          "view": "details",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · details",
+          "label": "details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-20T17:20:24.063Z"
+  "updatedAt": "2026-10-20T17:20:37.725Z"
 }
