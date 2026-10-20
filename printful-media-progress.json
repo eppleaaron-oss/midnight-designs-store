@@ -37024,6 +37024,7 @@
     }
   },
   "errors": {
+    "476368665": "Supplier print files are not permanently accepted.",
     "476394293": "Supplier print files are not permanently accepted.",
     "476395722": "Supplier print files are not permanently accepted.",
     "476397566": "Supplier print files are not permanently accepted.",
@@ -37084,5 +37085,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T23:05:48.619Z"
+  "updatedAt": "2026-10-20T23:05:50.470Z"
 }
