@@ -1404,14 +1404,15 @@
       "state": "pending",
       "created": "2026-10-20T17:16:26.697Z",
       "key": "gt-987465776"
+    },
+    "6befd48872c6f5784af464e16769086229900fc74d4342a2f50a4526d4369aba": {
+      "productId": "483385402",
+      "variant": 10879,
+      "state": "submitting",
+      "created": "2026-10-20T17:17:34.156Z",
+      "attempts": 1
     }
   },
-  "errors": {
-    "483352723": "Printful HTTP 400: You are attempting to generate 636 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body",
-    "483356322": "A mockup submission needs reconciliation; no duplicate task sent.",
-    "483366087": "Printful HTTP 400: You are attempting to generate 544 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body",
-    "483375173": "Printful HTTP 400: You are attempting to generate 512 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body",
-    "483385402": "Printful HTTP 400: You are attempting to generate 636 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request body"
-  },
-  "updatedAt": "2026-10-20T17:17:00.803Z"
+  "errors": {},
+  "updatedAt": "2026-10-20T17:17:34.156Z"
 }
