@@ -32845,10 +32845,127 @@
     "feaa6f45e6222b4973d64a5f6ee3c751b38537ad4b1d698e5dbed5fedc3b2cbf": {
       "productId": "480743729",
       "variant": 46226,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-20T20:50:49.752Z",
       "attempts": 1,
-      "key": "gt-987591740"
+      "key": "gt-987591740",
+      "photos": 6,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-0.jpg",
+          "sha256": "c9c18c9976acdd26e82908f09989c9b091df09aec47292a19bf53cd162611cc2",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-1.jpg",
+          "sha256": "502e22fda87fd261d8025bffb792b20678d33eb3aaff934f3316096550c760c4",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-2.jpg",
+          "sha256": "a6272254a668cd5ae12d67179d1f0ab953dbe8cd8dbdbf8bb734ccde50742847",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-3.jpg",
+          "sha256": "8e9d3af47ecfadc0ad3142cfd6f794d9f0a06c1815b49663f87590810a37c2f2",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-4.jpg",
+          "sha256": "0543fd9849d367e9314bddf7a903cda764e2b4413935d5dd791e95b781750fc4",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743729-46226-all-feaa6f45e6-5.jpg",
+          "sha256": "c3a64fc4bde3a8870eeb699d91a4680db0ac592cce892cdebf0ed32bf11c3e86",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 46226,
+          "storeVariantIds": [
+            "5568321392",
+            "5568321393",
+            "5568321394",
+            "5568321395",
+            "5568321396"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -32882,5 +32999,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-20T20:51:23.966Z"
+  "updatedAt": "2026-10-20T20:51:38.246Z"
 }
