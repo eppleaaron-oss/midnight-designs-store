@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T17:35:07.641Z",
+  "updatedAt": "2026-10-20T17:38:47.855Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3593,6 +3593,687 @@
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "ed38e4ae2d111bc6ca8f0b768e020120c01489257ce3c832e8ba25a941628416"
+    },
+    "483352723": {
+      "name": "Rose Eclipse All-Over Print Unisex Bomber Jacket",
+      "originalImage": "assets/product-photos/483352723-10879-all-0c677a1ecc-0.jpg",
+      "catalogProductId": 390,
+      "photos": [
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-0.jpg",
+          "sha256": "82555a8e05154fec65db6bd64c6c060c62e11b8661992921f9a3044906e15108",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-1.jpg",
+          "sha256": "6f32a02d87905274fa2851571e3f05634c43147e6d1c98b86dfa3f4e3762ea0b",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-2.jpg",
+          "sha256": "3c462dbf94bea59941e8a82a24892051b60fe7121e5fb0fd765058cd944ef844",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-3.jpg",
+          "sha256": "c872595ea34080653114efff5c35c9ca14c10445800db141a62c618f54f7e7a3",
+          "view": "Front",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-4.jpg",
+          "sha256": "4f820650dbb0a63dbb4dec6d7c1407827a2f38ed68cce42819cbfb19d696e993",
+          "view": "Front",
+          "style": "Flat Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-5.jpg",
+          "sha256": "7c87fcc97fe20fe264a7728238fc339151d8de2d0b8fc5cde29b8af075067f48",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-6.jpg",
+          "sha256": "015320d809a4b3724d9a7fa9e7e6453187fcc89e2c0d83260aa3a17c17bbe7b6",
+          "view": "Front",
+          "style": "Flat 2",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-7.jpg",
+          "sha256": "d0651a6bb7eec05559bc8b5fb43c52d65614454ab6328730f20607be96e18293",
+          "view": "Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-8.jpg",
+          "sha256": "fbe98b5d1815681cfff5054db16ea03162e35105b6c5223e564348ec241c4560",
+          "view": "Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-9.jpg",
+          "sha256": "d6e0df435d426b1894b10039743c9596512790a1b33bf57da2b03689764b594e",
+          "view": "Front",
+          "style": "Product specs",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-10.jpg",
+          "sha256": "996ac219a79926f012f09a56e3a0cfe0744ca1cb8ec0ecc72c61599419b1bee2",
+          "view": "Front",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-11.jpg",
+          "sha256": "03f076927d67b5aa3ad14b657d054a5347d974791b56a7947f1da32be832d6b1",
+          "view": "Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-12.jpg",
+          "sha256": "6a9541d0fac10bca448b814b2b8e39cc61479b8b6ddddd3246964d23773d317e",
+          "view": "Front 2",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-13.jpg",
+          "sha256": "5fc8b0f5711a13a26eba7ddbecfcf9527ced3ff0863811f9a8bf31914f10316b",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · back",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-14.jpg",
+          "sha256": "553bc9cf200ed1a67c7704a0b0ebc41dbdb3f7288abffa87a7af45d8f1ad3c3f",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-15.jpg",
+          "sha256": "165a276ccf02cd75534a0d62f3c0f2a8b24bfceffb59a553a87c97aced413d4c",
+          "view": "Back",
+          "style": "Lifestyle 1",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-16.jpg",
+          "sha256": "393003aacceb76ca8370f4201ba3c20a79b385f4a6db18564c1b5e04336fc57c",
+          "view": "Back",
+          "style": "Flat Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-17.jpg",
+          "sha256": "c138a8b2cf471eb47c5073cfb504cabbaa407ad6b7a2a2ac3ac94f2962f9c985",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-18.jpg",
+          "sha256": "dcd77a561bbf8e850541a020e9244ed7776b5b6e679f65b668e85464581cc3bf",
+          "view": "Back",
+          "style": "Flat 2",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-19.jpg",
+          "sha256": "d4c7997c82df7b0166ff82ca79c99deed68d5c2fe064e740701fe262c211cd99",
+          "view": "Back",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-20.jpg",
+          "sha256": "a55e6237ccad54927b8cbe8d9c688a1a8ccaccae5d9233ecef49c282a2f19d1e",
+          "view": "Back",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-21.jpg",
+          "sha256": "652af934adc009bb3524649a6a3f3d7fd553450d0b2ce13e5ba3387f396243cf",
+          "view": "Back",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-0c677a1ecc-22.jpg",
+          "sha256": "b74b21425b6f0e7b3d45b13a0be4a3235ad3e28caab46b6c8e9feca05de1042b",
+          "view": "details",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · details",
+          "label": "details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-acc9490107-0.jpg",
+          "sha256": "b2cb63ea4c784bf2863d494c434381f0d0e1a944b01c32995a52d271553e96a3",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · sleeve_left",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-acc9490107-1.jpg",
+          "sha256": "d6a413138a0716e8f53fa615896918793d95b2eab5d04388879c04736666c678",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-acc9490107-2.jpg",
+          "sha256": "d2d64da54cbb60c649ed55a7be923a4468e60dd7a915ff30c02bb410e7dc007d",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-acc9490107-3.jpg",
+          "sha256": "72bc4cbe4d0d0204f6f5df571272ebffd3d9233ed7fc3240cd90870d9c11c057",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-0.jpg",
+          "sha256": "db8a0685c21252911de1b2bd46743ff3a01a4140dc7cfff21469b76ea1d72762",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-1.jpg",
+          "sha256": "5cff813e3ca31393a26006c1984c11f7a23489106d47d997d13d548def1fab84",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-2.jpg",
+          "sha256": "a77a712af138251732bb3d7b61b627541d2c4d0489eca233788530ed866f93c1",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-3.jpg",
+          "sha256": "a3d98a576454906278b6ef68bac5ce3ec3c9c52330f2cc1cb327f5f281971489",
+          "view": "Right",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483352723-10879-all-ad83070a56-4.jpg",
+          "sha256": "236f09681e955d88d9ae6fffcd201f78f4942247738f7e1b3b8f2731c971a5ef",
+          "view": "details",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · details",
+          "label": "details",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "88dcd3d1159dbadb91a823ef10e749f868a33d12e4eee65b4cdb771be44a05d0"
     },
     "483356322": {
       "name": "Rose Eclipse All-Over Print Unisex Cotton Shorts",
