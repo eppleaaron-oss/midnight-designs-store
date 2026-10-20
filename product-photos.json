@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T20:36:30.869Z",
+  "updatedAt": "2026-10-20T20:38:31.512Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -3431,6 +3431,59 @@
         }
       ],
       "source": "Verified finished production canvases"
+    },
+    "480743760": {
+      "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
+      "originalImage": "https://files.cdn.printful.com/files/c36/c36d38fce16d4296989d3aeee548ef13_preview.png",
+      "catalogProductId": 920,
+      "photos": [
+        {
+          "image": "assets/product-photos/480743760-23675-all-1b3126aceb-0.jpg",
+          "sha256": "0997b2fef42f5cc7850df0c969e31de75cebfc9fdb68e81e163f9c100a1fe2da",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568321663",
+            "5568321680",
+            "5568321687",
+            "5568321690",
+            "5568321695",
+            "5568321710",
+            "5568321713",
+            "5568321716"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743760-23675-all-1b3126aceb-1.jpg",
+          "sha256": "bf98d85c4cd7e3b7a4ddfd59553cf84b72989e2fa811fa3fadc622551e2def24",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568321663",
+            "5568321680",
+            "5568321687",
+            "5568321690",
+            "5568321695",
+            "5568321710",
+            "5568321713",
+            "5568321716"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "038ac6439d06832bd3dfe409313d082152e69af141ff22021a945491f2b22b5a"
     },
     "480743769": {
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
