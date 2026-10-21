@@ -15,7 +15,7 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
   const q=outfits.snapshot(),families=[...q.plans,...q.recent,...(q.active?[q.active]:[])],seen=new Set(),pieces=[];
   const scope=q.batch?.scope?new Set(q.batch.scope.pieceIds):null;
   for(const f of families)for(const p of f.pieces){if(seen.has(p.id)||scope&&!scope.has(p.id))continue;seen.add(p.id);pieces.push({id:'piece:'+p.id,pieceId:p.id,outfit:f.id,collection:f.name,name:p.choice.slotName||p.role,choice:p.item?.id&&get('SELECT recipe FROM factory_basic_items WHERE id=?',p.item.id)?choiceFrom(get('SELECT recipe FROM factory_basic_items WHERE id=?',p.item.id)):{...p.choice,...(p.choice.ownerRecipe||{}),layout:p.choice.ownerRecipe?.layout||p.choice.designerPlan?.layout||p.choice.layout},state:p.item?.status||'waiting',supplierId:p.item?.listing?.supplier_id||null,editable:!p.item,version:p.signature||'',itemId:p.item?.id||null});}
-  const products=all('SELECT i.*,l.supplier_id,l.status AS listing_status,l.copy FROM factory_basic_items i LEFT JOIN factory_listings l ON l.job=i.job ORDER BY i.created DESC LIMIT 500').map(r=>({id:'item:'+r.id,itemId:r.id,collection:JSON.parse(r.recipe).outfitCollection||JSON.parse(r.recipe).set.name,name:r.copy?JSON.parse(r.copy).title:JSON.parse(r.recipe).name,choice:choiceFrom(r),state:r.status,supplierId:r.supplier_id||null,editable:false}));
+  const products=all('SELECT i.*,l.supplier_id,l.status AS listing_status,l.copy FROM factory_basic_items i LEFT JOIN factory_listings l ON l.job=i.job ORDER BY i.created DESC ').map(r=>({id:'item:'+r.id,itemId:r.id,collection:JSON.parse(r.recipe).outfitCollection||JSON.parse(r.recipe).set.name,name:r.copy?JSON.parse(r.copy).title:JSON.parse(r.recipe).name,choice:choiceFrom(r),state:r.status,supplierId:r.supplier_id||null,editable:false}));
   const sets=basic.snapshot().sets;
   return {pieces,products,sets,recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }
@@ -47,6 +47,15 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
    if(c.product!==original.choice.product||c.setId!==original.choice.setId)fail(409,'Keep this piece’s garment and design family. Use a revised copy for a different garment or artwork set.');
    outfits.editPiece(original.pieceId,{...c,inspectionToken:p.inspectionToken},basic.inspectionSignature(p),draft.note);
    checkpoint();send(res,202,{applied:true,recoveryPending:true,id:draft.id,note:'Saved layout applied to this waiting factory piece.'});return true;
+  }
+  if(path===ROOT+'/revise-existing'){
+   if(b.confirm!==true)fail(400,'Confirm preparing a revision of the same product.');
+   const original=source(draft.source);if(!original?.supplierId||!original.itemId)fail(409,'Choose a completed AI product with a Printful ID.');
+   const item=get('SELECT * FROM factory_basic_items WHERE id=?',original.itemId),recipe=JSON.parse(item.recipe),listing=get('SELECT * FROM factory_listings WHERE job=?',item.job);
+   if(c.product!==recipe.product||c.setId!==recipe.set.id||JSON.stringify([...c.sizes].sort())!==JSON.stringify(recipe.variants.map(v=>v.size).sort()))fail(409,'Keep the original garment, artwork family and every size when updating an existing product.');
+   const replacement={supplierId:String(original.supplierId),external:'midnight-factory-'+item.job,copy:JSON.parse(listing.copy)};
+   const revised=await basic.create({...c,inspectionToken:p.inspectionToken,requestKey:'same_product_'+draft.id+'_r'+draft.revision},{replaceProduct:replacement,collection:original.collection});
+   send(res,200,{item:revised,note:'Revision queued for AI Made review. The original Printful and store product remain unchanged until owner approval.'});return true;
   }
   if(path===ROOT+'/create'){
    if(b.confirm!==true)fail(400,'Confirm creating a revised copy.');

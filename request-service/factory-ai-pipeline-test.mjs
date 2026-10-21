@@ -29,6 +29,7 @@ async function setup({viewCount=5,creative=false,layoutNumber=null}={}){
   if(url.includes('/mockup-generator/create-task/'))return pf({task_key:'accepted-jacket-task',status:'pending'});
   if(url.includes('/mockup-generator/task?'))return pf({task_key:'accepted-jacket-task',status:'completed',mockups:Array.from({length:viewCount},(_,i)=>({variant_ids:[10],placement:areas[i%areas.length],mockup_url:'https://files.cdn.printful.com/'+i+'.png'}))});
   if(url.startsWith('https://files.cdn.printful.com/'))return new Response(png,{headers:{'Content-Type':'image/png'}});
+  if(url.includes('/contents/ai-made-review.json'))return o.method==='PUT'?new Response('{}'):new Response('{}',{status:404});
   if(url.includes('/contents/factory-listings.json')){if(o.method==='PUT'){manifest=JSON.parse(Buffer.from(JSON.parse(o.body).content,'base64').toString());return json({});}return manifest?json({sha:'fixture-manifest',content:Buffer.from(JSON.stringify(manifest)).toString('base64')}):new Response('{}',{status:404});}
   if(url.includes('/dispatches')){dispatches++;return new Response(null,{status:204});}
   if(url.startsWith('https://midnight-designs.store/products.json'))return json({products:Object.values(manifest?.products||{})});

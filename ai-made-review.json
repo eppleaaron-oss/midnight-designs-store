@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "note": "Existing live items are retained. New AI products require an explicit owner decision.",
+  "products": {
+    "483352723": {
+      "decision": "existing_live",
+      "external": "midnight-factory-cefcdd40-6443-44e0-8e9d-8115f4c87b4a"
+    },
+    "483356322": {
+      "decision": "existing_live",
+      "external": "midnight-factory-88ba9531-9cfd-457b-96c7-5689a8b75bd8"
+    },
+    "483366087": {
+      "decision": "existing_live",
+      "external": "midnight-factory-c8b364b7-0d1f-48d5-a056-8760b5a14596"
+    },
+    "483375173": {
+      "decision": "existing_live",
+      "external": "midnight-factory-6f8c64db-ba34-4508-9740-e106695d46eb"
+    },
+    "483385402": {
+      "decision": "existing_live",
+      "external": "midnight-factory-74ea22c4-2ad4-4bcc-ab76-7189ddacc545"
+    },
+    "483204573": {
+      "decision": "existing_live",
+      "external": "midnight-factory-08329fb6-42e9-4d79-a969-b6269c6633de"
+    },
+    "483213237": {
+      "decision": "existing_live",
+      "external": "midnight-factory-9e82cbfe-c4d4-47ae-8852-d7e3bec02ded"
+    },
+    "483361602": {
+      "decision": "existing_live",
+      "external": "midnight-factory-2b3c0ce1-3b1b-435b-932e-5d70f68335aa"
+    },
+    "483370819": {
+      "decision": "existing_live",
+      "external": "midnight-factory-337f17f7-d719-4deb-a658-82977eb5674c"
+    },
+    "483378457": {
+      "decision": "existing_live",
+      "external": "midnight-factory-4e53fa8f-3f85-42f0-9f0b-3944afe9c95d"
+    },
+    "483392618": {
+      "decision": "existing_live",
+      "external": "midnight-factory-043f9778-6eae-4ced-bf6a-32e04490e9ec"
+    },
+    "483397425": {
+      "decision": "existing_live",
+      "external": "midnight-factory-1b06f138-8b39-4e4e-8931-8e23746bcbcd"
+    },
+    "482923908": {
+      "decision": "existing_live",
+      "external": "midnight-factory-00fba902-955b-41ca-be37-b3513e120ecf"
+    },
+    "482918795": {
+      "decision": "existing_live",
+      "external": "midnight-factory-1be3784b-c798-4f26-b5dc-a917a65a10b9"
+    }
+  }
+}
