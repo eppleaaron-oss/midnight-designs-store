@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T15:51:05.353Z",
+  "updatedAt": "2026-10-21T15:53:56.561Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -4233,6 +4233,510 @@
       "catalogProductId": 330,
       "photos": [
         {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-0.jpg",
+          "sha256": "3794e6845982ac57fc2c032c1a86b839218ed373cab0480c72476e32311d3684",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-1.jpg",
+          "sha256": "aab6df8d5c1cec60e9ce5480ddf4a52d408702ad910946150271c02f8eb791ed",
+          "view": "Front",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-2.jpg",
+          "sha256": "35c8a24a1207a1c931d18759257a1009ac25642dd5b2c19dff05ca6a20fa40b3",
+          "view": "Left",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-3.jpg",
+          "sha256": "4ad5606e346ff660c075cbd4414877a4cb48b2a1d88c39b7b6c0965042e4addb",
+          "view": "Front",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-4.jpg",
+          "sha256": "4ed4110e8036f0a1561b8942da2aca9448ac65cd7dc407c07e1f9e882209d493",
+          "view": "Left",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-5.jpg",
+          "sha256": "4d5388d4c028491fc6d3c8e59b3829c52d04c3d337682385e570ef5838186a5e",
+          "view": "Left",
+          "style": "Sneakers 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-6.jpg",
+          "sha256": "14b00b5ebb714ee8c2a634b8c3730097be4423777d4af0bdf867518683ac5ea1",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-7.jpg",
+          "sha256": "09371fb394c8703efcabb4b8486ecdbabf7c258024a5d402775e6900897a953a",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-8.jpg",
+          "sha256": "cc0827211b8065893e2257752ef85a6fc9ff0169feb1fe51657827517e566e77",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-9.jpg",
+          "sha256": "3f9850b32383e6f8f3d70987319fb5dddc0bbf1c46ac30380e6c59fc794af796",
+          "view": "Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-10.jpg",
+          "sha256": "80ebecaae3ef539c91c6615dfb727b7c120d64141603b80736b0bf09d233a424",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-11.jpg",
+          "sha256": "05949a0c950052542eaf26677bbe85a735f9e56f354821e7ccd3e453c682472b",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-12.jpg",
+          "sha256": "5963a3ffcd99aadda18d4f72f0edfae8ec4891f47439b592edc64a240454d645",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · back",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-13.jpg",
+          "sha256": "94f21f889bdb2d870922bb85de083ef766061208517eba070f4cbd843986eebe",
+          "view": "Back",
+          "style": "Barefoot",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-14.jpg",
+          "sha256": "0b19f84a07643c23d72644dd4660df34f4a23dfd33ef5514d855c3b7973ec5ba",
+          "view": "Back",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-15.jpg",
+          "sha256": "583a780dfe11140439f60292aed610e5c87032c5320d6f62f2fb8ce413f93a04",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-16.jpg",
+          "sha256": "778809c91be266541abac7322b743e6a694fff0110ae46e737fbee5369d660c5",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-17.jpg",
+          "sha256": "3a9fb236f6c1f3a3a9d2f5bca5616eac9699520601db9af98baea1ccfd1d5f97",
+          "view": "Front 2",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-46ff493f61-18.jpg",
+          "sha256": "58956e72df08da5211d66a5e9435617815b1a7c6bcb2eaf87116130380d2059e",
+          "view": "Front",
+          "style": "Duet",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-205cbd8fd7-0.jpg",
+          "sha256": "bcb967ccf2b3b2cb448900db87f286c7d7574541c921199d329f3bcddf047048",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-205cbd8fd7-1.jpg",
+          "sha256": "c0453d224f6b7d29fd96879eee42c9494288301703dcd0faf48ebd7b1984f6ec",
+          "view": "Right",
+          "style": "Sneakers",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-205cbd8fd7-2.jpg",
+          "sha256": "a990adac7b2630c9a673e6ae0150ff8a0481ff80f7a28442c6d4e6e69f8b5549",
+          "view": "Right",
+          "style": "Sneakers 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-205cbd8fd7-3.jpg",
+          "sha256": "3c8bfd3e9d5fbce6fd485bcad0ce3cbaa030225585f320e59dcdb8fe02e969a9",
+          "view": "Right Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Right Back",
+          "label": "On-person · Right Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738743-9806-all-205cbd8fd7-4.jpg",
+          "sha256": "003063da1d30ea225d69e0e4da1ead56bb8c2bc10571e5213b5824c428098d57",
+          "view": "Zoomed-in",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9806,
+          "storeVariantIds": [
+            "5568275475",
+            "5568275491",
+            "5568275501",
+            "5568275502",
+            "5568275503",
+            "5568275504",
+            "5568275505"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · Zoomed-in",
+          "label": "On-person · Zoomed-in",
+          "kind": "production-mockup"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -4254,7 +4758,9 @@
           "sha256": "169bc2dab9331e3fa1cc8ce1ad2c273f51afdeb95547d05cc7fa164b1159f943"
         }
       ],
-      "supplierPreviews": "ad20a44eef4e54207955e4e984549729eaeed7f1b2366ceed1f63ca21c62e078"
+      "source": "Printful mockups from accepted supplier production files",
+      "supplierPreviews": "ad20a44eef4e54207955e4e984549729eaeed7f1b2366ceed1f63ca21c62e078",
+      "allReportedViews": "07e906959aff3f32112b59b48e8a50047ea73f88405654db98e63d4485d9caea"
     },
     "480738744": {
       "name": "Blood Moon Reaper Yoga Leggings",
