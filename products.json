@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-21T14:29:31.939Z",
-  "lastSyncedAt": "2026-10-21T14:29:31.939Z",
+  "updatedAt": "2026-10-21T14:29:40.632Z",
+  "lastSyncedAt": "2026-10-21T14:29:40.632Z",
   "products": [
     {
       "id": "483352723",
@@ -12383,6 +12383,7 @@
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/34f/34f128b710b3b6596bdeb9754d224052_preview.png",
       "images": [
+        "assets/product-photos/480743435-supplier-7fd2d1fa1ce8f4b5c1fd.jpg",
         "https://files.cdn.printful.com/files/34f/34f128b710b3b6596bdeb9754d224052_preview.png"
       ],
       "variants": [
@@ -12538,6 +12539,7 @@
         "assets/product-photos/480743420-9051-all-f0af248e91-0.jpg",
         "assets/product-photos/480743420-9051-all-f0af248e91-1.jpg",
         "assets/product-photos/480743420-9051-all-f0af248e91-2.jpg",
+        "assets/product-photos/480743420-supplier-2b9adeebaa3cbd2f3801.jpg",
         "https://files.cdn.printful.com/files/ff2/ff2886a75d731391437768c4ee489702_preview.png"
       ],
       "variants": [
@@ -12617,6 +12619,7 @@
       "category": "Other pieces",
       "image": "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png",
       "images": [
+        "assets/product-photos/480743400-supplier-83ae98802e675f5af043.jpg",
         "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png"
       ],
       "variants": [
@@ -12753,6 +12756,7 @@
       "images": [
         "assets/product-photos/480743395-23675-all-75a6a65126-0.jpg",
         "assets/product-photos/480743395-23675-all-75a6a65126-1.jpg",
+        "assets/product-photos/480743395-supplier-8b161b55242cb4d7ec9e.jpg",
         "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png"
       ],
       "variants": [
@@ -12854,6 +12858,7 @@
       "category": "Tees",
       "image": "https://files.cdn.printful.com/files/4b8/4b8e6eb29aeae6036ebdd5bc7d9f3a24_preview.png",
       "images": [
+        "assets/product-photos/480743390-supplier-4db9fe8d54e71a9ccb3c.jpg",
         "https://files.cdn.printful.com/files/4b8/4b8e6eb29aeae6036ebdd5bc7d9f3a24_preview.png"
       ],
       "variants": [
@@ -12944,6 +12949,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png",
       "images": [
+        "assets/product-photos/480743384-supplier-b8e8a124c18da2d6d6c7.jpg",
         "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png"
       ],
       "variants": [
@@ -13083,6 +13089,9 @@
         "assets/product-photos/480738750-16032-all-962974aa0a-2.jpg",
         "assets/product-photos/480738750-16032-all-962974aa0a-3.jpg",
         "assets/product-photos/480738750-16032-all-962974aa0a-4.jpg",
+        "assets/product-photos/480738750-supplier-de90a2c90637526d891a.jpg",
+        "assets/product-photos/480738750-supplier-a57a8e6b01221862f285.jpg",
+        "assets/product-photos/480738750-supplier-78035ed787cfb08b911f.jpg",
         "https://files.cdn.printful.com/files/44a/44afe848535fbbda9dc0acf9069e0c81_preview.png",
         "https://files.cdn.printful.com/files/b15/b15d504e7e24ceb607ff370fe9ffaad3_preview.png",
         "https://files.cdn.printful.com/files/a11/a11d3f13429c6a8e6f91188dac78465e_preview.png"
@@ -13131,6 +13140,7 @@
       "category": "Other pieces",
       "image": "https://files.cdn.printful.com/files/66b/66b1fefabf9ac32f227187ce831b0492_preview.png",
       "images": [
+        "assets/product-photos/480738747-supplier-05c4b5a9ea08189dedcc.jpg",
         "https://files.cdn.printful.com/files/66b/66b1fefabf9ac32f227187ce831b0492_preview.png"
       ],
       "variants": [
@@ -13155,6 +13165,7 @@
       "category": "Bottoms",
       "image": "https://files.cdn.printful.com/files/d79/d797ad9897fead0f16d2cc503c8f879b_preview.png",
       "images": [
+        "assets/product-photos/480738744-supplier-1808ae39d10b323c7618.jpg",
         "https://files.cdn.printful.com/files/d79/d797ad9897fead0f16d2cc503c8f879b_preview.png"
       ],
       "variants": [
@@ -13223,6 +13234,7 @@
       "category": "Bottoms",
       "image": "https://files.cdn.printful.com/files/93a/93a5db84b029a80cb3e093f96484b455_preview.png",
       "images": [
+        "assets/product-photos/480738743-supplier-b972836201ec4045cb6c.jpg",
         "https://files.cdn.printful.com/files/93a/93a5db84b029a80cb3e093f96484b455_preview.png"
       ],
       "variants": [
