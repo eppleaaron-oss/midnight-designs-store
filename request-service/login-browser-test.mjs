@@ -11,8 +11,7 @@ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH,ar
 page.on('request',r=>{if(r.url()===origin+'/api/owner/login'&&r.method()==='POST')submissions.push(r.postDataJSON());});
 try{
  await page.goto('http://127.0.0.1:8000/index.html');
- await page.locator('.support-menu summary').click();
- await page.locator('.support-menu').getByRole('link',{name:'Login',exact:true}).click();
+ await page.locator('.footer-support').getByRole('link',{name:'Login',exact:true}).click();
  await page.getByText('Sign-in is not available yet.',{exact:false}).waitFor();
  assert.equal(await page.locator('#signIn').isVisible(),false);
  assert.equal(await page.locator('body').textContent().then(t=>/master|midnightdesign107/i.test(t)),false);

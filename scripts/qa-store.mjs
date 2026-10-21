@@ -24,7 +24,7 @@ assert.equal(await page.locator('.item').count(),1);
 await page.locator('.item input').fill('2');
 await page.locator('.item input').dispatchEvent('change');
 assert.equal(Number((await page.locator('#total').innerText()).replace(/[^0-9.]/g,'')),unitPrice*2);
-await page.locator('.item button').click();
+await page.locator('.item').getByRole('button',{name:/^Remove /}).click();
 assert.equal(await page.locator('.item').count(),0);
 assert.equal(errors.length,0,errors.join('\n'));
 await browser.close();console.log('PASS: live product mockup, desktop/mobile layout, product selection, bag add/quantity/remove.');
