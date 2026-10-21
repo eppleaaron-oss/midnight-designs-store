@@ -38736,7 +38736,7 @@
     "c53a6ce027bbe8f7aa26065a1ef13d44b68075da13e37ed705bd96d704f83bb6": {
       "productId": "480743400",
       "variant": 16261,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T15:29:12.463Z",
       "attempts": 2,
       "previousSubmission": {
@@ -38747,7 +38747,60 @@
         "attempts": 1
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "key": "gt-988058806"
+      "key": "gt-988058806",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743400-16261-all-c53a6ce027-0.jpg",
+          "sha256": "9160d3393a7099d310dcc24f3fc7109a98323d8fe0df7f296c11cd5191120b63",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568318594",
+            "5568318595",
+            "5568318596",
+            "5568318598",
+            "5568318599",
+            "5568318600",
+            "5568318601",
+            "5568318603",
+            "5568318604",
+            "5568318605",
+            "5568318614"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743400-16261-all-c53a6ce027-1.jpg",
+          "sha256": "48908a45c762633e16763a18efd907c67668981150863de48898d740ed802408",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568318594",
+            "5568318595",
+            "5568318596",
+            "5568318598",
+            "5568318599",
+            "5568318600",
+            "5568318601",
+            "5568318603",
+            "5568318604",
+            "5568318605",
+            "5568318614"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · back",
+          "label": "back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -38782,7 +38835,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:29:46.998Z",
+  "updatedAt": "2026-10-21T15:30:00.479Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
