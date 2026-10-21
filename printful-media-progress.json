@@ -49678,13 +49678,14 @@
     "88d8771e108b885cb948675709d361842bbf877086428d9364f634ca13ee267d": {
       "productId": "483704831",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T18:05:37.077Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988140801"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T18:05:37.077Z",
+  "updatedAt": "2026-10-21T18:06:12.749Z",
   "catalogAudit": {
     "supplierProducts": 148,
     "eligible": 143,
