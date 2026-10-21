@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T15:14:58.431Z",
+  "updatedAt": "2026-10-21T15:18:51.519Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -41823,10 +41823,26 @@
           "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · pocket",
           "label": "pocket",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483697609-supplier-64623da2c5b3a9154404.jpg",
+          "sha256": "60242591e987fb473a48f26e307eaf1697873a7e9b406f3e7997229ca2e430e1"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "37f44386623395697e097b7019c46996a5dfceb17bb0394f8bfb620472cddbc5"
+      "allReportedViews": "37f44386623395697e097b7019c46996a5dfceb17bb0394f8bfb620472cddbc5",
+      "supplierPreviews": "92f17bcbdf28fc8f76f74a3336cb65b2d763b4b8d014a18497ad5a20d22d047c"
     }
   }
 }
