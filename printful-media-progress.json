@@ -43389,10 +43389,88 @@
     "0c83602fc67a0154178e5b97d0169ffd1e08d763faeac8903e7452a2226fe50e": {
       "productId": "480738724",
       "variant": 16400,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T15:56:48.257Z",
       "attempts": 1,
-      "key": "gt-988070656"
+      "key": "gt-988070656",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480738724-16400-all-0c83602fc6-0.jpg",
+          "sha256": "b721d7a00488beaef1ba2a59a3dd4189410908af874b114f0011b48dd6b0892c",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568275312",
+            "5568275314",
+            "5568275329",
+            "5568275330",
+            "5568275341",
+            "5568275342",
+            "5568275343",
+            "5568275344",
+            "5568275345",
+            "5568275346",
+            "5568275347"
+          ],
+          "alt": "Blood Moon Reaper Unisex Button Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738724-16400-all-0c83602fc6-1.jpg",
+          "sha256": "b4b14b78bb2e94ad1404ee47afd4828be2e36e2c7980c8e517fd4828d3e240d7",
+          "view": "Left",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568275312",
+            "5568275314",
+            "5568275329",
+            "5568275330",
+            "5568275341",
+            "5568275342",
+            "5568275343",
+            "5568275344",
+            "5568275345",
+            "5568275346",
+            "5568275347"
+          ],
+          "alt": "Blood Moon Reaper Unisex Button Shirt · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738724-16400-all-0c83602fc6-2.jpg",
+          "sha256": "7d4fc08608090c278bd7ad149b436fdc23376836d44c0e5b6791f18cdbdb4fb3",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568275312",
+            "5568275314",
+            "5568275329",
+            "5568275330",
+            "5568275341",
+            "5568275342",
+            "5568275343",
+            "5568275344",
+            "5568275345",
+            "5568275346",
+            "5568275347"
+          ],
+          "alt": "Blood Moon Reaper Unisex Button Shirt · sleeve_left",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -43428,7 +43506,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:58:24.599Z",
+  "updatedAt": "2026-10-21T15:58:38.216Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
