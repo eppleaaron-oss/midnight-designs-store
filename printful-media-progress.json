@@ -49678,14 +49678,79 @@
     "88d8771e108b885cb948675709d361842bbf877086428d9364f634ca13ee267d": {
       "productId": "483704831",
       "variant": 12913,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T18:05:37.077Z",
       "attempts": 1,
-      "key": "gt-988140801"
+      "key": "gt-988140801",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483704831-12913-all-88d8771e10-0.jpg",
+          "sha256": "bb0162afc9b691830c94bf74b5a593ad6984971c7f2596ae3307834380da382b",
+          "view": "shoe_quarters_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5587033707",
+            "5587033712",
+            "5587033736",
+            "5587033772",
+            "5587033781",
+            "5587033786",
+            "5587033790",
+            "5587033793",
+            "5587033812",
+            "5587033824",
+            "5587033831",
+            "5587033841",
+            "5587033845",
+            "5587033849",
+            "5587033852",
+            "5587033853",
+            "5587033864"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 Men's High Top Canvas Shoes · shoe_quarters_left",
+          "label": "shoe_quarters_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483704831-12913-all-88d8771e10-1.jpg",
+          "sha256": "54d464fa7c0b40f8dfb8b868d76ffec88e588d07ce26dbd9aa1d2023a18bfa1a",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5587033707",
+            "5587033712",
+            "5587033736",
+            "5587033772",
+            "5587033781",
+            "5587033786",
+            "5587033790",
+            "5587033793",
+            "5587033812",
+            "5587033824",
+            "5587033831",
+            "5587033841",
+            "5587033845",
+            "5587033849",
+            "5587033852",
+            "5587033853",
+            "5587033864"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 Men's High Top Canvas Shoes · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T18:06:12.749Z",
+  "updatedAt": "2026-10-21T18:06:25.911Z",
   "catalogAudit": {
     "supplierProducts": 148,
     "eligible": 143,
