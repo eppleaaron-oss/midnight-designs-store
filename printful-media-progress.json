@@ -37480,13 +37480,18 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T14:54:21.632Z",
+  "updatedAt": "2026-10-21T14:55:07.255Z",
   "catalogAudit": {
-    "supplierProducts": 142,
-    "eligible": 142,
-    "importedPreviews": 152,
-    "held": [],
-    "checkedAt": "2026-10-21T14:27:38.018Z"
+    "supplierProducts": 143,
+    "eligible": 117,
+    "importedPreviews": 0,
+    "held": [
+      {
+        "id": "480738518",
+        "error": "Printful rate limit: You've recently sent too many requests. Please try again after 59 seconds."
+      }
+    ],
+    "checkedAt": "2026-10-21T14:54:24.278Z"
   },
-  "retryAt": "2026-10-21T14:41:34.617Z"
+  "retryAt": "2026-10-21T14:56:07.255Z"
 }
