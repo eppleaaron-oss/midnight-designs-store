@@ -50122,13 +50122,14 @@
     "77b309b4cd457bc1e61651303edc280777e92ff065e0ade14c831d5b10c0bdec": {
       "productId": "483789497",
       "variant": 46409,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T22:00:52.624Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988277652"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T22:00:52.624Z",
+  "updatedAt": "2026-10-21T22:01:26.916Z",
   "catalogAudit": {
     "supplierProducts": 154,
     "eligible": 148,
