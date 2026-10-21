@@ -73,6 +73,8 @@ export async function run(){
  let pendingPublish=0,published=0;
  async function publish(){if(!pendingPublish)return;execFileSync('node',['scripts/build-search-pages.mjs'],{stdio:'inherit'});await checkpoint('Import verified Printful products and permanent mockup galleries');execFileSync('node',['scripts/publish-catalog.mjs'],{stdio:'inherit'});published+=pendingPublish;pendingPublish=0;}
  execFileSync('node',['scripts/build-search-pages.mjs'],{stdio:'inherit'});await checkpoint('Restore product pages for saved Printful catalog');
+ // Finish any saved publication before progress-only commits can restart Pages.
+ execFileSync('node',['scripts/publish-catalog.mjs'],{stdio:'inherit'});
  const summaries=[];for(let offset=0;;){const page=await api('store/products?limit=100&offset='+offset);const list=Array.isArray(page)?page:page?.result;if(!Array.isArray(list))throw Error('Unexpected supplier product list.');summaries.push(...list);offset+=list.length;if(list.length<100)break;}
  const existing=new Set(catalog.products.map(p=>p.id)),withdrawn=new Set(manifest.withdrawn||[]),exclusions=new Set((await read('catalog-exclusions.json',{productIds:[]})).productIds);
  // First preserve every mockup already attached in Printful. This does not
@@ -132,7 +134,7 @@ export async function run(){
    const at=catalog.products.findIndex(v=>v.id===id);if(at<0)catalog.products.unshift(product);else catalog.products[at]=product;catalog.lastSyncedAt=catalog.updatedAt=new Date().toISOString();await write('products.json',catalog);
    if(!specs.products[p.catalogProductId])specs.products[p.catalogProductId]=information(await api('products/'+p.catalogProductId));specs.updatedAt=new Date().toISOString();await write('product-information.json',specs);
    pendingPublish++;execFileSync('node',['scripts/build-search-pages.mjs'],{stdio:'inherit'});await checkpoint('Save '+gallery.length+' permanent Printful mockups for '+id);console.log('Saved '+gallery.length+' views for '+id+'; catalog '+catalog.products.length);
-   if(pendingPublish>=4)await publish();
+   if(!current||pendingPublish>=4)await publish();
   }catch(e){ledger.errors[id]=e.message;if(e.status===429)ledger.retryAt=new Date(Date.now()+(e.retryAfter||60)*1000).toISOString();await checkpoint('Record Printful media import hold '+id);console.log('Held '+id+': '+e.message);if(e.status===429)break;}
  }
  await publish();await checkpoint('Save Printful media import progress');console.log(JSON.stringify({catalog:catalog.products.length,published,acceptedTasks:created,galleries:Object.keys(photos.products).length,errors:ledger.errors}));
