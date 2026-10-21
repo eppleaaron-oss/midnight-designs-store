@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:29:13.930Z",
+  "updatedAt": "2026-10-21T14:29:23.147Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -8829,10 +8829,33 @@
           "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23678,
+          "storeVariantIds": [
+            "5568321663",
+            "5568321680",
+            "5568321687",
+            "5568321690",
+            "5568321695",
+            "5568321710",
+            "5568321713",
+            "5568321716"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480743760-supplier-f0d24292d5ec66aa41b6.jpg",
+          "sha256": "7f0554fabed970ef05c7bc1140e6a418018dec400058485cd2ff30c4451765d7"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "038ac6439d06832bd3dfe409313d082152e69af141ff22021a945491f2b22b5a"
+      "allReportedViews": "038ac6439d06832bd3dfe409313d082152e69af141ff22021a945491f2b22b5a",
+      "supplierPreviews": "489160a3ffd35d56b028633d25af523f481330123f995592f0a2863ceb16273e"
     },
     "480743769": {
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
@@ -9613,10 +9636,36 @@
           "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · back",
           "label": "back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16264,
+          "storeVariantIds": [
+            "5568321745",
+            "5568321756",
+            "5568321774",
+            "5568321775",
+            "5568321777",
+            "5568321787",
+            "5568321790",
+            "5568321793",
+            "5568321795",
+            "5568321796",
+            "5568321808"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480743769-supplier-d2e558fe6ff28db784ff.jpg",
+          "sha256": "feb61d98fc704898d349431c3d92b1bcc1be9ed85ac776f409f95d959a51d71b"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "e7ffa91aa1caaa9c9b1d3760422cc6205244c9ecf6d535a5ad9cf7f54e201bed"
+      "allReportedViews": "e7ffa91aa1caaa9c9b1d3760422cc6205244c9ecf6d535a5ad9cf7f54e201bed",
+      "supplierPreviews": "3682fbfb6c546ed162c27ef3a52924ff680ca891c3e834850116d87827092edf"
     },
     "480743781": {
       "name": "Blood Moon Reaper Men's Tank Top",
@@ -10042,10 +10091,31 @@
           "alt": "Blood Moon Reaper Men's Tank Top · Right Front",
           "label": "On-person · Right Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9054,
+          "storeVariantIds": [
+            "5568321822",
+            "5568321823",
+            "5568321825",
+            "5568321826",
+            "5568321828",
+            "5568321829"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480743781-supplier-b07db0cb7dfb46a0b121.jpg",
+          "sha256": "5ccf95508258adce6f5d5fba44fea3c51716d7ccfa0d857654eb97a5af363a8c"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "b8936a75284eda6062ed086c07c5f59297e94d4c1d3a46f5c681232cc3e3455d"
+      "allReportedViews": "b8936a75284eda6062ed086c07c5f59297e94d4c1d3a46f5c681232cc3e3455d",
+      "supplierPreviews": "51b49dc79981f19168801e6ca951bcbf6b9583a887cb1a6efd7b0e6d3267ae3c"
     },
     "480743787": {
       "name": "Blood Moon Reaper Unisex Button Shirt",
@@ -10576,10 +10646,65 @@
           "alt": "Blood Moon Reaper Unisex Button Shirt · Right Front",
           "label": "On-person · Right Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 17122,
+          "storeVariantIds": [
+            "5568321863",
+            "5568321864",
+            "5568321876",
+            "5568321878",
+            "5568321888",
+            "5568321890",
+            "5568321891",
+            "5568321950",
+            "5568321951",
+            "5568321952",
+            "5568321953"
+          ],
+          "alt": "Blood Moon Reaper Unisex Button Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480743787-supplier-868a1a349a42f06b21fb.jpg",
+          "sha256": "745e323bdc9915302b7f5fa9c8d5dfa253aac47e1362ce9aee9ae01416416719"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "ba4f382841b9389c90e04e9d8d340677ee2a15adeefa57b107371f051b7a5b2d"
+      "allReportedViews": "ba4f382841b9389c90e04e9d8d340677ee2a15adeefa57b107371f051b7a5b2d",
+      "supplierPreviews": "f221569b7b37ab549bce3f0438755e0f285b25efa60aefd3b2602aa1da67b46a"
+    },
+    "480744058": {
+      "name": "Blood Moon Reaper Recycled Men’s Joggers",
+      "originalImage": "https://files.cdn.printful.com/files/a64/a64c8b073be78f4d6444df884bf69ba9_preview.png",
+      "catalogProductId": 400,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11038,
+          "storeVariantIds": [
+            "5568323971",
+            "5568323972",
+            "5568323974",
+            "5568323976",
+            "5568323977",
+            "5568323986",
+            "5568323990"
+          ],
+          "alt": "Blood Moon Reaper Recycled Men’s Joggers · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744058-supplier-40e2f5569a65d3faf360.jpg",
+          "sha256": "96f3c6a4c840642cc9d30c93ace08cf8caad99f5a16b44c9e9ec674a243b652f"
+        }
+      ],
+      "supplierPreviews": "41ae5b8d79847bd50a1cf5aafbd698c069173eab188ca3297c026e3f02be5225"
     },
     "480744068": {
       "name": "Blood Moon Reaper Unisex Track Pants",
@@ -10900,10 +11025,32 @@
           "alt": "Blood Moon Reaper Unisex Track Pants · Zoomed-in",
           "label": "On-person · Zoomed-in",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 15754,
+          "storeVariantIds": [
+            "5568324002",
+            "5568324003",
+            "5568324004",
+            "5568324005",
+            "5568324006",
+            "5568324007",
+            "5568324016"
+          ],
+          "alt": "Blood Moon Reaper Unisex Track Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744068-supplier-9a3e48949cdfb8dd2469.jpg",
+          "sha256": "0e3d576307121b1f560f03e84992e4b38e3133067497e835098c71c8d90067b8"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "d8aca3a99e60bf439460b4c179d0259dbf7638be25e2daee212a9d72451795fe"
+      "allReportedViews": "d8aca3a99e60bf439460b4c179d0259dbf7638be25e2daee212a9d72451795fe",
+      "supplierPreviews": "f59afdf6fed4af4a50f929a9634738ee08641d87bddbecda1e00c6a2610a838b"
     },
     "480744072": {
       "name": "Blood Moon Reaper Unisex Athletic Shorts",
@@ -11413,10 +11560,32 @@
           "alt": "Blood Moon Reaper Unisex Athletic Shorts · Zoomed-in",
           "label": "On-person · Zoomed-in",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9809,
+          "storeVariantIds": [
+            "5568324028",
+            "5568324029",
+            "5568324032",
+            "5568324036",
+            "5568324038",
+            "5568324039",
+            "5568324041"
+          ],
+          "alt": "Blood Moon Reaper Unisex Athletic Shorts · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744072-supplier-b972836201ec4045cb6c.jpg",
+          "sha256": "169bc2dab9331e3fa1cc8ce1ad2c273f51afdeb95547d05cc7fa164b1159f943"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "4126dae3f54700ea6d74c342dbe72fccf689d6d87e17c27ce2f396b4a1d11274"
+      "allReportedViews": "4126dae3f54700ea6d74c342dbe72fccf689d6d87e17c27ce2f396b4a1d11274",
+      "supplierPreviews": "86ff9b9bb3e9750cc0279697b25a71cd094982fbab7091b54b1ab884791da843"
     },
     "480744081": {
       "name": "Blood Moon Reaper Yoga Leggings",
@@ -12391,10 +12560,30 @@
           "alt": "Blood Moon Reaper Yoga Leggings · Right Front",
           "label": "Right Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8356,
+          "storeVariantIds": [
+            "5568324087",
+            "5568324090",
+            "5568324098",
+            "5568324107",
+            "5568324130"
+          ],
+          "alt": "Blood Moon Reaper Yoga Leggings · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744081-supplier-1808ae39d10b323c7618.jpg",
+          "sha256": "aec32336228fce93c18ba5f2eb3e0c01878337e25b70f7e596d4c99dda65670b"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "5c9b0c9d9b7bba7427c9404709b06725798ba4b1939587e8d09474f95c6a34b2"
+      "allReportedViews": "5c9b0c9d9b7bba7427c9404709b06725798ba4b1939587e8d09474f95c6a34b2",
+      "supplierPreviews": "047ae7e0c4e3175366430096cc8d8764a48bfd8a910ac66f6f90d6bd6c33677e"
     },
     "480744091": {
       "name": "Blood Moon Reaper Neck Gaiter",
@@ -13060,10 +13249,26 @@
           "alt": "Blood Moon Reaper Neck Gaiter · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568324185"
+          ],
+          "alt": "Blood Moon Reaper Neck Gaiter · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744091-supplier-05c4b5a9ea08189dedcc.jpg",
+          "sha256": "e771c12fbb0fd73d48d81de579e32a39c5832eff6cff8e84cabe39f780ea8a5e"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "b13ef432486871cd59bc31dfeecec472ba3e22d27b946472164a612ee475a7a6"
+      "allReportedViews": "b13ef432486871cd59bc31dfeecec472ba3e22d27b946472164a612ee475a7a6",
+      "supplierPreviews": "c9788ec2d781574396e9c630777605bbe47b0eba67dd8eb94cb0b81929f950dd"
     },
     "480744093": {
       "name": "Blood Moon Reaper Bandana",
@@ -13154,10 +13359,56 @@
           "alt": "Blood Moon Reaper Bandana · Front",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16033,
+          "storeVariantIds": [
+            "5568324228"
+          ],
+          "alt": "Blood Moon Reaper Bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744093-supplier-de90a2c90637526d891a.jpg",
+          "sha256": "905f05164ea6c9998234462df055be433c4930e52494bbaa89dfe07bb153e78b"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568324229"
+          ],
+          "alt": "Blood Moon Reaper Bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744093-supplier-a57a8e6b01221862f285.jpg",
+          "sha256": "75d3a3b56babb21249482d4fdcb6d76ae1391ea72701e52c847f470f89a046f2"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16031,
+          "storeVariantIds": [
+            "5568324230"
+          ],
+          "alt": "Blood Moon Reaper Bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744093-supplier-78035ed787cfb08b911f.jpg",
+          "sha256": "7837a8435be44303bdc626a9bc40913001d9ff954074d0c31c5ade235c688022"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "a7f013e5052e23147722770f9bab9948bd2114102be5430b9eeec31c2aa77cf3"
+      "allReportedViews": "a7f013e5052e23147722770f9bab9948bd2114102be5430b9eeec31c2aa77cf3",
+      "supplierPreviews": "1c5fb3f9022ca9ecc91ac3d03222b5a13724e2243353fbe185bcfa58c75ef2de"
     },
     "480744102": {
       "name": "Blood Moon Reaper Utility Backpack",
