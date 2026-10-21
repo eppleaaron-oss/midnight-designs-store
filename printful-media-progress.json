@@ -50010,13 +50010,14 @@
     "dc8782ebfeb2611dcd3cda117f45df9bd292bbd54c3873b8a97f537cf2ffe703": {
       "productId": "483704831",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T18:08:23.195Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988142339"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T18:08:23.195Z",
+  "updatedAt": "2026-10-21T18:08:57.876Z",
   "catalogAudit": {
     "supplierProducts": 148,
     "eligible": 143,
