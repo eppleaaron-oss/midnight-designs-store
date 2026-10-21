@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:28:14.083Z",
+  "updatedAt": "2026-10-21T14:28:25.386Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -32869,6 +32869,276 @@
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "577b6539f5f9b9f5173e7901da2b088df21bed0166fd557057744562ad5b3f12"
+    },
+    "482524169": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/33d/33dd584d61cf052e81a055737129537f_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33979,
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482524169-supplier-9b7a3c3276e7fdcd8136.jpg",
+          "sha256": "a1134735b7da37c6b5b84d182b787bd8064d9aeff95644cca229aea9c47ac4da"
+        }
+      ],
+      "supplierPreviews": "eafbddc47b43a2f17ee631edab6f3561cb7231d2b78f1255718af775f86b80ce"
+    },
+    "482531306": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/a13/a1337d16efc402c7c0d88d1acb59880b_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482531306-supplier-b16d54187b3b2bc4d6ee.jpg",
+          "sha256": "b4a760326066238fe785a4edafa95d09276bb073661725d23a0f71e5ed5b1392"
+        }
+      ],
+      "supplierPreviews": "2deb7123550a68374738d535db472c59c3c9ce484ca09c0935b1858496097f2e"
+    },
+    "482534817": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/77c/77c2256b7c25baab0a333d5d80f0f377_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482534817-supplier-cb8c571365a2a47c69c0.jpg",
+          "sha256": "92952a48300c322f324bf83c6f9d5bf934c9b93d6b8e934ca8ae1a2b90aca771"
+        }
+      ],
+      "supplierPreviews": "200ed58a91a6b91f2a1fba172066f6fca188b434029f7d8670f65c2ce53de5c9"
+    },
+    "482538815": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/502/5026a45be9b435b57b320c3bd8288bb7_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579525308"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482538815-supplier-543893a7c4cb77ecdcfd.jpg",
+          "sha256": "a726a37bdc0e0c24a05ca913759be1cd4fe1caad6637d96bd76e62d390892bbf"
+        }
+      ],
+      "supplierPreviews": "f663d02b257f663f8386599afc581e49e89aae27cb17e4a0910ed16e912a1c9b"
+    },
+    "482544936": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/6f7/6f70673cc09d8f02415ee556174cf4d3_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482544936-supplier-ccc02b499e57c1f736ac.jpg",
+          "sha256": "ff8675fbc1dd850481351671df34c86b6e948d7e889ba6cde5ab1c8b9005f1dd"
+        }
+      ],
+      "supplierPreviews": "dd2c1f29efbb4341b57b1c9e4938eeeddc8d34a718e9a71720eb9f0d35037d2b"
+    },
+    "482550296": {
+      "name": "Oversized Cotton Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/9ff/9ff0bf553cd10ffd4371b88a19e1d7eb_preview.png",
+      "catalogProductId": 1628,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51469,
+          "storeVariantIds": [
+            "5579616515"
+          ],
+          "alt": "Oversized Cotton Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482550296-supplier-fb1b4f3a2df47a4b52fa.jpg",
+          "sha256": "ac98c425ddcb1adc813ae63d80f27d3c748c44cd5d550287ae8c02a7f71f4632"
+        }
+      ],
+      "supplierPreviews": "291f26a5a0c435912992815bc5bd27bef3fd7e737f9d1bbd85b2be39a4b3e807"
+    },
+    "482554858": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/e68/e68959eab878c79e440587c16d70c5ac_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482554858-supplier-32df4a3851f778ce4cac.jpg",
+          "sha256": "d6d3a95d172bde8286d8809cf4d108dd4812596a5f33049c6b55890151123f77"
+        }
+      ],
+      "supplierPreviews": "c062675836ed481c103c85f9e3c49547e298726ac5664c6b93aba826f9eb8952"
+    },
+    "482559827": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/99e/99e8b58e7cd91153806257acb30c7de3_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482559827-supplier-5af9ca782a0d225b545e.jpg",
+          "sha256": "a48bd1bb14ffc4d25d98e18f85fa45c8aba8ec5fac54c4f01b737e968578c414"
+        }
+      ],
+      "supplierPreviews": "84fc5d99e1ba2720077451916220670c2b38721e23116c9b5937da800983f3fb"
+    },
+    "482576149": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/34f/34f2c8e914a566d7067f34271f2310e9_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482576149-supplier-633ae9df2014421a760d.jpg",
+          "sha256": "9ccf7352c579cccc89971d0a7bbf2745d7da9c03c6e0072eaccfe207b530e81d"
+        }
+      ],
+      "supplierPreviews": "83698a6b7b64935f8db36d014a3eccf60caa7df50236561e6df1061dfc7bc715"
+    },
+    "482585676": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/1d0/1d08e38abb6a6c30432f492f58585fff_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482585676-supplier-4803d56038babb7d2df3.jpg",
+          "sha256": "202efd3bfff3f9edd9294376ec1dc852de4cea5a2987998513d9eabd7b8faddd"
+        }
+      ],
+      "supplierPreviews": "101fba40f5e62626f146da6696b281ca6fed83e755087ba652101d7c214c06b2"
     },
     "482620118": {
       "name": "Unisex Hoodie",
