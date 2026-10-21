@@ -52650,13 +52650,14 @@
     "54250cff3d9d7e9eabf07eab8f0c509b588c1e06178f2bcc6dff7b13a6fd497b": {
       "productId": "483741826",
       "variant": 46347,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T22:29:57.206Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988292400"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T22:29:57.206Z",
+  "updatedAt": "2026-10-21T22:30:31.329Z",
   "catalogAudit": {
     "supplierProducts": 154,
     "eligible": 148,
