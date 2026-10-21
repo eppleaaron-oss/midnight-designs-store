@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:29:49.946Z",
+  "updatedAt": "2026-10-21T14:30:00.448Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -1868,7 +1868,7 @@
       "source": "Verified finished production canvases"
     },
     "476397566": {
-      "name": "Fanny Pack",
+      "name": "Bloodwing Fanny Pack",
       "originalImage": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png",
       "catalogProductId": 350,
       "photos": [
@@ -1916,12 +1916,29 @@
           "alt": "Bloodwing Fanny Pack · back · product mockup",
           "label": "back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9986,
+          "storeVariantIds": [
+            "5525670040",
+            "5525670041"
+          ],
+          "alt": "Fanny Pack · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476397566-supplier-5104b12ab7950933324e.jpg",
+          "sha256": "b2fdf84aa5131ffb464d2d35f4135fa7e7de2fd825cad791bee49b67079de8e5"
         }
       ],
-      "source": "Verified saved production print files"
+      "source": "Verified saved production print files",
+      "supplierPreviews": "3debf1cbdc9b9acca58acf742e22e1ebe62604c1ec820d3c5f56e6f44e99dbe5"
     },
     "476553400": {
-      "name": "Oversized Cotton Hoodie",
+      "name": "Rose Eclipse Oversized Cotton-Blend Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/b55/b5547d90770c7eee01fc3b8eb803b456_preview.png",
       "catalogProductId": 1628,
       "photos": [
@@ -1972,12 +1989,38 @@
           "alt": "Rose Eclipse Oversized Cotton-Blend Hoodie · Back · product mockup",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51469,
+          "storeVariantIds": [
+            "5526647533",
+            "5526647534",
+            "5526647535",
+            "5526647536",
+            "5526647537",
+            "5526647538",
+            "5526647539",
+            "5526647540",
+            "5526647541",
+            "5526647542",
+            "5526647543"
+          ],
+          "alt": "Oversized Cotton Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476553400-supplier-e86e76629d4f4118df6a.jpg",
+          "sha256": "a0fc927bc19338e22d9e30d98f342077174aebb83ac556800aafd18b278ceb30"
         }
       ],
-      "source": "Verified finished production canvases"
+      "source": "Verified finished production canvases",
+      "supplierPreviews": "d80f7c0cd337b78f6ca31f4ca4dbb76be93b6a2b8d42cdad54df2c7542bdd699"
     },
     "476559553": {
-      "name": "Oversized Cotton Hoodie",
+      "name": "Midnight Requiem Oversized Cotton-Blend Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/fbd/fbd7852d826b2e79f7ca2b62daa1de2a_preview.png",
       "catalogProductId": 1628,
       "photos": [
@@ -2028,12 +2071,38 @@
           "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · Back · product mockup",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51469,
+          "storeVariantIds": [
+            "5526694168",
+            "5526694169",
+            "5526694170",
+            "5526694171",
+            "5526694172",
+            "5526694173",
+            "5526694174",
+            "5526694175",
+            "5526694177",
+            "5526694178",
+            "5526694179"
+          ],
+          "alt": "Oversized Cotton Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476559553-supplier-4dff39efadd032dc8bf0.jpg",
+          "sha256": "882d0da19a4fe0948952a00a5d966cf4cb2e835c15353c037476d9d483a07cb9"
         }
       ],
-      "source": "Verified finished production canvases"
+      "source": "Verified finished production canvases",
+      "supplierPreviews": "e4556836fe19b99765162503cbb6b5fb9e64a3b418b2b90040314fb467458fcb"
     },
     "476570540": {
-      "name": "Oversized Cotton Hoodie",
+      "name": "Scarlet Vigil Oversized Cotton-Blend Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/d99/d99f73f75ee041207f6b0194fc0c086a_preview.png",
       "catalogProductId": 1628,
       "photos": [
@@ -2084,12 +2153,38 @@
           "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · Back · product mockup",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51469,
+          "storeVariantIds": [
+            "5526789932",
+            "5526789933",
+            "5526789934",
+            "5526789935",
+            "5526789936",
+            "5526789937",
+            "5526789938",
+            "5526789939",
+            "5526789940",
+            "5526789941",
+            "5526789942"
+          ],
+          "alt": "Oversized Cotton Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476570540-supplier-e4e6af03509189532b29.jpg",
+          "sha256": "eb1d550a4557a0827e7e35462b182f295ae418790fd137946e61ce3b9179c719"
         }
       ],
-      "source": "Verified finished production canvases"
+      "source": "Verified finished production canvases",
+      "supplierPreviews": "cfc4d41c8269e2b75c7364c70db34c83733d04e81de6ec5cc16a4874b54aeeec"
     },
     "476580639": {
-      "name": "Unisex cotton hoodie",
+      "name": "Cathedral Warden Cotton-Blend Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/57d/57d7a98bbe8895abaee3ff7c4fd0fe39_preview.png",
       "catalogProductId": 1419,
       "photos": [
@@ -2380,12 +2475,38 @@
           "alt": "Cathedral Warden Cotton-Blend Hoodie · Back · on-person mockup",
           "label": "On-person · Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476580639-supplier-8af80733d58b551b82bd.jpg",
+          "sha256": "737fd81bd28cdb8e38e6a56e07c214c129b154367413f1ab102dad8c5d6fd4a0"
         }
       ],
-      "source": "Verified finished production canvases"
+      "source": "Verified finished production canvases",
+      "supplierPreviews": "4675672c736b2fc0910e5a5e5997faeac757b0cdaf34c13b188fe5429ba2f6f1"
     },
     "476596721": {
-      "name": "Unisex Hoodie",
+      "name": "Crimson Oath Recycled Fleece Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/c6f/c6ff9772ed83e56ca4931cc136360624_preview.png",
       "catalogProductId": 388,
       "photos": [
@@ -2584,12 +2705,28 @@
           "alt": "Crimson Oath Recycled Fleece Hoodie · Left · on-person mockup",
           "label": "On-person · Left",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "alt": "Unisex Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476596721-supplier-1f2b7af9205d1740f7fd.jpg",
+          "sha256": "2a1b0dba64ea93bad8226b88100698dde9856caa791b6bcc579223b4d17c5843"
         }
       ],
-      "source": "Verified saved production print files"
+      "source": "Verified saved production print files",
+      "supplierPreviews": "1ef65b55b8bf295d56748e75dade14f3f88a773ac2be7adb4972f9ad3f539eb7"
     },
     "476636727": {
-      "name": "Unisex Hoodie",
+      "name": "Blood Moon Reaper Recycled Fleece Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/6ae/6ae048ddfb583172de195f8fb248c7f5_preview.png",
       "catalogProductId": 388,
       "photos": [
@@ -2788,12 +2925,28 @@
           "alt": "Blood Moon Reaper Recycled Fleece Hoodie · Left · on-person mockup",
           "label": "On-person · Left",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "alt": "Unisex Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476636727-supplier-3e1fee727908f10938d1.jpg",
+          "sha256": "dbd0fba3cee60efc98793011765e2e240570e6846c77003a140f287dfe7a5a2e"
         }
       ],
-      "source": "Verified saved production print files"
+      "source": "Verified saved production print files",
+      "supplierPreviews": "d481533578f04cda36db7b4ac1e970e1ab19d7925be7047fa8366f50df2c32ee"
     },
     "476640417": {
-      "name": "Unisex Hoodie",
+      "name": "Crimson Throne Recycled Fleece Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
       "catalogProductId": 388,
       "photos": [
@@ -3132,12 +3285,38 @@
           "alt": "Crimson Throne Recycled Fleece Hoodie · Left · on-person mockup",
           "label": "On-person · Left",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "alt": "Unisex Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476640417-supplier-0ed241a0276f4cfde44f.jpg",
+          "sha256": "1e28faf5de57488b550183fc48947eb1e819705aaab2a5c59017cc4666a50b31"
         }
       ],
-      "source": "Verified saved production print files"
+      "source": "Verified saved production print files",
+      "supplierPreviews": "98dc10bf212a8bb37c34f1d52ed1549ff64a698633e0898e0f1bf0b90e6d21ee"
     },
     "476651184": {
-      "name": "Unisex cotton hoodie",
+      "name": "Lantern Keeper Cotton-Blend Hoodie",
       "originalImage": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
       "catalogProductId": 1419,
       "photos": [
@@ -3428,9 +3607,68 @@
           "alt": "Lantern Keeper Cotton-Blend Hoodie · Back · on-person mockup",
           "label": "On-person · Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476651184-supplier-cb4ceccce17d1d150614.jpg",
+          "sha256": "0d715851c5a595e90c77023e06fbeb0d25d6455ed7f195057b71b8110fe79556"
         }
       ],
-      "source": "Verified finished production canvases"
+      "source": "Verified finished production canvases",
+      "supplierPreviews": "f120e277c2e1b47be5289e7d9c74792136b176dabf421b49ec7cae3b5f314be1"
+    },
+    "476663020": {
+      "name": "Unisex Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/d18/d18900476ab83b422045674b734f1de1_preview.png",
+      "catalogProductId": 388,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 18730,
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "alt": "Unisex Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476663020-supplier-3536129b6a29980f8e23.jpg",
+          "sha256": "a6c7dca2e7a04f625367de15d1b5189be13ab94ce955d427137e19e320ffc9b7"
+        }
+      ],
+      "supplierPreviews": "bebdc43f5883f47200086e68b3c7ec4b4a00b8e2e8f83e39557e232a080618c8"
     },
     "477172651": {
       "name": "Unisex cotton hoodie",
