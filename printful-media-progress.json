@@ -37479,8 +37479,10 @@
       "error": "Printful rate limit: You've recently sent too many requests. Please try again after 14 seconds."
     }
   },
-  "errors": {},
-  "updatedAt": "2026-10-21T14:55:07.255Z",
+  "errors": {
+    "483697609": "Printful rate limit: You've recently sent too many requests. Please try again after 57 seconds."
+  },
+  "updatedAt": "2026-10-21T14:55:09.778Z",
   "catalogAudit": {
     "supplierProducts": 143,
     "eligible": 117,
@@ -37493,5 +37495,5 @@
     ],
     "checkedAt": "2026-10-21T14:54:24.278Z"
   },
-  "retryAt": "2026-10-21T14:56:07.255Z"
+  "retryAt": "2026-10-21T14:56:09.778Z"
 }
