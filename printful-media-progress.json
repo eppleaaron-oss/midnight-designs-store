@@ -52538,13 +52538,14 @@
     "4949ec311450df68747f9362ac4d9ebd329569769ee1a0765a3e6cefc836012f": {
       "productId": "483763072",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T22:24:58.331Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988290259"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T22:24:58.331Z",
+  "updatedAt": "2026-10-21T22:25:32.544Z",
   "catalogAudit": {
     "supplierProducts": 154,
     "eligible": 148,
