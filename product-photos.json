@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T16:08:50.059Z",
+  "updatedAt": "2026-10-21T16:11:20.050Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -4051,6 +4051,50 @@
       "catalogProductId": 920,
       "photos": [
         {
+          "image": "assets/product-photos/480738534-23675-all-12be3b781f-0.jpg",
+          "sha256": "0997b2fef42f5cc7850df0c969e31de75cebfc9fdb68e81e163f9c100a1fe2da",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568273063",
+            "5568273064",
+            "5568273065",
+            "5568273066",
+            "5568273068",
+            "5568273069",
+            "5568273072",
+            "5568273077"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738534-23675-all-12be3b781f-1.jpg",
+          "sha256": "bf98d85c4cd7e3b7a4ddfd59553cf84b72989e2fa811fa3fadc622551e2def24",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568273063",
+            "5568273064",
+            "5568273065",
+            "5568273066",
+            "5568273068",
+            "5568273069",
+            "5568273072",
+            "5568273077"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -4073,7 +4117,9 @@
           "sha256": "7f0554fabed970ef05c7bc1140e6a418018dec400058485cd2ff30c4451765d7"
         }
       ],
-      "supplierPreviews": "59b75a3cfbaff8ca8b9ed7dfa0c06fb9a75190d48df5734b54ff2e239c2d3f47"
+      "source": "Printful mockups from accepted supplier production files",
+      "supplierPreviews": "59b75a3cfbaff8ca8b9ed7dfa0c06fb9a75190d48df5734b54ff2e239c2d3f47",
+      "allReportedViews": "8b389ec0cf78b2edb8b8dcc581ba4c91a361cf24337b07b52ab7d35b449ad436"
     },
     "480738540": {
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
