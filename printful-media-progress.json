@@ -39712,9 +39712,10 @@
     "4f1658ec05ccc85987029f1ce5ad79c343e2684b637765fca266f3c5adc06282": {
       "productId": "480743384",
       "variant": 9732,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T15:37:12.592Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988062429"
     }
   },
   "errors": {
@@ -39749,7 +39750,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:37:12.592Z",
+  "updatedAt": "2026-10-21T15:37:47.587Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
