@@ -27,9 +27,16 @@ export class BasicGithubAssets{
  async list(id){const rows=[];for(let page=1;page<=10;page++){const next=await this.api('/releases/'+id+'/assets?per_page=100&page='+page);if(!Array.isArray(next))fail('GitHub returned an invalid working-file list.');rows.push(...next);if(next.length<100)return rows;}fail('Working-file limit reached.');}
  async read(asset,job,kind,file,expected){
   const meta=await this.api('/releases/assets/'+asset);if(!meta||meta.size>MAX*1.5+200)fail('GitHub working attachment is invalid or too large.');
-  let r=await this.fetchImpl('https://api.github.com/repos/'+this.repo+'/releases/assets/'+asset,{headers:{Authorization:'Bearer '+this.token,Accept:'application/octet-stream','X-GitHub-Api-Version':'2022-11-28'},redirect:'manual',signal:AbortSignal.timeout(30000)});
-  if([301,302,303,307,308].includes(r.status)){let url;try{url=new URL(r.headers.get('location'));}catch{fail('GitHub returned an invalid asset download.');}if(url.protocol!=='https:'||url.username||url.password||!['release-assets.githubusercontent.com','objects.githubusercontent.com'].includes(url.hostname))fail('GitHub returned an unrecognized asset download host.');r=await this.fetchImpl(url.href,{redirect:'error',signal:AbortSignal.timeout(30000)});}
-  if(!r.ok)throw Object.assign(Error('The saved GitHub working attachment could not be downloaded.'),{status:503});
+  let r;
+  for(let attempt=0;attempt<3;attempt++){
+   // A cached API redirect can contain an expired signed download URL. Obtain
+   // a fresh redirect on retry; never forward the GitHub token to asset hosts.
+   r=await this.fetchImpl('https://api.github.com/repos/'+this.repo+'/releases/assets/'+asset+'?download='+this.clock()+'-'+attempt,{headers:{Authorization:'Bearer '+this.token,Accept:'application/octet-stream','X-GitHub-Api-Version':'2022-11-28','Cache-Control':'no-cache'},cache:'no-store',redirect:'manual',signal:AbortSignal.timeout(30000)});
+   if([301,302,303,307,308].includes(r.status)){let url;try{url=new URL(r.headers.get('location'));}catch{fail('GitHub returned an invalid asset download.');}if(url.protocol!=='https:'||url.username||url.password||!['release-assets.githubusercontent.com','objects.githubusercontent.com'].includes(url.hostname))fail('GitHub returned an unrecognized asset download host.');r=await this.fetchImpl(url.href,{cache:'no-store',redirect:'error',signal:AbortSignal.timeout(30000)});}
+   if(r.ok)break;
+   if(![401,403,408,429,500,502,503,504].includes(r.status)||attempt===2)throw Object.assign(Error('The saved GitHub working attachment could not be downloaded (HTTP '+r.status+').'),{status:503});
+   await r.body?.cancel();await this.sleep(Math.max(1000*2**attempt,Math.min(60000,Number(r.headers.get('retry-after')||0)*1000)));
+  }
   let size=0;const chunks=[];for await(const c of r.body){size+=c.length;if(size>MAX*1.5+200)fail('Working attachment download exceeds its size limit.');chunks.push(c);}
   const data=unseal(Buffer.concat(chunks).toString('utf8'),this.key,[job,kind,file].join(':'));if(hash(data)!==expected)fail('GitHub working file checksum changed. Nothing was published.');return data;
  }

@@ -17,6 +17,15 @@ test('private working attachments authenticate exact pixels and never delete an 
 test('public repositories are rejected before working files are uploaded',async()=>{
  const g=githubWorkingFixture();g.private=false;const store=new BasicGithubAssets(config,{fetchImpl:g.fetch,sleep:async()=>{}}),data=Buffer.from('private');await assert.rejects(store.put(randomUUID(),'print',randomUUID(),data,createHash('sha256').update(data).digest('hex')),/private GitHub/);assert.equal(g.assets.size,0);
 });
+test('expired signed working-file redirects refresh without leaking credentials or changing authenticated bytes',async()=>{
+ const g=githubWorkingFixture(),job=randomUUID(),file=randomUUID(),data=Buffer.from('recover these exact pixels'),sha=createHash('sha256').update(data).digest('hex');
+ const initial=new BasicGithubAssets(config,{fetchImpl:g.fetch,sleep:async()=>{}}),saved=await initial.put(job,'print',file,data,sha);let downloads=0,redirects=0;
+ const store=new BasicGithubAssets(config,{sleep:async()=>{},fetchImpl:async(url,o={})=>{
+  const u=new URL(url);if(u.hostname==='api.github.com'&&o.headers.Accept==='application/octet-stream'){redirects++;assert.equal(o.cache,'no-store');assert.ok(u.searchParams.has('download'));return new Response(null,{status:302,headers:{location:'https://release-assets.githubusercontent.com/'+redirects}});}
+  if(u.hostname==='release-assets.githubusercontent.com'){assert.equal(o.headers?.Authorization,undefined);downloads++;return downloads===1?new Response('expired',{status:403}):new Response(g.assets.get(saved.asset).data);}
+  return g.fetch(url,o);
+ }});assert.deepEqual(await store.read(saved.asset,job,'print',file,sha),data);assert.equal(redirects,2);assert.equal(downloads,2);
+});
 test('the inline Basic worker uses only loopback, a scoped runtime secret and the existing service',async()=>{
  let args,child=new EventEmitter();child.kill=signal=>{assert.equal(signal,'SIGTERM');queueMicrotask(()=>child.emit('exit',0));};
  const worker=startBasicWorker({server:{address:()=>({port:3000})},token:'fixture-internal-secret-'.repeat(3),spawnImpl(...a){args=a;return child;}});
