@@ -50121,13 +50121,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T21:55:40.698Z",
+  "updatedAt": "2026-10-21T21:59:02.481Z",
   "catalogAudit": {
-    "supplierProducts": 148,
-    "eligible": 143,
-    "importedPreviews": 0,
+    "supplierProducts": 154,
+    "eligible": 148,
+    "importedPreviews": 5,
     "held": [],
-    "checkedAt": "2026-10-21T17:35:29.956Z"
+    "checkedAt": "2026-10-21T21:55:57.529Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
