@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:27:49.576Z",
+  "updatedAt": "2026-10-21T14:28:02.463Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -32870,6 +32870,184 @@
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "577b6539f5f9b9f5173e7901da2b088df21bed0166fd557057744562ad5b3f12"
     },
+    "482775311": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/2a6/2a601e909e0473e491891c71bacd3bc8_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482775311-supplier-9fd10a8933aa036966e3.jpg",
+          "sha256": "b00ab41cd2e7e4e4c9b925294470376aa99005026e341ba2ab26debee23ad345"
+        }
+      ],
+      "supplierPreviews": "35aeaa3a37b341e241395f2c8a8090abcafc3543485608c93c0b9a82d0b9b984"
+    },
+    "482779702": {
+      "name": "Oversized Cotton Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/f73/f73cf65463f162371b3f662c66cf9d5b_preview.png",
+      "catalogProductId": 1628,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51469,
+          "storeVariantIds": [
+            "5580835558",
+            "5580835559",
+            "5580835560",
+            "5580835561",
+            "5580835562",
+            "5580835563",
+            "5580835564",
+            "5580835566",
+            "5580835567",
+            "5580835568",
+            "5580835569"
+          ],
+          "alt": "Oversized Cotton Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482779702-supplier-4e18d1d12b44a707b0db.jpg",
+          "sha256": "acf398fb98bf94c4d32f7ca7172553107877864c3b91ed27adaf0b17826a9261"
+        }
+      ],
+      "supplierPreviews": "38925ca2a3181467e8e7046560df3f1d25887f2e0c6623ee18c52868f4880926"
+    },
+    "482783901": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/887/887ad6cb6d157d3b34e8316bbb0bed9f_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482783901-supplier-114026781e1151b1517f.jpg",
+          "sha256": "35f7b9498969b56cc5f3e731b0635d839c1bdcc4d98948560b75e39dbce18f67"
+        }
+      ],
+      "supplierPreviews": "71f0c05805e241e1d50e0ea12fe8340faf269fa8b06cfafa8c1e33bea9e70f0a"
+    },
+    "482790495": {
+      "name": "Oversized Cotton Hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/435/4354c92981b41775dbdf857ec87b62d1_preview.png",
+      "catalogProductId": 1628,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51469,
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "alt": "Oversized Cotton Hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482790495-supplier-64fc998a49f502b4da25.jpg",
+          "sha256": "b6fa9570563e3efbb42aa1b5212dba65d992e5cc6f8723b1702fbd2e3a087b66"
+        }
+      ],
+      "supplierPreviews": "fa6f7154ebbe13e0a4022c0969f38e0cdf79122d4e2ffe547804dcc1ed1b137b"
+    },
+    "482794900": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/6fd/6fde8fc0b01c6de1ede50e73dc54cee4_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482794900-supplier-17e44e5f67006e6cf4ba.jpg",
+          "sha256": "19bb72abf3650fb7b75a481bea403d6c50929e6c8e6064daeeeb121ce7e9b383"
+        }
+      ],
+      "supplierPreviews": "74b8dca18a04d22ed5bb80f49c4c6144313a9f98eea3d61602a017e39ff74716"
+    },
+    "482797453": {
+      "name": "Unisex cotton hoodie",
+      "originalImage": "https://files.cdn.printful.com/files/f34/f344c7b483d452bba7d97a1cb5a8882f_preview.png",
+      "catalogProductId": 1419,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33974,
+          "storeVariantIds": [
+            "5581078395",
+            "5581078397",
+            "5581078398",
+            "5581078400",
+            "5581078401",
+            "5581078403",
+            "5581078404",
+            "5581078406",
+            "5581078408",
+            "5581078409",
+            "5581078411"
+          ],
+          "alt": "Unisex cotton hoodie · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482797453-supplier-8b2369fb65281a5903d1.jpg",
+          "sha256": "3404bcfb83effaa7fb9e282545532a0205ed8865425d1d8c8bf47500a87ed1ef"
+        }
+      ],
+      "supplierPreviews": "67402692deef693acf9756fd0a9b36d27ed2bb40405806d56a305309ddfd43d2"
+    },
     "482918795": {
       "name": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt",
       "originalImage": "https://midnight-designs.store/images/factory/482918795/288ec04b8b0ed17d9f514bac190cd0bedb6aa0fc32884e2e2d27a9c499d3496e.jpg",
@@ -32934,10 +33112,26 @@
           "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Front",
           "label": "Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482918795-supplier-9f46f932b2a4c52a9171.jpg",
+          "sha256": "4e708d25de6272cfe8e7dc7c83c0edc40915ea5dc9e9fdba6e652e7a4502ea3b"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "d7ffe669e7eba416ddb19b3787b3a53d76aa1d969a8729a70456e960cbeea24c"
+      "allReportedViews": "d7ffe669e7eba416ddb19b3787b3a53d76aa1d969a8729a70456e960cbeea24c",
+      "supplierPreviews": "26a1f77b56164202f777a11e19c113a869995fde25c8b74be6a63d2fcdab7a65"
     },
     "482923908": {
       "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",
@@ -32973,10 +33167,26 @@
           "alt": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5581851703"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482923908-supplier-80912577a44ccadcbdc4.jpg",
+          "sha256": "0c4aaec78f26181b4671751534bd5c9560f0775915f1d120ed0dc7b5f6e99975"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "07261414ed388fc23ba950c3f2d62bc3023215f1de51c298da87a3fbc1ec44f2"
+      "allReportedViews": "07261414ed388fc23ba950c3f2d62bc3023215f1de51c298da87a3fbc1ec44f2",
+      "supplierPreviews": "37aed546f429e7a1d7a5732a402790ab5580453137daa26125755fa67efdce9f"
     },
     "483204573": {
       "name": "Still Waters Run Deep Oversized Cotton T-Shirt",
@@ -33082,10 +33292,36 @@
           "alt": "Still Waters Run Deep Oversized Cotton T-Shirt · Front",
           "label": "Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46412,
+          "storeVariantIds": [
+            "5583703739",
+            "5583703740",
+            "5583703750",
+            "5583703783",
+            "5583703787",
+            "5583703791",
+            "5583703796",
+            "5583703798",
+            "5583703810",
+            "5583703832",
+            "5583703839"
+          ],
+          "alt": "Still Waters Run Deep Oversized Cotton T-Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483204573-supplier-b7df960dfc8c63c85f83.jpg",
+          "sha256": "28a75110c23c437099f8a6701199b39be37820b93bf6d7a459998060b49ad5c8"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "45c46de2cbe66bfacab96c4d6c7eb2c3d5a5d0ecfcb906b32da31bbe7062c588"
+      "allReportedViews": "45c46de2cbe66bfacab96c4d6c7eb2c3d5a5d0ecfcb906b32da31bbe7062c588",
+      "supplierPreviews": "a6d8ee032a232a92d7c5353d7ef46224d440729099fe283c66a177d06bd844dc"
     },
     "483213237": {
       "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt",
@@ -33135,10 +33371,33 @@
           "alt": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 23678,
+          "storeVariantIds": [
+            "5583750555",
+            "5583750574",
+            "5583750624",
+            "5583750670",
+            "5583750675",
+            "5583750678",
+            "5583750685",
+            "5583750712"
+          ],
+          "alt": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483213237-supplier-039fc79e9fb0024d4598.jpg",
+          "sha256": "028dba62bb3371884069f27b17916a82ca9ade6e970c3983922549dc41eed886"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "7834675a479d8ed8717375a87c8b0514d6f03924b947f12824d3c14643377d5e"
+      "allReportedViews": "7834675a479d8ed8717375a87c8b0514d6f03924b947f12824d3c14643377d5e",
+      "supplierPreviews": "b9496e4c8f4c5c2547dc6a489b935638341ae78b9a0973002cee0c206b1ea7dc"
     },
     "483352723": {
       "name": "Rose Eclipse All-Over Print Unisex Bomber Jacket",

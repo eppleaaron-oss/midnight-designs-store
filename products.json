@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-21T14:27:49.576Z",
-  "lastSyncedAt": "2026-10-21T14:27:49.576Z",
+  "updatedAt": "2026-10-21T14:28:02.463Z",
+  "lastSyncedAt": "2026-10-21T14:28:02.463Z",
   "products": [
     {
       "id": "483352723",
@@ -1993,7 +1993,8 @@
         "assets/product-photos/483204573-46409-all-b65140951e-0.jpg",
         "assets/product-photos/483204573-46409-all-b65140951e-1.jpg",
         "assets/product-photos/483204573-46409-all-b65140951e-2.jpg",
-        "assets/product-photos/483204573-46409-all-b65140951e-3.jpg"
+        "assets/product-photos/483204573-46409-all-b65140951e-3.jpg",
+        "assets/product-photos/483204573-supplier-b7df960dfc8c63c85f83.jpg"
       ],
       "variants": [
         {
@@ -2226,6 +2227,7 @@
       "images": [
         "assets/product-photos/483213237-23675-all-ca5130c011-0.jpg",
         "assets/product-photos/483213237-23675-all-ca5130c011-1.jpg",
+        "assets/product-photos/483213237-supplier-039fc79e9fb0024d4598.jpg",
         "assets/product-photos/483213237-23675-all-b57c9ba64d-0.jpg",
         "assets/product-photos/483213237-23675-all-b57c9ba64d-1.jpg"
       ],
@@ -3251,6 +3253,7 @@
       "images": [
         "assets/product-photos/482923908-46253-all-088f586797-0.jpg",
         "assets/product-photos/482923908-46253-all-088f586797-1.jpg",
+        "assets/product-photos/482923908-supplier-80912577a44ccadcbdc4.jpg",
         "https://midnight-designs.store/images/factory/482923908/e295cc47dd0d5f0806e97e9b822bc4b004087c9d8510b634ba3bb47e80f6f5e7.jpg",
         "https://midnight-designs.store/images/factory/482923908/900aea8935a4145d48a725b5c968b584af24ebbee044f90620edecb10e1abb16.jpg"
       ],
@@ -3296,6 +3299,7 @@
         "assets/product-photos/482918795-46409-all-7df3a2f818-1.jpg",
         "assets/product-photos/482918795-46409-all-7df3a2f818-2.jpg",
         "assets/product-photos/482918795-46409-all-7df3a2f818-3.jpg",
+        "assets/product-photos/482918795-supplier-9f46f932b2a4c52a9171.jpg",
         "https://midnight-designs.store/images/factory/482918795/288ec04b8b0ed17d9f514bac190cd0bedb6aa0fc32884e2e2d27a9c499d3496e.jpg",
         "https://midnight-designs.store/images/factory/482918795/d40c648b8362d5a69fe0540f1249711ff821abc7240e624b65639fbb7799e490.jpg"
       ],
@@ -3338,6 +3342,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/f34/f344c7b483d452bba7d97a1cb5a8882f_preview.png",
       "images": [
+        "assets/product-photos/482797453-supplier-8b2369fb65281a5903d1.jpg",
         "https://files.cdn.printful.com/files/f34/f344c7b483d452bba7d97a1cb5a8882f_preview.png"
       ],
       "variants": [
@@ -3472,6 +3477,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/6fd/6fde8fc0b01c6de1ede50e73dc54cee4_preview.png",
       "images": [
+        "assets/product-photos/482794900-supplier-17e44e5f67006e6cf4ba.jpg",
         "https://files.cdn.printful.com/files/6fd/6fde8fc0b01c6de1ede50e73dc54cee4_preview.png"
       ],
       "variants": [
@@ -3496,6 +3502,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/435/4354c92981b41775dbdf857ec87b62d1_preview.png",
       "images": [
+        "assets/product-photos/482790495-supplier-64fc998a49f502b4da25.jpg",
         "https://files.cdn.printful.com/files/435/4354c92981b41775dbdf857ec87b62d1_preview.png"
       ],
       "variants": [
@@ -3630,6 +3637,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/887/887ad6cb6d157d3b34e8316bbb0bed9f_preview.png",
       "images": [
+        "assets/product-photos/482783901-supplier-114026781e1151b1517f.jpg",
         "https://files.cdn.printful.com/files/887/887ad6cb6d157d3b34e8316bbb0bed9f_preview.png"
       ],
       "variants": [
@@ -3654,6 +3662,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/f73/f73cf65463f162371b3f662c66cf9d5b_preview.png",
       "images": [
+        "assets/product-photos/482779702-supplier-4e18d1d12b44a707b0db.jpg",
         "https://files.cdn.printful.com/files/f73/f73cf65463f162371b3f662c66cf9d5b_preview.png"
       ],
       "variants": [
@@ -3788,6 +3797,7 @@
       "category": "Hoodies & sweatshirts",
       "image": "https://files.cdn.printful.com/files/2a6/2a601e909e0473e491891c71bacd3bc8_preview.png",
       "images": [
+        "assets/product-photos/482775311-supplier-9fd10a8933aa036966e3.jpg",
         "https://files.cdn.printful.com/files/2a6/2a601e909e0473e491891c71bacd3bc8_preview.png"
       ],
       "variants": [
