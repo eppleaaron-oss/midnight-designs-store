@@ -327,3 +327,17 @@ test('Printful-only cleanup waits for the supplier receipt checkpoint before del
  await f.service.basic.tick();assert.ok(f.db.prepare('SELECT sum(length(data)) n FROM factory_print_files').get().n>0,'Pending durable receipt must retain all print pixels');assert.ok(workingAssets(f.git).length>0,'Pending receipt must retain its recovery attachments');
  f.service.githubBackups.snapshot=snapshot;release();assert.equal((await step).status,200);assert.equal((await f.basic()).data.active,null);assert.equal(f.counts().creates,1);assert.equal(f.counts().deletes,0);
 });
+
+test('a failed local supplier-intent checkpoint never claims a Printful submission occurred',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);await readySupplier(f,item);
+ const checkpoint=f.service.basicGithub.checkpoint;let failed=false;
+ f.service.basicGithub.checkpoint=async job=>{if(job&&!failed&&f.db.prepare("SELECT 1 FROM factory_publish_operations WHERE job=? AND operation='supplier' AND status='uncertain'").get(job)){failed=true;throw Object.assign(Error('Transient working-file download'),{status:503});}return checkpoint(job);};
+ assert.equal((await f.step()).data.status,'retry_wait');assert.equal(f.counts().creates,0);assert.equal(f.db.prepare("SELECT 1 FROM factory_publish_operations WHERE job=? AND operation='supplier'").get(item.job),undefined);
+ await f.step();assert.equal(f.counts().creates,1);
+});
+test('supplier reconciliation checks the live external ID before clearing a stale operation',async t=>{
+ const f=await fixture(t,{durable:false,githubWorkspace:true}),item=await f.start();supplierBatch(f,item);await targetSupplier(f);await readySupplier(f,item);
+ f.db.prepare("UPDATE factory_jobs SET status='waiting_input' WHERE id=?").run(item.job);f.db.prepare("INSERT INTO factory_publish_operations VALUES(?,?,'uncertain',NULL,?)").run(item.job,'supplier',0);
+ const r=await f.api('publishing/reconcile',{job:item.job,operation:'supplier',outcome:'check',verified:true});assert.equal(r.status,200);assert.equal(f.counts().creates,0);assert.equal(f.db.prepare("SELECT 1 FROM factory_publish_operations WHERE job=? AND operation='supplier'").get(item.job),undefined);
+ await f.basic('/resume',{id:item.id});await f.step();assert.equal(f.counts().creates,1);
+});
