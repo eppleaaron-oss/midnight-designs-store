@@ -37,6 +37,14 @@ test('completed product revisions retain supplier identity and create only an ex
  const result=await f.call('create',{id:d.id,revision:1,confirm:true});assert.equal(result.item.choice.requestKey,'editor_'+d.id+'_r1');assert.equal(f.db.prepare('SELECT supplier_id FROM factory_listings').get().supplier_id,'483352723');
 });
 
+test('an existing-product artwork revision targets the original ID and rejects size changes',async t=>{
+ const f=fixture(t),recipe={set:{id:'art',name:'Rose'},product:390,name:'Bomber',audience:'unisex',variants:[{size:'S'},{size:'M'}],layout:{input:f.c.layout}};
+ f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('made','old-job',JSON.stringify(recipe),'today','supplier_created');f.db.prepare('INSERT INTO factory_listings VALUES(?,?,?,?)').run('old-job','501','supplier_ready',JSON.stringify({title:'Rose Bomber'}));let context;
+ f.basic.create=async(c,ctx)=>{context=ctx;return {id:'revision',job:'new-job'};};const d=await f.call('save',{source:'item:made',choice:{...f.c,inspectionToken:'receipt'},note:'Move back higher'});
+ await assert.rejects(f.call('revise-existing',{id:d.id,revision:1}),/Confirm/);await f.call('revise-existing',{id:d.id,revision:1,confirm:true});assert.equal(context.replaceProduct.supplierId,'501');assert.equal(context.replaceProduct.external,'midnight-factory-old-job');assert.equal(f.db.prepare('SELECT supplier_id FROM factory_listings').get().supplier_id,'501');
+ const wrong=await f.call('save',{source:'item:made',choice:{...f.c,sizes:['S'],inspectionToken:'receipt'},note:''});await assert.rejects(f.call('revise-existing',{id:wrong.id,revision:1,confirm:true}),/every size/);
+});
+
 test('editor rejects cross-origin writes and saved revision races',async t=>{
  const f=fixture(t);await assert.rejects(f.editor.handle({headers:{origin:'http://other'},payload:{}},{},'/api/owner/ai-factory/product-editor/save','POST'),/Origin/);
  const d=await f.call('save',{source:'piece:piece1',choice:{...f.c,inspectionToken:'receipt'},note:''});f.change(()=>f.db.prepare('UPDATE factory_product_edits SET revision=2 WHERE id=?').run(d.id));await assert.rejects(f.call('apply',{id:d.id,revision:1}),/during inspection/);assert.equal(f.applied(),null);

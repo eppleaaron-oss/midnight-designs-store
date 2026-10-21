@@ -1,3 +1,4 @@
+import {ownerApproved} from './ai-made-policy.mjs';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
@@ -9,7 +10,7 @@ const digest=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 const ENGINE='printful-all-reported-views-v1';
 export function approvedFactory(state){
- if(state.outfitQueue?.batch?.id!=='f13ad766-3e0d-4ddd-993b-167a318d0ae2')throw Error('The authorized outfit batch could not be verified.');
+ if(!state.outfitQueue?.batch?.id)return new Map();
  const ids=new Set(state.outfitQueue.batch.scope?.pieceIds||[]),out=new Map();
  for(const f of state.outfitQueue.plans||[])for(const p of f.pieces||[]){const i=p.item;if(!ids.has(p.id)||!i?.closed||!i.cleanup?.verified||!['supplier_created','published'].includes(i.status)||!/^\d+$/.test(i.listing?.supplier_id||'')||!/^[-a-f0-9]{36}$/.test(i.job||''))continue;out.set(String(i.listing.supplier_id),{external:'midnight-factory-'+i.job,product:p.choice.product,role:p.role,outfit:f.id,collection:f.name});}
  return out;
@@ -61,7 +62,7 @@ export async function run(){
  const sharp=createRequire(new URL('../request-service/package.json',import.meta.url))('sharp'),headers={Authorization:'Bearer '+token,...(process.env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':process.env.PRINTFUL_STORE_ID}:{})};
  const read=async(path,fallback)=>{try{return JSON.parse(await fs.readFile(path,'utf8'));}catch(e){if(e.code==='ENOENT')return fallback;throw e;}},write=(path,value)=>fs.writeFile(path,JSON.stringify(value,null,2)+'\n');
  const api=mediaSupplierApi({headers});
- const backend=await fetch('https://midnight-designs-backend.onrender.com/api/owner/ai-factory/basic',{signal:AbortSignal.timeout(60000)});if(!backend.ok)throw Error('Factory receipt audit unavailable.');const approved=approvedFactory(await backend.json());
+ const backend=await fetch('https://midnight-designs-backend.onrender.com/api/owner/ai-factory/basic',{signal:AbortSignal.timeout(60000)});if(!backend.ok)throw Error('Factory receipt audit unavailable.');const approved=approvedFactory(await backend.json());const reviews=await read('ai-made-review.json',{products:{}});for(const [id,r] of Object.entries(reviews.products||{}))if(r.decision==='approved')approved.set(id,{...r,external:r.external,product:r.product,role:r.copy?.category||r.role,collection:r.collection,outfit:r.outfit});
  let catalog=await read('products.json',{products:[]}),photos=await read('product-photos.json',{products:{}}),manifest=await read('factory-listings.json',{products:{}}),ledger=await read('printful-media-progress.json',{engine:ENGINE,jobs:{},errors:{}}),specs=await read('product-information.json',{products:{}});ledger.errors={};
  const paths=['printful-media-progress.json','product-photos.json','factory-listings.json','products.json','product-information.json','assets/product-photos','products','sitemap.xml','shop.html'];
  async function checkpoint(message){
@@ -79,7 +80,7 @@ export async function run(){
  // require generating images or treating unfinished print files as accepted.
  const details=new Map();ledger.catalogAudit={supplierProducts:summaries.length,eligible:0,importedPreviews:0,held:[],checkedAt:new Date().toISOString()};
  for(const summary of summaries){const id=String(summary.id);if(summary.is_ignored||withdrawn.has(id)||exclusions.has(id))continue;
-  try{const detail=await api('store/products/'+id);details.set(id,detail);const p=normalize(detail);if(!p)continue;const factory=detail.sync_product.external_id?.startsWith('midnight-factory-'),prior=manifest.products[id];
+  try{const detail=await api('store/products/'+id);details.set(id,detail);const p=normalize(detail);if(!p)continue;const factory=detail.sync_product.external_id?.startsWith('midnight-factory-'),prior=manifest.products[id];if(factory&&!ownerApproved(reviews,id,detail.sync_product.external_id))continue;
    if(factory&&detail.sync_product.external_id!==(approved.get(id)?.external||prior?.factoryExternalId))continue;
    if(factory&&!prior)continue;ledger.catalogAudit.eligible++;
    const views=supplierPreviews(p,detail,factory),signature=digest(views);if(!views.length||photos.products[id]?.supplierPreviews===signature)continue;
@@ -100,11 +101,12 @@ export async function run(){
  for(const summary of summaries){if(Date.now()>deadline)break;const id=String(summary.id);if(summary.is_ignored||withdrawn.has(id)||exclusions.has(id))continue;
   try{
    const detail=details.get(id)||await api('store/products/'+id),p=normalize(detail);if(!p)continue;const external=detail.sync_product.external_id,isFactory=typeof external==='string'&&external.startsWith('midnight-factory-'),approval=approved.get(id),prior=manifest.products[id];
+   if(isFactory&&!ownerApproved(reviews,id,external))continue;
    if(isFactory&&external!==(approval?.external||prior?.factoryExternalId))continue;
    if(approval&&p.catalogProductId!==approval.product)throw Error('Factory receipt product ID changed.');
    if(detail.sync_variants.filter(v=>p.variants.some(p=>p.id===String(v.id))).some(v=>(v.files||[]).filter(f=>f.type!=='preview').some(f=>f.status!=='ok'||f.is_temporary)))throw Error('Supplier print files are not permanently accepted.');
    const mapping=await api('mockup-generator/printfiles/'+p.catalogProductId),jobs=requests(p,detail,mapping,isFactory),fingerprint=digest(jobs.map(j=>j.key));
-   if(photos.products[id]?.allReportedViews===fingerprint){console.log('Complete gallery retained for '+id);continue;}
+   if(photos.products[id]?.allReportedViews===fingerprint&&prior?.ownerReview===digest({external,copy:reviews.products[id]?.copy})){console.log('Complete gallery retained for '+id);continue;}
    const gallery=[];
    for(const j of jobs){let record=ledger.jobs[j.key];
     if(record?.state==='downloaded'&&record.savedPhotos?.length){let intact=true;for(const photo of record.savedPhotos)try{await fs.access(photo.image);}catch{intact=false;}if(intact){gallery.push(...record.savedPhotos);continue;}}
@@ -126,7 +128,7 @@ export async function run(){
    const uniquePhotos=new Set();for(let n=gallery.length-1;n>=0;n--){const g=gallery[n],key=g.sha256?g.sha256+':'+g.storeVariantIds.join(','):g.image;if(uniquePhotos.has(key))gallery.splice(n,1);else uniquePhotos.add(key);}
    if(!gallery.length)throw Error('No saved mockups.');
    const current=catalog.products.find(v=>v.id===id);let product={...p,...(current||{}),variants:p.variants.map(v=>({...v,...(current?.variants.find(old=>old.id===v.id)||{}),availability:v.availability})),url:'products/'+id+'.html'};
-   if(isFactory){const image=prior?.image||gallery[0].image;product={...product,...(prior||{}),id,catalogProductId:p.catalogProductId,factoryExternalId:external,name:p.name,description:prior?.description||p.name+'. Coordinated original artwork with a black printed background.',category:prior?.category||approval.role,tags:prior?.tags||[approval.role],collections:prior?.collections||[approval.collection],outfitId:prior?.outfitId||approval.outfit,image,images:[...new Set([...gallery.map(g=>g.image),...(prior?.images||[])])],variants:p.variants.map(v=>({...v,color:'Black',colorCode:'#000000',supplierBaseColor:v.color,images:gallery.filter(g=>g.storeVariantIds.includes(v.id)).map(g=>g.image),image:gallery.find(g=>g.storeVariantIds.includes(v.id))?.image}))};manifest.products[id]=product;await write('factory-listings.json',manifest);}
+   if(isFactory){const image=prior?.image||gallery[0].image;product={...product,...(prior||{}),id,catalogProductId:p.catalogProductId,factoryExternalId:external,ownerReview:digest({external,copy:reviews.products[id]?.copy}),name:reviews.products[id]?.copy?.title||p.name,description:reviews.products[id]?.copy?.description||prior?.description||p.name+'. Coordinated original artwork with a black printed background.',category:reviews.products[id]?.copy?.category||prior?.category||approval?.role,tags:reviews.products[id]?.copy?.tags||prior?.tags||[approval?.role],collections:reviews.products[id]?.copy?.collections||prior?.collections||[approval?.collection],outfitId:prior?.outfitId||approval?.outfit,image,images:[...new Set([...gallery.map(g=>g.image),...(prior?.images||[])])],variants:p.variants.map(v=>({...v,color:'Black',colorCode:'#000000',supplierBaseColor:v.color,images:gallery.filter(g=>g.storeVariantIds.includes(v.id)).map(g=>g.image),image:gallery.find(g=>g.storeVariantIds.includes(v.id))?.image}))};manifest.products[id]=product;await write('factory-listings.json',manifest);}
    else product.images=[...new Set([...gallery.map(g=>g.image),...(p.images||[])])];
    photos.updatedAt=new Date().toISOString();photos.products[id]={name:product.name,originalImage:product.image,catalogProductId:p.catalogProductId,photos:[...gallery,...(photos.products[id]?.photos||[]).filter(x=>!gallery.some(g=>g.image===x.image))],source:'Printful mockups from accepted supplier production files',supplierPreviews:photos.products[id]?.supplierPreviews,allReportedViews:fingerprint};await write('product-photos.json',photos);
    const at=catalog.products.findIndex(v=>v.id===id);if(at<0)catalog.products.unshift(product);else catalog.products[at]=product;catalog.lastSyncedAt=catalog.updatedAt=new Date().toISOString();await write('products.json',catalog);

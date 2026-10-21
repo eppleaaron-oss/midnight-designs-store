@@ -42,6 +42,7 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
   if(url.startsWith('https://printful-upload.s3-accelerate.amazonaws.com/tmp/mockup-back-')&&failMockup){failMockup=false;return new Response('temporary supplier error',{status:503});}
   if(url==='https://files.cdn.printful.com/original.png')return new Response(png,{headers:{'Content-Type':'image/png'}});
   if(url.startsWith('https://printful-upload.s3-accelerate.amazonaws.com/tmp/mockup-'))return new Response(png,{headers:{'Content-Type':'image/png'}});
+  if(url.includes('/contents/ai-made-review.json'))return o.method==='PUT'?new Response('{}'):new Response('{}',{status:404});
   if(url.includes('/contents/factory-listings.json')){if(o.method==='PUT'){manifest=JSON.parse(Buffer.from(JSON.parse(o.body).content,'base64').toString());return new Response('{}');}return manifest?new Response(JSON.stringify({sha:'manifest-test',content:Buffer.from(JSON.stringify(manifest)).toString('base64')})):new Response('{}',{status:404});}
   if(url.includes('/dispatches')){dispatches++;return new Response(null,{status:204});}
   if(url.startsWith('https://midnight-designs.store/products.json')){const products=live?Object.values(manifest?.products||{}).map(p=>brokenImages?{...p,images:[]}:p):[];return new Response(JSON.stringify({products}));}
@@ -75,6 +76,8 @@ test('one 14-piece outfit uses native files, real mockup downloads, review prici
   assert.equal((await step()).status,'retry_wait');clock+=31000;assert.equal((await step()).status,'retry_wait');assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,0,'a partial mockup download is not mistaken for a complete saved variant');assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockup_downloads WHERE job=?').get(job).n,1,'a valid download survives a temporary failure without making an incomplete product');clock+=31000;
   for(let i=0;i<2;i++){const result=await step();if(result.status==='retry_wait')clock+=31000;else assert.equal(result.status,'queued');}
   assert.equal(taskCreates,2);assert.equal(service.db.prepare('SELECT count(*) n FROM factory_mockups WHERE job=?').get(job).n,4);
+  const ownerHold=await step();assert.equal(ownerHold.status,'waiting_input');assert.match(ownerHold.result.wait,/AI Made/);assert.equal(dispatches,0);await c.call(base+'production/job',{id:job,action:'resume'});
+  service.db.prepare("INSERT OR REPLACE INTO factory_ai_made_decisions VALUES(?,'approved',?,?)").run(job,service.publishingEngine.prepared(job).fingerprint,new Date().toISOString());
   assert.equal((await step()).status,'retry_wait');assert.equal(dispatches,1);assert.ok(Object.values(manifest.products)[0].variants.every(v=>v.color==='Black'&&v.supplierBaseColor==='White'),'store shows the printed background, preserving supplier blank metadata');clock+=31000;
   const image=Object.values(manifest.products)[0].image;assert.equal((await fetch(c.root+new URL(image).pathname)).status,200,'public listing image is backed by saved supplier bytes');
   live=true;brokenImages=true;assert.equal((await step()).status,'retry_wait','missing storefront images prevent false publication');clock+=31000;brokenImages=false;
