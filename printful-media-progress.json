@@ -41491,7 +41491,7 @@
     "12be3b781fa825395747bd91a69a88db54b0a01d627a53a821c6eaaf3b093b8a": {
       "productId": "480738534",
       "variant": 23675,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T16:08:52.486Z",
       "attempts": 2,
       "previousSubmission": {
@@ -41512,7 +41512,54 @@
         "error": "Printful rate limit did not clear."
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "key": "gt-988077367"
+      "key": "gt-988077367",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480738534-23675-all-12be3b781f-0.jpg",
+          "sha256": "0997b2fef42f5cc7850df0c969e31de75cebfc9fdb68e81e163f9c100a1fe2da",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568273063",
+            "5568273064",
+            "5568273065",
+            "5568273066",
+            "5568273068",
+            "5568273069",
+            "5568273072",
+            "5568273077"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738534-23675-all-12be3b781f-1.jpg",
+          "sha256": "bf98d85c4cd7e3b7a4ddfd59553cf84b72989e2fa811fa3fadc622551e2def24",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23675,
+          "storeVariantIds": [
+            "5568273063",
+            "5568273064",
+            "5568273065",
+            "5568273066",
+            "5568273068",
+            "5568273069",
+            "5568273072",
+            "5568273077"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "98a0d8a1285267a432dd9d28f15ce9b036e2ad9f3858836bac0d95d83bc317d5": {
       "productId": "480738528",
@@ -44886,7 +44933,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T16:10:29.126Z",
+  "updatedAt": "2026-10-21T16:10:42.414Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
