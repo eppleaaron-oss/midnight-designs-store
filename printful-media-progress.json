@@ -42156,10 +42156,89 @@
     "f6f38a31e9739bac84a0f57f582cc7e560e2e3f630f1d6d4ac1705431c281c28": {
       "productId": "480738744",
       "variant": 8355,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T15:48:19.620Z",
       "attempts": 1,
-      "key": "gt-988066246"
+      "key": "gt-988066246",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480738744-8355-all-f6f38a31e9-0.jpg",
+          "sha256": "cb27668643e9598c2371051ef59eb179905b6a92c56a21b487a1bb93528dd016",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568275530",
+            "5568275531",
+            "5568275532",
+            "5568275533",
+            "5568275534"
+          ],
+          "alt": "Blood Moon Reaper Yoga Leggings · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738744-8355-all-f6f38a31e9-1.jpg",
+          "sha256": "711f0dc2ce21a010c4fa5ffb130a006e3032a280cac6678025abb132d6183223",
+          "view": "Left Front",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568275530",
+            "5568275531",
+            "5568275532",
+            "5568275533",
+            "5568275534"
+          ],
+          "alt": "Blood Moon Reaper Yoga Leggings · Left Front",
+          "label": "Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738744-8355-all-f6f38a31e9-2.jpg",
+          "sha256": "ea0c137c1524520d8c013b7d80b5dcad07e8a55700ceee995bbaa728caaa2561",
+          "view": "Left Back",
+          "style": "Barefoot 2",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568275530",
+            "5568275531",
+            "5568275532",
+            "5568275533",
+            "5568275534"
+          ],
+          "alt": "Blood Moon Reaper Yoga Leggings · Left Back",
+          "label": "Left Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738744-8355-all-f6f38a31e9-3.jpg",
+          "sha256": "252998806918904c49246dbf0276835836ed5069b4f96731b7bbc55d3dd15cff",
+          "view": "Left Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 8355,
+          "storeVariantIds": [
+            "5568275530",
+            "5568275531",
+            "5568275532",
+            "5568275533",
+            "5568275534"
+          ],
+          "alt": "Blood Moon Reaper Yoga Leggings · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -42194,7 +42273,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:49:56.211Z",
+  "updatedAt": "2026-10-21T15:50:10.080Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
