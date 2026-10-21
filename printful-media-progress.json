@@ -40019,19 +40019,27 @@
     "21bb60c0ecd9d8743d82728bfb1b99bc3d79917de1cef49bceeadad54dbc98e9": {
       "productId": "480738724",
       "variant": 16400,
-      "state": "uncertain",
-      "created": "2026-10-20T22:42:06.224Z",
+      "state": "submitting",
+      "created": "2026-10-21T15:55:54.714Z",
       "attempts": 2,
       "previousSubmission": {
         "productId": "480738724",
         "variant": 16400,
         "state": "uncertain",
-        "created": "2026-10-20T21:47:10.580Z",
-        "attempts": 1,
+        "created": "2026-10-20T22:42:06.224Z",
+        "attempts": 0,
+        "previousSubmission": {
+          "productId": "480738724",
+          "variant": 16400,
+          "state": "uncertain",
+          "created": "2026-10-20T21:47:10.580Z",
+          "attempts": 1,
+          "error": "Printful rate limit did not clear."
+        },
+        "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
         "error": "Printful rate limit did not clear."
       },
-      "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "error": "Printful rate limit did not clear."
+      "note": "Retry of an unconfirmed image-only task; supplier products are never created here."
     },
     "3e3f7d480983857fd337cdf9c1baf44e54adab25c4478d95127661a83e883936": {
       "productId": "480738718",
@@ -43058,7 +43066,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:55:52.842Z",
+  "updatedAt": "2026-10-21T15:55:54.714Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
