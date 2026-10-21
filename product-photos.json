@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T16:01:08.316Z",
+  "updatedAt": "2026-10-21T16:05:01.843Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -4114,6 +4114,426 @@
       "catalogProductId": 276,
       "photos": [
         {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-0.jpg",
+          "sha256": "2e3b6364221f8bf5ab10587958c6a249e6f1d3a9f572ce92205f353c3a84e260",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-1.jpg",
+          "sha256": "764d1cdf4f1339a0df3c0511fcac3bfe73589e1d36b71ed124fd5746c157b851",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-2.jpg",
+          "sha256": "b800277a4ff088db3b2de62950367c6d0e46416ebf328d02184b883b65bc53a8",
+          "view": "Front",
+          "style": "Man",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-3.jpg",
+          "sha256": "c2f0c04bea0c030f4af47e6b283219d233d2c20da363b3c1bee213a6ea5da749",
+          "view": "Front",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-4.jpg",
+          "sha256": "ed2a1ffb3433db5f95b92fe87e581e752b78776f3713bdd5a89ca01ca54dfd83",
+          "view": "Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-5.jpg",
+          "sha256": "a0fdcf0389c5a2f6343f957e170c1368ddbd6e9b8aac06ec8cfed77b27df7b14",
+          "view": "Left Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-6.jpg",
+          "sha256": "38ae729d97c066bc0890defcb289b08c99f7d12af50fdefc9fbbadecbf5aa440",
+          "view": "Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-7.jpg",
+          "sha256": "594acce3f24656dc2d7c789bca3d6b6ad46079cb1040191605f8b38e828f6d2d",
+          "view": "Left Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-8.jpg",
+          "sha256": "aad44ff9925f1f05a5c2694c6bfa682d47dfec92c68de4a45113e0f4ba18db51",
+          "view": "Left Front",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-9.jpg",
+          "sha256": "deca54690d84674f4e816b50f881e0668f29eeb76a346e983bbd4c657592efc3",
+          "view": "Back",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-10.jpg",
+          "sha256": "93d524a615fda2c0fe6fa7491fbf3964ee715041b706762a6f3df6275480205c",
+          "view": "Front",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-11.jpg",
+          "sha256": "ed6f0f3bf47f39a512c3debfb1489f776a11cf35ed7764e115b67dad76f113c9",
+          "view": "Left",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-12.jpg",
+          "sha256": "ca542cc315386ac996843ab6c3718a2f6d0a22141aa6bfe342aa8bfa8f46a911",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · back",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-13.jpg",
+          "sha256": "7c9186cbbe7133efc7ba2ea7f65d5de479361e3970945a987a7a9e9afe0cb91f",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-14.jpg",
+          "sha256": "a09e8e243bd1ce64bbb09c451d860c3e553548068caeb882ce403f3c473ec0c2",
+          "view": "Back",
+          "style": "Man",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-15.jpg",
+          "sha256": "cd2a2f3bf0679bf86b544a7d6b3773da0cd8141fa7bd9b1434147c0eac0d5c0c",
+          "view": "Back",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-16.jpg",
+          "sha256": "47ab63d2062574cd2738e7fc9a33bdc281cee4087d47ef8413a70527b778b80b",
+          "view": "Back",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-3e3f7d4809-17.jpg",
+          "sha256": "7d45f07105a09fc002b38f256bab0a39b423d531560f750366a64fb05b22542c",
+          "view": "Back",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-fd1d55a715-0.jpg",
+          "sha256": "db0293b77ec522af063d99f21ecdc702740afca1f157c85686bb68b6b2ec7707",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-fd1d55a715-1.jpg",
+          "sha256": "0cf73bd852047b7a65450855d773f1846accad81eb2167256f6b460f9e606eff",
+          "view": "Right Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738718-9051-all-fd1d55a715-2.jpg",
+          "sha256": "761a9d076649f32b8b57b6e66c6cd6c9416ced08514205ee7f426eb6353fc2e9",
+          "view": "Right Front",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9051,
+          "storeVariantIds": [
+            "5568275256",
+            "5568275257",
+            "5568275258",
+            "5568275259",
+            "5568275270",
+            "5568275271"
+          ],
+          "alt": "Blood Moon Reaper Men's Tank Top · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -4134,7 +4554,9 @@
           "sha256": "5ccf95508258adce6f5d5fba44fea3c51716d7ccfa0d857654eb97a5af363a8c"
         }
       ],
-      "supplierPreviews": "59ae2af2eb9afe726539df41c805874f164c2a65a90d29a941684e02e641ad0d"
+      "source": "Printful mockups from accepted supplier production files",
+      "supplierPreviews": "59ae2af2eb9afe726539df41c805874f164c2a65a90d29a941684e02e641ad0d",
+      "allReportedViews": "698a2a32dcffb65618868be76997b6dccd7ee40351398d5bc52a4031018b7443"
     },
     "480738724": {
       "name": "Blood Moon Reaper Unisex Button Shirt",
