@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T22:30:46.977Z",
+  "updatedAt": "2026-10-21T22:34:17.120Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -53680,6 +53680,65 @@
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "8bb01fd30caf1dadfaf3ddf5bb9e2ca332e4525f64d965dcc6ed8a0d1157e983",
       "supplierPreviews": "e05a7dd066e4b54d91abb39ebfb8b90eaba5d68f4a8665151e88d35d9b843fc3"
+    },
+    "483734104": {
+      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Wide-Leg Pants",
+      "originalImage": "assets/product-photos/483734104-46253-all-052ec5ac7d-0.jpg",
+      "catalogProductId": 1479,
+      "photos": [
+        {
+          "image": "assets/product-photos/483734104-46253-all-052ec5ac7d-0.jpg",
+          "sha256": "0160b8051a7ae4d52bb668f3d93ac78b7d268de8ff1f2624b433ccabbcdbd86d",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5587234693",
+            "5587234697",
+            "5587234703",
+            "5587234706",
+            "5587234707",
+            "5587234708",
+            "5587234709",
+            "5587234710",
+            "5587234711",
+            "5587234712",
+            "5587234715"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483734104-46253-all-052ec5ac7d-1.jpg",
+          "sha256": "0b1e0f27786d5d8bb2001a1509e5e8b4445ce97282fea362c2d0552c96710579",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5587234693",
+            "5587234697",
+            "5587234703",
+            "5587234706",
+            "5587234707",
+            "5587234708",
+            "5587234709",
+            "5587234710",
+            "5587234711",
+            "5587234712",
+            "5587234715"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "000c114f9c339ec0e4a2359dcd11ef2ccf00ec3e964e622432049b2d8079afd2"
     },
     "483741826": {
       "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts",
