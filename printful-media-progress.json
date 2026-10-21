@@ -52703,13 +52703,14 @@
     "052ec5ac7d18c7fb851146ef6f284dcd429bd9ee107d4ff40a96d9843f8e22a7": {
       "productId": "483734104",
       "variant": 46253,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T22:33:26.909Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988294478"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T22:33:26.909Z",
+  "updatedAt": "2026-10-21T22:34:01.081Z",
   "catalogAudit": {
     "supplierProducts": 154,
     "eligible": 148,
