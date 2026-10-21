@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:28:49.877Z",
+  "updatedAt": "2026-10-21T14:29:02.651Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -17986,10 +17986,32 @@
           "alt": "Ashen Cathedral Unisex Athletic Shorts · Zoomed-in",
           "label": "On-person · Zoomed-in",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9809,
+          "storeVariantIds": [
+            "5568432295",
+            "5568432298",
+            "5568432301",
+            "5568432302",
+            "5568432303",
+            "5568432304",
+            "5568432305"
+          ],
+          "alt": "Ashen Cathedral Unisex Athletic Shorts · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760541-supplier-e6046c3d651d73b57b09.jpg",
+          "sha256": "354aa2b4d19e880e22757800b1c5732775f7e94c5fd5d705c9cb60fc335de35d"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "fca833538e41759f1ba24fc7806cc3a35dabfb124bf0ec5b88c9260afb75628e"
+      "allReportedViews": "fca833538e41759f1ba24fc7806cc3a35dabfb124bf0ec5b88c9260afb75628e",
+      "supplierPreviews": "cc6ef38d7a34845858dbd759b587c62ad02fbdcfb2c21083eb119016a4ab1c92"
     },
     "480760547": {
       "name": "Ashen Cathedral Yoga Leggings",
@@ -18964,10 +18986,30 @@
           "alt": "Ashen Cathedral Yoga Leggings · Right Front",
           "label": "Right Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 8356,
+          "storeVariantIds": [
+            "5568432341",
+            "5568432342",
+            "5568432343",
+            "5568432345",
+            "5568432346"
+          ],
+          "alt": "Ashen Cathedral Yoga Leggings · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760547-supplier-5570bafce237d51aa103.jpg",
+          "sha256": "ea6c5bb5bf0f786c35665b3132af4d2b88be4f6a4597aa93cede06e23bf54f43"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "e885e1d69b4af90b229f491a020666114aef932cd358695c9540d1ea690de350"
+      "allReportedViews": "e885e1d69b4af90b229f491a020666114aef932cd358695c9540d1ea690de350",
+      "supplierPreviews": "8a0b064ade74f264367d71e2d14627620eed3f1bf86ef1fe84f2d6a681c9e887"
     },
     "480760768": {
       "name": "Ashen Cathedral Neck Gaiter",
@@ -19633,10 +19675,26 @@
           "alt": "Ashen Cathedral Neck Gaiter · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5568433427"
+          ],
+          "alt": "Ashen Cathedral Neck Gaiter · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760768-supplier-6abe96ea41dd424a907c.jpg",
+          "sha256": "81bbf3a186547dd1a639bb2d1f4f28dc2ae54c2f79c79404bb4bb9cd1b339eca"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "1bc5ecdcfb626dc000146b95ecac01d0edd589c5ef6c09b8dc3db4356d20e84d"
+      "allReportedViews": "1bc5ecdcfb626dc000146b95ecac01d0edd589c5ef6c09b8dc3db4356d20e84d",
+      "supplierPreviews": "f7cd991afff2216a4b49aa1834be32a3075334ccfd326515624e16daf541be57"
     },
     "480760775": {
       "name": "Ashen Cathedral Bandana",
@@ -19727,10 +19785,56 @@
           "alt": "Ashen Cathedral Bandana · Front",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16033,
+          "storeVariantIds": [
+            "5568433480"
+          ],
+          "alt": "Ashen Cathedral Bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760775-supplier-5d115ab4873b8d8267fa.jpg",
+          "sha256": "3e7a7b668e1b5feed9710b7b924622453f7532fb979a9b082753d2c85c8dc060"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16032,
+          "storeVariantIds": [
+            "5568433482"
+          ],
+          "alt": "Ashen Cathedral Bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760775-supplier-aea5e9f0fa989d0f5741.jpg",
+          "sha256": "7e0e61d2cb10ce6bb0b85593166a100644a9cd2717c0fcbfa95b9d168b53d9e0"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16031,
+          "storeVariantIds": [
+            "5568433484"
+          ],
+          "alt": "Ashen Cathedral Bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760775-supplier-ac93474d796f9cf6b61c.jpg",
+          "sha256": "4a9c71e2557f8b6d6207195ebca85f2ffafadd398a154099c2b137303203615e"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "01a5baaaf20c02c9843c0098c0b153410695d585a9b1839111c0c87585076161"
+      "allReportedViews": "01a5baaaf20c02c9843c0098c0b153410695d585a9b1839111c0c87585076161",
+      "supplierPreviews": "f3a5ea7b4de6225a295cfc2fa76d6553496d80fe9d3791becc050f75376fd6a5"
     },
     "480760783": {
       "name": "Ashen Cathedral Utility Backpack",
@@ -19961,10 +20065,26 @@
           "alt": "Ashen Cathedral Utility Backpack · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568433539"
+          ],
+          "alt": "Ashen Cathedral Utility Backpack · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760783-supplier-74eecf4c6b83c38abaef.jpg",
+          "sha256": "c8deef3d4578e611de74540f8e7d399bd1d91c9ed91406892ed2dbeaf234bbf7"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "e549c05d8f440b14e0aa2e64380d4490d046fd65858c2f0121da2603d83cd513"
+      "allReportedViews": "e549c05d8f440b14e0aa2e64380d4490d046fd65858c2f0121da2603d83cd513",
+      "supplierPreviews": "0a9a9af19b115706bc8da58fa905cdf13bda185e7267ef6fa494063cf0f2c452"
     },
     "480760792": {
       "name": "Ashen Cathedral Cotton Crop Top",
@@ -20084,10 +20204,30 @@
           "alt": "Ashen Cathedral Cotton Crop Top · Front",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46227,
+          "storeVariantIds": [
+            "5568433594",
+            "5568433596",
+            "5568433598",
+            "5568433613",
+            "5568433616"
+          ],
+          "alt": "Ashen Cathedral Cotton Crop Top · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760792-supplier-1a3ce01fbabe27653f60.jpg",
+          "sha256": "48cae74eaf45535af11d8172295565cb313c3f3bcd41e6d2069948d479f5c01c"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "366b119e51d01be5e72dbe3d8273fe6954f6f7601330793f2cacb0dbaafc634c"
+      "allReportedViews": "366b119e51d01be5e72dbe3d8273fe6954f6f7601330793f2cacb0dbaafc634c",
+      "supplierPreviews": "47fe7ffddb5905b68837e5f17d9251e36768b016beb5c5a201765dba0f518cbd"
     },
     "480760815": {
       "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
@@ -21493,10 +21633,36 @@
           "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · Front",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 19769,
+          "storeVariantIds": [
+            "5568433701",
+            "5568433718",
+            "5568433726",
+            "5568433727",
+            "5568433735",
+            "5568433750",
+            "5568433756",
+            "5568433763",
+            "5568433770",
+            "5568433773",
+            "5568433774"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sweatshirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760815-supplier-37d6a3c992e264488d63.jpg",
+          "sha256": "32fa00847809b59dcaa6f08d567f220b04b4daa1ab846685999687ac1ae6925a"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "03781497c26f8dee69557cfd2873c13b579b7ab46f1b52f7885c95a5fee052ed"
+      "allReportedViews": "03781497c26f8dee69557cfd2873c13b579b7ab46f1b52f7885c95a5fee052ed",
+      "supplierPreviews": "88ffbdc94cc3719f94e94a00a29a09962cb7ba7a6917056b900d49470be151f5"
     },
     "480760830": {
       "name": "Blood Moon Reaper Men's Athletic T-Shirt",
@@ -21922,10 +22088,32 @@
           "alt": "Blood Moon Reaper Men's Athletic T-Shirt · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9957,
+          "storeVariantIds": [
+            "5568433788",
+            "5568433791",
+            "5568433793",
+            "5568433904",
+            "5568433926",
+            "5568433927",
+            "5568433935"
+          ],
+          "alt": "Blood Moon Reaper Men's Athletic T-Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760830-supplier-fa1d6d5a0821127b391a.jpg",
+          "sha256": "4a90613c698cfbfbb801f22aecfcf09c6be1938c57f6f87e2b332ec549010aad"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "f2058dee6d9a7fb719e6fa29b83d377f99b0384014a04f60a7864731777a8564"
+      "allReportedViews": "f2058dee6d9a7fb719e6fa29b83d377f99b0384014a04f60a7864731777a8564",
+      "supplierPreviews": "7a3bf1737189c3edd3dfd744727190b082a31607156f2f608c863180babed1f4"
     },
     "480760841": {
       "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
@@ -21975,10 +22163,33 @@
           "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23678,
+          "storeVariantIds": [
+            "5568433979",
+            "5568433980",
+            "5568433985",
+            "5568433986",
+            "5568433991",
+            "5568433992",
+            "5568433999",
+            "5568434006"
+          ],
+          "alt": "Blood Moon Reaper Men's Long Sleeve Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760841-supplier-f0d24292d5ec66aa41b6.jpg",
+          "sha256": "7f0554fabed970ef05c7bc1140e6a418018dec400058485cd2ff30c4451765d7"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "c6058fc2ffb6f95095be324d2a3e279611211ddb2f43bacf32af9c964dfea4d1"
+      "allReportedViews": "c6058fc2ffb6f95095be324d2a3e279611211ddb2f43bacf32af9c964dfea4d1",
+      "supplierPreviews": "78c7f63a26b1451773b98c93f9b13b54bf78e9a2ea126e5541b01f5ff73af916"
     },
     "480760851": {
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
@@ -22759,10 +22970,36 @@
           "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · back",
           "label": "back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16264,
+          "storeVariantIds": [
+            "5568434021",
+            "5568434022",
+            "5568434029",
+            "5568434030",
+            "5568434031",
+            "5568434032",
+            "5568434062",
+            "5568434069",
+            "5568434076",
+            "5568434077",
+            "5568434082"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760851-supplier-d2e558fe6ff28db784ff.jpg",
+          "sha256": "feb61d98fc704898d349431c3d92b1bcc1be9ed85ac776f409f95d959a51d71b"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "9e808b5fa6cfc715dc1aa0925762353856b418c6c76430c00dee724cf6a6f17f"
+      "allReportedViews": "9e808b5fa6cfc715dc1aa0925762353856b418c6c76430c00dee724cf6a6f17f",
+      "supplierPreviews": "5ad2571668b30566cdde9c8f3fb62a17894b53af5a96ebd7248b0f5170e8d76f"
     },
     "480760864": {
       "name": "Blood Moon Reaper Men's Tank Top",
