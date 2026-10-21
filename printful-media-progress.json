@@ -37473,9 +37473,10 @@
     "c8a8f695cc200bdcde67c6a208f48aea360c1f8505ffc5f85615d078c441a340": {
       "productId": "480743435",
       "variant": 16400,
-      "state": "submitting",
+      "state": "rate_limited",
       "created": "2026-10-21T14:39:58.011Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful rate limit: You've recently sent too many requests. Please try again after 14 seconds."
     }
   },
   "errors": {
@@ -37510,7 +37511,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T14:39:58.011Z",
+  "updatedAt": "2026-10-21T14:40:32.065Z",
   "catalogAudit": {
     "supplierProducts": 142,
     "eligible": 142,
