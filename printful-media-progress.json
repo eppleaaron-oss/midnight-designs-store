@@ -51522,13 +51522,14 @@
     "066353de7783de145e005ddd42db3a37dab2b24a1955a59dfc6cb3905df34199": {
       "productId": "483763072",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T22:18:33.190Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988286824"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T22:18:33.190Z",
+  "updatedAt": "2026-10-21T22:19:07.811Z",
   "catalogAudit": {
     "supplierProducts": 154,
     "eligible": 148,
