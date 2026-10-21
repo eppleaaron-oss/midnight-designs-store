@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-21T14:29:02.651Z",
-  "lastSyncedAt": "2026-10-21T14:29:02.651Z",
+  "updatedAt": "2026-10-21T14:29:13.930Z",
+  "lastSyncedAt": "2026-10-21T14:29:13.930Z",
   "products": [
     {
       "id": "483352723",
@@ -9199,6 +9199,7 @@
         "assets/product-photos/480760535-15751-all-58c0639603-0.jpg",
         "assets/product-photos/480760535-15751-all-58c0639603-1.jpg",
         "assets/product-photos/480760535-15751-all-58c0639603-2.jpg",
+        "assets/product-photos/480760535-supplier-1eeecb0c2983c6b57df1.jpg",
         "https://files.cdn.printful.com/files/2ab/2ab326f8da7be4d978d2421714de3f2a_preview.png"
       ],
       "variants": [
@@ -9289,6 +9290,7 @@
       "category": "Bottoms",
       "image": "https://files.cdn.printful.com/files/0c3/0c33ea489de4142b4ba9c20598d5deb5_preview.png",
       "images": [
+        "assets/product-photos/480760529-supplier-fa2becbd07ffefc2d300.jpg",
         "https://files.cdn.printful.com/files/0c3/0c33ea489de4142b4ba9c20598d5deb5_preview.png"
       ],
       "variants": [
@@ -9400,6 +9402,7 @@
         "assets/product-photos/480760520-16400-all-4f43038ff3-1.jpg",
         "assets/product-photos/480760520-16400-all-4f43038ff3-2.jpg",
         "assets/product-photos/480760520-16400-all-4f43038ff3-3.jpg",
+        "assets/product-photos/480760520-supplier-7fd2d1fa1ce8f4b5c1fd.jpg",
         "https://files.cdn.printful.com/files/34f/34f128b710b3b6596bdeb9754d224052_preview.png"
       ],
       "variants": [
@@ -9555,6 +9558,7 @@
         "assets/product-photos/480760516-9051-all-0a9c12c0d7-0.jpg",
         "assets/product-photos/480760516-9051-all-0a9c12c0d7-1.jpg",
         "assets/product-photos/480760516-9051-all-0a9c12c0d7-2.jpg",
+        "assets/product-photos/480760516-supplier-2b9adeebaa3cbd2f3801.jpg",
         "https://files.cdn.printful.com/files/ff2/ff2886a75d731391437768c4ee489702_preview.png"
       ],
       "variants": [
@@ -9665,6 +9669,7 @@
         "assets/product-photos/480760509-16261-all-d3dfc32127-1.jpg",
         "assets/product-photos/480760509-16261-all-3765e58499-0.jpg",
         "assets/product-photos/480760509-16261-all-3765e58499-1.jpg",
+        "assets/product-photos/480760509-supplier-83ae98802e675f5af043.jpg",
         "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png"
       ],
       "variants": [
@@ -9801,6 +9806,7 @@
       "images": [
         "assets/product-photos/480760502-23675-all-7fc258ec35-0.jpg",
         "assets/product-photos/480760502-23675-all-7fc258ec35-1.jpg",
+        "assets/product-photos/480760502-supplier-8b161b55242cb4d7ec9e.jpg",
         "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png"
       ],
       "variants": [
@@ -9922,6 +9928,7 @@
         "assets/product-photos/480760474-9954-all-2b85f90203-0.jpg",
         "assets/product-photos/480760474-9954-all-2b85f90203-1.jpg",
         "assets/product-photos/480760474-9954-all-2b85f90203-2.jpg",
+        "assets/product-photos/480760474-supplier-4db9fe8d54e71a9ccb3c.jpg",
         "https://files.cdn.printful.com/files/4b8/4b8e6eb29aeae6036ebdd5bc7d9f3a24_preview.png"
       ],
       "variants": [
@@ -10068,6 +10075,7 @@
         "assets/product-photos/480760460-9732-all-7c3600d24a-19.jpg",
         "assets/product-photos/480760460-9732-all-7c3600d24a-20.jpg",
         "assets/product-photos/480760460-9732-all-7c3600d24a-21.jpg",
+        "assets/product-photos/480760460-supplier-b8e8a124c18da2d6d6c7.jpg",
         "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png"
       ],
       "variants": [
@@ -10208,6 +10216,7 @@
         "assets/product-photos/480744107-46226-all-2a09a6f587-3.jpg",
         "assets/product-photos/480744107-46226-all-2a09a6f587-4.jpg",
         "assets/product-photos/480744107-46226-all-2a09a6f587-5.jpg",
+        "assets/product-photos/480744107-supplier-1cd536a3503c91325321.jpg",
         "https://files.cdn.printful.com/files/502/502dd8635197a887dc7167b379e5f9c3_preview.png"
       ],
       "variants": [
@@ -10291,6 +10300,7 @@
         "assets/product-photos/480744102-24564-all-2fc5c2ad30-1.jpg",
         "assets/product-photos/480744102-24564-all-2fc5c2ad30-2.jpg",
         "assets/product-photos/480744102-24564-all-2fc5c2ad30-3.jpg",
+        "assets/product-photos/480744102-supplier-2117c97b9a84cb1964de.jpg",
         "https://files.cdn.printful.com/files/789/7891fe32ac9f9c86a1df333051ab481d_preview.png"
       ],
       "variants": [

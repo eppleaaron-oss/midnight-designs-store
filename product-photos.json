@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T14:29:02.651Z",
+  "updatedAt": "2026-10-21T14:29:13.930Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -13388,10 +13388,26 @@
           "alt": "Blood Moon Reaper Utility Backpack · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 24564,
+          "storeVariantIds": [
+            "5568324353"
+          ],
+          "alt": "Blood Moon Reaper Utility Backpack · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744102-supplier-2117c97b9a84cb1964de.jpg",
+          "sha256": "51258987cb46ac923057e5be3e7b458a25a99609e5ab14c9656e5f4e1968f57a"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "59d7eea8e788dfbea905f56d27e0b66db40920e32caafc4459b900eec0f7ee9e"
+      "allReportedViews": "59d7eea8e788dfbea905f56d27e0b66db40920e32caafc4459b900eec0f7ee9e",
+      "supplierPreviews": "ec32674f750486702f368a79d6d0f674b3c600c04dc25a16c98976117981fe18"
     },
     "480744107": {
       "name": "Blood Moon Reaper Cotton Crop Top",
@@ -13511,10 +13527,30 @@
           "alt": "Blood Moon Reaper Cotton Crop Top · Front",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 46227,
+          "storeVariantIds": [
+            "5568324367",
+            "5568324379",
+            "5568324397",
+            "5568324399",
+            "5568324519"
+          ],
+          "alt": "Blood Moon Reaper Cotton Crop Top · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480744107-supplier-1cd536a3503c91325321.jpg",
+          "sha256": "3192ef7882641156bdfa2ccf4b9761ea928d76198e4025d4389517127ac32c30"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "696b3775781a75ef2d7f2ef96f8f2e57c2064f96d15e08ddf684ef2ba68d49b9"
+      "allReportedViews": "696b3775781a75ef2d7f2ef96f8f2e57c2064f96d15e08ddf684ef2ba68d49b9",
+      "supplierPreviews": "128738b64538617def83e6a134344932a892bf8d03dd4aa6a1bb47b10bc87c99"
     },
     "480760460": {
       "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
@@ -14920,10 +14956,36 @@
           "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · Front",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 19769,
+          "storeVariantIds": [
+            "5568431695",
+            "5568431701",
+            "5568431702",
+            "5568431707",
+            "5568431709",
+            "5568431711",
+            "5568431716",
+            "5568431717",
+            "5568431723",
+            "5568431726",
+            "5568431735"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sweatshirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760460-supplier-b8e8a124c18da2d6d6c7.jpg",
+          "sha256": "31456c37079d439320a4e1a114efdb04afc6548da27f143a0d6d085cc83991a5"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "311e98cff08fd360552ee0c302de18401862cdbeefd1d7d0f32f774434cf499e"
+      "allReportedViews": "311e98cff08fd360552ee0c302de18401862cdbeefd1d7d0f32f774434cf499e",
+      "supplierPreviews": "c665529fe4917d48b553c90682e44538a85207dbb7428503ff8a89fde9fe2580"
     },
     "480760474": {
       "name": "Ashen Cathedral Men's Athletic T-Shirt",
@@ -15349,10 +15411,32 @@
           "alt": "Ashen Cathedral Men's Athletic T-Shirt · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9957,
+          "storeVariantIds": [
+            "5568431756",
+            "5568431780",
+            "5568431790",
+            "5568431791",
+            "5568431797",
+            "5568431798",
+            "5568431799"
+          ],
+          "alt": "Ashen Cathedral Men's Athletic T-Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760474-supplier-4db9fe8d54e71a9ccb3c.jpg",
+          "sha256": "99107affb7ad4c0e5e1488e155b4ad397fa37b3d35267e4ebbdff5e2f373dc85"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "f79a421ce57ff280e00857061e9353c8289c84ebcb71bebe9a07bbd6670d1ac6"
+      "allReportedViews": "f79a421ce57ff280e00857061e9353c8289c84ebcb71bebe9a07bbd6670d1ac6",
+      "supplierPreviews": "c46c6b45593d8b601b15c8870bba7c1f49a68ac56558154feca3e1fc604e5daf"
     },
     "480760502": {
       "name": "Ashen Cathedral Men's Long Sleeve Shirt",
@@ -15402,10 +15486,33 @@
           "alt": "Ashen Cathedral Men's Long Sleeve Shirt · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23678,
+          "storeVariantIds": [
+            "5568431884",
+            "5568431890",
+            "5568431916",
+            "5568431934",
+            "5568431943",
+            "5568431950",
+            "5568431980",
+            "5568431985"
+          ],
+          "alt": "Ashen Cathedral Men's Long Sleeve Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760502-supplier-8b161b55242cb4d7ec9e.jpg",
+          "sha256": "f5eb8986ffde206d216a8ef65be0d9618890743c6af502e039f4e16ede9e8e0c"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "0503d3cbc17586cd26760e6e77c200adb06fa96c56c3534969cc59b17d231283"
+      "allReportedViews": "0503d3cbc17586cd26760e6e77c200adb06fa96c56c3534969cc59b17d231283",
+      "supplierPreviews": "047f8d246d34cd172bb3e21aeee67b3d3265dfa266f3d9f6ae0453c9f81c703e"
     },
     "480760509": {
       "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
@@ -16186,10 +16293,36 @@
           "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · back",
           "label": "back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16264,
+          "storeVariantIds": [
+            "5568432021",
+            "5568432022",
+            "5568432023",
+            "5568432027",
+            "5568432028",
+            "5568432029",
+            "5568432030",
+            "5568432031",
+            "5568432032",
+            "5568432038",
+            "5568432043"
+          ],
+          "alt": "Ashen Cathedral Recycled Unisex Sports Jersey · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760509-supplier-83ae98802e675f5af043.jpg",
+          "sha256": "9d525b84df224f953bd740cc762e4387f341c18f36567eb354ddc553e97bee42"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "e975534cba0b0414e6f44bf2f93f42ead7e5251ca10cfac48a311c3c1031981d"
+      "allReportedViews": "e975534cba0b0414e6f44bf2f93f42ead7e5251ca10cfac48a311c3c1031981d",
+      "supplierPreviews": "869fe084893fc2626a78f28725fef0db2c1ef1e8334a18a67a47489f12eaf077"
     },
     "480760516": {
       "name": "Ashen Cathedral Men's Tank Top",
@@ -16615,10 +16748,31 @@
           "alt": "Ashen Cathedral Men's Tank Top · Right Front",
           "label": "On-person · Right Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9054,
+          "storeVariantIds": [
+            "5568432059",
+            "5568432060",
+            "5568432061",
+            "5568432062",
+            "5568432064",
+            "5568432065"
+          ],
+          "alt": "Ashen Cathedral Men's Tank Top · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760516-supplier-2b9adeebaa3cbd2f3801.jpg",
+          "sha256": "db87e7987affc1d2bd50beb1417476987a60fe97156cdd9e42e6b624c1d828d6"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "9daa6cfe7f8102872e4cd960baa635582ca4de2b4d3b245e779d663178fe1176"
+      "allReportedViews": "9daa6cfe7f8102872e4cd960baa635582ca4de2b4d3b245e779d663178fe1176",
+      "supplierPreviews": "9c39894239f430aa6b3b831e485858cd59ea171646f27c29ef170558c8214f00"
     },
     "480760520": {
       "name": "Ashen Cathedral Unisex Button Shirt",
@@ -17149,10 +17303,65 @@
           "alt": "Ashen Cathedral Unisex Button Shirt · Right Front",
           "label": "On-person · Right Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 17122,
+          "storeVariantIds": [
+            "5568432076",
+            "5568432077",
+            "5568432087",
+            "5568432088",
+            "5568432092",
+            "5568432102",
+            "5568432107",
+            "5568432117",
+            "5568432122",
+            "5568432127",
+            "5568432132"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760520-supplier-7fd2d1fa1ce8f4b5c1fd.jpg",
+          "sha256": "40808d0e5067d71c155a129229d497fccbdcef62e111c152fb5f272aea1b081c"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "d3a9b9d6796c0cec61861cc3ed092280c2a7ef6612fc5f43ea0bdc83dee25e08"
+      "allReportedViews": "d3a9b9d6796c0cec61861cc3ed092280c2a7ef6612fc5f43ea0bdc83dee25e08",
+      "supplierPreviews": "5f122276edf3b98fca0044af7a112313ec5874f88f4a22ca664e4233399d4f6e"
+    },
+    "480760529": {
+      "name": "Ashen Cathedral Recycled Men’s Joggers",
+      "originalImage": "https://files.cdn.printful.com/files/0c3/0c33ea489de4142b4ba9c20598d5deb5_preview.png",
+      "catalogProductId": 400,
+      "photos": [
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 11038,
+          "storeVariantIds": [
+            "5568432155",
+            "5568432156",
+            "5568432160",
+            "5568432161",
+            "5568432162",
+            "5568432170",
+            "5568432172"
+          ],
+          "alt": "Ashen Cathedral Recycled Men’s Joggers · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760529-supplier-fa2becbd07ffefc2d300.jpg",
+          "sha256": "1ea2445fa567c0f7755d65351874fa788105f4d087fbef07c7ade80671ee1754"
+        }
+      ],
+      "supplierPreviews": "7af5a4aa2ad9a91b31d008dc7477a4a3d166338f7dc7f38436a6f8bac2e09155"
     },
     "480760535": {
       "name": "Ashen Cathedral Unisex Track Pants",
@@ -17473,10 +17682,32 @@
           "alt": "Ashen Cathedral Unisex Track Pants · Zoomed-in",
           "label": "On-person · Zoomed-in",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 15754,
+          "storeVariantIds": [
+            "5568432217",
+            "5568432238",
+            "5568432242",
+            "5568432250",
+            "5568432254",
+            "5568432257",
+            "5568432261"
+          ],
+          "alt": "Ashen Cathedral Unisex Track Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/480760535-supplier-1eeecb0c2983c6b57df1.jpg",
+          "sha256": "e14ef14b59935885579a5022434be2c1e3cd184de2f48551a791c8194b7ad6b3"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "ff478c28fd572f6b7c85871c6075fc64c2dd2326af9dd5f18fc9cad38a28dd39"
+      "allReportedViews": "ff478c28fd572f6b7c85871c6075fc64c2dd2326af9dd5f18fc9cad38a28dd39",
+      "supplierPreviews": "81cbae25dca1b26421496caff84240c8d1bcb14fbde0aff5f15dbec29a6e666f"
     },
     "480760541": {
       "name": "Ashen Cathedral Unisex Athletic Shorts",
