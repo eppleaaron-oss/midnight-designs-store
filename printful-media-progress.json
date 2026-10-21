@@ -38737,8 +38737,16 @@
       "productId": "480743400",
       "variant": 16261,
       "state": "submitting",
-      "created": "2026-10-21T15:17:59.156Z",
-      "attempts": 1
+      "created": "2026-10-21T15:29:12.463Z",
+      "attempts": 2,
+      "previousSubmission": {
+        "productId": "480743400",
+        "variant": 16261,
+        "state": "submitting",
+        "created": "2026-10-21T15:17:59.156Z",
+        "attempts": 1
+      },
+      "note": "Retry of an unconfirmed image-only task; supplier products are never created here."
     }
   },
   "errors": {
@@ -38773,7 +38781,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:29:07.898Z",
+  "updatedAt": "2026-10-21T15:29:12.463Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
