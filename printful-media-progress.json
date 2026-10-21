@@ -44724,10 +44724,63 @@
     "89ef6026f7305d51c836ef6ed618ef885a713808613374f118fafe54d9c8dfb4": {
       "productId": "480738540",
       "variant": 16261,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T16:07:07.396Z",
       "attempts": 1,
-      "key": "gt-988075759"
+      "key": "gt-988075759",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480738540-16261-all-89ef6026f7-0.jpg",
+          "sha256": "165d7deba559beb7413a6b3868361841d1c9e4b69e1f1c2fc8cf8d680740b549",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568273117",
+            "5568273132",
+            "5568273138",
+            "5568273154",
+            "5568273159",
+            "5568273164",
+            "5568273165",
+            "5568273176",
+            "5568273178",
+            "5568273189",
+            "5568273200"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738540-16261-all-89ef6026f7-1.jpg",
+          "sha256": "4722c08cc4c5665717bbcff71d9c2e3904692a1ff2419991284b1a16d0e11d45",
+          "view": "Left Front",
+          "style": "Women's Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16261,
+          "storeVariantIds": [
+            "5568273117",
+            "5568273132",
+            "5568273138",
+            "5568273154",
+            "5568273159",
+            "5568273164",
+            "5568273165",
+            "5568273176",
+            "5568273178",
+            "5568273189",
+            "5568273200"
+          ],
+          "alt": "Blood Moon Reaper Recycled Unisex Sports Jersey · Left Front",
+          "label": "On-person · Left Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -44763,7 +44816,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T16:07:42.419Z",
+  "updatedAt": "2026-10-21T16:07:56.323Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
