@@ -37743,13 +37743,14 @@
     "76bc0aa9b8b97f0c11e9de574ab7cf6ede2f882a7a93d10af648ae20cde67e2f": {
       "productId": "483697609",
       "variant": 9063,
-      "state": "submitting",
+      "state": "rate_limited",
       "created": "2026-10-21T15:03:21.952Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful rate limit: You've recently sent too many requests. Please try again after 13 seconds."
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T15:03:21.952Z",
+  "updatedAt": "2026-10-21T15:03:56.761Z",
   "catalogAudit": {
     "supplierProducts": 143,
     "eligible": 142,
