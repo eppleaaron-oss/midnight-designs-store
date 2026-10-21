@@ -37473,7 +37473,7 @@
     "c8a8f695cc200bdcde67c6a208f48aea360c1f8505ffc5f85615d078c441a340": {
       "productId": "480743435",
       "variant": 16400,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T15:13:29.327Z",
       "attempts": 2,
       "previousSubmission": {
@@ -37485,7 +37485,110 @@
         "error": "Printful rate limit: You've recently sent too many requests. Please try again after 14 seconds."
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "key": "gt-988050588"
+      "key": "gt-988050588",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743435-16400-all-c8a8f695cc-0.jpg",
+          "sha256": "9e442908837e5b5b70d41b4278d9610620a3af53a4da3bfc2c1a49afe1280b62",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-c8a8f695cc-1.jpg",
+          "sha256": "92e7195c77e9a356f949b0ccc365eac87052e318e49e613a73931dc4dafab1cb",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-c8a8f695cc-2.jpg",
+          "sha256": "1b760e2ac75d555ead1c03a91fda86553c0dab04a308d6ba5baac40e6987b4b5",
+          "view": "Right",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-c8a8f695cc-3.jpg",
+          "sha256": "afc8924709cdf091236c69068a54dbbb25bb65dc47e1c7a21678c460f7addb26",
+          "view": "Right Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Right Front",
+          "label": "On-person · Right Front",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "c6c340df6ea98dd67b4baa2cb8a9198e05067e00b77f696bbbe292e382ccd098": {
       "productId": "483697609",
@@ -37907,7 +38010,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:14:03.968Z",
+  "updatedAt": "2026-10-21T15:14:18.494Z",
   "catalogAudit": {
     "supplierProducts": 143,
     "eligible": 142,
