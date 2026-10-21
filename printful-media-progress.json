@@ -39174,10 +39174,76 @@
     "77ef5c3179ab77454ea90e07ca48db53c7e6c9e751d5b82d1492c07b7e385411": {
       "productId": "480743390",
       "variant": 9954,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T15:31:03.174Z",
       "attempts": 1,
-      "key": "gt-988059930"
+      "key": "gt-988059930",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743390-9954-all-77ef5c3179-0.jpg",
+          "sha256": "d25e0303c0fff9e8be597b54e2911628e93d39f7b123f682526a1b8bc9038eca",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5568318386",
+            "5568318397",
+            "5568318402",
+            "5568318407",
+            "5568318412",
+            "5568318416",
+            "5568318421"
+          ],
+          "alt": "Ashen Cathedral Men's Athletic T-Shirt · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743390-9954-all-77ef5c3179-1.jpg",
+          "sha256": "0e9ead1eefd1896b52621fb15ad1af00a87cde73eef9e2d65a67aa4f014d2ef7",
+          "view": "Right",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5568318386",
+            "5568318397",
+            "5568318402",
+            "5568318407",
+            "5568318412",
+            "5568318416",
+            "5568318421"
+          ],
+          "alt": "Ashen Cathedral Men's Athletic T-Shirt · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743390-9954-all-77ef5c3179-2.jpg",
+          "sha256": "78c6f40a0fbee498cdcf9a4b58a3a98de90f4f8ab99076dec3f11b068009b05b",
+          "view": "Right",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 9954,
+          "storeVariantIds": [
+            "5568318386",
+            "5568318397",
+            "5568318402",
+            "5568318407",
+            "5568318412",
+            "5568318416",
+            "5568318421"
+          ],
+          "alt": "Ashen Cathedral Men's Athletic T-Shirt · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {
@@ -39212,7 +39278,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:31:48.224Z",
+  "updatedAt": "2026-10-21T15:32:02.010Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
