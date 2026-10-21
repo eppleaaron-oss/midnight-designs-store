@@ -5231,6 +5231,148 @@
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074"
     },
+    "483741826": {
+      "id": "483741826",
+      "catalogProductId": 1481,
+      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts",
+      "category": "shorts",
+      "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+      "images": [
+        "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+        "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5587281074",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / 2XL",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 46350,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        },
+        {
+          "id": "5587281077",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / 3XL",
+          "price": 44.99,
+          "currency": "USD",
+          "catalogVariantId": 46351,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        },
+        {
+          "id": "5587281095",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / L",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46348,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        },
+        {
+          "id": "5587281097",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / M",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46347,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        },
+        {
+          "id": "5587281098",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / S",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46346,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        },
+        {
+          "id": "5587281128",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / XL",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46349,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        },
+        {
+          "id": "5587281149",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts / White / XS",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46345,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
+            "assets/product-photos/483741826-46347-all-54250cff3d-1.jpg"
+          ],
+          "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg"
+        }
+      ],
+      "url": "products/483741826.html",
+      "factoryExternalId": "midnight-factory-4664a63b-3b72-40ce-a328-f631ec7b5970",
+      "description": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shorts"
+      ],
+      "collections": [
+        "What Lies Within matching collection"
+      ],
+      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074"
+    },
     "483763072": {
       "id": "483763072",
       "catalogProductId": 513,
