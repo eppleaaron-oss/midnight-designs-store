@@ -42212,7 +42212,7 @@
     "a0cf42881efe7de2b6f635cd5d19474960f275e3477543ed1503a93eac761b60": {
       "productId": "480738509",
       "variant": 23667,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T16:24:22.058Z",
       "attempts": 2,
       "previousSubmission": {
@@ -42233,7 +42233,54 @@
         "error": "Printful rate limit did not clear."
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "key": "gt-988085403"
+      "key": "gt-988085403",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480738509-23667-all-a0cf42881e-0.jpg",
+          "sha256": "11e9b1937196f5bb527bb7a548f8dfe22f04cf6bd5e611de05491e09544ec7e5",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23667,
+          "storeVariantIds": [
+            "5568272762",
+            "5568272767",
+            "5568272780",
+            "5568272794",
+            "5568272810",
+            "5568272816",
+            "5568272822",
+            "5568272828"
+          ],
+          "alt": "Blood Moon Reaper Men's Sports Warmup Hoodie · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738509-23667-all-a0cf42881e-1.jpg",
+          "sha256": "bdd0c7831060c6be4a1500f5ac1b3f1a9d82309e457822e267c29a985b5aa4de",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": null,
+          "catalogVariantId": 23667,
+          "storeVariantIds": [
+            "5568272762",
+            "5568272767",
+            "5568272780",
+            "5568272794",
+            "5568272810",
+            "5568272816",
+            "5568272822",
+            "5568272828"
+          ],
+          "alt": "Blood Moon Reaper Men's Sports Warmup Hoodie · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "f00dbdcfdddcfa457c958694d53489fc6c74987cca360befb1e959ab2648887c": {
       "productId": "480743435",
@@ -46865,7 +46912,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T16:24:56.369Z",
+  "updatedAt": "2026-10-21T16:25:09.542Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
