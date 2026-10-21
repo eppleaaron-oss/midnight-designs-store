@@ -3332,6 +3332,88 @@
         "Even in Darkness / Still Growing matching collection"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6"
+    },
+    "483697609": {
+      "id": "483697609",
+      "catalogProductId": 279,
+      "name": "Untitled cotton hoodie design 7453 All-Over Print Backpack",
+      "category": "accessories",
+      "image": "assets/product-photos/483697609-9063-all-c6c340df6e-0.jpg",
+      "images": [
+        "assets/product-photos/483697609-9063-all-c6c340df6e-0.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-1.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-2.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-3.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-4.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-5.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-6.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-7.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-8.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-9.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-10.jpg",
+        "assets/product-photos/483697609-9063-all-c6c340df6e-11.jpg",
+        "assets/product-photos/483697609-9063-all-a2877b20f4-0.jpg",
+        "assets/product-photos/483697609-9063-all-a2877b20f4-1.jpg",
+        "assets/product-photos/483697609-9063-all-a2877b20f4-2.jpg",
+        "assets/product-photos/483697609-9063-all-a2877b20f4-3.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-0.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-1.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-2.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-3.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-4.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-5.jpg",
+        "assets/product-photos/483697609-9063-all-76bc0aa9b8-6.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5587001183",
+          "name": "Untitled cotton hoodie design 7453 All-Over Print Backpack / White / One size",
+          "price": 60.99,
+          "currency": "USD",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483697609-9063-all-c6c340df6e-0.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-1.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-2.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-3.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-4.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-5.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-6.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-7.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-8.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-9.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-10.jpg",
+            "assets/product-photos/483697609-9063-all-c6c340df6e-11.jpg",
+            "assets/product-photos/483697609-9063-all-a2877b20f4-0.jpg",
+            "assets/product-photos/483697609-9063-all-a2877b20f4-1.jpg",
+            "assets/product-photos/483697609-9063-all-a2877b20f4-2.jpg",
+            "assets/product-photos/483697609-9063-all-a2877b20f4-3.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-0.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-1.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-2.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-3.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-4.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-5.jpg",
+            "assets/product-photos/483697609-9063-all-76bc0aa9b8-6.jpg"
+          ],
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-0.jpg"
+        }
+      ],
+      "url": "products/483697609.html",
+      "factoryExternalId": "midnight-factory-2b703312-46dc-4651-b634-42e4ee7156b8",
+      "description": "Untitled cotton hoodie design 7453 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "accessories"
+      ],
+      "collections": [
+        "Even in Darkness / Still Growing matching collection"
+      ],
+      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6"
     }
   }
 }
