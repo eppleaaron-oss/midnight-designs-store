@@ -37024,11 +37024,11 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T14:28:37.141Z",
+  "updatedAt": "2026-10-21T14:28:50.086Z",
   "catalogAudit": {
     "supplierProducts": 142,
-    "eligible": 50,
-    "importedPreviews": 50,
+    "eligible": 60,
+    "importedPreviews": 62,
     "held": [],
     "checkedAt": "2026-10-21T14:27:38.018Z"
   }
