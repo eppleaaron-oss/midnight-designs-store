@@ -50346,14 +50346,221 @@
     "52feb5a6d6bd000127a3edf33e0f6d5d272c1a67a1eca91bf8ad1408901554c1": {
       "productId": "483781924",
       "variant": 16361,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T22:04:24.195Z",
       "attempts": 1,
-      "key": "gt-988279778"
+      "key": "gt-988279778",
+      "photos": 12,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-0.jpg",
+          "sha256": "616a919e154801628928f4cff225f363343f94d55e3b9b7b31328ba372175b69",
+          "view": "outside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · outside_front",
+          "label": "outside_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-1.jpg",
+          "sha256": "894198c200e61bafac9150cdfa3c210f9e14e5d61066edb456025f7050efc5f6",
+          "view": "Front Outside",
+          "style": "Product specs",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-2.jpg",
+          "sha256": "105e30ae33e9e06b12e661a2f01c481868759650617174a482e0a6f31fc4b7ae",
+          "view": "Front Outside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "On-person · Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-3.jpg",
+          "sha256": "edea798f822aa9288c2c77d09c4073d2d8929f9141ebbb274a5a7939a8261353",
+          "view": "Front 2 Outside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front 2 Outside",
+          "label": "On-person · Front 2 Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-4.jpg",
+          "sha256": "b06036763900179d588388a0e7b4e5d0ce6a312d4b40ab75857cfeb58e04bcc8",
+          "view": "Front Outside",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "On-person · Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-5.jpg",
+          "sha256": "5d67e07c2e7d987b38fd616944d82711476be5b6934dcc009222456364cec24c",
+          "view": "Front Outside",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Outside",
+          "label": "On-person · Front Outside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-6.jpg",
+          "sha256": "1b3332a7a102ea86881e209c233224eca80172859014c45814f3c71b10b9bef7",
+          "view": "inside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · inside_front",
+          "label": "inside_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-7.jpg",
+          "sha256": "bf6ac6d2502872f495f0110eaa16b5447cc70f95f091cfb7d3e407c2bfcd5a85",
+          "view": "Front Inside",
+          "style": "Product specs",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "Front Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-8.jpg",
+          "sha256": "4cbe8c97cd9f9cbc4bbb9877ec61bce0650f938025f81b58974d22c610ba3c46",
+          "view": "Front Inside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "On-person · Front Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-9.jpg",
+          "sha256": "9def2b19e204938daa5a1d379aa835c30014c6f6831d993736d6856874298beb",
+          "view": "Front 2 Inside",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front 2 Inside",
+          "label": "On-person · Front 2 Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-10.jpg",
+          "sha256": "7a06e4c5900f287ecd3b3d9cdd6422bbbfee7a14396b6350d48d8dd3c0d6a768",
+          "view": "Front Inside",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "On-person · Front Inside",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483781924-16361-all-52feb5a6d6-11.jpg",
+          "sha256": "2997645bd254bc536a2615b8768dbdd72be7fdecb8179793ab7b49ff5491cb4b",
+          "view": "Front Inside",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5587446927",
+            "5587446950",
+            "5587446957"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat · Front Inside",
+          "label": "On-person · Front Inside",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T22:04:58.536Z",
+  "updatedAt": "2026-10-21T22:05:15.678Z",
   "catalogAudit": {
     "supplierProducts": 154,
     "eligible": 148,
