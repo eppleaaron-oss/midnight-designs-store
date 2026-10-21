@@ -39927,7 +39927,7 @@
     "ea35f69fa7afaa829c0758015d96e98acd47f178353c86d7217f414f4a83b7a8": {
       "productId": "480738737",
       "variant": 15751,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-21T15:53:58.932Z",
       "attempts": 2,
       "previousSubmission": {
@@ -39948,7 +39948,73 @@
         "error": "Printful rate limit did not clear."
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "key": "gt-988068976"
+      "key": "gt-988068976",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480738737-15751-all-ea35f69fa7-0.jpg",
+          "sha256": "47177711c6fe0fe53eeede3781660689dcd89c53b5f7dcf1d4d6c5066f7999f1",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 15751,
+          "storeVariantIds": [
+            "5568275425",
+            "5568275426",
+            "5568275437",
+            "5568275438",
+            "5568275442",
+            "5568275468",
+            "5568275472"
+          ],
+          "alt": "Blood Moon Reaper Unisex Track Pants · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738737-15751-all-ea35f69fa7-1.jpg",
+          "sha256": "fae7e608d684041071027bf3080ad8403ea0809afa2144f1ea4ed70f4836280f",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 15751,
+          "storeVariantIds": [
+            "5568275425",
+            "5568275426",
+            "5568275437",
+            "5568275438",
+            "5568275442",
+            "5568275468",
+            "5568275472"
+          ],
+          "alt": "Blood Moon Reaper Unisex Track Pants · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480738737-15751-all-ea35f69fa7-2.jpg",
+          "sha256": "c8dffadb6d7cb5a7ce7be0c5beed3f2a0b25d5c4749314c7494edc870ae73ffc",
+          "view": "Zoomed-in",
+          "style": "Men's Lifestyle 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 15751,
+          "storeVariantIds": [
+            "5568275425",
+            "5568275426",
+            "5568275437",
+            "5568275438",
+            "5568275442",
+            "5568275468",
+            "5568275472"
+          ],
+          "alt": "Blood Moon Reaper Unisex Track Pants · Zoomed-in",
+          "label": "On-person · Zoomed-in",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "21bb60c0ecd9d8743d82728bfb1b99bc3d79917de1cef49bceeadad54dbc98e9": {
       "productId": "480738724",
@@ -42991,7 +43057,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T15:55:35.142Z",
+  "updatedAt": "2026-10-21T15:55:48.737Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
