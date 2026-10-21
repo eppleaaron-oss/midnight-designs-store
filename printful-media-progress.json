@@ -37477,10 +37477,17 @@
       "created": "2026-10-21T14:39:58.011Z",
       "attempts": 1,
       "error": "Printful rate limit: You've recently sent too many requests. Please try again after 14 seconds."
+    },
+    "c6c340df6ea98dd67b4baa2cb8a9198e05067e00b77f696bbbe292e382ccd098": {
+      "productId": "483697609",
+      "variant": 9063,
+      "state": "submitting",
+      "created": "2026-10-21T15:01:45.104Z",
+      "attempts": 1
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T15:01:42.485Z",
+  "updatedAt": "2026-10-21T15:01:45.104Z",
   "catalogAudit": {
     "supplierProducts": 143,
     "eligible": 142,
