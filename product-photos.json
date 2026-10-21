@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T17:42:09.292Z",
+  "updatedAt": "2026-10-21T17:45:26.007Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -50542,6 +50542,115 @@
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "37f44386623395697e097b7019c46996a5dfceb17bb0394f8bfb620472cddbc5",
       "supplierPreviews": "92f17bcbdf28fc8f76f74a3336cb65b2d763b4b8d014a18497ad5a20d22d047c"
+    },
+    "483725842": {
+      "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt",
+      "originalImage": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+      "catalogProductId": 1482,
+      "photos": [
+        {
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+          "sha256": "e979b6d3b9964319abe6ff74bf1067b0f80b2d543e2fc9145fc357e0d37492a4",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+          "sha256": "2fd50666fd6bcb5595961ab01e57d291bc906a66722801282ae47e963f2aeb75",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+          "sha256": "3a3e14c46258bbc83c2b57f6a6d2a844b5f8d14a5ab54de8b6a09cfa3e306b0e",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg",
+          "sha256": "58be2e9c8f586ee3112c20e7222821e38e918b02fb38a19ba16d9fa4e95249aa",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "99647ecd8ff686568a257665ea51cdd59ef24383ae7c4c1c92abf44bd24c94c0"
     },
     "483729128": {
       "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket",

@@ -1,7 +1,241 @@
 {
-  "updatedAt": "2026-10-21T17:42:09.301Z",
-  "lastSyncedAt": "2026-10-21T17:42:09.301Z",
+  "updatedAt": "2026-10-21T17:45:26.015Z",
+  "lastSyncedAt": "2026-10-21T17:45:26.015Z",
   "products": [
+    {
+      "id": "483725842",
+      "catalogProductId": 1482,
+      "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt",
+      "category": "shirts",
+      "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+      "images": [
+        "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+        "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+        "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+        "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5587145339",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / 2XL",
+          "price": 43.99,
+          "currency": "USD",
+          "catalogVariantId": 46412,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145364",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / 2XS",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46407,
+          "size": "2XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145365",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / 3XL",
+          "price": 47.99,
+          "currency": "USD",
+          "catalogVariantId": 46413,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145367",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / 4XL",
+          "price": 50.99,
+          "currency": "USD",
+          "catalogVariantId": 46414,
+          "size": "4XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145368",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / 5XL",
+          "price": 53.99,
+          "currency": "USD",
+          "catalogVariantId": 46415,
+          "size": "5XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145369",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / 6XL",
+          "price": 56.99,
+          "currency": "USD",
+          "catalogVariantId": 46416,
+          "size": "6XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145370",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / L",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46410,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145372",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / M",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46409,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145373",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / S",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46408,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145379",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / XL",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46411,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        },
+        {
+          "id": "5587145380",
+          "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt / White / XS",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46406,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
+            "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg"
+          ],
+          "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg"
+        }
+      ],
+      "url": "products/483725842.html",
+      "factoryExternalId": "midnight-factory-e3604d92-06a8-447e-a62d-9aadcc94b755",
+      "description": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shirts"
+      ],
+      "collections": [
+        "What Lies Within matching collection"
+      ],
+      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074"
+    },
     {
       "id": "483729128",
       "catalogProductId": 390,
