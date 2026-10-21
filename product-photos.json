@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T21:56:11.176Z",
+  "updatedAt": "2026-10-21T22:01:44.074Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -53680,6 +53680,115 @@
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "8bb01fd30caf1dadfaf3ddf5bb9e2ca332e4525f64d965dcc6ed8a0d1157e983",
       "supplierPreviews": "e05a7dd066e4b54d91abb39ebfb8b90eaba5d68f4a8665151e88d35d9b843fc3"
+    },
+    "483789497": {
+      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt",
+      "originalImage": "assets/product-photos/483789497-46409-all-77b309b4cd-0.jpg",
+      "catalogProductId": 1482,
+      "photos": [
+        {
+          "image": "assets/product-photos/483789497-46409-all-77b309b4cd-0.jpg",
+          "sha256": "a45b514dcc40d6847b9bef658a3cc9442260e53ff79789c1d02596599560b63c",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587499101",
+            "5587499107",
+            "5587499108",
+            "5587499110",
+            "5587499112",
+            "5587499115",
+            "5587499119",
+            "5587499121",
+            "5587499124",
+            "5587499126",
+            "5587499129"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483789497-46409-all-77b309b4cd-1.jpg",
+          "sha256": "a29086cb0da8709186bd8acc1e8ad72ff360eb4f732c2ce524481e0ded55d0bb",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587499101",
+            "5587499107",
+            "5587499108",
+            "5587499110",
+            "5587499112",
+            "5587499115",
+            "5587499119",
+            "5587499121",
+            "5587499124",
+            "5587499126",
+            "5587499129"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483789497-46409-all-77b309b4cd-2.jpg",
+          "sha256": "3177d0b9ffd6c8c21ccf90a7fdc1e08cfe858fee879a605b68b88fc9c7eb6c56",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587499101",
+            "5587499107",
+            "5587499108",
+            "5587499110",
+            "5587499112",
+            "5587499115",
+            "5587499119",
+            "5587499121",
+            "5587499124",
+            "5587499126",
+            "5587499129"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483789497-46409-all-77b309b4cd-3.jpg",
+          "sha256": "4c4506328ac3054e8873f6d18425e30c15c16fe9a5e1c1a38139cee196a24535",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587499101",
+            "5587499107",
+            "5587499108",
+            "5587499110",
+            "5587499112",
+            "5587499115",
+            "5587499119",
+            "5587499121",
+            "5587499124",
+            "5587499126",
+            "5587499129"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "f8b1c074b1d06ec50b31fe0ce7bf27fc811bff97f158c52d7fce2a560d5f060b"
     }
   }
 }
