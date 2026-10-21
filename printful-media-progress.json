@@ -37024,6 +37024,7 @@
     }
   },
   "errors": {
+    "476651184": "Supplier print files are not permanently accepted.",
     "476663020": "Supplier print files are not permanently accepted.",
     "477172651": "Supplier print files are not permanently accepted.",
     "480738509": "Image generation retry limit reached; review the preserved image task record.",
@@ -37073,5 +37074,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T12:17:43.042Z"
+  "updatedAt": "2026-10-21T12:17:44.949Z"
 }
