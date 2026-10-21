@@ -37672,13 +37672,14 @@
     "a2877b20f4cf66721dd48c43bc4505ad2bd6a60305a2de1f6054b76bc5a9a313": {
       "productId": "483697609",
       "variant": 9063,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T15:02:34.728Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988045303"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T15:02:34.728Z",
+  "updatedAt": "2026-10-21T15:03:09.896Z",
   "catalogAudit": {
     "supplierProducts": 143,
     "eligible": 142,
