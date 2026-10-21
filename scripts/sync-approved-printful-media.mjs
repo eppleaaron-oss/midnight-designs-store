@@ -49,16 +49,19 @@ export function supplierPreviews(product,detail,factory=false){
  }}return [...out.values()];
 }
 export function rateLimitedSubmission(record){return record?.state==='rate_limited'||record?.state==='uncertain'&&record.error==='Printful rate limit did not clear.';}
+export function mediaSupplierApi({headers,fetchImpl=fetch,sleep=delay,clock=Date.now}){
+ let last=0;
+ return async function api(path,payload){for(let attempt=0;attempt<5;attempt++){
+  await sleep(Math.max(0,1200-(clock()-last)));last=clock();const r=await fetchImpl('https://api.printful.com/'+path,{method:payload?'POST':'GET',headers:{...headers,'Content-Type':'application/json'},body:payload?JSON.stringify(payload):undefined,signal:AbortSignal.timeout(90000)});const d=await r.json();if(r.ok)return d.result;
+  if(r.status===429){const seconds=Math.max(60,Number(r.headers.get('retry-after')||0));if(!payload&&attempt<4){await sleep((seconds+2)*1000);continue;}throw Object.assign(Error('Printful rate limit: '+String(d.error?.message||d.result||'Wait before retrying').slice(0,300)),{status:429,retryAfter:seconds});}
+  if(!payload&&r.status>=500&&attempt<4){await sleep(32000);continue;}throw Object.assign(Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.result||'Request failed').slice(0,300)),{status:r.status});
+ }throw Error('Printful read retry limit reached.');};
+}
 export async function run(){
  const token=process.env.PRINTFUL_TOKEN,repo=process.env.GITHUB_REPOSITORY;if(!token||!repo||process.env.GITHUB_REF!=='refs/heads/main')throw Error('Run the protected main-branch media workflow.');
  const sharp=createRequire(new URL('../request-service/package.json',import.meta.url))('sharp'),headers={Authorization:'Bearer '+token,...(process.env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':process.env.PRINTFUL_STORE_ID}:{})};
  const read=async(path,fallback)=>{try{return JSON.parse(await fs.readFile(path,'utf8'));}catch(e){if(e.code==='ENOENT')return fallback;throw e;}},write=(path,value)=>fs.writeFile(path,JSON.stringify(value,null,2)+'\n');
- let last=0;
- async function api(path,payload){for(let attempt=0;attempt<5;attempt++){
-  await delay(Math.max(0,350-(Date.now()-last)));last=Date.now();const r=await fetch('https://api.printful.com/'+path,{method:payload?'POST':'GET',headers:{...headers,'Content-Type':'application/json'},body:payload?JSON.stringify(payload):undefined,signal:AbortSignal.timeout(90000)});const d=await r.json();if(r.ok)return d.result;
-  if(r.status===429)throw Object.assign(Error('Printful rate limit: '+String(d.error?.message||d.result||'Wait before retrying').slice(0,300)),{status:429,retryAfter:Math.max(60,Number(r.headers.get('retry-after')||0))});
-  if(!payload&&r.status>=500){await delay(32000);continue;}throw Object.assign(Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.result||'Request failed').slice(0,300)),{status:r.status});
- }throw Error('Printful rate limit did not clear.');}
+ const api=mediaSupplierApi({headers});
  const backend=await fetch('https://midnight-designs-backend.onrender.com/api/owner/ai-factory/basic',{signal:AbortSignal.timeout(60000)});if(!backend.ok)throw Error('Factory receipt audit unavailable.');const approved=approvedFactory(await backend.json());const reviews=await read('ai-made-review.json',{products:{}});for(const [id,r] of Object.entries(reviews.products||{}))if(r.decision==='approved')approved.set(id,{...r,external:r.external,product:r.product,role:r.copy?.category||r.role,collection:r.collection,outfit:r.outfit});
  let catalog=await read('products.json',{products:[]}),photos=await read('product-photos.json',{products:{}}),manifest=await read('factory-listings.json',{products:{}}),ledger=await read('printful-media-progress.json',{engine:ENGINE,jobs:{},errors:{}}),specs=await read('product-information.json',{products:{}});ledger.errors={};
  const paths=['printful-media-progress.json','product-photos.json','factory-listings.json','products.json','product-information.json','assets/product-photos','products','sitemap.xml','shop.html'];

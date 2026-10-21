@@ -35890,19 +35890,381 @@
     "133eb20d1a3ba542d3aeb1865a8944234d3abe3209651075056be921c0f58d56": {
       "productId": "480743435",
       "variant": 16400,
-      "state": "uncertain",
-      "created": "2026-10-20T22:15:27.373Z",
+      "state": "downloaded",
+      "created": "2026-10-21T14:38:13.504Z",
       "attempts": 2,
       "previousSubmission": {
         "productId": "480743435",
         "variant": 16400,
         "state": "uncertain",
-        "created": "2026-10-20T21:12:37.695Z",
-        "attempts": 1,
+        "created": "2026-10-20T22:15:27.373Z",
+        "attempts": 0,
+        "previousSubmission": {
+          "productId": "480743435",
+          "variant": 16400,
+          "state": "uncertain",
+          "created": "2026-10-20T21:12:37.695Z",
+          "attempts": 1,
+          "error": "Printful rate limit did not clear."
+        },
+        "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
         "error": "Printful rate limit did not clear."
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
-      "error": "Printful rate limit did not clear."
+      "key": "gt-988032704",
+      "photos": 14,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-0.jpg",
+          "sha256": "e5d3810068540e26b332fe45fe4f2e9c5ca2e925814fc77a77368f997e6980b6",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-1.jpg",
+          "sha256": "639ed7ed1a1055f21e468ad9a9608aeea3c5488540d9e46391586d81eefa2134",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-2.jpg",
+          "sha256": "59f641541f6c0b2fe9d7344f811e31eb05abebd7fbdc45fb5b21fba5b873fac2",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-3.jpg",
+          "sha256": "7ff8b3a45500e0a8ab0470ba0bd1d69aa48d010d625b97253a3a8ec6d09ce4d9",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-4.jpg",
+          "sha256": "7b766861156b2e0e02fc8450e27a1b93ac9d57dde814914ce5c35bc2616fca81",
+          "view": "Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-5.jpg",
+          "sha256": "7777fe671587ca91658c3e9f9db7c5dddaf477bd1dd16c77e7a813d4f813a95c",
+          "view": "Front",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-6.jpg",
+          "sha256": "e33043ac8bbb735c1bf8505e954147e439ca1004e6d7b1f908ef2fb257841975",
+          "view": "Front 2",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front 2",
+          "label": "On-person · Front 2",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-7.jpg",
+          "sha256": "a8d02a5682ba544a2dd1324ae459d21c2053e6116f2d9406ceaae1da7d3bcc96",
+          "view": "Front",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-8.jpg",
+          "sha256": "a8f150bd11d7ca99449ff4d6957f502ef3836be8cd4823c846bfe2bf259e3b2e",
+          "view": "Back",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-9.jpg",
+          "sha256": "01c501ebbce175f0264eb21c02b511439a250bf65ff7b46eb08f4f3e6400a1af",
+          "view": "Front",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-10.jpg",
+          "sha256": "62fe9153dda641d83dc0ca6a7ae53a924c70dd9c68261e1cf22f41835efa515d",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · back",
+          "label": "back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-11.jpg",
+          "sha256": "17eb0d120f1432f9cd58483c571ade1ee6a7d202544ccefedf6c30780bf5bdc2",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-12.jpg",
+          "sha256": "a17fb5be1bb4d5cd663e08cf00bdf30144a21b50f33e2b10e3722c79eb51026f",
+          "view": "Back",
+          "style": "Women's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-133eb20d1a-13.jpg",
+          "sha256": "23d32c9d4e6440bf5bcf15f5f1fada6b937501cae93927e047da57d70028a87a",
+          "view": "Back",
+          "style": "Men's",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        }
+      ]
     },
     "d01e98be1161d46e98200797d79e0b7056cbf0ba3919fd96ba5cbefb13ff9b5a": {
       "productId": "480743420",
@@ -37021,36 +37383,382 @@
       },
       "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
       "error": "Printful rate limit did not clear."
+    },
+    "f00dbdcfdddcfa457c958694d53489fc6c74987cca360befb1e959ab2648887c": {
+      "productId": "480743435",
+      "variant": 16400,
+      "state": "downloaded",
+      "created": "2026-10-21T14:39:11.710Z",
+      "attempts": 1,
+      "key": "gt-988033055",
+      "photos": 3,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/480743435-16400-all-f00dbdcfdd-0.jpg",
+          "sha256": "ccb9a51ecca0ebcec448c503997d78fd63396114993afd27cbc223a5d2d32ad5",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-f00dbdcfdd-1.jpg",
+          "sha256": "aff48ff3cb327b52f5f766e3c958be07255ba962d2a40fbaa09e18f9752b1b8e",
+          "view": "Left",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/480743435-16400-all-f00dbdcfdd-2.jpg",
+          "sha256": "5971610bc7985b57a683819e36952207b34ea59d7c873c42b3949c5cb0ca3a55",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16400,
+          "storeVariantIds": [
+            "5568318654",
+            "5568318656",
+            "5568318657",
+            "5568318658",
+            "5568318667",
+            "5568318685",
+            "5568318702",
+            "5568318703",
+            "5568318706",
+            "5568318707",
+            "5568318708"
+          ],
+          "alt": "Ashen Cathedral Unisex Button Shirt · sleeve_left",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        }
+      ]
+    },
+    "c8a8f695cc200bdcde67c6a208f48aea360c1f8505ffc5f85615d078c441a340": {
+      "productId": "480743435",
+      "variant": 16400,
+      "state": "rate_limited",
+      "created": "2026-10-21T14:39:58.011Z",
+      "attempts": 1,
+      "error": "Printful rate limit: You've recently sent too many requests. Please try again after 14 seconds."
+    },
+    "c6c340df6ea98dd67b4baa2cb8a9198e05067e00b77f696bbbe292e382ccd098": {
+      "productId": "483697609",
+      "variant": 9063,
+      "state": "downloaded",
+      "created": "2026-10-21T15:01:45.104Z",
+      "attempts": 1,
+      "key": "gt-988044836",
+      "photos": 12,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-0.jpg",
+          "sha256": "3cfeb472e5528953fdd0e4e5f855ab506af7d4146dc26d4deb422d7eb9de733d",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-1.jpg",
+          "sha256": "557d581b0e206dbee9b654c49b40e54d6cb4e89a0b00004a009167e2faa992b5",
+          "view": "Front",
+          "style": "Men's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-2.jpg",
+          "sha256": "7d19e5f417633c5a26003cc2f45b8b8a006031485ada09b9f4053f14dfe8f12c",
+          "view": "Front",
+          "style": "Flat Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-3.jpg",
+          "sha256": "6d01b3bff475943a250827fb73b419d295e7a105160737a1aad2858340f9c10e",
+          "view": "Front",
+          "style": "Boy's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-4.jpg",
+          "sha256": "cf36478547475c8f1c80dfb3c9625e794c740ebbc255481c35de70c135c7217e",
+          "view": "Front",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-5.jpg",
+          "sha256": "acc7add3614dc2df013e14367a1a1b0b081b5a8fa4457fce4bc0b4e709066c53",
+          "view": "Front",
+          "style": "Girl's 2",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-6.jpg",
+          "sha256": "e592eeb3d7562785c07652a779af0fb62961c5f072dba324d0598bf7b89473aa",
+          "view": "Front",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-7.jpg",
+          "sha256": "e6c23ac21ad7107a15476490bd8afb0cd35df4019a4ddd8ab84a9782c912006e",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-8.jpg",
+          "sha256": "f6b5201231fcf25a793f903baac5c4aa194b41e338a9e6724360987fe67ebe6d",
+          "view": "Back",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-9.jpg",
+          "sha256": "c618cc2699df79ad065e5ab4feff10d98d38a3d6f3a2c692886c96f2762694b0",
+          "view": "Front",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-10.jpg",
+          "sha256": "62c11b86173ac57ea787fe1d2cae657316aa68b530e3c8aece3181af0bcee789",
+          "view": "Back",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-c6c340df6e-11.jpg",
+          "sha256": "5d4bdcc257e02716acf2ef9edf1551bdc9d939ccc90569b8ba56a865b0afbffd",
+          "view": "bottom",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · bottom",
+          "label": "bottom",
+          "kind": "production-mockup"
+        }
+      ]
+    },
+    "a2877b20f4cf66721dd48c43bc4505ad2bd6a60305a2de1f6054b76bc5a9a313": {
+      "productId": "483697609",
+      "variant": 9063,
+      "state": "downloaded",
+      "created": "2026-10-21T15:02:34.728Z",
+      "attempts": 1,
+      "key": "gt-988045303",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483697609-9063-all-a2877b20f4-0.jpg",
+          "sha256": "d86f56e0594e6d4d6721af1b23c0f92c55dc687b53ae15b0044187156cf4253a",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-a2877b20f4-1.jpg",
+          "sha256": "44e17749b4881e92bff5139ad6738e2761148d4fc9fa4c1daca88a24c723e445",
+          "view": "Left",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-a2877b20f4-2.jpg",
+          "sha256": "032f40fc59e2f26df6cea0655993ad4104ad67dedddc7102b941cfc8002ac3b8",
+          "view": "Left",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483697609-9063-all-a2877b20f4-3.jpg",
+          "sha256": "e07ee38c0ad2ae2fd9465fe41011e3eb4ebdd6edb719e84f67df7454e124568a",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5587001183"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        }
+      ]
+    },
+    "76bc0aa9b8b97f0c11e9de574ab7cf6ede2f882a7a93d10af648ae20cde67e2f": {
+      "productId": "483697609",
+      "variant": 9063,
+      "state": "rate_limited",
+      "created": "2026-10-21T15:03:21.952Z",
+      "attempts": 1,
+      "error": "Printful rate limit: You've recently sent too many requests. Please try again after 13 seconds."
     }
   },
   "errors": {
-    "482554858": "Supplier print files are not permanently accepted.",
-    "482559827": "Supplier print files are not permanently accepted.",
-    "482576149": "Supplier print files are not permanently accepted.",
-    "482585676": "Supplier print files are not permanently accepted.",
-    "482620118": "Supplier print files are not permanently accepted.",
-    "482644684": "Supplier print files are not permanently accepted.",
-    "482647761": "Supplier print files are not permanently accepted.",
-    "482668440": "Supplier print files are not permanently accepted.",
-    "482671357": "Supplier print files are not permanently accepted.",
-    "482675011": "Supplier print files are not permanently accepted.",
-    "482676580": "Supplier print files are not permanently accepted.",
-    "482678006": "Supplier print files are not permanently accepted.",
-    "482682117": "Supplier print files are not permanently accepted.",
-    "482685353": "Supplier print files are not permanently accepted.",
-    "482775311": "Supplier print files are not permanently accepted.",
-    "482779702": "Supplier print files are not permanently accepted.",
-    "482783901": "Supplier print files are not permanently accepted.",
-    "482790495": "Supplier print files are not permanently accepted.",
-    "482794900": "Supplier print files are not permanently accepted.",
-    "482797453": "Supplier print files are not permanently accepted."
+    "483697609": "Printful rate limit: You've recently sent too many requests. Please try again after 13 seconds."
   },
-  "updatedAt": "2026-10-21T14:37:25.159Z",
+  "updatedAt": "2026-10-21T15:04:01.467Z",
   "catalogAudit": {
-    "supplierProducts": 142,
+    "supplierProducts": 143,
     "eligible": 142,
-    "importedPreviews": 152,
+    "importedPreviews": 0,
     "held": [],
-    "checkedAt": "2026-10-21T14:27:38.018Z"
-  }
+    "checkedAt": "2026-10-21T14:58:33.456Z"
+  },
+  "retryAt": "2026-10-21T15:04:59.106Z"
 }
