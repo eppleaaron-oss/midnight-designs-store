@@ -37743,14 +37743,22 @@
     "76bc0aa9b8b97f0c11e9de574ab7cf6ede2f882a7a93d10af648ae20cde67e2f": {
       "productId": "483697609",
       "variant": 9063,
-      "state": "rate_limited",
-      "created": "2026-10-21T15:03:21.952Z",
-      "attempts": 1,
-      "error": "Printful rate limit: You've recently sent too many requests. Please try again after 13 seconds."
+      "state": "submitting",
+      "created": "2026-10-21T15:09:53.478Z",
+      "attempts": 2,
+      "previousSubmission": {
+        "productId": "483697609",
+        "variant": 9063,
+        "state": "rate_limited",
+        "created": "2026-10-21T15:03:21.952Z",
+        "attempts": 0,
+        "error": "Printful rate limit: You've recently sent too many requests. Please try again after 13 seconds."
+      },
+      "note": "Retry of an unconfirmed image-only task; supplier products are never created here."
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T15:09:50.977Z",
+  "updatedAt": "2026-10-21T15:09:53.478Z",
   "catalogAudit": {
     "supplierProducts": 143,
     "eligible": 142,
