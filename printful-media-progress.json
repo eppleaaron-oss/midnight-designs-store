@@ -46881,9 +46881,10 @@
     "9882cc9e50341848b49c4ad97aa14c76fa4707bdf3a86e641f14a125f29382f7": {
       "productId": "480738509",
       "variant": 23667,
-      "state": "submitting",
+      "state": "empty",
       "created": "2026-10-21T16:25:11.753Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful HTTP 400: No variants to generate. Option filters may exclude all variants or variants are not available. Alternatively, make sure that variants belong to given product id."
     }
   },
   "errors": {
@@ -46919,7 +46920,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T16:25:11.753Z",
+  "updatedAt": "2026-10-21T16:25:45.856Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
