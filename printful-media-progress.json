@@ -47818,13 +47818,14 @@
     "f7d4c4735ac3b5383457a2aaf0ae62ac068401e87d095a02e65bfc9f85380ee7": {
       "productId": "483716755",
       "variant": 16361,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T17:48:37.376Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988129988"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T17:48:37.376Z",
+  "updatedAt": "2026-10-21T17:49:12.741Z",
   "catalogAudit": {
     "supplierProducts": 148,
     "eligible": 143,
