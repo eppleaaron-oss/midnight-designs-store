@@ -37480,6 +37480,7 @@
     }
   },
   "errors": {
+    "480743435": "Printful rate limit: You've recently sent too many requests. Please try again after 14 seconds.",
     "480743462": "Permanently accepted print file unavailable: right_leg",
     "480744058": "Permanently accepted print file unavailable: right_leg",
     "480760529": "Permanently accepted print file unavailable: right_leg",
@@ -37511,12 +37512,13 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T14:40:32.065Z",
+  "updatedAt": "2026-10-21T14:40:34.617Z",
   "catalogAudit": {
     "supplierProducts": 142,
     "eligible": 142,
     "importedPreviews": 152,
     "held": [],
     "checkedAt": "2026-10-21T14:27:38.018Z"
-  }
+  },
+  "retryAt": "2026-10-21T14:41:34.617Z"
 }
