@@ -37024,6 +37024,7 @@
     }
   },
   "errors": {
+    "480738744": "Image generation retry limit reached; review the preserved image task record.",
     "480738747": "Image generation retry limit reached; review the preserved image task record.",
     "480743384": "Image generation retry limit reached; review the preserved image task record.",
     "480743390": "Image generation retry limit reached; review the preserved image task record.",
@@ -37060,5 +37061,5 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T12:17:14.635Z"
+  "updatedAt": "2026-10-21T12:17:16.868Z"
 }
