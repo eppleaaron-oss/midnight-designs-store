@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-21T14:30:11.129Z",
-  "lastSyncedAt": "2026-10-21T14:30:11.129Z",
+  "updatedAt": "2026-10-21T14:30:16.488Z",
+  "lastSyncedAt": "2026-10-21T14:30:16.488Z",
   "products": [
     {
       "id": "483352723",
@@ -16641,6 +16641,7 @@
       "images": [
         "assets/product-photos/476368653-16032-0.jpg",
         "assets/product-photos/476368653-16032-1.jpg",
+        "assets/product-photos/476368653-supplier-99be94ed289de4333c70.jpg",
         "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png"
       ],
       "variants": [
@@ -16707,6 +16708,7 @@
         "assets/product-photos/476363019-33966-5.jpg",
         "assets/product-photos/476363019-33966-6.jpg",
         "assets/product-photos/476363019-33966-7.jpg",
+        "assets/product-photos/476363019-supplier-f6b911378f11a8f18f55.jpg",
         "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png"
       ],
       "variants": [

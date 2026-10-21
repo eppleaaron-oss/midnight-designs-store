@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-21T14:30:11.129Z",
+  "updatedAt": "2026-10-21T14:30:16.488Z",
   "products": {
     "476363019": {
-      "name": "Unisex cotton sweatshirt",
+      "name": "Lunar Reverie Cotton-Blend Sweatshirt",
       "originalImage": "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png",
       "catalogProductId": 1418,
       "photos": [
@@ -197,12 +197,38 @@
           "alt": "Lunar Reverie Cotton-Blend Sweatshirt · Back · on-person mockup",
           "label": "On-person · Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 33963,
+          "storeVariantIds": [
+            "5525492495",
+            "5525492496",
+            "5525492497",
+            "5525492498",
+            "5525492499",
+            "5525492500",
+            "5525492501",
+            "5525492502",
+            "5525492503",
+            "5525492504",
+            "5525492505"
+          ],
+          "alt": "Unisex cotton sweatshirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476363019-supplier-f6b911378f11a8f18f55.jpg",
+          "sha256": "e64794c91cbcb489004780701a8979f98090c2122fc31fcf6b0b1b912669777f"
         }
       ],
-      "source": "Verified finished production canvases"
+      "source": "Verified finished production canvases",
+      "supplierPreviews": "280b52e5554c9ef148d59048bb1904217800d8e61bf94bf514654561c13c88af"
     },
     "476368653": {
-      "name": "All-over print bandana",
+      "name": "Thorn Veil Bandana",
       "originalImage": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
       "catalogProductId": 630,
       "photos": [
@@ -237,9 +263,25 @@
           "alt": "Thorn Veil Bandana · Front · on-person mockup",
           "label": "On-person · Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 16031,
+          "storeVariantIds": [
+            "5525525446"
+          ],
+          "alt": "All-over print bandana · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/476368653-supplier-99be94ed289de4333c70.jpg",
+          "sha256": "dd12896520e109d99b77bd45e3a80b852cc7c367428de632cbdfdb1314f210c6"
         }
       ],
-      "source": "Verified saved production print files"
+      "source": "Verified saved production print files",
+      "supplierPreviews": "f6fce025efce206bec8c663b1fa4ad5d9b43e1b343e1ab843fd16b6ad946ec3c"
     },
     "476368655": {
       "name": "Moonlit Ruins Yoga Leggings",
