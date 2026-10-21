@@ -40787,7 +40787,7 @@
     "ab4a4c66f8f898fd13531de309f8845bb6fb693db4826f57c4a65fd7034018ec": {
       "productId": "480738540",
       "variant": 16261,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-21T16:05:04.530Z",
       "attempts": 2,
       "previousSubmission": {
@@ -40807,7 +40807,8 @@
         "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
         "error": "Printful rate limit did not clear."
       },
-      "note": "Retry of an unconfirmed image-only task; supplier products are never created here."
+      "note": "Retry of an unconfirmed image-only task; supplier products are never created here.",
+      "key": "gt-988075198"
     },
     "12be3b781fa825395747bd91a69a88db54b0a01d627a53a821c6eaaf3b093b8a": {
       "productId": "480738534",
@@ -44076,7 +44077,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-21T16:05:04.530Z",
+  "updatedAt": "2026-10-21T16:06:41.357Z",
   "catalogAudit": {
     "supplierProducts": 144,
     "eligible": 143,
