@@ -52,7 +52,7 @@ export function mediaSupplierApi({headers,fetchImpl=fetch,sleep=delay,clock=Date
  let last=0;
  return async function api(path,payload){for(let attempt=0;attempt<5;attempt++){
   await sleep(Math.max(0,1200-(clock()-last)));last=clock();const r=await fetchImpl('https://api.printful.com/'+path,{method:payload?'POST':'GET',headers:{...headers,'Content-Type':'application/json'},body:payload?JSON.stringify(payload):undefined,signal:AbortSignal.timeout(90000)});const d=await r.json();if(r.ok)return d.result;
-  if(r.status===429){const seconds=Math.max(60,Number(r.headers.get('retry-after')||0));if(!payload&&attempt<4){await sleep((seconds+2)*1000);continue;}throw Object.assign(Error('Printful rate limit: '+String(d.error?.message||d.result||'Wait before retrying').slice(0,300)),{status:429,retryAfter:seconds});}
+  if(r.status===429){const seconds=Math.max(60,Number(r.headers.get('retry-after')||0));if(attempt<4){await sleep((seconds+2)*1000);continue;}throw Object.assign(Error('Printful rate limit: '+String(d.error?.message||d.result||'Wait before retrying').slice(0,300)),{status:429,retryAfter:seconds});}
   if(!payload&&r.status>=500&&attempt<4){await sleep(32000);continue;}throw Object.assign(Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.result||'Request failed').slice(0,300)),{status:r.status});
  }throw Error('Printful read retry limit reached.');};
 }
