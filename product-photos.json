@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T21:30:36.932Z",
+  "updatedAt": "2026-10-21T14:27:49.576Z",
   "products": {
     "476363019": {
       "name": "Unisex cotton sweatshirt",
@@ -33816,10 +33816,32 @@
           "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · details",
           "label": "details",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10882,
+          "storeVariantIds": [
+            "5584540205",
+            "5584540206",
+            "5584540207",
+            "5584540208",
+            "5584540211",
+            "5584540213",
+            "5584540214"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Bomber Jacket · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483352723-supplier-ef223c66ebdb9f54220b.jpg",
+          "sha256": "92ea560ee6a9ca7260726a66786f5da136afb41631aac69c9cf5126d52aae122"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "88dcd3d1159dbadb91a823ef10e749f868a33d12e4eee65b4cdb771be44a05d0"
+      "allReportedViews": "88dcd3d1159dbadb91a823ef10e749f868a33d12e4eee65b4cdb771be44a05d0",
+      "supplierPreviews": "5b2b00153335bf3864a1991cda9423129d4e3d9e23947ea1ca8b46eb500ef697"
     },
     "483356322": {
       "name": "Rose Eclipse All-Over Print Unisex Cotton Shorts",
@@ -33867,10 +33889,32 @@
           "alt": "Rose Eclipse All-Over Print Unisex Cotton Shorts · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46350,
+          "storeVariantIds": [
+            "5584583396",
+            "5584583397",
+            "5584583398",
+            "5584583399",
+            "5584583400",
+            "5584583401",
+            "5584583402"
+          ],
+          "alt": "Rose Eclipse All-Over Print Unisex Cotton Shorts · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483356322-supplier-6ea22e5dedb3a4dbeed0.jpg",
+          "sha256": "fdda633c51500db14a527705cba451d5b2763dbae449eb1ca802103e453085b2"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "a26f524194d4d1e73ec29d5b9a31ae3fe5290a8f4726a43400029998b04c0cfa"
+      "allReportedViews": "a26f524194d4d1e73ec29d5b9a31ae3fe5290a8f4726a43400029998b04c0cfa",
+      "supplierPreviews": "9596e4ca6992c30405f405bb66a153f35bfc982c8da166563ac576fc5878f92c"
     },
     "483361602": {
       "name": "Rose Eclipse All-Over Print Backpack",
@@ -34221,10 +34265,26 @@
           "alt": "Rose Eclipse All-Over Print Backpack · pocket",
           "label": "pocket",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483361602-supplier-3c6af733eb217a633c37.jpg",
+          "sha256": "1f12c804ee591662c6cf5520170c0046e82b7de226b348821f7890abd39d71b6"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "3435514468d38f5906d89e9ca1996b4b51699c15c1fcf48ec6b8fc54569d43d4"
+      "allReportedViews": "3435514468d38f5906d89e9ca1996b4b51699c15c1fcf48ec6b8fc54569d43d4",
+      "supplierPreviews": "f4791aff4d7f8c710f3e6f25848663a79321a5d38c7d74ec39f204574133c8dc"
     },
     "483366087": {
       "name": "Rose Eclipse Men's High Top Canvas Shoes",
@@ -35284,10 +35344,42 @@
           "alt": "Rose Eclipse Men's High Top Canvas Shoes · Right Outside",
           "label": "Right Outside",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5584619188",
+            "5584619190",
+            "5584619191",
+            "5584619194",
+            "5584619198",
+            "5584619221",
+            "5584619240",
+            "5584619254",
+            "5584619260",
+            "5584619288",
+            "5584619289",
+            "5584619290",
+            "5584619291",
+            "5584619292",
+            "5584619315",
+            "5584619331",
+            "5584619332"
+          ],
+          "alt": "Rose Eclipse Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483366087-supplier-13cab17484f549c0aee9.jpg",
+          "sha256": "e8605332bbb6130ec98ce41320a014032807a074f1559db2750b81336bcec627"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "94d125622ee23459f8e0b73dff322288f7f5d4603393a4f2c8afcf09d6188194"
+      "allReportedViews": "94d125622ee23459f8e0b73dff322288f7f5d4603393a4f2c8afcf09d6188194",
+      "supplierPreviews": "0b965afc7df1419dfd07d3518fe19b75d66e89affc0d934eab473b46880a29fa"
     },
     "483370819": {
       "name": "Rose Eclipse All-Over Print Neck Gaiter",
@@ -35953,10 +36045,26 @@
           "alt": "Rose Eclipse All-Over Print Neck Gaiter · Right",
           "label": "On-person · Right",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5584634678"
+          ],
+          "alt": "Rose Eclipse All-Over Print Neck Gaiter · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483370819-supplier-b46465f4f49e23151b17.jpg",
+          "sha256": "73716f2b7d4957fed5724d892ec153fec46d87fb08979eb2a311f9eff1599c5b"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "248c8a491b745ae933bec29e8b05906942efe052076dc7aabd52f6c3c60693ac"
+      "allReportedViews": "248c8a491b745ae933bec29e8b05906942efe052076dc7aabd52f6c3c60693ac",
+      "supplierPreviews": "ef44be09a65386d3873b4b87d4aab8b05484319b1ead2b3e4270909f6acf1944"
     },
     "483375173": {
       "name": "Rose Eclipse All-Over Print Reversible Bucket Hat",
@@ -36455,10 +36563,28 @@
           "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · Right Inside",
           "label": "Right Inside",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483375173-supplier-882411351703b2046f6d.jpg",
+          "sha256": "55b7d5cdc613f2ee81d848f642146415be6fb151637c49b6366fc3c9850382dd"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "1381d29ee20537fd4de6fdd007f89c1ae41f5a46fbc671c7a8d11d4be8eb479f"
+      "allReportedViews": "1381d29ee20537fd4de6fdd007f89c1ae41f5a46fbc671c7a8d11d4be8eb479f",
+      "supplierPreviews": "990dec10ab709f92706dce4d3844d00c33cfb2f37e83916d963980e751c635cf"
     },
     "483378457": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt",
@@ -36560,10 +36686,36 @@
           "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · Front",
           "label": "Front",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46412,
+          "storeVariantIds": [
+            "5584678569",
+            "5584678570",
+            "5584678584",
+            "5584678587",
+            "5584678588",
+            "5584678589",
+            "5584678601",
+            "5584678611",
+            "5584678617",
+            "5584678624",
+            "5584678633"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483378457-supplier-e1257d353dc8e7fb5913.jpg",
+          "sha256": "0d3afce02aa733de6175fc915e5a028e22d40520ad4dc4f60cf60cf09a6c1ade"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "15994ca5ab2038b12a15b92490699896896a160841bd052b1fe0258e5fd3c3b7"
+      "allReportedViews": "15994ca5ab2038b12a15b92490699896896a160841bd052b1fe0258e5fd3c3b7",
+      "supplierPreviews": "217d15c6aec31aa46f7027a1adc29d626cf15525d2ea676d3ce119d2479fc617"
     },
     "483385402": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket",
@@ -37241,10 +37393,32 @@
           "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · details",
           "label": "details",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10882,
+          "storeVariantIds": [
+            "5584710481",
+            "5584710483",
+            "5584710484",
+            "5584710485",
+            "5584710486",
+            "5584710488",
+            "5584710489"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483385402-supplier-87a48613a1356e3c151a.jpg",
+          "sha256": "7042b367cab4124ad109712fa099bcd800caacf0246fadd4dd111fb413e5fac2"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "77878a1937aa7b2ec17c4ea23d2edbe83e9ea7768ed118932e3d8f28d10fc2a1"
+      "allReportedViews": "77878a1937aa7b2ec17c4ea23d2edbe83e9ea7768ed118932e3d8f28d10fc2a1",
+      "supplierPreviews": "508aa31eab6c5b3ab2bca32389fec1c372dd230d37fd3e866f373e2e495f059f"
     },
     "483392618": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants",
@@ -37298,10 +37472,36 @@
           "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46256,
+          "storeVariantIds": [
+            "5584810538",
+            "5584810549",
+            "5584810552",
+            "5584810556",
+            "5584810598",
+            "5584810600",
+            "5584810602",
+            "5584810604",
+            "5584810612",
+            "5584810629",
+            "5584810631"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483392618-supplier-b19d78e811c3c6c740a5.jpg",
+          "sha256": "725da52115804dbc223988f28c2dc655b2fd6e3aa9e6ee48fb4ad98d682e5187"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "03c5497d3d5b16714118453e4d6de6cccafcdf3f6e9474f566084c8e8615f310"
+      "allReportedViews": "03c5497d3d5b16714118453e4d6de6cccafcdf3f6e9474f566084c8e8615f310",
+      "supplierPreviews": "a838f3b7ffe129b3288bd6539dcc6b7328a42ec4ed53b4f39e00f1e145c34a8f"
     },
     "483397425": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts",
@@ -37347,10 +37547,32 @@
           "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts · Back",
           "label": "Back",
           "kind": "production-mockup"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46350,
+          "storeVariantIds": [
+            "5584841489",
+            "5584841533",
+            "5584841676",
+            "5584841890",
+            "5584841982",
+            "5584842159",
+            "5584842206"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483397425-supplier-9424dbed2d764c6ebd2b.jpg",
+          "sha256": "6d0c851bc31d6c995a7f3b26fefaa7dc5b4d5a97ab2fe1d4b1fae0a838d7dfb0"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "8d7d7ad5f436d21e8f58bc745db78a7c35f3d713ef3aacad1669e870cb405e37"
+      "allReportedViews": "8d7d7ad5f436d21e8f58bc745db78a7c35f3d713ef3aacad1669e870cb405e37",
+      "supplierPreviews": "bec73cddae1e6e155ccb01476534fe889d3ca451b58f5928ac433c774317db49"
     }
   }
 }

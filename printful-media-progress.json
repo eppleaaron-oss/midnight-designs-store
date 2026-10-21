@@ -37024,5 +37024,12 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-21T14:27:34.603Z"
+  "updatedAt": "2026-10-21T14:27:49.754Z",
+  "catalogAudit": {
+    "supplierProducts": 142,
+    "eligible": 10,
+    "importedPreviews": 10,
+    "held": [],
+    "checkedAt": "2026-10-21T14:27:38.018Z"
+  }
 }
