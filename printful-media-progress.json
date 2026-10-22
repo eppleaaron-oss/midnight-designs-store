@@ -60251,14 +60251,122 @@
     "0bd87d7faf7f460feb43fc6a5f82e351eb3dcfef84c30a8f24a884129559dc73": {
       "productId": "484096947",
       "variant": 9063,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T22:33:26.359Z",
       "attempts": 1,
-      "key": "gt-988967710"
+      "key": "gt-988967710",
+      "photos": 7,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-0.jpg",
+          "sha256": "aa9f751f0cbe51dff227a9afd2e6e01b7b8238538e962af23a79a9f4bf517202",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-1.jpg",
+          "sha256": "ed0f7813bebd6bec803ae668f5fd5dcb92a6ddf4216b13f4835c778187effb9a",
+          "view": "Right",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-2.jpg",
+          "sha256": "6bb595a66b85907c3709d59262b2f2529af235854cb28870bb1391617fe1fea4",
+          "view": "Right",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-3.jpg",
+          "sha256": "a40948bef5895d1f134d6a5d426c265e84d6821c1d82f3ca2ff491765a9a7fef",
+          "view": "Right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-4.jpg",
+          "sha256": "262ae4cd1c28b88a22792a7949e0a181db01b626e16139e7a7e8b7f84ec061ba",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-5.jpg",
+          "sha256": "fad605e2d3c78919423d4574eed5f25e735f2ac68a6a1eefc7976711cdbf759f",
+          "view": "Right",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484096947-9063-all-0bd87d7faf-6.jpg",
+          "sha256": "ef26846416a0981ce8ec3ea970217231e4db264cd41c6c58f086daa77ce0a012",
+          "view": "pocket",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5589399800"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Backpack · pocket",
+          "label": "pocket",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:35:02.925Z",
+  "updatedAt": "2026-10-22T22:35:18.144Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
