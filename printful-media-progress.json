@@ -54750,13 +54750,14 @@
     "840a26fc663493c8e17b55fc32a2bdebf275d52a389e3e90d1b0922f6262baea": {
       "productId": "484044435",
       "variant": 11414,
-      "state": "submitting",
+      "state": "empty",
       "created": "2026-10-22T17:55:22.180Z",
-      "attempts": 1
+      "attempts": 1,
+      "error": "Printful HTTP 400: No variants to generate. Option filters may exclude all variants or variants are not available. Alternatively, make sure that variants belong to given product id."
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T17:55:22.180Z",
+  "updatedAt": "2026-10-22T17:55:57.747Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
