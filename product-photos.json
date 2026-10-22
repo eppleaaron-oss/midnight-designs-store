@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T22:35:20.763Z",
+  "updatedAt": "2026-10-22T22:38:09.629Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -60892,6 +60892,57 @@
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "1f0e5c2154e0d937b497e1bf251b7733f916d750a4f5936fdd02e3385c5fd489",
       "supplierPreviews": "bada705b1b61da970496d43c315d31da77d503ff2596f1cb040d089a3fbe46d0"
+    },
+    "484082838": {
+      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts",
+      "originalImage": "assets/product-photos/484082838-46347-all-b3002e843f-0.jpg",
+      "catalogProductId": 1481,
+      "photos": [
+        {
+          "image": "assets/product-photos/484082838-46347-all-b3002e843f-0.jpg",
+          "sha256": "3d3406b9a544bfc7c858b3df40ce51257a85c32aea8e8dfd0cd26ff2b38ff797",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5589319855",
+            "5589319856",
+            "5589319858",
+            "5589319859",
+            "5589319861",
+            "5589319862",
+            "5589319864"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484082838-46347-all-b3002e843f-1.jpg",
+          "sha256": "2ef5ca73f5c3638d46b6957dcff9aa72dc40f1b4e4f1b685e46960bc58a50638",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5589319855",
+            "5589319856",
+            "5589319858",
+            "5589319859",
+            "5589319861",
+            "5589319862",
+            "5589319864"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "918d1d3c826612e98fc195f50ff14a78438b81a358794660ce429184072a30f8"
     },
     "484096947": {
       "name": "Untitled cotton hoodie design 3901 All-Over Print Backpack",
