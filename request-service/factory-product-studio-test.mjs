@@ -70,3 +70,16 @@ test('opening a tracked AI product reads only its own records and design family,
  const f=await fixture(t);f.db.exec('CREATE TABLE factory_basic_items(id TEXT,job TEXT,recipe TEXT,created TEXT,status TEXT);CREATE TABLE factory_listings(job TEXT,supplier_id TEXT,copy TEXT);CREATE TABLE factory_basic_outfit_pieces(id TEXT,item TEXT,outfit TEXT);CREATE TABLE idea_sets(id TEXT,name TEXT,parts TEXT)');
  const recipe={set:{id:'rose',name:'Rose original hoodie'},product:390,name:'Rose hoodie',audience:'unisex',variants:[{size:'S'},{size:'M'}]};f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('item1','job1',JSON.stringify(recipe),'today','supplier_created');f.db.prepare('INSERT INTO factory_listings VALUES(?,?,?)').run('job1','123',JSON.stringify({title:'Rose hoodie'}));f.db.prepare('INSERT INTO factory_basic_outfit_pieces VALUES(?,?,?)').run('one','item1','outfit1');f.db.prepare('INSERT INTO idea_sets VALUES(?,?,?)').run('rose','Rose original hoodie',JSON.stringify({front:{artwork:'art1',name:'Rose front'}}));f.options.editor.library=()=>{throw Error('Full queue must not be loaded');};f.restart();const opened=await f.open();assert.equal(opened.product.id,'piece:one');assert.equal(opened.product.supplierId,'123');assert.equal(opened.originals[0].asset,'art:art1');assert.equal(opened.group.name,'Rose original hoodie');
 });
+
+test('supplier garment guides map the native print canvas without changing saved artwork coordinates',async()=>{
+ const {templateGeometry,printPoint}=await import('./public/product-template-geometry.js');
+ const area={width:5250,height:6750,templateUrl:'/supplier/front',template:{template_width:3000,template_height:3000,print_area_width:2022,print_area_height:2600,print_area_left:489,print_area_top:0}};
+ const g=templateGeometry(area);assert.equal(g.mapped,true);assert.equal(g.width,820);assert.equal(g.height,820);
+ const center=printPoint(g,(g.print.x+g.print.width/2)/g.width,(g.print.y+g.print.height/2)/g.height);assert.equal(center.inside,true);assert.ok(Math.abs(center.x-.5)<1e-9);assert.ok(Math.abs(center.y-.5)<1e-9);
+ assert.equal(printPoint(g,.01,.5).inside,false,'clicking guide annotations cannot move artwork');
+ const sleeve={...area,width:5250,height:3000,template:{...area.template,print_area_width:2260,print_area_height:1292,print_area_top:854,print_area_left:370}};
+ assert.equal(templateGeometry(sleeve).mapped,true,'sleeves use their own offset and rectangular print area');
+ const native=templateGeometry(area,false);assert.equal(native.mapped,false);assert.equal(native.print.x,0);assert.equal(native.print.width,native.width);
+ assert.equal(templateGeometry({...area,template:{...area.template,print_area_width:100}}).mapped,false,'incorrect mappings never stretch the saved print file');
+ assert.equal(templateGeometry({...area,template:null}).mapped,false);
+});
