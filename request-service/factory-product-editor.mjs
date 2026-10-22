@@ -75,6 +75,21 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
   if(method==='GET'&&path===ROOT+'/media'){send(res,200,await storeMedia());return true;}
   if(method==='GET'&&path===ROOT){await discoverStore();send(res,200,library());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'product-editor',30);const b=await body(req);
+  if(path===ROOT+'/embedded/check'){
+   const selected=source(b.source);if(!selected)fail(404,'The selected product is not in the saved factory records.');
+   if(!printfulToken)fail(503,'The backend Printful connection is missing.');await discoverStore();
+   const headers={Authorization:'Bearer '+printfulToken,'Content-Type':'application/json',...(resolvedStoreId?{'X-PF-Store-Id':resolvedStoreId}:{})};
+   let supplier={id:selected.supplierId,verified:false,status:null,variants:[]};
+   if(selected.supplierId){const r=await fetchImpl('https://api.printful.com/store/products/'+selected.supplierId,{headers,signal:AbortSignal.timeout(20000)});supplier.status=r.status;
+    if(r.ok){const d=(await r.json()).result;if(String(d?.sync_product?.id)===String(selected.supplierId)){supplier.verified=true;supplier.name=d.sync_product.name;supplier.variants=(d.sync_variants||[]).map(v=>({id:v.id,catalogVariantId:v.variant_id,synced:v.synced,files:(v.files||[]).filter(f=>f.type!=='preview').map(f=>({type:f.type,id:f.id,status:f.status,width:f.width,height:f.height}))}));}}
+   }
+   // A capability probe creates only an unused designer session. Never expose
+   // its nonce, create a template/product, or claim the design was imported.
+   const r=await fetchImpl('https://api.printful.com/embedded-designer/nonces',{method:'POST',headers,body:JSON.stringify({external_product_id:'md-owner-access-check-'+randomUUID()}),signal:AbortSignal.timeout(20000)});
+   let d;try{d=await r.json();}catch{d={};}
+   const approved=r.ok&&typeof d.result?.nonce?.nonce==='string';let reason=approved?'Printful accepted an Embedded Design Maker session.':String(d.error?.message||d.error?.reason||d.error||'Printful rejected the Embedded Design Maker session.');reason=reason.split(printfulToken).join('[redacted]').slice(0,600);
+   send(res,200,{supplier,embedded:{approved,httpStatus:r.status,reason},updated:false,note:'Read-only product verification and designer access check. No design, print file, supplier variant or storefront product was changed.'});return true;
+  }
   if(path===ROOT+'/save'){send(res,202,await save(b));return true;}
   const draft=get('SELECT * FROM factory_product_edits WHERE id=?',String(b.id||''));if(!draft)fail(404,'Save this edit first.');if(draft.revision!==b.revision)fail(409,'The saved edit changed. Reload before applying it.');
   const c=JSON.parse(draft.choice),p=await basic.inspect(c);if(!p.numericLayout||p.numericLayout.requiresAcceptance)fail(409,'The saved layout needs a fresh size and placement review.');
