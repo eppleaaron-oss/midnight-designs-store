@@ -13,5 +13,5 @@ test('saved factory mockups remain available when store photos fail; loading can
  const images=m.images({made:{mockupStatus:{images:[{url:'/saved.jpg'}]},thumb:'/saved.jpg'}},loaded.photos);assert.equal(images.length,1);assert.equal(images[0].url,'/saved.jpg');
 });
 test('photo loading accepts the published catalog and never infers publication from photos alone',async()=>{
- const m=media(async url=>({ok:true,json:async()=>url.endsWith('products.json')?{products:[{id:123}]}:{products:{456:{photos:[]}}}})),loaded=await m.load();assert.equal(loaded.publishedIds.has('123'),true);assert.equal(loaded.publishedIds.has('456'),false);
+ const m=media(async url=>{assert.equal(url,'/api/owner/ai-factory/product-editor/media');return {ok:true,json:async()=>({publishedIds:['123'],photos:{products:{456:{photos:[]}}}})};}),loaded=await m.load();assert.equal(loaded.publishedIds.has('123'),true);assert.equal(loaded.publishedIds.has('456'),false);
 });

@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {factoryProductEditor} from './factory-product-editor.mjs';
 
-function fixture(t){
+function fixture(t,fetchImpl){
  const db=new DatabaseSync(':memory:');t.after(()=>db.close());db.exec(`CREATE TABLE factory_basic_items(id TEXT PRIMARY KEY,job TEXT,recipe TEXT,created TEXT,status TEXT);CREATE TABLE factory_listings(job TEXT,supplier_id TEXT,status TEXT,copy TEXT);`);
  const c={setId:'art',product:390,audience:'unisex',sizes:['S','M'],layout:{number:9,assignments:{back:'back'}},allowUnspecifiedAudience:true};
  const piece={id:'piece1',choice:{...c,slotName:'Bomber'},signature:'before',item:null};let checkpoints=0,applied=null,changed=null;
  const outfits={snapshot:()=>({plans:[{id:'outfit',name:'Rose matching collection',pieces:[piece]}],recent:[],active:null,batch:null}),editPiece:(...args)=>{if(piece.item)throw Error('started');applied=args;}};
  const basic={snapshot:()=>({sets:[{id:'art',name:'Rose',parts:{back:{url:'/art.png'}}}]}),currentJob:()=>null,inspect:async c=>{changed?.();return {set:{id:c.setId},product:{id:c.product},audience:c.audience,allowUnspecifiedAudience:c.allowUnspecifiedAudience,variants:c.sizes.map(size=>({size})),numericLayout:c.layout?{input:c.layout,requiresAcceptance:false}:null,inspectionToken:'receipt'};},verifyLayoutReceipt:(c,p)=>{assert.equal(c.inspectionToken,'receipt');assert.ok(p.numericLayout);},inspectionSignature:()=> 'verified',checkpoint:async()=>{checkpoints++;},create:async c=>({id:'new',job:'new-job',choice:c})};
  const fail=(status,message)=>{throw Object.assign(Error(message),{status});};let sent;
- const editor=factoryProductEditor({db,basic,outfits,auth:()=>{},body:async req=>req.payload,send:(res,status,data)=>{sent=data;},fail,limit:()=>{},origin:'http://test'});
+ const editor=factoryProductEditor({db,basic,outfits,auth:()=>{},body:async req=>req.payload,send:(res,status,data)=>{sent=data;},fail,limit:()=>{},origin:'http://test',fetchImpl});
  const call=async(path,b)=>{await editor.handle({headers:{origin:'http://test'},payload:b},{},'/api/owner/ai-factory/product-editor/'+path,'POST');return sent;};
  return {db,editor,basic,c,piece,call,change:fn=>{changed=fn;},applied:()=>applied,checkpoints:()=>checkpoints};
 }
@@ -57,4 +57,12 @@ test('AI Made legacy jobs open their own saved artwork and garment instead of a 
  const p=f.editor.library().products.find(p=>p.id==='made:legacy');assert.equal(p.jobId,'legacy-job');assert.equal(p.supplierId,'123');assert.equal(p.choice.setId,'art');assert.equal(p.choice.product,390);assert.deepEqual(p.choice.sizes,['S']);assert.equal(p.choice.layout.number,9);assert.equal(p.editable,false);
  const draft=await f.call('save',{source:p.id,choice:{...p.choice,inspectionToken:'receipt'},note:'Reduce artwork size'});assert.equal(draft.source,'made:legacy');await assert.rejects(f.call('apply',{id:draft.id,revision:draft.revision}),/revised copy/);
  f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('basic','legacy-job',JSON.stringify({set:{id:'art',name:'Rose'},product:390,name:'Rose Backpack',audience:'unisex',variants:[{size:'S'}]}),'today','supplier_created');assert.equal(f.editor.library().products.filter(p=>p.jobId==='legacy-job').length,1);
+});
+
+
+test('saved storefront media loads through the owner endpoint and reuses its cache',async t=>{
+ let reads=0;const f=fixture(t);
+ let response;const engine=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,d)=>{response=d;},fail:()=>{},limit:()=>{},origin:'http://test',fetchImpl:async url=>{reads++;return {ok:true,json:async()=>url.endsWith('product-photos.json')?{products:{123:{photos:[{image:'assets/front.jpg'}]}}}:{products:[{id:123}]}};}});
+ await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.deepEqual(response.publishedIds,['123']);assert.equal(response.photos.products[123].photos[0].image,'assets/front.jpg');assert.equal(response.unavailable,false);assert.equal(reads,2);
+ await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(reads,2);
 });

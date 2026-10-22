@@ -3,7 +3,7 @@ import {randomUUID} from 'node:crypto';
 const ROOT='/api/owner/ai-factory/product-editor';
 // Editor revisions contain recipes, never disposable rendered pixels. They are
 // included in the same database recovery snapshots as the production queue.
-export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit,origin,clock=Date.now}){
+export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit,origin,clock=Date.now,fetchImpl=fetch}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_product_edits(id TEXT PRIMARY KEY,source TEXT NOT NULL,choice TEXT NOT NULL,note TEXT NOT NULL,revision INTEGER NOT NULL,created TEXT NOT NULL,updated TEXT NOT NULL);`);
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),now=()=>new Date(clock()).toISOString();
  const choiceFrom=r=>{const c=JSON.parse(r.recipe);return {setId:c.set.id,product:c.product,audience:c.audience,sizes:c.variants.map(v=>v.size),allowUnspecifiedAudience:c.allowUnspecifiedAudience===true,layout:c.layout?.input||null};};
@@ -28,6 +28,17 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
   }
   return {pieces,products:[...products,...legacy],sets,recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }
+ let mediaCache=null,mediaAt=0,mediaPending=null;
+ async function storeMedia(){
+  if(mediaCache&&clock()-mediaAt<300000)return mediaCache;
+  if(mediaPending)return mediaPending;
+  mediaPending=(async()=>{
+   const read=async name=>{const r=await fetchImpl('https://midnight-designs.store/'+name,{signal:AbortSignal.timeout(45000),headers:{Accept:'application/json'}});if(!r.ok)throw Error('Saved storefront media unavailable');return r.json();};
+   const [photos,catalog]=await Promise.allSettled([read('product-photos.json'),read('products.json')]);
+   const result={photos:photos.status==='fulfilled'?photos.value:mediaCache?.photos||{products:{}},publishedIds:catalog.status==='fulfilled'?(catalog.value.products||[]).map(p=>String(p.id)):mediaCache?.publishedIds||[],unavailable:photos.status==='rejected'};
+   if(photos.status==='fulfilled'){mediaCache=result;mediaAt=clock();}return result;
+  })().finally(()=>{mediaPending=null;});return mediaPending;
+ }
  function source(id){if(typeof id!=='string'||id.length>160)fail(400,'Select a source product or waiting piece.');const x=library();return [...x.pieces,...x.products].find(r=>r.id===id)||null;}
  async function save(b){
   const original=source(b.source);if(!original)fail(404,'The selected product is no longer available.');
@@ -43,6 +54,7 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
  }
  return {library,save,async handle(req,res,path,method){
   if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
+  if(method==='GET'&&path===ROOT+'/media'){send(res,200,await storeMedia());return true;}
   if(method==='GET'&&path===ROOT){send(res,200,library());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'product-editor',30);const b=await body(req);
   if(path===ROOT+'/save'){send(res,202,await save(b));return true;}

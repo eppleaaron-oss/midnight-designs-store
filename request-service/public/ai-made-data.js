@@ -9,8 +9,9 @@ window.MidnightMadeMedia={
  },
  state(row,publishedIds){return row.supplierId&&publishedIds.has(String(row.supplierId))?'published':row.state||'waiting';},
  async load(){
-  const read=async file=>{const r=await fetch('https://midnight-designs.store/'+file,{cache:'no-cache',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('Store images are temporarily unavailable.');return r.json();};
-  const [photos,store]=await Promise.allSettled([read('product-photos.json'),read('products.json')]);
-  return {photos:photos.status==='fulfilled'?photos.value:{products:{}},publishedIds:new Set(store.status==='fulfilled'?(store.value.products||[]).map(p=>String(p.id)):[]),unavailable:photos.status==='rejected'};
+  try{
+   const r=await fetch('/api/owner/ai-factory/product-editor/media',{signal:AbortSignal.timeout(60000)});if(!r.ok)throw Error('Saved photos unavailable');const d=await r.json();
+   return {photos:d.photos||{products:{}},publishedIds:new Set(d.publishedIds||[]),unavailable:d.unavailable===true};
+  }catch{return {photos:{products:{}},publishedIds:new Set(),unavailable:true};}
  }
 };
