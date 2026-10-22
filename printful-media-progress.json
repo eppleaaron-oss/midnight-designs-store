@@ -60367,14 +60367,59 @@
     "b3002e843f4e470800b56c0e015813fee869cb8469610cd2869b8d2da981f671": {
       "productId": "484082838",
       "variant": 46347,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T22:37:19.649Z",
       "attempts": 1,
-      "key": "gt-988969350"
+      "key": "gt-988969350",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484082838-46347-all-b3002e843f-0.jpg",
+          "sha256": "3d3406b9a544bfc7c858b3df40ce51257a85c32aea8e8dfd0cd26ff2b38ff797",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5589319855",
+            "5589319856",
+            "5589319858",
+            "5589319859",
+            "5589319861",
+            "5589319862",
+            "5589319864"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484082838-46347-all-b3002e843f-1.jpg",
+          "sha256": "2ef5ca73f5c3638d46b6957dcff9aa72dc40f1b4e4f1b685e46960bc58a50638",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5589319855",
+            "5589319856",
+            "5589319858",
+            "5589319859",
+            "5589319861",
+            "5589319862",
+            "5589319864"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:37:54.084Z",
+  "updatedAt": "2026-10-22T22:38:07.460Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
