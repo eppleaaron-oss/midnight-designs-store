@@ -53469,13 +53469,14 @@
     "2522c0f79e823b1e5ce06a20afe765b80ec55ec070c970eef9072a6b935bb277": {
       "productId": "484051716",
       "variant": 16361,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T17:43:59.790Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988804150"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T17:43:59.790Z",
+  "updatedAt": "2026-10-22T17:44:35.521Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
