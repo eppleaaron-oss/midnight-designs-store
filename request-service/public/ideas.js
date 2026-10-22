@@ -1,6 +1,8 @@
 'use strict';
 // Idea Room: design sets, the idea team's waiting items and outfits, bulk approval, team size and upload sorting.
 (()=>{
+if(location.hash==='#aiMade')location.replace('/ai-made');
+window.addEventListener('hashchange',()=>{if(location.hash==='#aiMade')location.replace('/ai-made');});
 const $=id=>document.getElementById(id),node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined&&text!==null)e.textContent=text;if(cls)e.className=cls;return e;};
 let data=null,filter='new',madeFilter='unrated';const notes=new Map();const picked=new Set();
 async function api(path,body){const r=await fetch('/api/owner/ai-factory/'+path,{method:body!==undefined?'POST':'GET',headers:body!==undefined?{'Content-Type':'application/json'}:{},body:body!==undefined?JSON.stringify(body):undefined,signal:AbortSignal.timeout(180000)});if(r.status===401&&document.body.dataset.factoryPublic!=='true'){location.replace('/login?next=ai-factory');throw Error('Owner sign-in required.');}const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Request failed.');return d;}
@@ -56,6 +58,7 @@ function render(){
 function bar(){$('ideaPublish').textContent=picked.size?`Prepare selected products (${picked.size})`:'Prepare selected products';$('ideaPublish').disabled=$('ideaMake').disabled=$('ideaDismiss').disabled=!picked.size;}
 // AI Made: everything the team published, with star ratings that feed back into what it makes next.
 function renderMade(){
+ if(!$('madeGrid'))return;
  const list=data.made||[],unrated=list.filter(m=>m.status==='published'&&!m.rating).length,r=data.ratings;
  $('madeBadge').textContent=list.length?`${list.filter(m=>m.status==='published').length} published · ${unrated} to rate`+(r.count?` · average ${r.avg.toFixed(1)}★`:''):'Nothing yet';
  const busy=data.ideas.filter(i=>i.status==='queued'||i.status==='publishing').length;
@@ -83,7 +86,7 @@ async function load(){data=await api('ideas');render();}
 document.querySelectorAll('#ideaTabs [role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('#ideaTabs [role=tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t)));filter=t.dataset.filter;render();});
 $('ideaAll').onclick=()=>{for(const i of shown())if(i.status==='new'||i.status==='failed')picked.add(i.id);render();};
 // Publishing runs on the server in the background; the page jumps to AI Made and refreshes every few seconds as products arrive.
-function started(n){render();note(`${n} idea${n===1?'':'s'} queued for preparation. Review progress and holds below.`);$('madeNote').textContent=data.productionNote;document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
+function started(n){render();note(`${n} idea${n===1?'':'s'} queued for preparation. Review progress and holds below.`);document.getElementById('aiMade')?.scrollIntoView({behavior:'smooth',block:'start'});}
 // Used by Start Factory: publishes the ticked ideas, or every waiting outfit that has ready items when none are ticked.
 window.mdIdeas={async start(){if(!data)await load();if(!data.canPublish)throw Error('Connect Printful and persistent factory storage before preparing products.');
  let ids=picked.size?[...picked]:data.ideas.filter(i=>i.status==='new'&&i.kind==='outfit'&&i.pieces.length).map(i=>i.id);
