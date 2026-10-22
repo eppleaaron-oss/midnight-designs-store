@@ -56148,14 +56148,122 @@
     "79f22f33db7c4576c281d1e006fa0825d8c20ef1a73520e695a368016faa9a63": {
       "productId": "484029631",
       "variant": 9063,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T18:12:26.381Z",
       "attempts": 1,
-      "key": "gt-988818732"
+      "key": "gt-988818732",
+      "photos": 7,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-0.jpg",
+          "sha256": "aa9f751f0cbe51dff227a9afd2e6e01b7b8238538e962af23a79a9f4bf517202",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-1.jpg",
+          "sha256": "c0c6099e73673cfd18147ab01f0c272b7a8432ef760306fcc3dfbe179256a4ea",
+          "view": "Right",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-2.jpg",
+          "sha256": "afec64be006a8c18e0bd9a0bd544da9fb420f28a6f2ce04a38df987973a270fa",
+          "view": "Right",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-3.jpg",
+          "sha256": "bbed23e42ae624ddc3b7670641821509c0e7e53ff20678ea3d24765517ae22f5",
+          "view": "Right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-4.jpg",
+          "sha256": "0a5c05ef9affb67aaa0420b16d54e1119228bba45d505a5483009f3d45599520",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-5.jpg",
+          "sha256": "b70be68c353eb3353aea1649b4c439267be4e2b608673485887d95d1a2fa6f53",
+          "view": "Right",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · Right",
+          "label": "Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484029631-9063-all-79f22f33db-6.jpg",
+          "sha256": "7366be1afbd2013407dcb74facebf39df52354bbb4e8a1c5d8683f6cc80a6b0d",
+          "view": "pocket",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588715074"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack · pocket",
+          "label": "pocket",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T18:14:03.971Z",
+  "updatedAt": "2026-10-22T18:14:14.957Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
