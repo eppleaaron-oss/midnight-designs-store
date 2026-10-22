@@ -52764,13 +52764,14 @@
     "23632222a9109098ccbd9de0354de4bf94a0ab73e1e706dfe84f77e13a8889e2": {
       "productId": "484067231",
       "variant": 10879,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T17:38:07.957Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988801333"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T17:38:07.957Z",
+  "updatedAt": "2026-10-22T17:38:43.060Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
