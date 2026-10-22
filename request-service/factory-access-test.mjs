@@ -39,3 +39,8 @@ test('AI Made has its own protected page and preserves its destination after log
  for(const path of ['/ai-made.js','/ai-made.css'])assert.equal((await c.call(path,undefined,{Cookie:cookie})).status,200);
  const dashboard=await c.call('/ai-factory',undefined,{Cookie:cookie}),html=await dashboard.text();assert.match(html,/href="\/ai-made"/);assert.doesNotMatch(html,/id="madeGrid"/);
 });
+
+ test('AI Made saved-product feed does not wait for a supplier scan and follows factory authorization',async t=>{
+ const closed=await service(t,true);assert.equal((await closed.call('/api/owner/ai-factory/ideas/made')).status,401);
+ const open=await service(t,false),r=await open.call('/api/owner/ai-factory/ideas/made');assert.equal(r.status,200);assert.deepEqual(await r.json(),{made:[]});
+});
