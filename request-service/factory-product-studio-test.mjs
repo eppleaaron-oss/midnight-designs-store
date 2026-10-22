@@ -103,3 +103,12 @@ test('print-quality fit preserves artwork proportions, constrains rotated bounds
  const draft={width:.6154,x:.5,y:.5,rotation:0};const fit=artworkFit(area,source,draft);assert.equal(fit.width,1758/5250);assert.equal(fit.x,.5);assert.equal(draft.width,.6154);assert.ok(source.width/(fit.width*area.width)*area.dpi>=150);
  const rotated=artworkFit(area,{width:1758,height:3500},{width:.9,x:0,y:1,rotation:90});assert.ok(rotated.x>0&&rotated.y<1);assert.ok(rotated.width>0);
 });
+
+test('durably stored mockup downloads do not block on a full database backup for every image',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});
+ for(let n=0;n<25&&!f.job().document.tasks?.some(t=>t.state==='downloading');n++)await f.tick();
+ assert.ok(f.job().document.tasks.some(t=>t.state==='downloading'));
+ let release;f.options.backups.checkpoint=()=>new Promise(resolve=>{release=resolve;});
+ await f.tick();assert.equal(f.job().document.images.length,1);assert.equal(f.db.prepare("SELECT count(*) n FROM factory_studio_assets WHERE kind='mockup' AND remote IS NOT NULL").get().n,1);
+ release();await new Promise(resolve=>setImmediate(resolve));
+});
