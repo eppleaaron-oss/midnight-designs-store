@@ -155,3 +155,19 @@ test('release snapshots migrate a full history, reuse unchanged chunks and retai
 test('a failed release checkpoint preserves the last recoverable generation and every working release',async t=>{
  const f=await fixture(t),writer=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.snapshot(f.db,{initialize:true});const first=writer.manifest.release.id,head=f.gh.head;f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');f.gh.failRef=true;await assert.rejects(writer.snapshot(f.db),/HTTP 500/);assert.equal(f.gh.head,head);assert.ok(f.gh.releases.has(first));const reader=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await reader.restore(join(f.dir,'failed-write-recovery.sqlite'));assert.equal(reader.manifest.release.id,first);
 });
+
+test('a Render handoff fences the retiring writer while preserving the latest authenticated snapshot',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});const expected=f.store.manifest.sha256;
+ const next=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch,sleep:async()=>{}});await next.connect();const handoff=await next.claimDeploymentWriter({service:'srv-test',instance:'new-render-instance',commit:'new-commit'});
+ assert.equal(handoff.manifest.sha256,expected);assert.equal(next.head,f.gh.head);assert.equal(next.hold,false);
+ await assert.rejects(f.store.assertCurrent(),e=>e.conflict===true);const before=f.gh.head;await assert.rejects(f.store.snapshot(f.db),/owner review/);assert.equal(f.gh.head,before,'the retired backend cannot publish a competing checkpoint');
+ const path=join(f.dir,'handoff.sqlite');await next.restore(path);const restored=new DatabaseSync(path);try{assert.equal(restored.prepare('SELECT status FROM factory_jobs').get().status,'awaiting_review');assert.ok(Buffer.from(restored.prepare('SELECT data FROM factory_artwork').get().data).equals(f.artwork));}finally{restored.close();}
+});
+test('a deployment that read an older snapshot cannot fence over a newer checkpoint without reconnecting',async t=>{
+ const f=await fixture(t);await f.store.snapshot(f.db,{initialize:true});const next=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch,sleep:async()=>{}});await next.connect();f.db.prepare('UPDATE factory_jobs SET status=?').run('running');await f.store.snapshot(f.db);const latest=f.gh.head;
+ await assert.rejects(next.claimDeploymentWriter({service:'srv-test',instance:'next'}),e=>e.conflict===true);assert.equal(f.gh.head,latest,'a stale startup does not replace the newest recovery state');
+ const fresh=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch,sleep:async()=>{}});await fresh.claimDeploymentWriter({service:'srv-test',instance:'next'});assert.equal(fresh.manifest.sha256,f.store.manifest.sha256);
+});
+test('snapshot compaction releases the application event loop while the isolated copy is prepared',async t=>{
+ const f=await fixture(t,{large:true});let ticks=0;const timer=setInterval(()=>ticks++,1);try{await f.store.snapshot(f.db,{initialize:true});}finally{clearInterval(timer);}assert.ok(ticks>0,'editing and status requests can run during snapshot preparation');
+});
