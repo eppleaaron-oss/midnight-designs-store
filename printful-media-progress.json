@@ -56317,14 +56317,67 @@
     "83336bb6d698026a00e38d8af10ab5eb81a3f8dcab69e608d129d984ff697c22": {
       "productId": "484013198",
       "variant": 46253,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T18:20:25.428Z",
       "attempts": 1,
-      "key": "gt-988822495"
+      "key": "gt-988822495",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+          "sha256": "aef9ddc89f239970ca75c16ef425117c66aa8a7285955ed42ba9ca745430281f",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5588631415",
+            "5588631418",
+            "5588631420",
+            "5588631424",
+            "5588631428",
+            "5588631430",
+            "5588631433",
+            "5588631438",
+            "5588631441",
+            "5588631443",
+            "5588631445"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg",
+          "sha256": "0b1e0f27786d5d8bb2001a1509e5e8b4445ce97282fea362c2d0552c96710579",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5588631415",
+            "5588631418",
+            "5588631420",
+            "5588631424",
+            "5588631428",
+            "5588631430",
+            "5588631433",
+            "5588631438",
+            "5588631441",
+            "5588631443",
+            "5588631445"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T18:21:00.652Z",
+  "updatedAt": "2026-10-22T18:21:09.452Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
