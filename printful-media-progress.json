@@ -57461,14 +57461,117 @@
     "ae343349373afa88614841b59c102f8d2130731805cbcfc255aa9113afe699b3": {
       "productId": "484145986",
       "variant": 46409,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T22:00:25.442Z",
       "attempts": 1,
-      "key": "gt-988946352"
+      "key": "gt-988946352",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484145986-46409-all-ae34334937-0.jpg",
+          "sha256": "61ba93d3fee4f9261f26f0d87eeb885c9e2551d5b691877abe6a8b8f8351de1f",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5589672819",
+            "5589672820",
+            "5589672821",
+            "5589672822",
+            "5589672823",
+            "5589672834",
+            "5589672837",
+            "5589672848",
+            "5589672850",
+            "5589672859",
+            "5589672864"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484145986-46409-all-ae34334937-1.jpg",
+          "sha256": "a29086cb0da8709186bd8acc1e8ad72ff360eb4f732c2ce524481e0ded55d0bb",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5589672819",
+            "5589672820",
+            "5589672821",
+            "5589672822",
+            "5589672823",
+            "5589672834",
+            "5589672837",
+            "5589672848",
+            "5589672850",
+            "5589672859",
+            "5589672864"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484145986-46409-all-ae34334937-2.jpg",
+          "sha256": "fde9ed3419f809ef20d0df8edf3263226a374c32c943c7fd0f70cb49129bbc55",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5589672819",
+            "5589672820",
+            "5589672821",
+            "5589672822",
+            "5589672823",
+            "5589672834",
+            "5589672837",
+            "5589672848",
+            "5589672850",
+            "5589672859",
+            "5589672864"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484145986-46409-all-ae34334937-3.jpg",
+          "sha256": "4fbe906a96bf4f6f6adc9a4ed9b42fbebfd67d9293c975122fb289f67e4e2190",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5589672819",
+            "5589672820",
+            "5589672821",
+            "5589672822",
+            "5589672823",
+            "5589672834",
+            "5589672837",
+            "5589672848",
+            "5589672850",
+            "5589672859",
+            "5589672864"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:00:59.739Z",
+  "updatedAt": "2026-10-22T22:01:14.051Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
