@@ -57461,13 +57461,14 @@
     "ae343349373afa88614841b59c102f8d2130731805cbcfc255aa9113afe699b3": {
       "productId": "484145986",
       "variant": 46409,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T22:00:25.442Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988946352"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:00:25.442Z",
+  "updatedAt": "2026-10-22T22:00:59.739Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
