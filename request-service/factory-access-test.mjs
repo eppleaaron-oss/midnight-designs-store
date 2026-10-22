@@ -30,3 +30,12 @@ test('Factory-specific login URLs skip the form while default private mode still
 test('public Factory authorization is scoped to its exact API namespace and login configuration is explicit',()=>{
  let checks=0;const auth=factoryAuthFor({loginRequired:false,origin,auth(){checks++;return 'normal authorization';}});assert.equal(auth({url:'/api/owner/ai-factory/jobs'},null,true).factoryPublic,true);for(const url of ['/api/owner/ai-factory-elsewhere','/api/owner/export','/internal/factory/claim','/api/requests'])assert.equal(auth({url},null,true),'normal authorization');assert.equal(checks,4);assert.equal(factoryLoginIsRequired(),true);assert.equal(factoryLoginIsRequired('true'),true);assert.equal(factoryLoginIsRequired('false'),false);assert.throws(()=>factoryLoginIsRequired('0'));
 });
+
+test('AI Made has its own protected page and preserves its destination after login',async t=>{
+ const c=await service(t,true);const r=await c.call('/ai-made');assert.equal(r.status,302);assert.equal(r.headers.get('location'),'/login?next=ai-made');
+ for(const path of ['/ai-made.js','/ai-made.css'])assert.equal((await c.call(path)).status,401);
+ const logged=await c.call('/api/owner/login',{password}),cookie=logged.headers.get('set-cookie').split(';')[0];
+ const gallery=await c.call('/ai-made',undefined,{Cookie:cookie});assert.equal(gallery.status,200);assert.match(await gallery.text(),/id="productGallery"/);
+ for(const path of ['/ai-made.js','/ai-made.css'])assert.equal((await c.call(path,undefined,{Cookie:cookie})).status,200);
+ const dashboard=await c.call('/ai-factory',undefined,{Cookie:cookie}),html=await dashboard.text();assert.match(html,/href="\/ai-made"/);assert.doesNotMatch(html,/id="madeGrid"/);
+});

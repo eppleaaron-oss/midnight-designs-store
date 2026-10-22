@@ -48,3 +48,13 @@ test('large recovery backups do not block saving, and failures remain visible wi
  assert.equal(saved.recoveryPending,true);assert.equal(f.editor.library().edits.length,1);assert.equal(f.editor.library().recovery.pending,true);
  rejectBackup(Error('Recovery service unavailable'));await new Promise(resolve=>setImmediate(resolve));assert.equal(f.editor.library().recovery.pending,false);assert.match(f.editor.library().recovery.error,/Recovery service unavailable/);assert.equal(f.editor.library().edits[0].note,'Persist recipe promptly');
 });
+
+test('AI Made legacy jobs open their own saved artwork and garment instead of a different product',async t=>{
+ const f=fixture(t);
+ f.db.exec(`CREATE TABLE idea_made(id TEXT,job TEXT,set_id TEXT,set_name TEXT,catalog INTEGER,name TEXT,status TEXT,printful_id TEXT,created TEXT);CREATE TABLE factory_jobs(id TEXT,gender TEXT);CREATE TABLE factory_job_audiences(job TEXT,selection TEXT);CREATE TABLE factory_job_layouts(job TEXT,layout TEXT);`);
+ f.db.prepare('INSERT INTO idea_made VALUES(?,?,?,?,?,?,?,?,?)').run('legacy','legacy-job','art','Rose',390,'Rose Backpack','waiting_input','123','today');
+ f.db.prepare('INSERT INTO factory_jobs VALUES(?,?)').run('legacy-job','unisex');f.db.prepare('INSERT INTO factory_job_audiences VALUES(?,?)').run('legacy-job',JSON.stringify({sizes:['S'],allowUnspecifiedAudience:true}));f.db.prepare('INSERT INTO factory_job_layouts VALUES(?,?)').run('legacy-job',JSON.stringify({input:f.c.layout}));
+ const p=f.editor.library().products.find(p=>p.id==='made:legacy');assert.equal(p.jobId,'legacy-job');assert.equal(p.supplierId,'123');assert.equal(p.choice.setId,'art');assert.equal(p.choice.product,390);assert.deepEqual(p.choice.sizes,['S']);assert.equal(p.choice.layout.number,9);assert.equal(p.editable,false);
+ const draft=await f.call('save',{source:p.id,choice:{...p.choice,inspectionToken:'receipt'},note:'Reduce artwork size'});assert.equal(draft.source,'made:legacy');await assert.rejects(f.call('apply',{id:draft.id,revision:draft.revision}),/revised copy/);
+ f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('basic','legacy-job',JSON.stringify({set:{id:'art',name:'Rose'},product:390,name:'Rose Backpack',audience:'unisex',variants:[{size:'S'}]}),'today','supplier_created');assert.equal(f.editor.library().products.filter(p=>p.jobId==='legacy-job').length,1);
+});
