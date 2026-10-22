@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {factoryProductEditor} from './factory-product-editor.mjs';
+import {factoryProductEditor,printfulProductEditUrl} from './factory-product-editor.mjs';
 
 function fixture(t,fetchImpl){
  const db=new DatabaseSync(':memory:');t.after(()=>db.close());db.exec(`CREATE TABLE factory_basic_items(id TEXT PRIMARY KEY,job TEXT,recipe TEXT,created TEXT,status TEXT);CREATE TABLE factory_listings(job TEXT,supplier_id TEXT,status TEXT,copy TEXT);`);
@@ -65,4 +65,10 @@ test('saved storefront media loads through the owner endpoint and reuses its cac
  let response;const engine=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,d)=>{response=d;},fail:()=>{},limit:()=>{},origin:'http://test',fetchImpl:async url=>{reads++;return {ok:true,json:async()=>url.endsWith('product-photos.json')?{products:{123:{photos:[{image:'assets/front.jpg'}]}}}:{products:[{id:123}]}};}});
  await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.deepEqual(response.publishedIds,['123']);assert.equal(response.photos.products[123].photos[0].image,'assets/front.jpg');assert.equal(response.unavailable,false);assert.equal(reads,2);
  await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(reads,2);
+});
+
+
+test('native editor links use the existing supplier product and configured store, never a catalog or job ID',()=>{
+ assert.equal(printfulProductEditUrl('12345','482918795'),'https://www.printful.com/dashboard/product-templates/published/12345/482918795');
+ for(const [store,product]of [['','482918795'],['12345',null],['12345','piece:abc'],['https://other.test','123'],['123','42?redirect=evil']])assert.equal(printfulProductEditUrl(store,product),null);
 });

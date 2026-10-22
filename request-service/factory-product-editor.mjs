@@ -1,9 +1,10 @@
 import {randomUUID} from 'node:crypto';
 
+export function printfulProductEditUrl(storeId,productId){const store=String(storeId||'').trim(),product=String(productId||'').trim();return /^\d+$/.test(store)&&/^\d+$/.test(product)?'https://www.printful.com/dashboard/product-templates/published/'+store+'/'+product:null;}
 const ROOT='/api/owner/ai-factory/product-editor';
 // Editor revisions contain recipes, never disposable rendered pixels. They are
 // included in the same database recovery snapshots as the production queue.
-export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit,origin,clock=Date.now,fetchImpl=fetch}){
+export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit,origin,clock=Date.now,fetchImpl=fetch,storeId=process.env.PRINTFUL_STORE_ID}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_product_edits(id TEXT PRIMARY KEY,source TEXT NOT NULL,choice TEXT NOT NULL,note TEXT NOT NULL,revision INTEGER NOT NULL,created TEXT NOT NULL,updated TEXT NOT NULL);`);
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),now=()=>new Date(clock()).toISOString();
  const choiceFrom=r=>{const c=JSON.parse(r.recipe);return {setId:c.set.id,product:c.product,audience:c.audience,sizes:c.variants.map(v=>v.size),allowUnspecifiedAudience:c.allowUnspecifiedAudience===true,layout:c.layout?.input||null};};
@@ -26,7 +27,8 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
    const selection=JSON.parse(m.selection||'{}'),saved=has('factory_job_layouts')?get('SELECT layout FROM factory_job_layouts WHERE job=?',m.job):null,layout=saved?JSON.parse(saved.layout):null;
    legacy.push({id:'made:'+m.id,jobId:m.job,collection:m.set_name,name:m.name,state:m.status,supplierId:m.printful_id||null,editable:false,choice:{setId:m.set_id,product:m.catalog,audience:m.gender||'unisex',sizes:selection.sizes||[],allowUnspecifiedAudience:selection.allowUnspecifiedAudience===true,layout:layout?.input||null}});
   }
-  return {pieces,products:[...products,...legacy],sets,recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
+  const linked=rows=>rows.map(p=>({...p,printfulEditUrl:printfulProductEditUrl(storeId,p.supplierId)}));
+  return {pieces:linked(pieces),products:linked([...products,...legacy]),sets,recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }
  let mediaCache=null,mediaAt=0,mediaPending=null;
  async function storeMedia(){
