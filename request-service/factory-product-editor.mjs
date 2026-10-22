@@ -4,7 +4,7 @@ export function printfulProductEditUrl(storeId,productId){const store=String(sto
 const ROOT='/api/owner/ai-factory/product-editor';
 // Editor revisions contain recipes, never disposable rendered pixels. They are
 // included in the same database recovery snapshots as the production queue.
-export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit,origin,clock=Date.now,fetchImpl=fetch,storeId=process.env.PRINTFUL_STORE_ID}){
+export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit,origin,clock=Date.now,fetchImpl=fetch,storeId=process.env.PRINTFUL_STORE_ID,printfulToken=process.env.PRINTFUL_TOKEN}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_product_edits(id TEXT PRIMARY KEY,source TEXT NOT NULL,choice TEXT NOT NULL,note TEXT NOT NULL,revision INTEGER NOT NULL,created TEXT NOT NULL,updated TEXT NOT NULL);`);
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),now=()=>new Date(clock()).toISOString();
  const choiceFrom=r=>{const c=JSON.parse(r.recipe);return {setId:c.set.id,product:c.product,audience:c.audience,sizes:c.variants.map(v=>v.size),allowUnspecifiedAudience:c.allowUnspecifiedAudience===true,layout:c.layout?.input||null};};
@@ -12,6 +12,22 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
  let pending=0,recoveryError='';
  function checkpoint(){pending++;recoveryError='';Promise.resolve().then(()=>basic.checkpoint()).catch(e=>{recoveryError=String(e.message||e).slice(0,500);}).finally(()=>{pending--;});}
  const recovery=()=>({pending:pending>0,error:recoveryError,backup:basic.snapshot().backup||null});
+ let resolvedStoreId=/^\d+$/.test(String(storeId||'').trim())?String(storeId).trim():null,storeLookup=null,storeLookupAt=0,storeLookupError='';
+ async function discoverStore(){
+  if(resolvedStoreId||!printfulToken||clock()-storeLookupAt<60000)return;
+  if(storeLookup)return storeLookup;
+  storeLookupAt=clock();storeLookup=(async()=>{try{
+   const r=await fetchImpl('https://api.printful.com/stores',{headers:{Authorization:'Bearer '+printfulToken},signal:AbortSignal.timeout(20000)});
+   if(!r.ok)throw Error('Printful store lookup returned HTTP '+r.status+'.');const body=await r.json(),stores=Array.isArray(body.result)?body.result:body.result?.stores;
+   if(!Array.isArray(stores)||!stores.length||stores.length>10||stores.some(s=>!/^\d+$/.test(String(s.id))))throw Error('Printful store discovery did not return a usable store list.');
+   let selected=stores.length===1?stores[0]:null;
+   if(!selected){const product=[...library().pieces,...library().products].find(p=>/^\d+$/.test(String(p.supplierId)))?.supplierId,matched=[];if(!product)throw Error('A saved supplier product is required to identify the Printful store.');const signal=AbortSignal.timeout(20000);
+    for(const candidate of stores){const check=await fetchImpl('https://api.printful.com/store/products/'+product,{headers:{Authorization:'Bearer '+printfulToken,'X-PF-Store-Id':String(candidate.id)},signal});if(check.status===404)continue;if(!check.ok)throw Error('Printful store ownership lookup returned HTTP '+check.status+'.');const detail=await check.json();if(String(detail.result?.sync_product?.id)===String(product))matched.push(candidate);}
+    if(matched.length!==1)throw Error('Printful did not uniquely match the saved product to one store.');selected=matched[0];
+   }
+   resolvedStoreId=String(selected.id);storeLookupError='';
+  }catch(e){storeLookupError=e.message;}finally{storeLookup=null;}})();return storeLookup;
+ }
  function library(){
   const q=outfits.snapshot(),families=[...q.plans,...q.recent,...(q.active?[q.active]:[])],seen=new Set(),pieces=[];
   const scope=q.batch?.scope?new Set(q.batch.scope.pieceIds):null;
@@ -27,8 +43,8 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
    const selection=JSON.parse(m.selection||'{}'),saved=has('factory_job_layouts')?get('SELECT layout FROM factory_job_layouts WHERE job=?',m.job):null,layout=saved?JSON.parse(saved.layout):null;
    legacy.push({id:'made:'+m.id,jobId:m.job,collection:m.set_name,name:m.name,state:m.status,supplierId:m.printful_id||null,editable:false,choice:{setId:m.set_id,product:m.catalog,audience:m.gender||'unisex',sizes:selection.sizes||[],allowUnspecifiedAudience:selection.allowUnspecifiedAudience===true,layout:layout?.input||null}});
   }
-  const linked=rows=>rows.map(p=>({...p,printfulEditUrl:printfulProductEditUrl(storeId,p.supplierId)}));
-  return {pieces:linked(pieces),products:linked([...products,...legacy]),sets,recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
+  const linked=rows=>rows.map(p=>({...p,printfulEditUrl:printfulProductEditUrl(resolvedStoreId,p.supplierId)}));
+  return {pieces:linked(pieces),products:linked([...products,...legacy]),sets,printfulEditorError:resolvedStoreId?null:storeLookupError||'A valid Printful store ID is required for native product editing.',recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }
  let mediaCache=null,mediaAt=0,mediaPending=null;
  async function storeMedia(){
@@ -57,7 +73,7 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
  return {library,save,async handle(req,res,path,method){
   if(path!==ROOT&&!path.startsWith(ROOT+'/'))return false;auth(req,null,true);
   if(method==='GET'&&path===ROOT+'/media'){send(res,200,await storeMedia());return true;}
-  if(method==='GET'&&path===ROOT){send(res,200,library());return true;}
+  if(method==='GET'&&path===ROOT){await discoverStore();send(res,200,library());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'product-editor',30);const b=await body(req);
   if(path===ROOT+'/save'){send(res,202,await save(b));return true;}
   const draft=get('SELECT * FROM factory_product_edits WHERE id=?',String(b.id||''));if(!draft)fail(404,'Save this edit first.');if(draft.revision!==b.revision)fail(409,'The saved edit changed. Reload before applying it.');
