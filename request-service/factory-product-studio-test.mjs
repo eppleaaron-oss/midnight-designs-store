@@ -83,3 +83,8 @@ test('supplier garment guides map the native print canvas without changing saved
  assert.equal(templateGeometry({...area,template:{...area.template,print_area_width:100}}).mapped,false,'incorrect mappings never stretch the saved print file');
  assert.equal(templateGeometry({...area,template:null}).mapped,false);
 });
+
+test('flattened back and sleeve images expose saved editable placement drafts without silently changing current supplier artwork',async t=>{
+ const f=await fixture(t);await archived(f);for(const v of f.supplier.sync_variants){v.files[0].url=null;v.files[0].preview_url='https://files.cdn.printful.com/current.png';}
+ const o=await f.open();assert.equal(o.basePanels['11'],undefined,'changed or flattened supplier images are not silently substituted');assert.equal(o.suggestedPanels['11'].front.layers[0].asset,'art:art1');assert.equal(o.suggestedPanels['11'].front.layers[0].width,.5);assert.equal(f.counts().puts,0);assert.equal(o.document,null,'opening a placement does not save a replacement design');
+});
