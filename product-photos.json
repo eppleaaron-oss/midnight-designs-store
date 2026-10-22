@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T05:15:30.315Z",
+  "updatedAt": "2026-10-22T17:32:43.160Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -45467,11 +45467,26 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/482918795-supplier-9f46f932b2a4c52a9171.jpg",
           "sha256": "4e708d25de6272cfe8e7dc7c83c0edc40915ea5dc9e9fdba6e652e7a4502ea3b"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/482918795-supplier-4ed0d7f942087d9fc7b3.jpg",
+          "sha256": "7e981cec68e991d68b9ad036a7df4c726ee1862143be2cb1c811cc566504b7f3"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "d7ffe669e7eba416ddb19b3787b3a53d76aa1d969a8729a70456e960cbeea24c",
-      "supplierPreviews": "26a1f77b56164202f777a11e19c113a869995fde25c8b74be6a63d2fcdab7a65"
+      "supplierPreviews": "9bc36f5c96decb1df63c817c139190070b78f9d90a6cb4569b390a8f381113a5"
     },
     "482923908": {
       "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",

@@ -52763,13 +52763,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T17:31:42.973Z",
+  "updatedAt": "2026-10-22T17:35:16.217Z",
   "catalogAudit": {
-    "supplierProducts": 154,
+    "supplierProducts": 163,
     "eligible": 154,
-    "importedPreviews": 0,
+    "importedPreviews": 1,
     "held": [],
-    "checkedAt": "2026-10-22T12:17:01.439Z"
+    "checkedAt": "2026-10-22T17:32:00.392Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
