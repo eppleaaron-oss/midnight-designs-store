@@ -55886,13 +55886,14 @@
     "cfb75b57a65ab8ac7f23f06dd23b073398e685265afc170cfbe1724b26af9ac0": {
       "productId": "484029631",
       "variant": 9063,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T18:10:45.563Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988817268"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T18:10:45.563Z",
+  "updatedAt": "2026-10-22T18:11:20.532Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
