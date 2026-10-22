@@ -58587,13 +58587,14 @@
     "9735157a280c3fbbcec9685b52d269fc2a23fa0f7e88d92576b1c857870566e5": {
       "productId": "484121835",
       "variant": 11414,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T22:14:46.631Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988955535"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:14:46.631Z",
+  "updatedAt": "2026-10-22T22:15:21.064Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
