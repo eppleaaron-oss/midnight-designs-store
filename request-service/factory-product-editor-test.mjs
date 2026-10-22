@@ -72,3 +72,15 @@ test('native editor links use the existing supplier product and configured store
  assert.equal(printfulProductEditUrl('12345','482918795'),'https://www.printful.com/dashboard/product-templates/published/12345/482918795');
  for(const [store,product]of [['','482918795'],['12345',null],['12345','piece:abc'],['https://other.test','123'],['123','42?redirect=evil']])assert.equal(printfulProductEditUrl(store,product),null);
 });
+
+
+test('native product editor discovers only a single authorized Printful store without exposing its token',async t=>{
+ const f=fixture(t);let calls=0,sent;const editor=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,data)=>{sent=data;},fail:()=>{},limit:()=>{},origin:'http://test',storeId:'',printfulToken:'test-private-token',fetchImpl:async(url,options)=>{calls++;assert.equal(url,'https://api.printful.com/stores');assert.equal(options.headers.Authorization,'Bearer test-private-token');return {ok:true,json:async()=>({result:[{id:12345,name:'Midnight Designs'}]})};}});
+ await editor.handle({headers:{}},{},'/api/owner/ai-factory/product-editor','GET');assert.equal(sent.printfulEditorError,null);assert.equal(JSON.stringify(sent).includes('test-private-token'),false);await editor.handle({headers:{}},{},'/api/owner/ai-factory/product-editor','GET');assert.equal(calls,1);
+});
+
+test('multiple Printful stores are resolved by the saved supplier product rather than choosing the first account store',async t=>{
+ const f=fixture(t);f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('made','job',JSON.stringify({set:{id:'art',name:'Rose'},product:390,name:'Bomber',audience:'unisex',variants:[{size:'M'}]}),'today','supplier_created');f.db.prepare('INSERT INTO factory_listings VALUES(?,?,?,?)').run('job','555','supplier_ready',JSON.stringify({title:'Rose Bomber'}));let sent;
+ const editor=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,data)=>{sent=data;},fail:()=>{},limit:()=>{},origin:'http://test',storeId:'',printfulToken:'test',fetchImpl:async(url,options)=>url.endsWith('/stores')?{ok:true,json:async()=>({result:[{id:1},{id:2}]})}:options.headers['X-PF-Store-Id']==='1'?{ok:false,status:404}:{ok:true,json:async()=>({result:{sync_product:{id:555}}})}});
+ await editor.handle({headers:{}},{},'/api/owner/ai-factory/product-editor','GET');assert.equal(sent.products[0].printfulEditUrl,'https://www.printful.com/dashboard/product-templates/published/2/555');
+});
