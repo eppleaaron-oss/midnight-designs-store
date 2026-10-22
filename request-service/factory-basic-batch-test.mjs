@@ -21,11 +21,11 @@ function fixture(){
   async create(choice,context){assert.equal(context.signature,'signature:'+choice.product);assert.ok(get('SELECT id FROM factory_basic_outfit_runs WHERE id=?',context.outfitId));const id='made'+(++made);run('INSERT INTO factory_basic_items VALUES(?,?,?,?,NULL,0,?,NULL,?,?)',id,choice.requestKey,'frozen:'+id,JSON.stringify({set:{id:choice.setId},product:choice.product,outfitId:context.outfitId}),'producing','job:'+id,new Date().toISOString());if(crash)throw Error('Response lost after item save');return get('SELECT * FROM factory_basic_items WHERE id=?',id);},
   async approveBatch(id,key){const a=active();assert.equal(a.id,id);assert.equal(a.recipe_key,key);assert.equal(ready,true);approved++;run("UPDATE factory_basic_items SET decision='approved',status='publishing' WHERE id=?",id);ready=false;}
  };
- const options={db,basic,summary,attach,open:()=>null};let batch=factoryBasicBatch(options);
+ let clock=Date.now();const options={db,basic,summary,attach,open:()=>null,clock:()=>clock};let batch=factoryBasicBatch(options);
  const recipes=[1,2].map(product=>({product,layout:{number:5},sizes:[],audience:'unisex'}));
  const start=(ids=['p'])=>batch.start({confirm:true,requestKey:'requested-collection-batch-v1',planIds:ids,recipes,acceptMissingModel:true});
  function finish(){const a=active();run("UPDATE factory_basic_items SET status='published',closed=1,cleanup=? WHERE id=?",JSON.stringify({verified:true}),a.id);run('INSERT INTO factory_listings VALUES(?,?)',a.job,'store:'+a.id);}
- return {db,run,get,all,addPlan,basic,start,finish,recipes,counts:()=>({made,approved,saves}),setReady:()=>{ready=true;},failInspection:fn=>{inspectError=fn;},loseResponse:()=>{crash=true;},restart:()=>{batch=factoryBasicBatch(options);return batch;},get batch(){return batch;}};
+ return {db,run,get,all,addPlan,basic,start,finish,recipes,advance:ms=>{clock+=ms;},counts:()=>({made,approved,saves}),setReady:()=>{ready=true;},failInspection:fn=>{inspectError=fn;},loseResponse:()=>{crash=true;},restart:()=>{batch=factoryBasicBatch(options);return batch;},get batch(){return batch;}};
 }
 
 test('a finite batch publishes its exact pieces, waits for cleanup, and resumes from SQLite',async t=>{
@@ -108,4 +108,33 @@ test('owner editor recipes override batch defaults, preserve source families, an
  const saved=JSON.parse(f.get("SELECT choice FROM factory_basic_outfit_pieces WHERE id='p_0'").choice);assert.equal(saved.ownerRecipe.layout.number,9);assert.deepEqual(saved.ownerRecipe.sizes,['M']);
  let observed;const create=f.basic.create;f.basic.create=async(c,ctx)=>{observed=c;return create(c,ctx);};await f.batch.tick();assert.equal(observed.layout.number,9);assert.deepEqual(observed.sizes,['M']);
  assert.throws(()=>f.batch.editPiece('p_0',choice,'inspected',''),/already started/);assert.throws(()=>f.batch.editPiece('p_1',{...choice,product:2,setId:'other'},'bad',''),/original garment and design family/);
+});
+
+test('temporary preflight outages back off durably and resume the same selected piece',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();const inspect=f.basic.inspect;let calls=0;
+ f.basic.inspect=async c=>{calls++;if(calls===1)throw Object.assign(Error('Printful is temporarily unreachable. The same selection can be retried.'),{status:503});return inspect(c);};
+ await f.batch.tick();assert.equal(f.batch.snapshot().status,'running');assert.equal(f.counts().made,0);assert.equal(f.batch.snapshot().holds.length,0);assert.equal(f.batch.snapshot().retries[0].attempts,1);
+ await f.restart().tick();assert.equal(calls,1);f.advance(30001);await f.batch.tick();assert.equal(f.counts().made,1);assert.equal(f.basic.batchCurrent().request_key,'basic-outfit_p_0');assert.equal(f.batch.snapshot().retries.length,0);
+});
+test('legacy network holds recover automatically only for authorized unstarted pieces',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();const id=f.batch.snapshot().id;
+ f.run("UPDATE factory_basic_batches SET status='blocked',error='fetch failed'");f.run('INSERT INTO factory_basic_batch_holds VALUES(?,?,?)',id,'p_0','Printful is temporarily unreachable. The same selection can be retried.');
+ await f.batch.tick();assert.equal(f.batch.snapshot().status,'running');assert.equal(f.batch.snapshot().holds.length,0);assert.equal(f.counts().made,0);f.advance(30001);await f.restart().tick();assert.equal(f.counts().made,1);
+});
+test('connection retries stop at their limit and cannot silently reset after restart',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();let calls=0;f.basic.inspect=async()=>{calls++;throw TypeError('fetch failed');};
+ for(let n=0;n<8;n++){f.advance(700000);await f.batch.tick();}assert.equal(calls,8);assert.equal(f.batch.snapshot().status,'blocked');assert.equal(f.batch.snapshot().retries[0].attempts,8);assert.equal(f.counts().made,0);f.advance(700000);await f.restart().tick();assert.equal(calls,8);assert.match(f.batch.snapshot().error,/retry limit exhausted/);
+});
+test('uncertain supplier results and foreign pieces never become automatic network retries',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.addPlan('other');await f.start();const id=f.batch.snapshot().id;
+ f.run("UPDATE factory_basic_batches SET status='blocked'");f.run('INSERT INTO factory_basic_batch_holds VALUES(?,?,?)',id,'other_0','fetch failed');await f.batch.tick();assert.equal(f.batch.snapshot().status,'blocked');assert.equal(f.counts().made,0);
+ f.run('DELETE FROM factory_basic_batch_holds');f.run('INSERT INTO factory_basic_batch_holds VALUES(?,?,?)',id,'p_0','Supplier result is uncertain. Reconcile before retry.');await f.restart().tick();assert.equal(f.batch.snapshot().status,'blocked');assert.equal(f.batch.snapshot().retries.length,0);
+});
+test('a network error after an item is saved adopts its original key without scheduling another creation',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();const create=f.basic.create;f.basic.create=async(...args)=>{await create(...args);throw TypeError('fetch failed');};
+ await f.batch.tick();assert.equal(f.counts().made,1);assert.equal(f.batch.snapshot().retries.length,0);assert.equal(f.get('SELECT item FROM factory_basic_outfit_pieces WHERE id=?','p_0').item,'made1');await f.restart().tick();assert.equal(f.counts().made,1);
+});
+test('a temporary quote outage retries the existing item while preserving verified-charge requirements',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.recipes[0].charges={verified:true,extraCents:0,shippingCents:null,source:'Verified included print'};await f.start();await f.batch.tick();const read=f.basic.batchCurrent;let calls=0;f.basic.batchCurrent=()=>({...read(),pricing:{status:'held'}});
+ f.basic.confirmBatchCharges=async(id,key)=>{assert.equal(id,'made1');assert.equal(key,'frozen:made1');calls++;if(calls===1)throw TypeError('fetch failed');};await f.batch.tick();assert.equal(f.batch.snapshot().status,'running');await f.restart().tick();assert.equal(calls,1);f.advance(30001);await f.batch.tick();assert.equal(calls,2);assert.equal(f.counts().made,1);assert.equal(f.counts().approved,0);assert.equal(f.batch.snapshot().retries.length,0);
 });
