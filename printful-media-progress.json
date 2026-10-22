@@ -57274,14 +57274,77 @@
     "0cf5a51e8f9868e3f34affcefcf3039fa0e062bb54cf165c96c40b70a9358b6b": {
       "productId": "483989841",
       "variant": 9063,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T18:31:49.312Z",
       "attempts": 1,
-      "key": "gt-988827839"
+      "key": "gt-988827839",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483989841-9063-all-0cf5a51e8f-0.jpg",
+          "sha256": "fa9afa32a2e9f35f4d4ed39992017a4c09b5da21eb375369b2dea57a685e8a85",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588525846"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Backpack · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483989841-9063-all-0cf5a51e8f-1.jpg",
+          "sha256": "dad60d2f81593efe00aae4bfd024342e5fc27022043a47d07098f49b193096ff",
+          "view": "Left",
+          "style": "Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588525846"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Backpack · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483989841-9063-all-0cf5a51e8f-2.jpg",
+          "sha256": "fa8c0c27b32b17115c6648f9e688f00c19683c9a874e20fe3ce57ea089d6172a",
+          "view": "Left",
+          "style": "Women's Lifestyle",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588525846"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Backpack · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483989841-9063-all-0cf5a51e8f-3.jpg",
+          "sha256": "d95c64f76c78b9b4a7c2d4f7fec0d2acb345a6bf5c4a8b12a650bae51ddf016f",
+          "view": "top",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5588525846"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Backpack · top",
+          "label": "top",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T18:32:24.233Z",
+  "updatedAt": "2026-10-22T18:32:34.869Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
