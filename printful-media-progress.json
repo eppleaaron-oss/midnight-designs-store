@@ -54484,13 +54484,14 @@
     "56cb7ae439f4e83f245651a4f6c1acda6e7520bec50ea42fce410810d6b09e8c": {
       "productId": "484044435",
       "variant": 11414,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T17:54:26.007Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988809123"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T17:54:26.007Z",
+  "updatedAt": "2026-10-22T17:55:01.186Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
