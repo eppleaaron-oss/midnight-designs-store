@@ -1,7 +1,89 @@
 {
-  "updatedAt": "2026-10-22T22:28:00.953Z",
-  "lastSyncedAt": "2026-10-22T22:28:00.953Z",
+  "updatedAt": "2026-10-22T22:35:20.788Z",
+  "lastSyncedAt": "2026-10-22T22:35:20.788Z",
   "products": [
+    {
+      "id": "484096947",
+      "catalogProductId": 279,
+      "name": "Untitled cotton hoodie design 3901 All-Over Print Backpack",
+      "category": "accessories",
+      "image": "assets/product-photos/484096947-9063-all-148a717eda-0.jpg",
+      "images": [
+        "assets/product-photos/484096947-9063-all-148a717eda-0.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-1.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-2.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-3.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-4.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-5.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-6.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-7.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-8.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-9.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-10.jpg",
+        "assets/product-photos/484096947-9063-all-148a717eda-11.jpg",
+        "assets/product-photos/484096947-9063-all-f677041327-0.jpg",
+        "assets/product-photos/484096947-9063-all-f677041327-1.jpg",
+        "assets/product-photos/484096947-9063-all-f677041327-2.jpg",
+        "assets/product-photos/484096947-9063-all-f677041327-3.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-0.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-1.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-2.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-3.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-4.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-5.jpg",
+        "assets/product-photos/484096947-9063-all-0bd87d7faf-6.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5589399800",
+          "name": "Untitled cotton hoodie design 3901 All-Over Print Backpack / White / One size",
+          "price": 60.99,
+          "currency": "USD",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484096947-9063-all-148a717eda-0.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-1.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-2.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-3.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-4.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-5.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-6.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-7.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-8.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-9.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-10.jpg",
+            "assets/product-photos/484096947-9063-all-148a717eda-11.jpg",
+            "assets/product-photos/484096947-9063-all-f677041327-0.jpg",
+            "assets/product-photos/484096947-9063-all-f677041327-1.jpg",
+            "assets/product-photos/484096947-9063-all-f677041327-2.jpg",
+            "assets/product-photos/484096947-9063-all-f677041327-3.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-0.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-1.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-2.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-3.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-4.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-5.jpg",
+            "assets/product-photos/484096947-9063-all-0bd87d7faf-6.jpg"
+          ],
+          "image": "assets/product-photos/484096947-9063-all-148a717eda-0.jpg"
+        }
+      ],
+      "url": "products/484096947.html",
+      "factoryExternalId": "midnight-factory-bfe14dd7-0c3c-4b59-a4bc-f73708d9f0f8",
+      "description": "Untitled cotton hoodie design 3901 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "accessories"
+      ],
+      "collections": [
+        "Still Waters Run Deep matching collection"
+      ],
+      "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81"
+    },
     {
       "id": "484115196",
       "catalogProductId": 513,
