@@ -53842,14 +53842,51 @@
     "120963d7f9b5ef3ea90c60794f7c03806ff96a5dc0cc1020329517c863551b28": {
       "productId": "484051716",
       "variant": 16361,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T17:47:43.258Z",
       "attempts": 1,
-      "key": "gt-988805830"
+      "key": "gt-988805830",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484051716-16361-all-120963d7f9-0.jpg",
+          "sha256": "3cca7b6c95c4faac27ebc9fe55d4014902875688ce41df3f1918daf814dae816",
+          "view": "outside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5588884325",
+            "5588884326",
+            "5588884355"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Reversible Bucket Hat · outside_front",
+          "label": "outside_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484051716-16361-all-120963d7f9-1.jpg",
+          "sha256": "00429e3309279f4574a7680759cca85ba37b6fc33af33ce955694129c67e731e",
+          "view": "inside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5588884325",
+            "5588884326",
+            "5588884355"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Reversible Bucket Hat · inside_front",
+          "label": "inside_front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T17:48:18.557Z",
+  "updatedAt": "2026-10-22T17:48:27.701Z",
   "catalogAudit": {
     "supplierProducts": 163,
     "eligible": 154,
