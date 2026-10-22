@@ -57945,14 +57945,51 @@
     "9c53a4026ddb5984f02bdbb9a54eb32e2856e3a0eced8b0801676de89664605c": {
       "productId": "484132973",
       "variant": 16361,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T22:07:40.654Z",
       "attempts": 1,
-      "key": "gt-988950933"
+      "key": "gt-988950933",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484132973-16361-all-9c53a4026d-0.jpg",
+          "sha256": "d02dacb77861dbacfaa674ba096e6d5d12c1205361daa26849ddd62fe7ec0e8f",
+          "view": "outside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5589605112",
+            "5589605366",
+            "5589605369"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Reversible Bucket Hat · outside_front",
+          "label": "outside_front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484132973-16361-all-9c53a4026d-1.jpg",
+          "sha256": "00429e3309279f4574a7680759cca85ba37b6fc33af33ce955694129c67e731e",
+          "view": "inside_front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5589605112",
+            "5589605366",
+            "5589605369"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Reversible Bucket Hat · inside_front",
+          "label": "inside_front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:08:14.888Z",
+  "updatedAt": "2026-10-22T22:08:28.046Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
