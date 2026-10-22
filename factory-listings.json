@@ -7018,6 +7018,148 @@
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c"
     },
+    "484021178": {
+      "id": "484021178",
+      "catalogProductId": 1481,
+      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts",
+      "category": "shorts",
+      "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+      "images": [
+        "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+        "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5588667203",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / 2XL",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 46350,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        },
+        {
+          "id": "5588667205",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / 3XL",
+          "price": 44.99,
+          "currency": "USD",
+          "catalogVariantId": 46351,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        },
+        {
+          "id": "5588667216",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / L",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46348,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        },
+        {
+          "id": "5588667230",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / M",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46347,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        },
+        {
+          "id": "5588667231",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / S",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46346,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        },
+        {
+          "id": "5588667232",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / XL",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46349,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        },
+        {
+          "id": "5588667233",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts / White / XS",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46345,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg",
+            "assets/product-photos/484021178-46347-all-fed2e28247-1.jpg"
+          ],
+          "image": "assets/product-photos/484021178-46347-all-fed2e28247-0.jpg"
+        }
+      ],
+      "url": "products/484021178.html",
+      "factoryExternalId": "midnight-factory-0db7da1a-4a6e-47cf-948e-af3e09ad820c",
+      "description": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shorts"
+      ],
+      "collections": [
+        "Time Takes All matching collection"
+      ],
+      "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c"
+    },
     "484029631": {
       "id": "484029631",
       "catalogProductId": 279,
