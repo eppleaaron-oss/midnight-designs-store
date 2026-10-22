@@ -1,7 +1,217 @@
 {
-  "updatedAt": "2026-10-22T18:18:05.076Z",
-  "lastSyncedAt": "2026-10-22T18:18:05.076Z",
+  "updatedAt": "2026-10-22T18:21:12.372Z",
+  "lastSyncedAt": "2026-10-22T18:21:12.372Z",
   "products": [
+    {
+      "id": "484013198",
+      "catalogProductId": 1479,
+      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants",
+      "category": "pants",
+      "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+      "images": [
+        "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+        "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5588631415",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XL",
+          "price": 56.99,
+          "currency": "USD",
+          "catalogVariantId": 46256,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631418",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XS",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46251,
+          "size": "2XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631420",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / 3XL",
+          "price": 59.99,
+          "currency": "USD",
+          "catalogVariantId": 46257,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631424",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / 4XL",
+          "price": 62.99,
+          "currency": "USD",
+          "catalogVariantId": 46258,
+          "size": "4XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631428",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / 5XL",
+          "price": 65.99,
+          "currency": "USD",
+          "catalogVariantId": 46259,
+          "size": "5XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631430",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / 6XL",
+          "price": 69.99,
+          "currency": "USD",
+          "catalogVariantId": 46260,
+          "size": "6XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631433",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / L",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46254,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631438",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / M",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46253,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631441",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / S",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46252,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631443",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / XL",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46255,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        },
+        {
+          "id": "5588631445",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants / White / XS",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46250,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
+            "assets/product-photos/484013198-46253-all-83336bb6d6-1.jpg"
+          ],
+          "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg"
+        }
+      ],
+      "url": "products/484013198.html",
+      "factoryExternalId": "midnight-factory-c5725f2c-5c31-4c8c-a2e3-512cfa57425d",
+      "description": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "pants"
+      ],
+      "collections": [
+        "Time Takes All matching collection"
+      ],
+      "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c"
+    },
     {
       "id": "484021178",
       "catalogProductId": 1481,
