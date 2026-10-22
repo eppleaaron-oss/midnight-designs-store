@@ -5,7 +5,11 @@ import {createCipheriv,createDecipheriv,createHash,createHmac,hkdfSync,randomByt
 import {mkdtemp,mkdir,open,rm,stat,link} from 'node:fs/promises';
 import {dirname,join} from 'node:path';
 import {tmpdir} from 'node:os';
-import {deflateSync,inflateSync} from 'node:zlib';
+import {deflate,inflateSync} from 'node:zlib';
+import {promisify} from 'node:util';
+import {Worker} from 'node:worker_threads';
+const compress=promisify(deflate);
+const prepareSnapshot=path=>new Promise((resolve,reject)=>{let answered=false;const worker=new Worker(new URL('./factory-backup-worker.mjs',import.meta.url),{workerData:{path}});worker.once('message',m=>{answered=true;m?.ok?resolve():reject(problem('Recovery snapshot preparation failed. The live database was preserved.'));});worker.once('error',()=>reject(problem('Recovery snapshot worker failed. The live database was preserved.')));worker.once('exit',code=>{if(code||!answered)reject(problem('Recovery snapshot preparation did not finish.'));});});
 
 const ROOT='factory-backup',MANIFEST=ROOT+'/latest.enc',CHUNK=4*1024*1024;
 const digest=b=>createHash('sha256').update(b).digest('hex');
@@ -98,6 +102,16 @@ export class GithubSnapshotStore{
    this.hold=true;throw problem('GitHub checkpoint changed on another backend. This item is held before another external operation.',503,{conflict:true});
   }
  }
+ async claimDeploymentWriter({service,instance,commit=''}){
+  if(!/^srv-[a-z0-9]+$/.test(service||'')||typeof instance!=='string'||!instance||instance.length>160)throw problem('Invalid deployment writer identity.');
+  await this.connect();if(!this.manifest)throw problem('A verified recovery snapshot is required before deployment handoff.');await this.assertCurrent();
+  const parent=this.head,payload=Buffer.from(JSON.stringify({service,instance,commit:String(commit).slice(0,64),claimedAt:new Date(this.clock()).toISOString()})+'\n');
+  const blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:payload.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm the deployment handoff record.');
+  const tree=await this.api('/git/trees',{method:'POST',body:{base_tree:this.tree,tree:[{path:ROOT+'/render-writer.json',mode:'100644',type:'blob',sha:blob.sha}]}});if(!sha(tree.sha))throw problem('GitHub did not confirm the handoff tree.');
+  const next=await this.api('/git/commits',{method:'POST',body:{message:'Hand off Factory recovery writer to Render deployment',tree:tree.sha,parents:[parent]}});if(!sha(next.sha))throw problem('GitHub did not confirm the deployment writer.');
+  const accepted=await this.api('/git/refs/heads/'+encodeURIComponent(this.branch),{method:'PATCH',body:{sha:next.sha,force:false}});if(accepted.object?.sha!==next.sha)await this.confirmHead(next.sha,parent);
+  this.previousHead=parent;this.head=next.sha;this.tree=tree.sha;await this.confirmHead(next.sha,parent);return {commit:next.sha,manifest:this.manifest};
+ }
  async assertCurrent(){await this.connect();while(!await this.confirmHead(this.head,this.previousHead)){};}
  validateManifest(m){if(![1,2].includes(m?.format)||!Number.isSafeInteger(m.bytes)||m.bytes<512||m.bytes>this.maxBytes||!/^[a-f0-9]{64}$/.test(m.sha256)||!Array.isArray(m.chunks)||m.chunks.length!==Math.ceil(m.bytes/CHUNK)||!Number.isFinite(Date.parse(m.created)))throw problem('Backup manifest is invalid or exceeds the configured size limit.');if(m.format===2&&(!/^recovery-v2-[a-f0-9]{64}$/.test(m.release?.job)||!Number.isSafeInteger(m.release?.id)))throw problem('Backup release identity is invalid.');let size=0;for(const c of m.chunks){if(!/^[a-f0-9]{64}$/.test(c.id)||!sha(c.sha)||!Number.isSafeInteger(c.bytes)||c.bytes<1||c.bytes>CHUNK)throw problem('Backup chunk manifest is invalid.');if(m.format===2&&(!Number.isSafeInteger(c.asset)||c.asset<1||!/^[a-f0-9]{64}$/.test(c.encodedSha)||c.release!==undefined&&!validRelease(c.release)))throw problem('Backup release chunk is invalid.');size+=c.bytes;}if(size!==m.bytes)throw problem('Backup size does not match its manifest.');if(m.previousReleases!==undefined&&(!Array.isArray(m.previousReleases)||m.previousReleases.length>1024||m.previousReleases.some(r=>!validRelease(r))))throw problem('Backup retained release identities are invalid.');}
  async snapshot(db,{initialize=false}={}){
@@ -108,14 +122,14 @@ export class GithubSnapshotStore{
   // Reproducible Basic working pixels are removed from the copy before applying the backup limit.
   const folder=await mkdtemp(join(tmpdir(),'midnight-snapshot-'));let file;
   try{
-   const path=join(folder,'snapshot.sqlite');await backup(db,path);const copy=new DatabaseSync(path);try{stripBasicWorkingPixels(copy);copy.exec('VACUUM');}finally{copy.close();}const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
+   const path=join(folder,'snapshot.sqlite');await backup(db,path);await prepareSnapshot(path);const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
    file=await open(path,'r');
    const assets=this.releaseSnapshots?new BasicGithubAssets(this,{fetchImpl:this.fetch,sleep:this.sleep,clock:this.clock}):null;let release=null;
    if(assets){const whole=createHash('sha256');for(let offset=0;offset<size;){const data=Buffer.alloc(Math.min(CHUNK,size-offset));const {bytesRead}=await file.read(data,0,data.length,offset);if(!bytesRead)throw problem('Unable to read the recovery snapshot.');whole.update(data.subarray(0,bytesRead));offset+=bytesRead;}const checksum=whole.digest('hex');if(this.manifest?.sha256===checksum)return {commit:this.head,manifest:this.manifest,unchanged:true};const job='recovery-v2-'+checksum,r=await assets.release(job);release={job,id:r.id};}
    const previous=new Map((this.manifest?.chunks||[]).map(c=>[c.id,c])),chunks=[],tree=[],added=new Set(),hash=createHash('sha256');let offset=0;
    while(offset<size){const data=Buffer.alloc(Math.min(CHUNK,size-offset));let used=0;while(used<data.length){const {bytesRead}=await file.read(data,used,data.length-used,offset+used);if(!bytesRead)throw problem('Unable to read a complete SQLite snapshot.');used+=bytesRead;}hash.update(data);const id=createHmac('sha256',this.key).update(data).digest('hex');let entry=previous.get(id);if(assets&&this.manifest?.format!==2)entry=null;else if(assets&&entry)entry={...entry,release:entry.release||this.manifest.release};
-    if(assets&&!entry){const compressed=deflateSync(data),encodedSha=digest(compressed),saved=await assets.put(release.job,'backup',id,compressed,encodedSha);entry={id,sha:gitBlobSha(compressed),bytes:data.length,asset:saved.asset,encodedSha,release};}
-    else if(!assets&&!entry){const encrypted=seal(deflateSync(data),this.key,'chunk-v1:'+id),blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:encrypted.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm a backup chunk.');entry={id,sha:blob.sha,bytes:data.length};previous.set(id,entry);}
+    if(assets&&!entry){const compressed=await compress(data),encodedSha=digest(compressed),saved=await assets.put(release.job,'backup',id,compressed,encodedSha);entry={id,sha:gitBlobSha(compressed),bytes:data.length,asset:saved.asset,encodedSha,release};}
+    else if(!assets&&!entry){const encrypted=seal(await compress(data),this.key,'chunk-v1:'+id),blob=await this.api('/git/blobs',{method:'POST',body:{encoding:'base64',content:encrypted.toString('base64')}});if(!sha(blob.sha))throw problem('GitHub did not confirm a backup chunk.');entry={id,sha:blob.sha,bytes:data.length};previous.set(id,entry);}
     chunks.push(entry);if(!assets&&!added.has(id)){tree.push({path:ROOT+'/chunks/'+id+'.bin',mode:'100644',type:'blob',sha:entry.sha});added.add(id);}offset+=data.length;
    }
    const checksum=hash.digest('hex');if(this.manifest?.sha256===checksum)return {commit:this.head,manifest:this.manifest,unchanged:true};
@@ -161,6 +175,7 @@ export async function prepareGithubRecovery({dbPath,env=process.env,passwordHash
  const store=new GithubSnapshotStore(config,settings);let exists=false;try{exists=(await stat(dbPath)).size>0;}catch(e){if(e.code!=='ENOENT')throw e;}
  if(!exists){
   await store.connect();
+  if(store.manifest&&env.RENDER_SERVICE_ID){for(let attempt=0;attempt<3;attempt++){try{await store.claimDeploymentWriter({service:env.RENDER_SERVICE_ID,instance:env.RENDER_INSTANCE_ID||env.RENDER_GIT_COMMIT||'render-startup',commit:env.RENDER_GIT_COMMIT});break;}catch(e){if(!e.conflict||attempt===2)throw e;store.head=null;store.previousHead=null;store.tree=null;store.manifest=null;store.hold=false;await store.connect();}}}
   // Fresh initialization is an explicit, one-time pin to the empty
   // destination's current commit. The first snapshot advances that ref.
   if(!store.manifest&&sha(env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT)&&env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT===store.head)store.initializeBeforeListen=true;
