@@ -58861,13 +58861,14 @@
     "286644a3753ea8d3222a07498fd1ba3d37b332099fba4c772f46af01cb3204c1": {
       "productId": "484115196",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-22T22:19:05.150Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-988958243"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:19:05.150Z",
+  "updatedAt": "2026-10-22T22:19:39.961Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
