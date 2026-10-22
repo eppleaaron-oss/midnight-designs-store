@@ -9,3 +9,11 @@ export function templateGeometry(area,enabled=true){
  return {mapped,width:Math.round(w*s),height:Math.round(h*s),print:mapped?{x:t.print_area_left*s,y:t.print_area_top*s,width:t.print_area_width*s,height:t.print_area_height*s}:{x:0,y:0,width:Math.round(w*s),height:Math.round(h*s)}};
 }
 export function printPoint(g,x,y){if(!g)return {x:0,y:0,inside:false};const p=g.print,u=(x*g.width-p.x)/p.width,v=(y*g.height-p.y)/p.height;return {x:u,y:v,inside:u>=0&&u<=1&&v>=0&&v<=1};}
+
+// Fit without enlarging source pixels. The guide overlay is not a safe-area mask.
+export function artworkFit(area,source,layer){
+ const angle=(layer.rotation||0)*Math.PI/180,aspect=source.height/source.width,bw=Math.abs(Math.cos(angle))+aspect*Math.abs(Math.sin(angle)),bh=Math.abs(Math.sin(angle))+aspect*Math.abs(Math.cos(angle));
+ const width=Math.max(.001,Math.min(layer.width,source.width/area.width,(area.width-2)/area.width/bw,(area.height-2)/area.width/bh));
+ const halfX=width*bw/2,halfY=width*area.width/area.height*bh/2;
+ return {...layer,width,x:Math.max(halfX,Math.min(1-halfX,layer.x)),y:Math.max(halfY,Math.min(1-halfY,layer.y))};
+}

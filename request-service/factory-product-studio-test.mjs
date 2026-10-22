@@ -88,3 +88,18 @@ test('flattened back and sleeve images expose saved editable placement drafts wi
  const f=await fixture(t);await archived(f);for(const v of f.supplier.sync_variants){v.files[0].url=null;v.files[0].preview_url='https://files.cdn.printful.com/current.png';}
  const o=await f.open();assert.equal(o.basePanels['11'],undefined,'changed or flattened supplier images are not silently substituted');assert.equal(o.suggestedPanels['11'].front.layers[0].asset,'art:art1');assert.equal(o.suggestedPanels['11'].front.layers[0].width,.5);assert.equal(f.counts().puts,0);assert.equal(o.document,null,'opening a placement does not save a replacement design');
 });
+
+test('Finish preflights low-resolution layouts without queuing or locking editing, and failed drafts remain saveable',async t=>{
+ const f=await fixture(t),d=await f.document();d.variants[11].front.layers[0].width=1;
+ f.db.prepare('UPDATE factory_artwork SET data=?').run(await sharp({create:{width:50,height:25,channels:4,background:'#ff0000'}}).png().toBuffer());
+ const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.match(r.error,/Print quality check/);assert.equal(r.issues[0].effectiveDpi,50);assert.equal(f.job(),null);assert.equal(f.counts().puts,0);
+ d.variants[11].front.layers[0].width=.4;await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});
+ const old=f.job(),progress={...old.document,failureStage:'rendering'};f.db.prepare("UPDATE factory_studio_jobs SET state='failed',document=? WHERE id=?").run(JSON.stringify(progress),old.id);
+ const saved=await f.call('save',{source:f.p.id,revision:1,document:d});assert.equal(saved.revision,2);assert.equal((await f.open()).job.canRevise,true);
+ await f.call('finish',{source:f.p.id,revision:2,document:d,target:'printful'});assert.equal(f.db.prepare('SELECT state FROM factory_studio_jobs WHERE id=?').get(old.id).state,'cancelled');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,2);assert.equal(f.counts().puts,0);
+});
+test('print-quality fit preserves artwork proportions, constrains rotated bounds, and keeps every panel independent',async()=>{
+ const {artworkFit}=await import('./public/product-template-geometry.js');const area={width:5250,height:3000,dpi:150},source={width:1758,height:1758};
+ const draft={width:.6154,x:.5,y:.5,rotation:0};const fit=artworkFit(area,source,draft);assert.equal(fit.width,1758/5250);assert.equal(fit.x,.5);assert.equal(draft.width,.6154);assert.ok(source.width/(fit.width*area.width)*area.dpi>=150);
+ const rotated=artworkFit(area,{width:1758,height:3500},{width:.9,x:0,y:1,rotation:90});assert.ok(rotated.x>0&&rotated.y<1);assert.ok(rotated.width>0);
+});
