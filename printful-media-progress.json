@@ -58171,14 +58171,422 @@
     "57e93d3cc21b963ba1138f64822af017f43723395ffdc1efb5364be0c63afe4d": {
       "productId": "484121835",
       "variant": 11414,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-22T22:13:44.512Z",
       "attempts": 1,
-      "key": "gt-988954773"
+      "key": "gt-988954773",
+      "photos": 27,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-0.jpg",
+          "sha256": "e5a669eddaa7ab4b57ba1908d5dda8b86ddb90783b9276025121887b093f097b",
+          "view": "default",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · default",
+          "label": "default",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-1.jpg",
+          "sha256": "dbba2b389b2f086b948cef7614b57fef20472e3034e6aac3d500e233864701da",
+          "view": "Front",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-2.jpg",
+          "sha256": "8a1f91208ed9cd7d85a41f05ce8801cfe81c7750567165aaa7311329dda37c66",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-3.jpg",
+          "sha256": "11d21108f1387d1290b8e48773bf0b4fe7bf7c0a5b7870aa59c1f4edfde0f149",
+          "view": "Folded",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-4.jpg",
+          "sha256": "26621872109020bb1df597871c218a886813bf4e8633d455b55cdde8c48fc659",
+          "view": "Front",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-5.jpg",
+          "sha256": "f9cdd5c33dcd66932eee5f591fb7740783ee373442af459f0828c646feec6a99",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-6.jpg",
+          "sha256": "9a9c7f58a0ebae17815a4414f1afbbc02c438a976d4a7bf017e6465cce44dfc9",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-7.jpg",
+          "sha256": "a2644c67979e174ffc7a5b29990d3715d5bcc59f069849171a0db9596800c2c7",
+          "view": "Front",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-8.jpg",
+          "sha256": "7f3d4b27d3298a3bbd4a0452cdc29a941e823ac40a93fa34477ad2be5cfcdc71",
+          "view": "Left",
+          "style": "Men's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-9.jpg",
+          "sha256": "d033dc86f82ae7e4fde7c2743b3f827ee05bb23c1e4573d2fd1a40ed329cb5e6",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-10.jpg",
+          "sha256": "b4b1a7b94666a1252ed60e98a93d0d7d043fe02958a435598dd75ee6db897895",
+          "view": "Left",
+          "style": "Men's 4",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-11.jpg",
+          "sha256": "cb066dcebf7e80f9735e8c61e4853f62b5365cfa28161e3ef5b59a2f398929ab",
+          "view": "Front",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-12.jpg",
+          "sha256": "a514115352f286f05ea6f4ea03f57554dd5f29f9aa53f9315d2771230f109bc1",
+          "view": "Left",
+          "style": "Women's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-13.jpg",
+          "sha256": "9559abc282eed90f16d82b8beefe6532f082cfe15703badaba76c392570d4994",
+          "view": "Front",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-14.jpg",
+          "sha256": "9614f0cf38ef4f366cf94696804b56571510515ddf869481143018aea331cce1",
+          "view": "Left",
+          "style": "Women's 4",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-15.jpg",
+          "sha256": "1c7296c781513fca23dba178abe57145504fcd059f5cafd8735f26dbb3b61fa7",
+          "view": "Front",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-16.jpg",
+          "sha256": "9856c1d0f70f668ea30b93bd99a0d488446950d0169d28c1f6e52dc5d76d8da1",
+          "view": "Left",
+          "style": "Men's 5",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-17.jpg",
+          "sha256": "afafb9ffb6ada99dd5067b43772115f9b607485cb3cccfa4b8c7bc39c3e9e867",
+          "view": "Back",
+          "style": "Lifestyle 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Back",
+          "label": "On-person · Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-18.jpg",
+          "sha256": "2c7d406835264eba46ccd52457d3241131830ef84728c174d6ce2c135d588295",
+          "view": "Front",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-19.jpg",
+          "sha256": "c0d061313ba2711baadc02ba34907cd291086f444676c4be8ec2426a4441def2",
+          "view": "Left",
+          "style": "Men's 3",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-20.jpg",
+          "sha256": "38641373caa10c3dd9a862bdb076bfda9324c64a3416bfaa1020c23d34e902b6",
+          "view": "Left",
+          "style": "Girl's",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-21.jpg",
+          "sha256": "7c55076f8c58c432b4f94ed7626c9ec15a51bcfef4386e55666e612b46454931",
+          "view": "Folded",
+          "style": "Halloween",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-22.jpg",
+          "sha256": "d5cc092f4180034871c43a9a31e8395342fa9a8948d6f75baf69fe70ddfe9a90",
+          "view": "Front",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-23.jpg",
+          "sha256": "b460b9efc17d9e3dd2d807694ccb7f8d18784ff7cfff005e161ca579c1f9bda9",
+          "view": "Left",
+          "style": "Men's 6",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-24.jpg",
+          "sha256": "50f0296d1ce98aed2615c0c442f5f9df19abddc565cd2f196b0b66f5b688cf4f",
+          "view": "Folded",
+          "style": "Holiday season",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Folded",
+          "label": "Folded",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-25.jpg",
+          "sha256": "f137cb14274f526d3a8e3826b17d0042d70cd3282892874a5ede0a9045bcbfa9",
+          "view": "Front",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Front",
+          "label": "On-person · Front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484121835-11414-all-57e93d3cc2-26.jpg",
+          "sha256": "18df098ff5707a7efd158a26cca078ea04901bf7f166f39106896cdbf1a6a21b",
+          "view": "Left",
+          "style": "Women's 5",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 11414,
+          "storeVariantIds": [
+            "5589538665"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-22T22:14:18.779Z",
+  "updatedAt": "2026-10-22T22:14:43.403Z",
   "catalogAudit": {
     "supplierProducts": 170,
     "eligible": 163,
