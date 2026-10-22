@@ -7018,6 +7018,88 @@
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c"
     },
+    "484029631": {
+      "id": "484029631",
+      "catalogProductId": 279,
+      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack",
+      "category": "accessories",
+      "image": "assets/product-photos/484029631-9063-all-cfb75b57a6-0.jpg",
+      "images": [
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-0.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-1.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-2.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-3.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-4.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-5.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-6.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-7.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-8.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-9.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-10.jpg",
+        "assets/product-photos/484029631-9063-all-cfb75b57a6-11.jpg",
+        "assets/product-photos/484029631-9063-all-914f508e16-0.jpg",
+        "assets/product-photos/484029631-9063-all-914f508e16-1.jpg",
+        "assets/product-photos/484029631-9063-all-914f508e16-2.jpg",
+        "assets/product-photos/484029631-9063-all-914f508e16-3.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-0.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-1.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-2.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-3.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-4.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-5.jpg",
+        "assets/product-photos/484029631-9063-all-79f22f33db-6.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5588715074",
+          "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack / White / One size",
+          "price": 60.99,
+          "currency": "USD",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-0.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-1.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-2.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-3.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-4.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-5.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-6.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-7.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-8.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-9.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-10.jpg",
+            "assets/product-photos/484029631-9063-all-cfb75b57a6-11.jpg",
+            "assets/product-photos/484029631-9063-all-914f508e16-0.jpg",
+            "assets/product-photos/484029631-9063-all-914f508e16-1.jpg",
+            "assets/product-photos/484029631-9063-all-914f508e16-2.jpg",
+            "assets/product-photos/484029631-9063-all-914f508e16-3.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-0.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-1.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-2.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-3.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-4.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-5.jpg",
+            "assets/product-photos/484029631-9063-all-79f22f33db-6.jpg"
+          ],
+          "image": "assets/product-photos/484029631-9063-all-cfb75b57a6-0.jpg"
+        }
+      ],
+      "url": "products/484029631.html",
+      "factoryExternalId": "midnight-factory-e93d99b4-8485-43a8-ade1-463e28805262",
+      "description": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "accessories"
+      ],
+      "collections": [
+        "Time Takes All matching collection"
+      ],
+      "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c"
+    },
     "484038554": {
       "id": "484038554",
       "catalogProductId": 513,
