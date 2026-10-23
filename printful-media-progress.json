@@ -65138,13 +65138,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T21:35:43.923Z",
+  "updatedAt": "2026-10-23T21:40:39.248Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 179,
     "importedPreviews": 0,
     "held": [],
-    "checkedAt": "2026-10-23T17:27:53.403Z"
+    "checkedAt": "2026-10-23T21:36:00.900Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
