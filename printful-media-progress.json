@@ -65138,18 +65138,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T17:27:34.485Z",
+  "updatedAt": "2026-10-23T17:32:31.695Z",
   "catalogAudit": {
     "supplierProducts": 180,
-    "eligible": 178,
+    "eligible": 179,
     "importedPreviews": 0,
-    "held": [
-      {
-        "id": "480738743",
-        "error": "fetch failed"
-      }
-    ],
-    "checkedAt": "2026-10-23T17:18:51.955Z"
+    "held": [],
+    "checkedAt": "2026-10-23T17:27:53.403Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
