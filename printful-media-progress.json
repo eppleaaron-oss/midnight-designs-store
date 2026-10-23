@@ -63940,14 +63940,77 @@
     "de63f30849261c7397b6a3c2d7424619864a9de3bcd56df2889f15abdb64d65f": {
       "productId": "482918795",
       "variant": 46409,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-23T06:15:17.460Z",
       "attempts": 1,
-      "key": "gt-989188894"
+      "key": "gt-989188894",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-0.jpg",
+          "sha256": "22eed8e1d27d5975f2923c03ca464105ec183d18bf91a1f4a53beeb629d4b563",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-1.jpg",
+          "sha256": "20829a7020092f59ff3ef4ed8c2e0bef26ecb24d8e98c3b3f5bb02b2af8fc547",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-2.jpg",
+          "sha256": "1cb8343660bb05101716c46c20fc375bf746fd31e0bdef6f50723a95d6bc69fd",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-3.jpg",
+          "sha256": "ed0b004581c5601da2a29759216c4d2b9761a928244d52421589765d7493ae0d",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T06:15:51.792Z",
+  "updatedAt": "2026-10-23T06:16:05.528Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
