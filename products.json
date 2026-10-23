@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T16:47:46.040Z",
+  "updatedAt": "2026-10-23T18:33:59.042Z",
   "lastSyncedAt": "2026-10-23T16:47:46.040Z",
   "products": [
     {
@@ -14381,12 +14381,12 @@
       "catalogProductId": 1482,
       "name": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt",
       "category": "shirts",
-      "image": "https://midnight-designs.store/images/factory/482918795/5ed9c91cd0cca51942200ea745c058bad51b8ac54f4226464720f4ba0dc5f03a.jpg",
+      "image": "https://midnight-designs.store/images/factory/482918795/464fb5d852bd07c63278d4299093a052bbb9839425552e0e3654fc3e5a0b60d2.jpg",
       "images": [
-        "https://midnight-designs.store/images/factory/482918795/5ed9c91cd0cca51942200ea745c058bad51b8ac54f4226464720f4ba0dc5f03a.jpg",
-        "https://midnight-designs.store/images/factory/482918795/0b3b4f3fa5e190f61d3ec3023215000a30a8aae41fc2e22cbaf549aa2e57b1ae.jpg",
-        "https://midnight-designs.store/images/factory/482918795/bad92ab3f3f2c373a92c289fdacd1803f688cb397ca54425c1e15f5c8361777f.jpg",
-        "https://midnight-designs.store/images/factory/482918795/76f17c31df0cfe9de8b0e1fe877bba462eb11c175b4b1e08c477dfb6f34a3e37.jpg"
+        "https://midnight-designs.store/images/factory/482918795/464fb5d852bd07c63278d4299093a052bbb9839425552e0e3654fc3e5a0b60d2.jpg",
+        "https://midnight-designs.store/images/factory/482918795/7b04d33c99bd3d6443cbe610ee5b79e3d842556aee90125ff6fe325112c3cc2e.jpg",
+        "https://midnight-designs.store/images/factory/482918795/42c567aacd07a99c4e6a67e3cb0de04be136ea5840c6cd0412b0255642a73903.jpg",
+        "https://midnight-designs.store/images/factory/482918795/35440be5b12536d7379f0f52ae21dd36b9cc3937597be80f310b311bb9c171e2.jpg"
       ],
       "variants": [
         {
@@ -14401,12 +14401,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "https://midnight-designs.store/images/factory/482918795/5ed9c91cd0cca51942200ea745c058bad51b8ac54f4226464720f4ba0dc5f03a.jpg",
-            "https://midnight-designs.store/images/factory/482918795/0b3b4f3fa5e190f61d3ec3023215000a30a8aae41fc2e22cbaf549aa2e57b1ae.jpg",
-            "https://midnight-designs.store/images/factory/482918795/bad92ab3f3f2c373a92c289fdacd1803f688cb397ca54425c1e15f5c8361777f.jpg",
-            "https://midnight-designs.store/images/factory/482918795/76f17c31df0cfe9de8b0e1fe877bba462eb11c175b4b1e08c477dfb6f34a3e37.jpg"
+            "https://midnight-designs.store/images/factory/482918795/464fb5d852bd07c63278d4299093a052bbb9839425552e0e3654fc3e5a0b60d2.jpg",
+            "https://midnight-designs.store/images/factory/482918795/7b04d33c99bd3d6443cbe610ee5b79e3d842556aee90125ff6fe325112c3cc2e.jpg",
+            "https://midnight-designs.store/images/factory/482918795/42c567aacd07a99c4e6a67e3cb0de04be136ea5840c6cd0412b0255642a73903.jpg",
+            "https://midnight-designs.store/images/factory/482918795/35440be5b12536d7379f0f52ae21dd36b9cc3937597be80f310b311bb9c171e2.jpg"
           ],
-          "image": "https://midnight-designs.store/images/factory/482918795/5ed9c91cd0cca51942200ea745c058bad51b8ac54f4226464720f4ba0dc5f03a.jpg"
+          "image": "https://midnight-designs.store/images/factory/482918795/464fb5d852bd07c63278d4299093a052bbb9839425552e0e3654fc3e5a0b60d2.jpg"
         }
       ],
       "description": "Rose Eclipse artwork on All-Over Print Oversized Cotton T-Shirt. Printed background: Black.",
@@ -14419,8 +14419,8 @@
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "factoryExternalId": "midnight-factory-1be3784b-c798-4f26-b5dc-a917a65a10b9",
       "url": "products/482918795.html",
-      "studioRevision": "c051fb7e-c639-4bb4-b5f0-8a00957cf9e2",
-      "studioUpdated": 1792715147691
+      "studioRevision": "f2158b30-f2f6-418f-a3bb-429388a6d444",
+      "studioUpdated": 1792779586325
     },
     {
       "id": "482797453",
