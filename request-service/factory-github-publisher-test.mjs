@@ -22,3 +22,15 @@ test('the internal publisher hands credentials only to the backend and reports a
  db.exec("CREATE TABLE factory_studio_jobs(id TEXT,target TEXT,state TEXT);INSERT INTO factory_studio_jobs VALUES('edited-product','store','publishing');");await module.handle(req,{},'/internal/basic-github-publisher','POST');assert.equal(result.value.pending,true,'Edited store products retain the automatic publishing connection');assert.equal(result.value.studio,true);db.exec("UPDATE factory_studio_jobs SET state='completed'");await module.handle(req,{},'/internal/basic-github-publisher','POST');assert.equal(result.value.pending,false,'Completed edits release idle publishing access');
  req.body={action:'disconnect'};await module.handle(req,{},'/internal/basic-github-publisher','POST');assert.equal(revoked,'123456');await assert.rejects(module.handle({headers:{},body:{}},{},'/internal/basic-github-publisher','POST'),e=>e.status===401);
 });
+
+
+test('publisher remains connected through idle periods, later submissions and transient backend restarts',async()=>{
+ const {publisherSession}=await import('./factory-publisher-session.mjs');let now=0,attempt=0;const calls=[],messages=[];
+ await publisherSession({minutes:1,clock:()=>now,sleep:async ms=>{now+=ms;},log:m=>messages.push(m),call:async action=>{calls.push(action);if(action==='disconnect')return {};attempt++;if(attempt===2)throw Object.assign(Error('backend restarting'),{status:503});return {pending:attempt>=3};}});
+ assert.equal(attempt,4);assert.equal(calls.at(-1),'disconnect');assert.equal(calls.filter(x=>x==='disconnect').length,1);assert.ok(messages.some(m=>m.includes('waiting for the next')));assert.ok(messages.some(m=>m.includes('processing approved')));assert.equal(now,60000);
+});
+test('publisher shutdown releases its existing connection and never loops past its deadline',async()=>{
+ const {publisherSession}=await import('./factory-publisher-session.mjs');let stop=false;const calls=[];
+ await publisherSession({minutes:1,call:async action=>{calls.push(action);return {pending:false};},sleep:async()=>{stop=true;},shouldStop:()=>stop});assert.deepEqual(calls,['connect','disconnect']);
+ await assert.rejects(publisherSession({minutes:346}),/between 1 and 345/);
+});
