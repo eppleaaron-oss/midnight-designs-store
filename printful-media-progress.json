@@ -60480,13 +60480,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T05:14:12.762Z",
+  "updatedAt": "2026-10-23T05:18:05.522Z",
   "catalogAudit": {
-    "supplierProducts": 170,
-    "eligible": 163,
-    "importedPreviews": 9,
+    "supplierProducts": 180,
+    "eligible": 170,
+    "importedPreviews": 8,
     "held": [],
-    "checkedAt": "2026-10-22T21:54:42.062Z"
+    "checkedAt": "2026-10-23T05:14:29.184Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
