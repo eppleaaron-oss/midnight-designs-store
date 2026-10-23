@@ -28,6 +28,7 @@ export function factoryGithubPublisher({workspace,db,body,send,fail,limit,fetchI
   await workspace.connectPublisher(token,String(claims.run_id),claims.exp*1000);
   const pending=!!db.prepare("SELECT b.id FROM factory_basic_items b LEFT JOIN factory_listings l ON l.job=b.job WHERE b.closed=0 AND b.decision='approved' AND coalesce(l.status,'')<>'published'").get();
   const hasBatch=db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='factory_basic_batches'").get(),batch=!!(hasBatch&&db.prepare("SELECT id FROM factory_basic_batches WHERE status='running' LIMIT 1").get());
-  send(res,200,{connected:true,pending:pending||batch,batch});return true;
+  const hasStudio=db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='factory_studio_jobs'").get(),studio=!!(hasStudio&&db.prepare("SELECT id FROM factory_studio_jobs WHERE target='store' AND state NOT IN ('completed','failed','cancelled') LIMIT 1").get());
+  send(res,200,{connected:true,pending:pending||batch||studio,batch,studio});return true;
  }};
 }
