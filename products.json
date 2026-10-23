@@ -1,7 +1,89 @@
 {
-  "updatedAt": "2026-10-23T06:01:09.126Z",
-  "lastSyncedAt": "2026-10-23T06:01:09.126Z",
+  "updatedAt": "2026-10-23T06:07:18.080Z",
+  "lastSyncedAt": "2026-10-23T06:07:18.080Z",
   "products": [
+    {
+      "id": "484197021",
+      "catalogProductId": 279,
+      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack",
+      "category": "accessories",
+      "image": "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
+      "images": [
+        "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-1.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-2.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-3.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-4.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-5.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-6.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-7.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-8.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-9.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-10.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-11.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-0.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-1.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-2.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-3.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-0.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-1.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-2.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-3.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-4.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-5.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-6.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5589831621",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack / White / One size",
+          "price": 60.99,
+          "currency": "USD",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-1.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-2.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-3.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-4.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-5.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-6.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-7.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-8.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-9.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-10.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-11.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-0.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-1.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-2.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-3.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-0.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-1.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-2.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-3.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-4.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-5.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-6.jpg"
+          ],
+          "image": "assets/product-photos/484197021-9063-all-202477c31a-0.jpg"
+        }
+      ],
+      "url": "products/484197021.html",
+      "factoryExternalId": "midnight-factory-1e22a3c9-aaab-411d-ab76-12d199c85830",
+      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "accessories"
+      ],
+      "collections": [
+        "Beauty in Decay matching collection"
+      ],
+      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
+    },
     {
       "id": "484210680",
       "catalogProductId": 513,
