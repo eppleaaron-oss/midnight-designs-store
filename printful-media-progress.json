@@ -63501,13 +63501,14 @@
     "202477c31a1ee05f5f3c8a60035150892248ed057ec11b8242a18dd8d53ceda1": {
       "productId": "484197021",
       "variant": 9063,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T06:03:49.374Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989184901"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T06:03:49.374Z",
+  "updatedAt": "2026-10-23T06:04:24.924Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
