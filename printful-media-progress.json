@@ -60481,13 +60481,14 @@
     "db06c93669a8533674d4538b6e6bd5913eddb7016d701bc8b5a0ce9ee9e6b375": {
       "productId": "484282522",
       "variant": 9063,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T05:20:37.213Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989168594"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T05:20:37.213Z",
+  "updatedAt": "2026-10-23T05:21:11.480Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
