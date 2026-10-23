@@ -60912,13 +60912,14 @@
     "2a57dd1b9165f6fd42654bc1f7e366124276930c358858902a9d90ae9b6e6c9b": {
       "productId": "484271507",
       "variant": 46253,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T05:30:13.154Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989172248"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T05:30:13.154Z",
+  "updatedAt": "2026-10-23T05:30:48.044Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
