@@ -150,5 +150,12 @@ test('editor explains locks, waits for the exact recovery revision, and never co
  const {compatiblePrintArea,draftSaveStatus,editorBlockReason}=await import('./public/product-studio-state.js');
  assert.equal(compatiblePrintArea({width:100,height:200,dpi:150},{width:100,height:200,dpi:150}),true);assert.equal(compatiblePrintArea({width:100,height:200,dpi:150},{width:200,height:200,dpi:150}),false);
  assert.equal(draftSaveStatus({revision:2,recovery:{confirmedRevision:1}},2),'pending');assert.equal(draftSaveStatus({revision:3,recovery:{confirmedRevision:3}},2),'changed');assert.equal(draftSaveStatus({revision:2,recovery:{error:'offline'}},2),'failed');assert.equal(draftSaveStatus({revision:2,recovery:{confirmedRevision:2}},2),'confirmed');
- assert.match(editorBlockReason(true,null,true),/in progress/);assert.match(editorBlockReason(false,{state:'rendering'},true),/running/);assert.match(editorBlockReason(false,null,false),/Select Edit artwork/);assert.equal(editorBlockReason(false,{state:'failed'},true),'');
+ assert.match(editorBlockReason(true,null,true),/in progress/);assert.match(editorBlockReason(false,{state:'rendering'},true),/running/);assert.match(editorBlockReason(false,null,false),/Select Edit artwork/);assert.equal(editorBlockReason(false,{state:'failed'},true),'');assert.match(editorBlockReason(false,null,true,false),/Replace it from the library/);
+});
+
+test('reopening an edited product resolves its saved artwork IDs after the collection artwork changes',async t=>{
+ const f=await fixture(t),d=await f.document();await f.call('save',{source:f.p.id,revision:0,document:d});
+ f.db.prepare('INSERT INTO factory_artwork SELECT ?,name,mime,data,permissions FROM factory_artwork WHERE id=?').run('replacement','art1');
+ f.options.editor.library=()=>({pieces:[f.p],products:[],sets:[{id:'rose',name:'Updated collection',parts:{front:{name:'New front',artwork:'replacement'}}}]});f.restart();
+ const opened=await f.open();assert.equal(opened.document.variants['11'].front.layers[0].asset,'art:art1');assert.ok(opened.originals.some(a=>a.asset==='art:art1'&&a.width===100&&a.height===100));assert.ok(opened.originals.some(a=>a.asset==='art:replacement'));assert.equal(f.counts().puts,0);
 });
