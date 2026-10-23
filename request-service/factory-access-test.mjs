@@ -44,3 +44,9 @@ test('AI Made has its own protected page and preserves its destination after log
  const closed=await service(t,true);assert.equal((await closed.call('/api/owner/ai-factory/ideas/made')).status,401);
  const open=await service(t,false),r=await open.call('/api/owner/ai-factory/ideas/made');assert.equal(r.status,200);assert.deepEqual(await r.json(),{made:[]});
 });
+
+test('the product editor and all imported modules are served with the same Factory access policy',async t=>{
+ const open=await service(t,false),script=await open.call('/product-studio.js');assert.equal(script.status,200);const source=await script.text(),imports=[...source.matchAll(/from\s+['"]\.\/([^'"]+)['"]/g)].map(m=>'/'+m[1]);assert.ok(imports.includes('/product-studio-state.js'));
+ for(const path of imports){const r=await open.call(path);assert.equal(r.status,200,path);assert.match(r.headers.get('content-type'),/javascript/);assert.ok((await r.text()).length>100,path);}
+ const closed=await service(t,true);for(const path of ['/product-studio.js',...imports])assert.equal((await closed.call(path)).status,401,path+' remains protected on private installations');
+});
