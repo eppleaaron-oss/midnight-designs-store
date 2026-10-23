@@ -64010,13 +64010,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T11:59:11.383Z",
+  "updatedAt": "2026-10-23T12:03:05.390Z",
   "catalogAudit": {
     "supplierProducts": 180,
-    "eligible": 170,
-    "importedPreviews": 8,
+    "eligible": 179,
+    "importedPreviews": 9,
     "held": [],
-    "checkedAt": "2026-10-23T05:14:29.184Z"
+    "checkedAt": "2026-10-23T11:59:28.536Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
