@@ -14,6 +14,7 @@ export function approvedFactory(state){
  for(const f of state.outfitQueue.plans||[])for(const p of f.pieces||[]){const i=p.item;if(!ids.has(p.id)||!i?.closed||!i.cleanup?.verified||!['supplier_created','published'].includes(i.status)||!/^\d+$/.test(i.listing?.supplier_id||'')||!/^[-a-f0-9]{36}$/.test(i.job||''))continue;out.set(String(i.listing.supplier_id),{external:'midnight-factory-'+i.job,product:p.choice.product,role:p.role,outfit:f.id,collection:f.name});}
  return out;
 }
+export function mediaImportAllowed(product){return !product?.studioRevision;}
 export function requests(product,detail,mapping,factory=false){
  return [...new Set(product.variants.map(v=>v.color))].flatMap(color=>{
   const retail=product.variants.find(v=>v.color===color&&v.size==='M')||product.variants.find(v=>v.color===color),source=detail.sync_variants.find(v=>String(v.id)===retail.id&&v.variant_id===retail.catalogVariantId);
@@ -83,7 +84,7 @@ export async function run(){
  for(const summary of summaries){const id=String(summary.id);if(summary.is_ignored||withdrawn.has(id)||exclusions.has(id))continue;
   try{const detail=await api('store/products/'+id);details.set(id,detail);const p=normalize(detail);if(!p)continue;const factory=detail.sync_product.external_id?.startsWith('midnight-factory-'),prior=manifest.products[id];
    if(factory&&detail.sync_product.external_id!==(approved.get(id)?.external||prior?.factoryExternalId))continue;
-   if(factory&&!prior)continue;ledger.catalogAudit.eligible++;
+   if(factory&&!prior)continue;if(!mediaImportAllowed(prior)||!mediaImportAllowed(catalog.products.find(p=>p.id===id)))continue;ledger.catalogAudit.eligible++;
    const views=supplierPreviews(p,detail,factory),signature=digest(views);if(!views.length||photos.products[id]?.supplierPreviews===signature)continue;
    const current=catalog.products.find(x=>x.id===id)||prior||p,gallery=[...(photos.products[id]?.photos||[])];
    for(const view of views){const image='assets/product-photos/'+id+'-supplier-'+digest(view.url).slice(0,20)+'.jpg';let data;
@@ -103,6 +104,7 @@ export async function run(){
   try{
    const detail=details.get(id)||await api('store/products/'+id),p=normalize(detail);if(!p)continue;const external=detail.sync_product.external_id,isFactory=typeof external==='string'&&external.startsWith('midnight-factory-'),approval=approved.get(id),prior=manifest.products[id];
    if(isFactory&&external!==(approval?.external||prior?.factoryExternalId))continue;
+   if(!mediaImportAllowed(prior)||!mediaImportAllowed(catalog.products.find(p=>p.id===id)))continue;
    if(approval&&p.catalogProductId!==approval.product)throw Error('Factory receipt product ID changed.');
    if(detail.sync_variants.filter(v=>p.variants.some(p=>p.id===String(v.id))).some(v=>(v.files||[]).filter(f=>f.type!=='preview').some(f=>f.status!=='ok'||f.is_temporary)))throw Error('Supplier print files are not permanently accepted.');
    const mapping=await api('mockup-generator/printfiles/'+p.catalogProductId),jobs=requests(p,detail,mapping,isFactory),fingerprint=digest(jobs.map(j=>j.key));

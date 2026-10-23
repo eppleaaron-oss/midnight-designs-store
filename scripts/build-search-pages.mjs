@@ -7,7 +7,7 @@ await fs.mkdir('products',{recursive:true});const desired=new Set();
 for(const p of catalog.products){
  if(!/^\d+$/.test(p.id))throw Error('Invalid product ID');
  const path='products/'+p.id+'.html',url=origin+path;desired.add(p.id+'.html');
- const detail=info[p.catalogProductId],gallery=photos.products[p.id],photo=gallery?.originalImage===p.image?gallery.photos.find(x=>x.category==='product'&&x.style==='Flat'&&/front/i.test(x.view)&&x.storeVariantIds?.includes(p.variants[0]?.id)):null;
+ const detail=info[p.catalogProductId],gallery=(!p.studioRevision||photos.products[p.id]?.studioRevision===p.studioRevision)?photos.products[p.id]:null,photo=gallery?.originalImage===p.image?gallery.photos.find(x=>x.category==='product'&&x.style==='Flat'&&/front/i.test(x.view)&&x.storeVariantIds?.includes(p.variants[0]?.id)):null;
  const image=new URL(p.socialImageSource===p.image&&p.socialImage?p.socialImage:photo?.image||p.image,origin).href,description=p.description||detail?.description||p.name+' from Midnight Designs.',meta=p.searchDescription||description.split(/\n\n/)[0].slice(0,180);
  let html=template.replace('<head>','<head><base href="/">').replace('<body>','<body data-product-id="'+p.id+'">');
  html=html.replace(/<title>.*?<\/title>/,'<title>'+esc(p.name)+' | Midnight Designs</title>');

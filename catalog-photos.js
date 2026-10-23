@@ -2,7 +2,7 @@
 // Only label a photo as a back view when the supplier's metadata identifies it.
 function catalogPhotoPair(p,entry,variantId){
  const first=p.variants.find(v=>String(v.id)===variantId)||p.variants[0];
- const valid=entry&&(!entry.originalImage||entry.originalImage===p.image);
+ const valid=entry&&(!p.studioRevision||entry.studioRevision===p.studioRevision)&&(!entry.originalImage||entry.originalImage===p.image);
  const candidates=valid?(entry.photos||[]).filter(photo=>photo.category==='product'&&(!photo.storeVariantIds?.length||photo.storeVariantIds.includes(first?.id))).sort((a,b)=>(a.style==='Flat'?0:1)-(b.style==='Flat'?0:1)):[];
  const front=candidates.find(photo=>/^front(?:_|$)/i.test(photo.view))||candidates.find(photo=>/front/i.test(photo.view));
  const back=candidates.find(photo=>/back/i.test(photo.view)&&photo.image!==front?.image);
