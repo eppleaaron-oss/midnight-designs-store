@@ -6,7 +6,7 @@ export function draftSaveStatus(status,revision){
 }
 export function editorBlockReason(busy,job,hasLayer,hasSource=true){
  if(busy)return 'An editor action is in progress. Wait for it to finish.';
- if(job&&!['completed','cancelled','failed'].includes(job.state))return 'This product update is running. Editing unlocks when it finishes or reports an error.';
  if(hasLayer&&!hasSource)return 'Saved artwork is unavailable. Replace it from the library or remove this layer; its saved layout is retained.';
- return hasLayer?'':'Select Edit artwork, choose an original image, or upload artwork to enable layer controls.';
+ if(!hasLayer)return 'Select Edit artwork, choose an original image, or upload artwork to enable layer controls.';
+ return job&&!['completed','cancelled','failed'].includes(job.state)?'A previous update is still running'+(job.error?': '+job.error:'.')+' You can edit and Save app draft now. Finish waits for that tracked update to settle.':'';
 }
