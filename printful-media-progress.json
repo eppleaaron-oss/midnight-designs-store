@@ -63057,14 +63057,79 @@
     "b364ef3bc05afed5f7dee9ce0328dc853907bf556362e512a73d615a16349035": {
       "productId": "484210680",
       "variant": 12913,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-23T05:55:59.069Z",
       "attempts": 1,
-      "key": "gt-989182036"
+      "key": "gt-989182036",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484210680-12913-all-b364ef3bc0-0.jpg",
+          "sha256": "685437f460e61197ed066b919e867a332698547ac6e09f6662ef89f861bb0d56",
+          "view": "shoe_quarters_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5589875752",
+            "5589875754",
+            "5589875755",
+            "5589875762",
+            "5589875766",
+            "5589875767",
+            "5589875768",
+            "5589875769",
+            "5589875781",
+            "5589875783",
+            "5589875786",
+            "5589875792",
+            "5589875802",
+            "5589875804",
+            "5589875812",
+            "5589875814",
+            "5589875827"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 Men's High Top Canvas Shoes · shoe_quarters_left",
+          "label": "shoe_quarters_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484210680-12913-all-b364ef3bc0-1.jpg",
+          "sha256": "54d464fa7c0b40f8dfb8b868d76ffec88e588d07ce26dbd9aa1d2023a18bfa1a",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5589875752",
+            "5589875754",
+            "5589875755",
+            "5589875762",
+            "5589875766",
+            "5589875767",
+            "5589875768",
+            "5589875769",
+            "5589875781",
+            "5589875783",
+            "5589875786",
+            "5589875792",
+            "5589875802",
+            "5589875804",
+            "5589875812",
+            "5589875814",
+            "5589875827"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 Men's High Top Canvas Shoes · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T05:56:33.423Z",
+  "updatedAt": "2026-10-23T05:56:41.142Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
