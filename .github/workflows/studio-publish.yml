@@ -1,0 +1,48 @@
+name: Publish verified product edits
+on:
+  repository_dispatch:
+    types: [midnight-basic-publish]
+  push:
+    branches: [main]
+    paths: ['.github/workflows/studio-publish.yml', 'scripts/publish-studio-product.mjs', 'scripts/publish-studio-product-test.mjs']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: ${{ github.event_name == 'push' }}
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main' && ((github.event_name == 'repository_dispatch' && github.actor == 'github-actions[bot]' && github.event.client_payload.studio) || (github.event_name == 'push' && github.actor == github.repository_owner))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify targeted publication safety
+        run: node --test scripts/publish-studio-product-test.mjs
+      - name: Apply already verified product edit
+        env:
+          STUDIO_SUPPLIER: ${{ github.event.client_payload.supplier }}
+          STUDIO_REVISION: ${{ github.event.client_payload.studio }}
+        run: |
+          node scripts/publish-studio-product.mjs
+          node scripts/build-search-pages.mjs
+      - name: Save the existing listing with its new mockups
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add products.json products sitemap.xml shop.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified edited product images'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Publish and verify the live catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/publish-catalog.mjs
