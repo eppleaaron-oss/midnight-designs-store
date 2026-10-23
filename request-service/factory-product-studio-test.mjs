@@ -112,3 +112,8 @@ test('durably stored mockup downloads do not block on a full database backup for
  await f.tick();assert.equal(f.job().document.images.length,1);assert.equal(f.db.prepare("SELECT count(*) n FROM factory_studio_assets WHERE kind='mockup' AND remote IS NOT NULL").get().n,1);
  release();await new Promise(resolve=>setImmediate(resolve));
 });
+
+test('edited products publish through the existing contents-authorized repository event without requiring Actions write access',async t=>{
+ const f=await fixture(t),base=f.options.fetchImpl;f.options.fetchImpl=async(u,o)=>u.includes('/actions/workflows/')?new Response('{}',{status:403}):base(u,o);f.restart();
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store'});for(let n=0;n<45&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.ok(f.calls.some(c=>c.url.endsWith('/dispatches')&&c.body?.event_type==='midnight-basic-publish'));assert.equal(f.calls.some(c=>c.url.includes('/actions/workflows/')),false);
+});

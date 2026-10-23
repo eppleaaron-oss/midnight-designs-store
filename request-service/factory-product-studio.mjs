@@ -180,10 +180,10 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    const product={...old,image:d.images[0].storeUrl,images:[...new Set(d.images.map(i=>i.storeUrl))],variants,studioRevision:j.id,studioUpdated:clock()};manifest.products??={};manifest.products[j.supplier]=product;
    if(!product.factoryExternalId?.startsWith('midnight-factory-'))hold('This storefront product is not managed by the factory manifest. Supplier edits are retained.');
    await gh('/contents/factory-listings.json',{method:'PUT',body:JSON.stringify({branch:'main',message:'Update edited factory product '+j.supplier,content:Buffer.from(JSON.stringify(manifest,null,2)+'\n').toString('base64'),...(file?{sha:file.sha}:{})})});d.storeProduct=product;update(j,d,'verifying_store');await checkpoint();
-   await gh('/actions/workflows/sync-printful.yml/dispatches',{method:'POST',body:JSON.stringify({ref:'main'})});d.dispatched=true;update(j,d,'verifying_store');await checkpoint();return;
+   await gh('/dispatches',{method:'POST',body:JSON.stringify({event_type:'midnight-basic-publish',client_payload:{studio:j.id,supplier:j.supplier}})});d.dispatched=true;update(j,d,'verifying_store');await checkpoint();return;
   }
   if(j.state==='verifying_store'){
-   if(!d.dispatched){await gh('/actions/workflows/sync-printful.yml/dispatches',{method:'POST',body:JSON.stringify({ref:'main'})});d.dispatched=true;update(j,d);await checkpoint();return;}
+   if(!d.dispatched){await gh('/dispatches',{method:'POST',body:JSON.stringify({event_type:'midnight-basic-publish',client_payload:{studio:j.id,supplier:j.supplier}})});d.dispatched=true;update(j,d);await checkpoint();return;}
    const r=await fetchImpl('https://midnight-designs.store/products.json?studio='+clock(),{cache:'no-store',signal:AbortSignal.timeout(25000)});if(!r.ok)hold('Storefront verification is unavailable.',503);const p=(await r.json()).products?.find(p=>String(p.id)===j.supplier);if(p?.studioRevision!==j.id){if(clock()-j.updated>45*60000)hold('Catalog deployment needs review; the edited listing is saved.');return;}
    if(JSON.stringify(p.images)!==JSON.stringify(d.storeProduct.images)||d.storeProduct.variants.some(v=>!p.variants.some(x=>x.id===v.id&&JSON.stringify(x.images)===JSON.stringify(v.images))))hold('The live listing does not match the saved edited images.');
    for(const url of p.images){const r=await fetchImpl(url,{method:'HEAD',signal:AbortSignal.timeout(15000)});if(!r.ok)return;}
