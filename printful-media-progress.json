@@ -61457,13 +61457,14 @@
     "ade74f5b61eda87be061c2b582212011b72af1347a3faac5ee762fe0d49ad7fa": {
       "productId": "484245858",
       "variant": 16361,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T05:40:56.365Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989176408"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T05:40:56.365Z",
+  "updatedAt": "2026-10-23T05:41:30.707Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
