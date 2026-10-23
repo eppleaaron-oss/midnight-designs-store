@@ -63940,13 +63940,14 @@
     "de63f30849261c7397b6a3c2d7424619864a9de3bcd56df2889f15abdb64d65f": {
       "productId": "482918795",
       "variant": 46409,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T06:15:17.460Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989188894"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T06:15:17.460Z",
+  "updatedAt": "2026-10-23T06:15:51.792Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
