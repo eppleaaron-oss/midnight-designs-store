@@ -1,252 +1,42 @@
 {
-  "updatedAt": "2026-10-23T06:16:09.109Z",
-  "lastSyncedAt": "2026-10-23T06:16:09.109Z",
+  "updatedAt": "2026-10-23T11:48:07.107Z",
+  "lastSyncedAt": "2026-10-23T11:48:07.107Z",
   "products": [
     {
-      "id": "484179695",
-      "catalogProductId": 1479,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
-      "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-      "images": [
-        "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-        "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-      ],
-      "variants": [
-        {
-          "id": "5589775604",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XL",
-          "price": 56.99,
-          "currency": "USD",
-          "catalogVariantId": 46256,
-          "size": "2XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775605",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XS",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46251,
-          "size": "2XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775606",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 3XL",
-          "price": 59.99,
-          "currency": "USD",
-          "catalogVariantId": 46257,
-          "size": "3XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775608",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 4XL",
-          "price": 62.99,
-          "currency": "USD",
-          "catalogVariantId": 46258,
-          "size": "4XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775609",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 5XL",
-          "price": 65.99,
-          "currency": "USD",
-          "catalogVariantId": 46259,
-          "size": "5XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775610",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 6XL",
-          "price": 69.99,
-          "currency": "USD",
-          "catalogVariantId": 46260,
-          "size": "6XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775612",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / L",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46254,
-          "size": "L",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775614",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / M",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46253,
-          "size": "M",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775615",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / S",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46252,
-          "size": "S",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775618",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / XL",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46255,
-          "size": "XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        },
-        {
-          "id": "5589775619",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / XS",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46250,
-          "size": "XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
-            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
-          ],
-          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
-        }
-      ],
-      "url": "products/484179695.html",
-      "factoryExternalId": "midnight-factory-21f2ef57-3546-4dd0-b50e-9375a43d5c23",
-      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants. Coordinated original artwork with a black printed background.",
-      "tags": [
-        "pants"
-      ],
-      "collections": [
-        "Beauty in Decay matching collection"
-      ],
-      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
-    },
-    {
-      "id": "484197021",
+      "id": "484282522",
       "catalogProductId": 279,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack",
+      "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
       "category": "accessories",
-      "image": "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
+      "image": "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
       "images": [
-        "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-1.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-2.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-3.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-4.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-5.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-6.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-7.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-8.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-9.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-10.jpg",
-        "assets/product-photos/484197021-9063-all-202477c31a-11.jpg",
-        "assets/product-photos/484197021-9063-all-e98cbf594e-0.jpg",
-        "assets/product-photos/484197021-9063-all-e98cbf594e-1.jpg",
-        "assets/product-photos/484197021-9063-all-e98cbf594e-2.jpg",
-        "assets/product-photos/484197021-9063-all-e98cbf594e-3.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-0.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-1.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-2.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-3.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-4.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-5.jpg",
-        "assets/product-photos/484197021-9063-all-04bc23359a-6.jpg"
+        "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-1.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-2.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-3.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-4.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-5.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-6.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-7.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-8.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-9.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-10.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-11.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-0.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-1.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-2.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-3.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-0.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-1.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-2.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-3.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-4.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-5.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-6.jpg"
       ],
       "variants": [
         {
-          "id": "5589831621",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack / White / One size",
+          "id": "5590175792",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack / White / One size",
           "price": 60.99,
           "currency": "USD",
           "catalogVariantId": 9063,
@@ -256,38 +46,930 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-1.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-2.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-3.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-4.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-5.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-6.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-7.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-8.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-9.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-10.jpg",
-            "assets/product-photos/484197021-9063-all-202477c31a-11.jpg",
-            "assets/product-photos/484197021-9063-all-e98cbf594e-0.jpg",
-            "assets/product-photos/484197021-9063-all-e98cbf594e-1.jpg",
-            "assets/product-photos/484197021-9063-all-e98cbf594e-2.jpg",
-            "assets/product-photos/484197021-9063-all-e98cbf594e-3.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-0.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-1.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-2.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-3.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-4.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-5.jpg",
-            "assets/product-photos/484197021-9063-all-04bc23359a-6.jpg"
+            "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-1.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-2.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-3.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-4.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-5.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-6.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-7.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-8.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-9.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-10.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-11.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-0.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-1.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-2.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-3.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-0.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-1.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-2.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-3.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-4.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-5.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-6.jpg"
           ],
-          "image": "assets/product-photos/484197021-9063-all-202477c31a-0.jpg"
+          "image": "assets/product-photos/484282522-9063-all-db06c93669-0.jpg"
         }
       ],
-      "url": "products/484197021.html",
-      "factoryExternalId": "midnight-factory-1e22a3c9-aaab-411d-ab76-12d199c85830",
-      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "url": "products/484282522.html",
+      "factoryExternalId": "midnight-factory-bf6fb5b9-7675-4c21-9c53-823c2c3adb75",
+      "description": "Untitled cotton hoodie design 5311 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
       "tags": [
         "accessories"
+      ],
+      "collections": [
+        "After the Last Light matching collection"
+      ],
+      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
+    },
+    {
+      "id": "484276499",
+      "catalogProductId": 1481,
+      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts",
+      "category": "shorts",
+      "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+      "images": [
+        "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+        "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5590147768",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / 2XL",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 46350,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        },
+        {
+          "id": "5590147793",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / 3XL",
+          "price": 44.99,
+          "currency": "USD",
+          "catalogVariantId": 46351,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        },
+        {
+          "id": "5590147794",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / L",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46348,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        },
+        {
+          "id": "5590147795",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / M",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46347,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        },
+        {
+          "id": "5590147796",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / S",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46346,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        },
+        {
+          "id": "5590147799",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / XL",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46349,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        },
+        {
+          "id": "5590147803",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / XS",
+          "price": 38.99,
+          "currency": "USD",
+          "catalogVariantId": 46345,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
+            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
+          ],
+          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
+        }
+      ],
+      "url": "products/484276499.html",
+      "factoryExternalId": "midnight-factory-c0ab51c1-e290-4498-99a0-a2810af5b333",
+      "description": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shorts"
+      ],
+      "collections": [
+        "After the Last Light matching collection"
+      ],
+      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
+    },
+    {
+      "id": "484271507",
+      "catalogProductId": 1479,
+      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants",
+      "category": "pants",
+      "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+      "images": [
+        "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+        "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5590119148",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XL",
+          "price": 56.99,
+          "currency": "USD",
+          "catalogVariantId": 46256,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119174",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XS",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46251,
+          "size": "2XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119182",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 3XL",
+          "price": 59.99,
+          "currency": "USD",
+          "catalogVariantId": 46257,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119183",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 4XL",
+          "price": 62.99,
+          "currency": "USD",
+          "catalogVariantId": 46258,
+          "size": "4XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119185",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 5XL",
+          "price": 65.99,
+          "currency": "USD",
+          "catalogVariantId": 46259,
+          "size": "5XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119186",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 6XL",
+          "price": 69.99,
+          "currency": "USD",
+          "catalogVariantId": 46260,
+          "size": "6XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119188",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / L",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46254,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119192",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / M",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46253,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119198",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / S",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46252,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119202",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / XL",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46255,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        },
+        {
+          "id": "5590119205",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / XS",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46250,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
+            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+          ],
+          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+        }
+      ],
+      "url": "products/484271507.html",
+      "factoryExternalId": "midnight-factory-8d92970f-d60c-46a5-9685-84b36bc31d11",
+      "description": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "pants"
+      ],
+      "collections": [
+        "After the Last Light matching collection"
+      ],
+      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
+    },
+    {
+      "id": "484260366",
+      "catalogProductId": 1482,
+      "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt",
+      "category": "shirts",
+      "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+      "images": [
+        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5590066992",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 2XL",
+          "price": 43.99,
+          "currency": "USD",
+          "catalogVariantId": 46412,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590066999",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 2XS",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46407,
+          "size": "2XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067001",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 3XL",
+          "price": 47.99,
+          "currency": "USD",
+          "catalogVariantId": 46413,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067005",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 4XL",
+          "price": 50.99,
+          "currency": "USD",
+          "catalogVariantId": 46414,
+          "size": "4XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067007",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 5XL",
+          "price": 53.99,
+          "currency": "USD",
+          "catalogVariantId": 46415,
+          "size": "5XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067009",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 6XL",
+          "price": 56.99,
+          "currency": "USD",
+          "catalogVariantId": 46416,
+          "size": "6XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067011",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / L",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46410,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067016",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / M",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46409,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067018",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / S",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46408,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067020",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / XL",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46411,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        },
+        {
+          "id": "5590067022",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / XS",
+          "price": 40.99,
+          "currency": "USD",
+          "catalogVariantId": 46406,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
+          ],
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
+        }
+      ],
+      "url": "products/484260366.html",
+      "factoryExternalId": "midnight-factory-507aaee9-b7b4-4186-a8d7-345bf37509b4",
+      "description": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "shirts"
+      ],
+      "collections": [
+        "After the Last Light matching collection"
+      ],
+      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
+    },
+    {
+      "id": "484245858",
+      "catalogProductId": 654,
+      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat",
+      "category": "headwear",
+      "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
+      "images": [
+        "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
+        "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
+        "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
+        "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
+        "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
+        "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
+        "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
+        "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
+        "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5590009092",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat / White / L/XL",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 16361,
+          "size": "L/XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
+            "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
+            "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
+            "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
+            "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
+            "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
+            "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
+          ],
+          "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg"
+        },
+        {
+          "id": "5590009095",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat / White / S/M",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 16360,
+          "size": "S/M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
+            "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
+            "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
+            "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
+            "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
+            "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
+            "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
+          ],
+          "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg"
+        },
+        {
+          "id": "5590009096",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat / White / XS",
+          "price": 41.99,
+          "currency": "USD",
+          "catalogVariantId": 19255,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
+            "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
+            "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
+            "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
+            "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
+            "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
+            "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
+            "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
+            "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
+          ],
+          "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg"
+        }
+      ],
+      "url": "products/484245858.html",
+      "factoryExternalId": "midnight-factory-f448a923-af6b-4069-9408-179dcd1ae396",
+      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "headwear"
+      ],
+      "collections": [
+        "Beauty in Decay matching collection"
+      ],
+      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
+    },
+    {
+      "id": "484232678",
+      "catalogProductId": 420,
+      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter",
+      "category": "facewear",
+      "image": "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg",
+      "images": [
+        "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-1.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-2.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-3.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-4.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-5.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-6.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-7.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-8.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-9.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-10.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-11.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-12.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-13.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-14.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-15.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-16.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-17.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-18.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-19.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-20.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-21.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-22.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-23.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-24.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-25.jpg",
+        "assets/product-photos/484232678-11414-all-b938993f5e-26.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-0.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-1.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-2.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-3.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-4.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-5.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-6.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-7.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-8.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-9.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-10.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-11.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-12.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-13.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-14.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-15.jpg",
+        "assets/product-photos/484232678-11414-all-01d08bdfc9-16.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5589954021",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter / White / One size",
+          "price": 21.99,
+          "currency": "USD",
+          "catalogVariantId": 11414,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-1.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-2.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-3.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-4.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-5.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-6.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-7.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-8.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-9.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-10.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-11.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-12.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-13.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-14.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-15.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-16.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-17.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-18.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-19.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-20.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-21.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-22.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-23.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-24.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-25.jpg",
+            "assets/product-photos/484232678-11414-all-b938993f5e-26.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-0.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-1.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-2.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-3.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-4.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-5.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-6.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-7.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-8.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-9.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-10.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-11.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-12.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-13.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-14.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-15.jpg",
+            "assets/product-photos/484232678-11414-all-01d08bdfc9-16.jpg"
+          ],
+          "image": "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg"
+        }
+      ],
+      "url": "products/484232678.html",
+      "factoryExternalId": "midnight-factory-86f19afd-3739-4b21-b363-31afcc309194",
+      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "facewear"
       ],
       "collections": [
         "Beauty in Decay matching collection"
@@ -1183,932 +1865,40 @@
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
     },
     {
-      "id": "484232678",
-      "catalogProductId": 420,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter",
-      "category": "facewear",
-      "image": "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg",
-      "images": [
-        "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-1.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-2.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-3.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-4.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-5.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-6.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-7.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-8.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-9.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-10.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-11.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-12.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-13.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-14.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-15.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-16.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-17.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-18.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-19.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-20.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-21.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-22.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-23.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-24.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-25.jpg",
-        "assets/product-photos/484232678-11414-all-b938993f5e-26.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-0.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-1.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-2.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-3.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-4.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-5.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-6.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-7.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-8.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-9.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-10.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-11.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-12.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-13.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-14.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-15.jpg",
-        "assets/product-photos/484232678-11414-all-01d08bdfc9-16.jpg"
-      ],
-      "variants": [
-        {
-          "id": "5589954021",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter / White / One size",
-          "price": 21.99,
-          "currency": "USD",
-          "catalogVariantId": 11414,
-          "size": "One size",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-1.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-2.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-3.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-4.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-5.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-6.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-7.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-8.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-9.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-10.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-11.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-12.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-13.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-14.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-15.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-16.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-17.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-18.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-19.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-20.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-21.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-22.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-23.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-24.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-25.jpg",
-            "assets/product-photos/484232678-11414-all-b938993f5e-26.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-0.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-1.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-2.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-3.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-4.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-5.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-6.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-7.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-8.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-9.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-10.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-11.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-12.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-13.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-14.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-15.jpg",
-            "assets/product-photos/484232678-11414-all-01d08bdfc9-16.jpg"
-          ],
-          "image": "assets/product-photos/484232678-11414-all-b938993f5e-0.jpg"
-        }
-      ],
-      "url": "products/484232678.html",
-      "factoryExternalId": "midnight-factory-86f19afd-3739-4b21-b363-31afcc309194",
-      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter. Coordinated original artwork with a black printed background.",
-      "tags": [
-        "facewear"
-      ],
-      "collections": [
-        "Beauty in Decay matching collection"
-      ],
-      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
-    },
-    {
-      "id": "484245858",
-      "catalogProductId": 654,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
-      "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
-      "images": [
-        "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
-        "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
-        "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
-        "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
-        "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
-        "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
-        "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
-        "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
-        "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
-      ],
-      "variants": [
-        {
-          "id": "5590009092",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat / White / L/XL",
-          "price": 41.99,
-          "currency": "USD",
-          "catalogVariantId": 16361,
-          "size": "L/XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
-            "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
-            "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
-            "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
-            "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
-            "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
-            "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
-          ],
-          "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg"
-        },
-        {
-          "id": "5590009095",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat / White / S/M",
-          "price": 41.99,
-          "currency": "USD",
-          "catalogVariantId": 16360,
-          "size": "S/M",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
-            "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
-            "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
-            "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
-            "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
-            "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
-            "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
-          ],
-          "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg"
-        },
-        {
-          "id": "5590009096",
-          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat / White / XS",
-          "price": 41.99,
-          "currency": "USD",
-          "catalogVariantId": 19255,
-          "size": "XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg",
-            "assets/product-photos/484245858-16361-all-34efb1806a-4.jpg",
-            "assets/product-photos/484245858-16361-all-34efb1806a-5.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-0.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-1.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-2.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-3.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-4.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-5.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-6.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-7.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-8.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-9.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-10.jpg",
-            "assets/product-photos/484245858-16361-all-a8fdc5bd83-11.jpg",
-            "assets/product-photos/484245858-16361-all-2f12ee2f94-0.jpg",
-            "assets/product-photos/484245858-16361-all-2f12ee2f94-1.jpg",
-            "assets/product-photos/484245858-16361-all-ade74f5b61-0.jpg",
-            "assets/product-photos/484245858-16361-all-ade74f5b61-1.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-0.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-1.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-2.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-3.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-4.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-5.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-6.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-7.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-8.jpg",
-            "assets/product-photos/484245858-16361-all-e3f95c10e3-9.jpg"
-          ],
-          "image": "assets/product-photos/484245858-16361-all-34efb1806a-2.jpg"
-        }
-      ],
-      "url": "products/484245858.html",
-      "factoryExternalId": "midnight-factory-f448a923-af6b-4069-9408-179dcd1ae396",
-      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat. Coordinated original artwork with a black printed background.",
-      "tags": [
-        "headwear"
-      ],
-      "collections": [
-        "Beauty in Decay matching collection"
-      ],
-      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
-    },
-    {
-      "id": "484260366",
-      "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
-      "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-      "images": [
-        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-        "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-      ],
-      "variants": [
-        {
-          "id": "5590066992",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 2XL",
-          "price": 43.99,
-          "currency": "USD",
-          "catalogVariantId": 46412,
-          "size": "2XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590066999",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 2XS",
-          "price": 40.99,
-          "currency": "USD",
-          "catalogVariantId": 46407,
-          "size": "2XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067001",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 3XL",
-          "price": 47.99,
-          "currency": "USD",
-          "catalogVariantId": 46413,
-          "size": "3XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067005",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 4XL",
-          "price": 50.99,
-          "currency": "USD",
-          "catalogVariantId": 46414,
-          "size": "4XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067007",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 5XL",
-          "price": 53.99,
-          "currency": "USD",
-          "catalogVariantId": 46415,
-          "size": "5XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067009",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / 6XL",
-          "price": 56.99,
-          "currency": "USD",
-          "catalogVariantId": 46416,
-          "size": "6XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067011",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / L",
-          "price": 40.99,
-          "currency": "USD",
-          "catalogVariantId": 46410,
-          "size": "L",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067016",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / M",
-          "price": 40.99,
-          "currency": "USD",
-          "catalogVariantId": 46409,
-          "size": "M",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067018",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / S",
-          "price": 40.99,
-          "currency": "USD",
-          "catalogVariantId": 46408,
-          "size": "S",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067020",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / XL",
-          "price": 40.99,
-          "currency": "USD",
-          "catalogVariantId": 46411,
-          "size": "XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        },
-        {
-          "id": "5590067022",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt / White / XS",
-          "price": 40.99,
-          "currency": "USD",
-          "catalogVariantId": 46406,
-          "size": "XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
-            "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg"
-          ],
-          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg"
-        }
-      ],
-      "url": "products/484260366.html",
-      "factoryExternalId": "midnight-factory-507aaee9-b7b4-4186-a8d7-345bf37509b4",
-      "description": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt. Coordinated original artwork with a black printed background.",
-      "tags": [
-        "shirts"
-      ],
-      "collections": [
-        "After the Last Light matching collection"
-      ],
-      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
-    },
-    {
-      "id": "484271507",
-      "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
-      "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-      "images": [
-        "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-        "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-      ],
-      "variants": [
-        {
-          "id": "5590119148",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XL",
-          "price": 56.99,
-          "currency": "USD",
-          "catalogVariantId": 46256,
-          "size": "2XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119174",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XS",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46251,
-          "size": "2XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119182",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 3XL",
-          "price": 59.99,
-          "currency": "USD",
-          "catalogVariantId": 46257,
-          "size": "3XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119183",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 4XL",
-          "price": 62.99,
-          "currency": "USD",
-          "catalogVariantId": 46258,
-          "size": "4XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119185",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 5XL",
-          "price": 65.99,
-          "currency": "USD",
-          "catalogVariantId": 46259,
-          "size": "5XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119186",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / 6XL",
-          "price": 69.99,
-          "currency": "USD",
-          "catalogVariantId": 46260,
-          "size": "6XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119188",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / L",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46254,
-          "size": "L",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119192",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / M",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46253,
-          "size": "M",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119198",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / S",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46252,
-          "size": "S",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119202",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / XL",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46255,
-          "size": "XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        },
-        {
-          "id": "5590119205",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants / White / XS",
-          "price": 52.99,
-          "currency": "USD",
-          "catalogVariantId": 46250,
-          "size": "XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
-          ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
-        }
-      ],
-      "url": "products/484271507.html",
-      "factoryExternalId": "midnight-factory-8d92970f-d60c-46a5-9685-84b36bc31d11",
-      "description": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants. Coordinated original artwork with a black printed background.",
-      "tags": [
-        "pants"
-      ],
-      "collections": [
-        "After the Last Light matching collection"
-      ],
-      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
-    },
-    {
-      "id": "484276499",
-      "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
-      "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-      "images": [
-        "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-        "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-      ],
-      "variants": [
-        {
-          "id": "5590147768",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / 2XL",
-          "price": 41.99,
-          "currency": "USD",
-          "catalogVariantId": 46350,
-          "size": "2XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        },
-        {
-          "id": "5590147793",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / 3XL",
-          "price": 44.99,
-          "currency": "USD",
-          "catalogVariantId": 46351,
-          "size": "3XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        },
-        {
-          "id": "5590147794",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / L",
-          "price": 38.99,
-          "currency": "USD",
-          "catalogVariantId": 46348,
-          "size": "L",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        },
-        {
-          "id": "5590147795",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / M",
-          "price": 38.99,
-          "currency": "USD",
-          "catalogVariantId": 46347,
-          "size": "M",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        },
-        {
-          "id": "5590147796",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / S",
-          "price": 38.99,
-          "currency": "USD",
-          "catalogVariantId": 46346,
-          "size": "S",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        },
-        {
-          "id": "5590147799",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / XL",
-          "price": 38.99,
-          "currency": "USD",
-          "catalogVariantId": 46349,
-          "size": "XL",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        },
-        {
-          "id": "5590147803",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts / White / XS",
-          "price": 38.99,
-          "currency": "USD",
-          "catalogVariantId": 46345,
-          "size": "XS",
-          "color": "Black",
-          "colorCode": "#000000",
-          "availability": "active",
-          "supplierBaseColor": "White",
-          "images": [
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
-            "assets/product-photos/484276499-46347-all-3e5d7301cf-1.jpg"
-          ],
-          "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg"
-        }
-      ],
-      "url": "products/484276499.html",
-      "factoryExternalId": "midnight-factory-c0ab51c1-e290-4498-99a0-a2810af5b333",
-      "description": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts. Coordinated original artwork with a black printed background.",
-      "tags": [
-        "shorts"
-      ],
-      "collections": [
-        "After the Last Light matching collection"
-      ],
-      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
-    },
-    {
-      "id": "484282522",
+      "id": "484197021",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
+      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack",
       "category": "accessories",
-      "image": "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
+      "image": "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
       "images": [
-        "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-1.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-2.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-3.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-4.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-5.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-6.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-7.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-8.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-9.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-10.jpg",
-        "assets/product-photos/484282522-9063-all-db06c93669-11.jpg",
-        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-0.jpg",
-        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-1.jpg",
-        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-2.jpg",
-        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-3.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-0.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-1.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-2.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-3.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-4.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-5.jpg",
-        "assets/product-photos/484282522-9063-all-d8f98bdce0-6.jpg"
+        "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-1.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-2.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-3.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-4.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-5.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-6.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-7.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-8.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-9.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-10.jpg",
+        "assets/product-photos/484197021-9063-all-202477c31a-11.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-0.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-1.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-2.jpg",
+        "assets/product-photos/484197021-9063-all-e98cbf594e-3.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-0.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-1.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-2.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-3.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-4.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-5.jpg",
+        "assets/product-photos/484197021-9063-all-04bc23359a-6.jpg"
       ],
       "variants": [
         {
-          "id": "5590175792",
-          "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack / White / One size",
+          "id": "5589831621",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack / White / One size",
           "price": 60.99,
           "currency": "USD",
           "catalogVariantId": 9063,
@@ -2118,43 +1908,253 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-1.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-2.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-3.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-4.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-5.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-6.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-7.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-8.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-9.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-10.jpg",
-            "assets/product-photos/484282522-9063-all-db06c93669-11.jpg",
-            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-0.jpg",
-            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-1.jpg",
-            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-2.jpg",
-            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-3.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-0.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-1.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-2.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-3.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-4.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-5.jpg",
-            "assets/product-photos/484282522-9063-all-d8f98bdce0-6.jpg"
+            "assets/product-photos/484197021-9063-all-202477c31a-0.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-1.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-2.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-3.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-4.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-5.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-6.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-7.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-8.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-9.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-10.jpg",
+            "assets/product-photos/484197021-9063-all-202477c31a-11.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-0.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-1.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-2.jpg",
+            "assets/product-photos/484197021-9063-all-e98cbf594e-3.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-0.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-1.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-2.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-3.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-4.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-5.jpg",
+            "assets/product-photos/484197021-9063-all-04bc23359a-6.jpg"
           ],
-          "image": "assets/product-photos/484282522-9063-all-db06c93669-0.jpg"
+          "image": "assets/product-photos/484197021-9063-all-202477c31a-0.jpg"
         }
       ],
-      "url": "products/484282522.html",
-      "factoryExternalId": "midnight-factory-bf6fb5b9-7675-4c21-9c53-823c2c3adb75",
-      "description": "Untitled cotton hoodie design 5311 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "url": "products/484197021.html",
+      "factoryExternalId": "midnight-factory-1e22a3c9-aaab-411d-ab76-12d199c85830",
+      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
       "tags": [
         "accessories"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "Beauty in Decay matching collection"
       ],
-      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
+      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
+    },
+    {
+      "id": "484179695",
+      "catalogProductId": 1479,
+      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants",
+      "category": "pants",
+      "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+      "images": [
+        "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+        "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5589775604",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XL",
+          "price": 56.99,
+          "currency": "USD",
+          "catalogVariantId": 46256,
+          "size": "2XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775605",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 2XS",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46251,
+          "size": "2XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775606",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 3XL",
+          "price": 59.99,
+          "currency": "USD",
+          "catalogVariantId": 46257,
+          "size": "3XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775608",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 4XL",
+          "price": 62.99,
+          "currency": "USD",
+          "catalogVariantId": 46258,
+          "size": "4XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775609",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 5XL",
+          "price": 65.99,
+          "currency": "USD",
+          "catalogVariantId": 46259,
+          "size": "5XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775610",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / 6XL",
+          "price": 69.99,
+          "currency": "USD",
+          "catalogVariantId": 46260,
+          "size": "6XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775612",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / L",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46254,
+          "size": "L",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775614",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / M",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46253,
+          "size": "M",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775615",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / S",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46252,
+          "size": "S",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775618",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / XL",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46255,
+          "size": "XL",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        },
+        {
+          "id": "5589775619",
+          "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants / White / XS",
+          "price": 52.99,
+          "currency": "USD",
+          "catalogVariantId": 46250,
+          "size": "XS",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg",
+            "assets/product-photos/484179695-46253-all-4dcaf9cc7b-1.jpg"
+          ],
+          "image": "assets/product-photos/484179695-46253-all-4dcaf9cc7b-0.jpg"
+        }
+      ],
+      "url": "products/484179695.html",
+      "factoryExternalId": "midnight-factory-21f2ef57-3546-4dd0-b50e-9375a43d5c23",
+      "description": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "pants"
+      ],
+      "collections": [
+        "Beauty in Decay matching collection"
+      ],
+      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
     },
     {
       "id": "484145986",
