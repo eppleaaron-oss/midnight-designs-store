@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T06:11:07.260Z",
+  "updatedAt": "2026-10-23T06:16:09.027Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -45394,6 +45394,66 @@
       "catalogProductId": 1482,
       "photos": [
         {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-0.jpg",
+          "sha256": "22eed8e1d27d5975f2923c03ca464105ec183d18bf91a1f4a53beeb629d4b563",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-1.jpg",
+          "sha256": "20829a7020092f59ff3ef4ed8c2e0bef26ecb24d8e98c3b3f5bb02b2af8fc547",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-2.jpg",
+          "sha256": "1cb8343660bb05101716c46c20fc375bf746fd31e0bdef6f50723a95d6bc69fd",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/482918795-46409-all-de63f30849-3.jpg",
+          "sha256": "ed0b004581c5601da2a29759216c4d2b9761a928244d52421589765d7493ae0d",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5581802986"
+          ],
+          "alt": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        },
+        {
           "image": "assets/product-photos/482918795-46409-all-7df3a2f818-0.jpg",
           "sha256": "80ecdefed3dfd71750b367e849460a3fe3922f90c323ca612fc7e4203e2b68d2",
           "view": "front_dtfabric",
@@ -45500,8 +45560,8 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "d7ffe669e7eba416ddb19b3787b3a53d76aa1d969a8729a70456e960cbeea24c",
-      "supplierPreviews": "6a2c1c0cbfbffefa7dec38c7eca00cecd0e04d9606c9283b09e6567d64789bb6"
+      "supplierPreviews": "6a2c1c0cbfbffefa7dec38c7eca00cecd0e04d9606c9283b09e6567d64789bb6",
+      "allReportedViews": "863bfd47f9a1c918536d29d7d32a4a56bafcb8d8ad253f4f1591c3d660e72faa"
     },
     "482923908": {
       "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",
