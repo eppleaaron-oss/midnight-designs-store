@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T05:31:03.152Z",
+  "updatedAt": "2026-10-23T05:34:49.910Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -63870,6 +63870,115 @@
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "288894a555514345b98846ebf5918eee5fc44cf5708672cd335bbd66a28da52d",
       "supplierPreviews": "29cd828dd7b9c36f599f491be45efbbc8fb5f909991016fae96a07af758dda28"
+    },
+    "484260366": {
+      "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt",
+      "originalImage": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+      "catalogProductId": 1482,
+      "photos": [
+        {
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-0.jpg",
+          "sha256": "99ccb21a1aab32829e4d89e754280d6ad32abb85e10c8bf45131daf2eecefc25",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5590066992",
+            "5590066999",
+            "5590067001",
+            "5590067005",
+            "5590067007",
+            "5590067009",
+            "5590067011",
+            "5590067016",
+            "5590067018",
+            "5590067020",
+            "5590067022"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-1.jpg",
+          "sha256": "53b6f431f8b93e3847cebbb44998fda0726394d9bd92e4a3ce2683a50af0b924",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5590066992",
+            "5590066999",
+            "5590067001",
+            "5590067005",
+            "5590067007",
+            "5590067009",
+            "5590067011",
+            "5590067016",
+            "5590067018",
+            "5590067020",
+            "5590067022"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-2.jpg",
+          "sha256": "099da2fb679977d27a5c680cfb560856d0cae61def14858e14ef155595086e70",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5590066992",
+            "5590066999",
+            "5590067001",
+            "5590067005",
+            "5590067007",
+            "5590067009",
+            "5590067011",
+            "5590067016",
+            "5590067018",
+            "5590067020",
+            "5590067022"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484260366-46409-all-6fbdf5d6a6-3.jpg",
+          "sha256": "a8552543f893176fcd21edd09d9f138a5b043cc6e9619601e3ffaac32a7f9147",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5590066992",
+            "5590066999",
+            "5590067001",
+            "5590067005",
+            "5590067007",
+            "5590067009",
+            "5590067011",
+            "5590067016",
+            "5590067018",
+            "5590067020",
+            "5590067022"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ],
+      "source": "Printful mockups from accepted supplier production files",
+      "allReportedViews": "f342bcc0e2bf4f1bf9cb939579e1b7cfa22d80138fd7a975f19074d265cdef45"
     },
     "484271507": {
       "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants",
