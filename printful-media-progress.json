@@ -62705,13 +62705,14 @@
     "31ed92da2ce49e45eb9db8e754ab25b005cb9cdaa330c8eaf56e752e0f89825a": {
       "productId": "484210680",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T05:54:04.215Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989181721"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T05:54:04.215Z",
+  "updatedAt": "2026-10-23T05:55:40.920Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 170,
