@@ -11374,6 +11374,88 @@
         "Beauty in Decay matching collection"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8"
+    },
+    "484282522": {
+      "id": "484282522",
+      "catalogProductId": 279,
+      "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
+      "category": "accessories",
+      "image": "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
+      "images": [
+        "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-1.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-2.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-3.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-4.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-5.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-6.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-7.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-8.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-9.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-10.jpg",
+        "assets/product-photos/484282522-9063-all-db06c93669-11.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-0.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-1.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-2.jpg",
+        "assets/product-photos/484282522-9063-all-ddd0ac8fa1-3.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-0.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-1.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-2.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-3.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-4.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-5.jpg",
+        "assets/product-photos/484282522-9063-all-d8f98bdce0-6.jpg"
+      ],
+      "variants": [
+        {
+          "id": "5590175792",
+          "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack / White / One size",
+          "price": 60.99,
+          "currency": "USD",
+          "catalogVariantId": 9063,
+          "size": "One size",
+          "color": "Black",
+          "colorCode": "#000000",
+          "availability": "active",
+          "supplierBaseColor": "White",
+          "images": [
+            "assets/product-photos/484282522-9063-all-db06c93669-0.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-1.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-2.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-3.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-4.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-5.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-6.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-7.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-8.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-9.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-10.jpg",
+            "assets/product-photos/484282522-9063-all-db06c93669-11.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-0.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-1.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-2.jpg",
+            "assets/product-photos/484282522-9063-all-ddd0ac8fa1-3.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-0.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-1.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-2.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-3.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-4.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-5.jpg",
+            "assets/product-photos/484282522-9063-all-d8f98bdce0-6.jpg"
+          ],
+          "image": "assets/product-photos/484282522-9063-all-db06c93669-0.jpg"
+        }
+      ],
+      "url": "products/484282522.html",
+      "factoryExternalId": "midnight-factory-bf6fb5b9-7675-4c21-9c53-823c2c3adb75",
+      "description": "Untitled cotton hoodie design 5311 All-Over Print Backpack. Coordinated original artwork with a black printed background.",
+      "tags": [
+        "accessories"
+      ],
+      "collections": [
+        "After the Last Light matching collection"
+      ],
+      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507"
     }
   }
 }
