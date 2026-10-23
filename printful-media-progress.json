@@ -64695,13 +64695,14 @@
     "1352c5c9d03a4743b10d9e3009668ad5720bccb066f2f0a12a289a1ceed8c501": {
       "productId": "484288453",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-23T12:09:03.856Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-989325269"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T12:09:03.856Z",
+  "updatedAt": "2026-10-23T12:09:38.373Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 179,
