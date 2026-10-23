@@ -64339,10 +64339,17 @@
           "kind": "production-mockup"
         }
       ]
+    },
+    "9d9c0338ce1eef8d04b890d2b193ec21c21389d18cef8ee8b0c55fbfa12ba5a0": {
+      "productId": "484288453",
+      "variant": 12913,
+      "state": "submitting",
+      "created": "2026-10-23T12:07:08.230Z",
+      "attempts": 1
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-23T12:07:05.741Z",
+  "updatedAt": "2026-10-23T12:07:08.230Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 179,
