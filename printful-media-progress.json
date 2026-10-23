@@ -65138,6 +65138,7 @@
     }
   },
   "errors": {
+    "480738731": "Permanently accepted print file unavailable: right_leg",
     "480743462": "Permanently accepted print file unavailable: right_leg",
     "480744058": "Permanently accepted print file unavailable: right_leg",
     "480760529": "Permanently accepted print file unavailable: right_leg",
@@ -65169,7 +65170,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-23T17:36:50.693Z",
+  "updatedAt": "2026-10-23T17:37:06.240Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 179,
