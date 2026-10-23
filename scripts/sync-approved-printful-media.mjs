@@ -11,7 +11,7 @@ const ENGINE='printful-all-reported-views-v1';
 export function approvedFactory(state){
  if(state.outfitQueue?.batch?.id!=='f13ad766-3e0d-4ddd-993b-167a318d0ae2')throw Error('The authorized outfit batch could not be verified.');
  const ids=new Set(state.outfitQueue.batch.scope?.pieceIds||[]),out=new Map();
- for(const f of state.outfitQueue.plans||[])for(const p of f.pieces||[]){const i=p.item;if(!ids.has(p.id)||!i?.closed||!i.cleanup?.verified||!['supplier_created','published'].includes(i.status)||!/^\d+$/.test(i.listing?.supplier_id||'')||!/^[-a-f0-9]{36}$/.test(i.job||''))continue;out.set(String(i.listing.supplier_id),{external:'midnight-factory-'+i.job,product:p.choice.product,role:p.role,outfit:f.id,collection:f.name});}
+ for(const f of state.outfitQueue.plans||[])for(const p of f.pieces||[]){const i=p.item;if(!ids.has(p.id)||!i?.closed||!i.cleanup?.verified||!['supplier_created','published'].includes(i.status)||!(i.decision==='approved'||i.status==='published')||!/^\d+$/.test(i.listing?.supplier_id||'')||!/^[-a-f0-9]{36}$/.test(i.job||''))continue;out.set(String(i.listing.supplier_id),{external:'midnight-factory-'+i.job,product:p.choice.product,role:p.role,outfit:f.id,collection:f.name});}
  return out;
 }
 export function mediaImportAllowed(product){return !product?.studioRevision;}
