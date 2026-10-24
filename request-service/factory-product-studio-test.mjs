@@ -170,3 +170,18 @@ test('draft edits remain independent while an older supplier/store update is unf
  await assert.rejects(f.call('finish',{source:f.p.id,revision:2,document:next,target:'mockups'}),/unfinished update/);assert.equal(f.counts().puts,0);assert.equal(f.counts().posts,0);
  f.db.prepare("UPDATE factory_studio_jobs SET state='completed' WHERE id=?").run(id);const queued=await f.call('finish',{source:f.p.id,revision:2,document:next,target:'printful'});assert.notEqual(queued.job.id,id);
 });
+
+
+test('Finish preserves unsaved artwork as a draft even when Printful quality validation rejects it',async t=>{
+ const {finishSavedDraft}=await import('./public/product-studio-state.js'),f=await fixture(t),load=f.options.blueprints.load;
+ f.options.blueprints.load=async(...args)=>{const bp=structuredClone(await load(...args));bp.printfiles.printfiles[0].width=200;bp.printfiles.printfiles[0].height=200;return bp;};f.restart();
+ const document=await f.document();document.variants[11].front.layers[0].width=1;let saved;
+ const api=async(path,data)=>{const r=await f.call(path,data);if(r.error)throw Object.assign(Error(r.error),{issues:r.issues});return r;};
+ await assert.rejects(finishSavedDraft({source:f.p.id,revision:0,document,dirty:true,target:'printful',api,onSaved:r=>{saved=r;}}),/Draft revision 1 stored in the app.*Print quality check/);
+ assert.equal(saved.revision,1);assert.equal((await f.open()).document.variants[11].front.layers[0].width,1);assert.equal(f.job(),null);assert.equal(f.counts().puts,0);
+ document.variants[11].front.layers[0].width=.25;const result=await finishSavedDraft({source:f.p.id,revision:1,document,dirty:true,target:'printful',api});assert.equal(result.revision,3);assert.equal(result.job.state,'queued');
+});
+test('a Save receipt from before Finish cannot impersonate a conflicting tab or overwrite current action status',async()=>{
+ const {draftSaveStatus}=await import('./public/product-studio-state.js');const status={revision:16,recovery:{confirmedRevision:16}};
+ assert.equal(draftSaveStatus(status,15,{currentRevision:16}),'obsolete');assert.equal(draftSaveStatus(status,15,{currentRevision:15,busy:true}),'obsolete');assert.equal(draftSaveStatus(status,15,{currentRevision:15,dirty:true}),'obsolete');assert.equal(draftSaveStatus(status,15,{currentRevision:15}),'changed');
+});
