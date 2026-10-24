@@ -65138,6 +65138,7 @@
     }
   },
   "errors": {
+    "482676580": "Supplier print files are not permanently accepted.",
     "482678006": "Supplier print files are not permanently accepted.",
     "482682117": "Supplier print files are not permanently accepted.",
     "482685353": "Supplier print files are not permanently accepted.",
@@ -65148,7 +65149,7 @@
     "482794900": "Supplier print files are not permanently accepted.",
     "482797453": "Supplier print files are not permanently accepted."
   },
-  "updatedAt": "2026-10-24T11:33:04.160Z",
+  "updatedAt": "2026-10-24T11:33:05.931Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 179,
