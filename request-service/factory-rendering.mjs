@@ -21,7 +21,7 @@ function number(value,fallback,min,max,label){const n=value??fallback;if(!Number
 function background(value){if(value===null)return {r:0,g:0,b:0,alpha:0};const c=colors[value]||value;if(typeof c!=='string'||!/^#[a-f0-9]{6}$/i.test(c))error('Choose a garment fill color.');return c;}
 
 // Render real pixels. DPI is checked against source resolution, before enlarging the output canvas.
-export async function renderArea(area,source,recipe={},permissions={}){
+export async function renderArea(area,source,recipe={},permissions={},renderOptions={}){
  const {width,height,dpi}=area;
  if(!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||width<1||height<1||width*height>MAX_NATIVE_PIXELS||!Number.isFinite(dpi)||dpi<1)error('This native print area is missing dimensions/DPI or exceeds the supported native rendering limit.');
  const bg=background(Object.hasOwn(recipe,'background')?recipe.background:'Black'),overlays=[];
@@ -53,7 +53,7 @@ export async function renderArea(area,source,recipe={},permissions={}){
   }
   if(w*h>MAX_PIXELS)error('Scaled artwork exceeds the rendering limit.');
   const sourceDpi=Math.min(sw/w,sh/h)*dpi;effectiveDpi=Math.min(effectiveDpi??Infinity,sourceDpi);
-  if(sourceDpi+1<dpi)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);
+  if(sourceDpi+1<dpi&&renderOptions.allowLowResolution!==true)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);
   let image=sharp(oriented).extract({left,top,width:sw,height:sh}).resize(w,h,{fit:'fill'});
   if(recipe.recolor!==undefined&&recipe.recolor!==null)image=image.tint(background(recipe.recolor));
   if(mirror)image=image.flop();if(angle)image=image.rotate(angle,{background:{r:0,g:0,b:0,alpha:0}});
