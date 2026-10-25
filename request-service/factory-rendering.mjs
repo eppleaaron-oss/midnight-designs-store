@@ -51,9 +51,22 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
    if(geometry.contentBounds){const b=geometry.contentBounds,actual=await artworkBounds(oriented);if(bg!=='#000000'||left||top||sw!==meta.width||sh!==meta.height||b.sourceWidth!==meta.width||b.sourceHeight!==meta.height||!actual||JSON.stringify(actual)!==JSON.stringify({x:b.x,y:b.y,width:b.width,height:b.height}))error('Visible-artwork measurement does not match the preserved original or black print background.');}
    const safe=geometry.safeRect,visible=visibleGeometry(geometry);if(!safe||!['x','y','width','height'].every(k=>Number.isFinite(safe[k]))||visible.x<safe.x-1||visible.y<safe.y-1||visible.x+visible.width>safe.x+safe.width+1||visible.y+visible.height>safe.y+safe.height+1)error('The saved artwork extends outside its reviewed safe region.');
   }
-  if(w*h>MAX_PIXELS)error('Scaled artwork exceeds the rendering limit.');
+  // Large manual sleeve graphics often have substantial exact-black padding.
+  // Render only their canvas intersection instead of encoding an oversized
+  // padded overlay. libvips evaluates resize/extract as a bounded image region.
+  const windowed=w*h>MAX_PIXELS&&renderOptions.preserveLayerOrder&&geometry?.contentBounds&&!angle&&!mirror&&!tile&&recipe.recolor==null;
+  if(w*h>MAX_PIXELS&&!windowed)error('Scaled artwork exceeds the rendering limit.');
   const sourceDpi=Math.min(sw/w,sh/h)*dpi;effectiveDpi=Math.min(effectiveDpi??Infinity,sourceDpi);
   if(sourceDpi+1<dpi&&renderOptions.allowLowResolution!==true)error(`Source resolution is too low: ${Math.floor(effectiveDpi)} effective DPI; ${dpi} DPI is required. Use higher-resolution artwork or reduce its scale.`);
+  if(windowed){
+   const l=geometry.x,t=geometry.y,a=Math.max(0,l),b=Math.max(0,t),r=Math.min(width,l+w),bottom=Math.min(height,t+h),v=visibleGeometry(geometry);
+   if(r<=a||bottom<=b)error('Artwork is entirely outside the print area.');
+   if((r-a)*(bottom-b)>MAX_PIXELS)error('The visible artwork window exceeds the rendering limit.');
+   const fits=v.x>=0&&v.y>=0&&v.x+v.width<=width&&v.y+v.height<=height;
+   if(!fits&&(permissions.crop!==true||recipe.protect===true))error('This position clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
+   const input=await sharp(oriented).resize(w,h,{fit:'fill'}).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png().toBuffer();
+   overlays.push({input,left:a,top:b});continue;
+  }
   let image=sharp(oriented).extract({left,top,width:sw,height:sh}).resize(w,h,{fit:'fill'});
   if(recipe.recolor!==undefined&&recipe.recolor!==null)image=image.tint(background(recipe.recolor));
   if(mirror)image=image.flop();if(angle)image=image.rotate(angle,{background:{r:0,g:0,b:0,alpha:0}});
