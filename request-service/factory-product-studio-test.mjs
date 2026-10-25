@@ -56,6 +56,18 @@ test('Printful rate limits retry accepted work without inventing a task key or l
 
 test('explicit owner crop permission permits panel-edge edits while protected artwork is held',async()=>{const data=await sharp({create:{width:100,height:100,channels:4,background:'#ff0000'}}).png().toBuffer(),area={width:100,height:100,dpi:100},panel={background:'#000000',layers:[{asset:'art:one',x:0,y:.5,width:.5,allowModify:true}]};const read=async()=>({data,permissions:{reuse:true}});const rendered=await renderStudioPanel(area,panel,read);assert.equal(rendered.width,100);panel.layers[0].allowModify=false;await assert.rejects(renderStudioPanel(area,panel,read),/outside its reviewed safe region/);});
 
+test('larger sleeve artwork discards only black padding while preserving every visible pixel',async()=>{
+ const red=await sharp({create:{width:20,height:40,channels:4,background:'#ff0000'}}).png().toBuffer();
+ const data=await sharp({create:{width:100,height:100,channels:4,background:'#000000'}}).composite([{input:red,left:40,top:30}]).png().toBuffer();
+ const area={width:200,height:100,dpi:100},panel={background:'#000000',layers:[{asset:'art:one',x:.5,y:.5,width:1,allowModify:false}]},read=async()=>({data,permissions:{reuse:true}});
+ const rendered=await renderStudioPanel(area,panel,read),pixels=await sharp(rendered.data).raw().toBuffer({resolveWithObject:true});
+ assert.equal(rendered.width,200);assert.equal(rendered.height,100);assert.equal(rendered.effectiveDpi,50);
+ const at=(x,y)=>Array.from(pixels.data.subarray((y*200+x)*4,(y*200+x)*4+4));
+ assert.deepEqual(at(100,20),[255,0,0,255]);assert.deepEqual(at(100,80),[255,0,0,255]);assert.deepEqual(at(20,50),[0,0,0,255]);
+ panel.layers[0].y=0;await assert.rejects(renderStudioPanel(area,panel,read),/outside its reviewed safe region/);
+ panel.layers[0].y=.5;panel.background='#ffffff';await assert.rejects(renderStudioPanel(area,panel,read),/outside its reviewed safe region/);
+});
+
 async function archived(f,wrong=false){
  f.p.jobId='original-job';f.db.exec('CREATE TABLE factory_basic_items(job TEXT,recipe TEXT,cleanup TEXT); CREATE TABLE factory_render_plans(job TEXT,plan TEXT)');
  const area={placement:'front',width:100,height:100,dpi:100},recipe={artworkId:'art1',fit:'contain',scale:50,protect:true,withoutEnlargement:true},data=f.db.prepare('SELECT data FROM factory_artwork').get().data;
