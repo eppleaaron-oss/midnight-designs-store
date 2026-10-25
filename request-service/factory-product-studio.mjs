@@ -2,6 +2,7 @@ import {createHash,randomUUID,randomBytes} from 'node:crypto';
 import sharp from 'sharp';
 import {variantAreas} from './factory-blueprints.mjs';
 import {renderArea} from './factory-rendering.mjs';
+import {artworkBounds} from './factory-artwork-bounds.mjs';
 import {mockupImageURL} from './factory-mockups.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
 import {BasicGithubAssets} from './factory-basic-github.mjs';
@@ -21,11 +22,14 @@ export async function renderStudioPanel(area,panel,read){
  for(const l of studioLayers(panel).layers){const a=await read(l.asset),data=Buffer.from(a.data),meta=await sharp(data,{limitInputPixels:40_000_000}).autoOrient().metadata(),m=meta.autoOrient||meta;
   const w=Math.max(1,Math.round(l.width*area.width)),h=Math.max(1,Math.round(w*m.height/m.width));
   const geometry={x:Math.round(l.x*area.width-w/2),y:Math.round(l.y*area.height-h/2),width:w,height:h,canvasWidth:area.width,canvasHeight:area.height,dpi:area.dpi,safeRect:l.allowModify?{x:-area.width,y:-area.height,width:area.width*3,height:area.height*3}:{x:0,y:0,width:area.width,height:area.height}};
+  // Match the preview: exact black padding can extend beyond a black canvas
+  // without cutting any artwork. Measure originals, never trust client bounds.
+  if(panel.background==='#000000'&&!l.rotation&&!l.mirror){const bounds=await artworkBounds(data);if(bounds)geometry.contentBounds={...bounds,sourceWidth:m.width,sourceHeight:m.height};}
   sources.push({data,recipe:{fit:'contain',geometry,rotation:l.rotation,mirror:l.mirror,protect:!l.allowModify,background:panel.background},permissions:{...a.permissions,reuse:a.permissions?.reuse===true,modify:a.permissions?.modify===true||l.allowModify,crop:a.permissions?.crop===true||l.allowModify}});
  }
  // The owner controls manual artwork size. Keep actual DPI reporting while
  // retaining native canvas, geometry, permissions and pixel limits.
- return renderArea(area,sources,{background:panel.background},{},{allowLowResolution:true});
+ return renderArea(area,sources,{background:panel.background},{},{allowLowResolution:true,preserveLayerOrder:true});
 }
 
 export async function studioResolutionIssues(variants,document,read){
