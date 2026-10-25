@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import sharp from 'sharp';
 import {renderArea} from './factory-rendering.mjs';
-import {factoryProductStudio,renderStudioPanel,studioLayers,studioProductionPanel} from './factory-product-studio.mjs';
+import {factoryProductStudio,renderStudioPanel,studioLayers,studioProductionPanel,studioPlacementIssues} from './factory-product-studio.mjs';
 const ROOT='/api/owner/ai-factory/product-studio';
 async function fixture(t){
  const db=new DatabaseSync(':memory:');t.after(()=>db.close());db.exec('CREATE TABLE factory_artwork(id TEXT,name TEXT,mime TEXT,data BLOB,permissions TEXT)');const png=await sharp({create:{width:100,height:100,channels:4,background:'#ff0000'}}).png().toBuffer();db.prepare('INSERT INTO factory_artwork VALUES(?,?,?,?,?)').run('art1','Rose front','image/png',png,JSON.stringify({reuse:true,modify:false,crop:false}));
@@ -200,4 +200,20 @@ test('Finish preserves unsaved artwork when supplier-template validation rejects
 test('a Save receipt from before Finish cannot impersonate a conflicting tab or overwrite current action status',async()=>{
  const {draftSaveStatus}=await import('./public/product-studio-state.js');const status={revision:16,recovery:{confirmedRevision:16}};
  assert.equal(draftSaveStatus(status,15,{currentRevision:16}),'obsolete');assert.equal(draftSaveStatus(status,15,{currentRevision:15,busy:true}),'obsolete');assert.equal(draftSaveStatus(status,15,{currentRevision:15,dirty:true}),'obsolete');assert.equal(draftSaveStatus(status,15,{currentRevision:15}),'changed');
+});
+
+
+test('whole-design sleeve fitting preserves large scale, adjusts position, and passes the renderer without crop permission',async()=>{
+ const {wholeArtworkFit}=await import('./public/product-template-geometry.js');
+ const png=await sharp({create:{width:100,height:100,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:20,height:40,channels:4,background:'#ff0000'}}).png().toBuffer(),left:40,top:30}]).png().toBuffer();
+ const area={width:200,height:100,dpi:100,placement:'sleeve_right'},source={width:100,height:100,contentBounds:{x:40,y:30,width:20,height:40}},l={asset:'art:one',x:.5,y:.9,width:1,rotation:0,mirror:false,allowModify:false},read=async()=>({data:png,permissions:{reuse:true}});
+ const doc={variants:{v:{sleeve_right:{background:'#000000',layers:[l]}}}},variants=[{id:'v',areas:[area]}];
+ const issues=await studioPlacementIssues(variants,doc,read);assert.equal(issues[0].placement,'sleeve_right');assert.match(issues[0].message,/Keep whole design inside/);
+ const fitted=wholeArtworkFit(area,source,l);assert.equal(fitted.width,1);assert.ok(fitted.y<l.y);assert.equal(l.y,.9);doc.variants.v.sleeve_right.layers[0]=fitted;assert.deepEqual(await studioPlacementIssues(variants,doc,read),[]);await renderStudioPanel(area,doc.variants.v.sleeve_right,read);
+ const smaller=wholeArtworkFit(area,source,{...l,width:2});assert.ok(smaller.width<2);assert.ok(smaller.width>1);
+});
+
+test('Finish identifies the overflowing panel before creating a job or touching the supplier',async t=>{
+ const f=await fixture(t),d=await f.document();d.variants[11].front.layers[0].y=0;
+ const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.match(r.error,/visible artwork/);assert.equal(r.issues[0].placement,'front');assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,0);
 });
