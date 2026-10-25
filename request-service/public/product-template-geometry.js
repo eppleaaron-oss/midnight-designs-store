@@ -17,3 +17,18 @@ export function artworkFit(area,source,layer){
  const halfX=width*bw/2,halfY=width*area.width/area.height*bh/2;
  return {...layer,width,x:Math.max(halfX,Math.min(1-halfX,layer.x)),y:Math.max(halfY,Math.min(1-halfY,layer.y))};
 }
+
+// Keep the visible design on the native canvas, independently of DPI. Exact
+// black padding is measured by the server; other backgrounds use the full image.
+export function wholeArtworkFit(area,source,layer,background='#000000'){
+ const angle=(layer.rotation||0)*Math.PI/180,aspect=source.height/source.width;
+ const b=background==='#000000'&&!layer.rotation&&!layer.mirror?source.contentBounds:null;
+ const bw=b?b.width/source.width:Math.abs(Math.cos(angle))+aspect*Math.abs(Math.sin(angle));
+ const bh=b?b.height/source.width:Math.abs(Math.sin(angle))+aspect*Math.abs(Math.cos(angle));
+ const width=Math.max(.001,Math.min(layer.width,(area.width-4)/area.width/bw,(area.height-4)/area.width/bh));
+ const dx=b?(b.x+b.width/2-source.width/2)/source.width:0,dy=b?(b.y+b.height/2-source.height/2)/source.width:0;
+ const halfX=width*bw/2,halfY=width*area.width/area.height*bh/2,offsetX=width*dx,offsetY=width*area.width/area.height*dy;
+ const x=Math.max(halfX+2/area.width,Math.min(1-halfX-2/area.width,layer.x+offsetX))-offsetX;
+ const y=Math.max(halfY+2/area.height,Math.min(1-halfY-2/area.height,layer.y+offsetY))-offsetY;
+ return {...layer,width,x:Math.max(0,Math.min(1,x)),y:Math.max(0,Math.min(1,y))};
+}
