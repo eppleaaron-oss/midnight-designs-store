@@ -217,3 +217,19 @@ test('Finish identifies the overflowing panel before creating a job or touching 
  const f=await fixture(t),d=await f.document();d.variants[11].front.layers[0].y=0;
  const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.match(r.error,/visible artwork/);assert.equal(r.issues[0].placement,'front');assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,0);
 });
+
+test('large padded long-sleeve artwork renders beyond one canvas width without changing the native canvas',async()=>{
+ const png=await sharp({create:{width:100,height:100,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:10,height:50,channels:4,background:'#ff0000'}}).png().toBuffer(),left:45,top:25}]).png().toBuffer();
+ const area={placement:'sleeve_left',width:3910,height:4445,dpi:150},panel={background:'#000000',layers:[{asset:'art:one',x:.5,y:.5,width:2,allowModify:false}]};
+ const rendered=await renderStudioPanel(area,panel,async()=>({data:png,permissions:{reuse:true}}));assert.equal(rendered.width,3910);assert.equal(rendered.height,4445);assert.ok(rendered.effectiveDpi<2);
+ const m=await sharp(rendered.data).metadata();assert.equal(m.width,3910);assert.equal(m.height,4445);
+ const center=await sharp(rendered.data).extract({left:1955,top:2222,width:1,height:1}).raw().toBuffer();assert.deepEqual(Array.from(center),[255,0,0,255]);
+ const edge=await sharp(rendered.data).extract({left:0,top:2222,width:1,height:1}).raw().toBuffer();assert.deepEqual(Array.from(edge),[0,0,0,255]);
+ panel.layers[0].y=0;await assert.rejects(renderStudioPanel(area,panel,async()=>({data:png,permissions:{reuse:true}})),/outside its reviewed safe region/);
+});
+
+test('larger-than-canvas owner width survives Save, restart, reopening, and supplier update',async t=>{
+ const f=await fixture(t),png=await sharp({create:{width:100,height:100,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:20,height:40,channels:4,background:'#ff0000'}}).png().toBuffer(),left:40,top:30}]).png().toBuffer();f.db.prepare('UPDATE factory_artwork SET data=? WHERE id=?').run(png,'art1');
+ const d=await f.document();d.variants[11].front.layers[0].width=1.5;const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const o=await f.open();assert.equal(o.document.variants[11].front.layers[0].width,1.5);await f.call('finish',{source:f.p.id,revision:saved.revision,document:o.document,target:'printful'});
+ for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);
+});
