@@ -15,7 +15,7 @@ const templateStamp=(bp,variants)=>hash(JSON.stringify(variants.map(v=>[String(v
 const fingerprint=d=>hash(JSON.stringify((d.sync_variants||[]).map(v=>[v.id,v.variant_id,(v.files||[]).filter(f=>f.type!=='preview').map(f=>[f.type,f.id,f.hash,f.url]),v.options||[]])));
 export function studioLayers(panel){
  if(!panel||!Array.isArray(panel.layers)||panel.layers.length>8||!(/^#[0-9a-f]{6}$/i.test(panel.background)||panel.background===null))hold('Choose a background and up to eight artwork layers.',400);
- return {background:panel.background,layers:panel.layers.map(l=>{if(typeof l.asset!=='string'||!/^[-a-z0-9:]{1,160}$/i.test(l.asset))hold('Select saved original artwork.',400);return {asset:l.asset,x:value(l.x,0,1,'horizontal position'),y:value(l.y,0,1,'vertical position'),width:value(l.width,.001,1,'artwork width'),rotation:value(l.rotation??0,-180,180,'rotation'),mirror:l.mirror===true,allowModify:l.allowModify===true};})};
+ return {background:panel.background,layers:panel.layers.map(l=>{if(typeof l.asset!=='string'||!/^[-a-z0-9:]{1,160}$/i.test(l.asset))hold('Select saved original artwork.',400);return {asset:l.asset,x:value(l.x,0,1,'horizontal position'),y:value(l.y,0,1,'vertical position'),width:value(l.width,.001,4,'artwork width'),rotation:value(l.rotation??0,-180,180,'rotation'),mirror:l.mirror===true,allowModify:l.allowModify===true};})};
 }
 export async function renderStudioPanel(area,panel,read){
  const sources=[];
