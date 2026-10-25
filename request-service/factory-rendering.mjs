@@ -65,9 +65,11 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
    const l=Math.round(centerX+ix*dx-rw/2),t=Math.round(centerY+iy*dy-rh/2),a=Math.max(0,l),b=Math.max(0,t),r=Math.min(width,l+rw),bottom=Math.min(height,t+rh);
    if(r<=a||bottom<=b)continue;
    const clipped=l<0||t<0||l+rw>width||t+rh>height;
-   if(clipped&&(permissions.crop!==true||recipe.protect===true))error('This position, pattern or rotation clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
+   const visible=geometry?.contentBounds&&!angle&&!mirror&&!tile?visibleGeometry(geometry):null;
+   const paddingOnly=visible&&visible.x>=0&&visible.y>=0&&visible.x+visible.width<=width&&visible.y+visible.height<=height;
+   if(clipped&&!paddingOnly&&(permissions.crop!==true||recipe.protect===true))error('This position, pattern or rotation clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
    const input=clipped?await sharp(rendered.data).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png().toBuffer():rendered.data;
-   overlays.push({input,left:a,top:b,...(geometry?.contentBounds?{blend:'lighten'}:{})});
+   overlays.push({input,left:a,top:b,...(geometry?.contentBounds&&!renderOptions.preserveLayerOrder?{blend:'lighten'}:{})});
   }
   if(!overlays.length)error('Artwork is entirely outside the print area.');
  }
