@@ -363,3 +363,17 @@ test('native image processing remains serial when multiple products are eligible
  let release,entered=0;const gate=new Promise(r=>release=r),put=f.options.assets.put;f.options.assets.put=async(...a)=>{entered++;await gate;return put(...a);};f.restart();
  const first=f.tick();for(let n=0;n<30&&!entered;n++)await new Promise(r=>setTimeout(r,5));assert.equal(entered,1);await f.tick();assert.equal(entered,1);release();await first;assert.equal(entered,1);
 });
+
+test('generated print bytes go directly to verified asset storage instead of churning the database backup',async t=>{
+ const f=await fixture(t),put=f.options.assets.put;let failed=false;f.options.assets.put=async(...a)=>{const row=f.db.prepare('SELECT length(data) n,remote FROM factory_studio_assets WHERE id=?').get(a[2]);assert.equal(row.n,0);assert.equal(row.remote,null);if(!failed){failed=true;throw Object.assign(Error('temporary attachment failure'),{status:503});}assert.ok(a[3].length);return put(...a);};
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();
+ assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.db.prepare("SELECT count(*) n FROM factory_studio_assets WHERE kind='print'").get().n,1);assert.equal(f.db.prepare('SELECT sum(length(data)) n FROM factory_studio_assets').get().n,0);
+});
+test('concurrent immutable print downloads share one authenticated read and recover after a failed read',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(!f.job().document.outputs.length)await f.tick();
+ const a=f.db.prepare("SELECT * FROM factory_studio_assets WHERE kind='print'").get(),read=f.options.assets.read;let calls=0,failRead=true;
+ f.options.assets.read=async(...args)=>{calls++;await new Promise(r=>setImmediate(r));if(failRead)throw Object.assign(Error('temporary download failure'),{status:503});return read(...args);};f.restart();
+ const studio=factoryProductStudio(f.options),download=async()=>{const res={writeHead(){},end(bytes){this.data=bytes;}};await studio.handle({headers:{}},res,'/factory-studio-file/'+a.capability,'GET',new URL('https://app.test'));return res.data;};
+ const failed=await Promise.allSettled([download(),download(),download(),download()]);assert.ok(failed.every(r=>r.status==='rejected'));assert.equal(calls,1);failRead=false;
+ const files=await Promise.all([download(),download(),download(),download()]);assert.equal(calls,2);assert.ok(files.every(b=>b.equals(files[0])));assert.equal((await sharp(files[0]).metadata()).width,100);
+});
