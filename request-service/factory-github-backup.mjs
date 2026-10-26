@@ -9,7 +9,7 @@ import {deflate,inflateSync} from 'node:zlib';
 import {promisify} from 'node:util';
 import {Worker} from 'node:worker_threads';
 const compress=promisify(deflate);
-const prepareSnapshot=path=>new Promise((resolve,reject)=>{let answered=false;const worker=new Worker(new URL('./factory-backup-worker.mjs',import.meta.url),{workerData:{path}});worker.once('message',m=>{answered=true;m?.ok?resolve():reject(problem('Recovery snapshot preparation failed. The live database was preserved.'));});worker.once('error',()=>reject(problem('Recovery snapshot worker failed. The live database was preserved.')));worker.once('exit',code=>{if(code||!answered)reject(problem('Recovery snapshot preparation did not finish.'));});});
+const prepareSnapshot=(path,maxBytes)=>new Promise((resolve,reject)=>{let answered=false;const worker=new Worker(new URL('./factory-backup-worker.mjs',import.meta.url),{workerData:{path,maxBytes}});worker.once('message',m=>{answered=true;m?.ok?resolve():reject(problem('Recovery snapshot preparation failed. The live database was preserved.'));});worker.once('error',()=>reject(problem('Recovery snapshot worker failed. The live database was preserved.')));worker.once('exit',code=>{if(code||!answered)reject(problem('Recovery snapshot preparation did not finish.'));});});
 
 const ROOT='factory-backup',MANIFEST=ROOT+'/latest.enc',CHUNK=4*1024*1024;
 const digest=b=>createHash('sha256').update(b).digest('hex');
@@ -122,7 +122,7 @@ export class GithubSnapshotStore{
   // Reproducible Basic working pixels are removed from the copy before applying the backup limit.
   const folder=await mkdtemp(join(tmpdir(),'midnight-snapshot-'));let file;
   try{
-   const path=join(folder,'snapshot.sqlite');await backup(db,path);await prepareSnapshot(path);const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
+   const path=join(folder,'snapshot.sqlite');await backup(db,path);await prepareSnapshot(path,this.maxBytes);const size=(await stat(path)).size;if(size>this.maxBytes)throw problem('Factory database exceeds the configured GitHub snapshot size limit.');
    file=await open(path,'r');
    const assets=this.releaseSnapshots?new BasicGithubAssets(this,{fetchImpl:this.fetch,sleep:this.sleep,clock:this.clock}):null;let release=null;
    if(assets){const whole=createHash('sha256');for(let offset=0;offset<size;){const data=Buffer.alloc(Math.min(CHUNK,size-offset));const {bytesRead}=await file.read(data,0,data.length,offset);if(!bytesRead)throw problem('Unable to read the recovery snapshot.');whole.update(data.subarray(0,bytesRead));offset+=bytesRead;}const checksum=whole.digest('hex');if(this.manifest?.sha256===checksum)return {commit:this.head,manifest:this.manifest,unchanged:true};const job='recovery-v2-'+checksum,r=await assets.release(job);release={job,id:r.id};}
