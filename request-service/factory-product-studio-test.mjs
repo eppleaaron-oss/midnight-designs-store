@@ -377,3 +377,13 @@ test('concurrent immutable print downloads share one authenticated read and reco
  const failed=await Promise.allSettled([download(),download(),download(),download()]);assert.ok(failed.every(r=>r.status==='rejected'));assert.equal(calls,1);failRead=false;
  const files=await Promise.all([download(),download(),download(),download()]);assert.equal(calls,2);assert.ok(files.every(b=>b.equals(files[0])));assert.equal((await sharp(files[0]).metadata()).width,100);
 });
+
+test('recovered panels yield during a slow backup but cannot submit mockups before their checkpoint',async t=>{
+ const f=await fixture(t);await archived(f);const d=await f.document();d.variants={};await f.call('finish',{source:f.p.id,revision:0,document:d,target:'mockups'});while(f.job().state!=='mockups')await f.tick();
+ let release;f.options.backups.checkpoint=()=>new Promise(r=>release=r);await f.tick();assert.equal(Object.keys(f.job().document.baseFiles).length,2);assert.equal(f.counts().posts,0);release();await new Promise(r=>setImmediate(r));f.options.backups.checkpoint=async()=>{};await f.tick();assert.equal(f.counts().posts,1);
+});
+test('ready store publication finishes before another product starts expensive rendering',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();const j=f.job(),other=structuredClone(j.document);other.outputs=[];
+ f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','rendering',JSON.stringify(other),j.updated-100000);
+ await f.tick();const next=JSON.parse(f.db.prepare('SELECT document FROM factory_studio_jobs WHERE id=?').get(j.id).document);assert.ok(next.images.some(i=>i.storeUrl));assert.equal(JSON.parse(f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='second'").get().document).outputs.length,0);
+});
