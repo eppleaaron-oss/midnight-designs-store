@@ -177,3 +177,17 @@ test('a deployment that read an older snapshot cannot fence over a newer checkpo
 test('snapshot compaction releases the application event loop while the isolated copy is prepared',async t=>{
  const f=await fixture(t,{large:true});let ticks=0;const timer=setInterval(()=>ticks++,1);try{await f.store.snapshot(f.db,{initialize:true});}finally{clearInterval(timer);}assert.ok(ticks>0,'editing and status requests can run during snapshot preparation');
 });
+
+test('small cleanup preserves stable artwork pages and reuses authenticated recovery chunks',async t=>{
+ const f=await fixture(t);f.db.prepare('DELETE FROM factory_artwork').run();f.db.exec('CREATE TABLE scratch_working_pixels(id INTEGER PRIMARY KEY,data BLOB)');f.db.prepare('INSERT INTO scratch_working_pixels VALUES(1,?)').run(randomBytes(128*1024));const original=randomBytes(8*1024*1024);f.db.prepare('INSERT INTO factory_artwork VALUES(?,?)').run('raven',original);
+ const writer=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.snapshot(f.db,{initialize:true});const first=writer.manifest.chunks.map(c=>c.asset);
+ f.db.exec('DELETE FROM scratch_working_pixels');await writer.snapshot(f.db);assert.ok(writer.manifest.chunks.some(c=>first.includes(c.asset)),'small cleanup must not move every unchanged artwork page');
+ const path=join(f.dir,'stable-pages.sqlite');await writer.restore(path);const restored=new DatabaseSync(path);try{assert.deepEqual(Buffer.from(restored.prepare('SELECT data FROM factory_artwork').get().data),original);assert.equal(restored.prepare('SELECT count(*) n FROM scratch_working_pixels').get().n,0);assert.ok(restored.prepare('PRAGMA freelist_count').get().freelist_count>0);}finally{restored.close();}
+});
+test('large reclaimed regions are still compacted without changing preserved artwork',async t=>{
+ const f=await fixture(t);f.db.exec('CREATE TABLE scratch_working_pixels(id INTEGER PRIMARY KEY,data BLOB)');f.db.prepare('INSERT INTO scratch_working_pixels VALUES(1,?)').run(randomBytes(4*1024*1024));const original=randomBytes(4*1024*1024);f.db.prepare('INSERT INTO factory_artwork VALUES(?,?)').run('large-raven',original);await f.store.snapshot(f.db,{initialize:true});f.db.exec('DELETE FROM scratch_working_pixels');await f.store.snapshot(f.db);
+ assert.ok(f.store.manifest.bytes<5*1024*1024);const path=join(f.dir,'compacted-pages.sqlite');await f.store.restore(path);const restored=new DatabaseSync(path);try{assert.deepEqual(Buffer.from(restored.prepare("SELECT data FROM factory_artwork WHERE id='large-raven'").get().data),original);assert.equal(restored.prepare('PRAGMA freelist_count').get().freelist_count,0);}finally{restored.close();}
+});
+test('a snapshot over its size cap compacts even when the free-page ratio is small',async t=>{
+ const f=await fixture(t,{large:true});f.db.exec('CREATE TABLE scratch_working_pixels(id INTEGER PRIMARY KEY,data BLOB)');f.db.prepare('INSERT INTO scratch_working_pixels VALUES(1,?)').run(randomBytes(1024*1024));await f.store.snapshot(f.db,{initialize:true});f.db.exec('DELETE FROM scratch_working_pixels');f.store.maxBytes=9*1024*1024;await f.store.snapshot(f.db);assert.ok(f.store.manifest.bytes<9*1024*1024);
+});
