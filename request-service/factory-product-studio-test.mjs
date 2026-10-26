@@ -52,6 +52,28 @@ test('cross-origin actions fail and original artwork permissions prevent unappro
 test('a concurrent Printful change is held before any update; validation rejects nonnumeric layout',async t=>{const f=await fixture(t);const d=await f.document();f.supplier.sync_variants[0].files[0].id=777;await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'}),/supplier product changed/);assert.equal(f.counts().puts,0);assert.throws(()=>studioLayers({background:'#000000',layers:[{asset:'art:a',x:NaN,y:.5,width:.5}]}),/Invalid horizontal/);});
 
 test('store publishing retains product/variant IDs and verifies permanently saved photos before success',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});for(let n=0;n<45&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.storeUpdated,true);const product=f.job().document.storeProduct;assert.equal(product.id,'123');assert.equal(product.description,'Existing description');assert.deepEqual(product.variants.map(v=>v.id),['11','12']);assert.ok(product.images.every(u=>u.startsWith('https://midnight-designs.store/images/factory/123/')));assert.ok(product.variants.every(v=>v.price===49.99&&v.images.length));});
+test('publish a completed private update reuses its files, task IDs and saved mockups without resubmitting to Printful',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});
+ await assert.rejects(f.call('publish',{source:f.p.id,id:f.job().id,revision:1,confirmPublication:true}),/Wait for/);
+ for(let n=0;n<35&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed');
+ const before=f.job(),counts=f.counts();
+ await assert.rejects(f.call('publish',{source:f.p.id,id:before.id,revision:1}),/Explicitly approve/);
+ await assert.rejects(f.call('publish',{source:f.p.id,id:before.id,revision:0,confirmPublication:true}),/newer draft/);
+ const r=await f.call('publish',{source:f.p.id,id:before.id,revision:1,confirmPublication:true});assert.equal(r.job.id,before.id);assert.equal(r.job.state,'publishing');assert.equal(r.revision,1);
+ for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.storeUpdated,true);
+ assert.equal(f.counts().puts,counts.puts);assert.equal(f.counts().posts,counts.posts);assert.deepEqual(f.job().document.outputs,before.document.outputs);assert.deepEqual(f.job().document.tasks,before.document.tasks);
+ await f.call('publish',{source:f.p.id,id:before.id,revision:1,confirmPublication:true});assert.equal(f.job().state,'completed');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,1);
+});
+test('saved mockups cannot be published after supplier files or the draft change',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});for(let n=0;n<35&&f.job().state!=='completed';n++)await f.tick();const j=f.job();
+ f.supplier.sync_variants[0].files[0].id=777;await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:1,confirmPublication:true}),/supplier product changed/);
+ const opened=await f.open();await f.call('save',{source:f.p.id,revision:1,document:opened.document});await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:2,confirmPublication:true}),/newer draft/);assert.equal(f.job().target,'mockups');
+});
+test('live storefront membership selects store updates despite an older supplier-created factory status',async()=>{
+ const {productUpdateTarget,canPublishSavedUpdate}=await import('./public/product-studio-state.js');const p={supplierId:483213237,state:'supplier_created'};
+ assert.equal(productUpdateTarget(p),'mockups');assert.equal(productUpdateTarget(p,new Set(['483213237'])),'store');assert.equal(productUpdateTarget({...p,state:'published'}),'store');assert.equal(productUpdateTarget({...p,supplierId:'other'},new Set(['483213237'])),'mockups');
+ const j={state:'completed',target:'mockups',printfulUpdated:true,images:[{url:'saved.jpg'}],revision:4};assert.equal(canPublishSavedUpdate(j,4,false),true);assert.equal(canPublishSavedUpdate(j,4,true),false);assert.equal(canPublishSavedUpdate(j,5,false),false);assert.equal(canPublishSavedUpdate({...j,state:'rendering'},4,false),false);
+});
 test('Printful rate limits retry accepted work without inventing a task key or losing progress',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});f.setRateMockup();for(let n=0;n<40&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.ok(f.job().document.tasks.every(t=>t.key&&t.state==='saved'));assert.equal(f.counts().puts,1);});
 
 test('explicit owner crop permission permits panel-edge edits while protected artwork is held',async()=>{const data=await sharp({create:{width:100,height:100,channels:4,background:'#ff0000'}}).png().toBuffer(),area={width:100,height:100,dpi:100},panel={background:'#000000',layers:[{asset:'art:one',x:0,y:.5,width:.5,allowModify:true}]};const read=async()=>({data,permissions:{reuse:true}});const rendered=await renderStudioPanel(area,panel,read);assert.equal(rendered.width,100);panel.layers[0].allowModify=false;await assert.rejects(renderStudioPanel(area,panel,read),/outside its reviewed safe region/);});
