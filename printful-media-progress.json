@@ -66542,8 +66542,10 @@
       "error": "Media checkpoint could not be pushed; recover the workflow artifact before retrying."
     }
   },
-  "errors": {},
-  "updatedAt": "2026-10-26T23:15:23.100Z",
+  "errors": {
+    "484051716": "Media checkpoint could not be pushed; recover the workflow artifact before retrying."
+  },
+  "updatedAt": "2026-10-26T23:15:25.411Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 177,
