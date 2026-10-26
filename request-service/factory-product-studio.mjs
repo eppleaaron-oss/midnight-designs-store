@@ -163,7 +163,10 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    update(j,d,'updating_printful');await checkpoint();return;
   }
   if(j.state==='updating_printful'){
-   d.updatedVariants??=[];const live=await pf('store/products/'+j.supplier);if(String(live?.sync_product?.id)!==j.supplier)hold('Supplier product identity changed.');
+   // Persist the complete immutable intent once before a bounded batch of PUTs.
+   // After a lost response/restart, GET reconciles the exact saved URLs; no
+   // additional snapshot is required between replay-safe variant updates.
+   d.updatedVariants??=[];await checkpoint();const live=await pf('store/products/'+j.supplier);if(String(live?.sync_product?.id)!==j.supplier)hold('Supplier product identity changed.');let submittedCount=0,waiting=false;
    for(const [id,panels]of Object.entries(d.variants)){
     const v=live.sync_variants.find(v=>String(v.id)===id),original=d.supplier.sync_variants.find(v=>String(v.id)===id);if(!v||v.variant_id!==original.variant_id)hold('An existing supplier variant changed. Nothing was remapped.');
     const outputs=d.outputs.filter(o=>o.variant===id),matches=outputs.every(o=>supplierPanel(v,o.placement)?.url===o.url);
@@ -172,11 +175,12 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
     const submitted={variant_id:original.variant_id,files:[...untouched,...outputs.map(o=>({type:supplierPanelType(original,o.placement),url:o.url}))]};
     // PUT is replay-safe. A lost response is reconciled against the same variant
     // and immutable URLs. No POST to create a product exists in this editor.
-    if(!matches){await checkpoint();for(const f of v.files||[]){if(f.type==='preview')continue;const old=original.files.find(x=>x.type===f.type),output=outputs.find(x=>supplierPanelType(original,x.placement)===f.type);if(f.id!==old?.id&&f.url!==output?.url)hold('A supplier print panel changed in another editor. Reload before replacing it.');}await pf('store/variants/'+id,{method:'PUT',body:JSON.stringify(submitted)});update(j,d);await checkpoint();return;}
+    if(!matches){waiting=true;if(submittedCount>=4)continue;for(const f of v.files||[]){if(f.type==='preview')continue;const old=original.files.find(x=>x.type===f.type),output=outputs.find(x=>supplierPanelType(original,x.placement)===f.type);if(f.id!==old?.id&&f.url!==output?.url)hold('A supplier print panel changed in another editor. Reload before replacing it.');}await pf('store/variants/'+id,{method:'PUT',body:JSON.stringify(submitted)});submittedCount++;continue;}
     if(outputs.some(o=>supplierPanel(v,o.placement)?.status==='failed'))hold('Printful rejected an edited print file.');
-    if(outputs.some(o=>supplierPanel(v,o.placement)?.status!=='ok'))return;
-    if(!d.updatedVariants.includes(id))d.updatedVariants.push(id);update(j,d);await checkpoint();return;
+    if(outputs.some(o=>supplierPanel(v,o.placement)?.status!=='ok')){waiting=true;continue;}
+    if(!d.updatedVariants.includes(id))d.updatedVariants.push(id);
    }
+   if(waiting){update(j,d);return;}
    d.printfulUpdated=true;d.finalFingerprint=fingerprint(live);const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',j.supplier);if(draft?.revision===j.revision){const recipe=JSON.parse(draft.document);recipe.fingerprint=d.finalFingerprint;run('UPDATE factory_studio_drafts SET document=? WHERE supplier=?',JSON.stringify(recipe),j.supplier);}update(j,d,j.target==='printful'?'completed':'mockups');await checkpoint();return;
   }
   if(j.state==='mockups'){
