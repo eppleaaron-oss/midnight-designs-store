@@ -66320,13 +66320,14 @@
     "95507fb51dffc1f8044c4505b26fb910ad4e84cb33ec9c5fab9d83a30c4b9d62": {
       "productId": "484051716",
       "variant": 16361,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-26T23:12:40.917Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-991890595"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-26T23:12:40.917Z",
+  "updatedAt": "2026-10-26T23:13:15.249Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 177,
