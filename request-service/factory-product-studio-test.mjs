@@ -44,6 +44,24 @@ test('manual enlargement renders the selected size while automatic rendering ret
 });
 
 test('draft revisions reject races; wrong variants and placements never reach Printful',async t=>{const f=await fixture(t),d=await f.document();const saved=await f.call('save',{source:f.p.id,revision:0,document:d});assert.equal(saved.printfulUpdated,false);await assert.rejects(f.call('save',{source:f.p.id,revision:0,document:d}),/another tab/);const wrong=structuredClone(d);wrong.variants[999]=wrong.variants[11];await assert.rejects(f.call('finish',{source:f.p.id,revision:1,document:wrong,target:'printful'}),/does not belong/);assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT revision FROM factory_studio_drafts').get().revision,1);});
+test('repeated Save of unchanged panels keeps the same revision and does not make a queued update appear outdated',async t=>{
+ const f=await fixture(t),d=await f.document();const saved=await f.call('save',{source:f.p.id,revision:0,document:d});const again=await f.call('save',{source:f.p.id,revision:saved.revision,document:saved.document});assert.equal(again.revision,1);assert.equal(again.unchanged,true);
+ const finished=await f.call('finish',{source:f.p.id,revision:again.revision,document:again.document,target:'printful'});assert.equal(finished.revision,1);assert.equal(finished.job.revision,1);
+ await f.call('save',{source:f.p.id,revision:1,document:finished.document});const reopened=await f.open();assert.equal(reopened.revision,1);assert.equal(reopened.job.revision,1);assert.deepEqual(reopened.document.variants,saved.document.variants);assert.equal(f.counts().puts,0);
+});
+test('Finish submits the edited document once, and an uncertain response never triggers a second save',async()=>{
+ const {finishSavedDraft}=await import('./public/product-studio-state.js'),calls=[],document={variants:{}},saved={revision:4,document,job:{id:'tracked'}};let adopted;
+ const r=await finishSavedDraft({source:'piece:one',revision:3,document,target:'store',confirmPublication:true,dirty:true,api:async(path,b)=>{calls.push(path);assert.equal(b.document,document);return saved;},onSaved:x=>adopted=x});assert.equal(r,saved);assert.equal(adopted,saved);assert.deepEqual(calls,['finish']);
+ calls.length=0;await assert.rejects(finishSavedDraft({source:'piece:one',revision:3,document,target:'store',dirty:true,api:async path=>{calls.push(path);throw Error('response lost');}}),/response lost/);assert.deepEqual(calls,['finish']);
+});
+test('identical bomber panels reuse their saved native pixels across sizes and permission changes still stop reuse',async t=>{
+ const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,1);await f.tick();assert.equal(f.job().state,'updating_printful');const out=f.job().document.outputs;assert.equal(out.length,2);assert.equal(out[0].asset,out[1].asset);assert.equal(out[0].sha,out[1].sha);assert.notEqual(out[0].variant,out[1].variant);f.restart();for(let n=0;n<8&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,2);
+ const g=await fixture(t),p=await g.document();p.variants[12]=structuredClone(p.variants[11]);await g.call('finish',{source:g.p.id,revision:0,document:p,target:'printful'});await g.tick();await g.tick();g.db.prepare('UPDATE factory_artwork SET permissions=? WHERE id=?').run(JSON.stringify({reuse:false}),'art1');await g.tick();assert.equal(g.job().state,'failed');assert.equal(g.counts().puts,0);
+});
+test('size-specific artwork positions and native canvases never reuse another panel’s pixels',async t=>{
+ for(const differentCanvas of [false,true]){const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);if(differentCanvas){const bp=await f.options.blueprints.load();bp.printfiles.printfiles.push({printfile_id:2,width:200,height:100,dpi:100});bp.printfiles.variant_printfiles[1].placements.front=2;d.templateStamp=(await f.open()).templateStamp;}else d.variants[12].front.layers[0].x=.3;
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const out=f.job().document.outputs;assert.equal(out.length,2);assert.notEqual(out[0].asset,out[1].asset);assert.notEqual(out[0].sha,out[1].sha);assert.equal(out[1].width,differentCanvas?200:100);}
+});
 test('Finish updates the same variant, preserves untouched files/options/prices, checkpoints and reopens',async t=>{const f=await fixture(t),d=await f.document(),r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.equal(r.job.printfulUpdated,false);await assert.rejects(f.call('finish',{source:f.p.id,revision:1,document:d,target:'printful'}),/unfinished update/);for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);assert.equal(f.supplier.sync_variants[0].id,11);assert.equal(f.supplier.sync_variants[0].retail_price,'49.99');assert.equal(f.supplier.sync_variants[0].files.find(f=>f.type==='back').id,41);assert.equal(f.supplier.sync_variants[1].files[0].id,32);assert.ok(f.counts().backupCount>2);const o=await f.open();assert.equal(o.document.fingerprint,o.fingerprint);assert.equal(o.job.printfulUpdated,true);});
 test('long-sleeve default/front aliases replace exactly one real supplier file and verify the same mockup panel',async t=>{
  const f=await fixture(t);for(const v of f.supplier.sync_variants)v.files[0].type='default';
@@ -83,7 +101,7 @@ test('publish a completed private update reuses its files, task IDs and saved mo
 test('saved mockups cannot be published after supplier files or the draft change',async t=>{
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});for(let n=0;n<35&&f.job().state!=='completed';n++)await f.tick();const j=f.job();
  f.supplier.sync_variants[0].files[0].id=777;await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:1,confirmPublication:true}),/supplier product changed/);
- const opened=await f.open();await f.call('save',{source:f.p.id,revision:1,document:opened.document});await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:2,confirmPublication:true}),/newer draft/);assert.equal(f.job().target,'mockups');
+ const opened=await f.open();opened.document.variants[11].front.layers[0].x=.6;await f.call('save',{source:f.p.id,revision:1,document:opened.document});await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:2,confirmPublication:true}),/newer draft/);assert.equal(f.job().target,'mockups');
 });
 test('live storefront membership selects store updates despite an older supplier-created factory status',async()=>{
  const {productUpdateTarget,canPublishSavedUpdate}=await import('./public/product-studio-state.js');const p={supplierId:483213237,state:'supplier_created'};
@@ -232,7 +250,7 @@ test('Finish preserves unsaved artwork when supplier-template validation rejects
  const api=async(path,data)=>{const r=await f.call(path,data);if(r.error)throw Object.assign(Error(r.error),{issues:r.issues});return r;};
  await assert.rejects(finishSavedDraft({source:f.p.id,revision:0,document,dirty:true,target:'printful',api,onSaved:r=>{saved=r;}}),/Draft revision 1 stored in the app.*supplier template changed/);
  assert.equal(saved.revision,1);assert.equal((await f.open()).document.variants[11].front.layers[0].x,.3);assert.equal(f.job(),null);assert.equal(f.counts().puts,0);
- document.templateStamp=(await f.open()).templateStamp;const result=await finishSavedDraft({source:f.p.id,revision:1,document,dirty:true,target:'printful',api});assert.equal(result.revision,3);assert.equal(result.job.state,'queued');
+ document.templateStamp=(await f.open()).templateStamp;const result=await finishSavedDraft({source:f.p.id,revision:1,document,dirty:true,target:'printful',api});assert.equal(result.revision,2);assert.equal(result.job.state,'queued');
 });
 
 test('a Save receipt from before Finish cannot impersonate a conflicting tab or overwrite current action status',async()=>{
