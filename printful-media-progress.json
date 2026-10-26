@@ -65137,8 +65137,10 @@
       "error": "Printful HTTP 400: No variants to generate. Option filters may exclude all variants or variants are not available. Alternatively, make sure that variants belong to given product id."
     }
   },
-  "errors": {},
-  "updatedAt": "2026-10-26T05:15:00.466Z",
+  "errors": {
+    "482797453": "Supplier print files are not permanently accepted."
+  },
+  "updatedAt": "2026-10-26T05:16:02.553Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 179,
