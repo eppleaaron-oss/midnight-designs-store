@@ -402,3 +402,14 @@ test('mockup pacing uses actual request times even when a preparation checkpoint
  for(let n=0;n<40&&f.job().state!=='completed';n++){now++;await f.tick();}
  assert.equal(f.job().state,'completed',f.job().error);assert.equal(wire.length,2);assert.ok(wire[1]-wire[0]>=31000);assert.ok(waits.some(ms=>ms>30000));assert.equal(f.counts().posts,2);
 });
+
+test('mockup network waits share checkpoints while a separate native render can still progress',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});while(f.job().state!=='mockups')await f.tick();const j=f.job(),other=structuredClone(j.document);other.supplier.sync_product.id=456;
+ f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'mockups','mockups',JSON.stringify(other),j.updated-1);
+ const native=structuredClone(j.document);native.outputs=[];native.tasks=[];native.images=[];f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('third','789','piece:three',1,'printful','rendering',JSON.stringify(native),j.updated-2);
+ let release,releaseNative,checkpoints=0,renders=0;const gate=new Promise(r=>release=r),nativeGate=new Promise(r=>releaseNative=r),put=f.options.assets.put;
+ f.options.backups.checkpoint=async()=>{checkpoints++;await gate;};f.options.assets.put=async(...a)=>{renders++;await nativeGate;return put(...a);};f.restart();
+ const first=f.tick();await new Promise(r=>setImmediate(r));const second=f.tick();await new Promise(r=>setImmediate(r));assert.equal(checkpoints,2);
+ const third=f.tick();for(let n=0;n<40&&!renders;n++)await new Promise(r=>setTimeout(r,5));assert.equal(renders,1);await f.tick();assert.equal(renders,1);assert.equal(f.counts().posts,0);
+ release();releaseNative();await Promise.all([first,second,third]);assert.equal(f.counts().posts,2);for(const id of [j.id,'second'])assert.ok(JSON.parse(f.db.prepare('SELECT document FROM factory_studio_jobs WHERE id=?').get(id).document).tasks.some(t=>t.key));
+});
