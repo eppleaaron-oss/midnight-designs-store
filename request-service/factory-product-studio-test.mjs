@@ -25,7 +25,7 @@ async function fixture(t){
   if(url.includes('files.printful.com/'))return new Response(png,{headers:{'Content-Type':'image/png'}});
   throw Error('Unexpected URL '+url);
  };
- const options={db,editor:{library:()=>({pieces:[p,sibling],products:[],sets:[{id:'rose',name:'Rose original hoodie',parts:{front:{name:'Rose front',artwork:'art1'}}}]})},blueprints:{load:async()=>bp},workflow:{sourceFile:async p=>p.artwork},basic:{storeToken:()=>'store-key'},backups:{connection:()=>null,checkpoint:async()=>{backupCount++;}},auth:()=>{authCalls++;},body:async req=>req.payload,send:(res,status,data)=>{res.data=data;res.status=status;},fail:(status,message)=>{throw Object.assign(Error(message),{status});},limit:()=>{},origin:'https://app.test',fetchImpl,clock:()=>time,token:'secret',assets};
+ const options={db,editor:{library:()=>({pieces:[p,sibling],products:[],sets:[{id:'rose',name:'Rose original hoodie',parts:{front:{name:'Rose front',artwork:'art1'}}}]})},blueprints:{load:async()=>bp},workflow:{sourceFile:async p=>p.artwork},basic:{storeToken:()=>'store-key'},backups:{connection:()=>null,checkpoint:async()=>{backupCount++;}},auth:()=>{authCalls++;},body:async req=>req.payload,send:(res,status,data)=>{res.data=data;res.status=status;},fail:(status,message)=>{throw Object.assign(Error(message),{status});},limit:()=>{},origin:'https://app.test',stepAssetLimit:1,fetchImpl,clock:()=>time,token:'secret',assets};
  let studio=factoryProductStudio(options);
  const call=async(path,b,origin='https://app.test')=>{const res={};await studio.handle({headers:{origin},payload:b},res,ROOT+'/'+path,'POST',new URL('https://app.test'));return res.data;};
  const open=()=>call('open',{source:p.id});
@@ -298,4 +298,68 @@ test('a timed out checkpoint retains the tracked supplier update for a bounded r
  f.options.backups.checkpoint=async()=>{if(failOnce){failOnce=false;throw new DOMException('The operation was aborted due to timeout','TimeoutError');}};
  await f.tick();assert.equal(f.job().state,'updating_printful');assert.match(f.job().error,/timeout/);assert.equal(f.counts().puts,0);assert.equal(f.job().attempts,1);
  for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);
+});
+
+test('the production batch processes four native compositions without mixing variant or placement mappings',async t=>{
+ const f=await fixture(t),bp=await f.options.blueprints.load(),placements=['front','back','sleeve_left','sleeve_right'];
+ bp.printfiles.variant_printfiles.forEach(v=>v.placements=Object.fromEntries(placements.map(p=>[p,1])));f.options.stepAssetLimit=4;f.restart();
+ const d=await f.document();d.variants[11]=Object.fromEntries(placements.map((p,i)=>[p,{background:'#000000',layers:[{asset:'art:art1',x:.3+i*.1,y:.5,width:.5,rotation:0}]}]));d.variants[12]=structuredClone(d.variants[11]);
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,4);
+ await f.tick();assert.equal(f.job().state,'updating_printful');assert.equal(f.job().document.outputs.length,8);
+ for(const p of placements){const a=f.job().document.outputs.filter(x=>x.placement===p);assert.equal(a.length,2);assert.equal(a[0].asset,a[1].asset);}
+ assert.equal(f.counts().puts,0);
+});
+test('supplier processing polls do not wait for another full backup, while the first PUT remains checkpointed',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
+ let blocked=0;f.options.backups.checkpoint=async()=>{blocked++;throw Object.assign(Error('checkpoint temporarily unavailable'),{status:503});};
+ await f.tick();assert.ok(blocked>=1);assert.equal(f.counts().puts,0);assert.equal(f.job().state,'updating_printful');
+ f.options.backups.checkpoint=async()=>{};for(let n=0;n<5&&!f.counts().puts;n++)await f.tick();assert.equal(f.counts().puts,1);
+ f.supplier.sync_variants[0].files.find(x=>x.type==='front').status='waiting';
+ f.options.backups.checkpoint=async()=>{throw Error('a read-only poll started a full backup');};
+ await f.tick();assert.equal(f.job().state,'updating_printful');assert.equal(f.job().error,'');assert.equal(f.counts().puts,1);
+});
+test('a backup failure before mockup POST remains retryable and never invents an uncertain provider submission',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});while(f.job().state!=='mockups')await f.tick();
+ f.options.backups.checkpoint=async()=>{throw Object.assign(Error('backup temporarily unavailable'),{status:503});};
+ await f.tick();assert.equal(f.counts().posts,0);assert.equal(f.job().state,'mockups');assert.equal(f.job().document.tasks.length,0);
+ f.options.backups.checkpoint=async()=>{};for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().posts,2);
+});
+test('the production batch saves every returned mockup and publishes the same listing with all images',async t=>{
+ const f=await fixture(t),base=f.options.fetchImpl;f.options.stepAssetLimit=4;f.options.fetchImpl=async(u,o)=>{
+  if(u.includes('/mockup-generator/task?'))return new Response(JSON.stringify({result:{task_key:new URL(u).searchParams.get('task_key'),status:'completed',mockups:[{variant_ids:[21,22],placement:'front',mockup_url:'https://files.printful.com/front.jpg',extra:Array.from({length:8},(_,i)=>({url:'https://files.printful.com/view'+i+'.jpg',title:'View '+i,option_group:'Flat'}))}]}}));
+  if(u.startsWith('https://files.printful.com/')){const n=Number(u.match(/view(\d+)/)?.[1]||10);return new Response(await sharp({create:{width:10,height:10,channels:4,background:{r:n*20,g:30,b:50,alpha:1}}}).png().toBuffer(),{headers:{'Content-Type':'image/png'}});}
+  return base(u,o);
+ };f.restart();await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});
+ for(let n=0;n<30&&!f.job().document.tasks?.some(t=>t.state==='downloading');n++)await f.tick();
+ await f.tick();assert.equal(f.job().document.images.length,4);await f.tick();assert.equal(f.job().document.images.length,8);
+ for(let n=0;n<30&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.images.length,9);assert.equal(f.job().document.storeProduct.images.length,9);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,2);
+});
+
+test('a newer saved draft keeps its own artwork and can finish after the earlier supplier update completes',async t=>{
+ const f=await fixture(t),original=await f.document();await f.call('finish',{source:f.p.id,revision:0,document:original,target:'printful'});
+ const revised=structuredClone(original);revised.variants[11].front.layers[0].x=.3;await f.call('save',{source:f.p.id,revision:1,document:revised});
+ for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);
+ const opened=await f.open();assert.equal(opened.revision,2);assert.equal(opened.document.variants[11].front.layers[0].x,.3);assert.equal(opened.document.fingerprint,opened.fingerprint);
+ const next=await f.call('finish',{source:f.p.id,revision:2,document:opened.document,target:'printful'});assert.equal(next.job.revision,2);assert.equal(next.job.state,'queued');
+});
+test('the update audit lists saved-only drafts and exact latest supplier jobs without exposing artwork bytes',async t=>{
+ const f=await fixture(t),d=await f.document();await f.call('save',{source:f.p.id,revision:0,document:d});
+ const read=async()=>{const res={};await factoryProductStudio(f.options).handle({headers:{}},res,ROOT+'/updates','GET',new URL('https://app.test'));return res.data;};
+ let s=await read();assert.equal(s.updates[0].draftRevision,1);assert.equal(s.updates[0].job,null);assert.equal(s.updates[0].placements,1);
+ await f.call('finish',{source:f.p.id,revision:1,document:d,target:'store',confirmPublication:true});s=await read();assert.equal(s.updates[0].job.id,f.job().id);assert.equal(s.updates[0].job.target,'store');assert.equal(s.updates[0].job.files,0);assert.ok(!JSON.stringify(s).includes('art:art1'));
+});
+
+test('independent supplier waits run concurrently, but the same tracked job never runs twice',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
+ const j=f.job(),d=structuredClone(j.document);d.supplier.sync_product.id=456;f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','updating_printful',JSON.stringify(d),j.updated-1);
+ const base=f.options.fetchImpl;f.options.fetchImpl=async(u,o)=>u.endsWith('/store/products/456')?new Response(JSON.stringify({result:{...f.supplier,sync_product:{...f.supplier.sync_product,id:456}}})):base(u,o);
+ let release,entered=0;const gate=new Promise(r=>release=r);f.options.backups.checkpoint=async()=>{entered++;await gate;throw Object.assign(Error('temporary backup wait'),{status:503});};f.restart();
+ const first=f.tick();await new Promise(r=>setImmediate(r));const second=f.tick();await new Promise(r=>setImmediate(r));assert.equal(entered,2);await f.tick();assert.equal(entered,2);assert.equal(f.counts().puts,0);
+ release();await Promise.all([first,second]);assert.equal(f.db.prepare("SELECT count(*) n FROM factory_studio_jobs WHERE state='updating_printful'").get().n,2);assert.equal(f.counts().puts,0);
+});
+test('native image processing remains serial when multiple products are eligible',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});await f.tick();const j=f.job();
+ f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','rendering',JSON.stringify(j.document),j.updated-1);
+ let release,entered=0;const gate=new Promise(r=>release=r),put=f.options.assets.put;f.options.assets.put=async(...a)=>{entered++;await gate;return put(...a);};f.restart();
+ const first=f.tick();for(let n=0;n<30&&!entered;n++)await new Promise(r=>setTimeout(r,5));assert.equal(entered,1);await f.tick();assert.equal(entered,1);release();await first;assert.equal(entered,1);
 });
