@@ -193,7 +193,8 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   }
   if(j.state==='mockups'){
    d.tasks??=[];d.images??=[];d.baseFiles??={};
-   for(const v of d.supplier.sync_variants)for(const a of variantAreas(d.blueprint,v.variant_id)){const key=v.id+':'+a.placement,file=supplierPanel(v,a.placement);if(!file||d.outputs.some(f=>f.variant===String(v.id)&&f.placement===a.placement)||d.baseFiles[key])continue;let u;try{u=new URL(file.url);}catch{}if(u?.origin===origin&&u.pathname.startsWith('/factory-print-file/')){d.baseFiles[key]=await recoverPrintPanel(j,d,v,a,file);update(j,d);await checkpoint();return;}}
+   let recovered=0;for(const v of d.supplier.sync_variants)for(const a of variantAreas(d.blueprint,v.variant_id)){const key=v.id+':'+a.placement,file=supplierPanel(v,a.placement);if(!file||d.outputs.some(f=>f.variant===String(v.id)&&f.placement===a.placement)||d.baseFiles[key])continue;let u;try{u=new URL(file.url);}catch{}if(u?.origin===origin&&u.pathname.startsWith('/factory-print-file/')){d.baseFiles[key]=await recoverPrintPanel(j,d,v,a,file);update(j,d);if(++recovered>=4){await checkpoint();return;}}}
+   if(recovered){await checkpoint();return;}
    // One task per unique print-file set, with every available style/view.
    const groups=new Map();for(const v of d.supplier.sync_variants){const edited=d.outputs.filter(f=>f.variant===String(v.id)),areas=variantAreas(d.blueprint,v.variant_id).filter(a=>supplierPanel(v,a.placement)||edited.some(f=>f.placement===a.placement));
     const files=areas.map(a=>{const f=edited.find(f=>f.placement===a.placement)||d.baseFiles[v.id+':'+a.placement],old=supplierPanel(v,a.placement);if(!f&&!old?.url)hold('An original print file is unavailable for mockup generation.');return {placement:a.placement,image_url:f?.url||old.url,position:{area_width:a.width,area_height:a.height,width:a.width,height:a.height,top:0,left:0}};});
