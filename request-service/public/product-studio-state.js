@@ -19,9 +19,16 @@ export function editorBlockReason(busy,job,hasLayer,hasSource=true){
 }
 
 export async function finishSavedDraft({source,revision,document,target,confirmPublication,dirty,api,onSaved=()=>{}}){
- let saved=false;
  try{
-  if(dirty){const result=await api('save',{source,revision,document});revision=result.revision;document=result.document;saved=true;onSaved(result);}
-  return await api('finish',{source,revision,document,target,confirmPublication});
- }catch(e){if(saved)e.message='Draft revision '+revision+' stored in the app. Update did not complete: '+e.message;throw e;}
+  // Finish saves the validated draft and production job together. Saving first
+  // starts an unnecessary full backup before the job can be recorded.
+  const result=await api('finish',{source,revision,document,target,confirmPublication});onSaved(result);return result;
+ }catch(e){
+  // A known validation failure must still preserve the owner's panel edits.
+  // A lost response is uncertain: retain local edits and do not invent a new
+  // save revision over a Finish that may already have been accepted.
+  if(dirty&&e.status>=400&&e.status<500){try{const saved=await api('save',{source,revision,document});onSaved(saved);e.message='Draft revision '+saved.revision+' stored in the app. Update did not complete: '+e.message;}catch(saveError){e.message+=' Your unsaved edits remain in this editor. Draft save: '+saveError.message;}}
+  else if(dirty)e.message+=' Update response is unconfirmed. Your edits remain in this editor; reopen the product to check its tracked update before submitting again.';
+  throw e;
+ }
 }
