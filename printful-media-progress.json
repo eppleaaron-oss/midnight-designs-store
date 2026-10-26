@@ -65139,13 +65139,14 @@
     "99003a44f8ba2026267af7a20372e2ab9a283139d58e0e65c370fdb2df3c223b": {
       "productId": "484121835",
       "variant": 11414,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-26T23:04:20.919Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-991885959"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-26T23:04:20.919Z",
+  "updatedAt": "2026-10-26T23:04:55.376Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 177,
