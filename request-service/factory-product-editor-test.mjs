@@ -91,3 +91,10 @@ test('embedded access check verifies the exact supplier product and reports miss
  await editor.handle({headers:{origin:'http://test'},payload:{source:'item:made'}},{},'/api/owner/ai-factory/product-editor/embedded/check','POST');assert.equal(sent.supplier.verified,true);assert.equal(sent.supplier.variants[0].files[0].status,'ok');assert.equal(sent.embedded.approved,false);assert.equal(sent.embedded.httpStatus,403);assert.equal(sent.updated,false);approved=true;
  await editor.handle({headers:{origin:'http://test'},payload:{source:'item:made'}},{},'/api/owner/ai-factory/product-editor/embedded/check','POST');assert.equal(sent.embedded.approved,true);assert.equal(JSON.stringify(sent).includes('private-session'),false);assert.ok(calls.every(c=>c.method==='GET'||c.url.endsWith('/embedded-designer/nonces')));assert.equal(f.db.prepare('SELECT supplier_id FROM factory_listings').get().supplier_id,'555');
 });
+
+test('AI Made local library loads saved identities without waiting for Printful discovery or photos',async t=>{
+ const f=fixture(t);let sent,calls=0,authorized=0;
+ f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('made','job',JSON.stringify({set:{id:'art',name:'Rose'},product:390,name:'Rose Bomber',audience:'unisex',variants:[{size:'M'}]}),'today','supplier_created');f.db.prepare('INSERT INTO factory_listings VALUES(?,?,?,?)').run('job','555','supplier_ready',JSON.stringify({title:'Rose Bomber'}));
+ const engine=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{authorized++;},body:async()=>({}),send:(res,status,data)=>{sent=data;},fail:()=>{},limit:()=>{},origin:'http://test',storeId:'',printfulToken:'test-token',fetchImpl:()=>{calls++;return new Promise(()=>{});}});
+ await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/library','GET');assert.equal(calls,0);assert.equal(authorized,1);assert.equal(sent.products[0].id,'item:made');assert.equal(sent.products[0].supplierId,'555');assert.equal(sent.sets[0].id,'art');assert.equal(sent.products[0].choice.product,390);
+});
