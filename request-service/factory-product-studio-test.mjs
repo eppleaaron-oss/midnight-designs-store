@@ -300,12 +300,12 @@ test('a timed out checkpoint retains the tracked supplier update for a bounded r
  for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);
 });
 
-test('the production batch processes four native compositions without mixing variant or placement mappings',async t=>{
+test('native compositions yield after each render and still reuse exact size mappings',async t=>{
  const f=await fixture(t),bp=await f.options.blueprints.load(),placements=['front','back','sleeve_left','sleeve_right'];
  bp.printfiles.variant_printfiles.forEach(v=>v.placements=Object.fromEntries(placements.map(p=>[p,1])));f.options.stepAssetLimit=4;f.restart();
  const d=await f.document();d.variants[11]=Object.fromEntries(placements.map((p,i)=>[p,{background:'#000000',layers:[{asset:'art:art1',x:.3+i*.1,y:.5,width:.5,rotation:0}]}]));d.variants[12]=structuredClone(d.variants[11]);
- await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,4);
- await f.tick();assert.equal(f.job().state,'updating_printful');assert.equal(f.job().document.outputs.length,8);
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,1);
+ for(let n=0;n<6&&f.job().state==='rendering';n++)await f.tick();assert.equal(f.job().state,'updating_printful');assert.equal(f.job().document.outputs.length,8);
  for(const p of placements){const a=f.job().document.outputs.filter(x=>x.placement===p);assert.equal(a.length,2);assert.equal(a[0].asset,a[1].asset);}
  assert.equal(f.counts().puts,0);
 });
