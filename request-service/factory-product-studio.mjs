@@ -12,6 +12,9 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const hold=(message,status=409)=>{throw Object.assign(Error(message),{status});};
 const value=(v,min,max,name)=>{if(!Number.isFinite(v)||v<min||v>max)hold('Invalid '+name+'.',400);return v;};
 const templateStamp=(bp,variants)=>hash(JSON.stringify(variants.map(v=>[String(v.id),v.variant_id,variantAreas(bp,v.variant_id).map(a=>[a.placement,a.printfile_id,a.width,a.height,a.dpi,a.template?.template_id||null])])));
+// Printful sync files use `default` for the front of some garments.
+const supplierPanel=(v,placement)=>(v.files||[]).find(f=>f.type===placement)||(placement==='front'?(v.files||[]).find(f=>f.type==='default'):null);
+const supplierPanelType=(v,placement)=>supplierPanel(v,placement)?.type||placement;
 const fingerprint=d=>hash(JSON.stringify((d.sync_variants||[]).map(v=>[v.id,v.variant_id,(v.files||[]).filter(f=>f.type!=='preview').map(f=>[f.type,f.id,f.hash,f.url]),v.options||[]])));
 export function studioLayers(panel){
  if(!panel||!Array.isArray(panel.layers)||panel.layers.length>8||!(/^#[0-9a-f]{6}$/i.test(panel.background)||panel.background===null))hold('Choose a background and up to eight artwork layers.',400);
@@ -163,25 +166,25 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    d.updatedVariants??=[];const live=await pf('store/products/'+j.supplier);if(String(live?.sync_product?.id)!==j.supplier)hold('Supplier product identity changed.');
    for(const [id,panels]of Object.entries(d.variants)){
     const v=live.sync_variants.find(v=>String(v.id)===id),original=d.supplier.sync_variants.find(v=>String(v.id)===id);if(!v||v.variant_id!==original.variant_id)hold('An existing supplier variant changed. Nothing was remapped.');
-    const outputs=d.outputs.filter(o=>o.variant===id),matches=outputs.every(o=>v.files?.some(f=>f.type===o.placement&&f.url===o.url));
+    const outputs=d.outputs.filter(o=>o.variant===id),matches=outputs.every(o=>supplierPanel(v,o.placement)?.url===o.url);
     if(d.updatedVariants.includes(id)&&matches)continue;
-    const untouched=(original.files||[]).filter(f=>f.type!=='preview'&&!Object.hasOwn(panels,f.type)).map(f=>({id:f.id,type:f.type,...(Array.isArray(f.options)?{options:f.options}:{})}));
-    const submitted={variant_id:original.variant_id,files:[...untouched,...outputs.map(o=>({type:o.placement,url:o.url}))]};
+    const replaced=new Set(Object.keys(panels).map(placement=>supplierPanelType(original,placement)));const untouched=(original.files||[]).filter(f=>f.type!=='preview'&&!replaced.has(f.type)).map(f=>({id:f.id,type:f.type,...(Array.isArray(f.options)?{options:f.options}:{})}));
+    const submitted={variant_id:original.variant_id,files:[...untouched,...outputs.map(o=>({type:supplierPanelType(original,o.placement),url:o.url}))]};
     // PUT is replay-safe. A lost response is reconciled against the same variant
     // and immutable URLs. No POST to create a product exists in this editor.
-    if(!matches){await checkpoint();for(const f of v.files||[]){if(f.type==='preview')continue;const old=original.files.find(x=>x.type===f.type),output=outputs.find(x=>x.placement===f.type);if(f.id!==old?.id&&f.url!==output?.url)hold('A supplier print panel changed in another editor. Reload before replacing it.');}await pf('store/variants/'+id,{method:'PUT',body:JSON.stringify(submitted)});update(j,d);await checkpoint();return;}
-    if(outputs.some(o=>v.files.some(f=>f.type===o.placement&&f.status==='failed')))hold('Printful rejected an edited print file.');
-    if(outputs.some(o=>!v.files.some(f=>f.type===o.placement&&f.status==='ok')))return;
+    if(!matches){await checkpoint();for(const f of v.files||[]){if(f.type==='preview')continue;const old=original.files.find(x=>x.type===f.type),output=outputs.find(x=>supplierPanelType(original,x.placement)===f.type);if(f.id!==old?.id&&f.url!==output?.url)hold('A supplier print panel changed in another editor. Reload before replacing it.');}await pf('store/variants/'+id,{method:'PUT',body:JSON.stringify(submitted)});update(j,d);await checkpoint();return;}
+    if(outputs.some(o=>supplierPanel(v,o.placement)?.status==='failed'))hold('Printful rejected an edited print file.');
+    if(outputs.some(o=>supplierPanel(v,o.placement)?.status!=='ok'))return;
     if(!d.updatedVariants.includes(id))d.updatedVariants.push(id);update(j,d);await checkpoint();return;
    }
    d.printfulUpdated=true;d.finalFingerprint=fingerprint(live);const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',j.supplier);if(draft?.revision===j.revision){const recipe=JSON.parse(draft.document);recipe.fingerprint=d.finalFingerprint;run('UPDATE factory_studio_drafts SET document=? WHERE supplier=?',JSON.stringify(recipe),j.supplier);}update(j,d,j.target==='printful'?'completed':'mockups');await checkpoint();return;
   }
   if(j.state==='mockups'){
    d.tasks??=[];d.images??=[];d.baseFiles??={};
-   for(const v of d.supplier.sync_variants)for(const a of variantAreas(d.blueprint,v.variant_id)){const key=v.id+':'+a.placement,file=v.files?.find(f=>f.type===a.placement);if(!file||d.outputs.some(f=>f.variant===String(v.id)&&f.placement===a.placement)||d.baseFiles[key])continue;let u;try{u=new URL(file.url);}catch{}if(u?.origin===origin&&u.pathname.startsWith('/factory-print-file/')){d.baseFiles[key]=await recoverPrintPanel(j,d,v,a,file);update(j,d);await checkpoint();return;}}
+   for(const v of d.supplier.sync_variants)for(const a of variantAreas(d.blueprint,v.variant_id)){const key=v.id+':'+a.placement,file=supplierPanel(v,a.placement);if(!file||d.outputs.some(f=>f.variant===String(v.id)&&f.placement===a.placement)||d.baseFiles[key])continue;let u;try{u=new URL(file.url);}catch{}if(u?.origin===origin&&u.pathname.startsWith('/factory-print-file/')){d.baseFiles[key]=await recoverPrintPanel(j,d,v,a,file);update(j,d);await checkpoint();return;}}
    // One task per unique print-file set, with every available style/view.
-   const groups=new Map();for(const v of d.supplier.sync_variants){const edited=d.outputs.filter(f=>f.variant===String(v.id)),areas=variantAreas(d.blueprint,v.variant_id).filter(a=>(v.files||[]).some(f=>f.type===a.placement)||edited.some(f=>f.placement===a.placement));
-    const files=areas.map(a=>{const f=edited.find(f=>f.placement===a.placement)||d.baseFiles[v.id+':'+a.placement],old=v.files.find(f=>f.type===a.placement);if(!f&&!old?.url)hold('An original print file is unavailable for mockup generation.');return {placement:a.placement,image_url:f?.url||old.url,position:{area_width:a.width,area_height:a.height,width:a.width,height:a.height,top:0,left:0}};});
+   const groups=new Map();for(const v of d.supplier.sync_variants){const edited=d.outputs.filter(f=>f.variant===String(v.id)),areas=variantAreas(d.blueprint,v.variant_id).filter(a=>supplierPanel(v,a.placement)||edited.some(f=>f.placement===a.placement));
+    const files=areas.map(a=>{const f=edited.find(f=>f.placement===a.placement)||d.baseFiles[v.id+':'+a.placement],old=supplierPanel(v,a.placement);if(!f&&!old?.url)hold('An original print file is unavailable for mockup generation.');return {placement:a.placement,image_url:f?.url||old.url,position:{area_width:a.width,area_height:a.height,width:a.width,height:a.height,top:0,left:0}};});
     const signature=hash(JSON.stringify(files));if(!groups.has(signature))groups.set(signature,{signature,variants:[],syncIds:[],files});groups.get(signature).variants.push(v.variant_id);groups.get(signature).syncIds.push(String(v.id));}
    for(const g of groups.values()){
     let task=d.tasks.find(t=>t.signature===g.signature);
