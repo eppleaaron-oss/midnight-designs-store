@@ -66091,13 +66091,14 @@
     "da8fc2ce20c515bcf91b1ed1e3810b0d8d132848b2eb2cdc43f8f9dde1e86716": {
       "productId": "484096947",
       "variant": 9063,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-26T23:09:49.435Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-991888921"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-26T23:09:49.435Z",
+  "updatedAt": "2026-10-26T23:10:23.701Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 177,
