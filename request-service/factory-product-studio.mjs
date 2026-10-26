@@ -1,4 +1,5 @@
 import {createHash,randomUUID,randomBytes} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
 import sharp from 'sharp';
 import {variantAreas} from './factory-blueprints.mjs';
 import {renderArea} from './factory-rendering.mjs';
@@ -141,6 +142,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  function saveDocument(p,b){if(!b.document||typeof b.document!=='object'||Array.isArray(b.document)||JSON.stringify(b.document).length>100000)hold('Invalid product edit.',400);const previous=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if((previous?.revision||0)!==b.revision)hold('This product changed in another tab. Reload before saving.');
   const variants=b.document.variants;if(!variants||typeof variants!=='object'||Array.isArray(variants)||Object.keys(variants).length>100)hold('Choose the exact variants to edit.',400);
   const document={templateStamp:b.document.templateStamp||null,fingerprint:b.document.fingerprint,variants:Object.fromEntries(Object.entries(variants).map(([id,panels])=>{if(!/^\d+$/.test(id)||!panels||typeof panels!=='object'||Array.isArray(panels)||Object.keys(panels).length>40)hold('Invalid variant or print panel.',400);return [id,Object.fromEntries(Object.entries(panels).map(([k,v])=>{if(!/^[-a-z0-9_]{1,60}$/i.test(k))hold('Invalid print panel.',400);return [k,studioLayers(v)];}))];}))};
+  if(previous&&isDeepStrictEqual(JSON.parse(previous.document),document))return {revision:previous.revision,document,unchanged:true};
   const revision=b.revision+1;run('INSERT INTO factory_studio_drafts VALUES(?,?,?,?,?) ON CONFLICT(supplier) DO UPDATE SET source=excluded.source,revision=excluded.revision,document=excluded.document,updated=excluded.updated',String(p.supplierId),p.id,revision,JSON.stringify(document),clock());return {revision,document};
  }
  function update(j,d,state=j.state){run('UPDATE factory_studio_jobs SET document=?,state=?,error=\'\',attempts=0,next=0,updated=? WHERE id=?',JSON.stringify(d),state,clock(),j.id);}
@@ -158,7 +160,13 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    d.outputs??=[];
    for(const [variant,panels]of Object.entries(d.variants))for(const [placement,panel]of Object.entries(panels)){
     if(d.outputs.some(f=>f.variant===variant&&f.placement===placement))continue;const v=d.supplier.sync_variants.find(v=>String(v.id)===variant),area=variantAreas(d.blueprint,v.variant_id).find(a=>a.placement===placement);
-    const rendered=await renderStudioPanel(area,panel,readArtwork),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(!saves.size)saveSoon();return;
+    // Share pixels only when canvas, composition, source bytes and current
+    // permissions match. Keep an independent output mapping for every size.
+    const inputs=new Map();for(const layer of panel.layers)if(!inputs.has(layer.asset))inputs.set(layer.asset,await readArtwork(layer.asset));
+    const renderKey=hash(JSON.stringify({width:area.width,height:area.height,dpi:area.dpi,panel,sources:[...inputs].map(([id,a])=>({id,sha:hash(Buffer.from(a.data)),permissions:a.permissions}))}));
+    const same=d.outputs.find(o=>o.renderKey===renderKey);
+    if(same){const a=get("SELECT * FROM factory_studio_assets WHERE id=? AND job=? AND kind='print'",same.asset,'studio-'+j.id);if(a?.remote&&a.sha===same.sha&&a.width===area.width&&a.height===area.height){d.outputs.push({...same,variant,placement});continue;}}
+    const rendered=await renderStudioPanel(area,panel,async id=>inputs.get(id)),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,renderKey,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(!saves.size)saveSoon();return;
    }
    update(j,d,'updating_printful');await checkpoint();return;
   }
