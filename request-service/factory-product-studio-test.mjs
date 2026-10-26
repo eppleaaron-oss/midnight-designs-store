@@ -25,7 +25,7 @@ async function fixture(t){
   if(url.includes('files.printful.com/'))return new Response(png,{headers:{'Content-Type':'image/png'}});
   throw Error('Unexpected URL '+url);
  };
- const options={db,editor:{library:()=>({pieces:[p,sibling],products:[],sets:[{id:'rose',name:'Rose original hoodie',parts:{front:{name:'Rose front',artwork:'art1'}}}]})},blueprints:{load:async()=>bp},workflow:{sourceFile:async p=>p.artwork},basic:{storeToken:()=>'store-key'},backups:{connection:()=>null,checkpoint:async()=>{backupCount++;}},auth:()=>{authCalls++;},body:async req=>req.payload,send:(res,status,data)=>{res.data=data;res.status=status;},fail:(status,message)=>{throw Object.assign(Error(message),{status});},limit:()=>{},origin:'https://app.test',stepAssetLimit:1,fetchImpl,clock:()=>time,token:'secret',assets};
+ const options={db,editor:{library:()=>({pieces:[p,sibling],products:[],sets:[{id:'rose',name:'Rose original hoodie',parts:{front:{name:'Rose front',artwork:'art1'}}}]})},blueprints:{load:async()=>bp},workflow:{sourceFile:async p=>p.artwork},basic:{storeToken:()=>'store-key'},backups:{connection:()=>null,checkpoint:async()=>{backupCount++;}},auth:()=>{authCalls++;},body:async req=>req.payload,send:(res,status,data)=>{res.data=data;res.status=status;},fail:(status,message)=>{throw Object.assign(Error(message),{status});},limit:()=>{},origin:'https://app.test',stepAssetLimit:1,supplierWriteGapMs:0,mockupWriteGapMs:0,fetchImpl,clock:()=>time,token:'secret',assets};
  let studio=factoryProductStudio(options);
  const call=async(path,b,origin='https://app.test')=>{const res={};await studio.handle({headers:{origin},payload:b},res,ROOT+'/'+path,'POST',new URL('https://app.test'));return res.data;};
  const open=()=>call('open',{source:p.id});
@@ -386,4 +386,19 @@ test('ready store publication finishes before another product starts expensive r
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();const j=f.job(),other=structuredClone(j.document);other.outputs=[];
  f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','rendering',JSON.stringify(other),j.updated-100000);
  await f.tick();const next=JSON.parse(f.db.prepare('SELECT document FROM factory_studio_jobs WHERE id=?').get(j.id).document);assert.ok(next.images.some(i=>i.storeUrl));assert.equal(JSON.parse(f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='second'").get().document).outputs.length,0);
+});
+
+test('supplier variant writes follow their paced lane without changing the requested file assignments',async t=>{
+ const f=await fixture(t);let now=2000000;const waits=[],wire=[],base=f.options.fetchImpl;f.options.clock=()=>now;f.options.supplierWriteGapMs=6600;f.options.sleep=async ms=>{waits.push(ms);now+=ms;};f.options.fetchImpl=async(u,o)=>{if(u.includes('/store/variants/'))wire.push(now);return base(u,o);};f.restart();
+ const d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});
+ for(let n=0;n<20&&f.job().state!=='completed';n++){now+=32000;await f.tick();}
+ assert.equal(f.job().state,'completed',f.job().error);assert.equal(wire.length,2);assert.ok(wire[1]-wire[0]>=6600);assert.ok(waits.includes(6600));assert.equal(f.counts().puts,2);
+});
+test('mockup pacing uses actual request times even when a preparation checkpoint was slow',async t=>{
+ const f=await fixture(t);let now=3000000,delayed=false;const wire=[],waits=[],base=f.options.fetchImpl;f.options.clock=()=>now;f.options.mockupWriteGapMs=31000;f.options.sleep=async ms=>{waits.push(ms);now+=ms;};f.options.fetchImpl=async(u,o)=>{if(u.includes('/create-task/'))wire.push(now);return base(u,o);};
+ f.options.backups.checkpoint=async()=>{if(!delayed&&f.job()?.state==='mockups'&&f.job().document.tasks?.some(t=>!t.key)){delayed=true;now+=60000;}};f.restart();
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});
+ for(let n=0;n<20&&f.job().state!=='mockups';n++){now+=16000;await f.tick();}assert.equal(f.job().state,'mockups');
+ for(let n=0;n<40&&f.job().state!=='completed';n++){now++;await f.tick();}
+ assert.equal(f.job().state,'completed',f.job().error);assert.equal(wire.length,2);assert.ok(wire[1]-wire[0]>=31000);assert.ok(waits.some(ms=>ms>30000));assert.equal(f.counts().posts,2);
 });
