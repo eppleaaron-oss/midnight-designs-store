@@ -66731,12 +66731,19 @@
           "kind": "production-mockup"
         }
       ]
+    },
+    "5e82be4a33b8defe20ffc9ee37936a40fcb0fb43810855693f68e6e8afc259e3": {
+      "productId": "484029631",
+      "variant": 9063,
+      "state": "submitting",
+      "created": "2026-10-26T23:16:28.451Z",
+      "attempts": 1
     }
   },
   "errors": {
     "484051716": "Media checkpoint could not be pushed; recover the workflow artifact before retrying."
   },
-  "updatedAt": "2026-10-26T23:16:25.753Z",
+  "updatedAt": "2026-10-26T23:16:28.451Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 177,
