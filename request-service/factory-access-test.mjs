@@ -50,3 +50,11 @@ test('the product editor and all imported modules are served with the same Facto
  for(const path of imports){const r=await open.call(path);assert.equal(r.status,200,path);assert.match(r.headers.get('content-type'),/javascript/);assert.ok((await r.text()).length>100,path);}
  const closed=await service(t,true);for(const path of ['/product-studio.js',...imports])assert.equal((await closed.call(path)).status,401,path+' remains protected on private installations');
 });
+
+test('AI Made serves its photo helper before the gallery in one protected script and bundles its styles',async t=>{
+ const c=await service(t,false),html=await(await c.call('/ai-made')).text();assert.match(html,/<script src="\/ai-made.js" defer>/);assert.doesNotMatch(html,/<script src="\/(ai-made-data|factory-mockup-view).js"/);
+ const js=await(await c.call('/ai-made.js')).text();assert.ok(js.indexOf('window.MidnightMadeMedia=')>=0);assert.ok(js.indexOf('window.MidnightMadeMedia=')<js.indexOf("api('product-editor/library')"));assert.match(js,/window.mdMockups=/);
+ const css=await(await c.call('/ai-made.css')).text();assert.match(css,/\.fx-header/);assert.match(css,/\.am-grid/);assert.match(css,/color-scheme:dark/);
+ assert.equal((await c.call('/api/owner/ai-factory/product-editor/library')).status,200);
+ const closed=await service(t,true);assert.equal((await closed.call('/ai-made.js')).status,401);assert.equal((await closed.call('/api/owner/ai-factory/product-editor/library')).status,401);
+});
