@@ -44,6 +44,12 @@ test('whole SQLite snapshot restores artwork BLOBs, customer records and jobs af
  const restored=join(f.dir,'after-restart.sqlite'),newStore=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch,sleep:async()=>{}});await newStore.restore(restored);const db=new DatabaseSync(restored);try{assert.deepEqual(Buffer.from(db.prepare('SELECT data FROM factory_artwork').get().data),f.artwork);assert.equal(db.prepare('SELECT status FROM factory_jobs').get().status,'awaiting_review');assert.equal(db.prepare('SELECT name FROM requests').get().name,'private customer name');assert.equal(db.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}finally{db.close();}
  assert.equal(durableQueueStorage(restored),false,'A GitHub snapshot does not bypass durable queue requirements');
 });
+test('release recovery retries a transient chunk metadata failure but still authenticates exact restored bytes',async t=>{
+ const f=await fixture(t),writer=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl:f.gh.fetch,sleep:async()=>{}});await writer.snapshot(f.db,{initialize:true});
+ const asset=writer.manifest.chunks[0].asset;let interrupted=false,attempts=0;const waits=[];
+ const fetchImpl=async(url,options)=>{if(new URL(url).pathname.endsWith('/releases/assets/'+asset)&&options?.headers?.Accept==='application/vnd.github+json'){attempts++;if(!interrupted){interrupted=true;throw Error('temporary private transport detail');}}return f.gh.fetch(url,options);};
+ const reader=new GithubSnapshotStore({...config,releaseSnapshots:true},{fetchImpl,sleep:async ms=>waits.push(ms)}),dest=join(f.dir,'retry-release.sqlite');await reader.restore(dest);assert.equal(attempts,2);assert.deepEqual(waits,[1000]);const restored=new DatabaseSync(dest);try{assert.deepEqual(Buffer.from(restored.prepare('SELECT data FROM factory_artwork').get().data),f.artwork);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}finally{restored.close();}
+});
 test('unchanged snapshots make no new commit; large unchanged artwork chunks are reused after a job changes',async t=>{
  const f=await fixture(t,{large:true});await f.store.snapshot(f.db,{initialize:true});const original=f.store.manifest.chunks,head=f.gh.head,count=f.gh.calls.filter(c=>c.method!=='GET').length;assert.ok(original.length>=3);
  const same=await f.store.snapshot(f.db);assert.equal(same.unchanged,true);assert.equal(f.gh.head,head);assert.equal(f.gh.calls.filter(c=>c.method!=='GET').length,count);
