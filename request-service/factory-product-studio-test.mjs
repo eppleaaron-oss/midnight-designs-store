@@ -292,3 +292,10 @@ test('larger-than-canvas owner width survives Save, restart, reopening, and supp
  const d=await f.document();d.variants[11].front.layers[0].width=1.5;const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const o=await f.open();assert.equal(o.document.variants[11].front.layers[0].width,1.5);await f.call('finish',{source:f.p.id,revision:saved.revision,document:o.document,target:'printful'});
  for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);
 });
+
+test('a timed out checkpoint retains the tracked supplier update for a bounded retry',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();let failOnce=true;
+ f.options.backups.checkpoint=async()=>{if(failOnce){failOnce=false;throw new DOMException('The operation was aborted due to timeout','TimeoutError');}};
+ await f.tick();assert.equal(f.job().state,'updating_printful');assert.match(f.job().error,/timeout/);assert.equal(f.counts().puts,0);assert.equal(f.job().attempts,1);
+ for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);
+});
