@@ -1,6 +1,10 @@
 import {createHash,randomUUID,randomBytes} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 import sharp from 'sharp';
+// Keep supplier-size canvases within the existing small backend's memory.
+// These limits affect working caches and threads, never exported pixels.
+sharp.cache({memory:8,files:0,items:16});
+sharp.concurrency(1);
 import {variantAreas} from './factory-blueprints.mjs';
 import {renderArea} from './factory-rendering.mjs';
 import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
@@ -96,7 +100,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  const checkpoint=()=>backups.checkpoint();const saves=new Set(),draftReceipts=new Map();let saveError='';
  function saveSoon(draft){saveError='';if(draft)draftReceipts.set(draft.supplier,{...(draftReceipts.get(draft.supplier)||{}),error:''});const p=Promise.resolve().then(checkpoint).then(()=>{if(draft){const receipt=draftReceipts.get(draft.supplier)||{};draftReceipts.set(draft.supplier,{confirmedRevision:Math.max(receipt.confirmedRevision||0,draft.revision),error:receipt.error||''});}}).catch(e=>{saveError=String(e.message).split(token||'\0').join('[redacted]').slice(0,500);if(draft)draftReceipts.set(draft.supplier,{...(draftReceipts.get(draft.supplier)||{}),error:saveError});}).finally(()=>saves.delete(p));saves.add(p);}
  const recovery=supplier=>supplier?{pending:(draftReceipts.get(supplier)?.confirmedRevision||0)<(get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',supplier)?.revision||0),tracked:draftReceipts.has(supplier),confirmedRevision:draftReceipts.get(supplier)?.confirmedRevision||0,error:draftReceipts.get(supplier)?.error||''}:{pending:saves.size>0,error:saveError};
- const remember=(id,data)=>{byteCache.set(id,data);while([...byteCache.values()].reduce((n,b)=>n+b.length,0)>30*1024*1024&&byteCache.size>1)byteCache.delete(byteCache.keys().next().value);return data;};
+ const remember=(id,data)=>{byteCache.set(id,data);while([...byteCache.values()].reduce((n,b)=>n+b.length,0)>12*1024*1024&&byteCache.size>1)byteCache.delete(byteCache.keys().next().value);return data;};
  async function pf(path,options={}){if(!token)hold('Printful is not connected.',503);let r;try{r=await fetchImpl('https://api.printful.com/'+path,{...options,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',...(resolved?{'X-PF-Store-Id':resolved}:{}),...options.headers},signal:AbortSignal.timeout(25000)});}catch{hold('The Printful connection was interrupted. Saved work is retained for retry.',503);}let d;try{d=await r.json();}catch{d={};}if(!r.ok||d.error||Number(d.code)>=400)throw Object.assign(Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.error||d.result||'Request rejected').split(token).join('[redacted]').slice(0,450)),{status:r.status===429?429:r.status>=500?503:409,providerStatus:r.status,retryAfter:Number(r.headers.get('retry-after')||60)});return d.result;}
  async function connection(){if(resolved)return;const stores=await pf('stores');if(!Array.isArray(stores)||stores.length!==1)hold('The Printful store must be identified before editing.');resolved=String(stores[0].id);}
  async function detail(p){await connection();if(!/^\d+$/.test(String(p?.supplierId||'')))hold('This product has not been created in Printful. Use its waiting-piece recipe editor.');const d=await pf('store/products/'+p.supplierId);if(String(d?.sync_product?.id)!==String(p.supplierId)||!d.sync_variants?.length)hold('Printful product verification failed: requested '+p.supplierId+', returned '+(d?.sync_product?.id||'no product ID')+', '+(d?.sync_variants?.length||0)+' variants. No supplier product was changed.');if(d.sync_variants.some(v=>v.product?.product_id!==p.choice.product))hold('The supplier product does not match its saved garment. No product was substituted.');return d;}
@@ -158,7 +162,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    update(j,d,'rendering');saveSoon();return;
   }
   if(j.state==='rendering'){
-   d.outputs??=[];let renderedCount=0;
+   d.outputs??=[];
    for(const [variant,panels]of Object.entries(d.variants))for(const [placement,panel]of Object.entries(panels)){
     if(d.outputs.some(f=>f.variant===variant&&f.placement===placement))continue;const v=d.supplier.sync_variants.find(v=>String(v.id)===variant),area=variantAreas(d.blueprint,v.variant_id).find(a=>a.placement===placement);
     // Share pixels only when canvas, composition, source bytes and current
@@ -167,7 +171,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
     const renderKey=hash(JSON.stringify({width:area.width,height:area.height,dpi:area.dpi,panel,sources:[...inputs].map(([id,a])=>({id,sha:hash(Buffer.from(a.data)),permissions:a.permissions}))}));
     const same=d.outputs.find(o=>o.renderKey===renderKey);
     if(same){const a=get("SELECT * FROM factory_studio_assets WHERE id=? AND job=? AND kind='print'",same.asset,'studio-'+j.id);if(a?.remote&&a.sha===same.sha&&a.width===area.width&&a.height===area.height){d.outputs.push({...same,variant,placement});continue;}}
-    const rendered=await renderStudioPanel(area,panel,async id=>inputs.get(id)),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,renderKey,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(++renderedCount>=assetLimit){if(!saves.size)saveSoon();return;}
+    const rendered=await renderStudioPanel(area,panel,async id=>inputs.get(id)),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,renderKey,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(!saves.size)saveSoon();return;
    }
    update(j,d,'updating_printful');saveSoon();return;
   }
