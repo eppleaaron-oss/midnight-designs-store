@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T22:53:04.175Z",
+  "updatedAt": "2026-10-26T22:53:11.583Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -46969,11 +46969,26 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/483361602-supplier-3c6af733eb217a633c37.jpg",
           "sha256": "1f12c804ee591662c6cf5520170c0046e82b7de226b348821f7890abd39d71b6"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 9063,
+          "storeVariantIds": [
+            "5584601867"
+          ],
+          "alt": "Rose Eclipse All-Over Print Backpack · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483361602-supplier-189b5d14f9ed254d75bc.jpg",
+          "sha256": "ac546105e1ac3bdaa0c9d12387ca613579ad59daf2b37733040bb387e0445098"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "3435514468d38f5906d89e9ca1996b4b51699c15c1fcf48ec6b8fc54569d43d4",
-      "supplierPreviews": "f4791aff4d7f8c710f3e6f25848663a79321a5d38c7d74ec39f204574133c8dc"
+      "supplierPreviews": "50978165059b3116dbd2ac5a2ecbaa6f9d2ad3d726052cdd354dd5f5a48a30be"
     },
     "483366087": {
       "name": "Rose Eclipse Men's High Top Canvas Shoes",
@@ -49269,11 +49284,28 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/483375173-supplier-882411351703b2046f6d.jpg",
           "sha256": "55b7d5cdc613f2ee81d848f642146415be6fb151637c49b6366fc3c9850382dd"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 16361,
+          "storeVariantIds": [
+            "5584655674",
+            "5584655687",
+            "5584655688"
+          ],
+          "alt": "Rose Eclipse All-Over Print Reversible Bucket Hat · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483375173-supplier-6f5a6c93feb6874029ca.jpg",
+          "sha256": "05cb5c543703edab67c315f38e3ba7c5dc22508515502253f36c48856a58f673"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "1381d29ee20537fd4de6fdd007f89c1ae41f5a46fbc671c7a8d11d4be8eb479f",
-      "supplierPreviews": "990dec10ab709f92706dce4d3844d00c33cfb2f37e83916d963980e751c635cf"
+      "supplierPreviews": "59e0bd9c840c6d8351f13de1dd65661368a31e7f424d6f9c81595408348616a5"
     },
     "483378457": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt",
