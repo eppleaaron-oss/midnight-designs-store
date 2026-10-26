@@ -232,6 +232,22 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   const p=source(b.source);if(!p?.supplierId)fail(404,'Select an existing supplier product.');
   if(path===ROOT+'/original'){const set=family(p).set,part=set?.parts?.[b.part];if(!part)fail(404,'This image is not part of the product’s original hoodie design set.');const id=await workflow.sourceFile(part,set),a=get('SELECT * FROM factory_artwork WHERE id=?',id),m=await sharp(Buffer.from(a.data)).autoOrient().metadata(),size=m.autoOrient||m;send(res,200,{asset:'art:'+id,part:b.part,name:part.name||b.part,width:size.width,height:size.height,contentBounds:await artworkBounds(Buffer.from(a.data)),url:'/api/owner/ai-factory/artwork/'+id+'/file'});return true;}
   if(path===ROOT+'/upload'){if(typeof b.data!=='string'||b.data.length>7*1024*1024||!/^[-\w .()]{1,160}$/.test(b.name||''))fail(400,'Upload a named PNG, JPEG or WebP under 5 MB.');const data=Buffer.from(b.data,'base64');if(data.length>5*1024*1024)fail(413,'Upload under 5 MB.');const img=sharp(data,{limitInputPixels:40_000_000,failOn:'warning'}),m=await img.metadata();if(!['png','jpeg','webp'].includes(m.format)||m.pages>1)fail(400,'Use a single PNG, JPEG or WebP.');const normalized=await img.autoOrient().png().toBuffer(),a=await putAsset('studio-upload-'+p.supplierId,'upload',b.name,normalized);await persistAsset(a);saveSoon();send(res,201,{...assetMeta(a),contentBounds:await artworkBounds(normalized),recoveryPending:true});return true;}
+  if(path===ROOT+'/publish'){
+   if(b.confirmPublication!==true)fail(400,'Explicitly approve publishing this edited product to the store.');
+   let j=get('SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=?',b.id,String(p.supplierId));
+   if(!j)fail(404,'Select this product’s saved update.');
+   const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));
+   if(j.revision!==b.revision||draft?.revision!==b.revision)fail(409,'A newer draft exists. Finish that draft before publishing.');
+   if(j.target==='store'){send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;}
+   const d=JSON.parse(j.document);
+   if(j.state!=='completed'||j.target!=='mockups'||!d.printfulUpdated||!d.images?.length||d.tasks?.some(t=>t.state!=='saved'))fail(409,'Wait for this saved Printful update and its mockups to finish before publishing.');
+   const live=await detail(p);if(fingerprint(live)!==d.finalFingerprint)fail(409,'The supplier product changed after these mockups were made. Reopen and finish the current design before publishing.');
+   // Recheck after the supplier request: another tab may have saved a revision.
+   if(get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',j.supplier)?.revision!==b.revision)fail(409,'A newer draft exists. Finish that draft before publishing.');
+   if(get("SELECT id FROM factory_studio_jobs WHERE supplier=? AND id<>? AND state NOT IN ('completed','cancelled')",j.supplier,j.id))fail(409,'Another update is still running for this product.');
+   run("UPDATE factory_studio_jobs SET target='store',state='publishing',error='',attempts=0,next=0,updated=? WHERE id=? AND state='completed'",clock(),j.id);
+   saveSoon();j=get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id);send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;
+  }
   if(path===ROOT+'/save'||path===ROOT+'/finish'){
    const unfinished=get("SELECT * FROM factory_studio_jobs WHERE supplier=? AND state NOT IN ('completed','cancelled')",String(p.supplierId));
    if(path.endsWith('/save')){const saved=saveDocument(p,b);saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,savedInApp:true,recoveryPending:true,printfulUpdated:false});return true;}
