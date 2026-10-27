@@ -62,8 +62,8 @@ export function removeArtworkBackground(pixels,width,height,tolerance=35){
   while(right+1<width&&seen[row+right+1]!==2&&matches(row+right+1))right++;
   let up=false,down=false;for(let x=left;x<=right;x++){const at=row+x;seen[at]=2;if(pixels[at*4+3])removed++;pixels[at*4+3]=0;const above=y>0&&seen[at-width]!==2&&matches(at-width),below=y+1<height&&seen[at+width]!==2&&matches(at+width);if(above&&!up)seed(at-width);if(below&&!down)seed(at+width);up=above;down=below;}
  }
- let subject=false;for(let i=3;i<pixels.length;i+=4)if(pixels[i]>32){subject=true;break;}
+ let subject=false,minX=width,minY=height,maxX=-1,maxY=-1;for(let i=0;i<width*height;i++){const at=i*4;if(pixels[at+3]>32)subject=true;if(pixels[at+3]&&(pixels[at]||pixels[at+1]||pixels[at+2])){const x=i%width,y=Math.floor(i/width);minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}}
  if(!subject)throw Error('No distinct artwork remains at this strength. Lower it; your original is unchanged.');
  if(!removed)throw Error('No connected solid background was found. This image may already be transparent.');
- return {pixels,color,removed};
+ return {pixels,color,removed,contentBounds:maxX>=minX?{x:minX,y:minY,width:maxX-minX+1,height:maxY-minY+1}:null};
 }
