@@ -67479,14 +67479,79 @@
     "29a37bd449722330b152a16fd06ed68621fe7f64b96df5d22bf8d7ba1b735ac8": {
       "productId": "484038554",
       "variant": 12913,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-27T22:44:03.159Z",
       "attempts": 1,
-      "key": "gt-992603080"
+      "key": "gt-992603080",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484038554-12913-all-29a37bd449-0.jpg",
+          "sha256": "89a5c1c8cf3a698f2f3d7772678c9ee40af9010d1f6dd9c070c4945e48b3a7fe",
+          "view": "shoe_quarters_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5588789655",
+            "5588789676",
+            "5588789679",
+            "5588789680",
+            "5588789692",
+            "5588789697",
+            "5588789699",
+            "5588789704",
+            "5588789705",
+            "5588789715",
+            "5588789721",
+            "5588789724",
+            "5588789725",
+            "5588789726",
+            "5588789736",
+            "5588789754",
+            "5588789755"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 Men's High Top Canvas Shoes · shoe_quarters_left",
+          "label": "shoe_quarters_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484038554-12913-all-29a37bd449-1.jpg",
+          "sha256": "90bee4ed659d28738fcebc8fb6d855d110fe080cf89dbfea15a3cd97cfc56c19",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5588789655",
+            "5588789676",
+            "5588789679",
+            "5588789680",
+            "5588789692",
+            "5588789697",
+            "5588789699",
+            "5588789704",
+            "5588789705",
+            "5588789715",
+            "5588789721",
+            "5588789724",
+            "5588789725",
+            "5588789726",
+            "5588789736",
+            "5588789754",
+            "5588789755"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 Men's High Top Canvas Shoes · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T22:45:39.736Z",
+  "updatedAt": "2026-10-27T22:45:53.424Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
