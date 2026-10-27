@@ -440,3 +440,7 @@ test('an older render receives a turn instead of starving behind newer mockup an
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();const j=f.job(),other=structuredClone(j.document);other.outputs=[];other.tasks=[];other.images=[];
  f.db.prepare('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)').run('waiting-native','456','piece:two',1,'printful','rendering',JSON.stringify(other),j.updated-600000);await f.tick();const row=f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='waiting-native'").get();assert.equal(JSON.parse(row.document).outputs.length,1);
 });
+
+test('studio retries never run before a supplier or storage reset beyond fifteen minutes',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();const before=f.job().updated;f.options.backups.checkpoint=async()=>{throw Object.assign(Error('rate pause'),{status:429,retryAfter:3600});};await f.tick();assert.equal(f.job().state,'updating_printful');assert.ok(f.job().next>=before+3600000);assert.equal(f.counts().puts,0);
+});
