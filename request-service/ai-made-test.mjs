@@ -15,3 +15,8 @@ test('saved factory mockups remain available when store photos fail; loading can
 test('photo loading accepts the published catalog and never infers publication from photos alone',async()=>{
  const m=media(async url=>{assert.equal(url,'/api/owner/ai-factory/product-editor/media');return {ok:true,json:async()=>({publishedIds:['123'],photos:{products:{456:{photos:[]}}}})};}),loaded=await m.load();assert.equal(loaded.publishedIds.has('123'),true);assert.equal(loaded.publishedIds.has('456'),false);
 });
+
+test('an edited gallery never appends previews or mockups from an earlier supplier design',()=>{
+ const m=media(),row={supplierId:'123',made:{thumb:'https://cdn.test/old.jpg',mockupStatus:{images:[{url:'https://cdn.test/old-back.jpg'}]}}},index={products:{123:{studioRevision:'latest',originalImage:'https://cdn.test/old-original.jpg',photos:[{image:'images/factory/123/new-front.jpg',view:'Front'},{image:'images/factory/123/new-back.jpg',view:'Back'}]}}};
+ const photos=m.images(row,index);assert.equal(photos.length,2);assert.ok(photos.every(p=>p.url.includes('/images/factory/123/new-')));
+});
