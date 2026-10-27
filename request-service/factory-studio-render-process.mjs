@@ -8,11 +8,20 @@ import {createHash} from 'node:crypto';
 // lived process releases those pages before the next panel or network step.
 // Only this panel's original bytes and permissions enter it, never API keys.
 export async function renderStudioPanelIsolated(area,panel,read){
+ const artwork=[];for(const id of new Set((panel.layers||[]).map(l=>l.asset)))artwork.push({id,...await read(id)});
+ return isolatedRender(area,{panel,mode:'studio'},artwork);
+}
+
+export async function renderAreaIsolated(area,sources,recipe){
+ return isolatedRender(area,{recipe,mode:'area'},sources.map((s,i)=>({...s,id:String(i)})));
+}
+
+async function isolatedRender(area,request,sources){
  const folder=await mkdtemp(join(tmpdir(),'midnight-studio-render-'));
  try{
   const artwork=[];
-  for(const id of new Set((panel.layers||[]).map(l=>l.asset))){const source=await read(id),file='source-'+artwork.length;await writeFile(join(folder,file),Buffer.from(source.data),{mode:0o600});artwork.push({id,file,permissions:source.permissions});}
-  await writeFile(join(folder,'input.json'),JSON.stringify({area,panel,artwork}),{mode:0o600});
+  for(const source of sources){const {data,...metadata}=source,file='source-'+artwork.length;await writeFile(join(folder,file),Buffer.from(data),{mode:0o600});artwork.push({...metadata,file});}
+  await writeFile(join(folder,'input.json'),JSON.stringify({area,...request,artwork}),{mode:0o600});
   await new Promise((resolve,reject)=>{
    const child=spawn(process.execPath,['--max-old-space-size=128',new URL('./factory-studio-render-worker.mjs',import.meta.url).pathname,folder],{stdio:'ignore',env:{PATH:process.env.PATH||'',MALLOC_ARENA_MAX:'2',VIPS_CONCURRENCY:'1'}});
    let timedOut=false;const timer=setTimeout(()=>{timedOut=true;child.kill('SIGKILL');},20*60*1000);timer.unref();
