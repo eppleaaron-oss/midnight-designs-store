@@ -67923,14 +67923,59 @@
     "5d9a629db9bb8797bddf12fd8191d9210454d42c79da2d3d48d6cf282191f725": {
       "productId": "484021178",
       "variant": 46347,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-27T22:49:20.464Z",
       "attempts": 1,
-      "key": "gt-992605535"
+      "key": "gt-992605535",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484021178-46347-all-5d9a629db9-0.jpg",
+          "sha256": "8f8d5dcc864ab89bd86027d69b3f325d87a33df6f83d6ffbb17e37379c72e6a5",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5588667203",
+            "5588667205",
+            "5588667216",
+            "5588667230",
+            "5588667231",
+            "5588667232",
+            "5588667233"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484021178-46347-all-5d9a629db9-1.jpg",
+          "sha256": "6a9aff56dab53ea422d93c07afa086f02bb9c8b349a15c3e87b06953dcbdbaaa",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5588667203",
+            "5588667205",
+            "5588667216",
+            "5588667230",
+            "5588667231",
+            "5588667232",
+            "5588667233"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T22:50:56.914Z",
+  "updatedAt": "2026-10-27T22:51:10.327Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
