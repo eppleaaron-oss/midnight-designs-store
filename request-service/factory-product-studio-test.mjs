@@ -528,7 +528,7 @@ test('large native pants panels render oversized padded artwork in exact adjacen
  const area={width:7000,height:6000,dpi:150},geometry={canvasWidth:7000,canvasHeight:6000,dpi:150,width:14000,height:14000,x:-3500,y:-4000,contentBounds:{x:300,y:300,width:400,height:400,sourceWidth:1000,sourceHeight:1000},safeRect:{x:0,y:0,width:7000,height:6000}};
  const result=await renderArea(area,source,{background:'#000000',geometry},{reuse:true},{preserveLayerOrder:true,allowLowResolution:true});const meta=await sharp(result.data).metadata();assert.equal(meta.width,7000);assert.equal(meta.height,6000);assert.equal(meta.density,150);
  // Compare the resized original across every band join, not just flat colors.
- for(const y of [0,2284,2285,2286,4570,5998]){const region={left:0,top:y,width:7000,height:1};const actual=await sharp(result.data).extract(region).ensureAlpha().raw().toBuffer(),expected=await sharp(source).resize(14000,14000,{fit:'fill'}).extract({left:3500,top:y+4000,width:7000,height:1}).ensureAlpha().raw().toBuffer();assert.deepEqual(actual,expected,'exact pixels at band row '+y);}
+ for(const y of [0,141,142,143,284,285,2284,2285,2286,4570,5998]){const region={left:0,top:y,width:7000,height:1};const actual=await sharp(result.data).extract(region).ensureAlpha().raw().toBuffer(),expected=await sharp(source).resize(14000,14000,{fit:'fill'}).extract({left:3500,top:y+4000,width:7000,height:1}).ensureAlpha().raw().toBuffer();assert.deepEqual(actual,expected,'exact pixels at band row '+y);}
 });
 
 
@@ -556,4 +556,23 @@ test('a failed supplier-intent checkpoint never authorizes the first write or ma
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
  f.options.backups.checkpoint=async()=>{throw Object.assign(Error('snapshot timeout'),{status:503});};await f.tick();assert.equal(f.counts().puts,0);assert.equal(f.job().document.supplierIntentSaved,false);
  f.options.backups.checkpoint=async()=>{};for(let n=0;n<10&&!f.counts().puts;n++)await f.tick();assert.equal(f.counts().puts,1);assert.equal(f.job().document.supplierIntentSaved,true);
+});
+
+
+test('native strip PNG keeps transparency and exact layer order at strip joins',async()=>{
+ const red=await sharp({create:{width:8,height:8,channels:4,background:{r:255,g:0,b:0,alpha:.5}}}).png().toBuffer(),blue=await sharp({create:{width:8,height:8,channels:4,background:{r:0,g:0,b:255,alpha:.5}}}).png().toBuffer();
+ const geometry={canvasWidth:7000,canvasHeight:6000,dpi:150,width:1000,height:1000,x:100,y:100,safeRect:{x:0,y:0,width:7000,height:6000}},recipe={background:null,geometry};
+ const result=await renderArea({width:7000,height:6000,dpi:150},[{data:red,recipe,permissions:{reuse:true}},{data:blue,recipe,permissions:{reuse:true}}],{background:null},{},{preserveLayerOrder:true,allowLowResolution:true});
+ const expected=await sharp({create:{width:8,height:8,channels:4,background:{r:0,g:0,b:0,alpha:0}}}).composite([{input:red},{input:blue}]).ensureAlpha().raw().toBuffer();
+ for(const y of [141,142,143,284])assert.deepEqual(await sharp(result.data).extract({left:600,top:y,width:1,height:1}).ensureAlpha().raw().toBuffer(),expected.subarray(0,4));
+ assert.deepEqual([...await sharp(result.data).extract({left:600,top:2000,width:1,height:1}).ensureAlpha().raw().toBuffer()],[0,0,0,0]);
+});
+
+test('isolated 90-megapixel native export stays below the small-server memory budget',async()=>{
+ const {spawnSync}=await import('node:child_process');const script=`
+ import sharp from 'sharp';import {renderArea} from './factory-rendering.mjs';
+ const source=await sharp({create:{width:1000,height:1000,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:400,height:400,channels:4,background:'#ff0000'}}).png().toBuffer(),left:300,top:300}]).png().toBuffer();
+ const geometry={canvasWidth:10000,canvasHeight:9000,dpi:150,width:14000,height:14000,x:-2000,y:-3000,contentBounds:{x:300,y:300,width:400,height:400,sourceWidth:1000,sourceHeight:1000},safeRect:{x:0,y:0,width:10000,height:9000}};
+ const r=await renderArea({width:10000,height:9000,dpi:150},source,{background:'#000000',geometry},{reuse:true},{preserveLayerOrder:true,allowLowResolution:true}),m=await sharp(r.data).metadata();console.log(JSON.stringify({width:m.width,height:m.height,density:m.density,peakKiB:process.resourceUsage().maxRSS}));`;
+ const child=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:new URL('.',import.meta.url),encoding:'utf8',timeout:120000});assert.equal(child.status,0,child.stderr);const result=JSON.parse(child.stdout.trim());assert.equal(result.width,10000);assert.equal(result.height,9000);assert.equal(result.density,150);assert.ok(result.peakKiB<350*1024,'native renderer must leave memory for the SQLite queue and network workers: '+result.peakKiB+' KiB');
 });
