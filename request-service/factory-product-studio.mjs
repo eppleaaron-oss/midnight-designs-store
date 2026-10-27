@@ -9,6 +9,7 @@ sharp.concurrency(1);
 import {variantAreas} from './factory-blueprints.mjs';
 import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import {renderArea} from './factory-rendering.mjs';
+import {renderStudioPanelIsolated} from './factory-studio-render-process.mjs';
 import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
 import {mockupImageURL} from './factory-mockups.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
@@ -190,7 +191,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
     const renderKey=hash(JSON.stringify({width:area.width,height:area.height,dpi:area.dpi,panel,sources:[...inputs].map(([id,a])=>({id,sha:hash(Buffer.from(a.data)),permissions:a.permissions}))}));
     const same=d.outputs.find(o=>o.renderKey===renderKey);
     if(same){const a=get("SELECT * FROM factory_studio_assets WHERE id=? AND job=? AND kind='print'",same.asset,'studio-'+j.id);if(a?.remote&&a.sha===same.sha&&a.width===area.width&&a.height===area.height){d.outputs.push({...same,variant,placement});continue;}}
-    const rendered=await renderStudioPanel(area,panel,async id=>inputs.get(id)),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,renderKey,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(!saves.size)saveSoon();return;
+    const rendered=await renderStudioPanelIsolated(area,panel,async id=>inputs.get(id)),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,renderKey,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(!saves.size)saveSoon();return;
    }
    update(j,d,'updating_printful');saveSoon();return;
   }
