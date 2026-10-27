@@ -490,3 +490,9 @@ test('explicit cropping of very large artwork uses its actual bounds rather than
  const panel={background:'#000000',layers:[{asset:'art:one',x:0,y:.5,width:4,allowModify:true}]};const r=await renderStudioPanel({width:100,height:100,dpi:100},panel,async()=>({data:png,permissions:{reuse:true}}));assert.equal(r.width,100);assert.equal(r.height,100);const px=await sharp(r.data).raw().toBuffer();assert.equal(px[0],255);
  await assert.rejects(renderStudioPanel({width:100,height:100,dpi:100},{...panel,layers:[{...panel.layers[0],allowModify:false}]},async()=>({data:png,permissions:{reuse:true}})),/safe region/);
 });
+test('placement validation does not reuse a cutout measurement for another layer with its original background',async()=>{
+ const png=await sharp({create:{width:100,height:100,channels:4,background:'#ffffff'}}).composite([{input:await sharp({create:{width:10,height:10,channels:4,background:'#ff0000'}}).png().toBuffer(),left:45,top:45}]).png().toBuffer();
+ const document={variants:{11:{front:{background:'#000000',layers:[{asset:'same',x:.5,y:.5,width:.5,backgroundRemoval:{tolerance:35}},{asset:'same',x:.95,y:.5,width:.5}]}}}};
+ const issues=await studioPlacementIssues([{id:'11',areas:[{placement:'front',width:100,height:100,dpi:100}]}],document,async()=>({data:png,permissions:{reuse:true}}));assert.equal(issues.length,1);assert.equal(issues[0].layer,1);
+ const {removeArtworkBackground}=await import('./public/product-studio-state.js'),raw=await sharp(png).ensureAlpha().raw().toBuffer();const result=removeArtworkBackground(raw,100,100,35);assert.deepEqual(result.contentBounds,{x:45,y:45,width:10,height:10});
+});
