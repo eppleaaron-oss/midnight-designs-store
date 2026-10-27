@@ -50,3 +50,16 @@ test('secondary storage throttling is retryable without disguising permission er
  const rate=new BasicGithubAssets(config,{fetchImpl:async()=>new Response(JSON.stringify({message:'You have exceeded a secondary rate limit.'}),{status:403})});await assert.rejects(rate.api(''),e=>e.status===429&&e.retryAfter===60);
  const denied=new BasicGithubAssets(config,{fetchImpl:async()=>new Response(JSON.stringify({message:'Resource not accessible by personal access token'}),{status:403})});await assert.rejects(denied.api(''),e=>e.status===409&&/HTTP 403/.test(e.message));assert.equal(denied.retryAt,0);
 });
+
+
+test('working attachment fetch and body timeouts retry the same authenticated asset without another upload',async()=>{
+ const g=githubWorkingFixture(),job=randomUUID(),file=randomUUID(),data=Buffer.from('original immutable print bytes'),sha=createHash('sha256').update(data).digest('hex'),initial=new BasicGithubAssets(config,{fetchImpl:g.fetch,sleep:async()=>{}}),saved=await initial.put(job,'print',file,data,sha);
+ let reads=0;const store=new BasicGithubAssets(config,{sleep:async()=>{},fetchImpl:async(url,o={})=>{if(o.headers?.Accept==='application/octet-stream'){reads++;if(reads===1)throw new DOMException('connection timeout','TimeoutError');if(reads===2)return new Response(new ReadableStream({start(c){c.error(new DOMException('body timeout','AbortError'));}}));}return g.fetch(url,o);}});
+ assert.deepEqual(await store.read(saved.asset,job,'print',file,sha),data);assert.equal(reads,3);assert.equal(g.assets.size,1);
+});
+
+test('exhausted attachment transport retries remain retryable without accepting unchecked bytes',async()=>{
+ const g=githubWorkingFixture(),job=randomUUID(),file=randomUUID(),data=Buffer.from('safe'),sha=createHash('sha256').update(data).digest('hex'),initial=new BasicGithubAssets(config,{fetchImpl:g.fetch,sleep:async()=>{}}),saved=await initial.put(job,'print',file,data,sha);let reads=0;
+ const store=new BasicGithubAssets(config,{sleep:async()=>{},fetchImpl:async(url,o={})=>{if(o.headers?.Accept==='application/octet-stream'){reads++;throw new DOMException('slow','TimeoutError');}return g.fetch(url,o);}});
+ await assert.rejects(store.read(saved.asset,job,'print',file,sha),e=>e.status===503&&/original ID/.test(e.message));assert.equal(reads,3);assert.equal(g.assets.size,1);
+});
