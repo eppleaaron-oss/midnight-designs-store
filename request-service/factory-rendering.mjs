@@ -25,13 +25,16 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
  const {width,height,dpi}=area;
  if(!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||width<1||height<1||width*height>MAX_NATIVE_PIXELS||!Number.isFinite(dpi)||dpi<1)error('This native print area is missing dimensions/DPI or exceeds the supported native rendering limit.');
  const bg=background(Object.hasOwn(recipe,'background')?recipe.background:'Black'),overlays=[];
+ // Manual edits on the small backend favor lossless encode speed. This
+ // changes PNG compression only, not resolution, colors, alpha or placement.
+ const pngOptions=renderOptions.preserveLayerOrder?{compressionLevel:1}:{};
  let effectiveDpi=null;
  for(const input of Array.isArray(source)?source:source?[{data:source,recipe,permissions}]:[]){
   const {data:source,recipe,permissions}=input;
   if(permissions.reuse!==true)error('Allow Reuse for this artwork before rendering.');
   const sourceImage=sharp(source,{limitInputPixels:MAX_PIXELS,failOn:'warning'});
   const original=await sourceImage.metadata();if(!['png','jpeg','webp'].includes(original.format)||original.pages>1)error('Use a single PNG, JPEG or WebP artwork image.');
-  const oriented=await sourceImage.autoOrient().png().toBuffer();const meta=await sharp(oriented).metadata();
+  const oriented=await sourceImage.autoOrient().png(pngOptions).toBuffer();const meta=await sharp(oriented).metadata();
   const crop=recipe.crop||{},cx=number(crop.x,0,0,99,'crop X'),cy=number(crop.y,0,0,99,'crop Y'),cw=number(crop.width,100,1,100,'crop width'),ch=number(crop.height,100,1,100,'crop height');
   const left=Math.floor(meta.width*cx/100),top=Math.floor(meta.height*cy/100),sw=Math.min(meta.width-left,Math.max(1,Math.round(meta.width*cw/100))),sh=Math.min(meta.height-top,Math.max(1,Math.round(meta.height*ch/100)));
   const fit=recipe.fit??'contain';if(!['contain','cover'].includes(fit))error('Choose contain or cover; artwork proportions are preserved.');
@@ -64,13 +67,13 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
    if((r-a)*(bottom-b)>MAX_PIXELS)error('The visible artwork window exceeds the rendering limit.');
    const fits=v.x>=0&&v.y>=0&&v.x+v.width<=width&&v.y+v.height<=height;
    if(!fits&&(permissions.crop!==true||recipe.protect===true))error('This position clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
-   const input=await sharp(oriented).resize(w,h,{fit:'fill'}).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png().toBuffer();
+   const input=await sharp(oriented).resize(w,h,{fit:'fill'}).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png(pngOptions).toBuffer();
    overlays.push({input,left:a,top:b});continue;
   }
   let image=sharp(oriented).extract({left,top,width:sw,height:sh}).resize(w,h,{fit:'fill'});
   if(recipe.recolor!==undefined&&recipe.recolor!==null)image=image.tint(background(recipe.recolor));
   if(mirror)image=image.flop();if(angle)image=image.rotate(angle,{background:{r:0,g:0,b:0,alpha:0}});
-  const rendered=await image.png().toBuffer({resolveWithObject:true}),rw=rendered.info.width,rh=rendered.info.height;
+  const rendered=await image.png(pngOptions).toBuffer({resolveWithObject:true}),rw=rendered.info.width,rh=rendered.info.height;
   const centerX=geometry?geometry.x+w/2:width*(.5+x),centerY=geometry?geometry.y+h/2:height*(.5+y),dx=Math.max(1,Math.round(w*(1+spacing))),dy=Math.max(1,Math.round(h*(1+spacing)));
   const nx=tile?Math.ceil((width+rw+Math.abs(centerX-width/2)*2)/dx):0,ny=tile?Math.ceil((height+rh+Math.abs(centerY-height/2)*2)/dy):0;
   if((2*nx+1)*(2*ny+1)>400)error('Pattern has too many tiles. Increase artwork size or spacing.');
@@ -81,12 +84,13 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
    const visible=geometry?.contentBounds&&!angle&&!mirror&&!tile?visibleGeometry(geometry):null;
    const paddingOnly=visible&&visible.x>=0&&visible.y>=0&&visible.x+visible.width<=width&&visible.y+visible.height<=height;
    if(clipped&&!paddingOnly&&(permissions.crop!==true||recipe.protect===true))error('This position, pattern or rotation clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
-   const input=clipped?await sharp(rendered.data).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png().toBuffer():rendered.data;
+   const input=clipped?await sharp(rendered.data).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png(pngOptions).toBuffer():rendered.data;
    overlays.push({input,left:a,top:b,...(geometry?.contentBounds&&!renderOptions.preserveLayerOrder?{blend:'lighten'}:{})});
   }
   if(!overlays.length)error('Artwork is entirely outside the print area.');
  }
- const data=await sharp({create:{width,height,channels:4,background:bg}}).composite(overlays).withMetadata({density:dpi}).png().toBuffer();
+ const output=sharp({create:{width,height,channels:4,background:bg}}).composite(overlays).withMetadata({density:dpi});let data=await output.clone().png(pngOptions).toBuffer();
+ if(data.length>MAX_FILE&&renderOptions.preserveLayerOrder)data=await output.png({compressionLevel:6}).toBuffer();
  if(data.length>MAX_FILE)error('Rendered PNG exceeds the 25 MB print-file limit.');
  return {data,width,height,effectiveDpi,sha256:hash(data)};
 }
