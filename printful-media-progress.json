@@ -70356,13 +70356,14 @@
     "5bbc06d9c958835675a15a076b8e56bab99e9c27096d255f7fa668875bd6f887": {
       "productId": "483729128",
       "variant": 10879,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-27T23:09:25.918Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-992613760"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T23:09:25.918Z",
+  "updatedAt": "2026-10-27T23:10:00.131Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
