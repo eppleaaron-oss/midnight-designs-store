@@ -444,3 +444,38 @@ test('an older render receives a turn instead of starving behind newer mockup an
 test('studio retries never run before a supplier or storage reset beyond fifteen minutes',async t=>{
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();const before=f.job().updated;f.options.backups.checkpoint=async()=>{throw Object.assign(Error('rate pause'),{status:429,retryAfter:3600});};await f.tick();assert.equal(f.job().state,'updating_printful');assert.ok(f.job().next>=before+3600000);assert.equal(f.counts().puts,0);
 });
+
+test('background removal clears only connected solid color and preserves enclosed details and native dimensions',async()=>{
+ const {removeArtworkBackground}=await import('./public/product-studio-state.js');
+ const w=9,h=9,pixels=new Uint8ClampedArray(w*h*4);for(let i=0;i<w*h;i++)pixels.set([255,255,255,255],i*4);
+ for(let y=2;y<7;y++)for(let x=2;x<7;x++)pixels.set([200,0,20,255],(y*w+x)*4);
+ pixels.set([255,255,255,255],(4*w+4)*4);const result=removeArtworkBackground(pixels,w,h,35);
+ assert.equal(result.removed,56);assert.equal(pixels[3],0);assert.equal(pixels[(2*w+2)*4+3],255);assert.equal(pixels[(4*w+4)*4+3],255);assert.deepEqual(result.color,[255,255,255]);
+ const black=new Uint8ClampedArray(w*h*4);for(let i=0;i<w*h;i++)black.set([0,0,0,255],i*4);for(let y=2;y<7;y++)for(let x=2;x<7;x++)black.set([200,0,20,255],(y*w+x)*4);black.set([0,0,0,255],(4*w+4)*4);removeArtworkBackground(black,w,h,0);assert.equal(black[3],0);assert.equal(black[(4*w+4)*4+3],255);
+});
+test('background removal rejects complex scenery, empty subjects and invalid recipes',async()=>{
+ const {removeArtworkBackground}=await import('./public/product-studio-state.js');const pixels=new Uint8Array(10*10*4);for(let i=0;i<100;i++)pixels.set(i%2?[255,255,255,255]:[0,0,0,255],i*4);
+ assert.throws(()=>removeArtworkBackground(pixels,10,10,35),/several colors/);
+ assert.throws(()=>removeArtworkBackground(new Uint8Array(100*4).fill(255),10,10,35),/No distinct artwork/);
+ assert.throws(()=>removeArtworkBackground(pixels,10,10,-1),/strength/);
+ assert.throws(()=>studioLayers({background:null,layers:[{asset:'art:art1',x:.5,y:.5,width:1,backgroundRemoval:{tolerance:999}}]}),/background removal strength/);
+});
+test('background removal saves, reopens after restart and renders transparent native files into the same supplier product',async t=>{
+ const f=await fixture(t),png=await sharp({create:{width:100,height:100,channels:4,background:'#ffffff'}}).composite([{input:await sharp({create:{width:40,height:40,channels:4,background:'#ff0000'}}).png().toBuffer(),left:30,top:30}]).png().toBuffer();
+ f.db.prepare('UPDATE factory_artwork SET data=? WHERE id=?').run(png,'art1');const d=await f.document();d.variants[11].front={background:null,layers:[{asset:'art:art1',x:.5,y:.5,width:1,rotation:0,backgroundRemoval:{tolerance:35}}]};
+ const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const opened=await f.open();assert.deepEqual(opened.document.variants[11].front.layers[0].backgroundRemoval,{tolerance:35});assert.equal(opened.revision,saved.revision);
+ await f.call('finish',{source:f.p.id,revision:saved.revision,document:opened.document,target:'printful'});for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);
+ const output=f.job().document.outputs[0],a=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),data=await f.options.assets.read(JSON.parse(a.remote).asset),raw=await sharp(data).ensureAlpha().raw().toBuffer({resolveWithObject:true});assert.equal(raw.info.width,100);assert.equal(raw.info.height,100);assert.equal(raw.data[3],0);assert.equal(raw.data[(50*100+50)*4],255);assert.equal(raw.data[(50*100+50)*4+3],255);
+ assert.deepEqual(Buffer.from(f.db.prepare('SELECT data FROM factory_artwork WHERE id=?').get('art1').data),png);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);assert.equal(f.supplier.sync_variants[0].id,11);assert.equal(f.supplier.sync_variants[0].files.find(x=>x.type==='back').id,41);assert.equal(f.supplier.sync_variants[0].retail_price,'49.99');
+ const restored=structuredClone(opened.document.variants[11].front);delete restored.layers[0].backgroundRemoval;const rendered=await renderStudioPanel({width:100,height:100,dpi:100},restored,async()=>({data:png,permissions:{reuse:true}}));const original=await sharp(rendered.data).ensureAlpha().raw().toBuffer();assert.equal(original[0],255);assert.equal(original[3],255);
+});
+test('background-removal settings belong to individual layers and do not bypass reuse permission',async()=>{
+ const white=await sharp({create:{width:20,height:20,channels:4,background:'#ffffff'}}).composite([{input:await sharp({create:{width:8,height:8,channels:4,background:'#ff0000'}}).png().toBuffer(),left:6,top:6}]).png().toBuffer(),blue=await sharp({create:{width:20,height:20,channels:4,background:'#0000ff'}}).png().toBuffer();
+ const panel={background:null,layers:[{asset:'one',x:.25,y:.5,width:.5,backgroundRemoval:{tolerance:35}},{asset:'two',x:.75,y:.5,width:.5}]},read=async id=>({data:id==='one'?white:blue,permissions:{reuse:true}});
+ const r=await renderStudioPanel({width:40,height:20,dpi:100},panel,read),raw=await sharp(r.data).ensureAlpha().raw().toBuffer();assert.equal(raw[3],0);assert.equal(raw[(10*40+30)*4+2],255);assert.equal(raw[(10*40+30)*4+3],255);
+ await assert.rejects(renderStudioPanel({width:40,height:20,dpi:100},panel,async()=>({data:white,permissions:{reuse:false}})),/Allow Reuse/);
+});
+test('scanline background removal matches independent flood fill around narrow gaps and disconnected regions',async()=>{
+ const {removeArtworkBackground}=await import('./public/product-studio-state.js');let random=12345;const next=()=>{random=(Math.imul(random,1664525)+1013904223)>>>0;return random/2**32;};
+ for(let n=0;n<100;n++){const w=15,h=11,p=new Uint8Array(w*h*4).fill(255);for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++)if(next()<.4)p.set([200,0,20,255],(y*w+x)*4);p.set([200,0,20,255],(5*w+7)*4);const expected=p.slice(),seen=new Set(),queue=[0];while(queue.length){const i=queue.shift();if(seen.has(i))continue;seen.add(i);if(expected[i*4]!==255)continue;expected[i*4+3]=0;const x=i%w,y=Math.floor(i/w);if(x)queue.push(i-1);if(x+1<w)queue.push(i+1);if(y)queue.push(i-w);if(y+1<h)queue.push(i+w);}removeArtworkBackground(p,w,h,0);assert.deepEqual(p,expected);}
+});
