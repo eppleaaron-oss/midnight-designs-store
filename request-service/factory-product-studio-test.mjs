@@ -496,3 +496,7 @@ test('placement validation does not reuse a cutout measurement for another layer
  const issues=await studioPlacementIssues([{id:'11',areas:[{placement:'front',width:100,height:100,dpi:100}]}],document,async()=>({data:png,permissions:{reuse:true}}));assert.equal(issues.length,1);assert.equal(issues[0].layer,1);
  const {removeArtworkBackground}=await import('./public/product-studio-state.js'),raw=await sharp(png).ensureAlpha().raw().toBuffer();const result=removeArtworkBackground(raw,100,100,35);assert.deepEqual(result.contentBounds,{x:45,y:45,width:10,height:10});
 });
+test('fast manual PNG export keeps exactly the same pixels, canvas dimensions, alpha and density',async()=>{
+ const png=await sharp({create:{width:80,height:80,channels:4,background:{r:180,g:20,b:30,alpha:.5}}}).png().toBuffer(),area={width:200,height:200,dpi:100},recipe={background:null};
+ const standard=await renderArea(area,png,recipe,{reuse:true},{allowLowResolution:true}),fast=await renderArea(area,png,recipe,{reuse:true},{allowLowResolution:true,preserveLayerOrder:true});const a=await sharp(standard.data).raw().toBuffer(),b=await sharp(fast.data).raw().toBuffer();assert.deepEqual(b,a);const meta=await sharp(fast.data).metadata();assert.equal(meta.width,200);assert.equal(meta.height,200);assert.equal(meta.density,100);assert.equal(meta.hasAlpha,true);
+});
