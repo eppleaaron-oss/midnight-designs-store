@@ -9,7 +9,7 @@ sharp.concurrency(1);
 import {variantAreas} from './factory-blueprints.mjs';
 import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import {renderArea} from './factory-rendering.mjs';
-import {renderStudioPanelIsolated} from './factory-studio-render-process.mjs';
+import {renderStudioPanelIsolated,renderAreaIsolated} from './factory-studio-render-process.mjs';
 import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
 import {mockupImageURL} from './factory-mockups.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
@@ -155,7 +155,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   if(!savedArea||savedArea.width!==area.width||savedArea.height!==area.height||savedArea.dpi!==area.dpi)hold('This archived print template differs from the current variant. Review and assign the panel again.');
   const r=plan.numericLayout?.variants?.find(x=>x.variant===v.variant_id)?.placements?.[area.placement]||plan.placements?.[area.placement];if(!r)hold('The exact archived panel composition is missing. Reassign its original artwork.');
   const elements=r.elements||[r],sources=[];for(const recipe of elements){if(recipe.fillOnly)continue;const a=await readArtwork('art:'+recipe.artworkId);sources.push({data:Buffer.from(a.data),recipe,permissions:a.permissions});}
-  const rendered=await renderArea(area,sources,{background:plan.numericLayout?.background??plan.background??'#000000'});
+  const rendered=await renderAreaIsolated(area,sources,{background:plan.numericLayout?.background??plan.background??'#000000'});
   const receipt=cleanup.supplierReceipt?.variants?.find(x=>x.supplierVariantId===v.id)?.files?.find(x=>x.placement===area.placement),record=receipt?.supplierFileId===file.id?receipt:!cleanup.supplierReceipt?cleanup.files?.find(f=>f.placement===area.placement&&f.width===area.width&&f.height===area.height&&f.sha256===rendered.sha256):null;
   if(!record||record.sha256!==rendered.sha256)hold('Recovered print pixels did not match the original saved checksum. No supplier design was changed. Reassign the panel before finishing.');
   const a=await putAsset('studio-'+j.id,'print','Recovered '+area.placement,rendered.data);await persistAsset(a);return {asset:a.id,url:link(a),sha:a.sha,placement:area.placement,width:area.width,height:area.height,sourceSupplierFileId:file.id};
