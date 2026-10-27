@@ -32,3 +32,12 @@ export async function finishSavedDraft({source,revision,document,target,confirmP
   throw e;
  }
 }
+
+export function addDesignLayers(panel,designs,area,{replace=false}={}){
+ const next=structuredClone(panel),kept=replace?[]:next.layers;
+ if(!designs.length||kept.length+designs.length>8)throw Error('Use up to eight designs per panel. Remove a design or choose another placement.');
+ if(designs.some(a=>!a.asset||!(a.width>0)||!(a.height>0)))throw Error('Wait for the original artwork to load.');
+ const columns=designs.length>1?Math.ceil(Math.sqrt(designs.length)):1,rows=Math.ceil(designs.length/columns);
+ next.layers=[...kept,...designs.map((a,i)=>({asset:a.asset,x:(i%columns+.5)/columns,y:(Math.floor(i/columns)+.5)/rows,width:Math.max(.001,Math.min(.65/columns,.65/rows*area.height/area.width*a.width/a.height,a.width/area.width)),rotation:0,mirror:false,allowModify:false}))];
+ return next;
+}
