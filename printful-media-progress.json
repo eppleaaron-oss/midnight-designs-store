@@ -69805,10 +69805,17 @@
       "created": "2026-10-27T23:04:50.792Z",
       "attempts": 1,
       "error": "Printful HTTP 400: No variants to generate. Option filters may exclude all variants or variants are not available. Alternatively, make sure that variants belong to given product id."
+    },
+    "f038e66a9bbdc45de3be89d6becf053a84bfbd51e20c51dffef4e9e60a6d824f": {
+      "productId": "483741826",
+      "variant": 46347,
+      "state": "submitting",
+      "created": "2026-10-27T23:06:31.898Z",
+      "attempts": 1
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T23:06:29.440Z",
+  "updatedAt": "2026-10-27T23:06:31.898Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
