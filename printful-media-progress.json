@@ -70674,12 +70674,19 @@
           "kind": "production-mockup"
         }
       ]
+    },
+    "0c14252e388203f6c258128d15112a76fa78b7dee4645ecdd1ef9b4627d57022": {
+      "productId": "483704831",
+      "variant": 12913,
+      "state": "submitting",
+      "created": "2026-10-27T23:21:19.189Z",
+      "attempts": 1
     }
   },
   "errors": {
     "483725842": "Command failed: node scripts/publish-catalog.mjs"
   },
-  "updatedAt": "2026-10-27T23:21:16.420Z",
+  "updatedAt": "2026-10-27T23:21:19.189Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
