@@ -11,11 +11,14 @@ function unseal(text,key,context){try{if(!text.startsWith(HEADER)||text.length>M
 
 // Private, deletable release attachments: working pixels never enter Git history.
 export class BasicGithubAssets{
- constructor({repo,token,key},{fetchImpl=fetch,sleep=wait,clock=Date.now}={}){Object.assign(this,{repo,token,key,fetchImpl,sleep,clock});this.lastWrite=0;this.repositoryId=null;this.knownReleases=new Map();}
+ constructor({repo,token,key},{fetchImpl=fetch,sleep=wait,clock=Date.now}={}){Object.assign(this,{repo,token,key,fetchImpl,sleep,clock});this.lastWrite=0;this.retryAt=0;this.repositoryId=null;this.knownReleases=new Map();}
  async api(path,{method='GET',body,missing=false,upload=false}={}){
+  if(this.retryAt>this.clock())throw Object.assign(Error('GitHub rate limit reached. Working files were retained for retry.'),{status:429,retryAfter:Math.ceil((this.retryAt-this.clock())/1000),retryAt:this.retryAt});
   if(method!=='GET'){await this.sleep(Math.max(0,1000-(this.clock()-this.lastWrite)));this.lastWrite=this.clock();}
   let r;try{r=await this.fetchImpl((upload?'https://uploads.github.com/repos/':'https://api.github.com/repos/')+this.repo+path,{method,headers:{Authorization:'Bearer '+this.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':upload?'application/octet-stream':'application/json',...(method==='GET'?{'Cache-Control':'no-cache'}:{})},cache:'no-store',...(body!==undefined?{body:upload?body:JSON.stringify(body)}:{}),redirect:'error',signal:AbortSignal.timeout(30000)});}catch{throw Object.assign(Error('GitHub working storage is unavailable. Resume this same item after the connection recovers.'),{status:503});}
-  if(r.status===404&&missing)return null;if(r.status===429||r.status===403&&r.headers.get('retry-after'))throw Object.assign(Error('GitHub rate limit reached. Working files were retained for retry.'),{status:429});
+  if(r.status===404&&missing)return null;let rateMessage='';if(r.status===403)try{rateMessage=String((await r.clone().json()).message||'');}catch{}
+  const remaining=r.headers.get('x-ratelimit-remaining'),after=r.headers.get('retry-after');
+  if(r.status===429||r.status===403&&(after||remaining==='0'||/rate limit|abuse detection/i.test(rateMessage))){const numeric=after?.trim()?Number(after):NaN,date=after?Date.parse(after):NaN,reset=Number(r.headers.get('x-ratelimit-reset')),seconds=Math.max(1,Math.ceil(Number.isFinite(numeric)?numeric:Number.isFinite(date)?(date-this.clock())/1000:remaining==='0'&&Number.isFinite(reset)&&reset>0?reset-this.clock()/1000:60));this.retryAt=this.clock()+seconds*1000;throw Object.assign(Error('GitHub rate limit reached. Working files were retained for retry.'),{status:429,retryAfter:seconds,retryAt:this.retryAt});}
   if(!r.ok)throw Object.assign(Error('GitHub working storage rejected the request (HTTP '+r.status+').'),{status:r.status>=500?503:409});
   return r.status===204?{}:r.json();
  }
