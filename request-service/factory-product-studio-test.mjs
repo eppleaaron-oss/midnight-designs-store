@@ -3,8 +3,15 @@ import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import sharp from 'sharp';
 import {renderArea} from './factory-rendering.mjs';
+import {renderStudioPanelIsolated} from './factory-studio-render-process.mjs';
 import {factoryProductStudio,renderStudioPanel,studioLayers,studioProductionPanel,studioPlacementIssues} from './factory-product-studio.mjs';
 const ROOT='/api/owner/ai-factory/product-studio';
+test('isolated panel rendering preserves exact pixels, permissions and repeated-job output',async()=>{
+ const data=await sharp({create:{width:24,height:32,channels:4,background:'#ab2376'}}).png().toBuffer(),read=async()=>({data,permissions:{reuse:true}}),area={width:120,height:140,dpi:150},panel={background:null,layers:[{asset:'art:test',x:.5,y:.5,width:.5,rotation:0,mirror:false,allowModify:false}]};
+ const expected=await renderStudioPanel(area,panel,read);
+ for(let n=0;n<3;n++){const result=await renderStudioPanelIsolated(area,panel,read);assert.equal(result.sha256,expected.sha256);assert.deepEqual(result.data,expected.data);assert.equal(result.effectiveDpi,expected.effectiveDpi);}
+ await assert.rejects(renderStudioPanelIsolated(area,panel,async()=>({data,permissions:{reuse:false}})),/Allow Reuse/);
+});
 async function fixture(t){
  const db=new DatabaseSync(':memory:');t.after(()=>db.close());db.exec('CREATE TABLE factory_artwork(id TEXT,name TEXT,mime TEXT,data BLOB,permissions TEXT)');const png=await sharp({create:{width:100,height:100,channels:4,background:'#ff0000'}}).png().toBuffer();db.prepare('INSERT INTO factory_artwork VALUES(?,?,?,?,?)').run('art1','Rose front','image/png',png,JSON.stringify({reuse:true,modify:false,crop:false}));
  const p={id:'piece:one',supplierId:'123',name:'Rose hoodie',collection:'Rose',choice:{setId:'rose',product:390}},sibling={...p,id:'piece:two',supplierId:'456',name:'Rose pants'};
@@ -575,4 +582,16 @@ test('isolated 90-megapixel native export stays below the small-server memory bu
  const geometry={canvasWidth:10000,canvasHeight:9000,dpi:150,width:14000,height:14000,x:-2000,y:-3000,contentBounds:{x:300,y:300,width:400,height:400,sourceWidth:1000,sourceHeight:1000},safeRect:{x:0,y:0,width:10000,height:9000}};
  const r=await renderArea({width:10000,height:9000,dpi:150},source,{background:'#000000',geometry},{reuse:true},{preserveLayerOrder:true,allowLowResolution:true}),m=await sharp(r.data).metadata();console.log(JSON.stringify({width:m.width,height:m.height,density:m.density,peakKiB:process.resourceUsage().maxRSS}));`;
  const child=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:new URL('.',import.meta.url),encoding:'utf8',timeout:120000});assert.equal(child.status,0,child.stderr);const result=JSON.parse(child.stdout.trim());assert.equal(result.width,10000);assert.equal(result.height,9000);assert.equal(result.density,150);assert.ok(result.peakKiB<350*1024,'native renderer must leave memory for the SQLite queue and network workers: '+result.peakKiB+' KiB');
+});
+
+test('successive native panels release renderer memory before the next queued product',async()=>{
+ const {spawnSync}=await import('node:child_process');const script=`
+ import sharp from 'sharp';import {renderStudioPanelIsolated} from './factory-studio-render-process.mjs';
+ const data=await sharp({create:{width:1000,height:1000,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:400,height:400,channels:4,background:'#ff0000'}}).png().toBuffer(),left:300,top:300}]).png().toBuffer();
+ const read=async()=>({data,permissions:{reuse:true}}),area={width:10000,height:9000,dpi:150},panel={background:'#000000',layers:[{asset:'art:test',x:.5,y:4000/9000,width:1.4,rotation:0,mirror:false,allowModify:false}]};
+ // Keep realistic application/SQLite/network memory resident throughout.
+ const resident=Buffer.alloc(160*1024*1024,1),start=process.memoryUsage().rss;let peakChild=0;
+ for(let i=0;i<2;i++){const r=await renderStudioPanelIsolated(area,panel,read);peakChild=Math.max(peakChild,r.peakKiB*1024);if(r.width!==10000||r.height!==9000)throw Error('dimensions changed');}
+ console.log(JSON.stringify({growth:process.memoryUsage().rss-start,combined:start+peakChild,resident:resident.length}));`;
+ const child=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:new URL('.',import.meta.url),encoding:'utf8',timeout:180000});assert.equal(child.status,0,child.stderr);const r=JSON.parse(child.stdout.trim());assert.ok(r.growth<50*1024*1024,'renderer pages must not accumulate in app: '+r.growth);assert.ok(r.combined<490*1024*1024,'app plus active renderer must fit 512 MiB: '+r.combined);
 });
