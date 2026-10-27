@@ -41,3 +41,29 @@ export function addDesignLayers(panel,designs,area,{replace=false}={}){
  next.layers=[...kept,...designs.map((a,i)=>({asset:a.asset,x:(i%columns+.5)/columns,y:(Math.floor(i/columns)+.5)/rows,width:Math.max(.001,Math.min(.65/columns,.65/rows*area.height/area.width*a.width/a.height,a.width/area.width)),rotation:0,mirror:false,allowModify:false}))];
  return next;
 }
+
+// Shared by the browser preview and native print renderer. Changes only the
+// edge-connected flat background, never an enclosed dark detail or original.
+export function removeArtworkBackground(pixels,width,height,tolerance=35){
+ if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width*height>40_000_000||pixels.length!==width*height*4)throw Error('Use artwork within 40 million pixels.');
+ if(!Number.isFinite(tolerance)||tolerance<0||tolerance>150)throw Error('Choose background strength between 0 and 150.');
+ const edge=[];for(let x=0;x<width;x++){edge.push(x);if(height>1)edge.push((height-1)*width+x);}for(let y=1;y<height-1;y++){edge.push(y*width);if(width>1)edge.push(y*width+width-1);}
+ const buckets=new Map();for(const i of edge){const n=i*4;if(pixels[n+3]<32)continue;const k=(pixels[n]>>4)*256+(pixels[n+1]>>4)*16+(pixels[n+2]>>4),b=buckets.get(k)||{count:0,sum:[0,0,0]};b.count++;for(let j=0;j<3;j++)b.sum[j]+=pixels[n+j];buckets.set(k,b);}
+ const top=[...buckets.values()].sort((a,b)=>b.count-a.count)[0],color=top?top.sum.map(n=>Math.round(n/top.count)):null,t2=tolerance*tolerance;
+ const matches=i=>{const n=i*4;return pixels[n+3]<32||color&&((pixels[n]-color[0])**2+(pixels[n+1]-color[1])**2+(pixels[n+2]-color[2])**2<=t2);};
+ if(edge.filter(matches).length/edge.length<.85)throw Error('This background has several colors or scenery. Solid-background removal cannot safely isolate it. Your original is unchanged.');
+ // Scanline flood fill uses one byte per pixel and a span stack rather than a
+ // full-size integer queue, keeping large artwork within the free backend.
+ const seen=new Uint8Array(width*height),stack=[];let removed=0;
+ const seed=i=>{if(!seen[i]&&matches(i)){seen[i]=1;stack.push(i);}};
+ for(const i of edge)seed(i);
+ while(stack.length){const i=stack.pop();if(seen[i]===2)continue;const y=Math.floor(i/width),row=y*width;let left=i%width,right=left;
+  while(left>0&&seen[row+left-1]!==2&&matches(row+left-1))left--;
+  while(right+1<width&&seen[row+right+1]!==2&&matches(row+right+1))right++;
+  let up=false,down=false;for(let x=left;x<=right;x++){const at=row+x;seen[at]=2;if(pixels[at*4+3])removed++;pixels[at*4+3]=0;const above=y>0&&seen[at-width]!==2&&matches(at-width),below=y+1<height&&seen[at+width]!==2&&matches(at+width);if(above&&!up)seed(at-width);if(below&&!down)seed(at+width);up=above;down=below;}
+ }
+ let subject=false;for(let i=3;i<pixels.length;i+=4)if(pixels[i]>32){subject=true;break;}
+ if(!subject)throw Error('No distinct artwork remains at this strength. Lower it; your original is unchanged.');
+ if(!removed)throw Error('No connected solid background was found. This image may already be transparent.');
+ return {pixels,color,removed};
+}
