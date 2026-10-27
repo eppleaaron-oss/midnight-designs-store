@@ -70356,14 +70356,101 @@
     "5bbc06d9c958835675a15a076b8e56bab99e9c27096d255f7fa668875bd6f887": {
       "productId": "483729128",
       "variant": 10879,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-27T23:09:25.918Z",
       "attempts": 1,
-      "key": "gt-992613760"
+      "key": "gt-992613760",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483729128-10879-all-5bbc06d9c9-0.jpg",
+          "sha256": "5193b5e6bb76a0307fa20fdfb9fcccd057d5f036b9ad9660e5906ccde282147c",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5587190821",
+            "5587190822",
+            "5587190825",
+            "5587190831",
+            "5587190833",
+            "5587190834",
+            "5587190839"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket · sleeve_left",
+          "label": "sleeve_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483729128-10879-all-5bbc06d9c9-1.jpg",
+          "sha256": "88425ee5cc02089b92358c3709aa90f51984b234ac94d6682462c8f185c68b23",
+          "view": "Left",
+          "style": "Men's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5587190821",
+            "5587190822",
+            "5587190825",
+            "5587190831",
+            "5587190833",
+            "5587190834",
+            "5587190839"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483729128-10879-all-5bbc06d9c9-2.jpg",
+          "sha256": "de2cc5fb601717baf91d9db6d28c4abedafd60b40da8b0c3a3c0ff37974d3bb2",
+          "view": "Left",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5587190821",
+            "5587190822",
+            "5587190825",
+            "5587190831",
+            "5587190833",
+            "5587190834",
+            "5587190839"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483729128-10879-all-5bbc06d9c9-3.jpg",
+          "sha256": "df5a0e6dba16d6f39347cdccbc183cb908a1ca83d7278522103e25ddf1766f2b",
+          "view": "Left",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5587190821",
+            "5587190822",
+            "5587190825",
+            "5587190831",
+            "5587190833",
+            "5587190834",
+            "5587190839"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket · Left",
+          "label": "On-person · Left",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T23:10:00.131Z",
+  "updatedAt": "2026-10-27T23:10:14.028Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
