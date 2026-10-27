@@ -70678,15 +70678,16 @@
     "0c14252e388203f6c258128d15112a76fa78b7dee4645ecdd1ef9b4627d57022": {
       "productId": "483704831",
       "variant": 12913,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-27T23:21:19.189Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-992618754"
     }
   },
   "errors": {
     "483725842": "Command failed: node scripts/publish-catalog.mjs"
   },
-  "updatedAt": "2026-10-27T23:21:19.189Z",
+  "updatedAt": "2026-10-27T23:21:53.490Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
