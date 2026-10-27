@@ -68565,14 +68565,122 @@
     "c361b41a805b85c7374f4351829166738e1802ec1dcf132c7489b75ea8e2ee72": {
       "productId": "484000153",
       "variant": 10879,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-27T22:53:09.872Z",
       "attempts": 1,
-      "key": "gt-992606849"
+      "key": "gt-992606849",
+      "photos": 5,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484000153-10879-all-c361b41a80-0.jpg",
+          "sha256": "db8a0685c21252911de1b2bd46743ff3a01a4140dc7cfff21469b76ea1d72762",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5588572357",
+            "5588572365",
+            "5588572366",
+            "5588572375",
+            "5588572418",
+            "5588572425",
+            "5588572427"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket · front",
+          "label": "front",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484000153-10879-all-c361b41a80-1.jpg",
+          "sha256": "fde489d954d3a17d47cac6e393ae284df6129706f1dc8819ccfc0249929ea438",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5588572357",
+            "5588572365",
+            "5588572366",
+            "5588572375",
+            "5588572418",
+            "5588572425",
+            "5588572427"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket · sleeve_right",
+          "label": "sleeve_right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484000153-10879-all-c361b41a80-2.jpg",
+          "sha256": "7cd4db62ba10ad61fec8bdf1330b42d2078820b23c01b9bc9352d1f32c02cfb5",
+          "view": "Right",
+          "style": "Women's",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5588572357",
+            "5588572365",
+            "5588572366",
+            "5588572375",
+            "5588572418",
+            "5588572425",
+            "5588572427"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484000153-10879-all-c361b41a80-3.jpg",
+          "sha256": "0f7138763368ae61719aa8ce852e9b0006de849b1ec4b7970f7577ca2df45a7f",
+          "view": "Right",
+          "style": "Women's 2",
+          "category": "fit",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5588572357",
+            "5588572365",
+            "5588572366",
+            "5588572375",
+            "5588572418",
+            "5588572425",
+            "5588572427"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket · Right",
+          "label": "On-person · Right",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484000153-10879-all-c361b41a80-4.jpg",
+          "sha256": "0da2008d54c61aed5bdcde5829146c3d50bf7b9675f289838e487242d40d52cf",
+          "view": "details",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 10879,
+          "storeVariantIds": [
+            "5588572357",
+            "5588572365",
+            "5588572366",
+            "5588572375",
+            "5588572418",
+            "5588572425",
+            "5588572427"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket · details",
+          "label": "details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T22:53:43.992Z",
+  "updatedAt": "2026-10-27T22:53:58.287Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
