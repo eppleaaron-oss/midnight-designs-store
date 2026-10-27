@@ -7,6 +7,7 @@ import {readPrintful} from './printful-read.mjs';
 sharp.cache({memory:8,files:0,items:16});
 sharp.concurrency(1);
 import {variantAreas} from './factory-blueprints.mjs';
+import {MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
 import {renderArea} from './factory-rendering.mjs';
 import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
 import {mockupImageURL} from './factory-mockups.mjs';
@@ -137,7 +138,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  function assetMeta(a){return {asset:a.id,name:a.name,width:a.width,height:a.height,url:ROOT+'/asset/'+a.id};}
  async function putAsset(job,kind,name,data,mime='image/png'){
   const sha=hash(data),same=get('SELECT * FROM factory_studio_assets WHERE job=? AND kind=? AND sha=?',job,kind,sha);if(same)return same.remote?same:{...same,data};
-  const m=await sharp(data,{limitInputPixels:40_000_000}).metadata();if(data.length>25*1024*1024)hold('This image exceeds 25 MB.');
+  const m=await sharp(data,{limitInputPixels:MAX_NATIVE_PIXELS}).metadata();if(data.length>25*1024*1024)hold('This image exceeds 25 MB.');
   if(get('SELECT coalesce(sum(length(data)),0) n FROM factory_studio_assets').n+data.length>100*1024*1024)hold('Editor working storage is full. Finish the active update before adding more images.');
   const id=randomUUID();run('INSERT INTO factory_studio_assets VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',id,job,kind,name,mime,m.width,m.height,sha,Buffer.alloc(0),null,randomBytes(32).toString('hex'),clock());return {...get('SELECT * FROM factory_studio_assets WHERE id=?',id),data};
  }
@@ -314,3 +315,4 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   fail(404,'Product studio action not found.');
  }};
 }
+
