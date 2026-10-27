@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T22:32:59.958Z",
+  "updatedAt": "2026-10-27T22:33:12.609Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -51800,11 +51800,42 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/483704831-supplier-f6946bbd20bdccf51945.jpg",
           "sha256": "a3abe8c32405b1d7fd6863f1dc1a1ca7b661a09f445f45fb0a1cebaf9ff38b29"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5587033707",
+            "5587033712",
+            "5587033736",
+            "5587033772",
+            "5587033781",
+            "5587033786",
+            "5587033790",
+            "5587033793",
+            "5587033812",
+            "5587033824",
+            "5587033831",
+            "5587033841",
+            "5587033845",
+            "5587033849",
+            "5587033852",
+            "5587033853",
+            "5587033864"
+          ],
+          "alt": "Untitled cotton hoodie design 7453 Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483704831-supplier-de4c595d6085dd0b3df8.jpg",
+          "sha256": "6f9f7d3060d91b1f1746ff3f271984a23cfdfec3d11711eb340624fb94a605c7"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "ff4e43b8bd78c422cfd59e067061e6315b82643e605dcc52aae55a63df3d37cd",
-      "supplierPreviews": "33a560c4750384785826de1c7bc90dbc28125709b76c2a8b7f60986af9c9dd8c"
+      "supplierPreviews": "6d319622b867a3dfb582c34c4354850590f445187c02ae7e437fae9f9518b950"
     },
     "483709923": {
       "name": "Untitled cotton hoodie design 7453 All-Over Print Neck Gaiter",

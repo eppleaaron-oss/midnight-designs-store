@@ -66741,11 +66741,11 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T22:33:00.185Z",
+  "updatedAt": "2026-10-27T22:37:06.228Z",
   "catalogAudit": {
     "supplierProducts": 180,
-    "eligible": 19,
-    "importedPreviews": 12,
+    "eligible": 150,
+    "importedPreviews": 13,
     "held": [],
     "checkedAt": "2026-10-27T22:32:15.022Z"
   },
