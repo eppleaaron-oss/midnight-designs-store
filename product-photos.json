@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T23:06:29.194Z",
+  "updatedAt": "2026-10-27T23:07:21.460Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -54048,6 +54048,48 @@
       "catalogProductId": 1481,
       "photos": [
         {
+          "image": "assets/product-photos/483741826-46347-all-f038e66a9b-0.jpg",
+          "sha256": "d0c02a9a0bd77eb34545c64ad999327119682dfb7165a5b28c8c43a392bb5c02",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5587281074",
+            "5587281077",
+            "5587281095",
+            "5587281097",
+            "5587281098",
+            "5587281128",
+            "5587281149"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483741826-46347-all-f038e66a9b-1.jpg",
+          "sha256": "48d050769f9109725a5bec530d93a999608ce95664f82a6f1bfbc3bde96da68d",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5587281074",
+            "5587281077",
+            "5587281095",
+            "5587281097",
+            "5587281098",
+            "5587281128",
+            "5587281149"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
           "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
           "sha256": "b85c93be7cf0c1362fc14fb1c542be4b07f58796b7880f718b9b06a413ad503e",
           "view": "front_dtfabric",
@@ -54133,8 +54175,8 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "b7a8c23022a4c76fc6266915d0f61c1a5aa14cd5685e827c4ea49a5767324bb5",
-      "supplierPreviews": "dd931fb69f281e379f7a386428d494c7cca8d8a8e9fe90550224f4c870a4c74d"
+      "supplierPreviews": "dd931fb69f281e379f7a386428d494c7cca8d8a8e9fe90550224f4c870a4c74d",
+      "allReportedViews": "59ed7b43cda26b1261981bbe458cc873782ccdf17e76acd940e74b97b98f4fdc"
     },
     "483763072": {
       "name": "Untitled cotton hoodie design 4900 Men's High Top Canvas Shoes",
