@@ -25,10 +25,9 @@ jobs:
           node-version: '24'
       - name: Verify targeted publication safety
         run: node --test scripts/publish-studio-product-test.mjs
-      - name: Apply already verified product edit
-        env:
-          STUDIO_SUPPLIER: ${{ github.event.client_payload.supplier }}
-          STUDIO_REVISION: ${{ github.event.client_payload.studio }}
+      # GitHub retains only one pending run per concurrency group. Apply all
+      # approved edits so a later dispatch also covers displaced pending runs.
+      - name: Apply all already verified product edits
         run: |
           node scripts/publish-studio-product.mjs
           node scripts/build-search-pages.mjs
