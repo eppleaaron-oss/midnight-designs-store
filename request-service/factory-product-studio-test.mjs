@@ -3,9 +3,14 @@ import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import sharp from 'sharp';
 import {renderArea} from './factory-rendering.mjs';
-import {renderStudioPanelIsolated} from './factory-studio-render-process.mjs';
+import {renderStudioPanelIsolated,renderAreaIsolated} from './factory-studio-render-process.mjs';
 import {factoryProductStudio,renderStudioPanel,studioLayers,studioProductionPanel,studioPlacementIssues} from './factory-product-studio.mjs';
 const ROOT='/api/owner/ai-factory/product-studio';
+test('archived mockup-panel recovery releases its renderer without changing the original print checksum',async()=>{
+ const data=await sharp({create:{width:40,height:50,channels:4,background:'#2357ab'}}).png().toBuffer(),area={width:120,height:140,dpi:150},recipe={background:'#000000',withoutEnlargement:true},sources=[{data,recipe,permissions:{reuse:true}}];
+ const expected=await renderArea(area,sources,recipe),actual=await renderAreaIsolated(area,sources,recipe);assert.equal(actual.sha256,expected.sha256);assert.deepEqual(actual.data,expected.data);
+ await assert.rejects(renderAreaIsolated(area,[{...sources[0],permissions:{reuse:false}}],recipe),/Allow Reuse/);
+});
 test('isolated panel rendering preserves exact pixels, permissions and repeated-job output',async()=>{
  const data=await sharp({create:{width:24,height:32,channels:4,background:'#ab2376'}}).png().toBuffer(),read=async()=>({data,permissions:{reuse:true}}),area={width:120,height:140,dpi:150},panel={background:null,layers:[{asset:'art:test',x:.5,y:.5,width:.5,rotation:0,mirror:false,allowModify:false}]};
  const expected=await renderStudioPanel(area,panel,read);
