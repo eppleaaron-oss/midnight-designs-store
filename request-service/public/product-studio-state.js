@@ -67,3 +67,22 @@ export function removeArtworkBackground(pixels,width,height,tolerance=35){
  if(!removed)throw Error('No connected solid background was found. This image may already be transparent.');
  return {pixels,color,removed,contentBounds:maxX>=minX?{x:minX,y:minY,width:maxX-minX+1,height:maxY-minY+1}:null};
 }
+
+// Hit testing follows the same rotation, mirroring and print proportions as drawing.
+// Test uppermost layers first; transparent/black padding is excluded when measured.
+export function designAtPoint(layers,area,assetFor,point){
+ if(!point?.inside||!area?.width||!area?.height)return -1;
+ for(let i=layers.length-1;i>=0;i--){
+  const l=layers[i],s=assetFor(l);if(!s?.width||!s?.height)continue;
+  const w=l.width*area.width,h=w*s.height/s.width;if(!(w>0&&h>0))continue;
+  const dx=(point.x-l.x)*area.width,dy=(point.y-l.y)*area.height,r=(l.rotation||0)*Math.PI/180;
+  let u=(dx*Math.cos(r)+dy*Math.sin(r))/w;const v=(-dx*Math.sin(r)+dy*Math.cos(r))/h;
+  if(l.mirror)u=-u;const x=(u+.5)*s.width,y=(v+.5)*s.height,b=s.contentBounds||{x:0,y:0,width:s.width,height:s.height};
+  if(x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height)return i;
+ }
+ return -1;
+}
+export function deleteDesignLayer(panel,index){
+ if(!Number.isInteger(index)||index<0||index>=panel.layers.length)throw Error('Select a design to delete.');
+ const next=structuredClone(panel);next.layers.splice(index,1);return next;
+}
