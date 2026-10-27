@@ -413,3 +413,12 @@ test('mockup network waits share checkpoints while a separate native render can 
  const third=f.tick();for(let n=0;n<40&&!renders;n++)await new Promise(r=>setTimeout(r,5));assert.equal(renders,1);await f.tick();assert.equal(renders,1);assert.equal(f.counts().posts,0);
  release();releaseNative();await Promise.all([first,second,third]);assert.equal(f.counts().posts,2);for(const id of [j.id,'second'])assert.ok(JSON.parse(f.db.prepare('SELECT document FROM factory_studio_jobs WHERE id=?').get(id).document).tasks.some(t=>t.key));
 });
+
+
+// Native supplier output may legitimately exceed the source artwork pixel cap.
+test('stores a native print canvas above 40 megapixels without shrinking the approved layout',async t=>{
+ const f=await fixture(t),bp=await f.options.blueprints.load();bp.printfiles.printfiles[0].width=6500;bp.printfiles.printfiles[0].height=6500;
+ const d=await f.document();await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});
+ await f.tick();await f.tick();assert.notEqual(f.job().state,'failed',f.job().error);
+ const out=f.job().document.outputs[0];assert.equal(out.width,6500);assert.equal(out.height,6500);assert.ok(out.asset);
+});
