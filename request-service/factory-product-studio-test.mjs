@@ -541,3 +541,19 @@ test('unchanged supplier-processing polls yield their age priority to another wa
  f.restart();await f.tick();assert.equal(JSON.parse(f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='waiting-render'").get().document).outputs.length,0,'oldest supplier poll receives its turn');
  await f.tick();assert.equal(JSON.parse(f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='waiting-render'").get().document).outputs.length,1,'a pending supplier file cannot repeatedly reclaim the oldest slot without progress');
 });
+
+
+test('bounded supplier batches reuse the checkpointed immutable intent instead of snapshotting before every four variants',async t=>{
+ const f=await fixture(t),bp=await f.options.blueprints.load();
+ for(let id=13;id<=16;id++){const v=structuredClone(f.supplier.sync_variants[0]);v.id=id;v.variant_id=id+10;v.size='fixture-'+id;f.supplier.sync_variants.push(v);bp.printfiles.variant_printfiles.push({variant_id:id+10,placements:{front:1,back:1}});}
+ const d=await f.document();for(let id=12;id<=16;id++)d.variants[id]={front:structuredClone(d.variants[11].front)};
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});while(f.job().state!=='updating_printful')await f.tick();await new Promise(r=>setImmediate(r));
+ let checks=0;f.options.backups.checkpoint=async()=>{checks++;};await f.tick();assert.equal(f.counts().puts,4);assert.equal(checks,1);assert.equal(f.job().document.supplierIntentSaved,true);
+ f.options.backups.checkpoint=async()=>{throw Error('an already checkpointed variant batch started another snapshot');};await f.tick();assert.equal(f.counts().puts,6,'the remaining variants update using the same saved intent');assert.notEqual(f.job().state,'failed');
+});
+
+test('a failed supplier-intent checkpoint never authorizes the first write or marks its intent saved',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
+ f.options.backups.checkpoint=async()=>{throw Object.assign(Error('snapshot timeout'),{status:503});};await f.tick();assert.equal(f.counts().puts,0);assert.equal(f.job().document.supplierIntentSaved,false);
+ f.options.backups.checkpoint=async()=>{};for(let n=0;n<10&&!f.counts().puts;n++)await f.tick();assert.equal(f.counts().puts,1);assert.equal(f.job().document.supplierIntentSaved,true);
+});
