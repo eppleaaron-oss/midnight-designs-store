@@ -3,8 +3,9 @@
 window.MidnightMadeMedia={
  images(row,index={}){
   const saved=index.products?.[String(row.supplierId)];
-  const urls=[...(saved?.photos||[]).map(p=>({url:new URL(p.image,'https://midnight-designs.store/').href,label:p.label||p.view||'Product view'})),...(row.made?.mockupStatus?.images||[]).map(p=>({url:p.url,label:p.title||'Saved mockup'}))];
-  for(const url of [saved?.originalImage,row.made?.thumb])if(url)urls.push({url,label:'Supplier preview'});
+  const edited=!!saved?.studioRevision&&saved.photos?.length>0;
+  const urls=[...(saved?.photos||[]).map(p=>({url:new URL(p.image,'https://midnight-designs.store/').href,label:p.label||p.view||'Product view'})),...(edited?[]:row.made?.mockupStatus?.images||[]).map(p=>({url:p.url,label:p.title||'Saved mockup'}))];
+  for(const url of edited?[]:[saved?.originalImage,row.made?.thumb])if(url)urls.push({url,label:'Supplier preview'});
   return [...new Map(urls.filter(p=>{try{return ['https:','http:'].includes(new URL(p.url,location.origin).protocol);}catch{return false;}}).map(p=>[p.url,p])).values()];
  },
  state(row,publishedIds){return row.supplierId&&publishedIds.has(String(row.supplierId))?'published':row.state||'waiting';},
