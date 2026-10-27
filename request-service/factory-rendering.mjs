@@ -5,6 +5,9 @@ import {recipeIds,sourceProof} from './factory-render-proof.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
 import {checkedArtwork} from './factory-artwork-permissions.mjs';
 import sharp from 'sharp';
+import {createDeflate,inflateSync,crc32} from 'node:zlib';
+import {Readable} from 'node:stream';
+import {pipeline} from 'node:stream/promises';
 import {readFileSync} from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
 import {printFileLimits} from './factory-storage.mjs';
@@ -19,6 +22,34 @@ const colors=garmentColors;
 const zone=s=>String(s).replace(/_dtfabric$/,'').replace(/-/g,'_').replace(/^left_sleeve$/,'sleeve_left').replace(/^right_sleeve$/,'sleeve_right').replace(/^left_leg$/,'leg_left').replace(/^right_leg$/,'leg_right');
 function number(value,fallback,min,max,label){const n=value??fallback;if(!Number.isFinite(n)||n<min||n>max)error('Invalid '+label+'.');return n;}
 function background(value){if(value===null)return {r:0,g:0,b:0,alpha:0};const c=colors[value]||value;if(typeof c!=='string'||!/^#[a-f0-9]{6}$/i.test(c))error('Choose a garment fill color.');return c;}
+
+// Assemble a native PNG from small independently composited strips. No full
+// native RGBA frame is retained while other queue jobs and backups use memory.
+function pngChunk(type,data){const b=Buffer.alloc(data.length+12);b.writeUInt32BE(data.length,0);b.write(type,4,4,'ascii');data.copy(b,8);b.writeUInt32BE(crc32(b.subarray(4,8+data.length)),8+data.length);return b;}
+async function renderNativeBands(width,height,dpi,bg,overlays){
+ const records=[];for(const o of overlays){const m=await sharp(o.input).metadata();records.push({...o,width:m.width,height:m.height});}
+ const stride=width*4,bandHeight=Math.max(1,Math.floor(1_000_000/width));
+ async function* scanlines(){for(let y=0;y<height;y+=bandHeight){const h=Math.min(bandHeight,height-y),inputs=[];
+  for(const o of records){const top=Math.max(y,o.top),bottom=Math.min(y+h,o.top+o.height);if(bottom<=top)continue;
+   const input=top===o.top&&bottom===o.top+o.height?o.input:await sharp(o.input).extract({left:0,top:top-o.top,width:o.width,height:bottom-top}).png({compressionLevel:1}).toBuffer();
+   inputs.push({input,left:o.left,top:top-y,...(o.blend?{blend:o.blend}:{})});
+  }
+  const png=await sharp({create:{width,height:h,channels:4,background:bg}}).composite(inputs).ensureAlpha().png({compressionLevel:1,adaptiveFiltering:true,palette:false}).toBuffer();
+  if(png[24]!==8||png[25]!==6||png[28]!==0)error('Native strip encoder returned an unsupported PNG format.');
+  const idat=[];for(let at=8;at<png.length;){const n=png.readUInt32BE(at),type=png.toString('ascii',at+4,at+8);if(type==='IDAT')idat.push(png.subarray(at+8,at+8+n));at+=n+12;}
+  const rows=inflateSync(Buffer.concat(idat),{maxOutputLength:(stride+1)*h});if(rows.length!==(stride+1)*h)error('Native print strip dimensions did not match.');
+  // A strip's first filtered row assumes an all-zero previous row. Rebase
+  // only that row to None so the combined PNG has exact pixels at joins.
+  const filter=rows[0];if(filter>4)error('Native print strip has an invalid filter.');for(let x=0;x<stride;x++){const left=x>=4?rows[1+x-4]:0;if(filter===1||filter===4)rows[1+x]=(rows[1+x]+left)&255;else if(filter===3)rows[1+x]=(rows[1+x]+Math.floor(left/2))&255;}rows[0]=0;
+  yield rows;
+ }}
+ async function encode(level){const ihdr=Buffer.alloc(13);ihdr.writeUInt32BE(width,0);ihdr.writeUInt32BE(height,4);ihdr[8]=8;ihdr[9]=6;const phys=Buffer.alloc(9),density=Math.round(dpi/0.0254);phys.writeUInt32BE(density,0);phys.writeUInt32BE(density,4);phys[8]=1;
+  const parts=[Buffer.from([137,80,78,71,13,10,26,10]),pngChunk('IHDR',ihdr),pngChunk('pHYs',phys)];let size=parts.reduce((n,b)=>n+b.length,0);
+  await pipeline(Readable.from(scanlines(),{objectMode:false,highWaterMark:65536}),createDeflate({level}),async chunks=>{for await(const data of chunks){const part=pngChunk('IDAT',data);size+=part.length;if(size+12>MAX_FILE)throw Object.assign(Error('Rendered PNG exceeds the 25 MB print-file limit.'),{status:409,printFileLimit:true});parts.push(part);}});
+  parts.push(pngChunk('IEND',Buffer.alloc(0)));return Buffer.concat(parts);
+ }
+ try{return await encode(1);}catch(e){if(!e.printFileLimit)throw e;return encode(6);}
+}
 
 // Render real pixels. DPI is checked against source resolution, before enlarging the output canvas.
 export async function renderArea(area,source,recipe={},permissions={},renderOptions={}){
@@ -95,6 +126,7 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
   }
   if(!overlays.length)error('Artwork is entirely outside the print area.');
  }
+ if(renderOptions.preserveLayerOrder&&width*height>MAX_PIXELS){const data=await renderNativeBands(width,height,dpi,bg,overlays);return {data,width,height,effectiveDpi,sha256:hash(data)};}
  const output=sharp({create:{width,height,channels:4,background:bg}}).composite(overlays).withMetadata({density:dpi});let data=await output.clone().png(pngOptions).toBuffer();
  if(data.length>MAX_FILE&&renderOptions.preserveLayerOrder)data=await output.png({compressionLevel:6}).toBuffer();
  if(data.length>MAX_FILE)error('Rendered PNG exceeds the 25 MB print-file limit.');
