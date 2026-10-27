@@ -1,6 +1,7 @@
 'use strict';
 // Join by supplier identity only: an outfit neighbour is never a preview fallback.
 window.MidnightMadeMedia={
+ placement(label){const name=String(label||'').toLowerCase().replaceAll(' ','_');return name.match(/^(front|back|sleeve_left|sleeve_right|left_sleeve|right_sleeve|hood|pocket|default)(?:_(?:dtfabric|dtg|embroidery|sublimation))?(?=$|[·_])/)?name.match(/^(front|back|sleeve_left|sleeve_right|left_sleeve|right_sleeve|hood|pocket|default)/)[0]:null;},
  images(row,index={}){
   const saved=index.products?.[String(row.supplierId)];
   const edited=!!saved?.studioRevision&&saved.photos?.length>0;
