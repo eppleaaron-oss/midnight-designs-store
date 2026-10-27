@@ -66738,10 +66738,17 @@
       "state": "submitting",
       "created": "2026-10-26T23:16:28.451Z",
       "attempts": 1
+    },
+    "0f2ea9fb303f5752bb3c26d0215877c6d87d3f1cd640decb2274edb56968ac7c": {
+      "productId": "484082838",
+      "variant": 46347,
+      "state": "submitting",
+      "created": "2026-10-27T22:39:31.608Z",
+      "attempts": 1
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T22:39:22.289Z",
+  "updatedAt": "2026-10-27T22:39:31.608Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
