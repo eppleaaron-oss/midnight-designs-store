@@ -20,3 +20,12 @@ test('an edited gallery never appends previews or mockups from an earlier suppli
  const m=media(),row={supplierId:'123',made:{thumb:'https://cdn.test/old.jpg',mockupStatus:{images:[{url:'https://cdn.test/old-back.jpg'}]}}},index={products:{123:{studioRevision:'latest',originalImage:'https://cdn.test/old-original.jpg',photos:[{image:'images/factory/123/new-front.jpg',view:'Front'},{image:'images/factory/123/new-back.jpg',view:'Back'}]}}};
  const photos=m.images(row,index);assert.equal(photos.length,2);assert.ok(photos.every(p=>p.url.includes('/images/factory/123/new-')));
 });
+
+test('AI Made distinguishes unfinished edits and private mockups from live storefront updates',async()=>{
+ const vm=await import('node:vm'),{readFile}=await import('node:fs/promises'),context={window:{},URL,location:{origin:'https://app.test'}};vm.runInNewContext(await readFile(new URL('./public/ai-made-data.js',import.meta.url),'utf8'),context);const status=context.window.MidnightMadeMedia.updateStatus;
+ assert.match(status({draftRevision:2,job:{revision:1,state:'completed',storeUpdated:true}}),/not applied/);
+ assert.match(status({draftRevision:2,job:{revision:2,state:'failed',error:'Storage full'}}),/Storage full/);
+ assert.match(status({draftRevision:2,job:{revision:2,state:'publishing'}}),/in progress/);
+ assert.match(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:false}}),/not published/);
+ assert.equal(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:true}}),'');
+});
