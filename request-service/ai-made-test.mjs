@@ -29,3 +29,5 @@ test('AI Made distinguishes unfinished edits and private mockups from live store
  assert.match(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:false}}),/not published/);
  assert.equal(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:true}}),'');
 });
+
+test('known mockup view names open their exact print placement without guessing generic views',()=>{const m=media();assert.equal(m.placement('Back'),'back');assert.equal(m.placement('front_dtfabric · Flat'),'front');assert.equal(m.placement('left sleeve'),'left_sleeve');assert.equal(m.placement('right_sleeve'),'right_sleeve');assert.equal(m.placement('Lifestyle'),null);assert.equal(m.placement('Backpack'),null);assert.equal(m.placement(undefined),null);});
