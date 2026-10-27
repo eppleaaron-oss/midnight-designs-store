@@ -41,3 +41,12 @@ test('identical authenticated recovery uploads can resume in the canonical relea
  const g=githubWorkingFixture(),store=new BasicGithubAssets(config,{fetchImpl:g.fetch,sleep:async()=>{}}),job='recovery-v2-'+'ab'.repeat(32);for(const id of [102,101])g.releases.set(id,{id,draft:true,tag_name:'md-basic-'+job,body:store.body(job)});assert.equal((await store.find(job)).id,101);assert.equal(g.releases.size,2,'Recovery selection never deletes a candidate');
  const working=randomUUID();for(const id of [201,202])g.releases.set(id,{id,draft:true,tag_name:'md-basic-'+working,body:store.body(working)});await assert.rejects(store.find(working),/Duplicate working releases/);g.releases.get(102).body='foreign';await assert.rejects(store.find(job),/not the tracked/);
 });
+
+test('storage primary throttling waits for the exact reset and makes no calls during its cooldown',async()=>{
+ let now=500000,calls=0;const store=new BasicGithubAssets(config,{clock:()=>now,fetchImpl:async()=>{calls++;return new Response(JSON.stringify({message:'API rate limit exceeded'}),{status:403,headers:{'x-ratelimit-remaining':'0','x-ratelimit-reset':'620'}});}});
+ await assert.rejects(store.api(''),e=>e.status===429&&e.retryAfter===120&&e.retryAt===620000);await assert.rejects(store.api(''),e=>e.status===429&&e.retryAfter===120);assert.equal(calls,1);now=620000;await assert.rejects(store.api(''),e=>e.status===429);assert.equal(calls,2);
+});
+test('secondary storage throttling is retryable without disguising permission errors',async()=>{
+ const rate=new BasicGithubAssets(config,{fetchImpl:async()=>new Response(JSON.stringify({message:'You have exceeded a secondary rate limit.'}),{status:403})});await assert.rejects(rate.api(''),e=>e.status===429&&e.retryAfter===60);
+ const denied=new BasicGithubAssets(config,{fetchImpl:async()=>new Response(JSON.stringify({message:'Resource not accessible by personal access token'}),{status:403})});await assert.rejects(denied.api(''),e=>e.status===409&&/HTTP 403/.test(e.message));assert.equal(denied.retryAt,0);
+});
