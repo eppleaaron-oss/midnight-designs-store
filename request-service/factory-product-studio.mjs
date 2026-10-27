@@ -13,6 +13,7 @@ import {artworkBounds,visibleGeometry} from './factory-artwork-bounds.mjs';
 import {mockupImageURL} from './factory-mockups.mjs';
 import {assertBrandingPlacement} from './factory-branding.mjs';
 import {BasicGithubAssets} from './factory-basic-github.mjs';
+import {removeArtworkBackground} from './public/product-studio-state.js';
 
 const ROOT='/api/owner/ai-factory/product-studio',REPO='eppleaaron-oss/midnight-designs-store';
 const hash=b=>createHash('sha256').update(b).digest('hex');
@@ -25,11 +26,11 @@ const supplierPanelType=(v,placement)=>supplierPanel(v,placement)?.type||placeme
 const fingerprint=d=>hash(JSON.stringify((d.sync_variants||[]).map(v=>[v.id,v.variant_id,(v.files||[]).filter(f=>f.type!=='preview').map(f=>[f.type,f.id,f.hash,f.url]),v.options||[]])));
 export function studioLayers(panel){
  if(!panel||!Array.isArray(panel.layers)||panel.layers.length>8||!(/^#[0-9a-f]{6}$/i.test(panel.background)||panel.background===null))hold('Choose a background and up to eight artwork layers.',400);
- return {background:panel.background,layers:panel.layers.map(l=>{if(typeof l.asset!=='string'||!/^[-a-z0-9:]{1,160}$/i.test(l.asset))hold('Select saved original artwork.',400);return {asset:l.asset,x:value(l.x,0,1,'horizontal position'),y:value(l.y,0,1,'vertical position'),width:value(l.width,.001,4,'artwork width'),rotation:value(l.rotation??0,-180,180,'rotation'),mirror:l.mirror===true,allowModify:l.allowModify===true};})};
+ return {background:panel.background,layers:panel.layers.map(l=>{if(typeof l.asset!=='string'||!/^[-a-z0-9:]{1,160}$/i.test(l.asset))hold('Select saved original artwork.',400);return {asset:l.asset,x:value(l.x,0,1,'horizontal position'),y:value(l.y,0,1,'vertical position'),width:value(l.width,.001,4,'artwork width'),rotation:value(l.rotation??0,-180,180,'rotation'),mirror:l.mirror===true,allowModify:l.allowModify===true,...(l.backgroundRemoval!==undefined?{backgroundRemoval:{tolerance:value(l.backgroundRemoval?.tolerance,0,150,'background removal strength')}}:{})};})};
 }
 export async function renderStudioPanel(area,panel,read){
  const sources=[];
- for(const l of studioLayers(panel).layers){const a=await read(l.asset),data=Buffer.from(a.data),meta=await sharp(data,{limitInputPixels:40_000_000}).autoOrient().metadata(),m=meta.autoOrient||meta;
+ for(const l of studioLayers(panel).layers){const a=await read(l.asset);let data=Buffer.from(a.data);if(l.backgroundRemoval){if(!a.permissions?.reuse)hold('Allow Reuse for this artwork before removing its background.');const {data:pixels,info}=await sharp(data,{limitInputPixels:40_000_000}).autoOrient().toColourspace('srgb').ensureAlpha().raw().toBuffer({resolveWithObject:true});removeArtworkBackground(pixels,info.width,info.height,l.backgroundRemoval.tolerance);data=await sharp(pixels,{raw:{width:info.width,height:info.height,channels:4}}).png().toBuffer();}const meta=await sharp(data,{limitInputPixels:40_000_000}).autoOrient().metadata(),m=meta.autoOrient||meta;
   const w=Math.max(1,Math.round(l.width*area.width)),h=Math.max(1,Math.round(w*m.height/m.width));
   const geometry={x:Math.round(l.x*area.width-w/2),y:Math.round(l.y*area.height-h/2),width:w,height:h,canvasWidth:area.width,canvasHeight:area.height,dpi:area.dpi,safeRect:l.allowModify?{x:-area.width,y:-area.height,width:area.width*3,height:area.height*3}:{x:0,y:0,width:area.width,height:area.height}};
   // Match the preview: exact black padding can extend beyond a black canvas
@@ -48,7 +49,7 @@ export async function studioPlacementIssues(variants,document,read){
   const area=variants.find(v=>v.id===id)?.areas.find(a=>a.placement===placement);if(!area)continue;
   for(const [index,l]of studioLayers(panel).layers.entries()){
    if(l.allowModify||l.rotation||l.mirror)continue;
-   if(!cache.has(l.asset)){const a=await read(l.asset),data=Buffer.from(a.data),meta=await sharp(data).autoOrient().metadata();cache.set(l.asset,{...(meta.autoOrient||meta),bounds:await artworkBounds(data)});}
+   if(!cache.has(l.asset)){const a=await read(l.asset);let data=Buffer.from(a.data);if(l.backgroundRemoval){if(!a.permissions?.reuse)hold('Allow Reuse for this artwork before removing its background.');const {data:pixels,info}=await sharp(data,{limitInputPixels:40_000_000}).autoOrient().toColourspace('srgb').ensureAlpha().raw().toBuffer({resolveWithObject:true});removeArtworkBackground(pixels,info.width,info.height,l.backgroundRemoval.tolerance);data=await sharp(pixels,{raw:{width:info.width,height:info.height,channels:4}}).png().toBuffer();}const meta=await sharp(data).autoOrient().metadata();cache.set(l.asset,{...(meta.autoOrient||meta),bounds:await artworkBounds(data)});}
    const m=cache.get(l.asset),w=Math.max(1,Math.round(l.width*area.width)),h=Math.max(1,Math.round(w*m.height/m.width));
    const geometry={x:Math.round(l.x*area.width-w/2),y:Math.round(l.y*area.height-h/2),width:w,height:h};
    if(panel.background==='#000000'&&m.bounds)geometry.contentBounds={...m.bounds,sourceWidth:m.width,sourceHeight:m.height};
