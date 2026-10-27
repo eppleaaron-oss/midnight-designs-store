@@ -70676,8 +70676,10 @@
       ]
     }
   },
-  "errors": {},
-  "updatedAt": "2026-10-27T23:13:07.350Z",
+  "errors": {
+    "483725842": "Command failed: node scripts/publish-catalog.mjs"
+  },
+  "updatedAt": "2026-10-27T23:21:16.420Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
