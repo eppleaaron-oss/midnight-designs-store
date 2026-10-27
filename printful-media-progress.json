@@ -69365,14 +69365,79 @@
     "86c69d2f514cf0ab518d43880a9f7a1ca7ac1f6792f4d2fc539e9a5790ad1e8c": {
       "productId": "483763072",
       "variant": 12913,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-27T23:01:16.416Z",
       "attempts": 1,
-      "key": "gt-992610345"
+      "key": "gt-992610345",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483763072-12913-all-86c69d2f51-0.jpg",
+          "sha256": "07d7aa2e3f7aac54a5f4cc74b8b480ac5441ab57b56c52ccb06a33fddded629e",
+          "view": "shoe_quarters_left",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5587343851",
+            "5587343852",
+            "5587343853",
+            "5587343854",
+            "5587343872",
+            "5587343875",
+            "5587343878",
+            "5587343882",
+            "5587343883",
+            "5587343884",
+            "5587343885",
+            "5587343886",
+            "5587343889",
+            "5587343959",
+            "5587343980",
+            "5587343983",
+            "5587343984"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 Men's High Top Canvas Shoes · shoe_quarters_left",
+          "label": "shoe_quarters_left",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483763072-12913-all-86c69d2f51-1.jpg",
+          "sha256": "a9b662b880a88ea231594da4495dac51715b7c5e5822105be7124b33773c53a0",
+          "view": "Product details",
+          "style": "Product details",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5587343851",
+            "5587343852",
+            "5587343853",
+            "5587343854",
+            "5587343872",
+            "5587343875",
+            "5587343878",
+            "5587343882",
+            "5587343883",
+            "5587343884",
+            "5587343885",
+            "5587343886",
+            "5587343889",
+            "5587343959",
+            "5587343980",
+            "5587343983",
+            "5587343984"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 Men's High Top Canvas Shoes · Product details",
+          "label": "Product details",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T23:01:50.696Z",
+  "updatedAt": "2026-10-27T23:02:03.957Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
