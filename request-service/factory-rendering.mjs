@@ -64,11 +64,17 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
   if(windowed){
    const l=geometry.x,t=geometry.y,a=Math.max(0,l),b=Math.max(0,t),r=Math.min(width,l+w),bottom=Math.min(height,t+h),v=visibleGeometry(geometry);
    if(r<=a||bottom<=b)error('Artwork is entirely outside the print area.');
-   if((r-a)*(bottom-b)>MAX_PIXELS)error('The visible artwork window exceeds the rendering limit.');
    const fits=v.x>=0&&v.y>=0&&v.x+v.width<=width&&v.y+v.height<=height;
    if(!fits&&(permissions.crop!==true||recipe.protect===true))error('This position clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
-   const input=await sharp(oriented).resize(w,h,{fit:'fill'}).extract({left:a-l,top:b-t,width:r-a,height:bottom-b}).png(pngOptions).toBuffer();
-   overlays.push({input,left:a,top:b});continue;
+   // The supplier's valid native canvas can exceed the per-overlay budget.
+   // Export disjoint bands from the SAME resize, preserving sample alignment,
+   // black padding, alpha and layer order without allocating a giant overlay.
+   const bandHeight=Math.max(1,Math.floor(16_000_000/(r-a)));
+   for(let bandTop=b;bandTop<bottom;bandTop+=bandHeight){
+    const input=await sharp(oriented).resize(w,h,{fit:'fill'}).extract({left:a-l,top:bandTop-t,width:r-a,height:Math.min(bandHeight,bottom-bandTop)}).png(pngOptions).toBuffer();
+    overlays.push({input,left:a,top:bandTop});
+   }
+   continue;
   }
   let image=sharp(oriented).extract({left,top,width:sw,height:sh}).resize(w,h,{fit:'fill'});
   if(recipe.recolor!==undefined&&recipe.recolor!==null)image=image.tint(background(recipe.recolor));
