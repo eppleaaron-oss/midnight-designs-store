@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T17:41:05.987Z",
+  "updatedAt": "2026-10-27T18:44:26.092Z",
   "lastSyncedAt": "2026-10-26T23:10:40.897Z",
   "products": [
     {
@@ -14349,10 +14349,10 @@
       "catalogProductId": 1479,
       "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",
       "category": "pants",
-      "image": "https://midnight-designs.store/images/factory/482923908/7343e1446dd54317b6e092fb0cfa2c1705cfdd53a5bcb832dac9bcac355ca505.jpg",
+      "image": "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
       "images": [
-        "https://midnight-designs.store/images/factory/482923908/7343e1446dd54317b6e092fb0cfa2c1705cfdd53a5bcb832dac9bcac355ca505.jpg",
-        "https://midnight-designs.store/images/factory/482923908/de314c05d2fafe8fb3286474c7d81d3d7b36227a75a000e089effac1d293edd6.jpg"
+        "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
+        "https://midnight-designs.store/images/factory/482923908/5ce77c7bb4c2df9232b75aae5144a7158759a53d8a4c16a7343d56282ae029b7.jpg"
       ],
       "variants": [
         {
@@ -14367,10 +14367,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "https://midnight-designs.store/images/factory/482923908/7343e1446dd54317b6e092fb0cfa2c1705cfdd53a5bcb832dac9bcac355ca505.jpg",
-            "https://midnight-designs.store/images/factory/482923908/de314c05d2fafe8fb3286474c7d81d3d7b36227a75a000e089effac1d293edd6.jpg"
+            "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
+            "https://midnight-designs.store/images/factory/482923908/5ce77c7bb4c2df9232b75aae5144a7158759a53d8a4c16a7343d56282ae029b7.jpg"
           ],
-          "image": "https://midnight-designs.store/images/factory/482923908/7343e1446dd54317b6e092fb0cfa2c1705cfdd53a5bcb832dac9bcac355ca505.jpg"
+          "image": "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg"
         }
       ],
       "description": "Rose Eclipse artwork on All-Over Print Unisex Cotton Wide-Leg Pants. Printed background: Black.",
@@ -14384,8 +14384,8 @@
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "factoryExternalId": "midnight-factory-00fba902-955b-41ca-be37-b3513e120ecf",
       "url": "products/482923908.html",
-      "studioRevision": "e89df662-cce6-4012-b3cc-bf37b2846b95",
-      "studioUpdated": 1793071662899
+      "studioRevision": "d23af66a-241e-4e2e-b65b-526ca5ad3662",
+      "studioUpdated": 1793126470414
     },
     {
       "id": "482918795",
