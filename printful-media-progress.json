@@ -70567,14 +70567,117 @@
     "7d7a8020ada846c7a29fadc83e183846ac98c9a787aa27635c5b5bdce4ca32c4": {
       "productId": "483725842",
       "variant": 46409,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-27T23:12:11.885Z",
       "attempts": 1,
-      "key": "gt-992614973"
+      "key": "gt-992614973",
+      "photos": 4,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
+          "sha256": "734d3c854818d6e535428f8fbe54abfb822eaabbb9d06f14a0189c0762ad7244",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
+          "sha256": "0c0c34703d70f39b0c63c8b949e797c95c21f6b274b06faec1d5a2107610007f",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
+          "sha256": "108b04178ca2fb18590778d4a4c010d10d4be1f9012365bb8389f2d63db03927",
+          "view": "Back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg",
+          "sha256": "8d7ae8788fb8545826b4def6b68ad771999a92676ff7827d58a78e67bc8cad03",
+          "view": "Front",
+          "style": "Ghost",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46409,
+          "storeVariantIds": [
+            "5587145339",
+            "5587145364",
+            "5587145365",
+            "5587145367",
+            "5587145368",
+            "5587145369",
+            "5587145370",
+            "5587145372",
+            "5587145373",
+            "5587145379",
+            "5587145380"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt · Front",
+          "label": "Front",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-27T23:12:48.346Z",
+  "updatedAt": "2026-10-27T23:13:02.479Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 150,
