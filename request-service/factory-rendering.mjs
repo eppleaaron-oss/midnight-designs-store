@@ -27,11 +27,11 @@ function background(value){if(value===null)return {r:0,g:0,b:0,alpha:0};const c=
 // native RGBA frame is retained while other queue jobs and backups use memory.
 function pngChunk(type,data){const b=Buffer.alloc(data.length+12);b.writeUInt32BE(data.length,0);b.write(type,4,4,'ascii');data.copy(b,8);b.writeUInt32BE(crc32(b.subarray(4,8+data.length)),8+data.length);return b;}
 async function renderNativeBands(width,height,dpi,bg,overlays){
- const records=[];for(const o of overlays){const m=await sharp(o.input).metadata();records.push({...o,width:m.width,height:m.height});}
+ const records=[];for(const o of overlays){if(o.resize){records.push(o);continue;}const m=await sharp(o.input).metadata();records.push({...o,width:m.width,height:m.height});}
  const stride=width*4,bandHeight=Math.max(1,Math.floor(1_000_000/width));
  async function* scanlines(){for(let y=0;y<height;y+=bandHeight){const h=Math.min(bandHeight,height-y),inputs=[];
   for(const o of records){const top=Math.max(y,o.top),bottom=Math.min(y+h,o.top+o.height);if(bottom<=top)continue;
-   const input=top===o.top&&bottom===o.top+o.height?o.input:await sharp(o.input).extract({left:0,top:top-o.top,width:o.width,height:bottom-top}).png({compressionLevel:1}).toBuffer();
+   const input=o.resize?await sharp(o.input).resize(o.resize.width,o.resize.height,{fit:'fill'}).extract({left:o.sourceLeft,top:o.sourceTop+top-o.top,width:o.width,height:bottom-top}).png({compressionLevel:1}).toBuffer():top===o.top&&bottom===o.top+o.height?o.input:await sharp(o.input).extract({left:0,top:top-o.top,width:o.width,height:bottom-top}).png({compressionLevel:1}).toBuffer();
    inputs.push({input,left:o.left,top:top-y,...(o.blend?{blend:o.blend}:{})});
   }
   const png=await sharp({create:{width,height:h,channels:4,background:bg}}).composite(inputs).ensureAlpha().png({compressionLevel:1,adaptiveFiltering:true,palette:false}).toBuffer();
@@ -97,6 +97,10 @@ export async function renderArea(area,source,recipe={},permissions={},renderOpti
    if(r<=a||bottom<=b)error('Artwork is entirely outside the print area.');
    const fits=v.x>=0&&v.y>=0&&v.x+v.width<=width&&v.y+v.height<=height;
    if(!fits&&(permissions.crop!==true||recipe.protect===true))error('This position clips artwork. Allow Crop and disable pixel protection, or keep it inside the print area.');
+   // Let each final strip request its exact window directly from the original
+   // resize. Holding large intermediate PNG bands and decoding them for every
+   // small strip wastes memory and CPU on native pants canvases.
+   if(width*height>MAX_PIXELS){overlays.push({input:oriented,left:a,top:b,width:r-a,height:bottom-b,resize:{width:w,height:h},sourceLeft:a-l,sourceTop:b-t});continue;}
    // The supplier's valid native canvas can exceed the per-overlay budget.
    // Export disjoint bands from the SAME resize, preserving sample alignment,
    // black padding, alpha and layer order without allocating a giant overlay.
