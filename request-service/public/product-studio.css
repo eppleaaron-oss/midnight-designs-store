@@ -7,3 +7,5 @@ label{min-width:0;overflow-wrap:anywhere}input,select{width:100%;max-width:100%}
 .placement-editor{border:1px solid var(--gold);background:#30281f;border-radius:8px;padding:12px;margin:12px 0}.placement-editor p{margin:0 0 10px;font-size:13px}.placement-editor button{width:100%}
 
 #backgroundDialog{color:var(--cream);background:var(--panel);border:1px solid var(--gold);border-radius:12px;width:min(580px,94vw);max-height:90vh;overflow:auto;padding:22px}#backgroundDialog::backdrop{background:#000b}#backgroundDialog p{font-size:13px}#backgroundDialog button{width:100%}.background-preview{background:repeating-conic-gradient(#8b8986 0% 25%,#d3cec6 0% 50%) 50%/24px 24px;min-height:160px;display:flex;justify-content:center;align-items:center;margin:16px 0}.background-preview img{max-width:100%;max-height:42vh;object-fit:contain}#backgroundStatus{min-height:2em}#backgroundStrength{accent-color:var(--gold)}
+
+.placed-designs{margin:10px 0}.placed-designs [aria-pressed=true]{border:2px solid var(--gold);background:#4b3d2c}.placed-designs img{height:72px}#remove{border-color:#b87575;color:#ffbebe}#undoDelete{border-color:var(--gold)}
