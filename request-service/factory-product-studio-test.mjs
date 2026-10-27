@@ -500,3 +500,24 @@ test('fast manual PNG export keeps exactly the same pixels, canvas dimensions, a
  const png=await sharp({create:{width:80,height:80,channels:4,background:{r:180,g:20,b:30,alpha:.5}}}).png().toBuffer(),area={width:200,height:200,dpi:100},recipe={background:null};
  const standard=await renderArea(area,png,recipe,{reuse:true},{allowLowResolution:true}),fast=await renderArea(area,png,recipe,{reuse:true},{allowLowResolution:true,preserveLayerOrder:true});const a=await sharp(standard.data).raw().toBuffer(),b=await sharp(fast.data).raw().toBuffer();assert.deepEqual(b,a);const meta=await sharp(fast.data).metadata();assert.equal(meta.width,200);assert.equal(meta.height,200);assert.equal(meta.density,100);assert.equal(meta.hasAlpha,true);
 });
+
+
+test('canvas clicks select topmost actual design across proportions, rotation, mirroring and empty space',async()=>{
+ const {designAtPoint}=await import('./public/product-studio-state.js');
+ const a={width:1000,height:500},assets={one:{width:100,height:200},two:{width:100,height:100,contentBounds:{x:40,y:40,width:20,height:20}}},art=l=>assets[l.asset],point=(x,y)=>({x,y,inside:true});
+ const layers=[{asset:'one',x:.25,y:.5,width:.1,rotation:0},{asset:'two',x:.75,y:.5,width:.2,rotation:0}];
+ assert.equal(designAtPoint(layers,a,art,point(.25,.5)),0);assert.equal(designAtPoint(layers,a,art,point(.75,.5)),1);assert.equal(designAtPoint(layers,a,art,point(.68,.5)),-1);assert.equal(designAtPoint(layers,a,art,point(.5,.5)),-1);
+ assert.equal(designAtPoint([...layers,{...layers[0]}],a,art,point(.25,.5)),2);assert.equal(designAtPoint(layers,a,art,{x:.25,y:.5,inside:false}),-1);
+ const turned=[{...layers[0],rotation:90}];assert.equal(designAtPoint(turned,a,art,point(.34,.5)),0);assert.equal(designAtPoint(turned,a,art,point(.25,.68)),-1);
+ const asym=l=>({width:100,height:100,contentBounds:{x:0,y:0,width:20,height:100}});assert.equal(designAtPoint([{...layers[0],mirror:true}],a,asym,point(.29,.5)),0);assert.equal(designAtPoint([{...layers[0],mirror:true}],a,asym,point(.21,.5)),-1);
+});
+
+test('deleting one chosen design saves and reopens, preserves other panels and updates existing Printful files',async t=>{
+ const {deleteDesignLayer}=await import('./public/product-studio-state.js'),f=await fixture(t),d=await f.document(),first=d.variants[11].front.layers[0];
+ d.variants[11].front.layers=[{...first,x:.25,width:.2},{...first,x:.75,width:.2}];d.variants[11].back=structuredClone(d.variants[11].front);
+ const before=structuredClone(d.variants[11].front);d.variants[11].front=deleteDesignLayer(d.variants[11].front,1);assert.equal(before.layers.length,2);assert.deepEqual(d.variants[11].front.layers,[before.layers[0]]);
+ const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const reopened=await f.open();assert.deepEqual(reopened.document,saved.document);assert.equal(reopened.document.variants[11].back.layers.length,2);
+ await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'printful'});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.supplier.sync_product.id,123);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);
+ const output=f.job().document.outputs.find(o=>o.placement==='front')||f.job().document.outputs[0],row=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),png=await f.options.assets.read(JSON.parse(row.remote).asset),{data,info}=await sharp(png).raw().toBuffer({resolveWithObject:true}),pixel=x=>[...data.subarray((50*info.width+x)*info.channels,(50*info.width+x)*info.channels+3)];assert.deepEqual(pixel(25),[255,0,0]);assert.deepEqual(pixel(75),[0,0,0]);
+ assert.equal(deleteDesignLayer(deleteDesignLayer(before,0),0).layers.length,0);assert.throws(()=>deleteDesignLayer(before,-1),/Select a design/);
+});
