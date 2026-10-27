@@ -521,3 +521,12 @@ test('deleting one chosen design saves and reopens, preserves other panels and u
  const output=f.job().document.outputs.find(o=>o.placement==='front')||f.job().document.outputs[0],row=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),png=await f.options.assets.read(JSON.parse(row.remote).asset),{data,info}=await sharp(png).raw().toBuffer({resolveWithObject:true}),pixel=x=>[...data.subarray((50*info.width+x)*info.channels,(50*info.width+x)*info.channels+3)];assert.deepEqual(pixel(25),[255,0,0]);assert.deepEqual(pixel(75),[0,0,0]);
  assert.equal(deleteDesignLayer(deleteDesignLayer(before,0),0).layers.length,0);assert.throws(()=>deleteDesignLayer(before,-1),/Select a design/);
 });
+
+
+test('large native pants panels render oversized padded artwork in exact adjacent bands without shrinking or seams',async()=>{
+ const source=await sharp({create:{width:1000,height:1000,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:400,height:400,channels:4,background:'#ff0000'}}).png().toBuffer(),left:300,top:300}]).png().toBuffer();
+ const area={width:7000,height:6000,dpi:150},geometry={canvasWidth:7000,canvasHeight:6000,dpi:150,width:14000,height:14000,x:-3500,y:-4000,contentBounds:{x:300,y:300,width:400,height:400,sourceWidth:1000,sourceHeight:1000},safeRect:{x:0,y:0,width:7000,height:6000}};
+ const result=await renderArea(area,source,{background:'#000000',geometry},{reuse:true},{preserveLayerOrder:true,allowLowResolution:true});const meta=await sharp(result.data).metadata();assert.equal(meta.width,7000);assert.equal(meta.height,6000);assert.equal(meta.density,150);
+ // Compare the resized original across every band join, not just flat colors.
+ for(const y of [0,2284,2285,2286,4570,5998]){const region={left:0,top:y,width:7000,height:1};const actual=await sharp(result.data).extract(region).ensureAlpha().raw().toBuffer(),expected=await sharp(source).resize(14000,14000,{fit:'fill'}).extract({left:3500,top:y+4000,width:7000,height:1}).ensureAlpha().raw().toBuffer();assert.deepEqual(actual,expected,'exact pixels at band row '+y);}
+});
