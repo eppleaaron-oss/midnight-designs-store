@@ -479,3 +479,14 @@ test('scanline background removal matches independent flood fill around narrow g
  const {removeArtworkBackground}=await import('./public/product-studio-state.js');let random=12345;const next=()=>{random=(Math.imul(random,1664525)+1013904223)>>>0;return random/2**32;};
  for(let n=0;n<100;n++){const w=15,h=11,p=new Uint8Array(w*h*4).fill(255);for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++)if(next()<.4)p.set([200,0,20,255],(y*w+x)*4);p.set([200,0,20,255],(5*w+7)*4);const expected=p.slice(),seen=new Set(),queue=[0];while(queue.length){const i=queue.shift();if(seen.has(i))continue;seen.add(i);if(expected[i*4]!==255)continue;expected[i*4+3]=0;const x=i%w,y=Math.floor(i/w);if(x)queue.push(i-1);if(x+1<w)queue.push(i+1);if(y)queue.push(i-w);if(y+1<h)queue.push(i+w);}removeArtworkBackground(p,w,h,0);assert.deepEqual(p,expected);}
 });
+
+test('a later owner browser revision recovers after an older checkpoint, while stale tabs remain rejected',async t=>{
+ const f=await fixture(t),d=await f.document();await f.call('save',{source:f.p.id,revision:0,document:d});d.variants[11].front.layers[0].x=.7;
+ const restored=await f.call('save',{source:f.p.id,revision:4,document:d});assert.equal(restored.revision,5);assert.equal((await f.open()).document.variants[11].front.layers[0].x,.7);
+ await assert.rejects(f.call('save',{source:f.p.id,revision:1,document:await f.document()}),/another tab/);assert.equal(f.counts().puts,0);
+});
+test('explicit cropping of very large artwork uses its actual bounds rather than a three-panel artificial safe limit',async()=>{
+ const png=await sharp({create:{width:100,height:100,channels:4,background:'#ff0000'}}).png().toBuffer();
+ const panel={background:'#000000',layers:[{asset:'art:one',x:0,y:.5,width:4,allowModify:true}]};const r=await renderStudioPanel({width:100,height:100,dpi:100},panel,async()=>({data:png,permissions:{reuse:true}}));assert.equal(r.width,100);assert.equal(r.height,100);const px=await sharp(r.data).raw().toBuffer();assert.equal(px[0],255);
+ await assert.rejects(renderStudioPanel({width:100,height:100,dpi:100},{...panel,layers:[{...panel.layers[0],allowModify:false}]},async()=>({data:png,permissions:{reuse:true}})),/safe region/);
+});
