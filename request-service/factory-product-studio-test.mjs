@@ -530,3 +530,14 @@ test('large native pants panels render oversized padded artwork in exact adjacen
  // Compare the resized original across every band join, not just flat colors.
  for(const y of [0,2284,2285,2286,4570,5998]){const region={left:0,top:y,width:7000,height:1};const actual=await sharp(result.data).extract(region).ensureAlpha().raw().toBuffer(),expected=await sharp(source).resize(14000,14000,{fit:'fill'}).extract({left:3500,top:y+4000,width:7000,height:1}).ensureAlpha().raw().toBuffer();assert.deepEqual(actual,expected,'exact pixels at band row '+y);}
 });
+
+
+test('unchanged supplier-processing polls yield their age priority to another waiting product',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();const j=f.job(),output=j.document.outputs[0];
+ f.supplier.sync_variants[0].files=f.supplier.sync_variants[0].files.map(file=>file.type==='front'?{...file,url:output.url,status:'waiting'}:file);
+ const native=structuredClone(j.document);native.outputs=[];native.tasks=[];native.images=[];
+ f.db.prepare('UPDATE factory_studio_jobs SET updated=? WHERE id=?').run(j.updated-700000,j.id);
+ f.db.prepare('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)').run('waiting-render','456','piece:two',1,'printful','rendering',JSON.stringify(native),j.updated-600000);
+ f.restart();await f.tick();assert.equal(JSON.parse(f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='waiting-render'").get().document).outputs.length,0,'oldest supplier poll receives its turn');
+ await f.tick();assert.equal(JSON.parse(f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='waiting-render'").get().document).outputs.length,1,'a pending supplier file cannot repeatedly reclaim the oldest slot without progress');
+});
