@@ -422,3 +422,21 @@ test('stores a native print canvas above 40 megapixels without shrinking the app
  await f.tick();await f.tick();assert.notEqual(f.job().state,'failed',f.job().error);
  const out=f.job().document.outputs[0];assert.equal(out.width,6500);assert.equal(out.height,6500);assert.ok(out.asset);
 });
+
+test('adding several designs preserves existing layers, proportions and the eight-design boundary',async()=>{
+ const {addDesignLayers}=await import('./public/product-studio-state.js');
+ const original={background:'#000000',layers:[{asset:'original',x:.2,y:.3,width:.25,rotation:0,mirror:false}]},saved=structuredClone(original),art=[{asset:'one',width:200,height:100},{asset:'two',width:100,height:200}],a={width:1000,height:1000};
+ const next=addDesignLayers(original,art,a);assert.deepEqual(original,saved);assert.deepEqual(next.layers[0],saved.layers[0]);assert.equal(next.layers.length,3);assert.notEqual(next.layers[1].x,next.layers[2].x);assert.ok(next.layers[1].width<=.325);assert.equal(addDesignLayers(original,art,a,{replace:true}).layers.length,2);
+ const full={background:'#000000',layers:Array.from({length:8},()=>saved.layers[0])};assert.throws(()=>addDesignLayers(full,art,a),/eight designs/);assert.equal(full.layers.length,8);
+});
+
+test('two different designs survive Save, reopen and Finish in the same exact print file',async t=>{
+ const f=await fixture(t),blue=await sharp({create:{width:100,height:100,channels:4,background:'#0000ff'}}).png().toBuffer();f.db.prepare('INSERT INTO factory_artwork VALUES(?,?,?,?,?)').run('art2','Blue detail','image/png',blue,JSON.stringify({reuse:true,modify:false,crop:false}));
+ const d=await f.document();d.variants[11].front.layers=[{asset:'art:art1',x:.25,y:.5,width:.25,rotation:0},{asset:'art:art2',x:.75,y:.5,width:.25,rotation:0}];const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();assert.deepEqual((await f.open()).document.variants[11].front.layers,saved.document.variants[11].front.layers);
+ await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'printful'});for(let n=0;n<15&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const output=f.job().document.outputs[0],row=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),png=await f.options.assets.read(JSON.parse(row.remote).asset),{data,info}=await sharp(png).raw().toBuffer({resolveWithObject:true}),pixel=x=>[...data.subarray((50*info.width+x)*info.channels,(50*info.width+x)*info.channels+3)];assert.deepEqual(pixel(25),[255,0,0]);assert.deepEqual(pixel(75),[0,0,255]);assert.equal(f.counts().puts,1);
+});
+
+test('an older render receives a turn instead of starving behind newer mockup and publishing work',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();const j=f.job(),other=structuredClone(j.document);other.outputs=[];other.tasks=[];other.images=[];
+ f.db.prepare('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)').run('waiting-native','456','piece:two',1,'printful','rendering',JSON.stringify(other),j.updated-600000);await f.tick();const row=f.db.prepare("SELECT document FROM factory_studio_jobs WHERE id='waiting-native'").get();assert.equal(JSON.parse(row.document).outputs.length,1);
+});
