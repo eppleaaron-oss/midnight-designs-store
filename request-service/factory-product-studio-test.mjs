@@ -397,7 +397,7 @@ test('native image processing remains serial when multiple products are eligible
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});await f.tick();const j=f.job();
  f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','rendering',JSON.stringify(j.document),j.updated-1);
  let release,entered=0;const gate=new Promise(r=>release=r),put=f.options.assets.put;f.options.assets.put=async(...a)=>{entered++;await gate;return put(...a);};f.restart();
- const first=f.tick();for(let n=0;n<30&&!entered;n++)await new Promise(r=>setTimeout(r,5));assert.equal(entered,1);await f.tick();assert.equal(entered,1);release();await first;assert.equal(entered,1);
+ const first=f.tick();try{for(let n=0;n<600&&!entered;n++)await new Promise(r=>setTimeout(r,5));assert.equal(entered,1);await f.tick();assert.equal(entered,1);}finally{release();await first;}assert.equal(entered,1);
 });
 
 test('generated print bytes go directly to verified asset storage instead of churning the database backup',async t=>{
@@ -623,4 +623,15 @@ test('successive native panels release renderer memory before the next queued pr
  for(let i=0;i<2;i++){const r=await renderStudioPanelIsolated(area,panel,read);peakChild=Math.max(peakChild,r.peakKiB*1024);if(r.width!==10000||r.height!==9000)throw Error('dimensions changed');}
  console.log(JSON.stringify({growth:process.memoryUsage().rss-start,combined:start+peakChild,resident:resident.length}));`;
  const child=spawnSync(process.execPath,['--input-type=module','-e',script],{cwd:new URL('.',import.meta.url),encoding:'utf8',timeout:180000});assert.equal(child.status,0,child.stderr);const r=JSON.parse(child.stdout.trim());assert.ok(r.growth<50*1024*1024,'renderer pages must not accumulate in app: '+r.growth);assert.ok(r.combined<490*1024*1024,'app plus active renderer must fit 512 MiB: '+r.combined);
+});
+
+test('owner placements transfer across hoodie sets, keep native sizes, save real mockups and never publish',async t=>{
+ const f=await fixture(t);const other=await sharp({create:{width:100,height:200,channels:4,background:'#00ff00'}}).png().toBuffer();f.db.prepare('INSERT INTO factory_artwork VALUES(?,?,?,?,?)').run('art2','New hoodie front','image/png',other,JSON.stringify({reuse:true,modify:false,crop:false}));
+ const reference={...f.p,id:'piece:reference',supplierId:'456',choice:{setId:'rose',product:390}};f.p.choice.setId='new';f.options.editor.library=()=>({pieces:[f.p,reference],products:[],sets:[{id:'rose',name:'Rose',parts:{front:{artwork:'art1'}}},{id:'new',name:'New hoodie',parts:{front:{artwork:'art2'}}}]});
+ const bp=await f.options.blueprints.load(),supplier=structuredClone(f.supplier),panels={front:{background:'#000000',layers:[{asset:'art:art1',x:.5,y:.5,width:.5}]},back:{background:'#000000',layers:[]}},referenceDoc={product:390,sourceJob:'reference-job',supplier,blueprint:bp,variants:{11:panels,12:panels},printfulUpdated:true,images:[{asset:'old'}]};
+ f.db.prepare('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)').run('reference-job','456',reference.id,1,'mockups','completed',JSON.stringify(referenceDoc),1);f.db.prepare('INSERT INTO factory_studio_drafts VALUES(?,?,?,?,?)').run('456',reference.id,1,JSON.stringify({variants:referenceDoc.variants}),1);
+ const s=factoryProductStudio(f.options),job=await s.followExample(f.p.id,'reference-job');assert.equal(job.supplier,'123');let record=f.db.prepare('SELECT * FROM factory_studio_jobs WHERE id=?').get(job.id),d=JSON.parse(record.document);assert.equal(record.target,'mockups');assert.equal(d.variants[11].front.layers[0].asset,'art:art2');assert.equal(d.variants[11].front.layers[0].width,.25,'portrait retains proportions inside the square example');assert.equal(d.variants[11].front.layers[0].allowModify,false);
+ assert.equal((await s.followExample(f.p.id,'reference-job')).id,job.id,'lost acknowledgement reuses the exact update');
+ for(let i=0;i<40;i++){await f.tick();record=f.db.prepare('SELECT * FROM factory_studio_jobs WHERE id=?').get(job.id);if(record.state==='completed')break;}
+ assert.equal(record.state,'completed',record.error);d=JSON.parse(record.document);assert.equal(d.printfulUpdated,true);assert.ok(d.images.length);assert.ok(d.tasks.every(t=>t.key&&t.state==='saved'));assert.equal(d.storeUpdated,undefined);assert.equal(f.calls.filter(c=>c.url.endsWith('/dispatches')).length,0);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);assert.ok(f.supplier.sync_variants.every(v=>v.retail_price==='49.99'));
 });
