@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T06:24:34.348Z",
+  "updatedAt": "2026-10-28T06:25:27.859Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -72338,6 +72338,48 @@
       "catalogProductId": 1481,
       "photos": [
         {
+          "image": "assets/product-photos/484276499-46347-all-15ae4ea023-0.jpg",
+          "sha256": "4d19a94c1240bf7df9175616463765e8fadb4de9c0edf07e7dec3a86289ad43d",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5590147768",
+            "5590147793",
+            "5590147794",
+            "5590147795",
+            "5590147796",
+            "5590147799",
+            "5590147803"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484276499-46347-all-15ae4ea023-1.jpg",
+          "sha256": "0ec517d78fdf7ef524254a172167028ac343d26b8bba7e2accad674847c03045",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46347,
+          "storeVariantIds": [
+            "5590147768",
+            "5590147793",
+            "5590147794",
+            "5590147795",
+            "5590147796",
+            "5590147799",
+            "5590147803"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
           "image": "assets/product-photos/484276499-46347-all-3e5d7301cf-0.jpg",
           "sha256": "a048112a3bcd3da64e46634d00affa6d67f572636305fbbdf4c31f92ef63bda2",
           "view": "front_dtfabric",
@@ -72423,8 +72465,8 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "b9cc0524654cda44c8be0a30ef1ae09d579e12d167fc8616d826062670a128b7",
-      "supplierPreviews": "5b60360d18fb1b7f10a01843522518990cd99489b0b8aa9c36d0d9534ce79b2e"
+      "supplierPreviews": "5b60360d18fb1b7f10a01843522518990cd99489b0b8aa9c36d0d9534ce79b2e",
+      "allReportedViews": "c9e50aa40c8e294a6712d7430d28c7d674ffd0875c195fb2b10535eae4424b64"
     },
     "484282522": {
       "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
