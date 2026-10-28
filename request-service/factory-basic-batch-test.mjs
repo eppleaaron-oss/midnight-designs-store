@@ -138,3 +138,10 @@ test('a temporary quote outage retries the existing item while preserving verifi
  const f=fixture();t.after(()=>f.db.close());f.addPlan('p');f.recipes[0].charges={verified:true,extraCents:0,shippingCents:null,source:'Verified included print'};await f.start();await f.batch.tick();const read=f.basic.batchCurrent;let calls=0;f.basic.batchCurrent=()=>({...read(),pricing:{status:'held'}});
  f.basic.confirmBatchCharges=async(id,key)=>{assert.equal(id,'made1');assert.equal(key,'frozen:made1');calls++;if(calls===1)throw TypeError('fetch failed');};await f.batch.tick();assert.equal(f.batch.snapshot().status,'running');await f.restart().tick();assert.equal(calls,1);f.advance(30001);await f.batch.tick();assert.equal(calls,2);assert.equal(f.counts().made,1);assert.equal(f.counts().approved,0);assert.equal(f.batch.snapshot().retries.length,0);
 });
+
+test('AI Made continuation waits for the saved placement update and mockups without approving the store',async t=>{
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();f.run("UPDATE factory_basic_batches SET target='ai-made'");let ready=false,followed=0;
+ f.batch.setFollower(async()=>{followed++;return ready;});await f.batch.tick();let item=f.basic.batchCurrent();f.run("UPDATE factory_basic_items SET closed=1,status='supplier_created',decision='supplier_only',cleanup=? WHERE id=?",JSON.stringify({verified:true}),item.id);
+ await f.batch.tick();assert.equal(f.counts().made,1);assert.equal(followed,1);assert.equal(f.counts().approved,0);
+ ready=true;await f.batch.tick();assert.equal(f.counts().made,2);item=f.basic.batchCurrent();f.run("UPDATE factory_basic_items SET closed=1,status='supplier_created',decision='supplier_only',cleanup=? WHERE id=?",JSON.stringify({verified:true}),item.id);await f.batch.tick();assert.equal(f.batch.snapshot().status,'complete');assert.equal(f.counts().approved,0);assert.equal(f.batch.snapshot().published,0);
+});
