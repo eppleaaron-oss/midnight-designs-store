@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T06:09:20.623Z",
+  "updatedAt": "2026-10-28T06:09:25.816Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -54808,11 +54808,36 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/483734104-supplier-e52a88f549982a03f527.jpg",
           "sha256": "5351092123123ac1909aafda861a641f24451eaa9a22689c32959e3fe8a6cb37"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46256,
+          "storeVariantIds": [
+            "5587234693",
+            "5587234697",
+            "5587234703",
+            "5587234706",
+            "5587234707",
+            "5587234708",
+            "5587234709",
+            "5587234710",
+            "5587234711",
+            "5587234712",
+            "5587234715"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483734104-supplier-9b4bd3b48cee36a281de.jpg",
+          "sha256": "65cb7985aff55472da9b15e96f2023df2282efb92d7f3160973fd7f893384217"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "000c114f9c339ec0e4a2359dcd11ef2ccf00ec3e964e622432049b2d8079afd2",
-      "supplierPreviews": "a557fbb3747f195437f3430dfe498dfd62ba5ee478a246ef87004b3e33c751d8"
+      "supplierPreviews": "b7405c03b827a3a8f20bb777dee1f8bb942e9b3c8ab7869cf74af9da878d3088"
     },
     "483741826": {
       "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts",

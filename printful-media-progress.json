@@ -71016,11 +71016,11 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-28T06:09:20.863Z",
+  "updatedAt": "2026-10-28T06:12:23.417Z",
   "catalogAudit": {
     "supplierProducts": 180,
-    "eligible": 11,
-    "importedPreviews": 10,
+    "eligible": 144,
+    "importedPreviews": 11,
     "held": [],
     "checkedAt": "2026-10-28T06:08:44.444Z"
   },
