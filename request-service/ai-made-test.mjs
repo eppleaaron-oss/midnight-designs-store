@@ -3,6 +3,10 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 function media(fetch=()=>{}){const context={window:{},location:{origin:'https://backend.test'},URL,AbortSignal,fetch};vm.runInNewContext(readFileSync(new URL('./public/ai-made-data.js',import.meta.url),'utf8'),context);return context.window.MidnightMadeMedia;}
+test('gallery wording distinguishes new verified mockups from an earlier product revision',()=>{
+ const m=media(),row={supplierId:'123',update:{job:{id:'current',state:'verifying_store',revision:2},draftRevision:2}},index={products:{123:{studioRevision:'current'}}};
+ assert.match(m.photoNote(row,index),/completed Printful mockups/);assert.match(m.updateStatus(row.update),/verifying store/);index.products['123'].studioRevision='older';assert.match(m.photoNote(row,index),/do not confirm this draft/);
+});
 test('AI Made matches permanent photos to the exact supplier ID and keeps all views',()=>{
  const m=media(),index={products:{123:{photos:[{image:'assets/front.jpg',view:'Front'},{image:'assets/back.jpg',view:'Back'}],originalImage:'https://cdn.test/original.png'},456:{photos:[{image:'assets/wrong.jpg'}]}}};
  const images=m.images({supplierId:123},index);assert.equal(images.length,3);assert.equal(images[0].url,'https://midnight-designs.store/assets/front.jpg');assert.equal(images[1].label,'Back');assert.equal(m.images({supplierId:999},index).length,0);
