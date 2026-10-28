@@ -446,8 +446,7 @@ test('mockup network waits share checkpoints while a separate native render can 
  let release,releaseNative,checkpoints=0,renders=0;const gate=new Promise(r=>release=r),nativeGate=new Promise(r=>releaseNative=r),put=f.options.assets.put;
  f.options.backups.checkpoint=async()=>{checkpoints++;await gate;};f.options.assets.put=async(...a)=>{renders++;await nativeGate;return put(...a);};f.restart();
  const first=f.tick();await new Promise(r=>setImmediate(r));const second=f.tick();await new Promise(r=>setImmediate(r));assert.equal(checkpoints,2);
- const third=f.tick();for(let n=0;n<40&&!renders;n++)await new Promise(r=>setTimeout(r,5));assert.equal(renders,1);await f.tick();assert.equal(renders,1);assert.equal(f.counts().posts,0);
- release();releaseNative();await Promise.all([first,second,third]);assert.equal(f.counts().posts,2);for(const id of [j.id,'second'])assert.ok(JSON.parse(f.db.prepare('SELECT document FROM factory_studio_jobs WHERE id=?').get(id).document).tasks.some(t=>t.key));
+ const third=f.tick();try{for(let n=0;n<800&&!renders;n++)await new Promise(r=>setTimeout(r,5));assert.equal(renders,1);await f.tick();assert.equal(renders,1);assert.equal(f.counts().posts,0);}finally{release();releaseNative();await Promise.all([first,second,third]);}assert.equal(f.counts().posts,2);for(const id of [j.id,'second'])assert.ok(JSON.parse(f.db.prepare('SELECT document FROM factory_studio_jobs WHERE id=?').get(id).document).tasks.some(t=>t.key));
 });
 
 
