@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-28T06:25:27.877Z",
-  "lastSyncedAt": "2026-10-28T06:25:27.877Z",
+  "updatedAt": "2026-10-28T06:27:22.864Z",
+  "lastSyncedAt": "2026-10-28T06:27:22.864Z",
   "products": [
     {
       "id": "484288453",
@@ -1163,6 +1163,8 @@
       "category": "pants",
       "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
       "images": [
+        "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+        "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg",
         "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
         "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg",
         "assets/product-photos/484271507-supplier-9b81e242ff37348261b5.jpg",
@@ -1181,10 +1183,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119174",
@@ -1198,10 +1200,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119182",
@@ -1215,10 +1217,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119183",
@@ -1232,10 +1234,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119185",
@@ -1249,10 +1251,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119186",
@@ -1266,10 +1268,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119188",
@@ -1283,10 +1285,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119192",
@@ -1300,10 +1302,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119198",
@@ -1317,10 +1319,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119202",
@@ -1334,10 +1336,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         },
         {
           "id": "5590119205",
@@ -1351,10 +1353,10 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
-            "assets/product-photos/484271507-46253-all-2a57dd1b91-1.jpg"
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+            "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg"
           ],
-          "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg"
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg"
         }
       ],
       "url": "products/484271507.html",

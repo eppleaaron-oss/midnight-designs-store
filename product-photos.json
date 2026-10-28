@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T06:25:27.859Z",
+  "updatedAt": "2026-10-28T06:27:22.846Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -72228,6 +72228,56 @@
       "catalogProductId": 1479,
       "photos": [
         {
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+          "sha256": "1cad88215f25d40c9628ffc954caa45822f0e23ecfcf51c8c61f919e3b42596f",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5590119148",
+            "5590119174",
+            "5590119182",
+            "5590119183",
+            "5590119185",
+            "5590119186",
+            "5590119188",
+            "5590119192",
+            "5590119198",
+            "5590119202",
+            "5590119205"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg",
+          "sha256": "e4032d8d9c19140bfa6557e81f9911420c2e8742af61a6dea9ce09e2b1728f80",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5590119148",
+            "5590119174",
+            "5590119182",
+            "5590119183",
+            "5590119185",
+            "5590119186",
+            "5590119188",
+            "5590119192",
+            "5590119198",
+            "5590119202",
+            "5590119205"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
           "image": "assets/product-photos/484271507-46253-all-2a57dd1b91-0.jpg",
           "sha256": "ec607aa35d1e315e549a0d11b4fa877b75ba0ff58d62e3d0b3b45c6665c6e55e",
           "view": "front_dtfabric",
@@ -72329,8 +72379,8 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "ce4f65b0e8f62f0f1d10ce044ff87d764e3b4b25c2e3ec7d0825f3db1ec33cf4",
-      "supplierPreviews": "53c6e567ac58aaef4811ff2371feff8f1a918523ffaf23a0cd7ba841385ec282"
+      "supplierPreviews": "53c6e567ac58aaef4811ff2371feff8f1a918523ffaf23a0cd7ba841385ec282",
+      "allReportedViews": "b538a57a99e809b4ed8dcc324908c4fdfe61b3f100d79a683af7fdc3d9bc1853"
     },
     "484276499": {
       "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts",
