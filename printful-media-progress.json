@@ -72198,13 +72198,14 @@
     "b2a6cb2c6c7faa6c4ecd06ca465e40763b94e374c82276ccc098c2c4c2cd4b5f": {
       "productId": "484271507",
       "variant": 46253,
-      "state": "submitting",
+      "state": "pending",
       "created": "2026-10-28T06:25:30.743Z",
-      "attempts": 1
+      "attempts": 1,
+      "key": "gt-992798566"
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-28T06:25:30.743Z",
+  "updatedAt": "2026-10-28T06:27:07.381Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 144,
