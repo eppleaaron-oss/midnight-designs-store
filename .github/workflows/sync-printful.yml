@@ -12,12 +12,13 @@ on:
     - cron: '17 */6 * * *'
   push:
     branches: [main]
-    paths: ['scripts/printful-client.mjs', '.github/workflows/sync-printful.yml', 'scripts/sync-printful.mjs', 'scripts/sync-product-information.mjs', 'scripts/qa-cart.mjs', 'scripts/qa-admin.mjs']
+    paths: ['scripts/printful-client.mjs', 'scripts/sync-printful.mjs', 'scripts/sync-product-information.mjs', 'scripts/qa-cart.mjs', 'scripts/qa-admin.mjs']
 permissions:
   contents: write
   pages: write
 concurrency:
-  group: printful-catalog
+  # Ignored studio dispatches must not displace the actual publishing run.
+  group: ${{ github.event.client_payload.studio && 'printful-studio-dispatch-noop' || 'printful-catalog' }}
   cancel-in-progress: ${{ github.event_name == 'push' }}
 jobs:
   sync:
