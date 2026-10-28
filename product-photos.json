@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T06:51:58.990Z",
+  "updatedAt": "2026-10-28T06:52:53.200Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -60384,6 +60384,56 @@
       "catalogProductId": 1479,
       "photos": [
         {
+          "image": "assets/product-photos/484013198-46253-all-669b1363ae-0.jpg",
+          "sha256": "ce1899666aeb1fce71b7d0cddfef520f6746e2f1a1c351c22fccd039d1857aa5",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5588631415",
+            "5588631418",
+            "5588631420",
+            "5588631424",
+            "5588631428",
+            "5588631430",
+            "5588631433",
+            "5588631438",
+            "5588631441",
+            "5588631443",
+            "5588631445"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484013198-46253-all-669b1363ae-1.jpg",
+          "sha256": "d1c1840ab58fd86d403b85af4cb29b953f1326799e2ab0e29302a6a8729cc60a",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5588631415",
+            "5588631418",
+            "5588631420",
+            "5588631424",
+            "5588631428",
+            "5588631430",
+            "5588631433",
+            "5588631438",
+            "5588631441",
+            "5588631443",
+            "5588631445"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        },
+        {
           "image": "assets/product-photos/484013198-46253-all-83336bb6d6-0.jpg",
           "sha256": "aef9ddc89f239970ca75c16ef425117c66aa8a7285955ed42ba9ca745430281f",
           "view": "front_dtfabric",
@@ -60485,8 +60535,8 @@
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "allReportedViews": "ecc3c6f6c049cdde581dd8967ca2024c50cee88c97fcfdb1d0886e13f9d0e9b6",
-      "supplierPreviews": "f3a901ae440d29c4c0d32ab8caa789431d7f260a59a68dfba23ec6ccf6238fcb"
+      "supplierPreviews": "f3a901ae440d29c4c0d32ab8caa789431d7f260a59a68dfba23ec6ccf6238fcb",
+      "allReportedViews": "8f4d98e7b710cb1fad3d9e343f10111af0335e3ad6cf14067e4b6f5d28f383e8"
     },
     "484021178": {
       "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts",
