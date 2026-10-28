@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T23:25:27.463Z",
+  "updatedAt": "2026-10-28T00:27:43.794Z",
   "lastSyncedAt": "2026-10-27T23:13:04.693Z",
   "products": [
     {
@@ -9786,18 +9786,12 @@
       "catalogProductId": 1482,
       "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt",
       "category": "shirts",
-      "image": "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
+      "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
       "images": [
-        "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-        "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-        "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-        "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg",
-        "assets/product-photos/483725842-46409-all-04a66ddc5c-0.jpg",
-        "assets/product-photos/483725842-46409-all-04a66ddc5c-1.jpg",
-        "assets/product-photos/483725842-46409-all-04a66ddc5c-2.jpg",
-        "assets/product-photos/483725842-46409-all-04a66ddc5c-3.jpg",
-        "assets/product-photos/483725842-supplier-ab8a0b5d2cebba07e341.jpg",
-        "assets/product-photos/483725842-supplier-1004c4f6a14d346245fb.jpg"
+        "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+        "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+        "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+        "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
       ],
       "variants": [
         {
@@ -9812,12 +9806,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145364",
@@ -9831,12 +9825,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145365",
@@ -9850,12 +9844,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145367",
@@ -9869,12 +9863,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145368",
@@ -9888,12 +9882,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145369",
@@ -9907,12 +9901,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145370",
@@ -9926,12 +9920,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145372",
@@ -9945,12 +9939,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145373",
@@ -9964,12 +9958,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145379",
@@ -9983,12 +9977,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         },
         {
           "id": "5587145380",
@@ -10002,12 +9996,12 @@
           "availability": "active",
           "supplierBaseColor": "White",
           "images": [
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-1.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-2.jpg",
-            "assets/product-photos/483725842-46409-all-7d7a8020ad-3.jpg"
+            "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
+            "https://midnight-designs.store/images/factory/483725842/d81e2c086d1211b4e6558edb7081d8781c7e2aeedf9fba91906864044ac2fa30.jpg",
+            "https://midnight-designs.store/images/factory/483725842/57d7b3a5f1988947789576f8914f31e2b538f5d691cbd9e65057c1d6151919a7.jpg",
+            "https://midnight-designs.store/images/factory/483725842/ad25f3513671bb6b6665fa283d335dce3afba1cfe976330cc18c073d9a874d2b.jpg"
           ],
-          "image": "assets/product-photos/483725842-46409-all-7d7a8020ad-0.jpg"
+          "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg"
         }
       ],
       "url": "products/483725842.html",
@@ -10019,7 +10013,9 @@
       "collections": [
         "What Lies Within matching collection"
       ],
-      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074"
+      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "studioRevision": "76bfc4b1-dec2-4861-bd75-46e88516798c",
+      "studioUpdated": 1793146975412
     },
     {
       "id": "483716755",
