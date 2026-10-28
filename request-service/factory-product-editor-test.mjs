@@ -104,3 +104,13 @@ test('owner media identifies the latest completed edited gallery while preservin
  let result;const e=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,data)=>result=data,fail:()=>{},limit:()=>{},origin:'http://test',fetchImpl:async u=>({ok:true,json:async()=>u.endsWith('products.json')?{products:[{id:'123'}]}:{products:{123:{originalImage:'old-supplier.jpg',photos:[]}}}})});
  await e.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(result.photos.products['123'].studioRevision,'new');assert.equal(result.photos.products['123'].photos.length,1);assert.match(result.photos.products['123'].photos[0].image,/new.jpg$/);assert.deepEqual(result.publishedIds,['123']);
 });
+
+test('AI Made shows fully saved new Printful mockups while storefront confirmation waits, but never partial or unconfirmed tasks',async t=>{
+ const f=fixture(t);f.db.exec('CREATE TABLE factory_studio_jobs(id TEXT,supplier TEXT,document TEXT,state TEXT,updated INTEGER)');const put=f.db.prepare('INSERT INTO factory_studio_jobs VALUES(?,?,?,?,?)');
+ const image=asset=>({asset,title:'Back'});put.run('previous','123',JSON.stringify({images:[image('old')]}),'completed',1);
+ put.run('ready','123',JSON.stringify({printfulUpdated:true,tasks:[{key:'accepted-task',state:'saved'}],images:[image('new')]}),'verifying_store',2);
+ put.run('unconfirmed','456',JSON.stringify({printfulUpdated:true,tasks:[{key:null,state:'saved'}],images:[image('unsafe')]}),'publishing',3);
+ put.run('partial','789',JSON.stringify({printfulUpdated:true,tasks:[{key:'accepted-task',state:'downloading'}],images:[image('partial')]}),'publishing',4);
+ let result;const e=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,data)=>result=data,fail:()=>{},limit:()=>{},origin:'http://test',fetchImpl:async u=>({ok:true,json:async()=>u.endsWith('products.json')?{products:[{id:'123'}]}:{products:{}}})});
+ await e.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(result.photos.products['123'].studioRevision,'ready');assert.match(result.photos.products['123'].photos[0].image,/asset\/new$/);assert.equal(result.photos.products['456'],undefined);assert.equal(result.photos.products['789'],undefined);assert.deepEqual(result.publishedIds,['123']);
+});
