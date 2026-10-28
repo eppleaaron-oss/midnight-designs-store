@@ -1,3 +1,4 @@
+import {factoryOutfitLearning} from './factory-outfit-learning.mjs';
 import {factoryProductStudio} from './factory-product-studio.mjs';
 import {factoryProductEditor} from './factory-product-editor.mjs';
 import {factoryBasicOutfits} from './factory-basic-outfits.mjs';
@@ -111,6 +112,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const basicOutfits=factoryBasicOutfits({db,basic:basicHandler,auth:factoryAuth,body,send,fail,limit,origin});basicHandler.setOutfits(basicOutfits);
  const productEditor=factoryProductEditor({db,basic:basicHandler,outfits:basicOutfits,auth:factoryAuth,body,send,fail,limit,origin});
  const productStudio=factoryProductStudio({db,editor:productEditor,blueprints:blueprintHandler,workflow,basic:basicHandler,backups:githubBackups,auth:factoryAuth,body,send,fail,limit,origin});productionHandler.setStudio(productStudio);
+ const outfitLearning=factoryOutfitLearning({db,basic:basicHandler,outfits:basicOutfits,studio:productStudio,auth:factoryAuth,body,send,fail,limit,origin});basicOutfits.setFollower(outfitLearning.follow);
  const githubPublisher=factoryGithubPublisher({workspace:basicGithub,db,body,send,fail,limit});
  const historyHandler=factoryHistory({publicAccess:!factoryLoginRequired,db,auth:factoryAuth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler,pipeline:pipelineHandler});
  const startedAt=new Date().toISOString();
@@ -122,6 +124,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    if(await githubPublisher.handle(req,res,path,method))return;
    if(await productStudio.handle(req,res,path,method,url))return;
    if(await productEditor.handle(req,res,path,method))return;
+   if(await outfitLearning.handle(req,res,path,method))return;
    if(await basicOutfits.handle(req,res,path,method))return;
    if(await basicHandler.handle(req,res,path,method,url))return;
    if(await githubBackups.handle(req,res,path,method))return;
