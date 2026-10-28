@@ -1,10 +1,11 @@
+import catalogIdentity from '../catalog-identity.js';
 import fs from 'node:fs/promises';
 const catalog=JSON.parse(await fs.readFile('products.json','utf8')),info=JSON.parse(await fs.readFile('product-information.json','utf8')).products;let photos={products:{}};try{photos=JSON.parse(await fs.readFile('product-photos.json','utf8'))}catch{}
 const template=(await fs.readFile('product.html','utf8')).trimEnd()+'\n',origin='https://midnight-designs.store/';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const json=x=>JSON.stringify(x).replaceAll('<','\\u003c');
 await fs.mkdir('products',{recursive:true});const desired=new Set();
-for(const p of catalog.products){
+for(const p of catalog.products.map(catalogIdentity.normalize)){
  if(!/^\d+$/.test(p.id))throw Error('Invalid product ID');
  const path='products/'+p.id+'.html',url=origin+path;desired.add(p.id+'.html');
  const detail=info[p.catalogProductId],gallery=(!p.studioRevision||photos.products[p.id]?.studioRevision===p.studioRevision)?photos.products[p.id]:null,photo=gallery?.originalImage===p.image?gallery.photos.find(x=>x.category==='product'&&x.style==='Flat'&&/front/i.test(x.view)&&x.storeVariantIds?.includes(p.variants[0]?.id)):null;
@@ -21,7 +22,7 @@ for(const p of catalog.products){
  const available=p.variants.filter(v=>v.availability==='active'&&typeof v.size==='string'&&v.size.trim());const price=available.length?'From '+new Intl.NumberFormat('en-US',{style:'currency',currency:available[0].currency}).format(Math.min(...available.map(v=>v.price))):'Unavailable';html=html.replace('<div id="price" class="price"></div>','<div id="price" class="price">'+esc(price)+'</div>');
  const section=(heading,values)=>values?.length?'<section class="product-spec-section"><h2>'+heading+'</h2><ul>'+values.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section>':'';
  html=html.replace('<p class="notice">Loading product details…</p>','<section class="product-spec-section"><h2>About this piece</h2>'+description.split(/\n\n/).map(x=>'<p>'+esc(x)+'</p>').join('')+'</section>'+section('Materials',detail?.materials)+section('Fit',detail?.fit)+section('Care',detail?.care));
- html=html.replace('<section id="availableOptions" aria-label="Available product options"></section>','<section id="availableOptions" aria-label="Available product options"><h2>Sizes &amp; colors</h2><p>Sizes: '+esc([...new Set(p.variants.map(v=>v.size).filter(Boolean))].join(' · '))+'</p><p>Base options: '+esc([...new Set(p.variants.map(v=>v.color).filter(Boolean))].join(' · '))+'</p></section>');
+ html=html.replace('<section id="availableOptions" aria-label="Available product options"></section>','<section id="availableOptions" aria-label="Available product options"><h2>Sizes &amp; colors</h2><p>Sizes: '+esc([...new Set(p.variants.map(v=>v.size).filter(Boolean))].sort(catalogIdentity.compareSizes).map(s=>catalogIdentity.sizeLabel(p,s)).join(' · '))+'</p><p>Base options: '+esc([...new Set(p.variants.map(v=>v.color).filter(Boolean))].join(' · '))+'</p></section>');
  html=html.replace('</main>','<noscript><p class="notice">Enable JavaScript to select a variant, explore all photos and use the bag. Checkout is currently unavailable.</p></noscript></main>');
  await fs.writeFile(path,html);
 }

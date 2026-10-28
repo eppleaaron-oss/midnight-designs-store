@@ -1,13 +1,6 @@
 'use strict';
 // Group the supplier's available garment types into useful shopping racks.
-function browseCategory(p){
- const name=(p.name+' '+(p.category||'')).toLowerCase();
- if(/jacket|bomber|windbreaker/.test(name))return 'Jackets';
- if(/hoodie|hooded|sweatshirt/.test(name))return 'Hoodies';
- if(/pants|jogger|legging|shorts|bottom/.test(name))return 'Bottoms';
- if(/t-shirt|tee|tank|jersey|shirt|crop top/.test(name))return 'Tees';
- return 'Accessories';
-}
+function browseCategory(p){return MidnightCatalog.category(p);}
 function browseNewest(a,b){return Number(b.id)-Number(a.id)||String(b.id).localeCompare(String(a.id));}
 window.MidnightBrowse=({products,renderProducts,productPrice,activeVariant})=>{
  const $=id=>document.getElementById(id),grid=$('grid'),pageSize=12;
@@ -15,11 +8,11 @@ window.MidnightBrowse=({products,renderProducts,productPrice,activeVariant})=>{
  let shown=pageSize,matches=[];
  const newestIds=new Set([...products].sort(browseNewest).slice(0,12).map(p=>p.id));
  function addOption(id,value){const o=document.createElement('option');o.value=value;o.textContent=value;$(id).append(o);}
- const categories=['Hoodies','Tees','Jackets','Bottoms','Accessories'].filter(c=>products.some(p=>browseCategory(p)===c));
+ const categories=Object.values(MidnightCatalog.categories).filter(c=>products.some(p=>browseCategory(p)===c));
  for(const c of categories)addOption('category',c);
  const sizes=['2XS','XS','S','M','L','XL','2XL','3XL','4XL','5XL','6XL','S/M','M/L','One size'];
  const actual=[...new Set(products.flatMap(p=>p.variants.map(v=>v.size)).filter(Boolean))];
- actual.sort((a,b)=>(sizes.indexOf(a)<0?99:sizes.indexOf(a))-(sizes.indexOf(b)<0?99:sizes.indexOf(b))||a.localeCompare(b));
+ actual.sort(MidnightCatalog.compareSizes);
  for(const size of actual)addOption('sizeFilter',size);
  for(const [id,values] of [['colorFilter',products.flatMap(p=>p.variants.map(v=>v.color))],['paletteFilter',products.flatMap(p=>p.artworkColors||[])],['collectionFilter',products.flatMap(p=>p.collections||[])]])for(const v of [...new Set(values.filter(Boolean))].sort())addOption(id,v);
  $('categoryTabs').replaceChildren();
@@ -32,7 +25,7 @@ window.MidnightBrowse=({products,renderProducts,productPrice,activeVariant})=>{
   for(const [key,id] of Object.entries(fields)){
    const value=params.get(key)||(id==='sort'?'newest':'');
    // Retain older bookmarked supplier category links.
-   const aliases={Sweatshirts:'Hoodies',Bags:'Accessories'};
+   const aliases={Sweatshirts:'Crewnecks',footwear:'Shoes',facewear:'Face coverings'};
    const normalized=id==='category'?(aliases[value]||value):value;
    $(id).value=id==='search'?value:[...$(id).options].some(o=>o.value===normalized)?normalized:$(id).options[0].value;
   }
@@ -66,6 +59,7 @@ window.MidnightBrowse=({products,renderProducts,productPrice,activeVariant})=>{
  }
  function decorate(){for(const card of grid.querySelectorAll('.product-card'))if(newestIds.has(card.dataset.productId)&&!card.querySelector('.new-label')){const badge=document.createElement('span');badge.className='new-label';badge.textContent='New';card.append(badge);}}
  function progress(){
+  const systems=[...new Set(products.filter(p=>browseCategory(p)==='Shoes').map(p=>p.sizeSystem).filter(Boolean))];for(const o of $('sizeFilter').options)if(o.value)o.textContent=$('category').value==='Shoes'&&systems.length===1&&/^\d+(?:\.\d+)?$/.test(o.value)?systems[0]+' '+o.value:o.value;
   const count=Math.min(shown,matches.length);$('catalogStatus').textContent=matches.length+' '+(matches.length===1?'piece':'pieces');
   $('browseProgress').textContent='Showing '+count+' of '+matches.length+' pieces';$('loadMore').hidden=count>=matches.length;
   for(const a of $('categoryTabs').querySelectorAll('a')){if(a.dataset.type===$('category').value)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');}

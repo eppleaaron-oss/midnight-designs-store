@@ -1,3 +1,4 @@
+import {nameFactoryProduct} from './factory-product-identity.mjs';
 import {transferStudioLayer} from './factory-outfit-learning.mjs';
 import {createHash,randomUUID,randomBytes} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
@@ -95,7 +96,8 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  const has=table=>!!get("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",table);
  const nativeItems=()=>has('factory_basic_items')&&db.prepare('PRAGMA table_info(factory_basic_items)').all().some(c=>c.name==='id');
  function trackedItem(itemId,id){if(!itemId)return null;const r=get('SELECT i.*,l.supplier_id,l.copy FROM factory_basic_items i LEFT JOIN factory_listings l ON l.job=i.job WHERE i.id=?',itemId);if(!r)return null;const recipe=JSON.parse(r.recipe),copy=r.copy?JSON.parse(r.copy):{};return {id,itemId:r.id,jobId:r.job,collection:recipe.outfitCollection||recipe.set.name,name:copy.title||recipe.name,state:r.status,supplierId:r.supplier_id,editable:false,choice:{setId:recipe.set.id,product:recipe.product,audience:recipe.audience,sizes:(recipe.variants||[]).map(v=>v.size),allowUnspecifiedAudience:recipe.allowUnspecifiedAudience===true,layout:recipe.layout?.input||null}};}
- function source(id){if(nativeItems()&&typeof id==='string'){if(id.startsWith('item:'))return trackedItem(id.slice(5),id);if(id.startsWith('piece:')&&has('factory_basic_outfit_pieces')){const piece=get('SELECT item,outfit FROM factory_basic_outfit_pieces WHERE id=?',id.slice(6)),item=piece&&trackedItem(piece.item,id);if(item)return {...item,pieceId:id.slice(6),outfit:piece.outfit};}}
+ function source(id){const p=rawSource(id);return p?nameFactoryProduct(p):p;}
+ function rawSource(id){if(nativeItems()&&typeof id==='string'){if(id.startsWith('item:'))return trackedItem(id.slice(5),id);if(id.startsWith('piece:')&&has('factory_basic_outfit_pieces')){const piece=get('SELECT item,outfit FROM factory_basic_outfit_pieces WHERE id=?',id.slice(6)),item=piece&&trackedItem(piece.item,id);if(item)return {...item,pieceId:id.slice(6),outfit:piece.outfit};}}
   if(typeof id==='string'&&id.startsWith('made:')&&has('idea_made')){const m=get('SELECT * FROM idea_made WHERE id=?',id.slice(5));if(m)return {id,jobId:m.job,collection:m.set_name,name:m.name,state:m.status,supplierId:m.printful_id,editable:false,choice:{setId:m.set_id,product:m.catalog}};}
   const lib=editor.library();return [...lib.pieces,...lib.products].find(p=>p.id===id);
  }
