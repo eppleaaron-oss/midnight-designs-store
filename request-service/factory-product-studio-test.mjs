@@ -6,6 +6,30 @@ import {renderArea} from './factory-rendering.mjs';
 import {renderStudioPanelIsolated,renderAreaIsolated} from './factory-studio-render-process.mjs';
 import {factoryProductStudio,renderStudioPanel,studioLayers,studioProductionPanel,studioPlacementIssues} from './factory-product-studio.mjs';
 const ROOT='/api/owner/ai-factory/product-studio';
+test('the durable store manifest lets publishing finish while a full recovery snapshot is pending',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();
+ f.options.backups.checkpoint=()=>new Promise(()=>{});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed');assert.equal(f.job().document.storeUpdated,true);assert.equal(f.supplier.sync_product.id,123);
+});
+test('recovery before a store-state checkpoint reuses the saved listing and supplier product',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();while(f.job().document.images.some(i=>!i.storeUrl))await f.tick();const saved=f.job();
+ for(let n=0;n<15&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed');const counts=f.counts(),images=f.job().document.storeProduct.images;
+ f.db.prepare('UPDATE factory_studio_jobs SET document=?,state=?,error=?,next=? WHERE id=?').run(JSON.stringify(saved.document),'publishing','',0,saved.id);f.restart();for(let n=0;n<15&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed');assert.deepEqual(f.job().document.storeProduct.images,images);assert.equal(f.counts().posts,counts.posts);assert.equal(f.counts().puts,counts.puts);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);
+});
+test('large GitHub manifests load their checksum-verified blob and preserve other products',async t=>{
+ const {createHash}=await import('node:crypto'),f=await fixture(t),base=f.options.fetchImpl;let blobReads=0,kept=false,blob;
+ f.options.fetchImpl=async(url,opts={})=>{if(url.includes('/contents/factory-listings.json')&&!opts.method){const r=await base(url,opts),file=await r.json(),m=JSON.parse(Buffer.from(file.content,'base64'));m.products.unrelated={description:'x'.repeat(1050000)};const data=Buffer.from(JSON.stringify(m));blob={encoding:'base64',content:data.toString('base64')};const sha=createHash('sha1').update('blob '+data.length+'\0').update(data).digest('hex');return Response.json({sha,size:data.length,encoding:'none',content:''});}if(url.includes('/git/blobs/')){blobReads++;return Response.json(blob);}if(url.includes('/contents/factory-listings.json')&&opts.method==='PUT'){const m=JSON.parse(Buffer.from(JSON.parse(opts.body).content,'base64'));kept=m.products.unrelated.description.length===1050000;}return base(url,opts);};f.restart();
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});for(let n=0;n<50&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.ok(blobReads>0);assert.equal(kept,true);assert.equal(f.counts().posts,2);assert.ok(!f.calls.some(c=>c.method==='POST'&&c.url.endsWith('/store/products')));
+});
+test('large manifest corruption holds publication without replacing the catalog',async t=>{
+ const f=await fixture(t),base=f.options.fetchImpl;let manifestWrites=0;
+ f.options.fetchImpl=async(url,opts={})=>{if(url.includes('/contents/factory-listings.json')&&!opts.method)return Response.json({sha:'a'.repeat(40),size:2,encoding:'none',content:''});if(url.includes('/git/blobs/'))return Response.json({encoding:'base64',content:Buffer.from('{}').toString('base64')});if(url.includes('/contents/factory-listings.json')&&opts.method==='PUT')manifestWrites++;return base(url,opts);};f.restart();
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});for(let n=0;n<45&&f.job().state!=='failed';n++)await f.tick();assert.equal(f.job().state,'failed');assert.match(f.job().error,/checksum did not match/);assert.equal(manifestWrites,0);assert.equal(f.job().document.printfulUpdated,true);
+});
+test('a competing GitHub manifest write retries from fresh data without remaking supplier products',async t=>{
+ const f=await fixture(t),base=f.options.fetchImpl;let conflicted=false,preserved=false;
+ f.options.fetchImpl=async(url,opts={})=>{if(url.includes('/contents/factory-listings.json')&&opts.method==='PUT'){if(!conflicted){conflicted=true;return new Response('{}',{status:409});}preserved=!!JSON.parse(Buffer.from(JSON.parse(opts.body).content,'base64')).products.neighbour;}if(url.includes('/contents/factory-listings.json')&&!opts.method&&conflicted){const r=await base(url,opts),v=await r.json(),m=JSON.parse(Buffer.from(v.content,'base64'));m.products.neighbour={name:'Another owner product'};return Response.json({...v,content:Buffer.from(JSON.stringify(m)).toString('base64')});}return base(url,opts);};f.restart();
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});for(let n=0;n<55&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(preserved,true);assert.equal(f.counts().posts,2);assert.ok(!f.calls.some(c=>c.method==='POST'&&c.url.endsWith('/store/products')));
+});
 test('archived mockup-panel recovery releases its renderer without changing the original print checksum',async()=>{
  const data=await sharp({create:{width:40,height:50,channels:4,background:'#2357ab'}}).png().toBuffer(),area={width:120,height:140,dpi:150},recipe={background:'#000000',withoutEnlargement:true},sources=[{data,recipe,permissions:{reuse:true}}];
  const expected=await renderArea(area,sources,recipe),actual=await renderAreaIsolated(area,sources,recipe);assert.equal(actual.sha256,expected.sha256);assert.deepEqual(actual.data,expected.data);
