@@ -1,3 +1,4 @@
+import catalogIdentity from '../catalog-identity.js';
 import {writeFile,mkdir,rename,readFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {applyPrices} from './pricing.mjs';
@@ -8,9 +9,9 @@ export function normalize(detail){
  const variants=(detail.sync_variants||[]).filter(v=>v.synced&&!v.is_ignored&&v.availability_status!=='discontinued'&&Number(v.retail_price)>0&&v.currency).map(v=>({id:String(v.id),name:v.name,price:Number(v.retail_price),currency:v.currency,catalogVariantId:v.variant_id||null,size:typeof v.size==='string'&&v.size.trim()?v.size:null,color:v.color||null,colorCode:v.color_code||null,availability:v.availability_status||'unknown'}));
  if(!variants.length)return null;
  const previews=(detail.sync_variants||[]).flatMap(v=>(v.files||[]).filter(f=>f.type==='preview').map(f=>f.preview_url||f.url)).filter(u=>typeof u==='string'&&u.startsWith('https://'));
- const name=p.name||'Midnight Designs';let category=/hoodie|sweatshirt|crewneck/i.test(name)?'Hoodies & sweatshirts':/jacket|coat/i.test(name)?'Outerwear':/shirt|tee/i.test(name)?'Tees':/leggings|pants|shorts|joggers/i.test(name)?'Bottoms':/backpack|bag|bandana|hat|beanie/i.test(name)?'Accessories':'Other pieces';
+ const name=p.name||'Midnight Designs',category='';
  const image=previews[0]||p.thumbnail_url||'';
- const catalogProductId=(detail.sync_variants||[]).find(v=>v.product?.product_id)?.product.product_id;return {id:String(p.id),catalogProductId,name,category,image,images:[...new Set(previews)].slice(0,12),variants};
+ const catalogProductId=(detail.sync_variants||[]).find(v=>v.product?.product_id)?.product.product_id;return catalogIdentity.normalize({id:String(p.id),catalogProductId,name,category,image,images:[...new Set(previews)].slice(0,12),variants});
 }
 export async function sync({token=process.env.PRINTFUL_TOKEN,storeId=process.env.PRINTFUL_STORE_ID,endpoint=process.env.PRINTFUL_PRODUCTS_ENDPOINT||'store',output='products.json',fetcher=fetch}={}){
  if(!token)throw Error('Configure the PRINTFUL_TOKEN GitHub Actions secret before syncing.');
@@ -23,6 +24,7 @@ export async function sync({token=process.env.PRINTFUL_TOKEN,storeId=process.env
  let copy={products:{}};try{copy=JSON.parse(await readFile('catalog-copy.json','utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}for(const p of products){if(copy.products?.[p.id]){const allowed=['name','description','imageAlt','collections','artworkColors','searchDescription','socialImage','socialImageSource'];for(const key of allowed)if(Object.hasOwn(copy.products[p.id],key))p[key]=copy.products[p.id][key];}p.url='products/'+p.id+'.html';}
  let galleries={products:{}};try{galleries=JSON.parse(await readFile('product-photos.json','utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}for(const p of products){const entry=galleries.products?.[p.id];if(entry?.originalImage!==p.image)continue;const photos=entry.photos.filter(photo=>!photo.storeVariantIds?.length||photo.storeVariantIds.includes(p.variants[0]?.id));p.images=[...new Set([...photos.map(photo=>photo.image),...(p.images||[]),p.image])];}
  for(let i=products.length-1;i>=0;i--){const p=products[i],f=factory.products[p.id];if(!f)continue;if(!f.factoryExternalId?.startsWith('midnight-factory-')||!f.description||!f.image||!Array.isArray(f.variants)||!f.variants.length)throw Error('Incomplete approved factory listing');const ids=new Set(p.variants.map(v=>v.id));if(f.variants.some(v=>!ids.has(v.id))){products.splice(i,1);continue;}products[i]={...f,variants:f.variants.map(v=>({...v,availability:p.variants.find(x=>x.id===v.id).availability}))};}
+ for(let i=0;i<products.length;i++)products[i]=catalogIdentity.normalize(products[i]);
  const currencies=new Set(products.flatMap(p=>p.variants.map(v=>v.currency)));if(currencies.size>1)throw Error('The store needs one retail currency. Existing catalog was preserved.');
  await mkdir(new URL('../',pathToFileURL(output)),{recursive:true});await writeFile(output+'.tmp',JSON.stringify({updatedAt:new Date().toISOString(),lastSyncedAt:new Date().toISOString(),products},null,2)+'\n');await rename(output+'.tmp',output);console.log('Imported '+products.length+' products.');return products;
 }

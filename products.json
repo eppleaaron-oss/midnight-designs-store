@@ -5,8 +5,8 @@
     {
       "id": "484288453",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 5311 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "After the Last Light Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484288453/0a78a421e722355a09205bd85f3d35b5f1a64e32deab87c3fe61f01b9a717d2c.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484288453/0a78a421e722355a09205bd85f3d35b5f1a64e32deab87c3fe61f01b9a717d2c.jpg",
@@ -886,17 +886,23 @@
         "footwear"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "45884cd7-bad3-452b-a4b3-1caa3b4554d6",
-      "studioUpdated": 1793200644301
+      "studioUpdated": 1793200644301,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311",
+      "sizeSystem": "US men"
     },
     {
       "id": "484282522",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "After the Last Light Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484282522/c03049144fd88f54231d0f65de8827a19e2a9ad5bc921c24e76d9087bc397d89.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484282522/c03049144fd88f54231d0f65de8827a19e2a9ad5bc921c24e76d9087bc397d89.jpg",
@@ -970,17 +976,22 @@
         "accessories"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "bc99f410-8033-4bb6-a341-5783f36e63b5",
-      "studioUpdated": 1793060123561
+      "studioUpdated": 1793060123561,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     {
       "id": "484276499",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "After the Last Light Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/484276499/4153fbac2c47488dc34d4da3339d1a49b006a77185322d902e0e69f06d53ac62.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484276499/4153fbac2c47488dc34d4da3339d1a49b006a77185322d902e0e69f06d53ac62.jpg",
@@ -1114,17 +1125,22 @@
         "shorts"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "f7daf090-1090-4c0a-9246-b9b064c93879",
-      "studioUpdated": 1793200639404
+      "studioUpdated": 1793200639404,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     {
       "id": "484271507",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "After the Last Light Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484271507/907b5b27a210ef18b601fbafb9388515a2e914e2b52cbf823e48b6878c028118.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484271507/907b5b27a210ef18b601fbafb9388515a2e914e2b52cbf823e48b6878c028118.jpg",
@@ -1326,17 +1342,22 @@
         "pants"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "93dc132e-ec15-4fc7-9456-e6a082f33fbf",
-      "studioUpdated": 1793200629396
+      "studioUpdated": 1793200629396,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     {
       "id": "484260366",
       "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "After the Last Light Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/484260366/c74060c6845b3c7861914a47a67782ad81c49b7e4bcd8cc64a0efdf98df5d970.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484260366/c74060c6845b3c7861914a47a67782ad81c49b7e4bcd8cc64a0efdf98df5d970.jpg",
@@ -1562,17 +1583,22 @@
         "shirts"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "a464a454-222d-4717-ae57-43b2d79afa28",
-      "studioUpdated": 1793062215829
+      "studioUpdated": 1793062215829,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     {
       "id": "484245858",
       "catalogProductId": 654,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Beauty in Decay Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/484245858/ca18b842ea0ef11796e118a8cdb76a70d8cc4eb1ef7385ff737bb8ea52c0a38a.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484245858/ca18b842ea0ef11796e118a8cdb76a70d8cc4eb1ef7385ff737bb8ea52c0a38a.jpg",
@@ -1757,17 +1783,22 @@
         "headwear"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "7abdb4f7-fa79-44fc-b67a-7ede05580384",
-      "studioUpdated": 1793200675594
+      "studioUpdated": 1793200675594,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     {
       "id": "484232678",
       "catalogProductId": 420,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Beauty in Decay Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/484232678/7fe155833ffd0e1d837a3b4cfe42a4bbdbc987e8738fdba2962b9ad6be96980f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484232678/7fe155833ffd0e1d837a3b4cfe42a4bbdbc987e8738fdba2962b9ad6be96980f.jpg",
@@ -1883,17 +1914,22 @@
         "facewear"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "c8f035bd-a701-41f8-80ef-e26c34a680d9",
-      "studioUpdated": 1793200501397
+      "studioUpdated": 1793200501397,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     {
       "id": "484210680",
       "catalogProductId": 513,
-      "name": "Untitled oversized cotton hoodie design 9702 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Beauty in Decay Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484210680/eabdaaa911f77beac71faf8ba7811f8962700c824d58cd50471037f5006f68e2.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484210680/eabdaaa911f77beac71faf8ba7811f8962700c824d58cd50471037f5006f68e2.jpg",
@@ -2773,17 +2809,23 @@
         "footwear"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "3697c34a-bdfc-40ef-aadf-e7f1f362c144",
-      "studioUpdated": 1793200729910
+      "studioUpdated": 1793200729910,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702",
+      "sizeSystem": "US men"
     },
     {
       "id": "484197021",
       "catalogProductId": 279,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Beauty in Decay Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484197021/51814c946b4e8a5d6b28fb396c6fb108ed382e93d155958dd3c4ed73449bd7a4.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484197021/51814c946b4e8a5d6b28fb396c6fb108ed382e93d155958dd3c4ed73449bd7a4.jpg",
@@ -2857,17 +2899,22 @@
         "accessories"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "fbfe501e-9c01-47d2-8b95-a564f6596ad6",
-      "studioUpdated": 1793069810601
+      "studioUpdated": 1793069810601,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     {
       "id": "484179695",
       "catalogProductId": 1479,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Beauty in Decay Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484179695/c2ce0582c899bdef47fc25f7969f2b45fda6722bcb80bd21ab4b53d57752f28d.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484179695/c2ce0582c899bdef47fc25f7969f2b45fda6722bcb80bd21ab4b53d57752f28d.jpg",
@@ -3069,17 +3116,22 @@
         "pants"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "caa85c5d-6da4-49fe-b9e6-3df4fb0c5431",
-      "studioUpdated": 1793200612515
+      "studioUpdated": 1793200612515,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     {
       "id": "484145986",
       "catalogProductId": 1482,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Beauty in Decay Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/484145986/cd7a71de96bf3fd90bdae23a0ea94310473cdc125c61c823e32b33b883f034db.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484145986/cd7a71de96bf3fd90bdae23a0ea94310473cdc125c61c823e32b33b883f034db.jpg",
@@ -3305,17 +3357,22 @@
         "shirts"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "045dbac0-32e7-4d4b-8d22-a1c409732f55",
-      "studioUpdated": 1793072876927
+      "studioUpdated": 1793072876927,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     {
       "id": "484132973",
       "catalogProductId": 654,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Still Waters Run Deep Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/484132973/a883508bdc3dcac36dd13eba52e6b32fc4b88676313616b94f73efd135043828.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484132973/a883508bdc3dcac36dd13eba52e6b32fc4b88676313616b94f73efd135043828.jpg",
@@ -3500,17 +3557,22 @@
         "headwear"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "0ea2d52b-1861-45ab-91c6-b007ccdbaecc",
-      "studioUpdated": 1793200493481
+      "studioUpdated": 1793200493481,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "484121835",
       "catalogProductId": 420,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Still Waters Run Deep Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/484121835/8f2b3c8bf36bf6da4d8a43a9da52863d9d0ae05bc231a6767d328612aca046f4.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484121835/8f2b3c8bf36bf6da4d8a43a9da52863d9d0ae05bc231a6767d328612aca046f4.jpg",
@@ -3626,17 +3688,22 @@
         "facewear"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "3def5b43-adec-4e01-b26d-5397ab02444a",
-      "studioUpdated": 1793200489094
+      "studioUpdated": 1793200489094,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "484115196",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 3901 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Still Waters Run Deep Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484115196/53b0ba794cde7cc92fa0ad4ea4c4fd751409dab8fb58b15eaf6c921ced343b40.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484115196/53b0ba794cde7cc92fa0ad4ea4c4fd751409dab8fb58b15eaf6c921ced343b40.jpg",
@@ -4516,17 +4583,23 @@
         "footwear"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "a001edc1-94e7-4200-8896-e460d58f0ffb",
-      "studioUpdated": 1793200566592
+      "studioUpdated": 1793200566592,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901",
+      "sizeSystem": "US men"
     },
     {
       "id": "484096947",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Still Waters Run Deep Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484096947/cf5a6aaadbe06cfe64c87bd1199e4dbe889a2c5544c172d7c2f46f3a16c15201.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484096947/cf5a6aaadbe06cfe64c87bd1199e4dbe889a2c5544c172d7c2f46f3a16c15201.jpg",
@@ -4600,17 +4673,22 @@
         "accessories"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "bb520442-179e-49ef-83f0-23e1fcc815e1",
-      "studioUpdated": 1793057644970
+      "studioUpdated": 1793057644970,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "484082838",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Still Waters Run Deep Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/484082838/6d390cddb7a09546b596f413e1eb767cfd44a3cec0350e8cf7770f5af40047bd.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484082838/6d390cddb7a09546b596f413e1eb767cfd44a3cec0350e8cf7770f5af40047bd.jpg",
@@ -4744,17 +4822,22 @@
         "shorts"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "b3d1aa7f-c72d-476a-958a-48ceb31a0f05",
-      "studioUpdated": 1793149324414
+      "studioUpdated": 1793149324414,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "484076840",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Still Waters Run Deep Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484076840/f6ff4e373a8f99dbc934e3fcf753d226080afce14cda29d14700169730be1e40.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484076840/f6ff4e373a8f99dbc934e3fcf753d226080afce14cda29d14700169730be1e40.jpg",
@@ -4956,17 +5039,22 @@
         "pants"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "426c402c-4e66-4591-ac47-45d840aab0e2",
-      "studioUpdated": 1793200559782
+      "studioUpdated": 1793200559782,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "484067231",
       "catalogProductId": 390,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Still Waters Run Deep Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/484067231/08e64120a3c588314ddb829a3099ecde5347a0c801fc81f2eb9edbabf6a4d283.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484067231/08e64120a3c588314ddb829a3099ecde5347a0c801fc81f2eb9edbabf6a4d283.jpg",
@@ -5340,17 +5428,22 @@
         "jackets"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "69adb658-ae76-4865-a96f-c23ec1e50c8f",
-      "studioUpdated": 1793061904590
+      "studioUpdated": 1793061904590,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "484051716",
       "catalogProductId": 654,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Time Takes All Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/484051716/9a2459b3f76c278d753dd09c3cd9b92953c7db969b11b5c1fcadbc8a828ba0b0.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484051716/9a2459b3f76c278d753dd09c3cd9b92953c7db969b11b5c1fcadbc8a828ba0b0.jpg",
@@ -5535,17 +5628,22 @@
         "headwear"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "4ace50c4-e354-4aee-8950-7dbe4641084e",
-      "studioUpdated": 1793202517888
+      "studioUpdated": 1793202517888,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "484044435",
       "catalogProductId": 420,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Time Takes All Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/484044435/d4538fdd45eefb9576ad71e09b809649afce32407f40694a0fbcad92641c7901.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484044435/d4538fdd45eefb9576ad71e09b809649afce32407f40694a0fbcad92641c7901.jpg",
@@ -5661,17 +5759,22 @@
         "facewear"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "0f365233-849c-47fb-b60b-d10c52c559fa",
-      "studioUpdated": 1793200474583
+      "studioUpdated": 1793200474583,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "484038554",
       "catalogProductId": 513,
-      "name": "Untitled oversized cotton hoodie design 0495 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Time Takes All Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484038554/8663a2039233bc2216ca67f59e874ef6bf1b278f227a5f508bd984638ec106b5.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484038554/8663a2039233bc2216ca67f59e874ef6bf1b278f227a5f508bd984638ec106b5.jpg",
@@ -6551,17 +6654,23 @@
         "footwear"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "13499b48-4bb6-4de2-a746-80b645355b5e",
-      "studioUpdated": 1793200554591
+      "studioUpdated": 1793200554591,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495",
+      "sizeSystem": "US men"
     },
     {
       "id": "484029631",
       "catalogProductId": 279,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Time Takes All Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484029631/1d2550c29c5850d0d2759843d0dc8ab23d0c9e73afe0fc8b7e1836019f153c3f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484029631/1d2550c29c5850d0d2759843d0dc8ab23d0c9e73afe0fc8b7e1836019f153c3f.jpg",
@@ -6635,17 +6744,22 @@
         "accessories"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "3b2f731e-4378-4e97-9c3b-53ed60895c85",
-      "studioUpdated": 1793057030052
+      "studioUpdated": 1793057030052,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "484021178",
       "catalogProductId": 1481,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Time Takes All Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/484021178/8d383e2b7ba2f8313d8691b9791fb4553fb0a0c465d3f14c5796205203b92262.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484021178/8d383e2b7ba2f8313d8691b9791fb4553fb0a0c465d3f14c5796205203b92262.jpg",
@@ -6779,17 +6893,22 @@
         "shorts"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "cf9d8d20-51be-44fc-9a98-07f44e12d79d",
-      "studioUpdated": 1793149143323
+      "studioUpdated": 1793149143323,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "484013198",
       "catalogProductId": 1479,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Time Takes All Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484013198/ead4a028aaa5848362293afb989b6b8611410a9a4e0ecefd2c1401a016a94b4a.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484013198/ead4a028aaa5848362293afb989b6b8611410a9a4e0ecefd2c1401a016a94b4a.jpg",
@@ -6991,17 +7110,22 @@
         "pants"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "1e5c7fcc-e893-41de-af95-e18856993293",
-      "studioUpdated": 1793200546739
+      "studioUpdated": 1793200546739,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "484000153",
       "catalogProductId": 390,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Time Takes All Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/484000153/4d831d08941536561cb399b5cc4a53c4104ef905243ed5dd1175e1596f5a27da.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484000153/4d831d08941536561cb399b5cc4a53c4104ef905243ed5dd1175e1596f5a27da.jpg",
@@ -7375,17 +7499,22 @@
         "jackets"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "862500dc-3b84-4013-af1d-67ef74a7b90a",
-      "studioUpdated": 1793200539896
+      "studioUpdated": 1793200539896,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "483989841",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "What Lies Within Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/483989841/4728c3a3efd97b50ca5d6bfd814e5d2223c9dfc0c0630fd5956b6159e0bd21ea.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483989841/4728c3a3efd97b50ca5d6bfd814e5d2223c9dfc0c0630fd5956b6159e0bd21ea.jpg",
@@ -7459,17 +7588,22 @@
         "accessories"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "b1c1113e-c5fd-430f-9bfa-7c550874bc07",
-      "studioUpdated": 1793057392899
+      "studioUpdated": 1793057392899,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483789497",
       "catalogProductId": 1482,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Time Takes All Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483789497/7c13d16d99915504922697139be5a33b0884031a17dbae2ccb1eaa90c7ea88c5.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483789497/7c13d16d99915504922697139be5a33b0884031a17dbae2ccb1eaa90c7ea88c5.jpg",
@@ -7695,17 +7829,22 @@
         "shirts"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "84c6e8f3-f598-489f-893f-d44a860c074e",
-      "studioUpdated": 1793056180470
+      "studioUpdated": 1793056180470,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     {
       "id": "483781924",
       "catalogProductId": 654,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "What Lies Within Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/483781924/ccbd5eea99b7704b04621256f3ff3ed12a182b1413bd57cd16c065c5eedc48a6.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483781924/ccbd5eea99b7704b04621256f3ff3ed12a182b1413bd57cd16c065c5eedc48a6.jpg",
@@ -7890,17 +8029,22 @@
         "headwear"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "c327d987-e70c-4894-ba4a-e87b837852cd",
-      "studioUpdated": 1793200483482
+      "studioUpdated": 1793200483482,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483772508",
       "catalogProductId": 420,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "What Lies Within Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/483772508/737d5cf863ae1f7cfe24e8f7c38c8905845e6ddf2343aa5757ecbf5e1a53afda.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483772508/737d5cf863ae1f7cfe24e8f7c38c8905845e6ddf2343aa5757ecbf5e1a53afda.jpg",
@@ -8016,17 +8160,22 @@
         "facewear"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "94d9fe97-d118-4307-b5b0-c0864f136414",
-      "studioUpdated": 1793200479697
+      "studioUpdated": 1793200479697,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483763072",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 4900 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "What Lies Within Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/483763072/f90f46eaca16a21bed61753b7c9208b2310d322781a79ccd4ce02794767f6427.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483763072/f90f46eaca16a21bed61753b7c9208b2310d322781a79ccd4ce02794767f6427.jpg",
@@ -8906,17 +9055,23 @@
         "footwear"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "1bbc7dd0-613c-4f06-afa1-c47b7c840e15",
-      "studioUpdated": 1793200714095
+      "studioUpdated": 1793200714095,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900",
+      "sizeSystem": "US men"
     },
     {
       "id": "483741826",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "What Lies Within Cotton Shorts",
+      "category": "Shorts",
       "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
       "images": [
         "assets/product-photos/483741826-46347-all-f038e66a9b-0.jpg",
@@ -9054,15 +9209,20 @@
         "shorts"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
-      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074"
+      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483734104",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "What Lies Within Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/483734104/5150439e84ba903d51e10fb339347226df8ab49d623c7c6cc9489cc348db811e.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483734104/5150439e84ba903d51e10fb339347226df8ab49d623c7c6cc9489cc348db811e.jpg",
@@ -9264,17 +9424,22 @@
         "pants"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "4832f374-2390-4a2d-a32c-36ab2ea33a91",
-      "studioUpdated": 1793200616284
+      "studioUpdated": 1793200616284,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483729128",
       "catalogProductId": 390,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "What Lies Within Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/483729128/2e3ad12663de6e2a72dafc8ad010aa5ee16fae6fa35a9ebca5e4c17517f69c0f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483729128/2e3ad12663de6e2a72dafc8ad010aa5ee16fae6fa35a9ebca5e4c17517f69c0f.jpg",
@@ -9648,17 +9813,22 @@
         "jackets"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "5b1d5380-027a-4238-8805-f648c960ec50",
-      "studioUpdated": 1793200528092
+      "studioUpdated": 1793200528092,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483725842",
       "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "What Lies Within Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
@@ -9884,17 +10054,22 @@
         "shirts"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "76bfc4b1-dec2-4861-bd75-46e88516798c",
-      "studioUpdated": 1793146975412
+      "studioUpdated": 1793146975412,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     {
       "id": "483716755",
       "catalogProductId": 654,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Even in Darkness / Still Growing Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/483716755/e046d2b513dd007e7b5a361124e49ea350fc97f5fe5b882575ad3ec706f1558c.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483716755/e046d2b513dd007e7b5a361124e49ea350fc97f5fe5b882575ad3ec706f1558c.jpg",
@@ -10078,17 +10253,22 @@
         "headwear"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "db46b613-4634-4ad0-9baf-6d51e76fa75f",
-      "studioUpdated": 1793142846565
+      "studioUpdated": 1793142846565,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483709923",
       "catalogProductId": 420,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Even in Darkness / Still Growing Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/483709923/4ed84af84c16b3d988ad3f3c9a2274830fa608245674e0a820b7520c64b81427.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483709923/4ed84af84c16b3d988ad3f3c9a2274830fa608245674e0a820b7520c64b81427.jpg",
@@ -10204,17 +10384,22 @@
         "facewear"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "f0d0830b-e856-4008-8aa3-0d26fd6fdc02",
-      "studioUpdated": 1793143001691
+      "studioUpdated": 1793143001691,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483704831",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 7453 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Even in Darkness / Still Growing Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/483704831/5b72a12b1033f6abac2606d22bd0750ee72bf61f9e2923a3d65e2d46364556e3.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483704831/5b72a12b1033f6abac2606d22bd0750ee72bf61f9e2923a3d65e2d46364556e3.jpg",
@@ -11094,17 +11279,23 @@
         "footwear"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "3c3845c9-302f-4f1b-bf57-7af5ae4f6941",
-      "studioUpdated": 1793149958494
+      "studioUpdated": 1793149958494,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453",
+      "sizeSystem": "US men"
     },
     {
       "id": "483697609",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Even in Darkness / Still Growing Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/483697609/c855433dd294b9025660899f0ef108acc370e5421e8b2cd72865d31f3ec1fbc3.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483697609/c855433dd294b9025660899f0ef108acc370e5421e8b2cd72865d31f3ec1fbc3.jpg",
@@ -11178,17 +11369,22 @@
         "accessories"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "70ccddce-7348-433c-b45a-b0258cf3e623",
-      "studioUpdated": 1793133332752
+      "studioUpdated": 1793133332752,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483397425",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Even in Darkness / Still Growing Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/483397425/fc9bcb2a172302bb2319c608d37b22ab7952ba5ab3cae823c255361ba3229429.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483397425/fc9bcb2a172302bb2319c608d37b22ab7952ba5ab3cae823c255361ba3229429.jpg",
@@ -11322,17 +11518,22 @@
         "shorts"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "76028ba8-009e-42bf-ab54-6569f3522518",
-      "studioUpdated": 1793134829704
+      "studioUpdated": 1793134829704,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483392618",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Even in Darkness / Still Growing Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "assets/product-photos/483392618-46253-all-0.jpg",
       "images": [
         "assets/product-photos/483392618-46253-all-0.jpg",
@@ -11535,15 +11736,20 @@
         "pants"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
-      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6"
+      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483385402",
       "catalogProductId": 390,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Even in Darkness / Still Growing Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/483385402/e3b6db01f689aaea3c768c03f38e1f318b64c288caaec01876bf006d670eca5d.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483385402/e3b6db01f689aaea3c768c03f38e1f318b64c288caaec01876bf006d670eca5d.jpg",
@@ -11917,17 +12123,22 @@
         "jackets"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "6dc37de9-b765-4dad-a7ff-4833d00a7cb6",
-      "studioUpdated": 1793073142984
+      "studioUpdated": 1793073142984,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483378457",
       "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Even in Darkness / Still Growing Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483378457/0f97d6da1b0b841fd8ebfadae5c869c235bcdbb9a37d2786a4f0306b8a0a3a14.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483378457/0f97d6da1b0b841fd8ebfadae5c869c235bcdbb9a37d2786a4f0306b8a0a3a14.jpg",
@@ -12153,17 +12364,22 @@
         "shirts"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "f6b2db2b-a424-45b2-bf02-ffb2f5646bcc",
-      "studioUpdated": 1793056059782
+      "studioUpdated": 1793056059782,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     {
       "id": "483375173",
       "catalogProductId": 654,
-      "name": "Rose Eclipse All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Rose Eclipse Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/483375173/272c95c6c89e3f37900a85aa0c34aaefce80a1ca8adb35d24c2421714bd21943.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483375173/272c95c6c89e3f37900a85aa0c34aaefce80a1ca8adb35d24c2421714bd21943.jpg",
@@ -12348,17 +12564,22 @@
         "headwear"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "24aa6d05-b648-4225-b484-ffc6f472c0c3",
-      "studioUpdated": 1793068181396
+      "studioUpdated": 1793068181396,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "483370819",
       "catalogProductId": 420,
-      "name": "Rose Eclipse All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Rose Eclipse Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/483370819/1c26d0cb398b1601f81517da79a8659b030abe8a260df22390ead99b31eb862f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483370819/1c26d0cb398b1601f81517da79a8659b030abe8a260df22390ead99b31eb862f.jpg",
@@ -12474,17 +12695,22 @@
         "facewear"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "90ac76b6-71aa-4d38-986f-a814e61e195a",
-      "studioUpdated": 1793070320031
+      "studioUpdated": 1793070320031,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "483366087",
       "catalogProductId": 513,
-      "name": "Rose Eclipse Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Rose Eclipse Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "assets/product-photos/483366087-12913-all-0ad958d3f4-0.jpg",
       "images": [
         "assets/product-photos/483366087-12913-all-0ad958d3f4-0.jpg",
@@ -13365,15 +13591,21 @@
         "footwear"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
-      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d"
+      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400",
+      "sizeSystem": "US men"
     },
     {
       "id": "483361602",
       "catalogProductId": 279,
-      "name": "Rose Eclipse All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Rose Eclipse Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/483361602/21080ed5cbc8a1f69136a9ae442bba159c5ad5e91b82c4f21c28db24b502f3d7.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483361602/21080ed5cbc8a1f69136a9ae442bba159c5ad5e91b82c4f21c28db24b502f3d7.jpg",
@@ -13447,17 +13679,22 @@
         "accessories"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "82c350ce-430d-4314-a2cb-5175dbf6ba98",
-      "studioUpdated": 1793056533294
+      "studioUpdated": 1793056533294,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "483356322",
       "catalogProductId": 1481,
-      "name": "Rose Eclipse All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Rose Eclipse Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/483356322/03c0e81a8388dce45d7b5aa9bc69e6a60ef6f06b70d8e66b8ade03cfd2eacfc0.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483356322/03c0e81a8388dce45d7b5aa9bc69e6a60ef6f06b70d8e66b8ade03cfd2eacfc0.jpg",
@@ -13591,17 +13828,22 @@
         "shorts"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "a516ae66-afe7-4342-b852-3ae2f7fd319b",
-      "studioUpdated": 1793122589598
+      "studioUpdated": 1793122589598,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "483352723",
       "catalogProductId": 390,
-      "name": "Rose Eclipse All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Rose Eclipse Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/483352723/692b570e691e735c6762240e43dc0b30d636e3a0395ec860e3295d19b2fce30c.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483352723/692b570e691e735c6762240e43dc0b30d636e3a0395ec860e3295d19b2fce30c.jpg",
@@ -13975,17 +14217,22 @@
         "jackets"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "a6591a92-6eab-4b33-b32b-23c276ccb2d4",
-      "studioUpdated": 1793120097343
+      "studioUpdated": 1793120097343,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "483213237",
       "catalogProductId": 920,
-      "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt",
-      "category": "shirts",
+      "name": "Rose Eclipse Men’s Long Sleeve Shirt",
+      "category": "Long sleeves",
       "image": "https://midnight-designs.store/images/factory/483213237/a08f24f5bddd8f0312b3c526d7d681b440ee621ca9705d9ab910ef6669391566.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483213237/a08f24f5bddd8f0312b3c526d7d681b440ee621ca9705d9ab910ef6669391566.jpg",
@@ -14136,17 +14383,22 @@
         "shirts"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "a602ae7c-3aef-4644-9f95-6773ceefcd8a",
-      "studioUpdated": 1793128210251
+      "studioUpdated": 1793128210251,
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "483204573",
       "catalogProductId": 1482,
       "name": "Still Waters Run Deep Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483204573/410b6c8ea99f8f8dcc06b4e02080dfc63980f6d66e3976d27b889302dcf6cdff.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483204573/410b6c8ea99f8f8dcc06b4e02080dfc63980f6d66e3976d27b889302dcf6cdff.jpg",
@@ -14372,17 +14624,22 @@
         "shirts"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "605d6dbf-e088-43e6-ac3f-054c16ae83d3",
-      "studioUpdated": 1793069443620
+      "studioUpdated": 1793069443620,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     {
       "id": "482923908",
       "catalogProductId": 1479,
-      "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Rose Eclipse Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
@@ -14419,13 +14676,18 @@
       "factoryExternalId": "midnight-factory-00fba902-955b-41ca-be37-b3513e120ecf",
       "url": "products/482923908.html",
       "studioRevision": "d23af66a-241e-4e2e-b65b-526ca5ad3662",
-      "studioUpdated": 1793126470414
+      "studioUpdated": 1793126470414,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "482918795",
       "catalogProductId": 1482,
-      "name": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Rose Eclipse Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/482918795/73cbae89407ca6704fedd34389ca38b009b1ad48476fb99c2a6ff8189fb8b843.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/482918795/73cbae89407ca6704fedd34389ca38b009b1ad48476fb99c2a6ff8189fb8b843.jpg",
@@ -14465,13 +14727,18 @@
       "factoryExternalId": "midnight-factory-1be3784b-c798-4f26-b5dc-a917a65a10b9",
       "url": "products/482918795.html",
       "studioRevision": "69f6815c-e8be-4996-8f6c-924f754c9c5d",
-      "studioUpdated": 1792923821257
+      "studioUpdated": 1792923821257,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     {
       "id": "482797453",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Even in Darkness / Still Growing Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/f34/f344c7b483d452bba7d97a1cb5a8882f_preview.png",
       "images": [
         "assets/product-photos/482797453-supplier-8b2369fb65281a5903d1.jpg",
@@ -14600,13 +14867,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482797453.html"
+      "url": "products/482797453.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453",
+      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
     },
     {
       "id": "482794900",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "What Lies Within Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/6fd/6fde8fc0b01c6de1ede50e73dc54cee4_preview.png",
       "images": [
         "assets/product-photos/482794900-supplier-17e44e5f67006e6cf4ba.jpg",
@@ -14625,13 +14901,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482794900.html"
+      "url": "products/482794900.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900",
+      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collections": [
+        "What Lies Within"
+      ]
     },
     {
       "id": "482790495",
       "catalogProductId": 1628,
-      "name": "Oversized Cotton Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Time Takes All Oversized Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/435/4354c92981b41775dbdf857ec87b62d1_preview.png",
       "images": [
         "assets/product-photos/482790495-supplier-64fc998a49f502b4da25.jpg",
@@ -14760,13 +15045,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482790495.html"
+      "url": "products/482790495.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495",
+      "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collections": [
+        "Time Takes All"
+      ]
     },
     {
       "id": "482783901",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Still Waters Run Deep Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/887/887ad6cb6d157d3b34e8316bbb0bed9f_preview.png",
       "images": [
         "assets/product-photos/482783901-supplier-114026781e1151b1517f.jpg",
@@ -14785,13 +15079,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482783901.html"
+      "url": "products/482783901.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901",
+      "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
     },
     {
       "id": "482779702",
       "catalogProductId": 1628,
-      "name": "Oversized Cotton Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Beauty in Decay Oversized Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/f73/f73cf65463f162371b3f662c66cf9d5b_preview.png",
       "images": [
         "assets/product-photos/482779702-supplier-4e18d1d12b44a707b0db.jpg",
@@ -14920,13 +15223,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482779702.html"
+      "url": "products/482779702.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702",
+      "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collections": [
+        "Beauty in Decay"
+      ]
     },
     {
       "id": "482775311",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "After the Last Light Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/2a6/2a601e909e0473e491891c71bacd3bc8_preview.png",
       "images": [
         "assets/product-photos/482775311-supplier-9fd10a8933aa036966e3.jpg",
@@ -15055,13 +15367,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482775311.html"
+      "url": "products/482775311.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311",
+      "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collections": [
+        "After the Last Light"
+      ]
     },
     {
       "id": "482685353",
       "catalogProductId": 1628,
-      "name": "Oversized Cotton Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Where Shadows Bloom Oversized Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/e61/e61af52d632650d1430c2b075c47f0f1_preview.png",
       "images": [
         "assets/product-photos/482685353-supplier-8307498b3d0b04446709.jpg",
@@ -15190,13 +15511,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482685353.html"
+      "url": "products/482685353.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionId": "45abf273-b4e2-45ce-9446-6c1f069b7d60",
+      "collectionName": "Where Shadows Bloom",
+      "sourceProductId": "482685353",
+      "outfitId": "45abf273-b4e2-45ce-9446-6c1f069b7d60",
+      "collections": [
+        "Where Shadows Bloom"
+      ]
     },
     {
       "id": "482682117",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "All Things Fade Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/f1b/f1ba8fa69716e24d5fbfa0b1e0d3a4b2_preview.png",
       "images": [
         "assets/product-photos/482682117-supplier-cda290b4ef7a50077da9.jpg",
@@ -15325,13 +15655,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482682117.html"
+      "url": "products/482682117.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "19d02af8-2c8f-414e-ba11-2e25c32ff410",
+      "collectionName": "All Things Fade",
+      "sourceProductId": "482682117",
+      "outfitId": "19d02af8-2c8f-414e-ba11-2e25c32ff410",
+      "collections": [
+        "All Things Fade"
+      ]
     },
     {
       "id": "482678006",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Omens Never Lie Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/ac0/ac00f5182ac251e48223977150ce8aa7_preview.png",
       "images": [
         "assets/product-photos/482678006-supplier-83b2828a28505fc8cf9f.jpg",
@@ -15460,13 +15799,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482678006.html"
+      "url": "products/482678006.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "4b67e038-b405-4af9-9382-929f87bfd9b3",
+      "collectionName": "Omens Never Lie",
+      "sourceProductId": "482678006",
+      "outfitId": "4b67e038-b405-4af9-9382-929f87bfd9b3",
+      "collections": [
+        "Omens Never Lie"
+      ]
     },
     {
       "id": "482676580",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Love Leaves Scars Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/af7/af7936ece8bd27bd29c656c7da6204f7_preview.png",
       "images": [
         "assets/product-photos/482676580-supplier-1c4e01d2db21ef9cdc47.jpg",
@@ -15595,13 +15943,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482676580.html"
+      "url": "products/482676580.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "aa1e7689-02c1-4fc9-92ef-82e58d6b5f51",
+      "collectionName": "Love Leaves Scars",
+      "sourceProductId": "482676580",
+      "outfitId": "aa1e7689-02c1-4fc9-92ef-82e58d6b5f51",
+      "collections": [
+        "Love Leaves Scars"
+      ]
     },
     {
       "id": "482675011",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "No Mercy for Betrayal Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/bd5/bd5ee14f3dc3a06dc3e7fc5cbb3f2bcb_preview.png",
       "images": [
         "assets/product-photos/482675011-supplier-0f8345cc0009a5180197.jpg",
@@ -15730,13 +16087,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482675011.html"
+      "url": "products/482675011.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "3eca3807-a24c-423c-8c98-4d49616a036e",
+      "collectionName": "No Mercy for Betrayal",
+      "sourceProductId": "482675011",
+      "outfitId": "3eca3807-a24c-423c-8c98-4d49616a036e",
+      "collections": [
+        "No Mercy for Betrayal"
+      ]
     },
     {
       "id": "482671357",
       "catalogProductId": 1628,
-      "name": "Oversized Cotton Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Never Surrender Oversized Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/e7a/e7a9e813ba1ee7810d91b822e7470468_preview.png",
       "images": [
         "assets/product-photos/482671357-supplier-99c1bb920dfe0e5a9923.jpg",
@@ -15865,13 +16231,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482671357.html"
+      "url": "products/482671357.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionId": "239a7ceb-8c1c-468f-abf1-fc725baf923c",
+      "collectionName": "Never Surrender",
+      "sourceProductId": "482671357",
+      "outfitId": "239a7ceb-8c1c-468f-abf1-fc725baf923c",
+      "collections": [
+        "Never Surrender"
+      ]
     },
     {
       "id": "482668440",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Fate Favors the Fearless Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/356/356ca1a3d6b33fbd8cad263a737adc65_preview.png",
       "images": [
         "assets/product-photos/482668440-supplier-5d392de1145524f12098.jpg",
@@ -15890,13 +16265,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482668440.html"
+      "url": "products/482668440.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "052325ab-0e4f-4356-8ba4-445c022264c5",
+      "collectionName": "Fate Favors the Fearless",
+      "sourceProductId": "482668440",
+      "outfitId": "052325ab-0e4f-4356-8ba4-445c022264c5",
+      "collections": [
+        "Fate Favors the Fearless"
+      ]
     },
     {
       "id": "482647761",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Kings Never Fall Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/f57/f5757adc807a586448b5a9e47a762286_preview.png",
       "images": [
         "assets/product-photos/482647761-supplier-5cc692d07000a9882a94.jpg",
@@ -16025,13 +16409,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482647761.html"
+      "url": "products/482647761.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "7c227e48-2966-4786-a97c-5322231a02e2",
+      "collectionName": "Kings Never Fall",
+      "sourceProductId": "482647761",
+      "outfitId": "7c227e48-2966-4786-a97c-5322231a02e2",
+      "collections": [
+        "Kings Never Fall"
+      ]
     },
     {
       "id": "482644684",
       "catalogProductId": 388,
-      "name": "Unisex Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Silence Is Power Recycled Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/3b6/3b65538e8457f19770be9f174238e07d_preview.png",
       "images": [
         "assets/product-photos/482644684-supplier-9f47339a0c306e46a4f8.jpg",
@@ -16160,13 +16553,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482644684.html"
+      "url": "products/482644684.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+      "collectionId": "46ba84ae-12a7-4469-90f6-72529c79afab",
+      "collectionName": "Silence Is Power",
+      "sourceProductId": "482644684",
+      "outfitId": "46ba84ae-12a7-4469-90f6-72529c79afab",
+      "collections": [
+        "Silence Is Power"
+      ]
     },
     {
       "id": "482620118",
       "catalogProductId": 388,
-      "name": "Unisex Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Loyalty Until Death Recycled Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/fae/fae11fc676cb2b779f9da141a6fce064_preview.png",
       "images": [
         "assets/product-photos/482620118-supplier-a07f8c17e1b8cad36f7d.jpg",
@@ -16295,13 +16697,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482620118.html"
+      "url": "products/482620118.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+      "collectionId": "74407dfd-8ae5-43fe-b2e6-8003335f4286",
+      "collectionName": "Loyalty Until Death",
+      "sourceProductId": "482620118",
+      "outfitId": "74407dfd-8ae5-43fe-b2e6-8003335f4286",
+      "collections": [
+        "Loyalty Until Death"
+      ]
     },
     {
       "id": "482585676",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Astral Wanderer Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/1d0/1d08e38abb6a6c30432f492f58585fff_preview.png",
       "images": [
         "assets/product-photos/482585676-supplier-4803d56038babb7d2df3.jpg",
@@ -16430,13 +16841,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482585676.html"
+      "url": "products/482585676.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "9ec9e0f6-0a91-4f60-bc07-67b0e51e4db8",
+      "collectionName": "Astral Wanderer",
+      "sourceProductId": "482585676",
+      "outfitId": "9ec9e0f6-0a91-4f60-bc07-67b0e51e4db8",
+      "collections": [
+        "Astral Wanderer"
+      ]
     },
     {
       "id": "482576149",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Blood Moon Covenant Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/34f/34f2c8e914a566d7067f34271f2310e9_preview.png",
       "images": [
         "assets/product-photos/482576149-supplier-633ae9df2014421a760d.jpg",
@@ -16565,13 +16985,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482576149.html"
+      "url": "products/482576149.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "e39175f7-eb2c-49a6-8533-0cbb86866c4c",
+      "collectionName": "Blood Moon Covenant",
+      "sourceProductId": "482576149",
+      "outfitId": "e39175f7-eb2c-49a6-8533-0cbb86866c4c",
+      "collections": [
+        "Blood Moon Covenant"
+      ]
     },
     {
       "id": "482559827",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Dead Air Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/99e/99e8b58e7cd91153806257acb30c7de3_preview.png",
       "images": [
         "assets/product-photos/482559827-supplier-5af9ca782a0d225b545e.jpg",
@@ -16700,13 +17129,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482559827.html"
+      "url": "products/482559827.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "adc89aa5-8082-42f5-82e1-b5e0e5aa2cfb",
+      "collectionName": "Dead Air",
+      "sourceProductId": "482559827",
+      "outfitId": "adc89aa5-8082-42f5-82e1-b5e0e5aa2cfb",
+      "collections": [
+        "Dead Air"
+      ]
     },
     {
       "id": "482554858",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Winter Wolf Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/e68/e68959eab878c79e440587c16d70c5ac_preview.png",
       "images": [
         "assets/product-photos/482554858-supplier-32df4a3851f778ce4cac.jpg",
@@ -16725,13 +17163,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482554858.html"
+      "url": "products/482554858.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "aa3c5df1-18fb-489e-aa37-b108338c0dfe",
+      "collectionName": "Winter Wolf",
+      "sourceProductId": "482554858",
+      "outfitId": "aa3c5df1-18fb-489e-aa37-b108338c0dfe",
+      "collections": [
+        "Winter Wolf"
+      ]
     },
     {
       "id": "482550296",
       "catalogProductId": 1628,
-      "name": "Oversized Cotton Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Serpent’s Requiem Oversized Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/9ff/9ff0bf553cd10ffd4371b88a19e1d7eb_preview.png",
       "images": [
         "assets/product-photos/482550296-supplier-fb1b4f3a2df47a4b52fa.jpg",
@@ -16750,13 +17197,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482550296.html"
+      "url": "products/482550296.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionId": "c2e06b29-6caa-40b2-bf60-daf0060384ed",
+      "collectionName": "Serpent’s Requiem",
+      "sourceProductId": "482550296",
+      "outfitId": "c2e06b29-6caa-40b2-bf60-daf0060384ed",
+      "collections": [
+        "Serpent’s Requiem"
+      ]
     },
     {
       "id": "482544936",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Borrowed Time Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/6f7/6f70673cc09d8f02415ee556174cf4d3_preview.png",
       "images": [
         "assets/product-photos/482544936-supplier-ccc02b499e57c1f736ac.jpg",
@@ -16775,13 +17231,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482544936.html"
+      "url": "products/482544936.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "847a4e63-7fd0-4f6b-ba0e-cf5bbae73457",
+      "collectionName": "Borrowed Time",
+      "sourceProductId": "482544936",
+      "outfitId": "847a4e63-7fd0-4f6b-ba0e-cf5bbae73457",
+      "collections": [
+        "Borrowed Time"
+      ]
     },
     {
       "id": "482538815",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Violet Fang Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/502/5026a45be9b435b57b320c3bd8288bb7_preview.png",
       "images": [
         "assets/product-photos/482538815-supplier-543893a7c4cb77ecdcfd.jpg",
@@ -16800,13 +17265,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482538815.html"
+      "url": "products/482538815.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "6b09ae62-9892-4623-b1b4-2d1918e53917",
+      "collectionName": "Violet Fang",
+      "sourceProductId": "482538815",
+      "outfitId": "6b09ae62-9892-4623-b1b4-2d1918e53917",
+      "collections": [
+        "Violet Fang"
+      ]
     },
     {
       "id": "482534817",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Abyssal Voyage Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/77c/77c2256b7c25baab0a333d5d80f0f377_preview.png",
       "images": [
         "assets/product-photos/482534817-supplier-cb8c571365a2a47c69c0.jpg",
@@ -16935,13 +17409,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482534817.html"
+      "url": "products/482534817.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "e1df5b15-02cd-49d7-adb1-d9d306fe4472",
+      "collectionName": "Abyssal Voyage",
+      "sourceProductId": "482534817",
+      "outfitId": "e1df5b15-02cd-49d7-adb1-d9d306fe4472",
+      "collections": [
+        "Abyssal Voyage"
+      ]
     },
     {
       "id": "482531306",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Death’s-Head Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/a13/a1337d16efc402c7c0d88d1acb59880b_preview.png",
       "images": [
         "assets/product-photos/482531306-supplier-b16d54187b3b2bc4d6ee.jpg",
@@ -16960,13 +17443,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482531306.html"
+      "url": "products/482531306.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "fcddb48a-d495-400e-8175-ad17b4a444bd",
+      "collectionName": "Death’s-Head",
+      "sourceProductId": "482531306",
+      "outfitId": "fcddb48a-d495-400e-8175-ad17b4a444bd",
+      "collections": [
+        "Death’s-Head"
+      ]
     },
     {
       "id": "482524169",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Raven Sanctum Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/33d/33dd584d61cf052e81a055737129537f_preview.png",
       "images": [
         "assets/product-photos/482524169-supplier-9b7a3c3276e7fdcd8136.jpg",
@@ -16985,13 +17477,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/482524169.html"
+      "url": "products/482524169.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionId": "850b462e-978a-4afc-a294-9a5cf7b66a2e",
+      "collectionName": "Raven Sanctum",
+      "sourceProductId": "482524169",
+      "outfitId": "850b462e-978a-4afc-a294-9a5cf7b66a2e",
+      "collections": [
+        "Raven Sanctum"
+      ]
     },
     {
       "id": "480883560",
       "catalogProductId": 276,
       "name": "Ashen Cathedral Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/ff2/ff2886a75d731391437768c4ee489702_preview.png",
       "images": [
         "assets/product-photos/480883560-9051-all-3fa5f1b9c3-0.jpg",
@@ -17086,13 +17587,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480883560.html"
+      "url": "products/480883560.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480883542",
       "catalogProductId": 644,
       "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png",
       "images": [
         "assets/product-photos/480883542-16261-all-7994325f43-0.jpg",
@@ -17252,13 +17755,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480883542.html"
+      "url": "products/480883542.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480883493",
       "catalogProductId": 920,
       "name": "Ashen Cathedral Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png",
       "images": [
         "assets/product-photos/480883493-23675-all-6f919fff5d-0.jpg",
@@ -17356,7 +17861,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480883493.html"
+      "url": "products/480883493.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480883452",
@@ -17467,13 +17974,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480883452.html"
+      "url": "products/480883452.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480883426",
       "catalogProductId": 320,
       "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png",
       "images": [
         "assets/product-photos/480883426-9732-all-8588cfb50a-0.jpg",
@@ -17658,13 +18167,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480883426.html"
+      "url": "products/480883426.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480876949",
       "catalogProductId": 276,
       "name": "Ashen Cathedral Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/ff2/ff2886a75d731391437768c4ee489702_preview.png",
       "images": [
         "assets/product-photos/480876949-9051-all-5859e04a43-0.jpg",
@@ -17759,13 +18270,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480876949.html"
+      "url": "products/480876949.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480876926",
       "catalogProductId": 644,
       "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png",
       "images": [
         "assets/product-photos/480876926-16261-all-9e6482b697-0.jpg",
@@ -17925,13 +18438,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480876926.html"
+      "url": "products/480876926.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480876919",
       "catalogProductId": 920,
       "name": "Ashen Cathedral Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png",
       "images": [
         "assets/product-photos/480876919-23675-all-ee3354779d-0.jpg",
@@ -18029,7 +18544,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480876919.html"
+      "url": "products/480876919.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480876910",
@@ -18140,13 +18657,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480876910.html"
+      "url": "products/480876910.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480876879",
       "catalogProductId": 320,
       "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png",
       "images": [
         "assets/product-photos/480876879-9732-all-a149a6c997-0.jpg",
@@ -18331,13 +18850,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480876879.html"
+      "url": "products/480876879.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480761362",
       "catalogProductId": 1474,
       "name": "Blood Moon Reaper Cotton Crop Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/502/502dd8635197a887dc7167b379e5f9c3_preview.png",
       "images": [
         "assets/product-photos/480761362-46226-all-dac7e99f8e-0.jpg",
@@ -18406,13 +18927,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761362.html"
+      "url": "products/480761362.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Cotton Crop Top"
     },
     {
       "id": "480761355",
       "catalogProductId": 963,
       "name": "Blood Moon Reaper Utility Backpack",
-      "category": "Accessories",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/789/7891fe32ac9f9c86a1df333051ab481d_preview.png",
       "images": [
         "assets/product-photos/480761355-24564-all-def2f094ee-0.jpg",
@@ -18446,13 +18969,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761355.html"
+      "url": "products/480761355.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Utility Backpack"
     },
     {
       "id": "480761351",
       "catalogProductId": 630,
       "name": "Blood Moon Reaper Bandana",
-      "category": "Accessories",
+      "category": "Scarves",
       "image": "https://files.cdn.printful.com/files/44a/44afe848535fbbda9dc0acf9069e0c81_preview.png",
       "images": [
         "assets/product-photos/480761351-16032-all-c69ef7109c-0.jpg",
@@ -18500,13 +19025,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761351.html"
+      "url": "products/480761351.html",
+      "categoryId": "scarves",
+      "catalogTitle": "All-Over Print Bandana"
     },
     {
       "id": "480761347",
       "catalogProductId": 420,
       "name": "Blood Moon Reaper Neck Gaiter",
-      "category": "Other pieces",
+      "category": "Face coverings",
       "image": "https://files.cdn.printful.com/files/66b/66b1fefabf9ac32f227187ce831b0492_preview.png",
       "images": [
         "assets/product-photos/480761347-11414-all-811133b126-0.jpg",
@@ -18569,13 +19096,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761347.html"
+      "url": "products/480761347.html",
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter"
     },
     {
       "id": "480761338",
       "catalogProductId": 242,
       "name": "Blood Moon Reaper Yoga Leggings",
-      "category": "Bottoms",
+      "category": "Leggings",
       "image": "https://files.cdn.printful.com/files/d79/d797ad9897fead0f16d2cc503c8f879b_preview.png",
       "images": [
         "assets/product-photos/480761338-8355-all-1cea2bd1bc-0.jpg",
@@ -18689,13 +19218,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761338.html"
+      "url": "products/480761338.html",
+      "categoryId": "leggings",
+      "catalogTitle": "All-Over Print Yoga Leggings"
     },
     {
       "id": "480761332",
       "catalogProductId": 330,
       "name": "Blood Moon Reaper Unisex Athletic Shorts",
-      "category": "Bottoms",
+      "category": "Shorts",
       "image": "https://files.cdn.printful.com/files/93a/93a5db84b029a80cb3e093f96484b455_preview.png",
       "images": [
         "assets/product-photos/480761332-9806-all-72b02acbe6-0.jpg",
@@ -18804,13 +19335,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761332.html"
+      "url": "products/480761332.html",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Athletic Shorts"
     },
     {
       "id": "480761322",
       "catalogProductId": 618,
       "name": "Blood Moon Reaper Unisex Track Pants",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/4bb/4bbc7317102b42b8b765a0a399aa351f_preview.png",
       "images": [
         "assets/product-photos/480761322-15751-all-7411d76487-0.jpg",
@@ -18910,13 +19443,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761322.html"
+      "url": "products/480761322.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Track Pants"
     },
     {
       "id": "480761312",
       "catalogProductId": 400,
       "name": "Blood Moon Reaper Recycled Men’s Joggers",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/a64/a64c8b073be78f4d6444df884bf69ba9_preview.png",
       "images": [
         "assets/product-photos/480761312-supplier-40e2f5569a65d3faf360.jpg",
@@ -19001,7 +19536,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480761312.html"
+      "url": "products/480761312.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Recycled Men’s Joggers"
     },
     {
       "id": "480760870",
@@ -19157,13 +19694,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760870.html"
+      "url": "products/480760870.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Unisex Button Shirt"
     },
     {
       "id": "480760864",
       "catalogProductId": 276,
       "name": "Blood Moon Reaper Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/fa7/fa7ae1964fc342dc1acca7d595d7feae_preview.png",
       "images": [
         "assets/product-photos/480760864-9051-all-b25329cfc2-0.jpg",
@@ -19258,13 +19797,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760864.html"
+      "url": "products/480760864.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480760851",
       "catalogProductId": 644,
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/aaf/aaf3590a0d6e9c6ee2914d0293c3477b_preview.png",
       "images": [
         "assets/product-photos/480760851-16261-all-14bae0d7cc-0.jpg",
@@ -19424,13 +19965,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760851.html"
+      "url": "products/480760851.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480760841",
       "catalogProductId": 920,
       "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/c36/c36d38fce16d4296989d3aeee548ef13_preview.png",
       "images": [
         "assets/product-photos/480760841-23675-all-6dc17af331-0.jpg",
@@ -19528,7 +20071,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760841.html"
+      "url": "products/480760841.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480760830",
@@ -19639,13 +20184,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760830.html"
+      "url": "products/480760830.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480760815",
       "catalogProductId": 320,
       "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/f7e/f7e9fac3b7fe7ae9e098c6820bdd104a_preview.png",
       "images": [
         "assets/product-photos/480760815-9732-all-5716936f1b-0.jpg",
@@ -19830,13 +20377,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760815.html"
+      "url": "products/480760815.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480760792",
       "catalogProductId": 1474,
       "name": "Ashen Cathedral Cotton Crop Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/194/194bf317bb4c8ee9ca853f6cf7a98f26_preview.png",
       "images": [
         "assets/product-photos/480760792-46226-all-41c26c5224-0.jpg",
@@ -19905,13 +20454,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760792.html"
+      "url": "products/480760792.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Cotton Crop Top"
     },
     {
       "id": "480760783",
       "catalogProductId": 963,
       "name": "Ashen Cathedral Utility Backpack",
-      "category": "Accessories",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/c2c/c2cb770af59d5e4c7b0327da6505d9de_preview.png",
       "images": [
         "assets/product-photos/480760783-24564-all-dac41551e6-0.jpg",
@@ -19945,13 +20496,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760783.html"
+      "url": "products/480760783.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Utility Backpack"
     },
     {
       "id": "480760775",
       "catalogProductId": 630,
       "name": "Ashen Cathedral Bandana",
-      "category": "Accessories",
+      "category": "Scarves",
       "image": "https://files.cdn.printful.com/files/3cb/3cb8aec6cd8306e1f334df13379de507_preview.png",
       "images": [
         "assets/product-photos/480760775-16032-all-272afd0a53-0.jpg",
@@ -19999,13 +20552,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760775.html"
+      "url": "products/480760775.html",
+      "categoryId": "scarves",
+      "catalogTitle": "All-Over Print Bandana"
     },
     {
       "id": "480760768",
       "catalogProductId": 420,
       "name": "Ashen Cathedral Neck Gaiter",
-      "category": "Other pieces",
+      "category": "Face coverings",
       "image": "https://files.cdn.printful.com/files/0a4/0a420d1c18fda3cea442bcd82fd03446_preview.png",
       "images": [
         "assets/product-photos/480760768-11414-all-a00f2daa52-0.jpg",
@@ -20068,13 +20623,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760768.html"
+      "url": "products/480760768.html",
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter"
     },
     {
       "id": "480760547",
       "catalogProductId": 242,
       "name": "Ashen Cathedral Yoga Leggings",
-      "category": "Bottoms",
+      "category": "Leggings",
       "image": "https://files.cdn.printful.com/files/608/6086cb5ce0e8db201a1acc2f847f3c6f_preview.png",
       "images": [
         "assets/product-photos/480760547-8355-all-b3e75be010-0.jpg",
@@ -20188,13 +20745,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760547.html"
+      "url": "products/480760547.html",
+      "categoryId": "leggings",
+      "catalogTitle": "All-Over Print Yoga Leggings"
     },
     {
       "id": "480760541",
       "catalogProductId": 330,
       "name": "Ashen Cathedral Unisex Athletic Shorts",
-      "category": "Bottoms",
+      "category": "Shorts",
       "image": "https://files.cdn.printful.com/files/a45/a45decaab2f7e79d0d9c48d3e15b9f07_preview.png",
       "images": [
         "assets/product-photos/480760541-9806-all-a4057bb178-0.jpg",
@@ -20303,13 +20862,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760541.html"
+      "url": "products/480760541.html",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Athletic Shorts"
     },
     {
       "id": "480760535",
       "catalogProductId": 618,
       "name": "Ashen Cathedral Unisex Track Pants",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/2ab/2ab326f8da7be4d978d2421714de3f2a_preview.png",
       "images": [
         "assets/product-photos/480760535-15751-all-f5152e3b47-0.jpg",
@@ -20409,13 +20970,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760535.html"
+      "url": "products/480760535.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Track Pants"
     },
     {
       "id": "480760529",
       "catalogProductId": 400,
       "name": "Ashen Cathedral Recycled Men’s Joggers",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/0c3/0c33ea489de4142b4ba9c20598d5deb5_preview.png",
       "images": [
         "assets/product-photos/480760529-supplier-fa2becbd07ffefc2d300.jpg",
@@ -20500,7 +21063,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760529.html"
+      "url": "products/480760529.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Recycled Men’s Joggers"
     },
     {
       "id": "480760520",
@@ -20656,13 +21221,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760520.html"
+      "url": "products/480760520.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Unisex Button Shirt"
     },
     {
       "id": "480760516",
       "catalogProductId": 276,
       "name": "Ashen Cathedral Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/ff2/ff2886a75d731391437768c4ee489702_preview.png",
       "images": [
         "assets/product-photos/480760516-9051-all-00fae8210d-0.jpg",
@@ -20757,13 +21324,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760516.html"
+      "url": "products/480760516.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480760509",
       "catalogProductId": 644,
       "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png",
       "images": [
         "assets/product-photos/480760509-16261-all-d04a19cd92-0.jpg",
@@ -20923,13 +21492,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760509.html"
+      "url": "products/480760509.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480760502",
       "catalogProductId": 920,
       "name": "Ashen Cathedral Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png",
       "images": [
         "assets/product-photos/480760502-23675-all-7fc258ec35-0.jpg",
@@ -21027,7 +21598,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760502.html"
+      "url": "products/480760502.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480760474",
@@ -21138,13 +21711,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760474.html"
+      "url": "products/480760474.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480760460",
       "catalogProductId": 320,
       "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png",
       "images": [
         "assets/product-photos/480760460-9732-all-ecc658b6ab-0.jpg",
@@ -21329,13 +21904,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480760460.html"
+      "url": "products/480760460.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480744107",
       "catalogProductId": 1474,
       "name": "Blood Moon Reaper Cotton Crop Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/502/502dd8635197a887dc7167b379e5f9c3_preview.png",
       "images": [
         "assets/product-photos/480744107-46226-all-2a09a6f587-0.jpg",
@@ -21404,13 +21981,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744107.html"
+      "url": "products/480744107.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Cotton Crop Top"
     },
     {
       "id": "480744102",
       "catalogProductId": 963,
       "name": "Blood Moon Reaper Utility Backpack",
-      "category": "Accessories",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/789/7891fe32ac9f9c86a1df333051ab481d_preview.png",
       "images": [
         "assets/product-photos/480744102-24564-all-e6366606e4-0.jpg",
@@ -21444,13 +22023,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744102.html"
+      "url": "products/480744102.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Utility Backpack"
     },
     {
       "id": "480744093",
       "catalogProductId": 630,
       "name": "Blood Moon Reaper Bandana",
-      "category": "Accessories",
+      "category": "Scarves",
       "image": "https://files.cdn.printful.com/files/44a/44afe848535fbbda9dc0acf9069e0c81_preview.png",
       "images": [
         "assets/product-photos/480744093-16032-all-f0c39dbf39-0.jpg",
@@ -21498,13 +22079,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744093.html"
+      "url": "products/480744093.html",
+      "categoryId": "scarves",
+      "catalogTitle": "All-Over Print Bandana"
     },
     {
       "id": "480744091",
       "catalogProductId": 420,
       "name": "Blood Moon Reaper Neck Gaiter",
-      "category": "Other pieces",
+      "category": "Face coverings",
       "image": "https://files.cdn.printful.com/files/66b/66b1fefabf9ac32f227187ce831b0492_preview.png",
       "images": [
         "assets/product-photos/480744091-11414-all-6ce06269d1-0.jpg",
@@ -21567,13 +22150,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744091.html"
+      "url": "products/480744091.html",
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter"
     },
     {
       "id": "480744081",
       "catalogProductId": 242,
       "name": "Blood Moon Reaper Yoga Leggings",
-      "category": "Bottoms",
+      "category": "Leggings",
       "image": "https://files.cdn.printful.com/files/d79/d797ad9897fead0f16d2cc503c8f879b_preview.png",
       "images": [
         "assets/product-photos/480744081-8355-all-b3e8f26d24-0.jpg",
@@ -21687,13 +22272,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744081.html"
+      "url": "products/480744081.html",
+      "categoryId": "leggings",
+      "catalogTitle": "All-Over Print Yoga Leggings"
     },
     {
       "id": "480744072",
       "catalogProductId": 330,
       "name": "Blood Moon Reaper Unisex Athletic Shorts",
-      "category": "Bottoms",
+      "category": "Shorts",
       "image": "https://files.cdn.printful.com/files/93a/93a5db84b029a80cb3e093f96484b455_preview.png",
       "images": [
         "assets/product-photos/480744072-9806-all-6e58b1eed5-0.jpg",
@@ -21802,13 +22389,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744072.html"
+      "url": "products/480744072.html",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Athletic Shorts"
     },
     {
       "id": "480744068",
       "catalogProductId": 618,
       "name": "Blood Moon Reaper Unisex Track Pants",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/4bb/4bbc7317102b42b8b765a0a399aa351f_preview.png",
       "images": [
         "assets/product-photos/480744068-15751-all-fb6aedb4af-0.jpg",
@@ -21908,13 +22497,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744068.html"
+      "url": "products/480744068.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Track Pants"
     },
     {
       "id": "480744058",
       "catalogProductId": 400,
       "name": "Blood Moon Reaper Recycled Men’s Joggers",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/a64/a64c8b073be78f4d6444df884bf69ba9_preview.png",
       "images": [
         "assets/product-photos/480744058-supplier-40e2f5569a65d3faf360.jpg",
@@ -21999,7 +22590,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480744058.html"
+      "url": "products/480744058.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Recycled Men’s Joggers"
     },
     {
       "id": "480743787",
@@ -22155,13 +22748,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743787.html"
+      "url": "products/480743787.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Unisex Button Shirt"
     },
     {
       "id": "480743781",
       "catalogProductId": 276,
       "name": "Blood Moon Reaper Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/fa7/fa7ae1964fc342dc1acca7d595d7feae_preview.png",
       "images": [
         "assets/product-photos/480743781-9051-all-7ae03cc4ef-0.jpg",
@@ -22256,13 +22851,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743781.html"
+      "url": "products/480743781.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480743769",
       "catalogProductId": 644,
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/aaf/aaf3590a0d6e9c6ee2914d0293c3477b_preview.png",
       "images": [
         "assets/product-photos/480743769-16261-all-01cf0c8f53-0.jpg",
@@ -22422,13 +23019,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743769.html"
+      "url": "products/480743769.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480743760",
       "catalogProductId": 920,
       "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/c36/c36d38fce16d4296989d3aeee548ef13_preview.png",
       "images": [
         "assets/product-photos/480743760-23675-all-1b3126aceb-0.jpg",
@@ -22526,7 +23125,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743760.html"
+      "url": "products/480743760.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480743745",
@@ -22637,13 +23238,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743745.html"
+      "url": "products/480743745.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480743736",
       "catalogProductId": 320,
       "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/f7e/f7e9fac3b7fe7ae9e098c6820bdd104a_preview.png",
       "images": [
         "assets/product-photos/480743736-9732-all-c60b89777b-0.jpg",
@@ -22828,13 +23431,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743736.html"
+      "url": "products/480743736.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480743729",
       "catalogProductId": 1474,
       "name": "Ashen Cathedral Cotton Crop Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/194/194bf317bb4c8ee9ca853f6cf7a98f26_preview.png",
       "images": [
         "assets/product-photos/480743729-46226-all-feaa6f45e6-0.jpg",
@@ -22903,13 +23508,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743729.html"
+      "url": "products/480743729.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Cotton Crop Top"
     },
     {
       "id": "480743722",
       "catalogProductId": 963,
       "name": "Ashen Cathedral Utility Backpack",
-      "category": "Accessories",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/c2c/c2cb770af59d5e4c7b0327da6505d9de_preview.png",
       "images": [
         "assets/product-photos/480743722-24564-all-969aac0c64-0.jpg",
@@ -22943,13 +23550,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743722.html"
+      "url": "products/480743722.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Utility Backpack"
     },
     {
       "id": "480743719",
       "catalogProductId": 630,
       "name": "Ashen Cathedral Bandana",
-      "category": "Accessories",
+      "category": "Scarves",
       "image": "https://files.cdn.printful.com/files/3cb/3cb8aec6cd8306e1f334df13379de507_preview.png",
       "images": [
         "assets/product-photos/480743719-16032-all-12ba09a954-0.jpg",
@@ -22997,13 +23606,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743719.html"
+      "url": "products/480743719.html",
+      "categoryId": "scarves",
+      "catalogTitle": "All-Over Print Bandana"
     },
     {
       "id": "480743714",
       "catalogProductId": 420,
       "name": "Ashen Cathedral Neck Gaiter",
-      "category": "Other pieces",
+      "category": "Face coverings",
       "image": "https://files.cdn.printful.com/files/0a4/0a420d1c18fda3cea442bcd82fd03446_preview.png",
       "images": [
         "assets/product-photos/480743714-11414-all-e65bdd100b-0.jpg",
@@ -23066,13 +23677,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743714.html"
+      "url": "products/480743714.html",
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter"
     },
     {
       "id": "480743473",
       "catalogProductId": 242,
       "name": "Ashen Cathedral Yoga Leggings",
-      "category": "Bottoms",
+      "category": "Leggings",
       "image": "https://files.cdn.printful.com/files/608/6086cb5ce0e8db201a1acc2f847f3c6f_preview.png",
       "images": [
         "assets/product-photos/480743473-8355-all-8caa82fcfc-0.jpg",
@@ -23186,13 +23799,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743473.html"
+      "url": "products/480743473.html",
+      "categoryId": "leggings",
+      "catalogTitle": "All-Over Print Yoga Leggings"
     },
     {
       "id": "480743470",
       "catalogProductId": 330,
       "name": "Ashen Cathedral Unisex Athletic Shorts",
-      "category": "Bottoms",
+      "category": "Shorts",
       "image": "https://files.cdn.printful.com/files/a45/a45decaab2f7e79d0d9c48d3e15b9f07_preview.png",
       "images": [
         "assets/product-photos/480743470-9806-all-4e1e7d7851-0.jpg",
@@ -23301,13 +23916,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743470.html"
+      "url": "products/480743470.html",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Athletic Shorts"
     },
     {
       "id": "480743466",
       "catalogProductId": 618,
       "name": "Ashen Cathedral Unisex Track Pants",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/2ab/2ab326f8da7be4d978d2421714de3f2a_preview.png",
       "images": [
         "assets/product-photos/480743466-15751-all-92c83b500b-0.jpg",
@@ -23407,13 +24024,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743466.html"
+      "url": "products/480743466.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Track Pants"
     },
     {
       "id": "480743462",
       "catalogProductId": 400,
       "name": "Ashen Cathedral Recycled Men’s Joggers",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/0c3/0c33ea489de4142b4ba9c20598d5deb5_preview.png",
       "images": [
         "assets/product-photos/480743462-supplier-fa2becbd07ffefc2d300.jpg",
@@ -23498,7 +24117,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743462.html"
+      "url": "products/480743462.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Recycled Men’s Joggers"
     },
     {
       "id": "480743435",
@@ -23654,13 +24275,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743435.html"
+      "url": "products/480743435.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Unisex Button Shirt"
     },
     {
       "id": "480743420",
       "catalogProductId": 276,
       "name": "Ashen Cathedral Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/ff2/ff2886a75d731391437768c4ee489702_preview.png",
       "images": [
         "assets/product-photos/480743420-9051-all-d01e98be11-0.jpg",
@@ -23755,13 +24378,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743420.html"
+      "url": "products/480743420.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480743400",
       "catalogProductId": 644,
       "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/324/324726d9de2f941965df208f51a76248_preview.png",
       "images": [
         "assets/product-photos/480743400-16261-all-ad028f3c4a-0.jpg",
@@ -23921,13 +24546,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743400.html"
+      "url": "products/480743400.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480743395",
       "catalogProductId": 920,
       "name": "Ashen Cathedral Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/ac4/ac40888d0fca6cdd239dcd41ce35ffdc_preview.png",
       "images": [
         "assets/product-photos/480743395-23675-all-75a6a65126-0.jpg",
@@ -24025,7 +24652,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743395.html"
+      "url": "products/480743395.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480743390",
@@ -24136,13 +24765,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743390.html"
+      "url": "products/480743390.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480743384",
       "catalogProductId": 320,
       "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/75f/75f9f094900abc9b8b16b63f659f2e4c_preview.png",
       "images": [
         "assets/product-photos/480743384-9732-all-af68c6efd3-0.jpg",
@@ -24327,13 +24958,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480743384.html"
+      "url": "products/480743384.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480738750",
       "catalogProductId": 630,
       "name": "Blood Moon Reaper Bandana",
-      "category": "Accessories",
+      "category": "Scarves",
       "image": "https://files.cdn.printful.com/files/44a/44afe848535fbbda9dc0acf9069e0c81_preview.png",
       "images": [
         "assets/product-photos/480738750-16032-all-962974aa0a-0.jpg",
@@ -24381,13 +25014,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738750.html"
+      "url": "products/480738750.html",
+      "categoryId": "scarves",
+      "catalogTitle": "All-Over Print Bandana"
     },
     {
       "id": "480738747",
       "catalogProductId": 420,
       "name": "Blood Moon Reaper Neck Gaiter",
-      "category": "Other pieces",
+      "category": "Face coverings",
       "image": "https://files.cdn.printful.com/files/66b/66b1fefabf9ac32f227187ce831b0492_preview.png",
       "images": [
         "assets/product-photos/480738747-11414-all-2e68cb09f8-0.jpg",
@@ -24450,13 +25085,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738747.html"
+      "url": "products/480738747.html",
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter"
     },
     {
       "id": "480738744",
       "catalogProductId": 242,
       "name": "Blood Moon Reaper Yoga Leggings",
-      "category": "Bottoms",
+      "category": "Leggings",
       "image": "https://files.cdn.printful.com/files/d79/d797ad9897fead0f16d2cc503c8f879b_preview.png",
       "images": [
         "assets/product-photos/480738744-8355-all-0b20407714-0.jpg",
@@ -24570,13 +25207,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738744.html"
+      "url": "products/480738744.html",
+      "categoryId": "leggings",
+      "catalogTitle": "All-Over Print Yoga Leggings"
     },
     {
       "id": "480738743",
       "catalogProductId": 330,
       "name": "Blood Moon Reaper Unisex Athletic Shorts",
-      "category": "Bottoms",
+      "category": "Shorts",
       "image": "https://files.cdn.printful.com/files/93a/93a5db84b029a80cb3e093f96484b455_preview.png",
       "images": [
         "assets/product-photos/480738743-9806-all-46ff493f61-0.jpg",
@@ -24685,13 +25324,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738743.html"
+      "url": "products/480738743.html",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Athletic Shorts"
     },
     {
       "id": "480738737",
       "catalogProductId": 618,
       "name": "Blood Moon Reaper Unisex Track Pants",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/4bb/4bbc7317102b42b8b765a0a399aa351f_preview.png",
       "images": [
         "assets/product-photos/480738737-15751-all-aca9820ac9-0.jpg",
@@ -24791,13 +25432,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738737.html"
+      "url": "products/480738737.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Track Pants"
     },
     {
       "id": "480738731",
       "catalogProductId": 400,
       "name": "Blood Moon Reaper Recycled Men’s Joggers",
-      "category": "Bottoms",
+      "category": "Pants",
       "image": "https://files.cdn.printful.com/files/a64/a64c8b073be78f4d6444df884bf69ba9_preview.png",
       "images": [
         "assets/product-photos/480738731-supplier-40e2f5569a65d3faf360.jpg",
@@ -24882,7 +25525,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738731.html"
+      "url": "products/480738731.html",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Recycled Men’s Joggers"
     },
     {
       "id": "480738724",
@@ -25038,13 +25683,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738724.html"
+      "url": "products/480738724.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Unisex Button Shirt"
     },
     {
       "id": "480738718",
       "catalogProductId": 276,
       "name": "Blood Moon Reaper Men's Tank Top",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/fa7/fa7ae1964fc342dc1acca7d595d7feae_preview.png",
       "images": [
         "assets/product-photos/480738718-9051-all-3e3f7d4809-0.jpg",
@@ -25139,13 +25786,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738718.html"
+      "url": "products/480738718.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Tank Top"
     },
     {
       "id": "480738540",
       "catalogProductId": 644,
       "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
-      "category": "Other pieces",
+      "category": "Tees",
       "image": "https://files.cdn.printful.com/files/aaf/aaf3590a0d6e9c6ee2914d0293c3477b_preview.png",
       "images": [
         "assets/product-photos/480738540-16261-all-ab4a4c66f8-0.jpg",
@@ -25305,13 +25954,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738540.html"
+      "url": "products/480738540.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Recycled Unisex Sports Jersey"
     },
     {
       "id": "480738534",
       "catalogProductId": 920,
       "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
-      "category": "Tees",
+      "category": "Long sleeves",
       "image": "https://files.cdn.printful.com/files/c36/c36d38fce16d4296989d3aeee548ef13_preview.png",
       "images": [
         "assets/product-photos/480738534-23675-all-12be3b781f-0.jpg",
@@ -25409,7 +26060,9 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738534.html"
+      "url": "products/480738534.html",
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt"
     },
     {
       "id": "480738528",
@@ -25520,13 +26173,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738528.html"
+      "url": "products/480738528.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt"
     },
     {
       "id": "480738518",
       "catalogProductId": 320,
       "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/f7e/f7e9fac3b7fe7ae9e098c6820bdd104a_preview.png",
       "images": [
         "assets/product-photos/480738518-9732-all-1d87851906-0.jpg",
@@ -25711,13 +26366,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738518.html"
+      "url": "products/480738518.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Recycled Unisex Sweatshirt"
     },
     {
       "id": "480738509",
       "catalogProductId": 919,
       "name": "Blood Moon Reaper Men's Sports Warmup Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/5c8/5c89cc357423dbc599cdbde816ef5b21_preview.png",
       "images": [
         "assets/product-photos/480738509-23667-all-a0cf42881e-0.jpg",
@@ -25815,13 +26472,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/480738509.html"
+      "url": "products/480738509.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Men's Sports Warmup Hoodie"
     },
     {
       "id": "477172651",
       "catalogProductId": 1419,
-      "name": "Unisex cotton hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Midnight Study 172651 Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/945/9457ad8c49ccba2f2e20a1934cea7577_preview.png",
       "images": [
         "assets/product-photos/477172651-supplier-3104d5be73a4849191e8.jpg",
@@ -25950,13 +26609,15 @@
           "availability": "active"
         }
       ],
-      "url": "products/477172651.html"
+      "url": "products/477172651.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie"
     },
     {
       "id": "476663020",
       "catalogProductId": 388,
-      "name": "Unisex Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Crowned Wilds Recycled Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/d18/d18900476ab83b422045674b734f1de1_preview.png",
       "images": [
         "assets/product-photos/476663020-supplier-3536129b6a29980f8e23.jpg",
@@ -26085,13 +26746,22 @@
           "availability": "active"
         }
       ],
-      "url": "products/476663020.html"
+      "url": "products/476663020.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+      "collectionId": "4be6b20e-e82c-4ff5-a20f-e0ce58a7d3e1",
+      "collectionName": "Crowned Wilds",
+      "sourceProductId": "476663020",
+      "outfitId": "4be6b20e-e82c-4ff5-a20f-e0ce58a7d3e1",
+      "collections": [
+        "Crowned Wilds"
+      ]
     },
     {
       "id": "476651184",
       "catalogProductId": 1419,
       "name": "Lantern Keeper Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
       "images": [
         "assets/product-photos/476651184-33977-0.jpg",
@@ -26246,13 +26916,17 @@
       "searchDescription": "Lantern Keeper Cotton-Blend Hoodie. Gothic guardian, glowing lantern and crimson moon artwork on a relaxed cotton-blend layer.",
       "socialImage": "assets/product-photos/476651184-33977-2.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png",
-      "url": "products/476651184.html"
+      "url": "products/476651184.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476640417",
       "catalogProductId": 388,
       "name": "Crimson Throne Recycled Fleece Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
       "images": [
         "assets/product-photos/476640417-10871-0.jpg",
@@ -26409,13 +27083,17 @@
       "searchDescription": "Crimson Throne Recycled Fleece Hoodie. Skeletal cathedral artwork in crimson and black, with a relaxed fit and brushed fleece interior.",
       "socialImage": "assets/product-photos/476640417-10871-3.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
-      "url": "products/476640417.html"
+      "url": "products/476640417.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476636727",
       "catalogProductId": 388,
       "name": "Blood Moon Reaper Recycled Fleece Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/6ae/6ae048ddfb583172de195f8fb248c7f5_preview.png",
       "images": [
         "assets/product-photos/476636727-18730-0.jpg",
@@ -26462,13 +27140,17 @@
       "searchDescription": "Blood Moon Reaper Recycled Fleece Hoodie. A hooded reaper beneath a red eclipse on soft recycled-polyester fleece with a relaxed fit.",
       "socialImage": "assets/product-photos/476636727-18730-3.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/6ae/6ae048ddfb583172de195f8fb248c7f5_preview.png",
-      "url": "products/476636727.html"
+      "url": "products/476636727.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476596721",
       "catalogProductId": 388,
       "name": "Crimson Oath Recycled Fleece Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/c6f/c6ff9772ed83e56ca4931cc136360624_preview.png",
       "images": [
         "assets/product-photos/476596721-18730-0.jpg",
@@ -26515,13 +27197,17 @@
       "searchDescription": "Crimson Oath Recycled Fleece Hoodie. A sword-bearing figure and shadowy cathedral in crimson and black, on relaxed recycled fleece.",
       "socialImage": "assets/product-photos/476596721-18730-3.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/c6f/c6ff9772ed83e56ca4931cc136360624_preview.png",
-      "url": "products/476596721.html"
+      "url": "products/476596721.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Recycled Unisex Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476580639",
       "catalogProductId": 1419,
       "name": "Cathedral Warden Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/57d/57d7a98bbe8895abaee3ff7c4fd0fe39_preview.png",
       "images": [
         "assets/product-photos/476580639-33977-0.jpg",
@@ -26676,13 +27362,17 @@
       "searchDescription": "Cathedral Warden Cotton-Blend Hoodie. Gothic towers, skeletal ornament and red-lit artwork on a relaxed cotton-blend hoodie.",
       "socialImage": "assets/product-photos/476580639-33977-2.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/57d/57d7a98bbe8895abaee3ff7c4fd0fe39_preview.png",
-      "url": "products/476580639.html"
+      "url": "products/476580639.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476570540",
       "catalogProductId": 1628,
       "name": "Scarlet Vigil Oversized Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/d99/d99f73f75ee041207f6b0194fc0c086a_preview.png",
       "images": [
         "assets/product-photos/476570540-51472-0.jpg",
@@ -26827,13 +27517,17 @@
       "searchDescription": "Scarlet Vigil Oversized Cotton-Blend Hoodie. Blood-moon reaper artwork and candlelit ruins on a heavyweight, oversized cotton-blend layer.",
       "socialImage": "assets/product-photos/476570540-51472-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/d99/d99f73f75ee041207f6b0194fc0c086a_preview.png",
-      "url": "products/476570540.html"
+      "url": "products/476570540.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476559553",
       "catalogProductId": 1628,
       "name": "Midnight Requiem Oversized Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/fbd/fbd7852d826b2e79f7ca2b62daa1de2a_preview.png",
       "images": [
         "assets/product-photos/476559553-51472-0.jpg",
@@ -26978,13 +27672,17 @@
       "searchDescription": "Midnight Requiem Oversized Cotton-Blend Hoodie. A shrouded reaper and gothic ruins in black and crimson, with an oversized cotton-blend fit.",
       "socialImage": "assets/product-photos/476559553-51472-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/fbd/fbd7852d826b2e79f7ca2b62daa1de2a_preview.png",
-      "url": "products/476559553.html"
+      "url": "products/476559553.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476553400",
       "catalogProductId": 1628,
-      "name": "Rose Eclipse Oversized Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "name": "Rose Eclipse Oversized Cotton Hoodie",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/b55/b5547d90770c7eee01fc3b8eb803b456_preview.png",
       "images": [
         "assets/product-photos/476553400-51472-0.jpg",
@@ -27118,6 +27816,7 @@
       "description": "Rose Eclipse Oversized Cotton-Blend Hoodie. A hooded figure beneath a rose-tinted moon is surrounded by gothic architecture and dark floral ornament.\n\nMaterials & fit: Heavyweight cotton-blend fabric with an oversized shape, dropped shoulders and a soft-touch finish. Exact fiber percentages have not been published for this item. Compare the garment measurements with a hoodie you already own when choosing your size.\n\nCare: Wash in cold water with similar colors. Avoid bleach and dry-cleaning. Use low heat when ironing and follow the attached care label for drying or any instructions specific to your item.",
       "imageAlt": "Rose Eclipse Oversized Cotton-Blend Hoodie — Midnight Designs printed garment",
       "collections": [
+        "Rose Eclipse",
         "Roses & Moonlight"
       ],
       "artworkColors": [
@@ -27128,13 +27827,19 @@
       "searchDescription": "Rose Eclipse Oversized Cotton-Blend Hoodie. Rose-tinted moon, hooded figure and dark florals on heavyweight cotton-blend fabric.",
       "socialImage": "assets/product-photos/476553400-51472-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/b55/b5547d90770c7eee01fc3b8eb803b456_preview.png",
-      "url": "products/476553400.html"
+      "url": "products/476553400.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400",
+      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d"
     },
     {
       "id": "476397566",
       "catalogProductId": 350,
       "name": "Bloodwing Fanny Pack",
-      "category": "Other pieces",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png",
       "images": [
         "assets/product-photos/476397566-9986-0.jpg",
@@ -27179,13 +27884,17 @@
       "searchDescription": "Bloodwing Fanny Pack. Winged gothic artwork in crimson and black, with adjustable straps and a compact 1.4 L capacity.",
       "socialImage": "assets/product-photos/476397566-9986-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png",
-      "url": "products/476397566.html"
+      "url": "products/476397566.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Fanny Pack",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476395722",
       "catalogProductId": 420,
       "name": "Grave Roses Neck Gaiter",
-      "category": "Other pieces",
+      "category": "Face coverings",
       "image": "https://files.cdn.printful.com/files/cee/cee2e975030cfc11e67ed82acc92bfed_preview.png",
       "images": [
         "assets/product-photos/476395722-11414-0.jpg",
@@ -27224,13 +27933,17 @@
       "searchDescription": "Grave Roses Neck Gaiter. Distressed skull and rose artwork on a smooth, stretchy, single-sided printed neck gaiter.",
       "socialImage": "assets/product-photos/476395722-11414-1.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/cee/cee2e975030cfc11e67ed82acc92bfed_preview.png",
-      "url": "products/476395722.html"
+      "url": "products/476395722.html",
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionName": "Roses & Moonlight",
+      "collectionId": "collection:roses-moonlight"
     },
     {
       "id": "476394293",
       "catalogProductId": 963,
       "name": "Rose Cathedral Utility Backpack",
-      "category": "Accessories",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/5bf/5bf947675adf57cf6f46d042dfd794bb_preview.png",
       "images": [
         "assets/product-photos/476394293-24564-0.jpg",
@@ -27272,13 +27985,17 @@
       "searchDescription": "Rose Cathedral Utility Backpack. Rose-tinted gothic arches on a 16.1 L polyester bag with adjustable straps and a laptop pocket.",
       "socialImage": "assets/product-photos/476394293-24564-3.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/5bf/5bf947675adf57cf6f46d042dfd794bb_preview.png",
-      "url": "products/476394293.html"
+      "url": "products/476394293.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Utility Backpack",
+      "collectionName": "Dark Cathedrals",
+      "collectionId": "collection:dark-cathedrals"
     },
     {
       "id": "476368665",
       "catalogProductId": 1419,
       "name": "Ashen Cathedral Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/c5a/c5a439e32c6ae85f5fb22421561f7790_preview.png",
       "images": [
         "assets/product-photos/476368665-33977-0.jpg",
@@ -27432,13 +28149,17 @@
       "searchDescription": "Ashen Cathedral Cotton-Blend Hoodie. Bone-grey cathedral artwork and glowing red windows on a relaxed cotton-blend layer.",
       "socialImage": "assets/product-photos/476368665-33977-2.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/c5a/c5a439e32c6ae85f5fb22421561f7790_preview.png",
-      "url": "products/476368665.html"
+      "url": "products/476368665.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionName": "Dark Cathedrals",
+      "collectionId": "collection:dark-cathedrals"
     },
     {
       "id": "476368662",
       "catalogProductId": 1419,
       "name": "Bone Chapel Cotton-Blend Hoodie",
-      "category": "Hoodies & sweatshirts",
+      "category": "Hoodies",
       "image": "https://files.cdn.printful.com/files/ab2/ab227f79d65bc4c4fd55d73f9eaed107_preview.png",
       "images": [
         "assets/product-photos/476368662-33977-0.jpg",
@@ -27591,7 +28312,11 @@
       "searchDescription": "Bone Chapel Cotton-Blend Hoodie. Near-monochrome gothic arches and skeletal ornament on a relaxed cotton-blend hoodie.",
       "socialImage": "assets/product-photos/476368662-33977-2.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/ab2/ab227f79d65bc4c4fd55d73f9eaed107_preview.png",
-      "url": "products/476368662.html"
+      "url": "products/476368662.html",
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "collectionName": "Dark Cathedrals",
+      "collectionId": "collection:dark-cathedrals"
     },
     {
       "id": "476368661",
@@ -27701,13 +28426,17 @@
       "searchDescription": "Pumpkin Manor Athletic T-Shirt. A glowing jack-o'-lantern and haunted manor on lightweight, four-way-stretch sports mesh.",
       "socialImage": "assets/product-photos/476368661-9954-1.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/907/907ed07dd3068dc5034d52e8ad72a8aa_preview.png",
-      "url": "products/476368661.html"
+      "url": "products/476368661.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt",
+      "collectionName": "Halloween",
+      "collectionId": "collection:halloween"
     },
     {
       "id": "476368660",
       "catalogProductId": 279,
       "name": "Death Moon Backpack",
-      "category": "Accessories",
+      "category": "Bags",
       "image": "https://files.cdn.printful.com/files/53f/53fccade605735d6cc40d7f31203f057_preview.png",
       "images": [
         "assets/product-photos/476368660-9063-0.jpg",
@@ -27748,7 +28477,11 @@
       "searchDescription": "Death Moon Backpack. Weathered skull, crimson moon and gothic towers on a polyester bag with padded straps.",
       "socialImage": "assets/product-photos/476368660-9063-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/53f/53fccade605735d6cc40d7f31203f057_preview.png",
-      "url": "products/476368660.html"
+      "url": "products/476368660.html",
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionName": "Reapers & Blood Moons",
+      "collectionId": "collection:reapers-blood-moons"
     },
     {
       "id": "476368659",
@@ -27858,7 +28591,11 @@
       "searchDescription": "Terror Tapes Athletic T-Shirt. Distressed skull, curling smoke and bold red horror lettering on lightweight stretch sports mesh.",
       "socialImage": "assets/product-photos/476368659-9954-1.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/0e3/0e3955cd70f1f48ed6b9faba2a2fce4c_preview.png",
-      "url": "products/476368659.html"
+      "url": "products/476368659.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt",
+      "collectionName": "Retro Horror",
+      "collectionId": "collection:retro-horror"
     },
     {
       "id": "476368658",
@@ -27968,7 +28705,11 @@
       "searchDescription": "Reel of Terror Athletic T-Shirt. Vintage drive-in and film-reel artwork on soft, lightweight, four-way-stretch sports mesh.",
       "socialImage": "assets/product-photos/476368658-9954-1.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/5ce/5ce375676b8400776a9ce7a09991eafc_preview.png",
-      "url": "products/476368658.html"
+      "url": "products/476368658.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt",
+      "collectionName": "Retro Horror",
+      "collectionId": "collection:retro-horror"
     },
     {
       "id": "476368657",
@@ -28077,13 +28818,17 @@
       "searchDescription": "Nightshift Jack Athletic T-Shirt. Orange pumpkin chest artwork and Halloween sleeve details on a black athletic tee.",
       "socialImage": "assets/product-photos/476368657-9954-1.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/426/426f2210f4f9d71a5229dc595342b18c_preview.png",
-      "url": "products/476368657.html"
+      "url": "products/476368657.html",
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Men's Athletic T-Shirt",
+      "collectionName": "Halloween",
+      "collectionId": "collection:halloween"
     },
     {
       "id": "476368655",
       "catalogProductId": 242,
       "name": "Moonlit Ruins Yoga Leggings",
-      "category": "Bottoms",
+      "category": "Leggings",
       "image": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
       "images": [
         "assets/product-photos/476368655-8355-0.jpg",
@@ -28167,13 +28912,17 @@
       "searchDescription": "Moonlit Ruins Yoga Leggings. Rose-tinted moons and gothic ruins on four-way-stretch microfiber with a raised waistband.",
       "socialImage": "assets/product-photos/476368655-8355-5.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/6de/6de03895eff25085f8e659c8dd616851_preview.png",
-      "url": "products/476368655.html"
+      "url": "products/476368655.html",
+      "categoryId": "leggings",
+      "catalogTitle": "All-Over Print Yoga Leggings",
+      "collectionName": "Roses & Moonlight",
+      "collectionId": "collection:roses-moonlight"
     },
     {
       "id": "476368653",
       "catalogProductId": 630,
       "name": "Thorn Veil Bandana",
-      "category": "Accessories",
+      "category": "Scarves",
       "image": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
       "images": [
         "assets/product-photos/476368653-16032-0.jpg",
@@ -28228,13 +28977,17 @@
       "searchDescription": "Thorn Veil Bandana. Rose-toned floral and thorn artwork on a lightweight, single-sided printed bandana.",
       "socialImage": "assets/product-photos/476368653-16032-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/0fb/0fb7f075c78f91b2dcc040995e917ab2_preview.png",
-      "url": "products/476368653.html"
+      "url": "products/476368653.html",
+      "categoryId": "scarves",
+      "catalogTitle": "All-Over Print Bandana",
+      "collectionName": "Roses & Moonlight",
+      "collectionId": "collection:roses-moonlight"
     },
     {
       "id": "476363019",
       "catalogProductId": 1418,
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
-      "category": "Hoodies & sweatshirts",
+      "category": "Crewnecks",
       "image": "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png",
       "images": [
         "assets/product-photos/476363019-33966-0.jpg",
@@ -28383,7 +29136,11 @@
       "searchDescription": "Lunar Reverie Cotton-Blend Sweatshirt. Butterfly, portrait and rose-tinted moon artwork on a relaxed cotton-blend sweatshirt.",
       "socialImage": "assets/product-photos/476363019-33966-0.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/519/5195fad2c5143d3430d0932ca68d5c02_preview.png",
-      "url": "products/476363019.html"
+      "url": "products/476363019.html",
+      "categoryId": "crewnecks",
+      "catalogTitle": "All-Over Print Unisex Cotton Sweatshirt",
+      "collectionName": "Roses & Moonlight",
+      "collectionId": "collection:roses-moonlight"
     }
   ]
 }

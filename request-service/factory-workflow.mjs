@@ -1,3 +1,4 @@
+import catalogIdentity from '../catalog-identity.js';
 import {placementInstruction,placementGuide,PLACEMENT_POLICY_VERSION} from './factory-placement-playbook.mjs';
 import {panelKind} from './factory-basic-layout-library.mjs';
 import {checkedArtwork} from './factory-artwork-permissions.mjs';
@@ -62,7 +63,8 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   // Creator assignments remain subject to the existing employee controls.
   const prepared=await manager.prepareJob({title:(set.name+' '+piece.label).slice(0,100),brief:(placementInstruction(piece.catalog)+'\n'+brief).slice(0,6000),kind:idea.kind,gender:audience,employee:piece.role,selection:{allowUnspecifiedAudience:piece.allowUnspecifiedAudience===true,product:piece.catalog,fit:'',sizes:variants.map(v=>v.size).filter(Boolean),collection,artworkIds:[...new Set(ids)]}});
   prepared.assigned=drafts.map(d=>d.id);if(idea.kind==='outfit'){prepared.selection.outfitId=idea.id;prepared.selection.storeCollection=set.name.slice(0,100)+' outfit';}if(outfitId){prepared.selection.outfitId=outfitId;prepared.selection.storeCollection=storeCollection||set.name.slice(0,100)+' outfit';}prepared.selection.variantIds=variants.map(v=>v.id);prepared.selection.garmentColor=color;prepared.selection.colorMode=aop?'print':'fabric';
-  const copy={title:(set.name+' '+piece.label).slice(0,150),description:set.name+' artwork on '+blueprint.name+'. '+(aop?'Printed background: '+color+'.':'Garment color: '+color+'.'),category:piece.role,tags:product.audiences.length?[piece.role,audience]:[piece.role],collections:[...new Set([set.name.slice(0,100),storeCollection].filter(Boolean))]};
+  const identity=catalogIdentity.normalize({id:set.id,sourceProductId:set.id,outfitId,catalogProductId:piece.catalog,supplierCatalogTitle:blueprint.name,name:set.name+' '+piece.label,collectionName:storeCollection||set.name,collections:[set.name]});
+  const copy={title:identity.name.slice(0,150),description:(identity.collectionName||set.name)+' artwork on '+blueprint.name+'. '+(aop?'Printed background: '+color+'.':'Garment color: '+color+'.'),category:identity.category,categoryId:identity.categoryId,tags:product.audiences.length?[piece.role,audience]:[piece.role],collections:identity.collections||[set.name.slice(0,100)]};
   db.exec('BEGIN IMMEDIATE');try{
    if(get('SELECT count(*) n FROM factory_print_drafts').n+drafts.length>500)hold('Blueprint storage limit reached. Archive unused product blueprints.');
    for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,blueprint.effectiveTechnique||blueprint.technique,JSON.stringify(d.areas),'live',now());

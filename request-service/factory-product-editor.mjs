@@ -1,3 +1,4 @@
+import {nameFactoryProduct} from './factory-product-identity.mjs';
 import {randomUUID} from 'node:crypto';
 
 export function printfulProductEditUrl(storeId,productId){const store=String(storeId||'').trim(),product=String(productId||'').trim();return /^\d+$/.test(store)&&/^\d+$/.test(product)?'https://www.printful.com/dashboard/product-templates/published/'+store+'/'+product:null;}
@@ -43,7 +44,7 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
    const selection=JSON.parse(m.selection||'{}'),saved=has('factory_job_layouts')?get('SELECT layout FROM factory_job_layouts WHERE job=?',m.job):null,layout=saved?JSON.parse(saved.layout):null;
    legacy.push({id:'made:'+m.id,jobId:m.job,collection:m.set_name,name:m.name,state:m.status,supplierId:m.printful_id||null,editable:false,choice:{setId:m.set_id,product:m.catalog,audience:m.gender||'unisex',sizes:selection.sizes||[],allowUnspecifiedAudience:selection.allowUnspecifiedAudience===true,layout:layout?.input||null}});
   }
-  const linked=rows=>rows.map(p=>({...p,printfulEditUrl:printfulProductEditUrl(resolvedStoreId,p.supplierId)}));
+  const linked=rows=>rows.map(p=>({...nameFactoryProduct(p),printfulEditUrl:printfulProductEditUrl(resolvedStoreId,p.supplierId)}));
   return {pieces:linked(pieces),products:linked([...products,...legacy]),sets,printfulEditorError:resolvedStoreId?null:storeLookupError||'A valid Printful store ID is required for native product editing.',recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }
  let mediaCache=null,mediaAt=0,mediaPending=null;

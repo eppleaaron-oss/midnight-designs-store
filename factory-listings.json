@@ -3,8 +3,8 @@
     "482918795": {
       "id": "482918795",
       "catalogProductId": 1482,
-      "name": "Rose Eclipse All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Rose Eclipse Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/482918795/73cbae89407ca6704fedd34389ca38b009b1ad48476fb99c2a6ff8189fb8b843.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/482918795/73cbae89407ca6704fedd34389ca38b009b1ad48476fb99c2a6ff8189fb8b843.jpg",
@@ -44,13 +44,18 @@
       "factoryExternalId": "midnight-factory-1be3784b-c798-4f26-b5dc-a917a65a10b9",
       "url": "products/482918795.html",
       "studioRevision": "69f6815c-e8be-4996-8f6c-924f754c9c5d",
-      "studioUpdated": 1792923821257
+      "studioUpdated": 1792923821257,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "482923908": {
       "id": "482923908",
       "catalogProductId": 1479,
-      "name": "Rose Eclipse All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Rose Eclipse Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/482923908/08de41193a309638aa625fe1e5b00e31824363ea8e588c5571a5f686f37266d6.jpg",
@@ -87,13 +92,18 @@
       "factoryExternalId": "midnight-factory-00fba902-955b-41ca-be37-b3513e120ecf",
       "url": "products/482923908.html",
       "studioRevision": "d23af66a-241e-4e2e-b65b-526ca5ad3662",
-      "studioUpdated": 1793126470414
+      "studioUpdated": 1793126470414,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483204573": {
       "id": "483204573",
       "catalogProductId": 1482,
       "name": "Still Waters Run Deep Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483204573/410b6c8ea99f8f8dcc06b4e02080dfc63980f6d66e3976d27b889302dcf6cdff.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483204573/410b6c8ea99f8f8dcc06b4e02080dfc63980f6d66e3976d27b889302dcf6cdff.jpg",
@@ -319,17 +329,22 @@
         "shirts"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "605d6dbf-e088-43e6-ac3f-054c16ae83d3",
-      "studioUpdated": 1793069443620
+      "studioUpdated": 1793069443620,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "483213237": {
       "id": "483213237",
       "catalogProductId": 920,
-      "name": "Rose Eclipse All-Over Print Men's Long Sleeve Shirt",
-      "category": "shirts",
+      "name": "Rose Eclipse Men’s Long Sleeve Shirt",
+      "category": "Long sleeves",
       "image": "https://midnight-designs.store/images/factory/483213237/a08f24f5bddd8f0312b3c526d7d681b440ee621ca9705d9ab910ef6669391566.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483213237/a08f24f5bddd8f0312b3c526d7d681b440ee621ca9705d9ab910ef6669391566.jpg",
@@ -480,17 +495,22 @@
         "shirts"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "a602ae7c-3aef-4644-9f95-6773ceefcd8a",
-      "studioUpdated": 1793128210251
+      "studioUpdated": 1793128210251,
+      "categoryId": "long-sleeves",
+      "catalogTitle": "All-Over Print Men's Long Sleeve Shirt",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483352723": {
       "id": "483352723",
       "catalogProductId": 390,
-      "name": "Rose Eclipse All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Rose Eclipse Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/483352723/692b570e691e735c6762240e43dc0b30d636e3a0395ec860e3295d19b2fce30c.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483352723/692b570e691e735c6762240e43dc0b30d636e3a0395ec860e3295d19b2fce30c.jpg",
@@ -864,17 +884,22 @@
         "jackets"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "a6591a92-6eab-4b33-b32b-23c276ccb2d4",
-      "studioUpdated": 1793120097343
+      "studioUpdated": 1793120097343,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483356322": {
       "id": "483356322",
       "catalogProductId": 1481,
-      "name": "Rose Eclipse All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Rose Eclipse Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/483356322/03c0e81a8388dce45d7b5aa9bc69e6a60ef6f06b70d8e66b8ade03cfd2eacfc0.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483356322/03c0e81a8388dce45d7b5aa9bc69e6a60ef6f06b70d8e66b8ade03cfd2eacfc0.jpg",
@@ -1008,17 +1033,22 @@
         "shorts"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "a516ae66-afe7-4342-b852-3ae2f7fd319b",
-      "studioUpdated": 1793122589598
+      "studioUpdated": 1793122589598,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483361602": {
       "id": "483361602",
       "catalogProductId": 279,
-      "name": "Rose Eclipse All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Rose Eclipse Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/483361602/21080ed5cbc8a1f69136a9ae442bba159c5ad5e91b82c4f21c28db24b502f3d7.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483361602/21080ed5cbc8a1f69136a9ae442bba159c5ad5e91b82c4f21c28db24b502f3d7.jpg",
@@ -1092,17 +1122,22 @@
         "accessories"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "82c350ce-430d-4314-a2cb-5175dbf6ba98",
-      "studioUpdated": 1793056533294
+      "studioUpdated": 1793056533294,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483366087": {
       "id": "483366087",
       "catalogProductId": 513,
-      "name": "Rose Eclipse Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Rose Eclipse Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "assets/product-photos/483366087-12913-all-0ad958d3f4-0.jpg",
       "images": [
         "assets/product-photos/483366087-12913-all-0ad958d3f4-0.jpg",
@@ -1983,15 +2018,21 @@
         "footwear"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
-      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d"
+      "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400",
+      "sizeSystem": "US men"
     },
     "483370819": {
       "id": "483370819",
       "catalogProductId": 420,
-      "name": "Rose Eclipse All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Rose Eclipse Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/483370819/1c26d0cb398b1601f81517da79a8659b030abe8a260df22390ead99b31eb862f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483370819/1c26d0cb398b1601f81517da79a8659b030abe8a260df22390ead99b31eb862f.jpg",
@@ -2107,17 +2148,22 @@
         "facewear"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "90ac76b6-71aa-4d38-986f-a814e61e195a",
-      "studioUpdated": 1793070320031
+      "studioUpdated": 1793070320031,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483375173": {
       "id": "483375173",
       "catalogProductId": 654,
-      "name": "Rose Eclipse All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Rose Eclipse Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/483375173/272c95c6c89e3f37900a85aa0c34aaefce80a1ca8adb35d24c2421714bd21943.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483375173/272c95c6c89e3f37900a85aa0c34aaefce80a1ca8adb35d24c2421714bd21943.jpg",
@@ -2302,17 +2348,22 @@
         "headwear"
       ],
       "collections": [
-        "Rose Eclipse matching collection"
+        "Rose Eclipse"
       ],
       "outfitId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
       "studioRevision": "24aa6d05-b648-4225-b484-ffc6f472c0c3",
-      "studioUpdated": 1793068181396
+      "studioUpdated": 1793068181396,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "1f9ff6ff-929e-4e76-9537-ff0ea2505a4d",
+      "collectionName": "Rose Eclipse",
+      "sourceProductId": "476553400"
     },
     "483378457": {
       "id": "483378457",
       "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Even in Darkness / Still Growing Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483378457/0f97d6da1b0b841fd8ebfadae5c869c235bcdbb9a37d2786a4f0306b8a0a3a14.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483378457/0f97d6da1b0b841fd8ebfadae5c869c235bcdbb9a37d2786a4f0306b8a0a3a14.jpg",
@@ -2538,17 +2589,22 @@
         "shirts"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "f6b2db2b-a424-45b2-bf02-ffb2f5646bcc",
-      "studioUpdated": 1793056059782
+      "studioUpdated": 1793056059782,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483385402": {
       "id": "483385402",
       "catalogProductId": 390,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Even in Darkness / Still Growing Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/483385402/e3b6db01f689aaea3c768c03f38e1f318b64c288caaec01876bf006d670eca5d.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483385402/e3b6db01f689aaea3c768c03f38e1f318b64c288caaec01876bf006d670eca5d.jpg",
@@ -2922,17 +2978,22 @@
         "jackets"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "6dc37de9-b765-4dad-a7ff-4833d00a7cb6",
-      "studioUpdated": 1793073142984
+      "studioUpdated": 1793073142984,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483392618": {
       "id": "483392618",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Even in Darkness / Still Growing Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "assets/product-photos/483392618-46253-all-0.jpg",
       "images": [
         "assets/product-photos/483392618-46253-all-0.jpg",
@@ -3135,15 +3196,20 @@
         "pants"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
-      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6"
+      "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483397425": {
       "id": "483397425",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Even in Darkness / Still Growing Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/483397425/fc9bcb2a172302bb2319c608d37b22ab7952ba5ab3cae823c255361ba3229429.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483397425/fc9bcb2a172302bb2319c608d37b22ab7952ba5ab3cae823c255361ba3229429.jpg",
@@ -3277,17 +3343,22 @@
         "shorts"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "76028ba8-009e-42bf-ab54-6569f3522518",
-      "studioUpdated": 1793134829704
+      "studioUpdated": 1793134829704,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483697609": {
       "id": "483697609",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Even in Darkness / Still Growing Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/483697609/c855433dd294b9025660899f0ef108acc370e5421e8b2cd72865d31f3ec1fbc3.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483697609/c855433dd294b9025660899f0ef108acc370e5421e8b2cd72865d31f3ec1fbc3.jpg",
@@ -3361,17 +3432,22 @@
         "accessories"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "70ccddce-7348-433c-b45a-b0258cf3e623",
-      "studioUpdated": 1793133332752
+      "studioUpdated": 1793133332752,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483704831": {
       "id": "483704831",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 7453 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Even in Darkness / Still Growing Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/483704831/5b72a12b1033f6abac2606d22bd0750ee72bf61f9e2923a3d65e2d46364556e3.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483704831/5b72a12b1033f6abac2606d22bd0750ee72bf61f9e2923a3d65e2d46364556e3.jpg",
@@ -4251,17 +4327,23 @@
         "footwear"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "3c3845c9-302f-4f1b-bf57-7af5ae4f6941",
-      "studioUpdated": 1793149958494
+      "studioUpdated": 1793149958494,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453",
+      "sizeSystem": "US men"
     },
     "483709923": {
       "id": "483709923",
       "catalogProductId": 420,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Even in Darkness / Still Growing Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/483709923/4ed84af84c16b3d988ad3f3c9a2274830fa608245674e0a820b7520c64b81427.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483709923/4ed84af84c16b3d988ad3f3c9a2274830fa608245674e0a820b7520c64b81427.jpg",
@@ -4377,17 +4459,22 @@
         "facewear"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "f0d0830b-e856-4008-8aa3-0d26fd6fdc02",
-      "studioUpdated": 1793143775460
+      "studioUpdated": 1793143775460,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483716755": {
       "id": "483716755",
       "catalogProductId": 654,
-      "name": "Untitled cotton hoodie design 7453 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Even in Darkness / Still Growing Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/483716755/e046d2b513dd007e7b5a361124e49ea350fc97f5fe5b882575ad3ec706f1558c.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483716755/e046d2b513dd007e7b5a361124e49ea350fc97f5fe5b882575ad3ec706f1558c.jpg",
@@ -4571,17 +4658,22 @@
         "headwear"
       ],
       "collections": [
-        "Even in Darkness / Still Growing matching collection"
+        "Even in Darkness / Still Growing"
       ],
       "outfitId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
       "studioRevision": "db46b613-4634-4ad0-9baf-6d51e76fa75f",
-      "studioUpdated": 1793143717459
+      "studioUpdated": 1793143717459,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "4fe649b2-4baf-4f17-8694-08d827ded6e6",
+      "collectionName": "Even in Darkness / Still Growing",
+      "sourceProductId": "482797453"
     },
     "483725842": {
       "id": "483725842",
       "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "What Lies Within Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483725842/abb0f86687c71f4f9e16fc757314dc4d6c8e192c542b7f2cd2e6b82ac37b280f.jpg",
@@ -4807,17 +4899,22 @@
         "shirts"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "76bfc4b1-dec2-4861-bd75-46e88516798c",
-      "studioUpdated": 1793146975412
+      "studioUpdated": 1793146975412,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "483729128": {
       "id": "483729128",
       "catalogProductId": 390,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "What Lies Within Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/483729128/2e3ad12663de6e2a72dafc8ad010aa5ee16fae6fa35a9ebca5e4c17517f69c0f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483729128/2e3ad12663de6e2a72dafc8ad010aa5ee16fae6fa35a9ebca5e4c17517f69c0f.jpg",
@@ -5191,17 +5288,22 @@
         "jackets"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "5b1d5380-027a-4238-8805-f648c960ec50",
-      "studioUpdated": 1793200528092
+      "studioUpdated": 1793200528092,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "483734104": {
       "id": "483734104",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "What Lies Within Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/483734104/5150439e84ba903d51e10fb339347226df8ab49d623c7c6cc9489cc348db811e.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483734104/5150439e84ba903d51e10fb339347226df8ab49d623c7c6cc9489cc348db811e.jpg",
@@ -5403,17 +5505,22 @@
         "pants"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "4832f374-2390-4a2d-a32c-36ab2ea33a91",
-      "studioUpdated": 1793200616284
+      "studioUpdated": 1793200616284,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "483741826": {
       "id": "483741826",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "What Lies Within Cotton Shorts",
+      "category": "Shorts",
       "image": "assets/product-photos/483741826-46347-all-54250cff3d-0.jpg",
       "images": [
         "assets/product-photos/483741826-46347-all-f038e66a9b-0.jpg",
@@ -5551,15 +5658,20 @@
         "shorts"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
-      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074"
+      "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "483763072": {
       "id": "483763072",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 4900 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "What Lies Within Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/483763072/f90f46eaca16a21bed61753b7c9208b2310d322781a79ccd4ce02794767f6427.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483763072/f90f46eaca16a21bed61753b7c9208b2310d322781a79ccd4ce02794767f6427.jpg",
@@ -6439,17 +6551,23 @@
         "footwear"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "1bbc7dd0-613c-4f06-afa1-c47b7c840e15",
-      "studioUpdated": 1793200714095
+      "studioUpdated": 1793200714095,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900",
+      "sizeSystem": "US men"
     },
     "483772508": {
       "id": "483772508",
       "catalogProductId": 420,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "What Lies Within Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/483772508/737d5cf863ae1f7cfe24e8f7c38c8905845e6ddf2343aa5757ecbf5e1a53afda.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483772508/737d5cf863ae1f7cfe24e8f7c38c8905845e6ddf2343aa5757ecbf5e1a53afda.jpg",
@@ -6565,17 +6683,22 @@
         "facewear"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "94d9fe97-d118-4307-b5b0-c0864f136414",
-      "studioUpdated": 1793200479697
+      "studioUpdated": 1793200479697,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "483781924": {
       "id": "483781924",
       "catalogProductId": 654,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "What Lies Within Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/483781924/ccbd5eea99b7704b04621256f3ff3ed12a182b1413bd57cd16c065c5eedc48a6.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483781924/ccbd5eea99b7704b04621256f3ff3ed12a182b1413bd57cd16c065c5eedc48a6.jpg",
@@ -6760,17 +6883,22 @@
         "headwear"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "c327d987-e70c-4894-ba4a-e87b837852cd",
-      "studioUpdated": 1793200483482
+      "studioUpdated": 1793200483482,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "483789497": {
       "id": "483789497",
       "catalogProductId": 1482,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Time Takes All Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/483789497/7c13d16d99915504922697139be5a33b0884031a17dbae2ccb1eaa90c7ea88c5.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483789497/7c13d16d99915504922697139be5a33b0884031a17dbae2ccb1eaa90c7ea88c5.jpg",
@@ -6996,17 +7124,22 @@
         "shirts"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "84c6e8f3-f598-489f-893f-d44a860c074e",
-      "studioUpdated": 1793056180470
+      "studioUpdated": 1793056180470,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "483989841": {
       "id": "483989841",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 4900 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "What Lies Within Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/483989841/4728c3a3efd97b50ca5d6bfd814e5d2223c9dfc0c0630fd5956b6159e0bd21ea.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/483989841/4728c3a3efd97b50ca5d6bfd814e5d2223c9dfc0c0630fd5956b6159e0bd21ea.jpg",
@@ -7080,17 +7213,22 @@
         "accessories"
       ],
       "collections": [
-        "What Lies Within matching collection"
+        "What Lies Within"
       ],
       "outfitId": "0179b784-7519-43a9-8baf-39fb39a4d074",
       "studioRevision": "b1c1113e-c5fd-430f-9bfa-7c550874bc07",
-      "studioUpdated": 1793057392899
+      "studioUpdated": 1793057392899,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "0179b784-7519-43a9-8baf-39fb39a4d074",
+      "collectionName": "What Lies Within",
+      "sourceProductId": "482794900"
     },
     "484000153": {
       "id": "484000153",
       "catalogProductId": 390,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Time Takes All Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/484000153/4d831d08941536561cb399b5cc4a53c4104ef905243ed5dd1175e1596f5a27da.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484000153/4d831d08941536561cb399b5cc4a53c4104ef905243ed5dd1175e1596f5a27da.jpg",
@@ -7464,17 +7602,22 @@
         "jackets"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "862500dc-3b84-4013-af1d-67ef74a7b90a",
-      "studioUpdated": 1793200539896
+      "studioUpdated": 1793200539896,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "484013198": {
       "id": "484013198",
       "catalogProductId": 1479,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Time Takes All Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484013198/ead4a028aaa5848362293afb989b6b8611410a9a4e0ecefd2c1401a016a94b4a.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484013198/ead4a028aaa5848362293afb989b6b8611410a9a4e0ecefd2c1401a016a94b4a.jpg",
@@ -7676,17 +7819,22 @@
         "pants"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "1e5c7fcc-e893-41de-af95-e18856993293",
-      "studioUpdated": 1793200546739
+      "studioUpdated": 1793200546739,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "484021178": {
       "id": "484021178",
       "catalogProductId": 1481,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Time Takes All Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/484021178/8d383e2b7ba2f8313d8691b9791fb4553fb0a0c465d3f14c5796205203b92262.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484021178/8d383e2b7ba2f8313d8691b9791fb4553fb0a0c465d3f14c5796205203b92262.jpg",
@@ -7820,17 +7968,22 @@
         "shorts"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "cf9d8d20-51be-44fc-9a98-07f44e12d79d",
-      "studioUpdated": 1793149143323
+      "studioUpdated": 1793149143323,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "484029631": {
       "id": "484029631",
       "catalogProductId": 279,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Time Takes All Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484029631/1d2550c29c5850d0d2759843d0dc8ab23d0c9e73afe0fc8b7e1836019f153c3f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484029631/1d2550c29c5850d0d2759843d0dc8ab23d0c9e73afe0fc8b7e1836019f153c3f.jpg",
@@ -7904,17 +8057,22 @@
         "accessories"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "3b2f731e-4378-4e97-9c3b-53ed60895c85",
-      "studioUpdated": 1793057030052
+      "studioUpdated": 1793057030052,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "484038554": {
       "id": "484038554",
       "catalogProductId": 513,
-      "name": "Untitled oversized cotton hoodie design 0495 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Time Takes All Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484038554/8663a2039233bc2216ca67f59e874ef6bf1b278f227a5f508bd984638ec106b5.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484038554/8663a2039233bc2216ca67f59e874ef6bf1b278f227a5f508bd984638ec106b5.jpg",
@@ -8794,17 +8952,23 @@
         "footwear"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "13499b48-4bb6-4de2-a746-80b645355b5e",
-      "studioUpdated": 1793200554591
+      "studioUpdated": 1793200554591,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495",
+      "sizeSystem": "US men"
     },
     "484044435": {
       "id": "484044435",
       "catalogProductId": 420,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Time Takes All Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/484044435/d4538fdd45eefb9576ad71e09b809649afce32407f40694a0fbcad92641c7901.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484044435/d4538fdd45eefb9576ad71e09b809649afce32407f40694a0fbcad92641c7901.jpg",
@@ -8920,17 +9084,22 @@
         "facewear"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "0f365233-849c-47fb-b60b-d10c52c559fa",
-      "studioUpdated": 1793200474583
+      "studioUpdated": 1793200474583,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "484051716": {
       "id": "484051716",
       "catalogProductId": 654,
-      "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Time Takes All Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/484051716/9a2459b3f76c278d753dd09c3cd9b92953c7db969b11b5c1fcadbc8a828ba0b0.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484051716/9a2459b3f76c278d753dd09c3cd9b92953c7db969b11b5c1fcadbc8a828ba0b0.jpg",
@@ -9115,17 +9284,22 @@
         "headwear"
       ],
       "collections": [
-        "Time Takes All matching collection"
+        "Time Takes All"
       ],
       "outfitId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
       "studioRevision": "4ace50c4-e354-4aee-8950-7dbe4641084e",
-      "studioUpdated": 1793202517888
+      "studioUpdated": 1793202517888,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "6a58b121-dba2-481c-bbf3-da02052ce42c",
+      "collectionName": "Time Takes All",
+      "sourceProductId": "482790495"
     },
     "484067231": {
       "id": "484067231",
       "catalogProductId": 390,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Bomber Jacket",
-      "category": "jackets",
+      "name": "Still Waters Run Deep Bomber Jacket",
+      "category": "Jackets",
       "image": "https://midnight-designs.store/images/factory/484067231/08e64120a3c588314ddb829a3099ecde5347a0c801fc81f2eb9edbabf6a4d283.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484067231/08e64120a3c588314ddb829a3099ecde5347a0c801fc81f2eb9edbabf6a4d283.jpg",
@@ -9499,17 +9673,22 @@
         "jackets"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "69adb658-ae76-4865-a96f-c23ec1e50c8f",
-      "studioUpdated": 1793061904590
+      "studioUpdated": 1793061904590,
+      "categoryId": "jackets",
+      "catalogTitle": "All-Over Print Unisex Bomber Jacket",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "484076840": {
       "id": "484076840",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Still Waters Run Deep Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484076840/f6ff4e373a8f99dbc934e3fcf753d226080afce14cda29d14700169730be1e40.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484076840/f6ff4e373a8f99dbc934e3fcf753d226080afce14cda29d14700169730be1e40.jpg",
@@ -9711,17 +9890,22 @@
         "pants"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "426c402c-4e66-4591-ac47-45d840aab0e2",
-      "studioUpdated": 1793200559782
+      "studioUpdated": 1793200559782,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "484082838": {
       "id": "484082838",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "Still Waters Run Deep Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/484082838/6d390cddb7a09546b596f413e1eb767cfd44a3cec0350e8cf7770f5af40047bd.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484082838/6d390cddb7a09546b596f413e1eb767cfd44a3cec0350e8cf7770f5af40047bd.jpg",
@@ -9855,17 +10039,22 @@
         "shorts"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "b3d1aa7f-c72d-476a-958a-48ceb31a0f05",
-      "studioUpdated": 1793149324414
+      "studioUpdated": 1793149324414,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "484096947": {
       "id": "484096947",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Still Waters Run Deep Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484096947/cf5a6aaadbe06cfe64c87bd1199e4dbe889a2c5544c172d7c2f46f3a16c15201.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484096947/cf5a6aaadbe06cfe64c87bd1199e4dbe889a2c5544c172d7c2f46f3a16c15201.jpg",
@@ -9939,17 +10128,22 @@
         "accessories"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "bb520442-179e-49ef-83f0-23e1fcc815e1",
-      "studioUpdated": 1793057644970
+      "studioUpdated": 1793057644970,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "484115196": {
       "id": "484115196",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 3901 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Still Waters Run Deep Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484115196/53b0ba794cde7cc92fa0ad4ea4c4fd751409dab8fb58b15eaf6c921ced343b40.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484115196/53b0ba794cde7cc92fa0ad4ea4c4fd751409dab8fb58b15eaf6c921ced343b40.jpg",
@@ -10829,17 +11023,23 @@
         "footwear"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "a001edc1-94e7-4200-8896-e460d58f0ffb",
-      "studioUpdated": 1793200669313
+      "studioUpdated": 1793200669313,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901",
+      "sizeSystem": "US men"
     },
     "484121835": {
       "id": "484121835",
       "catalogProductId": 420,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Still Waters Run Deep Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/484121835/8f2b3c8bf36bf6da4d8a43a9da52863d9d0ae05bc231a6767d328612aca046f4.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484121835/8f2b3c8bf36bf6da4d8a43a9da52863d9d0ae05bc231a6767d328612aca046f4.jpg",
@@ -10955,17 +11155,22 @@
         "facewear"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "3def5b43-adec-4e01-b26d-5397ab02444a",
-      "studioUpdated": 1793200489094
+      "studioUpdated": 1793200489094,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "484132973": {
       "id": "484132973",
       "catalogProductId": 654,
-      "name": "Untitled cotton hoodie design 3901 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Still Waters Run Deep Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/484132973/a883508bdc3dcac36dd13eba52e6b32fc4b88676313616b94f73efd135043828.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484132973/a883508bdc3dcac36dd13eba52e6b32fc4b88676313616b94f73efd135043828.jpg",
@@ -11150,17 +11355,22 @@
         "headwear"
       ],
       "collections": [
-        "Still Waters Run Deep matching collection"
+        "Still Waters Run Deep"
       ],
       "outfitId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
       "studioRevision": "0ea2d52b-1861-45ab-91c6-b007ccdbaecc",
-      "studioUpdated": 1793200493481
+      "studioUpdated": 1793200493481,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "f346388d-543a-4d79-8e1d-1105fc07cc81",
+      "collectionName": "Still Waters Run Deep",
+      "sourceProductId": "482783901"
     },
     "484145986": {
       "id": "484145986",
       "catalogProductId": 1482,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "Beauty in Decay Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/484145986/cd7a71de96bf3fd90bdae23a0ea94310473cdc125c61c823e32b33b883f034db.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484145986/cd7a71de96bf3fd90bdae23a0ea94310473cdc125c61c823e32b33b883f034db.jpg",
@@ -11386,17 +11596,22 @@
         "shirts"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "045dbac0-32e7-4d4b-8d22-a1c409732f55",
-      "studioUpdated": 1793072876927
+      "studioUpdated": 1793072876927,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     "484179695": {
       "id": "484179695",
       "catalogProductId": 1479,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "Beauty in Decay Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484179695/c2ce0582c899bdef47fc25f7969f2b45fda6722bcb80bd21ab4b53d57752f28d.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484179695/c2ce0582c899bdef47fc25f7969f2b45fda6722bcb80bd21ab4b53d57752f28d.jpg",
@@ -11598,17 +11813,22 @@
         "pants"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "caa85c5d-6da4-49fe-b9e6-3df4fb0c5431",
-      "studioUpdated": 1793200612515
+      "studioUpdated": 1793200612515,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     "484197021": {
       "id": "484197021",
       "catalogProductId": 279,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "Beauty in Decay Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484197021/51814c946b4e8a5d6b28fb396c6fb108ed382e93d155958dd3c4ed73449bd7a4.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484197021/51814c946b4e8a5d6b28fb396c6fb108ed382e93d155958dd3c4ed73449bd7a4.jpg",
@@ -11682,17 +11902,22 @@
         "accessories"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "fbfe501e-9c01-47d2-8b95-a564f6596ad6",
-      "studioUpdated": 1793069810601
+      "studioUpdated": 1793069810601,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     "484210680": {
       "id": "484210680",
       "catalogProductId": 513,
-      "name": "Untitled oversized cotton hoodie design 9702 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "Beauty in Decay Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484210680/eabdaaa911f77beac71faf8ba7811f8962700c824d58cd50471037f5006f68e2.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484210680/eabdaaa911f77beac71faf8ba7811f8962700c824d58cd50471037f5006f68e2.jpg",
@@ -12572,17 +12797,23 @@
         "footwear"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "3697c34a-bdfc-40ef-aadf-e7f1f362c144",
-      "studioUpdated": 1793200729910
+      "studioUpdated": 1793200729910,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702",
+      "sizeSystem": "US men"
     },
     "484232678": {
       "id": "484232678",
       "catalogProductId": 420,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter",
-      "category": "facewear",
+      "name": "Beauty in Decay Neck Gaiter",
+      "category": "Face coverings",
       "image": "https://midnight-designs.store/images/factory/484232678/7fe155833ffd0e1d837a3b4cfe42a4bbdbc987e8738fdba2962b9ad6be96980f.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484232678/7fe155833ffd0e1d837a3b4cfe42a4bbdbc987e8738fdba2962b9ad6be96980f.jpg",
@@ -12698,17 +12929,22 @@
         "facewear"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "c8f035bd-a701-41f8-80ef-e26c34a680d9",
-      "studioUpdated": 1793200501397
+      "studioUpdated": 1793200501397,
+      "categoryId": "face-coverings",
+      "catalogTitle": "All-Over Print Neck Gaiter",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     "484245858": {
       "id": "484245858",
       "catalogProductId": 654,
-      "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Reversible Bucket Hat",
-      "category": "headwear",
+      "name": "Beauty in Decay Reversible Bucket Hat",
+      "category": "Headwear",
       "image": "https://midnight-designs.store/images/factory/484245858/ca18b842ea0ef11796e118a8cdb76a70d8cc4eb1ef7385ff737bb8ea52c0a38a.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484245858/ca18b842ea0ef11796e118a8cdb76a70d8cc4eb1ef7385ff737bb8ea52c0a38a.jpg",
@@ -12893,17 +13129,22 @@
         "headwear"
       ],
       "collections": [
-        "Beauty in Decay matching collection"
+        "Beauty in Decay"
       ],
       "outfitId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
       "studioRevision": "7abdb4f7-fa79-44fc-b67a-7ede05580384",
-      "studioUpdated": 1793200675594
+      "studioUpdated": 1793200675594,
+      "categoryId": "headwear",
+      "catalogTitle": "All-Over Print Reversible Bucket Hat",
+      "collectionId": "80427b38-22a7-4afd-b5a2-c51cd56ffeb8",
+      "collectionName": "Beauty in Decay",
+      "sourceProductId": "482779702"
     },
     "484260366": {
       "id": "484260366",
       "catalogProductId": 1482,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Oversized Cotton T-Shirt",
-      "category": "shirts",
+      "name": "After the Last Light Oversized Cotton T-Shirt",
+      "category": "Tees",
       "image": "https://midnight-designs.store/images/factory/484260366/c74060c6845b3c7861914a47a67782ad81c49b7e4bcd8cc64a0efdf98df5d970.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484260366/c74060c6845b3c7861914a47a67782ad81c49b7e4bcd8cc64a0efdf98df5d970.jpg",
@@ -13129,17 +13370,22 @@
         "shirts"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "a464a454-222d-4717-ae57-43b2d79afa28",
-      "studioUpdated": 1793062215829
+      "studioUpdated": 1793062215829,
+      "categoryId": "tees",
+      "catalogTitle": "All-Over Print Oversized Cotton T-Shirt",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     "484271507": {
       "id": "484271507",
       "catalogProductId": 1479,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants",
-      "category": "pants",
+      "name": "After the Last Light Cotton Wide-Leg Pants",
+      "category": "Pants",
       "image": "https://midnight-designs.store/images/factory/484271507/907b5b27a210ef18b601fbafb9388515a2e914e2b52cbf823e48b6878c028118.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484271507/907b5b27a210ef18b601fbafb9388515a2e914e2b52cbf823e48b6878c028118.jpg",
@@ -13341,17 +13587,22 @@
         "pants"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "93dc132e-ec15-4fc7-9456-e6a082f33fbf",
-      "studioUpdated": 1793200629396
+      "studioUpdated": 1793200629396,
+      "categoryId": "pants",
+      "catalogTitle": "All-Over Print Unisex Cotton Wide-Leg Pants",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     "484276499": {
       "id": "484276499",
       "catalogProductId": 1481,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts",
-      "category": "shorts",
+      "name": "After the Last Light Cotton Shorts",
+      "category": "Shorts",
       "image": "https://midnight-designs.store/images/factory/484276499/4153fbac2c47488dc34d4da3339d1a49b006a77185322d902e0e69f06d53ac62.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484276499/4153fbac2c47488dc34d4da3339d1a49b006a77185322d902e0e69f06d53ac62.jpg",
@@ -13485,17 +13736,22 @@
         "shorts"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "f7daf090-1090-4c0a-9246-b9b064c93879",
-      "studioUpdated": 1793200639404
+      "studioUpdated": 1793200639404,
+      "categoryId": "shorts",
+      "catalogTitle": "All-Over Print Unisex Cotton Shorts",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     "484282522": {
       "id": "484282522",
       "catalogProductId": 279,
-      "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
-      "category": "accessories",
+      "name": "After the Last Light Backpack",
+      "category": "Bags",
       "image": "https://midnight-designs.store/images/factory/484282522/c03049144fd88f54231d0f65de8827a19e2a9ad5bc921c24e76d9087bc397d89.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484282522/c03049144fd88f54231d0f65de8827a19e2a9ad5bc921c24e76d9087bc397d89.jpg",
@@ -13569,17 +13825,22 @@
         "accessories"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "bc99f410-8033-4bb6-a341-5783f36e63b5",
-      "studioUpdated": 1793060123561
+      "studioUpdated": 1793060123561,
+      "categoryId": "bags",
+      "catalogTitle": "All-Over Print Backpack",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311"
     },
     "484288453": {
       "id": "484288453",
       "catalogProductId": 513,
-      "name": "Untitled cotton hoodie design 5311 Men's High Top Canvas Shoes",
-      "category": "footwear",
+      "name": "After the Last Light Men’s High-Top Canvas Shoes",
+      "category": "Shoes",
       "image": "https://midnight-designs.store/images/factory/484288453/0a78a421e722355a09205bd85f3d35b5f1a64e32deab87c3fe61f01b9a717d2c.jpg",
       "images": [
         "https://midnight-designs.store/images/factory/484288453/0a78a421e722355a09205bd85f3d35b5f1a64e32deab87c3fe61f01b9a717d2c.jpg",
@@ -14459,11 +14720,17 @@
         "footwear"
       ],
       "collections": [
-        "After the Last Light matching collection"
+        "After the Last Light"
       ],
       "outfitId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
       "studioRevision": "45884cd7-bad3-452b-a4b3-1caa3b4554d6",
-      "studioUpdated": 1793200644301
+      "studioUpdated": 1793200644301,
+      "categoryId": "shoes",
+      "catalogTitle": "Men's High Top Canvas Shoes",
+      "collectionId": "d6b51ac8-40dc-45c1-97ed-d2a4f3534507",
+      "collectionName": "After the Last Light",
+      "sourceProductId": "482775311",
+      "sizeSystem": "US men"
     }
   }
 }

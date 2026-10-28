@@ -206,10 +206,11 @@
       "socialImageSource": "https://files.cdn.printful.com/files/63c/63c2a438838304c21bcdf8f8b8563134_preview.png"
     },
     "476553400": {
-      "name": "Rose Eclipse Oversized Cotton-Blend Hoodie",
+      "name": "Rose Eclipse Oversized Cotton Hoodie",
       "description": "Rose Eclipse Oversized Cotton-Blend Hoodie. A hooded figure beneath a rose-tinted moon is surrounded by gothic architecture and dark floral ornament.\n\nMaterials & fit: Heavyweight cotton-blend fabric with an oversized shape, dropped shoulders and a soft-touch finish. Exact fiber percentages have not been published for this item. Compare the garment measurements with a hoodie you already own when choosing your size.\n\nCare: Wash in cold water with similar colors. Avoid bleach and dry-cleaning. Use low heat when ironing and follow the attached care label for drying or any instructions specific to your item.",
       "imageAlt": "Rose Eclipse Oversized Cotton-Blend Hoodie — Midnight Designs printed garment",
       "collections": [
+        "Rose Eclipse",
         "Roses & Moonlight"
       ],
       "artworkColors": [
@@ -339,6 +340,800 @@
       "searchDescription": "Lantern Keeper Cotton-Blend Hoodie. Gothic guardian, glowing lantern and crimson moon artwork on a relaxed cotton-blend layer.",
       "socialImage": "assets/product-photos/476651184-33977-2.jpg",
       "socialImageSource": "https://files.cdn.printful.com/files/48c/48c457327ffe3c23f5102ae25be1d755_preview.png"
+    },
+    "476663020": {
+      "name": "Crowned Wilds Recycled Hoodie",
+      "collections": [
+        "Crowned Wilds"
+      ]
+    },
+    "477172651": {
+      "name": "Midnight Study 172651 Cotton Hoodie",
+      "collections": []
+    },
+    "480738509": {
+      "name": "Blood Moon Reaper Men's Sports Warmup Hoodie",
+      "collections": []
+    },
+    "480738518": {
+      "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480738528": {
+      "name": "Blood Moon Reaper Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480738534": {
+      "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480738540": {
+      "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480738718": {
+      "name": "Blood Moon Reaper Men's Tank Top",
+      "collections": []
+    },
+    "480738724": {
+      "name": "Blood Moon Reaper Unisex Button Shirt",
+      "collections": []
+    },
+    "480738731": {
+      "name": "Blood Moon Reaper Recycled Men’s Joggers",
+      "collections": []
+    },
+    "480738737": {
+      "name": "Blood Moon Reaper Unisex Track Pants",
+      "collections": []
+    },
+    "480738743": {
+      "name": "Blood Moon Reaper Unisex Athletic Shorts",
+      "collections": []
+    },
+    "480738744": {
+      "name": "Blood Moon Reaper Yoga Leggings",
+      "collections": []
+    },
+    "480738747": {
+      "name": "Blood Moon Reaper Neck Gaiter",
+      "collections": []
+    },
+    "480738750": {
+      "name": "Blood Moon Reaper Bandana",
+      "collections": []
+    },
+    "480743384": {
+      "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480743390": {
+      "name": "Ashen Cathedral Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480743395": {
+      "name": "Ashen Cathedral Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480743400": {
+      "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480743420": {
+      "name": "Ashen Cathedral Men's Tank Top",
+      "collections": []
+    },
+    "480743435": {
+      "name": "Ashen Cathedral Unisex Button Shirt",
+      "collections": []
+    },
+    "480743462": {
+      "name": "Ashen Cathedral Recycled Men’s Joggers",
+      "collections": []
+    },
+    "480743466": {
+      "name": "Ashen Cathedral Unisex Track Pants",
+      "collections": []
+    },
+    "480743470": {
+      "name": "Ashen Cathedral Unisex Athletic Shorts",
+      "collections": []
+    },
+    "480743473": {
+      "name": "Ashen Cathedral Yoga Leggings",
+      "collections": []
+    },
+    "480743714": {
+      "name": "Ashen Cathedral Neck Gaiter",
+      "collections": []
+    },
+    "480743719": {
+      "name": "Ashen Cathedral Bandana",
+      "collections": []
+    },
+    "480743722": {
+      "name": "Ashen Cathedral Utility Backpack",
+      "collections": []
+    },
+    "480743729": {
+      "name": "Ashen Cathedral Cotton Crop Top",
+      "collections": []
+    },
+    "480743736": {
+      "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480743745": {
+      "name": "Blood Moon Reaper Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480743760": {
+      "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480743769": {
+      "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480743781": {
+      "name": "Blood Moon Reaper Men's Tank Top",
+      "collections": []
+    },
+    "480743787": {
+      "name": "Blood Moon Reaper Unisex Button Shirt",
+      "collections": []
+    },
+    "480744058": {
+      "name": "Blood Moon Reaper Recycled Men’s Joggers",
+      "collections": []
+    },
+    "480744068": {
+      "name": "Blood Moon Reaper Unisex Track Pants",
+      "collections": []
+    },
+    "480744072": {
+      "name": "Blood Moon Reaper Unisex Athletic Shorts",
+      "collections": []
+    },
+    "480744081": {
+      "name": "Blood Moon Reaper Yoga Leggings",
+      "collections": []
+    },
+    "480744091": {
+      "name": "Blood Moon Reaper Neck Gaiter",
+      "collections": []
+    },
+    "480744093": {
+      "name": "Blood Moon Reaper Bandana",
+      "collections": []
+    },
+    "480744102": {
+      "name": "Blood Moon Reaper Utility Backpack",
+      "collections": []
+    },
+    "480744107": {
+      "name": "Blood Moon Reaper Cotton Crop Top",
+      "collections": []
+    },
+    "480760460": {
+      "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480760474": {
+      "name": "Ashen Cathedral Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480760502": {
+      "name": "Ashen Cathedral Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480760509": {
+      "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480760516": {
+      "name": "Ashen Cathedral Men's Tank Top",
+      "collections": []
+    },
+    "480760520": {
+      "name": "Ashen Cathedral Unisex Button Shirt",
+      "collections": []
+    },
+    "480760529": {
+      "name": "Ashen Cathedral Recycled Men’s Joggers",
+      "collections": []
+    },
+    "480760535": {
+      "name": "Ashen Cathedral Unisex Track Pants",
+      "collections": []
+    },
+    "480760541": {
+      "name": "Ashen Cathedral Unisex Athletic Shorts",
+      "collections": []
+    },
+    "480760547": {
+      "name": "Ashen Cathedral Yoga Leggings",
+      "collections": []
+    },
+    "480760768": {
+      "name": "Ashen Cathedral Neck Gaiter",
+      "collections": []
+    },
+    "480760775": {
+      "name": "Ashen Cathedral Bandana",
+      "collections": []
+    },
+    "480760783": {
+      "name": "Ashen Cathedral Utility Backpack",
+      "collections": []
+    },
+    "480760792": {
+      "name": "Ashen Cathedral Cotton Crop Top",
+      "collections": []
+    },
+    "480760815": {
+      "name": "Blood Moon Reaper Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480760830": {
+      "name": "Blood Moon Reaper Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480760841": {
+      "name": "Blood Moon Reaper Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480760851": {
+      "name": "Blood Moon Reaper Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480760864": {
+      "name": "Blood Moon Reaper Men's Tank Top",
+      "collections": []
+    },
+    "480760870": {
+      "name": "Blood Moon Reaper Unisex Button Shirt",
+      "collections": []
+    },
+    "480761312": {
+      "name": "Blood Moon Reaper Recycled Men’s Joggers",
+      "collections": []
+    },
+    "480761322": {
+      "name": "Blood Moon Reaper Unisex Track Pants",
+      "collections": []
+    },
+    "480761332": {
+      "name": "Blood Moon Reaper Unisex Athletic Shorts",
+      "collections": []
+    },
+    "480761338": {
+      "name": "Blood Moon Reaper Yoga Leggings",
+      "collections": []
+    },
+    "480761347": {
+      "name": "Blood Moon Reaper Neck Gaiter",
+      "collections": []
+    },
+    "480761351": {
+      "name": "Blood Moon Reaper Bandana",
+      "collections": []
+    },
+    "480761355": {
+      "name": "Blood Moon Reaper Utility Backpack",
+      "collections": []
+    },
+    "480761362": {
+      "name": "Blood Moon Reaper Cotton Crop Top",
+      "collections": []
+    },
+    "480876879": {
+      "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480876910": {
+      "name": "Ashen Cathedral Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480876919": {
+      "name": "Ashen Cathedral Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480876926": {
+      "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480876949": {
+      "name": "Ashen Cathedral Men's Tank Top",
+      "collections": []
+    },
+    "480883426": {
+      "name": "Ashen Cathedral Recycled Unisex Sweatshirt",
+      "collections": []
+    },
+    "480883452": {
+      "name": "Ashen Cathedral Men's Athletic T-Shirt",
+      "collections": []
+    },
+    "480883493": {
+      "name": "Ashen Cathedral Men's Long Sleeve Shirt",
+      "collections": []
+    },
+    "480883542": {
+      "name": "Ashen Cathedral Recycled Unisex Sports Jersey",
+      "collections": []
+    },
+    "480883560": {
+      "name": "Ashen Cathedral Men's Tank Top",
+      "collections": []
+    },
+    "482524169": {
+      "name": "Raven Sanctum Cotton Hoodie",
+      "collections": [
+        "Raven Sanctum"
+      ]
+    },
+    "482531306": {
+      "name": "Death’s-Head Cotton Hoodie",
+      "collections": [
+        "Death’s-Head"
+      ]
+    },
+    "482534817": {
+      "name": "Abyssal Voyage Cotton Hoodie",
+      "collections": [
+        "Abyssal Voyage"
+      ]
+    },
+    "482538815": {
+      "name": "Violet Fang Cotton Hoodie",
+      "collections": [
+        "Violet Fang"
+      ]
+    },
+    "482544936": {
+      "name": "Borrowed Time Cotton Hoodie",
+      "collections": [
+        "Borrowed Time"
+      ]
+    },
+    "482550296": {
+      "name": "Serpent’s Requiem Oversized Cotton Hoodie",
+      "collections": [
+        "Serpent’s Requiem"
+      ]
+    },
+    "482554858": {
+      "name": "Winter Wolf Cotton Hoodie",
+      "collections": [
+        "Winter Wolf"
+      ]
+    },
+    "482559827": {
+      "name": "Dead Air Cotton Hoodie",
+      "collections": [
+        "Dead Air"
+      ]
+    },
+    "482576149": {
+      "name": "Blood Moon Covenant Cotton Hoodie",
+      "collections": [
+        "Blood Moon Covenant"
+      ]
+    },
+    "482585676": {
+      "name": "Astral Wanderer Cotton Hoodie",
+      "collections": [
+        "Astral Wanderer"
+      ]
+    },
+    "482620118": {
+      "name": "Loyalty Until Death Recycled Hoodie",
+      "collections": [
+        "Loyalty Until Death"
+      ]
+    },
+    "482644684": {
+      "name": "Silence Is Power Recycled Hoodie",
+      "collections": [
+        "Silence Is Power"
+      ]
+    },
+    "482647761": {
+      "name": "Kings Never Fall Cotton Hoodie",
+      "collections": [
+        "Kings Never Fall"
+      ]
+    },
+    "482668440": {
+      "name": "Fate Favors the Fearless Cotton Hoodie",
+      "collections": [
+        "Fate Favors the Fearless"
+      ]
+    },
+    "482671357": {
+      "name": "Never Surrender Oversized Cotton Hoodie",
+      "collections": [
+        "Never Surrender"
+      ]
+    },
+    "482675011": {
+      "name": "No Mercy for Betrayal Cotton Hoodie",
+      "collections": [
+        "No Mercy for Betrayal"
+      ]
+    },
+    "482676580": {
+      "name": "Love Leaves Scars Cotton Hoodie",
+      "collections": [
+        "Love Leaves Scars"
+      ]
+    },
+    "482678006": {
+      "name": "Omens Never Lie Cotton Hoodie",
+      "collections": [
+        "Omens Never Lie"
+      ]
+    },
+    "482682117": {
+      "name": "All Things Fade Cotton Hoodie",
+      "collections": [
+        "All Things Fade"
+      ]
+    },
+    "482685353": {
+      "name": "Where Shadows Bloom Oversized Cotton Hoodie",
+      "collections": [
+        "Where Shadows Bloom"
+      ]
+    },
+    "482775311": {
+      "name": "After the Last Light Cotton Hoodie",
+      "collections": [
+        "After the Last Light"
+      ]
+    },
+    "482779702": {
+      "name": "Beauty in Decay Oversized Cotton Hoodie",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "482783901": {
+      "name": "Still Waters Run Deep Cotton Hoodie",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "482790495": {
+      "name": "Time Takes All Oversized Cotton Hoodie",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "482794900": {
+      "name": "What Lies Within Cotton Hoodie",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "482797453": {
+      "name": "Even in Darkness / Still Growing Cotton Hoodie",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "482918795": {
+      "name": "Rose Eclipse Oversized Cotton T-Shirt",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "482923908": {
+      "name": "Rose Eclipse Cotton Wide-Leg Pants",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483204573": {
+      "name": "Still Waters Run Deep Oversized Cotton T-Shirt",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "483213237": {
+      "name": "Rose Eclipse Men’s Long Sleeve Shirt",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483352723": {
+      "name": "Rose Eclipse Bomber Jacket",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483356322": {
+      "name": "Rose Eclipse Cotton Shorts",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483361602": {
+      "name": "Rose Eclipse Backpack",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483366087": {
+      "name": "Rose Eclipse Men’s High-Top Canvas Shoes",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483370819": {
+      "name": "Rose Eclipse Neck Gaiter",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483375173": {
+      "name": "Rose Eclipse Reversible Bucket Hat",
+      "collections": [
+        "Rose Eclipse"
+      ]
+    },
+    "483378457": {
+      "name": "Even in Darkness / Still Growing Oversized Cotton T-Shirt",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483385402": {
+      "name": "Even in Darkness / Still Growing Bomber Jacket",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483392618": {
+      "name": "Even in Darkness / Still Growing Cotton Wide-Leg Pants",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483397425": {
+      "name": "Even in Darkness / Still Growing Cotton Shorts",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483697609": {
+      "name": "Even in Darkness / Still Growing Backpack",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483704831": {
+      "name": "Even in Darkness / Still Growing Men’s High-Top Canvas Shoes",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483709923": {
+      "name": "Even in Darkness / Still Growing Neck Gaiter",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483716755": {
+      "name": "Even in Darkness / Still Growing Reversible Bucket Hat",
+      "collections": [
+        "Even in Darkness / Still Growing"
+      ]
+    },
+    "483725842": {
+      "name": "What Lies Within Oversized Cotton T-Shirt",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483729128": {
+      "name": "What Lies Within Bomber Jacket",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483734104": {
+      "name": "What Lies Within Cotton Wide-Leg Pants",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483741826": {
+      "name": "What Lies Within Cotton Shorts",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483763072": {
+      "name": "What Lies Within Men’s High-Top Canvas Shoes",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483772508": {
+      "name": "What Lies Within Neck Gaiter",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483781924": {
+      "name": "What Lies Within Reversible Bucket Hat",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "483789497": {
+      "name": "Time Takes All Oversized Cotton T-Shirt",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "483989841": {
+      "name": "What Lies Within Backpack",
+      "collections": [
+        "What Lies Within"
+      ]
+    },
+    "484000153": {
+      "name": "Time Takes All Bomber Jacket",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484013198": {
+      "name": "Time Takes All Cotton Wide-Leg Pants",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484021178": {
+      "name": "Time Takes All Cotton Shorts",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484029631": {
+      "name": "Time Takes All Backpack",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484038554": {
+      "name": "Time Takes All Men’s High-Top Canvas Shoes",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484044435": {
+      "name": "Time Takes All Neck Gaiter",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484051716": {
+      "name": "Time Takes All Reversible Bucket Hat",
+      "collections": [
+        "Time Takes All"
+      ]
+    },
+    "484067231": {
+      "name": "Still Waters Run Deep Bomber Jacket",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484076840": {
+      "name": "Still Waters Run Deep Cotton Wide-Leg Pants",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484082838": {
+      "name": "Still Waters Run Deep Cotton Shorts",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484096947": {
+      "name": "Still Waters Run Deep Backpack",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484115196": {
+      "name": "Still Waters Run Deep Men’s High-Top Canvas Shoes",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484121835": {
+      "name": "Still Waters Run Deep Neck Gaiter",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484132973": {
+      "name": "Still Waters Run Deep Reversible Bucket Hat",
+      "collections": [
+        "Still Waters Run Deep"
+      ]
+    },
+    "484145986": {
+      "name": "Beauty in Decay Oversized Cotton T-Shirt",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "484179695": {
+      "name": "Beauty in Decay Cotton Wide-Leg Pants",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "484197021": {
+      "name": "Beauty in Decay Backpack",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "484210680": {
+      "name": "Beauty in Decay Men’s High-Top Canvas Shoes",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "484232678": {
+      "name": "Beauty in Decay Neck Gaiter",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "484245858": {
+      "name": "Beauty in Decay Reversible Bucket Hat",
+      "collections": [
+        "Beauty in Decay"
+      ]
+    },
+    "484260366": {
+      "name": "After the Last Light Oversized Cotton T-Shirt",
+      "collections": [
+        "After the Last Light"
+      ]
+    },
+    "484271507": {
+      "name": "After the Last Light Cotton Wide-Leg Pants",
+      "collections": [
+        "After the Last Light"
+      ]
+    },
+    "484276499": {
+      "name": "After the Last Light Cotton Shorts",
+      "collections": [
+        "After the Last Light"
+      ]
+    },
+    "484282522": {
+      "name": "After the Last Light Backpack",
+      "collections": [
+        "After the Last Light"
+      ]
+    },
+    "484288453": {
+      "name": "After the Last Light Men’s High-Top Canvas Shoes",
+      "collections": [
+        "After the Last Light"
+      ]
     }
   }
 }
