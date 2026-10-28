@@ -72198,14 +72198,67 @@
     "b2a6cb2c6c7faa6c4ecd06ca465e40763b94e374c82276ccc098c2c4c2cd4b5f": {
       "productId": "484271507",
       "variant": 46253,
-      "state": "pending",
+      "state": "downloaded",
       "created": "2026-10-28T06:25:30.743Z",
       "attempts": 1,
-      "key": "gt-992798566"
+      "key": "gt-992798566",
+      "photos": 2,
+      "savedPhotos": [
+        {
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-0.jpg",
+          "sha256": "1cad88215f25d40c9628ffc954caa45822f0e23ecfcf51c8c61f919e3b42596f",
+          "view": "front_dtfabric",
+          "style": "Default",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5590119148",
+            "5590119174",
+            "5590119182",
+            "5590119183",
+            "5590119185",
+            "5590119186",
+            "5590119188",
+            "5590119192",
+            "5590119198",
+            "5590119202",
+            "5590119205"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants · front_dtfabric",
+          "label": "front_dtfabric",
+          "kind": "production-mockup"
+        },
+        {
+          "image": "assets/product-photos/484271507-46253-all-b2a6cb2c6c-1.jpg",
+          "sha256": "e4032d8d9c19140bfa6557e81f9911420c2e8742af61a6dea9ce09e2b1728f80",
+          "view": "Back",
+          "style": "Flat",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46253,
+          "storeVariantIds": [
+            "5590119148",
+            "5590119174",
+            "5590119182",
+            "5590119183",
+            "5590119185",
+            "5590119186",
+            "5590119188",
+            "5590119192",
+            "5590119198",
+            "5590119202",
+            "5590119205"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants · Back",
+          "label": "Back",
+          "kind": "production-mockup"
+        }
+      ]
     }
   },
   "errors": {},
-  "updatedAt": "2026-10-28T06:27:07.381Z",
+  "updatedAt": "2026-10-28T06:27:20.412Z",
   "catalogAudit": {
     "supplierProducts": 180,
     "eligible": 144,
