@@ -38,5 +38,15 @@
   }catch(e){message('Saved products could not load: '+e.message+' Your existing selection has been kept. Use Refresh products to retry.');}
   finally{loading=false;$('refreshMade').disabled=false;}
  }
+ let learningView=null,learningBusy=false;
+ async function refreshLearning(){try{learningView=await api('outfit-learning');const v=learningView,done=v.learning?.completed||0;
+  $('outfitLearningStatus').textContent=v.learning?done+' / '+v.learning.total+' new products have completed your placement update and real mockups. Batch: '+v.batch.status+(v.batch.error?' · '+v.batch.error:''):v.missingPieces+' unfinished matching pieces · '+v.collectionsWithoutOutfits+' hoodie collections have no matching pieces yet. '+v.examples.length+' saved garment placement examples.';
+  $('outfitLearningExamples').replaceChildren(...v.examples.map(e=>{const line=node('p',e.name+' · saved edit '+e.revision);return line;}),...v.collections.map(c=>node('p',c.name+': '+c.created+' / '+c.total+' created')));
+  if(v.missingExampleProducts.length)$('outfitLearningExamples').append(node('p','Placement example needed for supplier products '+v.missingExampleProducts.join(', '),'fx-warn'));
+  $('startOutfitLearning').disabled=learningBusy||!v.batch||!['blocked','paused'].includes(v.batch.status)||v.missingExampleProducts.length>0||!v.missingPieces&&!v.learning;
+  $('startOutfitLearning').textContent=v.learning?'Resume matching outfits · AI Made only':'Use my placements & finish missing outfits';
+ }catch(e){$('outfitLearningStatus').textContent='Outfit continuation unavailable: '+e.message;$('startOutfitLearning').disabled=true;}}
+ $('startOutfitLearning').onclick=async()=>{if(learningBusy||!learningView)return;learningBusy=true;$('startOutfitLearning').disabled=true;try{await api('outfit-learning',{confirm:true,signature:learningView.signature});message('Matching outfits are queued with your saved placement examples. They will appear here with real mockups; store publication is off.');}catch(e){message('Outfits have not started: '+e.message);}finally{learningBusy=false;await refreshLearning();}};
+ refreshLearning();setInterval(()=>{if(document.visibilityState==='visible'&&!learningBusy)refreshLearning();},30000);
  for(const id of ['madeSearch','madeCollection','madeState'])$(id).addEventListener('input',()=>{page=0;render();});$('selectShown').onclick=()=>{filtered().slice(page*pageSize,(page+1)*pageSize).forEach(r=>selected.add(r.id));render();};$('clearSelection').onclick=()=>{selected.clear();render();};$('previousPage').onclick=()=>{page--;render();};$('nextPage').onclick=()=>{page++;render();};$('refreshMade').onclick=refresh;$('closeDetail').onclick=()=>$('productDetail').close();refresh();
 })();
