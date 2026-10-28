@@ -21,7 +21,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
  if(!db.prepare('PRAGMA table_info(factory_basic_batches)').all().some(c=>c.name==='scope'))db.exec("ALTER TABLE factory_basic_batches ADD COLUMN scope TEXT");
  const get=(q,...a)=>db.prepare(q).get(...a),all=(q,...a)=>db.prepare(q).all(...a),run=(q,...a)=>db.prepare(q).run(...a);
  const now=()=>new Date(clock()).toISOString(),active=()=>get("SELECT * FROM factory_basic_batches WHERE status IN ('running','paused','blocked') LIMIT 1");
- let busy=false;
+ let busy=false,follower=null;
  const selected=(r,p)=>!r.scope||JSON.parse(r.scope).pieceIds.includes(p.id);
  function snapshot(row){const r=row||active()||get('SELECT * FROM factory_basic_batches ORDER BY created DESC LIMIT 1');if(!r)return null;
   const plans=JSON.parse(r.plans).map(id=>summary(get('SELECT * FROM factory_basic_outfit_runs WHERE id=?',id))).filter(Boolean),items=plans.flatMap(p=>p.pieces).filter(p=>selected(r,p)),scope=r.scope?JSON.parse(r.scope):null;
@@ -71,7 +71,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
     const currentPiece=get('SELECT id FROM factory_basic_outfit_pieces WHERE item=?',current.id),waiting=currentPiece&&get('SELECT next_attempt FROM factory_basic_batch_retries WHERE batch=? AND piece=?',r.id,currentPiece.id);if(waiting&&clock()<waiting.next_attempt)return;
     const frozen=JSON.parse(get('SELECT recipe FROM factory_basic_items WHERE id=?',current.id).recipe),charges=JSON.parse(r.recipes).find(p=>p.product===frozen.product)?.charges;
     if(current.pricing?.status==='held'&&charges){try{await basic.confirmBatchCharges(current.id,authorization.recipe_key,charges);if(currentPiece)run('DELETE FROM factory_basic_batch_retries WHERE batch=? AND piece=?',r.id,currentPiece.id);}catch(e){if(currentPiece&&temporaryBatchFailure(e)){await retry(r,currentPiece,e);return;}run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);await basic.checkpoint();}return;}
-    if(r.target!=='printful'&&current.canApprove){try{await basic.approveBatch(current.id,authorization.recipe_key,{acceptMissingModel:!!r.accept_missing_model});if(currentPiece)run('DELETE FROM factory_basic_batch_retries WHERE batch=? AND piece=?',r.id,currentPiece.id);}catch(e){if(currentPiece&&temporaryBatchFailure(e)){await retry(r,currentPiece,e);return;}run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);}}return;
+    if(!['printful','ai-made'].includes(r.target)&&current.canApprove){try{await basic.approveBatch(current.id,authorization.recipe_key,{acceptMissingModel:!!r.accept_missing_model});if(currentPiece)run('DELETE FROM factory_basic_batch_retries WHERE batch=? AND piece=?',r.id,currentPiece.id);}catch(e){if(currentPiece&&temporaryBatchFailure(e)){await retry(r,currentPiece,e);return;}run("UPDATE factory_basic_batches SET status='blocked',error=?,updated=? WHERE id=?",e.message.slice(0,500),now(),r.id);}}return;
    }
    const recipes=new Map(JSON.parse(r.recipes).map(p=>[p.product,p]));let changed=false;
    for(const planId of JSON.parse(r.plans)){
@@ -85,7 +85,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
       item=all("SELECT * FROM factory_basic_items WHERE decision='approved' AND closed=1 AND status='published' ORDER BY created").find(i=>{const recipe=JSON.parse(i.recipe);return recipe.set.id===p.choice.setId&&recipe.product===p.choice.product&&JSON.parse(i.cleanup||'{}').verified;});
      }
      if(item){if(!p.item){attach(p,item);changed=true;}
-      if(item.closed&&(item.status==='published'||r.target==='printful'&&item.status==='supplier_created')&&JSON.parse(item.cleanup||'{}').verified){const listing=get('SELECT store_id FROM factory_listings WHERE job=?',item.job);run('UPDATE factory_outfit_items SET store_product=?,approved=? WHERE id=?',listing?.store_id||null,Number(item.status==='published'),p.id);run('DELETE FROM factory_basic_batch_holds WHERE batch=? AND piece=?',r.id,p.id);continue;}
+      if(item.closed&&(item.status==='published'||['printful','ai-made'].includes(r.target)&&item.status==='supplier_created')&&JSON.parse(item.cleanup||'{}').verified){if(r.target==='ai-made'){try{if(!follower||!await follower(r,p,item))return;}catch(e){if(temporaryBatchFailure(e)){await retry(r,p,e);return;}hold(r.id,p,e.message);changed=true;continue;}}const listing=get('SELECT store_id FROM factory_listings WHERE job=?',item.job);run('UPDATE factory_outfit_items SET store_product=?,approved=? WHERE id=?',listing?.store_id||null,Number(item.status==='published'),p.id);run('DELETE FROM factory_basic_batch_holds WHERE batch=? AND piece=?',r.id,p.id);continue;}
       if(!item.closed)return;hold(r.id,p,'This piece was rejected or has not completed verified cleanup.');changed=true;continue;
      }
      if(get('SELECT piece FROM factory_basic_batch_holds WHERE batch=? AND piece=?',r.id,p.id))continue;
@@ -111,7 +111,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
     }
     const finished=summary(plan);if(finished.pieces.every(p=>p.item?.status==='published'&&p.item.cleanup?.verified))run('UPDATE factory_outfits SET published=1 WHERE id=?',planId);
    }
-   const report=snapshot(),complete=(r.target==='printful'?report.printfulCreated:report.published)===report.total;run('UPDATE factory_basic_batches SET status=?,current_plan=NULL,error=?,updated=? WHERE id=?',complete?'complete':'blocked',complete?'':'Unfinished products are held with their exact reasons.',now(),r.id);changed=true;
+   const report=snapshot(),complete=(['printful','ai-made'].includes(r.target)?report.printfulCreated:report.published)===report.total&&(r.target!=='ai-made'||report.holds.length===0);run('UPDATE factory_basic_batches SET status=?,current_plan=NULL,error=?,updated=? WHERE id=?',complete?'complete':'blocked',complete?'':'Unfinished products are held with their exact reasons.',now(),r.id);changed=true;
    if(changed)await basic.checkpoint();
   }finally{busy=false;}
  }
@@ -146,7 +146,7 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
   if(b.recipes!==undefined){if(b.action!=='resume'||!Array.isArray(b.recipes)||!b.recipes.length||b.recipes.length>19||new Set(b.recipes.map(p=>p.product)).size!==b.recipes.length)throw Error('Supply distinct recipes while resuming this batch.');
    const allowed=new Set(JSON.parse(r.plans).flatMap(id=>all('SELECT choice FROM factory_basic_outfit_pieces WHERE outfit=?',id).map(p=>JSON.parse(p.choice).product)));
    if(b.recipes.some(p=>!allowed.has(p.product)||!p.layout||!Array.isArray(p.sizes)||typeof p.audience!=='string'))throw Error('A resumed recipe is outside the authorized product slots.');run('UPDATE factory_basic_batches SET recipes=? WHERE id=?',JSON.stringify(b.recipes),r.id);}
-  if(b.target!==undefined){if(b.target!=='printful'||b.confirm!==true||b.action!=='resume')throw Error('Confirm the finite Printful-only batch explicitly.');if(get('SELECT state FROM factory_settings WHERE id=1').state!=='paused'||get("SELECT id FROM factory_jobs WHERE status='running' LIMIT 1"))throw Error('Pause and finish the worker step before changing destination.');run("UPDATE factory_basic_batches SET target='printful' WHERE id=?",r.id);}
+  if(b.target!==undefined){if(!['printful','ai-made'].includes(b.target)||b.confirm!==true||b.action!=='resume')throw Error('Confirm the finite Printful-only batch explicitly.');if(get('SELECT state FROM factory_settings WHERE id=1').state!=='paused'||get("SELECT id FROM factory_jobs WHERE status='running' LIMIT 1"))throw Error('Pause and finish the worker step before changing destination.');run('UPDATE factory_basic_batches SET target=? WHERE id=?',b.target,r.id);}
   if(b.action==='resume'){run('DELETE FROM factory_basic_batch_holds WHERE batch=?',r.id);run('DELETE FROM factory_basic_batch_retries WHERE batch=?',r.id);}
   run('UPDATE factory_basic_batches SET status=?,error=\'\',updated=? WHERE id=?',b.action==='pause'?'paused':b.action==='cancel'?'cancelled':'running',now(),r.id);await basic.checkpoint();return snapshot();
  }
@@ -158,5 +158,5 @@ export function factoryBasicBatch({db,basic,summary,attach,open,clock=Date.now})
   run("UPDATE factory_basic_outfit_pieces SET choice=?,signature=?,error='' WHERE id=?",JSON.stringify({...old,layout:choice.layout,ownerRecipe:{...choice,inspectionToken:null},editorNote:note}),signature,id);
   run('DELETE FROM factory_basic_batch_holds WHERE piece=?',id);
  }
- return {editPiece,start,tick,control,snapshot,inProgress:()=>!!active(),activeOutfit:()=>active()?.current_plan||null};
+ return {setFollower(f){follower=f;},editPiece,start,tick,control,snapshot,inProgress:()=>!!active(),activeOutfit:()=>active()?.current_plan||null};
 }
