@@ -28,6 +28,7 @@ function normalize(p){
  if((generic(p.name)||o)&&part){const prefix=family||'Midnight Study '+String(p.id||p.sourceProductId||p.catalogProductId||'').replace(/^pf:/,'').slice(-6);result.name=prefix+' '+part;}
  if(/^untitled\b/i.test(result.name||''))result.name='Midnight Study '+String(p.id||'').slice(-6)+' '+(part||result.category);
  if(/^untitled\b/i.test(p.description||'')&&family)result.description=p.description.replace(/^Untitled.*? artwork on /i,family+' artwork on ');
+ if(/^untitled\b/i.test(result.description||'')&&family)result.description=result.description.replace(/^Untitled[^.\n]*(?=\.|$)/i,result.name);
  if(result.categoryId==='shoes'){
   // Supplier catalog 513/525 are documented in US men's/women's sizes.
   const system=p.sizeSystem||({513:'US men',525:'US women'})[p.catalogProductId]||null;if(system)result.sizeSystem=system;
