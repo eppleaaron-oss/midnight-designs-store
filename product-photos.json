@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T23:13:04.672Z",
+  "updatedAt": "2026-10-28T06:09:20.623Z",
   "products": {
     "476363019": {
       "name": "Lunar Reverie Cotton-Blend Sweatshirt",
@@ -57138,10 +57138,41 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/483763072-supplier-a4afe527969548901bec.jpg",
           "sha256": "37b0053284dc5b489e9b31cb29ba3590f6504bbf669f8cfd332e7a3a50f5c460"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5587343851",
+            "5587343852",
+            "5587343853",
+            "5587343854",
+            "5587343872",
+            "5587343875",
+            "5587343878",
+            "5587343882",
+            "5587343883",
+            "5587343884",
+            "5587343885",
+            "5587343886",
+            "5587343889",
+            "5587343959",
+            "5587343980",
+            "5587343983",
+            "5587343984"
+          ],
+          "alt": "Untitled cotton hoodie design 4900 Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/483763072-supplier-5b6690f75621f055d63e.jpg",
+          "sha256": "4f803518d56e92bc15c3bf6161a9f3104fed4ae088a3f096f1d56b3ee12b6149"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "supplierPreviews": "f978d9d8c3076dd7f3a06fe51fd56bdbdb50cac28e0035c1b04439da04920052",
+      "supplierPreviews": "b7cf517bd226553588cacfa755bd8d98585fc3a204f5b859e2a1d85fd33263ca",
       "allReportedViews": "4e454ac42b5573ef53970ab0f91970432f4b38690d01cde0790ed8b8a8c001b8"
     },
     "483772508": {
@@ -60401,11 +60432,36 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484013198-supplier-fe7e20af3973746456e3.jpg",
           "sha256": "b7fbe27c5201414d7f78aa68552a2b8b891a1618c5c6b55ffe54c1afe2d057d7"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46256,
+          "storeVariantIds": [
+            "5588631415",
+            "5588631418",
+            "5588631420",
+            "5588631424",
+            "5588631428",
+            "5588631430",
+            "5588631433",
+            "5588631438",
+            "5588631441",
+            "5588631443",
+            "5588631445"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484013198-supplier-362d69a04f0214a3e165.jpg",
+          "sha256": "848faceaf94843ae50393942911d475b00f54987d4f1bf3fa185143d2cc03974"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "ecc3c6f6c049cdde581dd8967ca2024c50cee88c97fcfdb1d0886e13f9d0e9b6",
-      "supplierPreviews": "5adb2c5bb15a62bac6b8e6701c577108b9af6f43193ee0f7a38798453874d21d"
+      "supplierPreviews": "f3a901ae440d29c4c0d32ab8caa789431d7f260a59a68dfba23ec6ccf6238fcb"
     },
     "484021178": {
       "name": "Untitled oversized cotton hoodie design 0495 All-Over Print Unisex Cotton Shorts",
@@ -63116,10 +63172,41 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484038554-supplier-ae8d364b3dcc206a84bf.jpg",
           "sha256": "8c0f65297825b9b252158a1131bf86cf2887cc91c258807f5fe4d14e47963318"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5588789655",
+            "5588789676",
+            "5588789679",
+            "5588789680",
+            "5588789692",
+            "5588789697",
+            "5588789699",
+            "5588789704",
+            "5588789705",
+            "5588789715",
+            "5588789721",
+            "5588789724",
+            "5588789725",
+            "5588789726",
+            "5588789736",
+            "5588789754",
+            "5588789755"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 0495 Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484038554-supplier-5b63247b14ddbf216e9b.jpg",
+          "sha256": "10f75cff538d3526baec81e5746277c09f9b869d7ee5741725a47e52c00bf13a"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
-      "supplierPreviews": "48eae404f33800e16ac94700388485266b55ebb7be4cbd831f8ba3dabecc8375",
+      "supplierPreviews": "facc64ff6d69fbd4872e4db655d828a842a69e0c83aeedfb34dbe42f8ac22cac",
       "allReportedViews": "fcf1ee11657de32de594d44d1835bfa7fc70e0f40d5f9779b0a5d0db3d06b046"
     },
     "484044435": {
@@ -65126,11 +65213,36 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484076840-supplier-fd14874e442e1111ea8f.jpg",
           "sha256": "d423c5ccb9d471d742326e572e4ec97153530a41e557c7861716ab8eedf3ee71"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46256,
+          "storeVariantIds": [
+            "5589278483",
+            "5589278489",
+            "5589278490",
+            "5589278491",
+            "5589278493",
+            "5589278499",
+            "5589278500",
+            "5589278512",
+            "5589278533",
+            "5589278534",
+            "5589278538"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484076840-supplier-67752faea5f6c368c88f.jpg",
+          "sha256": "66075e625f73e371e31d3f9bc4eb134bc17663bc7239ad021733db7aefa36c0d"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "1c25f20880f68253fdb5e392134cbd09a1830ece73b7ae10192edbe1db736547",
-      "supplierPreviews": "1b880ff3b3a51f5e73f2f2250bba047a77f8104f4584dab016a25ff26d46ff84"
+      "supplierPreviews": "cc17d137b9ba646a798a9ef85b6af2caf400e66befadcc5d79c74511a6fbbaab"
     },
     "484082838": {
       "name": "Untitled cotton hoodie design 3901 All-Over Print Unisex Cotton Shorts",
@@ -67087,11 +67199,42 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484115196-supplier-0feaf5936542ed80410e.jpg",
           "sha256": "bb518d45afbdf6efa87a2c2558db1000ff4af8b2960b23fcc1270e6f227edc34"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5589505922",
+            "5589505925",
+            "5589505927",
+            "5589505929",
+            "5589505931",
+            "5589505932",
+            "5589505934",
+            "5589505936",
+            "5589505937",
+            "5589505942",
+            "5589505944",
+            "5589505950",
+            "5589505951",
+            "5589505952",
+            "5589505955",
+            "5589505956",
+            "5589505957"
+          ],
+          "alt": "Untitled cotton hoodie design 3901 Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484115196-supplier-463c655627cd575567f4.jpg",
+          "sha256": "548afde0349d08533e8de9617fec1fb5cb18b8944dec1716c15cf62558d2aff7"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "c5dd802416c63cf79a9b13aca01099479b6cc2d3ebb94134204545db577c7ded",
-      "supplierPreviews": "f9af760e0bdfdd3f892f28a0f0ae1b3c8b668fa59be52b649588859031bc82c7"
+      "supplierPreviews": "1cc4decbb5ed35289f25d2be5cb122023841e77bcf5034507d041f38beb00518"
     },
     "484121835": {
       "name": "Untitled cotton hoodie design 3901 All-Over Print Neck Gaiter",
@@ -69187,11 +69330,36 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484179695-supplier-17e15d10b5778c77f34b.jpg",
           "sha256": "5b93a459b283aee4cba2bdffcca45fb1da710a504e66c093354f525cf1274258"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46256,
+          "storeVariantIds": [
+            "5589775604",
+            "5589775605",
+            "5589775606",
+            "5589775608",
+            "5589775609",
+            "5589775610",
+            "5589775612",
+            "5589775614",
+            "5589775615",
+            "5589775618",
+            "5589775619"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484179695-supplier-258c7e87afa54da46328.jpg",
+          "sha256": "c3f14595da0168103183c44b1d134dbd49d2a13fc3161528901b5a5601e3c0b5"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "314663c7edd5cfa49d49d66cff5c8ff9fa23614e8d4be3680c49c16f1df07066",
-      "supplierPreviews": "0472e1c8eca4fa3dfda780a4bbb1b1a2cc44a1fa66c13a92855d8db897a92b56"
+      "supplierPreviews": "4ebc16e54b8139195424395e5b6a9945d11241244fb83c1db6852f27837c4578"
     },
     "484197021": {
       "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Backpack",
@@ -70652,11 +70820,42 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484210680-supplier-447a4b50c56fc385b006.jpg",
           "sha256": "e40b5b61216074ce51c23eac76c27ee8d1c783834f3d2f9bae4c409e94bd7016"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5589875752",
+            "5589875754",
+            "5589875755",
+            "5589875762",
+            "5589875766",
+            "5589875767",
+            "5589875768",
+            "5589875769",
+            "5589875781",
+            "5589875783",
+            "5589875786",
+            "5589875792",
+            "5589875802",
+            "5589875804",
+            "5589875812",
+            "5589875814",
+            "5589875827"
+          ],
+          "alt": "Untitled oversized cotton hoodie design 9702 Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484210680-supplier-cd4c69b5cf07aefdb254.jpg",
+          "sha256": "a4eba3aeaa50fea6be50228f1cc420acd62e57d73e14ea88f0703b06e8371457"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "d4e8336026a45070924fad03c6556021971913339c328286ef97006fe5d2c6bb",
-      "supplierPreviews": "b27b96f5bd5934508f787e423af4e876808972388cdfcbebb1cbee39a7a2b801"
+      "supplierPreviews": "b4b502cac499bdd3da8807f896613c478e9d3bf3cbec034662283506520f01e9"
     },
     "484232678": {
       "name": "Untitled oversized cotton hoodie design 9702 All-Over Print Neck Gaiter",
@@ -72077,11 +72276,36 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484271507-supplier-9b81e242ff37348261b5.jpg",
           "sha256": "6b85a27b598504208b5656db106a5a503a7023e0b84e4498fb37ab9162dcb7e2"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46256,
+          "storeVariantIds": [
+            "5590119148",
+            "5590119174",
+            "5590119182",
+            "5590119183",
+            "5590119185",
+            "5590119186",
+            "5590119188",
+            "5590119192",
+            "5590119198",
+            "5590119202",
+            "5590119205"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Wide-Leg Pants · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484271507-supplier-8f83284791ea5ebeec52.jpg",
+          "sha256": "c83ad1b322a69e29a5a11082ddb5339093c930b3af65f49336c7a9321cebc32a"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "ce4f65b0e8f62f0f1d10ce044ff87d764e3b4b25c2e3ec7d0825f3db1ec33cf4",
-      "supplierPreviews": "96a74774e70f1e9bd21827aec35935d789b1c0e012315bc265ce69cc78ce4865"
+      "supplierPreviews": "53c6e567ac58aaef4811ff2371feff8f1a918523ffaf23a0cd7ba841385ec282"
     },
     "484276499": {
       "name": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts",
@@ -72150,11 +72374,32 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484276499-supplier-b2fb144470e20e2f7541.jpg",
           "sha256": "846e9ab4518a7f1fb8a2f53075abc3ef77428c9622acd442e47872a9ee453149"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 46350,
+          "storeVariantIds": [
+            "5590147768",
+            "5590147793",
+            "5590147794",
+            "5590147795",
+            "5590147796",
+            "5590147799",
+            "5590147803"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 All-Over Print Unisex Cotton Shorts · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484276499-supplier-6f8f3de68c549fdc7a2c.jpg",
+          "sha256": "4da14e97422444334f875e93ad2fb8aa8b11475e715d18cbe9f2c7673d371968"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "b9cc0524654cda44c8be0a30ef1ae09d579e12d167fc8616d826062670a128b7",
-      "supplierPreviews": "77cd704d7f1d678d9ba42d0ba258d11bd1594e58a15ed74ea854d290088830d3"
+      "supplierPreviews": "5b60360d18fb1b7f10a01843522518990cd99489b0b8aa9c36d0d9534ce79b2e"
     },
     "484282522": {
       "name": "Untitled cotton hoodie design 5311 All-Over Print Backpack",
@@ -73615,11 +73860,42 @@
           "kind": "production-mockup",
           "image": "assets/product-photos/484288453-supplier-560e050f1a523320b3c8.jpg",
           "sha256": "fde6ea07e2ac86ec7914e2c2f6f12c8395f2d12c838c616fc0a75da7bebd4e57"
+        },
+        {
+          "view": "Supplier preview",
+          "style": "Saved Printful mockup",
+          "category": "product",
+          "color": "Black",
+          "catalogVariantId": 12913,
+          "storeVariantIds": [
+            "5590213059",
+            "5590213070",
+            "5590213077",
+            "5590213084",
+            "5590213090",
+            "5590213098",
+            "5590213107",
+            "5590213112",
+            "5590213113",
+            "5590213114",
+            "5590213115",
+            "5590213116",
+            "5590213117",
+            "5590213118",
+            "5590213119",
+            "5590213120",
+            "5590213123"
+          ],
+          "alt": "Untitled cotton hoodie design 5311 Men's High Top Canvas Shoes · supplier mockup",
+          "label": "Supplier mockup",
+          "kind": "production-mockup",
+          "image": "assets/product-photos/484288453-supplier-a13cabdef1c49aca2ed5.jpg",
+          "sha256": "a4f518a2596eb017a5775afa582960a131534c0e5eead25136b5bee3b23c2bdb"
         }
       ],
       "source": "Printful mockups from accepted supplier production files",
       "allReportedViews": "3aafbaa35a103399e32a85a681a9b9914662ed2540218cc05b958446b78637c4",
-      "supplierPreviews": "644bdad0e4842c157fb90bea6bcae273d167bedd119adadc69c62dbaeef8e0fb"
+      "supplierPreviews": "47c3dd1e260c118f75aaddd5ef3a347e17294e9a3fb98ce7f523db40d59615ff"
     }
   }
 }
