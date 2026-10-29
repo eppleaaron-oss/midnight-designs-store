@@ -1,3 +1,4 @@
+import {measurementLibrary} from './factory-measured-layouts.mjs';
 import {placementGuide,artworkComposition,saveArtworkComposition} from './factory-placement-playbook.mjs';
 import {artworkBounds} from './factory-artwork-bounds.mjs';
 import {targetAreas,MAX_NATIVE_PIXELS} from './factory-placement-regions.mjs';
@@ -23,6 +24,7 @@ export function basicSizing({db,workflow,clock=Date.now}) {
  db.exec(`CREATE TABLE IF NOT EXISTS factory_basic_geometry(key TEXT PRIMARY KEY,product INTEGER NOT NULL,technique TEXT NOT NULL,placement TEXT NOT NULL,stamp TEXT NOT NULL,profile TEXT NOT NULL,updated TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_basic_inspections(id TEXT PRIMARY KEY,signature TEXT NOT NULL,created INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_basic_saved_layouts(product INTEGER NOT NULL,technique TEXT NOT NULL,number INTEGER NOT NULL,audience TEXT NOT NULL,stamp TEXT NOT NULL,profile TEXT NOT NULL,updated TEXT NOT NULL,PRIMARY KEY(product,technique,number,audience));`);
+ const learned=measurementLibrary(db);
  const get=(q,...a)=>db.prepare(q).get(...a),run=(q,...a)=>db.prepare(q).run(...a);
  const profile=(product,technique,a)=>{const r=get('SELECT profile FROM factory_basic_geometry WHERE key=?',key(product,technique,a));return r?JSON.parse(r.profile):a.builtinProfile||null;};
  function options(p,bp){
@@ -33,6 +35,7 @@ export function basicSizing({db,workflow,clock=Date.now}) {
    for(const v of p.variants)for(const s of l.slots){if(s.panel==='*')continue;if(!s.optional&&!targetAreas(p.product.id,p.role,exterior(variantAreas(bp,v.id))).some(a=>(a.region||panelKind(a.placement))===s.panel))reasons.push('Size '+v.size+' has no supported '+s.panel+' panel.');}
    return {...l,compatible:!reasons.length,reasons:[...new Set(reasons)],needsReviewedMap:true};
   });
+  layouts.push(...learned.layouts(p,bp));
   const templateFingerprint=hash([p.product.id,technique,p.variants.map(v=>[v.id,variantAreas(bp,v.id).map(a=>[areaStamp(a),a.template||null])])]),savedProfiles=db.prepare('SELECT stamp,profile,updated FROM factory_basic_saved_layouts WHERE product=? AND technique=? AND audience=?').all(p.product.id,technique,p.audience).map(r=>({...JSON.parse(r.profile),updated:r.updated,compatible:r.stamp===templateFingerprint}));
   return {technique,templateFingerprint,savedProfiles,placementGuide:placementGuide(p.product.id),version:BASIC_LAYOUT_VERSION,layouts,areas:[...areas.values()],allLayouts:BASIC_LAYOUTS.map(l=>({number:l.number,category:l.category,name:l.name,supported:l.supported,reason:l.reason})),note:'Inches refer to the artwork inside the full native canvas. Safe regions and anatomical anchors need a product-specific review; mockup template rectangles are not safe-zone masks.'};
  }
@@ -66,7 +69,7 @@ export function basicSizing({db,workflow,clock=Date.now}) {
  }
  async function resolve(p,bp,input){
   if(!input||typeof input!=='object'||Array.isArray(input)||input.version!==BASIC_LAYOUT_VERSION)fail('Choose a current Basic layout version.',400);
-  const layout=BASIC_LAYOUTS.find(l=>l.number===input.number&&(l.category===p.role||[64,66].includes(l.number)));if(!layout)fail('Choose a layout for this garment category.',400);
+  const layout=options(p,bp).layouts.find(l=>l.number===input.number&&(l.category===p.role||[64,66].includes(l.number)));if(!layout)fail('Choose a layout for this garment category.',400);
   const option=options(p,bp).layouts.find(l=>l.number===layout.number);if(!option.compatible)fail(option.reasons.join(' '));
   const assignments=input.assignments||{},overrides=input.overrides||{};
   if(Object.keys(assignments).some(k=>!layout.slots.some(s=>s.id===k))||Object.keys(overrides).some(k=>!layout.slots.some(s=>s.id===k)))fail('A layout contains an unsupported assignment or override.',400);
@@ -75,22 +78,22 @@ export function basicSizing({db,workflow,clock=Date.now}) {
   for(const field of ['artworkKinds','repeatApproved'])if(input[field]&&(typeof input[field]!=='object'||Array.isArray(input[field])||Object.keys(input[field]).some(k=>!p.set.parts[k])))fail('Artwork classifications must belong to the selected design set.',400);
   if(input.repeatApproved&&Object.values(input.repeatApproved).some(v=>typeof v!=='boolean'))fail('Pattern repeat approval must be true or false.',400);
   const sources=new Map(),bindings=[],warnings=[],variants=[],reductions=[];
-  for(const s of layout.slots){const chosen=Object.hasOwn(assignments,s.id)?assignments[s.id]:s.panel==='*'?(p.set.parts.front?'front':p.set.parts.default?'default':null):defaultPart(s,p.set.parts);
+  for(const s of layout.slots){const chosen=Object.hasOwn(assignments,s.id)?assignments[s.id]:s.panel==='*'?(p.set.parts.front?'front':p.set.parts.default?'default':null):layout.exampleId?(s.part&&p.set.parts[s.part]?s.part:null):defaultPart(s,p.set.parts);
    if(chosen===null||chosen===''){if(!s.optional)fail('Layout '+layout.name+' requires '+s.id+' artwork. Assign a source from the selected set; an unassigned required panel cannot become blank black.');bindings.push({...s,part:null});continue;}
    if(typeof chosen!=='string'||!p.set.parts[chosen])fail('The '+s.id+' assignment is not in the selected design set.',400);
    if(!sources.has(chosen)){const source=await artwork(p.set.parts[chosen],p.set);if(input.artworkKinds?.[chosen]!==undefined)saveArtworkComposition(db,source,{kind:input.artworkKinds[chosen],repeatApproved:input.repeatApproved?.[chosen]===true});source.composition=artworkComposition(db,source);sources.set(chosen,source);}bindings.push({...s,part:chosen});
   }
   const technique=bp.effectiveTechnique||bp.technique,firstAreas=exterior(variantAreas(bp,p.variants[0].id));
   for(const v of p.variants){const native=exterior(variantAreas(bp,v.id)),placements={},measurements=[];
-   for(const area of native){if(area.width*area.height>MAX_NATIVE_PIXELS)fail('The required '+area.placement+' native canvas exceeds the supported native rendering limit.');const targets=targetAreas(p.product.id,p.role,[area]),selected=bindings.flatMap(s=>{const target=targets.find(a=>s.panel==='*'?!a.region:(a.region||panelKind(a.placement))===s.panel);return s.part&&target?[{s,target}]:[];});
+   for(const area of native){if(area.width*area.height>MAX_NATIVE_PIXELS)fail('The required '+area.placement+' native canvas exceeds the supported native rendering limit.');const targets=targetAreas(p.product.id,p.role,[area]),selected=bindings.flatMap(s=>{const target=targets.find(a=>s.panel==='*'?!a.region:(s.placement?a.placement===s.placement:((a.region||panelKind(a.placement))===s.panel)));return s.part&&target?[{s,target}]:[];});
     if(!selected.length){placements[area.placement]={fillOnly:true,fit:'contain',protect:true};measurements.push({placement:area.placement,blank:true,width:area.width,height:area.height,dpi:area.dpi});continue;}
     const elements=[];for(const {s,target}of selected){
-    const src=sources.get(s.part),map=profile(p.product.id,technique,target);if(!map?.reviewed||!map.anchors[s.anchor])fail('Review the '+(target.region||area.placement)+' safe region and '+s.anchor+' anchor for size '+v.size+' before using '+layout.name+'.');
-    const override=overrides[s.id]||{};if(Object.keys(override).some(k=>!['widthIn','heightIn','xIn','yIn','spacingIn'].includes(k)))fail('Only size, position and pattern spacing overrides are supported.',400);
+    const src=sources.get(s.part),map=profile(p.product.id,technique,target);if(!map?.reviewed||!layout.exampleId&&!map.anchors[s.anchor])fail('Review the '+(target.region||area.placement)+' safe region and '+s.anchor+' anchor for size '+v.size+' before using '+layout.name+'.');
+    const override={...(layout.exampleId?s.measurements[v.id]:{}),...(overrides[s.id]||{})};if(Object.keys(override).some(k=>!['widthIn','heightIn','xIn','yIn','spacingIn'].includes(k)))fail('Only size, position and pattern spacing overrides are supported.',400);
     const base=firstAreas.find(a=>a.placement===area.placement),factor=input.scaleMode==='proportional'&&base?Math.min(area.width/area.dpi/(base.width/base.dpi),area.height/area.dpi/(base.height/base.dpi)):1;
-    const targetW=num(override.widthIn??s.widthIn,'artwork width',0.1,40)*factor*area.dpi,targetH=override.heightIn===undefined&&s.heightIn===null?Infinity:num(override.heightIn??s.heightIn,'artwork height',0.1,60)*factor*area.dpi;
+    const targetW=num(override.widthIn??s.widthIn,'artwork width',layout.exampleId?0.01:0.1,layout.exampleId?100:40)*factor*area.dpi,targetH=override.heightIn===undefined&&s.heightIn===null?Infinity:num(override.heightIn??s.heightIn,'artwork height',layout.exampleId?0.01:0.1,layout.exampleId?100:60)*factor*area.dpi;
     const bounds=input.measureVisible!==false&&!layout.pattern?src.bounds:null,b=bounds||{x:0,y:0,width:src.width,height:src.height};
-    const requested=Math.min(targetW/b.width,targetH/b.height),anchor=map.anchors[s.anchor];
+    const requested=Math.min(targetW/b.width,targetH/b.height),anchor=map.anchors[s.anchor]||{x:override.xIn*area.dpi,y:override.yIn*area.dpi};
     const cx=override.xIn===undefined?anchor.x:num(override.xIn,'horizontal position')*area.dpi,cy=override.yIn===undefined?anchor.y:num(override.yIn,'vertical position')*area.dpi;
     if(!inside({x:cx,y:cy,width:0,height:0},map.safeRect))fail('The '+s.id+' position is outside the reviewed safe region.');
     const safeW=2*Math.min(cx-map.safeRect.x,map.safeRect.x+map.safeRect.width-cx),safeH=2*Math.min(cy-map.safeRect.y,map.safeRect.y+map.safeRect.height-cy);
@@ -110,7 +113,7 @@ export function basicSizing({db,workflow,clock=Date.now}) {
    }
    variants.push({variant:v.id,size:v.size,areas:native,placements,measurements});
   }
-  const frozen={number:layout.number,name:layout.name,version:BASIC_LAYOUT_VERSION,input,scaleMode:input.scaleMode||'fixed',background:'#000000',bindings,variants,sources:Object.fromEntries([...sources].map(([part,s])=>[part,{id:s.id,sha256:s.sha256,width:s.width,height:s.height,permissions:s.permissions,composition:s.composition}])),reductions,warnings:[...new Set(warnings)],requiresAcceptance:reductions.length>0&&input.acceptReduction!==true};
+  const frozen={...(layout.exampleId?{exampleId:layout.exampleId}:{}),number:layout.number,name:layout.name,version:BASIC_LAYOUT_VERSION,input,scaleMode:input.scaleMode||'fixed',background:'#000000',bindings,variants,sources:Object.fromEntries([...sources].map(([part,s])=>[part,{id:s.id,sha256:s.sha256,width:s.width,height:s.height,permissions:s.permissions,composition:s.composition}])),reductions,warnings:[...new Set(warnings)],requiresAcceptance:reductions.length>0&&input.acceptReduction!==true};
   frozen.signature=hash(frozen);return frozen;
  }
  function saveLayout(p){const f=p.numericLayout;if(!f||f.requiresAcceptance)fail('Inspect this exact layout and accept any reductions before saving.');const o=p.layoutOptions,value={product:p.product.id,technique:o.technique,number:f.number,audience:p.audience,set:p.set.id,input:f.input,variants:f.variants,sources:f.sources,signature:f.signature};run('INSERT INTO factory_basic_saved_layouts VALUES(?,?,?,?,?,?,?) ON CONFLICT(product,technique,number,audience) DO UPDATE SET stamp=excluded.stamp,profile=excluded.profile,updated=excluded.updated',p.product.id,o.technique,f.number,p.audience,o.templateFingerprint,JSON.stringify(value),new Date(clock()).toISOString());return value;}

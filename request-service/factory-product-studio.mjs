@@ -1,3 +1,4 @@
+import {measurementLibrary,measuredAreaStamp,reviewedLayerRegion} from './factory-measured-layouts.mjs';
 import {nameFactoryProduct,compareFactorySizes} from './factory-product-identity.mjs';
 import {transferStudioLayer} from './factory-outfit-learning.mjs';
 import {createHash,randomUUID,randomBytes} from 'node:crypto';
@@ -91,6 +92,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  CREATE TABLE IF NOT EXISTS factory_studio_jobs(id TEXT PRIMARY KEY,supplier TEXT NOT NULL,source TEXT NOT NULL,revision INTEGER NOT NULL,target TEXT NOT NULL,state TEXT NOT NULL,document TEXT NOT NULL,error TEXT NOT NULL DEFAULT '',attempts INTEGER NOT NULL DEFAULT 0,next INTEGER NOT NULL DEFAULT 0,updated INTEGER NOT NULL);
  CREATE UNIQUE INDEX IF NOT EXISTS factory_studio_one_product ON factory_studio_jobs(supplier) WHERE state NOT IN ('completed','cancelled');
  CREATE TABLE IF NOT EXISTS factory_studio_assets(id TEXT PRIMARY KEY,job TEXT NOT NULL,kind TEXT NOT NULL,name TEXT NOT NULL,mime TEXT NOT NULL,width INTEGER NOT NULL,height INTEGER NOT NULL,sha TEXT NOT NULL,data BLOB NOT NULL,remote TEXT,capability TEXT NOT NULL UNIQUE,created INTEGER NOT NULL);`);
+ const learned=measurementLibrary(db);
  const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a);
  const assetLimit=Math.max(1,Math.min(4,Math.floor(stepAssetLimit)||4)),concurrentLimit=Math.max(1,Math.min(3,Math.floor(maxConcurrentUpdates)||3));
  const config=backups.connection?.(),assets=providedAssets||(config?new BasicGithubAssets(config,{fetchImpl,clock}):null);const byteCache=new Map(),byteReads=new Map();const busy=new Map(),served=new Map();let resolved=/^\d+$/.test(String(storeId||''))?String(storeId):null,closing=false;
@@ -289,14 +291,18 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  // Waiting supplier files may leave updated unchanged. Age uses the last
  // attempted turn, so those polls cannot starve renders or finished galleries.
  async function tick(){if(closing||busy.size>=concurrentLimit)return;if(get("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_jobs'")&&get("SELECT id FROM factory_jobs WHERE status='running' LIMIT 1"))return;const networkStage=s=>['updating_printful','verifying_store','mockup_network','publishing'].includes(s),j=all("SELECT * FROM factory_studio_jobs WHERE state NOT IN ('completed','failed','cancelled') AND next<=? ORDER BY CASE WHEN updated<=? THEN updated ELSE 9223372036854775807 END,CASE state WHEN 'publishing' THEN 0 WHEN 'mockups' THEN 1 WHEN 'verifying_store' THEN 2 WHEN 'updating_printful' THEN 3 WHEN 'rendering' THEN 4 ELSE 5 END,updated LIMIT 100",clock(),clock()-300000).sort((a,b)=>{const age=x=>served.get(x.id)??x.updated,cutoff=clock()-300000,old=x=>age(x)<=cutoff?age(x):Number.MAX_SAFE_INTEGER,priority={publishing:0,mockups:1,verifying_store:2,updating_printful:3,rendering:4};return old(a)-old(b)||(priority[a.state]??5)-(priority[b.state]??5)||age(a)-age(b);}).find(j=>!busy.has(j.id)&&(networkStage(j.state)||![...busy.values()].some(b=>!networkStage(b.state))));if(!j)return;served.set(j.id,clock());const work=(async()=>{try{await connection();await advance(j);}catch(e){const current=get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id),progress=JSON.parse(current.document);progress.failureStage=current.state;run('UPDATE factory_studio_jobs SET document=? WHERE id=?',JSON.stringify(progress),j.id);const attempts=j.attempts+1,retry=([429,503,502,504].includes(e.status)||['TimeoutError','AbortError'].includes(e.name))&&attempts<8&&!progress.tasks?.some(t=>!t.key);run('UPDATE factory_studio_jobs SET state=?,error=?,attempts=?,next=?,updated=? WHERE id=?',retry?current.state:'failed',String(e.message).split(token||'\0').join('[redacted]').slice(0,600),attempts,clock()+Math.max(e.retryAfter*1000||0,Math.min(15*60000,30000*2**Math.min(attempts,5))),clock(),j.id);try{await checkpoint();}catch{}}})();busy.set(j.id,{state:j.state,stage:j.state,work});try{await work;}finally{busy.delete(j.id);}}
+ async function saveExample(p,document,revision,decision,note='',job=null){
+  const set=family(p).set,parts={};for(const [part,file]of Object.entries(set?.parts||{})){if(file.artwork)parts[part]='art:'+file.artwork;}
+  const metadata=new Map();return learned.record({source:p.id,supplier:p.supplierId,revision,product:{id:p.choice.product,name:p.name},blueprint:document.blueprint,document,decision,name:p.name,note,audience:p.choice.audience||'unisex',job,parts,clock,readArtwork:async(asset,background)=>{if(!metadata.has(asset)){const a=await readArtwork(asset),m=await sharp(Buffer.from(a.data)).autoOrient().metadata();metadata.set(asset,{name:a.name,...(m.autoOrient||m),bounds:background==='#000000'?await artworkBounds(Buffer.from(a.data)):null});}return metadata.get(asset);}});
+ }
  function learningExamples(){
-  const seen=new Set(),result=[];
+  const seen=new Set(),result=[],feedback=learned.list();
   for(const j of all("SELECT j.* FROM factory_studio_jobs j JOIN factory_studio_drafts d ON d.supplier=j.supplier AND d.revision=j.revision WHERE j.state='completed' ORDER BY j.updated DESC")){
-   const d=JSON.parse(j.document);if(seen.has(d.product)||d.learnedFrom||!d.printfulUpdated||!d.images?.length||!d.sourceJob)continue;
+   const d=JSON.parse(j.document),decision=feedback.find(r=>r.supplier===j.supplier),approved=decision?.state==='approved'&&decision.example.job===j.id;if(decision&&decision.state!=='approved')continue;if(seen.has(d.product)||d.learnedFrom||!d.printfulUpdated&&!approved||!d.images?.length||!d.sourceJob)continue;
    const p=source(j.source);if(!p)continue;seen.add(d.product);result.push({product:d.product,job:j.id,revision:j.revision,supplier:j.supplier,name:p.name,collection:p.collection,image:ROOT+'/asset/'+d.images[0].asset});
   }return result;
  }
- const learningJob=id=>{const j=get('SELECT * FROM factory_studio_jobs WHERE id=?',id);if(!j)return null;const d=JSON.parse(j.document);return {id:j.id,state:j.state,error:j.error,supplier:j.supplier,printfulUpdated:!!d.printfulUpdated,images:d.images?.length||0};};
+ const learningJob=id=>{const j=get('SELECT * FROM factory_studio_jobs WHERE id=?',id);if(!j)return null;const d=JSON.parse(j.document);return {id:j.id,state:j.state,error:j.error,supplier:j.supplier,printfulUpdated:!!d.printfulUpdated,previewReady:j.state==='completed'&&d.images?.length>0&&d.tasks?.length>0&&d.tasks.every(t=>t.key&&t.state==='saved'),images:d.images?.length||0};};
  async function followExample(id,exampleId){
   const p=source(id),reference=get("SELECT * FROM factory_studio_jobs WHERE id=? AND state='completed'",exampleId);
   if(!p?.supplierId||!reference)hold('The product or completed placement example is unavailable.');
@@ -304,7 +310,8 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   if(prior){if(JSON.parse(prior.document).learnedFrom===exampleId)return learningJob(prior.id);hold('This product already has an owner update. Keep that update and review it before continuing.');}
   if(get('SELECT supplier FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId)))hold('This product has an owner draft. It will not be overwritten.');
   const ref=JSON.parse(reference.document),rp=source(reference.source);
-  if(ref.product!==p.choice.product||!rp||!ref.printfulUpdated)hold('Placement examples must match the exact supplier product.');
+  const feedback=learned.list().find(r=>r.supplier===reference.supplier);if(feedback&&feedback.state!=='approved')hold('This placement example was rejected or corrected. Choose its latest approved revision.');if(feedback?.example.issues.length)hold('Review this example before automatic transfer: '+feedback.example.issues.join(' '));
+  if(ref.product!==p.choice.product||!rp||!ref.printfulUpdated&&!(feedback?.state==='approved'&&feedback.example.job===reference.id))hold('Placement examples must match the exact supplier product.');
   if(p.jobId&&get("SELECT id FROM factory_jobs WHERE id=? AND status IN ('queued','running','retry_wait')",p.jobId))hold('Wait for the supplier product checkpoint to finish.');
   const referenceSet=family(rp).set,targetSet=family(p).set;if(!referenceSet||!targetSet)hold('Both original hoodie design sets are required.');
   async function originals(set){const result=[];for(const [part,file]of Object.entries(set.parts||{})){const aid=await workflow.sourceFile(file,set),a=await readArtwork('art:'+aid);result.push({part,asset:'art:'+aid,...a});}return result;}
@@ -317,7 +324,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    const rv=ref.supplier.sync_variants.find(x=>x.variant_id===v.variant_id);if(!rv)hold('The example has no matching size/variant. That size needs its own placement review.');
    const panels={};for(const area of variantAreas(bp,v.variant_id).filter(a=>!/^label|^inside_label/.test(a.placement))){
     const oldArea=variantAreas(ref.blueprint,rv.variant_id).find(a=>a.placement===area.placement);
-    if(!oldArea||[oldArea.width,oldArea.height,oldArea.dpi,oldArea.printfile_id].join(':')!==[area.width,area.height,area.dpi,area.printfile_id].join(':'))hold('The native print template changed. Review this garment before copying placements.');
+    if(!oldArea||measuredAreaStamp(oldArea)!==measuredAreaStamp(area))hold('The native print template changed. Review this garment before copying placements.');
     let panel=ref.variants?.[String(rv.id)]?.[area.placement];
     if(!panel){const recipe=plan?.numericLayout?.variants?.find(x=>x.variant===rv.variant_id)?.placements?.[area.placement]||plan?.placements?.[area.placement],metadata=[];for(const a of from)metadata.push(await meta(a));panel=studioProductionPanel(area,recipe,aid=>metadata.find(m=>m.asset==='art:'+aid),plan?.numericLayout?.background??plan?.background??'#000000');}
     if(!panel)hold('The reference '+area.placement+' composition is missing. No black-only replacement was guessed.');
@@ -329,7 +336,11 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
      const piece=p.pieceId&&get('SELECT choice FROM factory_basic_outfit_pieces WHERE id=?',p.pieceId),sourceParts=piece?JSON.parse(piece.choice).sourceParts||{}:{},part=sourceParts[original.part]||original.part;
      const target=to.find(a=>a.part===part)||to.find(a=>partKind(a.part)===partKind(part));if(!target)hold('This hoodie has no '+original.part+' artwork. No unrelated design was substituted.');
      if(!target.permissions.reuse)hold('Artwork reuse permission is required.');assertBrandingPlacement(db,p.jobId,area.placement,get('SELECT * FROM factory_artwork WHERE id=?',target.asset.slice(4)));
-     layers.push(transferStudioLayer(l,await meta(original,l.backgroundRemoval),await meta(target,l.backgroundRemoval),area));
+     const targetMeta=await meta(target,l.backgroundRemoval),placed=transferStudioLayer(l,await meta(original,l.backgroundRemoval),targetMeta,area),bounds=targetMeta.bounds||{x:0,y:0,width:targetMeta.width,height:targetMeta.height},w=placed.width*area.width,h=w*targetMeta.height/targetMeta.width;
+     const visible={x:placed.x*area.width-w/2+bounds.x/targetMeta.width*w,y:placed.y*area.height-h/2+bounds.y/targetMeta.height*h,width:bounds.width/targetMeta.width*w,height:bounds.height/targetMeta.height*h};
+     if(!reviewedLayerRegion(db,p.choice.product,bp.effectiveTechnique||bp.technique||'default',area,visible))hold('Review the '+area.placement+' safe region for this exact template in Factory Basic before automatic outfit transfer.');
+     if(targetMeta.width/w*area.dpi+0.01<area.dpi)hold('The new '+part+' artwork does not meet this panel’s effective resolution requirement at the approved dimensions.');
+     layers.push(placed);
     }panels[area.placement]=studioLayers({background:panel.background,layers});
    }document.variants[String(v.id)]=panels;
   }
@@ -349,6 +360,14 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   const p=source(b.source);if(!p?.supplierId)fail(404,'Select an existing supplier product.');
   if(path===ROOT+'/original'){const set=family(p).set,part=set?.parts?.[b.part];if(!part)fail(404,'This image is not part of the product’s original hoodie design set.');const id=await workflow.sourceFile(part,set),a=get('SELECT * FROM factory_artwork WHERE id=?',id),m=await sharp(Buffer.from(a.data)).autoOrient().metadata(),size=m.autoOrient||m;send(res,200,{asset:'art:'+id,part:b.part,name:part.name||b.part,width:size.width,height:size.height,contentBounds:await artworkBounds(Buffer.from(a.data)),url:'/api/owner/ai-factory/artwork/'+id+'/file'});return true;}
   if(path===ROOT+'/upload'){if(typeof b.data!=='string'||b.data.length>7*1024*1024||!/^[-\w .()]{1,160}$/.test(b.name||''))fail(400,'Upload a named PNG, JPEG or WebP under 5 MB.');const data=Buffer.from(b.data,'base64');if(data.length>5*1024*1024)fail(413,'Upload under 5 MB.');const img=sharp(data,{limitInputPixels:40_000_000,failOn:'warning'}),m=await img.metadata();if(!['png','jpeg','webp'].includes(m.format)||m.pages>1)fail(400,'Use a single PNG, JPEG or WebP.');const normalized=await img.autoOrient().png().toBuffer(),a=await putAsset('studio-upload-'+p.supplierId,'upload',b.name,normalized);await persistAsset(a);saveSoon();send(res,201,{...assetMeta(a),contentBounds:await artworkBounds(normalized),recoveryPending:true});return true;}
+  if(path===ROOT+'/feedback'){
+   if(b.confirm!==true||!['approved','rejected','correction'].includes(b.decision))fail(400,'Confirm the placement feedback to save.');
+   const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if(!draft||draft.revision!==b.revision)fail(409,'Save and inspect this exact draft revision before teaching the Brain.');
+   const document=JSON.parse(draft.document),bp=await blueprints.load(p.choice.product,'default'),supplier=await detail(p);
+   if(bp.source!=='live'||document.templateStamp!==templateStamp(bp,supplier.sync_variants)||document.fingerprint!==fingerprint(supplier))fail(409,'The supplier files or template changed. Reopen and inspect before saving an example.');
+   const j=get('SELECT id FROM factory_studio_jobs WHERE supplier=? AND revision=? ORDER BY updated DESC LIMIT 1',String(p.supplierId),b.revision);
+   const result=await saveExample(p,{...document,blueprint:bp,supplier},draft.revision,b.decision,b.note||'',j?.id||null);saveSoon();send(res,200,{exampleId:result.id,state:result.state,issues:result.example.issues,note:'Placement feedback saved. This does not publish or change supplier files.'});return true;
+  }
   if(path===ROOT+'/publish'){
    if(b.confirmPublication!==true)fail(400,'Explicitly approve publishing this edited product to the store.');
    let j=get('SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=?',b.id,String(p.supplierId));
@@ -365,7 +384,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    // Recheck after the supplier request: another tab may have saved a revision.
    if(get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',j.supplier)?.revision!==b.revision)fail(409,'A newer draft exists. Finish that draft before publishing.');
    if(get("SELECT id FROM factory_studio_jobs WHERE supplier=? AND id<>? AND state NOT IN ('completed','cancelled')",j.supplier,j.id))fail(409,'Another update is still running for this product.');
-   d.ownerApproval={revision:j.revision,recipe:approvalRecipe(d),approvedAt:clock()};run("UPDATE factory_studio_jobs SET target='store',state=?,document=?,error='',attempts=0,next=0,updated=? WHERE id=? AND state='completed'",d.printfulUpdated?'publishing':'updating_printful',JSON.stringify(d),clock(),j.id);
+   await saveExample(p,d,j.revision,'approved','Owner approved this saved revision for publication.',j.id);d.ownerApproval={revision:j.revision,recipe:approvalRecipe(d),approvedAt:clock()};run("UPDATE factory_studio_jobs SET target='store',state=?,document=?,error='',attempts=0,next=0,updated=? WHERE id=? AND state='completed'",d.printfulUpdated?'publishing':'updating_printful',JSON.stringify(d),clock(),j.id);
    saveSoon();j=get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id);send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;
   }
   if(path===ROOT+'/save'||path===ROOT+'/finish'){
@@ -388,11 +407,11 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    // history remains; external submissions and uncertain outcomes require review.
    const previousDraft=get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if((previousDraft?.revision||0)!==b.revision)hold('This product changed in another tab. Reload before saving.');
    if(unfinished)run("UPDATE factory_studio_jobs SET state='cancelled',updated=? WHERE id=?",clock(),unfinished.id);
-   const saved=saveDocument(p,b);const id=randomUUID(),document={...saved.document,supplier:d,blueprint:bp,product:p.choice.product,sourceJob:p.jobId||null,created:clock(),resolutionWarnings:issues,outputs:[],tasks:[],images:[]};if(b.confirmPublication===true)document.ownerApproval={revision:saved.revision,recipe:approvalRecipe(document),approvedAt:clock()};run('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)',id,String(p.supplierId),p.id,saved.revision,b.target,'queued',JSON.stringify(document),clock());saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,recoveryPending:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',id)),savedInApp:true,printfulUpdated:false});return true;
+   const saved=saveDocument(p,b);const id=randomUUID(),document={...saved.document,supplier:d,blueprint:bp,product:p.choice.product,sourceJob:p.jobId||null,created:clock(),resolutionWarnings:issues,outputs:[],tasks:[],images:[]};if(b.target==='store')await saveExample(p,document,saved.revision,'approved','Owner approved this edited revision for publication.',id);if(b.confirmPublication===true)document.ownerApproval={revision:saved.revision,recipe:approvalRecipe(document),approvedAt:clock()};run('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)',id,String(p.supplierId),p.id,saved.revision,b.target,'queued',JSON.stringify(document),clock());saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,recoveryPending:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',id)),savedInApp:true,printfulUpdated:false});return true;
   }
   if(path===ROOT+'/reject'){
    const j=get("SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=? AND target='mockups' AND state IN ('completed','failed')",b.id,String(p.supplierId));
-   if(!j||b.confirm!==true)fail(409,'Choose a finished private preview to reject.');
+   if(!j||b.confirm!==true)fail(409,'Choose a finished private preview to reject.');await saveExample(p,JSON.parse(j.document),j.revision,'rejected',b.note||'Owner rejected this preview.',j.id);
    run("UPDATE factory_studio_jobs SET state='cancelled',error='Owner rejected this private preview. Original artwork and the last approved product are retained.',updated=? WHERE id=?",clock(),j.id);saveSoon();send(res,200,{rejected:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id))});return true;
   }
   if(path===ROOT+'/cancel'){const j=get("SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=? AND state='failed'",b.id,String(p.supplierId));if(!j)fail(409,'Choose this product’s failed update.');const live=await detail(p);run("UPDATE factory_studio_jobs SET state='cancelled',updated=? WHERE id=?",clock(),j.id);const row=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if(row){const document=JSON.parse(row.document);document.fingerprint=fingerprint(live);run('UPDATE factory_studio_drafts SET document=? WHERE supplier=?',JSON.stringify(document),String(p.supplierId));}saveSoon();send(res,200,{cancelled:true,note:'The current Printful files were retained. This did not undo any confirmed supplier changes.'});return true;}
