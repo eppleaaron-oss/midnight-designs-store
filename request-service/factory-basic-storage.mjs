@@ -1,18 +1,18 @@
 // Basic keeps recipes and file identities in recovery snapshots. Unapproved
 // previews and reproducible print pixels belong only to the working workspace.
 export function stripBasicWorkingPixels(db){
- if(!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_basic_items'").get())return;
+ const has=t=>!!db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?").get(t);
+ // Keep local bytes unless this exact file has an acknowledged, hash-matching
+ // attachment. A recipe alone cannot recover an expired model photograph.
+ if(!has('factory_basic_remote_assets'))return;
  db.function('factory_history_actor',()=>'{"type":"system","name":"Basic recovery snapshot"}');
- const triggers=db.prepare("SELECT name,sql FROM sqlite_master WHERE type='trigger' AND tbl_name IN ('factory_print_files','factory_mockups','factory_mockup_downloads')").all();
+ const triggers=db.prepare("SELECT name,sql FROM sqlite_master WHERE type='trigger' AND tbl_name IN ('factory_print_files','factory_mockups')").all();
  for(const t of triggers)db.exec('DROP TRIGGER "'+t.name.replaceAll('"','""')+'"');
- try{db.exec(`UPDATE factory_print_files SET data=x'' WHERE draft IN (
-  SELECT value FROM factory_job_profiles p JOIN factory_basic_items b ON b.job=p.job,json_each(p.templates));
- UPDATE factory_mockups SET data=x'' WHERE job IN (SELECT job FROM factory_basic_items WHERE decision IS NULL OR decision='disapproved');
-`);
-  if(db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_basic_remote_assets'").get()&&db.prepare('SELECT enabled FROM factory_basic_github_settings WHERE id=1').get()?.enabled){
-   db.exec("UPDATE factory_mockup_downloads SET data=x'' WHERE job IN (SELECT job FROM factory_basic_items)");
-   db.exec("UPDATE factory_mockups SET data=x'' WHERE id IN (SELECT file FROM factory_basic_final_media)");
-  }else db.exec('DELETE FROM factory_mockup_downloads WHERE job IN (SELECT job FROM factory_basic_items)');
+ try{
+  if(has('factory_print_files'))db.exec("UPDATE factory_print_files SET data=x'' WHERE EXISTS(SELECT 1 FROM factory_basic_remote_assets a WHERE a.kind='print' AND a.file=factory_print_files.id AND a.sha256=factory_print_files.sha256 AND a.bytes=length(factory_print_files.data) AND a.asset_id>0 AND a.release_id>0)");
+  if(has('factory_mockups')&&has('factory_mockup_files'))db.exec("UPDATE factory_mockups SET data=x'' WHERE EXISTS(SELECT 1 FROM factory_basic_remote_assets a JOIN factory_mockup_files f ON f.file=factory_mockups.id AND f.sha256=a.sha256 WHERE a.kind='mockup' AND a.job=factory_mockups.job AND a.file=factory_mockups.id AND a.bytes=length(factory_mockups.data) AND a.asset_id>0 AND a.release_id>0)");
+  // Staging rows retain bytes until the job's normal verified cleanup. They
+  // have compound selectors, so a filename-only match is not enough proof.
  }finally{for(const t of triggers)db.exec(t.sql);}
 }
 
