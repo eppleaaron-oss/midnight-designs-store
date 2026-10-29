@@ -6,7 +6,7 @@ for(const [width,height] of [[320,568],[390,844],[844,390],[768,1024],[1024,768]
  await page.setViewportSize({width,height});await page.goto('http://localhost:8000/request-design.html');
  await page.locator('#garment').selectOption('Hoodie');await page.locator('#style').selectOption('Gothic');
  for(const [id,value] of [['idea','Original raven under a red moon'],['colors','Bone white and red'],['name','Test customer'],['email','customer@example.test'],['budget','150'],['designText','AFTER HOURS'],['deadline','2026-11-30']])await page.locator('#'+id).fill(value);
- await page.getByRole('button',{name:'Review design request',exact:true}).click();assert.match(await page.locator('#requestStatus').innerText(),/at least one/);
+ for(const choice of await page.locator('input[name=placement]:checked').all())await choice.uncheck();await page.getByRole('button',{name:'Review design request',exact:true}).click();assert.match(await page.locator('#requestStatus').innerText(),/at least one/);
  await page.locator('input[name=placement][value=Back]').check();await page.locator('input[name=placement][value="Left sleeve"]').check();
  await page.locator('#references').setInputFiles({name:'raven.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jK1sAAAAASUVORK5CYII=','base64')});
  assert.equal(await page.locator('#referencePreviews img').count(),1);
