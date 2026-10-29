@@ -18,13 +18,20 @@ jobs:
           node-version: '24'
       - run: npm ci --prefix request-service
       - run: npm test --prefix request-service
+      - run: node --test scripts/product-information-test.mjs scripts/studio-gallery-test.mjs scripts/size-guide-values-test.mjs
       - run: npm install --no-save playwright@1.58.2
       - run: npx playwright install --with-deps chromium
       - name: Prove browser save, reload, four placements and same-product update
         run: MIDNIGHT_STUDIO_BROWSER=1 node --test --test-name-pattern='browser saves' request-service/factory-product-studio-test.mjs
+      - name: Verify current storefront photos and supplier shoe-size units
+        run: |
+          python3 -m http.server 8123 > /tmp/store.log 2>&1 &
+          node scripts/qa-verified-galleries.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: verified-editor-browser-flow
-          path: qa-editor-*.png
+          path: |
+            qa-editor-*.png
+            qa-verified-gallery-*.png
           retention-days: 3
