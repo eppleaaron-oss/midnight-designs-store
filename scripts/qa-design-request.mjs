@@ -1,5 +1,6 @@
 import {chromium} from 'playwright';import assert from 'node:assert/strict';
 const browser=await chromium.launch(),page=await browser.newPage(),errors=[],posts=[];
+await page.route('**/feedback-service-config.json',r=>r.fulfill({json:{url:null}}));
 page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.method()!=='GET')posts.push(r.url());});
 for(const [width,height] of [[320,568],[390,844],[844,390],[768,1024],[1024,768],[1440,900]]){
  await page.setViewportSize({width,height});await page.goto('http://localhost:8000/request-design.html');
@@ -13,7 +14,7 @@ for(const [width,height] of [[320,568],[390,844],[844,390],[768,1024],[1024,768]
  const brief=await page.locator('#requestBrief').inputValue();for(const text of ['Hoodie','Gothic','Back, Left sleeve','150','2026-11-30','AFTER HOURS','raven.png'])assert.ok(brief.includes(text));
  const href=await page.locator('#sendRequest').getAttribute('href');assert.ok(href.startsWith('mailto:midnightdesign107@gmail.com?'));
  assert.ok(decodeURIComponent(href).includes('Original raven'));
- assert.match(await page.locator('#sendInstructions').innerText(),/Nothing has been sent/);
+ assert.match(await page.locator('#sendInstructions').innerText(),/Nothing has been submitted/);
  const downloadPromise=page.waitForEvent('download');await page.locator('#downloadBrief').click();assert.equal((await downloadPromise).suggestedFilename(),'midnight-design-request.txt');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await page.screenshot({path:'qa-request-review-'+width+'.png'});
