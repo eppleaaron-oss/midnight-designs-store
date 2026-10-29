@@ -88,7 +88,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const designStats=designAnalytics({db,designCatalog,products:JSON.parse(readFileSync(new URL('./product-catalog.json',import.meta.url),'utf8')),auth,body,send,fail,limit,origin,storefrontOrigin});
  const feedbackProducts=feedbackCatalog({local:()=>JSON.parse(readFileSync(new URL('../products.json',import.meta.url),'utf8')).products,remote:feedbackCatalogLoader||(secure?async()=>{const r=await fetch(storefrontOrigin+'/products.json?feedback='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Catalog unavailable');return (await r.json()).products;}:null),ttl:feedbackCatalogLoader?0:60000});
  const reviewHandler=productReviews({db,products:feedbackProducts,auth,body,send,fail,limit,origin,storefrontOrigin});
- const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader});
+ const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader,checkpoint:()=>requestCheckpoint(),writable:()=>githubBackups.assertWritable(),durable:()=>githubBackups.snapshot().configured||durableQueueStorage(dbPath)});
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
  const layoutHandler=factoryLayouts({db,auth:factoryAuth,body,send,fail,limit,origin});
  const brandingHandler=factoryBranding({db,auth:factoryAuth,body,send,fail,limit,origin});
@@ -215,10 +215,10 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
    fail(404,'Not found.');
   }catch(e){if(res.headersSent)return res.end();if(e.status===429&&Number.isFinite(e.retryAfter))res.setHeader('Retry-After',String(Math.ceil(e.retryAfter)));send(res,e.status||500,{error:e.status?e.message:'Unable to complete this action. Try again.'});}
  }));
- const notificationFeed=setInterval(()=>{requestNotifications.tick().catch(e=>console.error('Request notification held:',e.message));},15000);notificationFeed.unref();
+ const notificationFeed=setInterval(()=>{payments.tick().catch(e=>console.error('Payment fulfillment held:',e.message));requestNotifications.tick().catch(e=>console.error('Request notification held:',e.message));},15000);notificationFeed.unref();
  const studioFeed=setInterval(()=>{productStudio.tick().catch(e=>console.error('Product studio update held:',e.message));},5000);studioFeed.unref();
  const runFeed=setInterval(()=>{runsHandler.tick().catch(e=>console.error('Production run feed failed:',e.message));ideasHandler.tick().catch(e=>console.error('Idea team failed:',e.message));basicHandler.tick().then(()=>basicOutfits.tick()).catch(e=>console.error('Basic cleanup held:',e.message));},30000);runFeed.unref();
- server.on('close',()=>{clearInterval(runFeed);clearInterval(studioFeed);clearInterval(notificationFeed);productStudio.idle().then(()=>editorHandler.idle()).finally(async()=>{await requestNotifications.close();await githubBackups.close();db.close();});});return {server,db,requestNotifications,githubBackups,artworkEditor:editorHandler,basic:basicHandler,basicOutfits,basicGithub,factoryDiagnostics:diagnostics,factoryAcceptance:acceptance,publishingEngine:publishingHandler,productStudio};
+ server.on('close',()=>{clearInterval(runFeed);clearInterval(studioFeed);clearInterval(notificationFeed);productStudio.idle().then(()=>editorHandler.idle()).finally(async()=>{await requestNotifications.close();await payments.close();await githubBackups.close();db.close();});});return {server,db,payments,requestNotifications,githubBackups,artworkEditor:editorHandler,basic:basicHandler,basicOutfits,basicGithub,factoryDiagnostics:diagnostics,factoryAcceptance:acceptance,publishingEngine:publishingHandler,productStudio};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const dbPath=process.env.DATA_PATH||'./private-data/requests.sqlite';
@@ -228,7 +228,7 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  if(backupStore?.initializeBeforeListen){try{await service.githubBackups.save(true);}catch(e){await service.githubBackups.close();await service.artworkEditor.idle();service.db.close();throw e;}}
  let inlineWorker=null,closing=false;
  server.listen(Number(process.env.PORT||3000),'0.0.0.0',()=>{console.log('Midnight Designs request service started.');inlineWorker=startBasicWorker({server,token:workerToken,enabled:inlineBasic});});
- async function shutdown(){if(closing)return;closing=true;await inlineWorker?.close();await service.requestNotifications.close();await service.productStudio.idle();try{await service.basic.checkpoint(service.basic.currentJob());}catch{}await service.githubBackups.close();server.close(()=>process.exit(0));}
+ async function shutdown(){if(closing)return;closing=true;await inlineWorker?.close();await service.requestNotifications.close();await service.payments.close();await service.productStudio.idle();try{await service.basic.checkpoint(service.basic.currentJob());}catch{}await service.githubBackups.close();server.close(()=>process.exit(0));}
  process.on('SIGTERM',shutdown);process.on('SIGINT',shutdown);
 }
 
