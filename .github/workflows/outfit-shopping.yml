@@ -21,6 +21,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: |
           python3 -m http.server 8123 > /tmp/store.log 2>&1 &
+          git fetch --depth=1 origin 71a2942ecd1bad4644f9c7ffbd06f5d022c75603
+          node scripts/qa-outfit-baseline.mjs
           node scripts/qa-outfits.mjs
       - uses: actions/upload-artifact@v4
         if: always()
