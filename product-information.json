@@ -972,7 +972,10 @@
       "techniques": [
         "Sublimation"
       ],
-      "care": [],
+      "care": [
+        "Spot-clean with a damp cloth. Hand-wash in cold water if needed.",
+        "Do not brush, machine-wash, bleach, tumble-dry, iron or dry-clean."
+      ],
       "careNote": "Follow the care label attached to your item if it gives different instructions.",
       "careSource": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products",
       "fabricSource": null,
