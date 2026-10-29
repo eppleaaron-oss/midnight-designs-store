@@ -1,7 +1,7 @@
 import {createHash} from 'node:crypto';
 
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const cents=value=>/^\d+(\.\d{1,2})?$/.test(String(value))?Math.round(Number(value)*100):null;
+const cents=value=>{if(!/^\d+(\.\d{1,2})?$/.test(String(value)))return null;const n=Math.round(Number(value)*100);return Number.isSafeInteger(n)&&n>=0?n:null;};
 const url=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null;}catch{return null;}};
 export function printFile(file){
  if(!Number.isSafeInteger(file?.id)||file.id<1||typeof file.type!=='string'||file.type==='preview')return null;
@@ -27,7 +27,7 @@ export function paymentFulfillment({db,seal,unseal,pf,stripeSession,verify,check
   verify(session);const row=get(session.metadata.midnight_order);if(!row)return;const saved=unseal(row.payload);if(session.metadata.midnight_subtotal!==String(saved.subtotal)||session.metadata.midnight_shipping!==String(saved.selectedShipping.amount)||session.metadata.midnight_receipt!==saved.receipt_hash)fail(409,'Payment differs from the saved checkout snapshot.'); if(row.session&&row.session!==session.id)fail(409,'Payment session conflicts with the saved order.');
   const refunded=session.payment_intent?.latest_charge?.amount_refunded>0;
   if(refunded){save(row.id,{session:session.id,paid:0,stage:'payment_hold',error:'A refund is recorded. Reconcile any supplier order before further production.',next:clock()+60000});}
-  else if(session.payment_status==='paid'){const stage=['awaiting_payment','payment_failed','expired'].includes(row.stage)?(live||simulation?'paid_waiting':'test_paid'):row.stage;save(row.id,{session:session.id,paid:1,stage,next:stage==='paid_waiting'?0:clock()+60000});}
+  else if(session.payment_status==='paid'){const stage=['awaiting_payment','payment_failed','expired'].includes(row.stage)?(live||simulation?'paid_waiting':'test_paid'):row.stage;save(row.id,{session:session.id,paid:1,stage,next:row.paid&&stage===row.stage?row.next:stage==='paid_waiting'?0:clock()+60000});}
   else if(!row.paid){save(row.id,{session:session.id,stage:session.status==='expired'?'expired':eventType==='checkout.session.async_payment_failed'?'payment_failed':row.stage,next:clock()+60000});}
   const changed=get(row.id);if(changed.stage!==row.stage||changed.paid!==row.paid||changed.session!==row.session||changed.error!==row.error)await checkpoint();
  }
@@ -56,5 +56,6 @@ export function paymentFulfillment({db,seal,unseal,pf,stripeSession,verify,check
   }fail(400,'Unknown fulfillment action.');
  });}
  async function tick(){if(active||closed)return;active=(async()=>{const row=all().find(x=>x.session&&x.next<=clock()&&['awaiting_payment','paid_waiting','draft_ready','in_fulfillment','supplier_unknown','supplier_hold'].includes(x.stage));if(!row||locks.has(row.id))return;await locked(row.id,async()=>{try{await writable();await observe(await stripeSession(row.session));const fresh=get(row.id);if(fresh.paid&&fresh.stage==='paid_waiting')await draft(fresh);else if(fresh.paid&&(fresh.supplier||fresh.stage==='supplier_unknown'))await refresh(fresh);}catch(e){save(row.id,{error:String(e.message).slice(0,300),next:clock()+Math.max(60,e.retryAfter||0)*1000});try{await checkpoint();}catch{}}});})().finally(()=>active=null);return active;}
- return {remember,attach,observe,summary,action,tick,external,async close(){closed=true;await active;},stats:()=>({saved:all().length,waiting:all().filter(x=>['paid_waiting','draft_ready'].includes(x.stage)).length,held:all().filter(x=>x.stage.includes('hold')||x.stage.includes('unknown')||x.stage.includes('failed')).length})};
+ async function customerRefresh(id){const row=get(id);if(row?.paid&&row.supplier&&row.next<=clock()&&!locks.has(row.id))await locked(row.id,async()=>{try{await refresh(row);}catch(e){save(row.id,{error:String(e.message).slice(0,300),next:clock()+60000});}});}
+ return {remember,attach,observe,summary,action,tick,customerRefresh,external,async close(){closed=true;await active;},stats:()=>({saved:all().length,waiting:all().filter(x=>['paid_waiting','draft_ready'].includes(x.stage)).length,held:all().filter(x=>x.stage.includes('hold')||x.stage.includes('unknown')||x.stage.includes('failed')).length})};
 }
