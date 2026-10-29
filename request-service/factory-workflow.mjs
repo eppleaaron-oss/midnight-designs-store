@@ -1,3 +1,4 @@
+import {downloadSourceArtwork,sourceArtworkUrl} from './factory-source-download.mjs';
 import catalogIdentity from '../catalog-identity.js';
 import {placementInstruction,placementGuide,PLACEMENT_POLICY_VERSION} from './factory-placement-playbook.mjs';
 import {panelKind} from './factory-basic-layout-library.mjs';
@@ -14,19 +15,15 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
  db.exec(`CREATE TABLE IF NOT EXISTS factory_imported_artwork(url TEXT PRIMARY KEY,artwork TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_supplier_quotes(job TEXT NOT NULL,variant INTEGER NOT NULL,cents INTEGER NOT NULL,currency TEXT NOT NULL,source TEXT NOT NULL,created TEXT NOT NULL,PRIMARY KEY(job,variant));`);
  const get=(s,...a)=>db.prepare(s).get(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString();
- let basicWorkspace=null;
+ let basicWorkspace=null;const sourceReads=new Map();
  const hold=message=>{throw Object.assign(Error(message),{status:409});};
- async function sourceFile(part,set){
+ function sourceFile(part,set){const key=JSON.stringify([part.artwork||part.url,set.name]);if(sourceReads.has(key))return sourceReads.get(key);const work=sourceImport(part,set);sourceReads.set(key,work);work.finally(()=>{if(sourceReads.get(key)===work)sourceReads.delete(key);}).catch(()=>{});return work;}
+ async function sourceImport(part,set){
   if(part.artwork){if(!get('SELECT id FROM factory_artwork WHERE id=?',part.artwork))hold('Assigned artwork is missing.');return part.artwork;}
   const cacheKey=part.url+'#factoryCollection='+encodeURIComponent(set.name);
   const cached=get('SELECT artwork FROM factory_imported_artwork WHERE url=?',cacheKey)||get('SELECT artwork FROM factory_imported_artwork WHERE url=?',part.url);
   if(cached&&get('SELECT id FROM factory_artwork WHERE id=? AND collection=?',cached.artwork,set.name.slice(0,100))){run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,cached.artwork);return cached.artwork;}
-  let u;try{u=new URL(part.url);}catch{hold('Import the original artwork into the upload library first.');}
-  if(u.protocol!=='https:'||!u.hostname.endsWith('.printful.com')||u.username||u.password)hold('Import the original artwork into the upload library. This external file host is not supported.');
-  const r=await fetchImpl(u.href,{redirect:'error',signal:AbortSignal.timeout(25000)});
-  if(!r.ok||!['image/png','image/jpeg','image/webp'].includes(r.headers.get('content-type')?.split(';')[0]))hold('The original Printful artwork could not be downloaded. Upload its original PNG, JPEG or WebP file.');
-  let bytes=0;const chunks=[];for await(const chunk of r.body){bytes+=chunk.length;if(bytes>5*1024*1024)hold('Original artwork exceeds 5 MB. Import a smaller original file.');chunks.push(chunk);}
-  const data=Buffer.concat(chunks),extension={'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[r.headers.get('content-type').split(';')[0]];
+  const u=sourceArtworkUrl(part.url),{data,mime}=await downloadSourceArtwork(u.href,fetchImpl),extension={'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[mime];
   // Supplier imports preserve their pixels. Cropping, rotation and recoloring
   // remain disabled until the owner changes the artwork's permissions.
   const existing=get("SELECT id FROM factory_artwork WHERE sha256=? AND collection=? AND kind='original' ORDER BY created LIMIT 1",createHash('sha256').update(data).digest('hex'),set.name.slice(0,100));if(existing){run('INSERT OR REPLACE INTO factory_imported_artwork VALUES(?,?)',cacheKey,existing.id);return existing.id;}

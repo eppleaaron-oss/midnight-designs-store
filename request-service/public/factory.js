@@ -174,7 +174,8 @@ function renderSummary(){
  const s=snap.summary,f=snap.factory,run=snap.active,plannedWorkers=run?run.config.workers.total:0;
  const label={running:'Running',paused:'Paused',stopped:'Stopped'}[f.state]||f.state;$('stateBadge').textContent=label;$('stateBadge').dataset.state=f.state;
  const activeWorkers=f.workerConnected?Math.min(s.running,run?.config.limits.simultaneous||s.running):0;
- const stats=[['Workers active',plannedWorkers?`${activeWorkers} / ${plannedWorkers}`:String(activeWorkers)],['Jobs running',s.running],['Completed today',s.completedToday],['Waiting',s.waiting],['In QC',s.inQc],['Need review',s.needReview],['Failed',s.failed]];
+ const stats=[['Workers active',plannedWorkers?`${activeWorkers} / ${plannedWorkers}`:String(activeWorkers)],['Jobs running',s.running],['Prepared today',s.completedToday],['Waiting',s.waiting],['In QC',s.inQc],['Need review',s.needReview],['Failed',s.failed]];
+ if(snap.lifecycle)for(const [label,key]of [['Supplier-created','supplierCreated'],['Review-ready','reviewReady'],['Published','published'],['Needs reconciliation','uncertain']])stats.push([label,snap.lifecycle.counts[key]]);
  $('summaryStats').replaceChildren(...stats.map(([k,v])=>{const d=node('div','', 'fx-stat'+(k==='Need review'&&v||k==='Failed'&&v?' fx-attn':''));d.append(node('dt',k),node('dd',typeof v==='number'?num(v):v));return d;}));
  const meta=[`${num(s.productsPerHour)} products/hour`,s.etaMinutes?`done in about ${s.etaMinutes<90?s.etaMinutes+' min':Math.round(s.etaMinutes/60)+' h'}`:null,`queue ${num(s.queueSize)}`,`AI spend today ${money(f.spentTodayCents)}${f.dailyBudgetCents?' of '+money(f.dailyBudgetCents):''}`,f.workerConnected?'background worker connected':'background worker not connected',f.providerConnected?null:'no AI image provider connected yet'].filter(Boolean);
  $('summaryMeta').textContent=meta.join(' · ');
