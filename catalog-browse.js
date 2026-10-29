@@ -16,6 +16,7 @@ window.MidnightBrowse=({products,renderProducts,productPrice,activeVariant})=>{
  for(const size of actual)addOption('sizeFilter',size);
  for(const [id,values] of [['colorFilter',products.flatMap(p=>p.variants.map(v=>v.color))],['paletteFilter',products.flatMap(p=>p.artworkColors||[])],['collectionFilter',products.flatMap(p=>p.collections||[])]])for(const v of [...new Set(values.filter(Boolean))].sort())addOption(id,v);
  $('categoryTabs').replaceChildren();
+ const outfitTab=document.createElement('a');outfitTab.href='outfits.html';outfitTab.textContent='Outfits';$('categoryTabs').append(outfitTab);
  for(const category of ['',...categories]){
   const a=document.createElement('a');a.textContent=category||'All';a.href=category?'shop.html?type='+encodeURIComponent(category):'shop.html';a.dataset.type=category;
   a.onclick=e=>{e.preventDefault();$('category').value=category;apply();};$('categoryTabs').append(a);
