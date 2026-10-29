@@ -48,13 +48,14 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
   return {pieces:linked(pieces),products:linked([...products,...legacy]),sets,printfulEditorError:resolvedStoreId?null:storeLookupError||'A valid Printful store ID is required for native product editing.',recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }
  let mediaCache=null,mediaAt=0,mediaPending=null;
- async function storeMedia(){
-  if(mediaCache&&clock()-mediaAt<300000)return mediaCache;
+ async function storeMedia(refresh=false){
+  if(!refresh&&mediaCache&&clock()-mediaAt<300000)return mediaCache;
+  if(refresh&&mediaPending)await mediaPending;
   if(mediaPending)return mediaPending;
   mediaPending=(async()=>{
    const read=async name=>{const r=await fetchImpl('https://midnight-designs.store/'+name,{signal:AbortSignal.timeout(45000),headers:{Accept:'application/json'}});if(!r.ok)throw Error('Saved storefront media unavailable');return r.json();};
    const [photos,catalog]=await Promise.allSettled([read('product-photos.json'),read('products.json')]);
-   const result={photos:photos.status==='fulfilled'?photos.value:mediaCache?.photos||{products:{}},publishedIds:catalog.status==='fulfilled'?(catalog.value.products||[]).map(p=>String(p.id)):mediaCache?.publishedIds||[],unavailable:photos.status==='rejected'};
+   const result={photos:photos.status==='fulfilled'?photos.value:mediaCache?.photos||{products:{}},publishedIds:catalog.status==='fulfilled'?(catalog.value.products||[]).map(p=>String(p.id)):mediaCache?.publishedIds||[],publicationVerified:catalog.status==='fulfilled',unavailable:photos.status==='rejected'};
    if(photos.status==='fulfilled'){mediaCache=result;mediaAt=clock();}return result;
   })().finally(()=>{mediaPending=null;});return mediaPending;
  }
@@ -76,7 +77,7 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
   // Browsing saved products needs no live supplier discovery. Keep the native
   // editor lookup on its existing route; the gallery uses this local snapshot.
   if(method==='GET'&&path===ROOT+'/library'){send(res,200,library());return true;}
-  if(method==='GET'&&path===ROOT+'/media'){const data=structuredClone(await storeMedia());if(get("SELECT name FROM sqlite_master WHERE type='table' AND name='factory_studio_jobs'")){const seen=new Set();for(const j of all("SELECT id,supplier,document,state FROM factory_studio_jobs WHERE state IN ('completed','publishing','verifying_store') ORDER BY updated DESC LIMIT 500")){if(seen.has(j.supplier))continue;const d=JSON.parse(j.document);if(!d.images?.length||j.state!=='completed'&&(!d.printfulUpdated||!d.tasks?.length||d.tasks.some(t=>!t.key||t.state!=='saved')))continue;seen.add(j.supplier);data.photos.products??={};const prior=data.photos.products[j.supplier]||{};data.photos.products[j.supplier]={...prior,studioRevision:j.id,photos:d.images.map(i=>({image:i.storeUrl||origin+'/api/owner/ai-factory/product-studio/asset/'+i.asset,label:i.title||i.style||'Product view'}))};}}send(res,200,data);return true;}
+  if(method==='GET'&&path===ROOT+'/media'){const data=structuredClone(await storeMedia(new URL(req.url||ROOT+'/media',origin).searchParams.get('refresh')==='1'));if(get("SELECT name FROM sqlite_master WHERE type='table' AND name='factory_studio_jobs'")){const seen=new Set();for(const j of all("SELECT id,supplier,document,state FROM factory_studio_jobs WHERE state IN ('completed','publishing','verifying_store') ORDER BY updated DESC LIMIT 500")){if(seen.has(j.supplier))continue;const d=JSON.parse(j.document);if(!d.images?.length||j.state!=='completed'&&(!d.printfulUpdated||!d.tasks?.length||d.tasks.some(t=>!t.key||t.state!=='saved')))continue;seen.add(j.supplier);data.photos.products??={};const prior=data.photos.products[j.supplier]||{};data.photos.products[j.supplier]={...prior,studioRevision:j.id,photos:d.images.map(i=>({image:i.storeUrl||origin+'/api/owner/ai-factory/product-studio/asset/'+i.asset,label:i.title||i.style||'Product view'}))};}}send(res,200,data);return true;}
   if(method==='GET'&&path===ROOT){await discoverStore();send(res,200,library());return true;}
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'product-editor',30);const b=await body(req);
   if(path===ROOT+'/embedded/check'){

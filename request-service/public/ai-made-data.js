@@ -11,11 +11,11 @@ window.MidnightMadeMedia={
  },
  updateStatus(update){if(!update)return '';const j=update.job;if(!j||j.revision!==update.draftRevision)return 'Draft saved — not applied to Printful';if(j.state==='completed')return j.storeUpdated?'':'Printful updated — not published to store';if(j.state==='failed')return 'Update failed — '+(j.error||'Open the editor for details');return 'Update in progress — '+j.state.replaceAll('_',' ')+(j.error?' · '+j.error:'');},
  photoNote(row,index={}){return row.update?.job?.id&&index.products?.[String(row.supplierId)]?.studioRevision===row.update.job.id?'These photos show the completed Printful mockups for this update.':'These photos are from the last finished update; they do not confirm this draft.';},
- state(row,publishedIds){return row.supplierId&&publishedIds.has(String(row.supplierId))?'published':row.state||'waiting';},
- async load(){
+ state(row,publishedIds,verified=true){if(row.supplierId&&!verified)return 'publication_unverified';if(row.supplierId&&publishedIds.has(String(row.supplierId)))return 'published';return ['published','publication_unverified'].includes(row.state)?'supplier_created':row.state||'waiting';},
+ async load(refresh=false){
   try{
-   const r=await fetch('/api/owner/ai-factory/product-editor/media',{signal:AbortSignal.timeout(60000)});if(!r.ok)throw Error('Saved photos unavailable');const d=await r.json();
-   return {photos:d.photos||{products:{}},publishedIds:new Set(d.publishedIds||[]),unavailable:d.unavailable===true};
-  }catch{return {photos:{products:{}},publishedIds:new Set(),unavailable:true};}
+   const r=await fetch('/api/owner/ai-factory/product-editor/media'+(refresh?'?refresh=1':''),{signal:AbortSignal.timeout(60000)});if(!r.ok)throw Error('Saved photos unavailable');const d=await r.json();
+   return {photos:d.photos||{products:{}},publishedIds:new Set(d.publishedIds||[]),publicationVerified:d.publicationVerified===true,unavailable:d.unavailable===true};
+  }catch{return {photos:{products:{}},publishedIds:new Set(),publicationVerified:false,unavailable:true};}
  }
 };

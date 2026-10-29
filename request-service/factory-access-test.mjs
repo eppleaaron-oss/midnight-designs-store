@@ -58,3 +58,11 @@ test('AI Made serves its photo helper before the gallery in one protected script
  assert.equal((await c.call('/api/owner/ai-factory/product-editor/library')).status,200);
  const closed=await service(t,true);assert.equal((await closed.call('/ai-made.js')).status,401);assert.equal((await closed.call('/api/owner/ai-factory/product-editor/library')).status,401);
 });
+
+test('sign-in preserves the exact editor product, selected placement and variant',async t=>{
+ const {ownerLoginDestination}=await import('./public/login-destination.js'),c=await service(t,true),query='source=piece%3Atest-product&placement=sleeve_right&variant=1234';
+ const r=await c.call('/product-studio?'+query);assert.equal(r.status,302);assert.equal(r.headers.get('location'),'/login?next=product-studio&'+query);assert.equal(ownerLoginDestination(new URL(r.headers.get('location'),'https://app.test').search),'/product-studio?'+query);
+ for(const next of ['ai-made','product-editor','ai-factory-basic','ai-intelligence'])assert.ok(ownerLoginDestination('?next='+next));
+ assert.equal(ownerLoginDestination('?next=https://evil.test'),null);assert.equal(ownerLoginDestination('?next=product-studio&source=//evil.test&placement=../secret&variant=x'),'/product-studio');
+ const helper=await c.call('/login-destination.js');assert.equal(helper.status,200);assert.match(helper.headers.get('content-type'),/javascript/);
+});

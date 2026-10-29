@@ -65,6 +65,7 @@ test('saved storefront media loads through the owner endpoint and reuses its cac
  let response;const engine=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,d)=>{response=d;},fail:()=>{},limit:()=>{},origin:'http://test',fetchImpl:async url=>{reads++;return {ok:true,json:async()=>url.endsWith('product-photos.json')?{products:{123:{photos:[{image:'assets/front.jpg'}]}}}:{products:[{id:123}]}};}});
  await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.deepEqual(response.publishedIds,['123']);assert.equal(response.photos.products[123].photos[0].image,'assets/front.jpg');assert.equal(response.unavailable,false);assert.equal(reads,2);
  await engine.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(reads,2);
+ assert.equal(response.publicationVerified,true);await engine.handle({headers:{},url:'/api/owner/ai-factory/product-editor/media?refresh=1'},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(reads,4,'A completed update can bypass the old publication cache');
 });
 
 
