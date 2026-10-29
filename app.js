@@ -75,4 +75,6 @@ for(const brand of document.querySelectorAll('.nav a.brand')){
  brand.append(logo,name);
 }
 
-if(/\/(?:shop\.html|product\.html|products\/\d+\.html)$/.test(location.pathname)){const outfitStyle=document.createElement('link');outfitStyle.rel='stylesheet';outfitStyle.href=new URL('outfit-sections.css',document.baseURI).href;document.head.append(outfitStyle);const outfitScript=document.createElement('script');outfitScript.src=new URL('outfit-sections.js',document.baseURI).href;document.head.append(outfitScript);}
+// Matching links use the same public catalog as product pages, never private factory drafts.
+if(/\/(?:product\.html|products\/\d+\.html)$/.test(location.pathname)){const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('outfit-sections.css?v=outfits-1',document.baseURI).href;document.head.append(style);const policy=document.createElement('script');policy.src=new URL('outfit-catalog.js?v=outfits-1',document.baseURI).href;policy.onload=()=>{const widget=document.createElement('script');widget.src=new URL('outfit-sections.js?v=outfits-1',document.baseURI).href;document.head.append(widget);};document.head.append(policy);}
+for(const nav of document.querySelectorAll('.footer-support'))if(!nav.querySelector('[data-outfits]')){const a=document.createElement('a');a.href=new URL('outfits.html',document.baseURI).href;a.textContent='Outfits';a.dataset.outfits='true';if(location.pathname.endsWith('/outfits.html'))a.setAttribute('aria-current','page');nav.append(a);}

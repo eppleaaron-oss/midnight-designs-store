@@ -1,0 +1,32 @@
+name: Outfit shopping checks
+on:
+  pull_request:
+    paths: ['outfit-*.js', 'outfit-*.css', 'outfits.html', 'catalog-browse.js', 'app.js', 'scripts/*outfit*', '.github/workflows/outfit-shopping.yml']
+  push:
+    branches: [main]
+    paths: ['outfit-*.js', 'outfit-*.css', 'outfits.html', 'scripts/*outfit*', '.github/workflows/outfit-shopping.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/outfit-shopping-test.mjs
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8123 > /tmp/store.log 2>&1 &
+          git fetch --depth=1 origin 71a2942ecd1bad4644f9c7ffbd06f5d022c75603
+          node scripts/qa-outfit-baseline.mjs
+          node scripts/qa-outfits.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: outfit-shopping-desktop-mobile
+          path: qa-outfit-*.png
+          retention-days: 3
