@@ -23,7 +23,7 @@ for(const p of catalog.products.map(catalogIdentity.normalize)){
  const section=(heading,values)=>values?.length?'<section class="product-spec-section"><h2>'+heading+'</h2><ul>'+values.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section>':'';
  html=html.replace('<p class="notice">Loading product details…</p>','<section class="product-spec-section"><h2>About this piece</h2>'+description.split(/\n\n/).map(x=>'<p>'+esc(x)+'</p>').join('')+'</section>'+section('Materials',detail?.materials)+section('Fit',detail?.fit)+section('Care',detail?.care));
  html=html.replace('<section id="availableOptions" aria-label="Available product options"></section>','<section id="availableOptions" aria-label="Available product options"><h2>Sizes &amp; colors</h2><p>Sizes: '+esc([...new Set(p.variants.map(v=>v.size).filter(Boolean))].sort(catalogIdentity.compareSizes).map(s=>catalogIdentity.sizeLabel(p,s)).join(' · '))+'</p><p>Base options: '+esc([...new Set(p.variants.map(v=>v.color).filter(Boolean))].join(' · '))+'</p></section>');
- html=html.replace('</main>','<noscript><p class="notice">Enable JavaScript to select a variant, explore all photos and use the bag. Checkout is currently unavailable.</p></noscript></main>');
+ html=html.replace('</main>','<noscript><p class="notice">Enable JavaScript to select a variant, explore all photos and use the bag. Secure checkout requires JavaScript.</p></noscript></main>');
  await fs.writeFile(path,html);
 }
 for(const name of await fs.readdir('products'))if(/^\d+\.html$/.test(name)&&!desired.has(name))await fs.unlink('products/'+name);
