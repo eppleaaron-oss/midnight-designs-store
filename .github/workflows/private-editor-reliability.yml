@@ -1,10 +1,10 @@
 name: Private product editor reliability
 on:
   pull_request:
-    paths: ['request-service/public/login*', 'request-service/public/product-studio*', 'request-service/factory-access*', 'request-service/factory-product-studio*', 'request-service/server.mjs', '.github/workflows/private-editor-reliability.yml']
+    paths: ['request-service/public/login*', 'request-service/public/product-studio*', 'request-service/factory-access*', 'request-service/public/ai-made*', 'request-service/factory-product-editor*', 'request-service/ai-made-test.mjs', 'request-service/factory-product-studio*', 'request-service/server.mjs', '.github/workflows/private-editor-reliability.yml']
   push:
     branches: [main]
-    paths: ['request-service/public/login*', 'request-service/public/product-studio*', 'request-service/factory-access*', 'request-service/factory-product-studio*', 'request-service/server.mjs', '.github/workflows/private-editor-reliability.yml']
+    paths: ['request-service/public/login*', 'request-service/public/product-studio*', 'request-service/factory-access*', 'request-service/public/ai-made*', 'request-service/factory-product-editor*', 'request-service/ai-made-test.mjs', 'request-service/factory-product-studio*', 'request-service/server.mjs', '.github/workflows/private-editor-reliability.yml']
 permissions:
   contents: read
 jobs:
