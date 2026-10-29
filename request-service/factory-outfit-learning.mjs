@@ -56,7 +56,7 @@ export function factoryOutfitLearning({db,basic,outfits,studio,auth,body,send,fa
   const r=get('SELECT * FROM factory_outfit_learning WHERE batch=?',batch.id);if(!r)hold('The AI Made continuation has no saved owner authorization.');
   if(!JSON.parse(r.pieces).includes(p.id))return true; // Earlier finished pieces stay untouched.
   let tracked=get('SELECT * FROM factory_outfit_learning_jobs WHERE piece=?',p.id);
-  if(tracked){const job=studio.learningJob(tracked.job);if(!job)hold('The saved outfit update is missing. Reconcile it before retrying.');if(job.state==='failed'||job.state==='cancelled')hold('Outfit update '+job.id+': '+(job.error||job.state));return job.state==='completed'&&job.printfulUpdated&&job.images>0;}
+  if(tracked){const job=studio.learningJob(tracked.job);if(!job)hold('The saved outfit update is missing. Reconcile it before retrying.');if(job.state==='failed'||job.state==='cancelled')hold('Outfit update '+job.id+': '+(job.error||job.state));return job.state==='completed'&&(job.previewReady||job.printfulUpdated)&&job.images>0;}
   const example=JSON.parse(r.examples).find(e=>e.product===p.choice.product);if(!example)hold('No saved owner example for this garment.');
   const job=await studio.followExample('piece:'+p.id,example.job);
   db.prepare('INSERT INTO factory_outfit_learning_jobs VALUES(?,?,?,?,?,?)').run(p.id,batch.id,String(job.supplier),example.job,job.id,clock());await basic.checkpoint();return false;
