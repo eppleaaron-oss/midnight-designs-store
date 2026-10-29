@@ -44,6 +44,12 @@ export function factoryProductEditor({db,basic,outfits,auth,body,send,fail,limit
    const selection=JSON.parse(m.selection||'{}'),saved=has('factory_job_layouts')?get('SELECT layout FROM factory_job_layouts WHERE job=?',m.job):null,layout=saved?JSON.parse(saved.layout):null;
    legacy.push({id:'made:'+m.id,jobId:m.job,collection:m.set_name,name:m.name,state:m.status,supplierId:m.printful_id||null,editable:false,choice:{setId:m.set_id,product:m.catalog,audience:m.gender||'unisex',sizes:selection.sizes||[],allowUnspecifiedAudience:selection.allowUnspecifiedAudience===true,layout:layout?.input||null}});
   }
+  // Every factory job belongs in private review, including jobs created outside Basic/Idea Room.
+  const represented=new Set([...pieces,...products,...legacy].map(p=>p.jobId));
+  if(has('factory_jobs')&&has('factory_job_audiences')&&has('factory_listings')&&db.prepare('PRAGMA table_info(factory_jobs)').all().some(c=>c.name==='created'))for(const j of all('SELECT j.*,a.selection,l.supplier_id,l.copy FROM factory_jobs j LEFT JOIN factory_job_audiences a ON a.job=j.id LEFT JOIN factory_listings l ON l.job=j.id ORDER BY j.created DESC')){
+   if(represented.has(j.id))continue;const selection=JSON.parse(j.selection||'{}'),copy=JSON.parse(j.copy||'{}');
+   legacy.push({id:'product:'+j.id,jobId:j.id,collection:selection.storeCollection||copy.collections?.[0]||'AI creations',name:copy.title||j.title,state:j.status,supplierId:j.supplier_id||null,editable:false,choice:{setId:selection.setId||'',product:selection.product||null,audience:selection.audience||j.gender||'unisex',sizes:selection.sizes||[],allowUnspecifiedAudience:selection.allowUnspecifiedAudience===true}});
+  }
   const linked=rows=>rows.map(p=>({...nameFactoryProduct(p),printfulEditUrl:printfulProductEditUrl(resolvedStoreId,p.supplierId)}));
   return {pieces:linked(pieces),products:linked([...products,...legacy]),sets,printfulEditorError:resolvedStoreId?null:storeLookupError||'A valid Printful store ID is required for native product editing.',recovery:recovery(),edits:all('SELECT * FROM factory_product_edits ORDER BY updated DESC LIMIT 200').map(edit),batch:q.batch,active:basic.currentJob(),note:'Saving a draft does not change Printful. Apply to a waiting piece to change the recipe the factory will use. Completed products are preserved; Create revised copy uses owner review.'};
  }

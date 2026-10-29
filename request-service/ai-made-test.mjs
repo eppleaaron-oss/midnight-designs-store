@@ -30,7 +30,7 @@ test('AI Made distinguishes unfinished edits and private mockups from live store
  assert.match(status({draftRevision:2,job:{revision:1,state:'completed',storeUpdated:true}}),/not applied/);
  assert.match(status({draftRevision:2,job:{revision:2,state:'failed',error:'Storage full'}}),/Storage full/);
  assert.match(status({draftRevision:2,job:{revision:2,state:'publishing'}}),/in progress/);
- assert.match(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:false}}),/not published/);
+ assert.match(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:false}}),/awaiting your approval/);
  assert.equal(status({draftRevision:2,job:{revision:2,state:'completed',storeUpdated:true}}),'');
 });
 

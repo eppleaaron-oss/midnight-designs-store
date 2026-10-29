@@ -17,6 +17,7 @@ test('Payment integrity: server prices, shipping, capabilities, signed verificat
  assert.equal((await call('/api/checkout/quote',{...bag,items:[{...bag.items[0],qty:-1}]})).status,400);
  assert.equal((await call('/api/checkout/quote',{...bag,recipient:{...bag.recipient,country_code:'ZZ'}})).status,400);
  shippingFailure=true;assert.equal((await call('/api/checkout/quote',bag)).status,502);shippingFailure=false;
+ for(const state of ['draft','rejected','unfinished']){product.publicationApproval={state,revision:'private'};assert.equal((await call('/api/checkout/quote',bag)).status,409);}delete product.publicationApproval;
  const quote=(await call('/api/checkout/quote',bag)).data;assert.equal(quote.subtotal,5000);assert.equal(quote.shipping[0].amount,499);
  await reboot();
  const checkout={quoteId:quote.quoteId,receiptToken:quote.receiptToken,shippingId:'STANDARD'};

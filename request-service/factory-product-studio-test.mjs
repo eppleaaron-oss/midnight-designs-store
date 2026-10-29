@@ -79,10 +79,10 @@ test('manual enlargement renders the selected size while automatic rendering ret
  await assert.rejects(renderArea(a,png,{scale:80,allowLowResolution:true},{reuse:true}),/resolution is too low/);
 });
 
-test('draft revisions reject races; wrong variants and placements never reach Printful',async t=>{const f=await fixture(t),d=await f.document();const saved=await f.call('save',{source:f.p.id,revision:0,document:d});assert.equal(saved.printfulUpdated,false);await assert.rejects(f.call('save',{source:f.p.id,revision:0,document:d}),/another tab/);const wrong=structuredClone(d);wrong.variants[999]=wrong.variants[11];await assert.rejects(f.call('finish',{source:f.p.id,revision:1,document:wrong,target:'printful'}),/does not belong/);assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT revision FROM factory_studio_drafts').get().revision,1);});
+test('draft revisions reject races; wrong variants and placements never reach Printful',async t=>{const f=await fixture(t),d=await f.document();const saved=await f.call('save',{source:f.p.id,revision:0,document:d});assert.equal(saved.printfulUpdated,false);await assert.rejects(f.call('save',{source:f.p.id,revision:0,document:d}),/another tab/);const wrong=structuredClone(d);wrong.variants[999]=wrong.variants[11];await assert.rejects(f.call('finish',{source:f.p.id,revision:1,document:wrong,target:'printful',confirmPublication:true}),/does not belong/);assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT revision FROM factory_studio_drafts').get().revision,1);});
 test('repeated Save of unchanged panels keeps the same revision and does not make a queued update appear outdated',async t=>{
  const f=await fixture(t),d=await f.document();const saved=await f.call('save',{source:f.p.id,revision:0,document:d});const again=await f.call('save',{source:f.p.id,revision:saved.revision,document:saved.document});assert.equal(again.revision,1);assert.equal(again.unchanged,true);
- const finished=await f.call('finish',{source:f.p.id,revision:again.revision,document:again.document,target:'printful'});assert.equal(finished.revision,1);assert.equal(finished.job.revision,1);
+ const finished=await f.call('finish',{source:f.p.id,revision:again.revision,document:again.document,target:'printful',confirmPublication:true});assert.equal(finished.revision,1);assert.equal(finished.job.revision,1);
  await f.call('save',{source:f.p.id,revision:1,document:finished.document});const reopened=await f.open();assert.equal(reopened.revision,1);assert.equal(reopened.job.revision,1);assert.deepEqual(reopened.document.variants,saved.document.variants);assert.equal(f.counts().puts,0);
 });
 test('Finish submits the edited document once, and an uncertain response never triggers a second save',async()=>{
@@ -91,17 +91,17 @@ test('Finish submits the edited document once, and an uncertain response never t
  calls.length=0;await assert.rejects(finishSavedDraft({source:'piece:one',revision:3,document,target:'store',dirty:true,api:async path=>{calls.push(path);throw Error('response lost');}}),/response lost/);assert.deepEqual(calls,['finish']);
 });
 test('identical bomber panels reuse their saved native pixels across sizes and permission changes still stop reuse',async t=>{
- const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,1);await f.tick();assert.equal(f.job().state,'updating_printful');const out=f.job().document.outputs;assert.equal(out.length,2);assert.equal(out[0].asset,out[1].asset);assert.equal(out[0].sha,out[1].sha);assert.notEqual(out[0].variant,out[1].variant);f.restart();for(let n=0;n<8&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,2);
- const g=await fixture(t),p=await g.document();p.variants[12]=structuredClone(p.variants[11]);await g.call('finish',{source:g.p.id,revision:0,document:p,target:'printful'});await g.tick();await g.tick();g.db.prepare('UPDATE factory_artwork SET permissions=? WHERE id=?').run(JSON.stringify({reuse:false}),'art1');await g.tick();assert.equal(g.job().state,'failed');assert.equal(g.counts().puts,0);
+ const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,1);await f.tick();assert.equal(f.job().state,'updating_printful');const out=f.job().document.outputs;assert.equal(out.length,2);assert.equal(out[0].asset,out[1].asset);assert.equal(out[0].sha,out[1].sha);assert.notEqual(out[0].variant,out[1].variant);f.restart();for(let n=0;n<8&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,2);
+ const g=await fixture(t),p=await g.document();p.variants[12]=structuredClone(p.variants[11]);await g.call('finish',{source:g.p.id,revision:0,document:p,target:'printful',confirmPublication:true});await g.tick();await g.tick();g.db.prepare('UPDATE factory_artwork SET permissions=? WHERE id=?').run(JSON.stringify({reuse:false}),'art1');await g.tick();assert.equal(g.job().state,'failed');assert.equal(g.counts().puts,0);
 });
 test('size-specific artwork positions and native canvases never reuse another panel’s pixels',async t=>{
  for(const differentCanvas of [false,true]){const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);if(differentCanvas){const bp=await f.options.blueprints.load();bp.printfiles.printfiles.push({printfile_id:2,width:200,height:100,dpi:100});bp.printfiles.variant_printfiles[1].placements.front=2;d.templateStamp=(await f.open()).templateStamp;}else d.variants[12].front.layers[0].x=.3;
- await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const out=f.job().document.outputs;assert.equal(out.length,2);assert.notEqual(out[0].asset,out[1].asset);assert.notEqual(out[0].sha,out[1].sha);assert.equal(out[1].width,differentCanvas?200:100);}
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const out=f.job().document.outputs;assert.equal(out.length,2);assert.notEqual(out[0].asset,out[1].asset);assert.notEqual(out[0].sha,out[1].sha);assert.equal(out[1].width,differentCanvas?200:100);}
 });
-test('Finish updates the same variant, preserves untouched files/options/prices, checkpoints and reopens',async t=>{const f=await fixture(t),d=await f.document(),r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.equal(r.job.printfulUpdated,false);await assert.rejects(f.call('finish',{source:f.p.id,revision:1,document:d,target:'printful'}),/unfinished update/);for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);assert.equal(f.supplier.sync_variants[0].id,11);assert.equal(f.supplier.sync_variants[0].retail_price,'49.99');assert.equal(f.supplier.sync_variants[0].files.find(f=>f.type==='back').id,41);assert.equal(f.supplier.sync_variants[1].files[0].id,32);assert.ok(f.counts().backupCount>2);const o=await f.open();assert.equal(o.document.fingerprint,o.fingerprint);assert.equal(o.job.printfulUpdated,true);});
+test('Finish updates the same variant, preserves untouched files/options/prices, checkpoints and reopens',async t=>{const f=await fixture(t),d=await f.document(),r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});assert.equal(r.job.printfulUpdated,false);await assert.rejects(f.call('finish',{source:f.p.id,revision:1,document:d,target:'printful',confirmPublication:true}),/unfinished update/);for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);assert.equal(f.supplier.sync_variants[0].id,11);assert.equal(f.supplier.sync_variants[0].retail_price,'49.99');assert.equal(f.supplier.sync_variants[0].files.find(f=>f.type==='back').id,41);assert.equal(f.supplier.sync_variants[1].files[0].id,32);assert.ok(f.counts().backupCount>2);const o=await f.open();assert.equal(o.document.fingerprint,o.fingerprint);assert.equal(o.job.printfulUpdated,true);});
 test('long-sleeve default/front aliases replace exactly one real supplier file and verify the same mockup panel',async t=>{
  const f=await fixture(t);for(const v of f.supplier.sync_variants)v.files[0].type='default';
- await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});
  // Reproduce Printful's canonical default response for the front panel.
  for(let n=0;n<35&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);
  const put=f.calls.find(c=>c.method==='PUT'&&c.url.includes('/store/variants/'));
@@ -109,17 +109,17 @@ test('long-sleeve default/front aliases replace exactly one real supplier file a
  assert.equal(f.counts().puts,1);assert.equal(f.supplier.sync_variants[0].files.find(f=>f.type==='back').id,41);assert.equal(f.supplier.sync_variants[1].files.find(f=>f.type==='default').id,32);
  const tasks=f.calls.filter(c=>c.url.includes('create-task'));assert.ok(tasks.every(c=>c.body.files.some(f=>f.placement==='front')));assert.ok(tasks.some(c=>c.body.files.some(f=>f.placement==='front'&&f.image_url==='https://files.printful.com/original.png')));assert.equal((await f.open()).job.printfulUpdated,true);
 });
-test('restart reconciles a lost PUT response without creating or updating a duplicate product',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});f.setLostPut();for(let n=0;n<4;n++)await f.tick();f.restart();for(let n=0;n<8&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.ok(f.calls.every(c=>!(c.url.endsWith('/store/products')&&c.method==='POST')));});
+test('restart reconciles a lost PUT response without creating or updating a duplicate product',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});f.setLostPut();for(let n=0;n<4;n++)await f.tick();f.restart();for(let n=0;n<8&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.ok(f.calls.every(c=>!(c.url.endsWith('/store/products')&&c.method==='POST')));});
 test('size updates share a durable intent checkpoint and reconcile a lost batch response without repeated PUTs',async t=>{
- const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});
+ const f=await fixture(t),d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});
  while(f.job().state!=='updating_printful')await f.tick();const before=f.counts().backupCount;await f.tick();assert.equal(f.counts().puts,2);assert.ok(f.counts().backupCount-before<=2,'one intent checkpoint and one coalesced recovery snapshot for both sizes');
  f.restart();await f.tick();assert.equal(f.job().state,'completed');assert.equal(f.counts().puts,2);
- const g=await fixture(t),recipe=await g.document();recipe.variants[12]=structuredClone(recipe.variants[11]);await g.call('finish',{source:g.p.id,revision:0,document:recipe,target:'printful'});while(g.job().state!=='updating_printful')await g.tick();g.setLostPut();await g.tick();g.restart();for(let n=0;n<8&&g.job().state!=='completed';n++)await g.tick();assert.equal(g.job().state,'completed',g.job().error);assert.equal(g.counts().puts,2,'the accepted first PUT must not be sent again');
+ const g=await fixture(t),recipe=await g.document();recipe.variants[12]=structuredClone(recipe.variants[11]);await g.call('finish',{source:g.p.id,revision:0,document:recipe,target:'printful',confirmPublication:true});while(g.job().state!=='updating_printful')await g.tick();g.setLostPut();await g.tick();g.restart();for(let n=0;n<8&&g.job().state!=='completed';n++)await g.tick();assert.equal(g.job().state,'completed',g.job().error);assert.equal(g.counts().puts,2,'the accepted first PUT must not be sent again');
 });
 test('real accepted mockup tasks request all supplier styles and save every returned view',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});for(let n=0;n<35&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const j=f.job().document;assert.equal(j.images.length,2);assert.ok(j.tasks.every(t=>t.key&&t.state==='saved'));assert.ok(f.calls.filter(c=>c.url.includes('create-task')).every(c=>c.body.option_groups.length===2&&c.body.options.length===2));assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_assets WHERE remote IS NOT NULL AND length(data)=0').get().n,2);});
 test('a mockup rate limit retries with no false accepted task; uncertain submissions never resubmit',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});f.setLostMockup();for(let n=0;n<15&&f.job().state!=='failed';n++)await f.tick();assert.equal(f.job().state,'failed');assert.equal(f.job().document.tasks[0].key,null);await assert.rejects(f.call('retry',{source:f.p.id,id:f.job().id}),/uncertain outcome/);const before=f.counts().posts;f.restart();await f.tick();assert.equal(f.counts().posts,before);});
-test('cross-origin actions fail and original artwork permissions prevent unapproved transforms',async t=>{const f=await fixture(t);await assert.rejects(f.call('open',{source:f.p.id},'https://other.test'),/Origin/);const d=await f.document();d.variants[11].front.layers[0].rotation=20;await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});for(let n=0;n<5&&f.job().state!=='failed';n++)await f.tick();assert.equal(f.job().state,'failed');assert.match(f.job().error,/Modify permission/);assert.equal(f.counts().puts,0);await f.call('cancel',{source:f.p.id,id:f.job().id});assert.equal(f.job().state,'cancelled');});
-test('a concurrent Printful change is held before any update; validation rejects nonnumeric layout',async t=>{const f=await fixture(t);const d=await f.document();f.supplier.sync_variants[0].files[0].id=777;await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'}),/supplier product changed/);assert.equal(f.counts().puts,0);assert.throws(()=>studioLayers({background:'#000000',layers:[{asset:'art:a',x:NaN,y:.5,width:.5}]}),/Invalid horizontal/);});
+test('cross-origin actions fail and original artwork permissions prevent unapproved transforms',async t=>{const f=await fixture(t);await assert.rejects(f.call('open',{source:f.p.id},'https://other.test'),/Origin/);const d=await f.document();d.variants[11].front.layers[0].rotation=20;await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});for(let n=0;n<5&&f.job().state!=='failed';n++)await f.tick();assert.equal(f.job().state,'failed');assert.match(f.job().error,/Modify permission/);assert.equal(f.counts().puts,0);await f.call('cancel',{source:f.p.id,id:f.job().id});assert.equal(f.job().state,'cancelled');});
+test('a concurrent Printful change is held before any update; validation rejects nonnumeric layout',async t=>{const f=await fixture(t);const d=await f.document();f.supplier.sync_variants[0].files[0].id=777;await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true}),/supplier product changed/);assert.equal(f.counts().puts,0);assert.throws(()=>studioLayers({background:'#000000',layers:[{asset:'art:a',x:NaN,y:.5,width:.5}]}),/Invalid horizontal/);});
 
 test('store publishing retains product/variant IDs and verifies permanently saved photos before success',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});for(let n=0;n<45&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.storeUpdated,true);const product=f.job().document.storeProduct;assert.equal(product.id,'123');assert.equal(product.description,'Existing description');assert.deepEqual(product.variants.map(v=>v.id),['11','12']);assert.ok(product.images.every(u=>u.startsWith('https://midnight-designs.store/images/factory/123/')));assert.ok(product.variants.every(v=>v.price===49.99&&v.images.length));});
 test('publish a completed private update reuses its files, task IDs and saved mockups without resubmitting to Printful',async t=>{
@@ -129,9 +129,9 @@ test('publish a completed private update reuses its files, task IDs and saved mo
  const before=f.job(),counts=f.counts();
  await assert.rejects(f.call('publish',{source:f.p.id,id:before.id,revision:1}),/Explicitly approve/);
  await assert.rejects(f.call('publish',{source:f.p.id,id:before.id,revision:0,confirmPublication:true}),/newer draft/);
- const r=await f.call('publish',{source:f.p.id,id:before.id,revision:1,confirmPublication:true});assert.equal(r.job.id,before.id);assert.equal(r.job.state,'publishing');assert.equal(r.revision,1);
+ const r=await f.call('publish',{source:f.p.id,id:before.id,revision:1,confirmPublication:true});assert.equal(r.job.id,before.id);assert.equal(r.job.state,'updating_printful');assert.equal(r.revision,1);
  for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.storeUpdated,true);
- assert.equal(f.counts().puts,counts.puts);assert.equal(f.counts().posts,counts.posts);assert.deepEqual(f.job().document.outputs,before.document.outputs);assert.deepEqual(f.job().document.tasks,before.document.tasks);
+ assert.equal(f.counts().puts,counts.puts+1);assert.equal(f.counts().posts,counts.posts);assert.deepEqual(f.job().document.outputs,before.document.outputs);assert.deepEqual(f.job().document.tasks,before.document.tasks);
  await f.call('publish',{source:f.p.id,id:before.id,revision:1,confirmPublication:true});assert.equal(f.job().state,'completed');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,1);
 });
 test('saved mockups cannot be published after supplier files or the draft change',async t=>{
@@ -139,12 +139,12 @@ test('saved mockups cannot be published after supplier files or the draft change
  f.supplier.sync_variants[0].files[0].id=777;await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:1,confirmPublication:true}),/supplier product changed/);
  const opened=await f.open();opened.document.variants[11].front.layers[0].x=.6;await f.call('save',{source:f.p.id,revision:1,document:opened.document});await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:2,confirmPublication:true}),/newer draft/);assert.equal(f.job().target,'mockups');
 });
-test('live storefront membership selects store updates despite an older supplier-created factory status',async()=>{
+test('every product starts with a private preview, even when already live',async()=>{
  const {productUpdateTarget,canPublishSavedUpdate}=await import('./public/product-studio-state.js');const p={supplierId:483213237,state:'supplier_created'};
- assert.equal(productUpdateTarget(p),'mockups');assert.equal(productUpdateTarget(p,new Set(['483213237'])),'store');assert.equal(productUpdateTarget({...p,state:'published'}),'store');assert.equal(productUpdateTarget({...p,supplierId:'other'},new Set(['483213237'])),'mockups');
+ assert.equal(productUpdateTarget(p),'mockups');assert.equal(productUpdateTarget(p,new Set(['483213237'])),'mockups');assert.equal(productUpdateTarget({...p,state:'published'}),'mockups');assert.equal(productUpdateTarget({...p,supplierId:'other'},new Set(['483213237'])),'mockups');
  const j={state:'completed',target:'mockups',printfulUpdated:true,images:[{url:'saved.jpg'}],revision:4};assert.equal(canPublishSavedUpdate(j,4,false),true);assert.equal(canPublishSavedUpdate(j,4,true),false);assert.equal(canPublishSavedUpdate(j,5,false),false);assert.equal(canPublishSavedUpdate({...j,state:'rendering'},4,false),false);
 });
-test('Printful rate limits retry accepted work without inventing a task key or losing progress',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});f.setRateMockup();for(let n=0;n<40&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.ok(f.job().document.tasks.every(t=>t.key&&t.state==='saved'));assert.equal(f.counts().puts,1);});
+test('Printful rate limits retry accepted work without inventing a task key or losing progress',async t=>{const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});f.setRateMockup();for(let n=0;n<40&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.ok(f.job().document.tasks.every(t=>t.key&&t.state==='saved'));assert.equal(f.counts().puts,0);});
 
 test('explicit owner crop permission permits panel-edge edits while protected artwork is held',async()=>{const data=await sharp({create:{width:100,height:100,channels:4,background:'#ff0000'}}).png().toBuffer(),area={width:100,height:100,dpi:100},panel={background:'#000000',layers:[{asset:'art:one',x:0,y:.5,width:.5,allowModify:true}]};const read=async()=>({data,permissions:{reuse:true}});const rendered=await renderStudioPanel(area,panel,read);assert.equal(rendered.width,100);panel.layers[0].allowModify=false;await assert.rejects(renderStudioPanel(area,panel,read),/outside its reviewed safe region/);});
 
@@ -173,13 +173,13 @@ test('unchanged jacket panels share a recovery checkpoint before any mockup subm
  const f=await fixture(t);await archived(f);const d=await f.document();d.variants={};await f.call('finish',{source:f.p.id,revision:0,document:d,target:'mockups'});while(f.job().state!=='mockups')await f.tick();const checkpoints=f.counts().backupCount;await f.tick();assert.equal(Object.keys(f.job().document.baseFiles).length,2);assert.equal(f.counts().backupCount-checkpoints,1);assert.equal(f.counts().posts,0);for(const v of f.supplier.sync_variants)assert.equal(f.job().document.baseFiles[v.id+':front'].sourceSupplierFileId,v.files[0].id);await f.tick();assert.equal(f.counts().posts,1);assert.ok(f.job().document.tasks[0].key);
 });
 test('a changed archived checksum holds generation instead of inventing replacement print files',async t=>{const f=await fixture(t);await archived(f,true);const d=await f.document();d.variants={};await f.call('finish',{source:f.p.id,revision:0,document:d,target:'mockups'});for(let n=0;n<12&&f.job().state!=='failed';n++)await f.tick();assert.equal(f.job().state,'failed');assert.match(f.job().error,/original saved checksum/);assert.equal(f.counts().puts,0);assert.equal(f.counts().posts,0);});
-test('an actively queued factory product cannot have supplier files overwritten by the editor',async t=>{const f=await fixture(t);f.p.jobId='active';f.db.exec("CREATE TABLE factory_jobs(id TEXT,status TEXT); INSERT INTO factory_jobs VALUES('active','queued')");await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'}),/still being processed/);assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,0);});
+test('an actively queued factory product cannot have supplier files overwritten by the editor',async t=>{const f=await fixture(t);f.p.jobId='active';f.db.exec("CREATE TABLE factory_jobs(id TEXT,status TEXT); INSERT INTO factory_jobs VALUES('active','queued')");await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true}),/still being processed/);assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,0);});
 
 test('a slow recovery snapshot never blocks draft or Finish acknowledgement and durability remains explicit',async t=>{const f=await fixture(t);let release;f.options.backups.checkpoint=()=>new Promise(resolve=>{release=resolve;});f.restart();const d=await f.document(),r=await f.call('save',{source:f.p.id,revision:0,document:d});assert.equal(r.recoveryPending,true);assert.equal(r.printfulUpdated,false);assert.equal(f.db.prepare('SELECT revision FROM factory_studio_drafts').get().revision,1);assert.equal(f.counts().puts,0);release();await new Promise(resolve=>setImmediate(resolve));});
 
-test('opening uses available supplier template snapshots immediately; Finish still requires live specifications',async t=>{const f=await fixture(t);const live=await f.options.blueprints.load();f.options.blueprints.peek=()=>({...live,source:'snapshot'});let loads=0;f.options.blueprints.load=async()=>{loads++;return live;};f.restart();const opened=await f.open();assert.equal(loads,0);assert.equal(opened.templateSource,'snapshot');await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});assert.equal(loads,1);});
+test('opening uses available supplier template snapshots immediately; Finish still requires live specifications',async t=>{const f=await fixture(t);const live=await f.options.blueprints.load();f.options.blueprints.peek=()=>({...live,source:'snapshot'});let loads=0;f.options.blueprints.load=async()=>{loads++;return live;};f.restart();const opened=await f.open();assert.equal(loads,0);assert.equal(opened.templateSource,'snapshot');await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});assert.equal(loads,1);});
 
-test('a changed supplier print canvas cannot silently reuse the owners previous template review',async t=>{const f=await fixture(t),d=await f.document();const bp=await f.options.blueprints.load();f.options.blueprints.load=async()=>({...bp,printfiles:{...bp.printfiles,printfiles:[{printfile_id:1,width:200,height:100,dpi:100}]}});await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'}),/supplier template changed/);assert.equal(f.counts().puts,0);});
+test('a changed supplier print canvas cannot silently reuse the owners previous template review',async t=>{const f=await fixture(t),d=await f.document();const bp=await f.options.blueprints.load();f.options.blueprints.load=async()=>({...bp,printfiles:{...bp.printfiles,printfiles:[{printfile_id:1,width:200,height:100,dpi:100}]}});await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true}),/supplier template changed/);assert.equal(f.counts().puts,0);});
 test('opening a tracked AI product reads only its own records and design family, without scanning the factory queue',async t=>{
  const f=await fixture(t);f.db.exec('CREATE TABLE factory_basic_items(id TEXT,job TEXT,recipe TEXT,created TEXT,status TEXT);CREATE TABLE factory_listings(job TEXT,supplier_id TEXT,copy TEXT);CREATE TABLE factory_basic_outfit_pieces(id TEXT,item TEXT,outfit TEXT);CREATE TABLE idea_sets(id TEXT,name TEXT,parts TEXT)');
  const recipe={set:{id:'rose',name:'Rose original hoodie'},product:390,name:'Rose hoodie',audience:'unisex',variants:[{size:'S'},{size:'M'}]};f.db.prepare('INSERT INTO factory_basic_items VALUES(?,?,?,?,?)').run('item1','job1',JSON.stringify(recipe),'today','supplier_created');f.db.prepare('INSERT INTO factory_listings VALUES(?,?,?)').run('job1','123',JSON.stringify({title:'Rose hoodie'}));f.db.prepare('INSERT INTO factory_basic_outfit_pieces VALUES(?,?,?)').run('one','item1','outfit1');f.db.prepare('INSERT INTO idea_sets VALUES(?,?,?)').run('rose','Rose original hoodie',JSON.stringify({front:{artwork:'art1',name:'Rose front'}}));f.options.editor.library=()=>{throw Error('Full queue must not be loaded');};f.restart();const opened=await f.open();assert.equal(opened.product.id,'piece:one');assert.equal(opened.product.supplierId,'123');assert.equal(opened.originals[0].asset,'art:art1');assert.equal(opened.group.name,'Rose original hoodie');
@@ -206,7 +206,7 @@ test('flattened back and sleeve images expose saved editable placement drafts wi
 test('Finish queues enlarged owner artwork at its exact saved scale and records actual resolution warnings',async t=>{
  const f=await fixture(t),d=await f.document();d.variants[11].front.layers[0].width=1;
  f.db.prepare('UPDATE factory_artwork SET data=?').run(await sharp({create:{width:50,height:25,channels:4,background:'#ff0000'}}).png().toBuffer());
- const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.equal(r.job.state,'queued');assert.equal(r.job.resolutionWarnings[0].effectiveDpi,50);assert.equal(r.document.variants[11].front.layers[0].width,1);
+ const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});assert.equal(r.job.state,'queued');assert.equal(r.job.resolutionWarnings[0].effectiveDpi,50);assert.equal(r.document.variants[11].front.layers[0].width,1);
  for(let n=0;n<15&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);assert.equal(f.job().document.variants[11].front.layers[0].width,1);
  const file=f.db.prepare("SELECT * FROM factory_studio_assets WHERE kind='print'").get(),meta=await sharp(await f.options.assets.read(JSON.parse(file.remote).asset)).metadata();assert.equal(meta.width,100);assert.equal(meta.height,100);
 });
@@ -240,7 +240,7 @@ test('all six supported placements survive save, reopen and editor restart indep
  assert.deepEqual(reopened.variants[0].areas.map(a=>a.placement).sort(),placements.sort());assert.equal(f.counts().puts,0);assert.equal(f.counts().posts,0);
  const edit=structuredClone(reopened.document);edit.variants['11'].back.layers[0].x=.6;
  const second=await f.call('save',{source:f.p.id,revision:1,document:edit});assert.deepEqual(second.document.variants['11'].sleeve_left,saved.document.variants['11'].sleeve_left);assert.deepEqual(second.document.variants['11'].sleeve_right,saved.document.variants['11'].sleeve_right);
- await f.call('finish',{source:f.p.id,revision:2,document:second.document,target:'mockups'});for(let n=0;n<70&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.outputs.length,6);assert.equal(f.counts().puts,1,'one update to the same supplier variant');assert.equal(!!f.job().document.storeUpdated,false);assert.ok(f.calls.every(c=>!c.url.includes('api.github.com')&&!(c.method==='POST'&&c.url.endsWith('/store/products'))));
+ await f.call('finish',{source:f.p.id,revision:2,document:second.document,target:'mockups'});for(let n=0;n<70&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.outputs.length,6);assert.equal(f.counts().puts,0,'private previews cannot change fulfillment');assert.equal(!!f.job().document.storeUpdated,false);assert.ok(f.calls.every(c=>!c.url.includes('api.github.com')&&!(c.method==='POST'&&c.url.endsWith('/store/products'))));
 });
 test('recovery confirmation is for the exact saved revision, and failures never confirm a newer draft',async t=>{
  const f=await fixture(t),releases=[];f.options.backups.checkpoint=()=>new Promise(resolve=>releases.push(resolve));f.restart();
@@ -280,16 +280,16 @@ test('draft edits remain independent while an older supplier/store update is unf
  const saved=await f.call('save',{source:f.p.id,revision:1,document:next});assert.equal(saved.revision,2);assert.equal(saved.printfulUpdated,false);
  const opened=await f.open();assert.equal(opened.document.variants[11].front.layers[0].x,.25);assert.equal(opened.job.id,id);assert.equal(opened.job.state,'publishing');assert.equal(JSON.stringify(f.job().document),frozen);
  await assert.rejects(f.call('finish',{source:f.p.id,revision:2,document:next,target:'mockups'}),/unfinished update/);assert.equal(f.counts().puts,0);assert.equal(f.counts().posts,0);
- f.db.prepare("UPDATE factory_studio_jobs SET state='completed' WHERE id=?").run(id);const queued=await f.call('finish',{source:f.p.id,revision:2,document:next,target:'printful'});assert.notEqual(queued.job.id,id);
+ f.db.prepare("UPDATE factory_studio_jobs SET state='completed' WHERE id=?").run(id);const queued=await f.call('finish',{source:f.p.id,revision:2,document:next,target:'printful',confirmPublication:true});assert.notEqual(queued.job.id,id);
 });
 
 
 test('Finish preserves unsaved artwork when supplier-template validation rejects the update',async t=>{
  const {finishSavedDraft}=await import('./public/product-studio-state.js'),f=await fixture(t),document=await f.document();document.templateStamp='stale-template';document.variants[11].front.layers[0].x=.3;let saved;
  const api=async(path,data)=>{const r=await f.call(path,data);if(r.error)throw Object.assign(Error(r.error),{issues:r.issues});return r;};
- await assert.rejects(finishSavedDraft({source:f.p.id,revision:0,document,dirty:true,target:'printful',api,onSaved:r=>{saved=r;}}),/Draft revision 1 stored in the app.*supplier template changed/);
+ await assert.rejects(finishSavedDraft({source:f.p.id,revision:0,document,dirty:true,target:'printful',confirmPublication:true,api,onSaved:r=>{saved=r;}}),/Draft revision 1 stored in the app.*supplier template changed/);
  assert.equal(saved.revision,1);assert.equal((await f.open()).document.variants[11].front.layers[0].x,.3);assert.equal(f.job(),null);assert.equal(f.counts().puts,0);
- document.templateStamp=(await f.open()).templateStamp;const result=await finishSavedDraft({source:f.p.id,revision:1,document,dirty:true,target:'printful',api});assert.equal(result.revision,2);assert.equal(result.job.state,'queued');
+ document.templateStamp=(await f.open()).templateStamp;const result=await finishSavedDraft({source:f.p.id,revision:1,document,dirty:true,target:'printful',confirmPublication:true,api});assert.equal(result.revision,2);assert.equal(result.job.state,'queued');
 });
 
 test('a Save receipt from before Finish cannot impersonate a conflicting tab or overwrite current action status',async()=>{
@@ -310,7 +310,7 @@ test('whole-design sleeve fitting preserves large scale, adjusts position, and p
 
 test('Finish identifies the overflowing panel before creating a job or touching the supplier',async t=>{
  const f=await fixture(t),d=await f.document();d.variants[11].front.layers[0].y=0;
- const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});assert.match(r.error,/visible artwork/);assert.equal(r.issues[0].placement,'front');assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,0);
+ const r=await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});assert.match(r.error,/visible artwork/);assert.equal(r.issues[0].placement,'front');assert.equal(f.counts().puts,0);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,0);
 });
 
 test('large padded long-sleeve artwork renders beyond one canvas width without changing the native canvas',async()=>{
@@ -325,12 +325,12 @@ test('large padded long-sleeve artwork renders beyond one canvas width without c
 
 test('larger-than-canvas owner width survives Save, restart, reopening, and supplier update',async t=>{
  const f=await fixture(t),png=await sharp({create:{width:100,height:100,channels:4,background:'#000000'}}).composite([{input:await sharp({create:{width:20,height:40,channels:4,background:'#ff0000'}}).png().toBuffer(),left:40,top:30}]).png().toBuffer();f.db.prepare('UPDATE factory_artwork SET data=? WHERE id=?').run(png,'art1');
- const d=await f.document();d.variants[11].front.layers[0].width=1.5;const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const o=await f.open();assert.equal(o.document.variants[11].front.layers[0].width,1.5);await f.call('finish',{source:f.p.id,revision:saved.revision,document:o.document,target:'printful'});
+ const d=await f.document();d.variants[11].front.layers[0].width=1.5;const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const o=await f.open();assert.equal(o.document.variants[11].front.layers[0].width,1.5);await f.call('finish',{source:f.p.id,revision:saved.revision,document:o.document,target:'printful',confirmPublication:true});
  for(let n=0;n<10&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);
 });
 
 test('a timed out checkpoint retains the tracked supplier update for a bounded retry',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();let failOnce=true;
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();let failOnce=true;
  f.options.backups.checkpoint=async()=>{if(failOnce){failOnce=false;throw new DOMException('The operation was aborted due to timeout','TimeoutError');}};
  await f.tick();assert.equal(f.job().state,'updating_printful');assert.match(f.job().error,/timeout/);assert.equal(f.counts().puts,0);assert.equal(f.job().attempts,1);
  for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);
@@ -340,13 +340,13 @@ test('native compositions yield after each render and still reuse exact size map
  const f=await fixture(t),bp=await f.options.blueprints.load(),placements=['front','back','sleeve_left','sleeve_right'];
  bp.printfiles.variant_printfiles.forEach(v=>v.placements=Object.fromEntries(placements.map(p=>[p,1])));f.options.stepAssetLimit=4;f.restart();
  const d=await f.document();d.variants[11]=Object.fromEntries(placements.map((p,i)=>[p,{background:'#000000',layers:[{asset:'art:art1',x:.3+i*.1,y:.5,width:.5,rotation:0}]}]));d.variants[12]=structuredClone(d.variants[11]);
- await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,1);
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});await f.tick();await f.tick();assert.equal(f.job().document.outputs.length,1);
  for(let n=0;n<6&&f.job().state==='rendering';n++)await f.tick();assert.equal(f.job().state,'updating_printful');assert.equal(f.job().document.outputs.length,8);
  for(const p of placements){const a=f.job().document.outputs.filter(x=>x.placement===p);assert.equal(a.length,2);assert.equal(a[0].asset,a[1].asset);}
  assert.equal(f.counts().puts,0);
 });
 test('supplier processing polls do not wait for another full backup, while the first PUT remains checkpointed',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();
  let blocked=0;f.options.backups.checkpoint=async()=>{blocked++;throw Object.assign(Error('checkpoint temporarily unavailable'),{status:503});};
  await f.tick();assert.ok(blocked>=1);assert.equal(f.counts().puts,0);assert.equal(f.job().state,'updating_printful');
  f.options.backups.checkpoint=async()=>{};for(let n=0;n<5&&!f.counts().puts;n++)await f.tick();assert.equal(f.counts().puts,1);
@@ -372,11 +372,11 @@ test('the production batch saves every returned mockup and publishes the same li
 });
 
 test('a newer saved draft keeps its own artwork and can finish after the earlier supplier update completes',async t=>{
- const f=await fixture(t),original=await f.document();await f.call('finish',{source:f.p.id,revision:0,document:original,target:'printful'});
+ const f=await fixture(t),original=await f.document();await f.call('finish',{source:f.p.id,revision:0,document:original,target:'printful',confirmPublication:true});
  const revised=structuredClone(original);revised.variants[11].front.layers[0].x=.3;await f.call('save',{source:f.p.id,revision:1,document:revised});
  for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);
  const opened=await f.open();assert.equal(opened.revision,2);assert.equal(opened.document.variants[11].front.layers[0].x,.3);assert.equal(opened.document.fingerprint,opened.fingerprint);
- const next=await f.call('finish',{source:f.p.id,revision:2,document:opened.document,target:'printful'});assert.equal(next.job.revision,2);assert.equal(next.job.state,'queued');
+ const next=await f.call('finish',{source:f.p.id,revision:2,document:opened.document,target:'printful',confirmPublication:true});assert.equal(next.job.revision,2);assert.equal(next.job.state,'queued');
 });
 test('the update audit lists saved-only drafts and exact latest supplier jobs without exposing artwork bytes',async t=>{
  const f=await fixture(t),d=await f.document();await f.call('save',{source:f.p.id,revision:0,document:d});
@@ -386,7 +386,7 @@ test('the update audit lists saved-only drafts and exact latest supplier jobs wi
 });
 
 test('independent supplier waits run concurrently, but the same tracked job never runs twice',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();
  const j=f.job(),d=structuredClone(j.document);d.supplier.sync_product.id=456;f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','updating_printful',JSON.stringify(d),j.updated-1);
  const base=f.options.fetchImpl;f.options.fetchImpl=async(u,o)=>u.endsWith('/store/products/456')?new Response(JSON.stringify({result:{...f.supplier,sync_product:{...f.supplier.sync_product,id:456}}})):base(u,o);
  let release,entered=0;const gate=new Promise(r=>release=r);f.options.backups.checkpoint=async()=>{entered++;await gate;throw Object.assign(Error('temporary backup wait'),{status:503});};f.restart();
@@ -394,7 +394,7 @@ test('independent supplier waits run concurrently, but the same tracked job neve
  release();await Promise.all([first,second]);assert.equal(f.db.prepare("SELECT count(*) n FROM factory_studio_jobs WHERE state='updating_printful'").get().n,2);assert.equal(f.counts().puts,0);
 });
 test('native image processing remains serial when multiple products are eligible',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});await f.tick();const j=f.job();
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});await f.tick();const j=f.job();
  f.db.prepare("INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)").run('second','456','piece:two',1,'printful','rendering',JSON.stringify(j.document),j.updated-1);
  let release,entered=0;const gate=new Promise(r=>release=r),put=f.options.assets.put;f.options.assets.put=async(...a)=>{entered++;await gate;return put(...a);};f.restart();
  const first=f.tick();try{for(let n=0;n<600&&!entered;n++)await new Promise(r=>setTimeout(r,5));assert.equal(entered,1);await f.tick();assert.equal(entered,1);}finally{release();await first;}assert.equal(entered,1);
@@ -402,11 +402,11 @@ test('native image processing remains serial when multiple products are eligible
 
 test('generated print bytes go directly to verified asset storage instead of churning the database backup',async t=>{
  const f=await fixture(t),put=f.options.assets.put;let failed=false;f.options.assets.put=async(...a)=>{const row=f.db.prepare('SELECT length(data) n,remote FROM factory_studio_assets WHERE id=?').get(a[2]);assert.equal(row.n,0);assert.equal(row.remote,null);if(!failed){failed=true;throw Object.assign(Error('temporary attachment failure'),{status:503});}assert.ok(a[3].length);return put(...a);};
- await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();
  assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.counts().puts,1);assert.equal(f.db.prepare("SELECT count(*) n FROM factory_studio_assets WHERE kind='print'").get().n,1);assert.equal(f.db.prepare('SELECT sum(length(data)) n FROM factory_studio_assets').get().n,0);
 });
 test('concurrent immutable print downloads share one authenticated read and recover after a failed read',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(!f.job().document.outputs.length)await f.tick();
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(!f.job().document.outputs.length)await f.tick();
  const a=f.db.prepare("SELECT * FROM factory_studio_assets WHERE kind='print'").get(),read=f.options.assets.read;let calls=0,failRead=true;
  f.options.assets.read=async(...args)=>{calls++;await new Promise(r=>setImmediate(r));if(failRead)throw Object.assign(Error('temporary download failure'),{status:503});return read(...args);};f.restart();
  const studio=factoryProductStudio(f.options),download=async()=>{const res={writeHead(){},end(bytes){this.data=bytes;}};await studio.handle({headers:{}},res,'/factory-studio-file/'+a.capability,'GET',new URL('https://app.test'));return res.data;};
@@ -426,7 +426,7 @@ test('ready store publication finishes before another product starts expensive r
 
 test('supplier variant writes follow their paced lane without changing the requested file assignments',async t=>{
  const f=await fixture(t);let now=2000000;const waits=[],wire=[],base=f.options.fetchImpl;f.options.clock=()=>now;f.options.supplierWriteGapMs=6600;f.options.sleep=async ms=>{waits.push(ms);now+=ms;};f.options.fetchImpl=async(u,o)=>{if(u.includes('/store/variants/'))wire.push(now);return base(u,o);};f.restart();
- const d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});
+ const d=await f.document();d.variants[12]=structuredClone(d.variants[11]);await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});
  for(let n=0;n<20&&f.job().state!=='completed';n++){now+=32000;await f.tick();}
  assert.equal(f.job().state,'completed',f.job().error);assert.equal(wire.length,2);assert.ok(wire[1]-wire[0]>=6600);assert.ok(waits.includes(6600));assert.equal(f.counts().puts,2);
 });
@@ -453,7 +453,7 @@ test('mockup network waits share checkpoints while a separate native render can 
 // Native supplier output may legitimately exceed the source artwork pixel cap.
 test('stores a native print canvas above 40 megapixels without shrinking the approved layout',async t=>{
  const f=await fixture(t),bp=await f.options.blueprints.load();bp.printfiles.printfiles[0].width=6500;bp.printfiles.printfiles[0].height=6500;
- const d=await f.document();await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});
+ const d=await f.document();await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});
  await f.tick();await f.tick();assert.notEqual(f.job().state,'failed',f.job().error);
  const out=f.job().document.outputs[0];assert.equal(out.width,6500);assert.equal(out.height,6500);assert.ok(out.asset);
 });
@@ -468,7 +468,7 @@ test('adding several designs preserves existing layers, proportions and the eigh
 test('two different designs survive Save, reopen and Finish in the same exact print file',async t=>{
  const f=await fixture(t),blue=await sharp({create:{width:100,height:100,channels:4,background:'#0000ff'}}).png().toBuffer();f.db.prepare('INSERT INTO factory_artwork VALUES(?,?,?,?,?)').run('art2','Blue detail','image/png',blue,JSON.stringify({reuse:true,modify:false,crop:false}));
  const d=await f.document();d.variants[11].front.layers=[{asset:'art:art1',x:.25,y:.5,width:.25,rotation:0},{asset:'art:art2',x:.75,y:.5,width:.25,rotation:0}];const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();assert.deepEqual((await f.open()).document.variants[11].front.layers,saved.document.variants[11].front.layers);
- await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'printful'});for(let n=0;n<15&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const output=f.job().document.outputs[0],row=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),png=await f.options.assets.read(JSON.parse(row.remote).asset),{data,info}=await sharp(png).raw().toBuffer({resolveWithObject:true}),pixel=x=>[...data.subarray((50*info.width+x)*info.channels,(50*info.width+x)*info.channels+3)];assert.deepEqual(pixel(25),[255,0,0]);assert.deepEqual(pixel(75),[0,0,255]);assert.equal(f.counts().puts,1);
+ await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'printful',confirmPublication:true});for(let n=0;n<15&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);const output=f.job().document.outputs[0],row=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),png=await f.options.assets.read(JSON.parse(row.remote).asset),{data,info}=await sharp(png).raw().toBuffer({resolveWithObject:true}),pixel=x=>[...data.subarray((50*info.width+x)*info.channels,(50*info.width+x)*info.channels+3)];assert.deepEqual(pixel(25),[255,0,0]);assert.deepEqual(pixel(75),[0,0,255]);assert.equal(f.counts().puts,1);
 });
 
 test('an older render receives a turn instead of starving behind newer mockup and publishing work',async t=>{
@@ -477,7 +477,7 @@ test('an older render receives a turn instead of starving behind newer mockup an
 });
 
 test('studio retries never run before a supplier or storage reset beyond fifteen minutes',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();const before=f.job().updated;f.options.backups.checkpoint=async()=>{throw Object.assign(Error('rate pause'),{status:429,retryAfter:3600});};await f.tick();assert.equal(f.job().state,'updating_printful');assert.ok(f.job().next>=before+3600000);assert.equal(f.counts().puts,0);
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();const before=f.job().updated;f.options.backups.checkpoint=async()=>{throw Object.assign(Error('rate pause'),{status:429,retryAfter:3600});};await f.tick();assert.equal(f.job().state,'updating_printful');assert.ok(f.job().next>=before+3600000);assert.equal(f.counts().puts,0);
 });
 
 test('background removal clears only connected solid color and preserves enclosed details and native dimensions',async()=>{
@@ -499,7 +499,7 @@ test('background removal saves, reopens after restart and renders transparent na
  const f=await fixture(t),png=await sharp({create:{width:100,height:100,channels:4,background:'#ffffff'}}).composite([{input:await sharp({create:{width:40,height:40,channels:4,background:'#ff0000'}}).png().toBuffer(),left:30,top:30}]).png().toBuffer();
  f.db.prepare('UPDATE factory_artwork SET data=? WHERE id=?').run(png,'art1');const d=await f.document();d.variants[11].front={background:null,layers:[{asset:'art:art1',x:.5,y:.5,width:1,rotation:0,backgroundRemoval:{tolerance:35}}]};
  const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const opened=await f.open();assert.deepEqual(opened.document.variants[11].front.layers[0].backgroundRemoval,{tolerance:35});assert.equal(opened.revision,saved.revision);
- await f.call('finish',{source:f.p.id,revision:saved.revision,document:opened.document,target:'printful'});for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);
+ await f.call('finish',{source:f.p.id,revision:saved.revision,document:opened.document,target:'printful',confirmPublication:true});for(let n=0;n<12&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);
  const output=f.job().document.outputs[0],a=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),data=await f.options.assets.read(JSON.parse(a.remote).asset),raw=await sharp(data).ensureAlpha().raw().toBuffer({resolveWithObject:true});assert.equal(raw.info.width,100);assert.equal(raw.info.height,100);assert.equal(raw.data[3],0);assert.equal(raw.data[(50*100+50)*4],255);assert.equal(raw.data[(50*100+50)*4+3],255);
  assert.deepEqual(Buffer.from(f.db.prepare('SELECT data FROM factory_artwork WHERE id=?').get('art1').data),png);assert.equal(f.counts().puts,1);assert.equal(f.counts().posts,0);assert.equal(f.supplier.sync_variants[0].id,11);assert.equal(f.supplier.sync_variants[0].files.find(x=>x.type==='back').id,41);assert.equal(f.supplier.sync_variants[0].retail_price,'49.99');
  const restored=structuredClone(opened.document.variants[11].front);delete restored.layers[0].backgroundRemoval;const rendered=await renderStudioPanel({width:100,height:100,dpi:100},restored,async()=>({data:png,permissions:{reuse:true}}));const original=await sharp(rendered.data).ensureAlpha().raw().toBuffer();assert.equal(original[0],255);assert.equal(original[3],255);
@@ -552,7 +552,7 @@ test('deleting one chosen design saves and reopens, preserves other panels and u
  d.variants[11].front.layers=[{...first,x:.25,width:.2},{...first,x:.75,width:.2}];d.variants[11].back=structuredClone(d.variants[11].front);
  const before=structuredClone(d.variants[11].front);d.variants[11].front=deleteDesignLayer(d.variants[11].front,1);assert.equal(before.layers.length,2);assert.deepEqual(d.variants[11].front.layers,[before.layers[0]]);
  const saved=await f.call('save',{source:f.p.id,revision:0,document:d});f.restart();const reopened=await f.open();assert.deepEqual(reopened.document,saved.document);assert.equal(reopened.document.variants[11].back.layers.length,2);
- await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'printful'});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.supplier.sync_product.id,123);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);
+ await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'printful',confirmPublication:true});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.supplier.sync_product.id,123);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);
  const output=f.job().document.outputs.find(o=>o.placement==='front')||f.job().document.outputs[0],row=f.db.prepare('SELECT remote FROM factory_studio_assets WHERE id=?').get(output.asset),png=await f.options.assets.read(JSON.parse(row.remote).asset),{data,info}=await sharp(png).raw().toBuffer({resolveWithObject:true}),pixel=x=>[...data.subarray((50*info.width+x)*info.channels,(50*info.width+x)*info.channels+3)];assert.deepEqual(pixel(25),[255,0,0]);assert.deepEqual(pixel(75),[0,0,0]);
  assert.equal(deleteDesignLayer(deleteDesignLayer(before,0),0).layers.length,0);assert.throws(()=>deleteDesignLayer(before,-1),/Select a design/);
 });
@@ -568,7 +568,7 @@ test('large native pants panels render oversized padded artwork in exact adjacen
 
 
 test('unchanged supplier-processing polls yield their age priority to another waiting product',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();const j=f.job(),output=j.document.outputs[0];
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();const j=f.job(),output=j.document.outputs[0];
  f.supplier.sync_variants[0].files=f.supplier.sync_variants[0].files.map(file=>file.type==='front'?{...file,url:output.url,status:'waiting'}:file);
  const native=structuredClone(j.document);native.outputs=[];native.tasks=[];native.images=[];
  f.db.prepare('UPDATE factory_studio_jobs SET updated=? WHERE id=?').run(j.updated-700000,j.id);
@@ -582,13 +582,13 @@ test('bounded supplier batches reuse the checkpointed immutable intent instead o
  const f=await fixture(t),bp=await f.options.blueprints.load();
  for(let id=13;id<=16;id++){const v=structuredClone(f.supplier.sync_variants[0]);v.id=id;v.variant_id=id+10;v.size='fixture-'+id;f.supplier.sync_variants.push(v);bp.printfiles.variant_printfiles.push({variant_id:id+10,placements:{front:1,back:1}});}
  const d=await f.document();for(let id=12;id<=16;id++)d.variants[id]={front:structuredClone(d.variants[11].front)};
- await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful'});while(f.job().state!=='updating_printful')await f.tick();await new Promise(r=>setImmediate(r));
+ await f.call('finish',{source:f.p.id,revision:0,document:d,target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();await new Promise(r=>setImmediate(r));
  let checks=0;f.options.backups.checkpoint=async()=>{checks++;};await f.tick();assert.equal(f.counts().puts,4);assert.equal(checks,1);assert.equal(f.job().document.supplierIntentSaved,true);
  f.options.backups.checkpoint=async()=>{throw Error('an already checkpointed variant batch started another snapshot');};await f.tick();assert.equal(f.counts().puts,6,'the remaining variants update using the same saved intent');assert.notEqual(f.job().state,'failed');
 });
 
 test('a failed supplier-intent checkpoint never authorizes the first write or marks its intent saved',async t=>{
- const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful'});while(f.job().state!=='updating_printful')await f.tick();
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'printful',confirmPublication:true});while(f.job().state!=='updating_printful')await f.tick();
  f.options.backups.checkpoint=async()=>{throw Object.assign(Error('snapshot timeout'),{status:503});};await f.tick();assert.equal(f.counts().puts,0);assert.equal(f.job().document.supplierIntentSaved,false);
  f.options.backups.checkpoint=async()=>{};for(let n=0;n<10&&!f.counts().puts;n++)await f.tick();assert.equal(f.counts().puts,1);assert.equal(f.job().document.supplierIntentSaved,true);
 });
@@ -632,7 +632,7 @@ test('owner placements transfer across hoodie sets, keep native sizes, save real
  const s=factoryProductStudio(f.options),job=await s.followExample(f.p.id,'reference-job');assert.equal(job.supplier,'123');let record=f.db.prepare('SELECT * FROM factory_studio_jobs WHERE id=?').get(job.id),d=JSON.parse(record.document);assert.equal(record.target,'mockups');assert.equal(d.variants[11].front.layers[0].asset,'art:art2');assert.equal(d.variants[11].front.layers[0].width,.25,'portrait retains proportions inside the square example');assert.equal(d.variants[11].front.layers[0].allowModify,false);
  assert.equal((await s.followExample(f.p.id,'reference-job')).id,job.id,'lost acknowledgement reuses the exact update');
  for(let i=0;i<40;i++){await f.tick();record=f.db.prepare('SELECT * FROM factory_studio_jobs WHERE id=?').get(job.id);if(record.state==='completed')break;}
- assert.equal(record.state,'completed',record.error);d=JSON.parse(record.document);assert.equal(d.printfulUpdated,true);assert.ok(d.images.length);assert.ok(d.tasks.every(t=>t.key&&t.state==='saved'));assert.equal(d.storeUpdated,undefined);assert.equal(f.calls.filter(c=>c.url.endsWith('/dispatches')).length,0);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);assert.ok(f.supplier.sync_variants.every(v=>v.retail_price==='49.99'));
+ assert.equal(record.state,'completed',record.error);d=JSON.parse(record.document);assert.equal(!!d.printfulUpdated,false);assert.ok(d.images.length);assert.ok(d.tasks.every(t=>t.key&&t.state==='saved'));assert.equal(d.storeUpdated,undefined);assert.equal(f.calls.filter(c=>c.url.endsWith('/dispatches')).length,0);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);assert.ok(f.supplier.sync_variants.every(v=>v.retail_price==='49.99'));
 });
 
 test('browser saves, reloads and finishes independent front, back and both sleeve edits on the same product',{skip:process.env.MIDNIGHT_STUDIO_BROWSER!=='1'},async t=>{
@@ -660,8 +660,31 @@ test('browser saves, reloads and finishes independent front, back and both sleev
  // A real browser save failure must be visible, with the last confirmed revision preserved.
  await page.locator('#x').fill('.65');failSave=true;await page.locator('#save').click();await page.getByText(/Fixture storage temporarily unavailable/).first().waitFor();assert.equal((await f.open()).revision,2);await page.locator('#save').click();await page.getByText(/Draft revision 3 stored on this backend/).first().waitFor();
  await page.locator('#target').selectOption('mockups');await page.locator('#finish').click();await page.getByText(/Edit queued at your selected artwork size/).first().waitFor();
- for(let n=0;n<60&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.printfulUpdated,true);assert.equal(!!f.job().document.storeUpdated,false);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);assert.equal(f.supplier.sync_product.id,123);assert(!f.calls.some(c=>c.method==='POST'&&c.url.endsWith('/store/products')));
- await page.reload();await page.waitForSelector('#studio:not([hidden])');await page.getByText(/Printful and mockups only/).first().waitFor();assert.equal((await f.open()).document.variants[11].sleeve_right.layers[0].x,.65);
- const before=f.counts();await page.locator('#target').selectOption('store');await page.locator('#finish').click();await page.getByText(/Publishing the saved Printful update/).first().waitFor();for(let n=0;n<60&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.storeUpdated,true);assert.equal(f.counts().puts,before.puts);assert.equal(f.counts().posts,before.posts);assert.equal(f.job().document.storeProduct.id,'123');
+ for(let n=0;n<60&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(!!f.job().document.printfulUpdated,false);assert.equal(!!f.job().document.storeUpdated,false);assert.deepEqual(f.supplier.sync_variants.map(v=>v.id),[11,12]);assert.equal(f.supplier.sync_product.id,123);assert(!f.calls.some(c=>c.method==='POST'&&c.url.endsWith('/store/products')));
+ await page.reload();await page.waitForSelector('#studio:not([hidden])');await page.getByText(/Private preview; owner approval required/).first().waitFor();assert.equal((await f.open()).document.variants[11].sleeve_right.layers[0].x,.65);
+ const before=f.counts();await page.locator('#target').selectOption('store');await page.locator('#finish').click();await page.getByText(/Approved revision queued/).first().waitFor();for(let n=0;n<60&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed',f.job().error);assert.equal(f.job().document.storeUpdated,true);assert.equal(f.counts().puts,before.puts+2);assert.equal(f.counts().posts,before.posts);assert.equal(f.job().document.storeProduct.id,'123');
  await page.reload();await page.waitForSelector('#studio:not([hidden])');await page.getByText('✓ Storefront verified',{exact:true}).waitFor();await page.screenshot({path:'qa-editor-independent-placements.png',fullPage:true});assert.deepEqual(errors,[]);
+});
+
+
+test('private previews survive restart without touching live supplier files or public media; rejection cannot retry or publish',async t=>{
+ const f=await fixture(t),original=structuredClone(f.supplier);
+ await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'mockups'});
+ f.restart();for(let n=0;n<40&&f.job().state!=='completed';n++)await f.tick();
+ assert.equal(f.job().state,'completed',f.job().error);assert.deepEqual(f.supplier,original);assert.equal(f.counts().puts,0);
+ assert(!f.calls.some(c=>c.method==='PUT'&&c.url.includes('/contents/')));assert(!f.calls.some(c=>c.url.endsWith('/dispatches')));
+ const j=f.job();await f.call('reject',{source:f.p.id,id:j.id,confirm:true});f.restart();await f.tick();
+ assert.equal(f.job().state,'cancelled');await assert.rejects(f.call('retry',{source:f.p.id,id:j.id}),/failed update/);
+ await assert.rejects(f.call('publish',{source:f.p.id,id:j.id,revision:j.revision,confirmPublication:true}),/Wait for/);
+ assert.deepEqual(f.supplier,original);assert.equal(f.counts().puts,0);
+});
+test('recovered pre-policy store jobs and modified approved recipes cannot publish on retry',async t=>{
+ const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});
+ while(f.job().state!=='updating_printful')await f.tick();const j=f.job(),d=j.document;delete d.ownerApproval;
+ f.db.prepare('UPDATE factory_studio_jobs SET document=? WHERE id=?').run(JSON.stringify(d),j.id);f.restart();await f.tick();
+ assert.equal(f.job().state,'failed');assert.match(f.job().error,/Explicit owner approval/);assert.equal(f.counts().puts,0);
+ await f.call('publish',{source:f.p.id,id:j.id,revision:j.revision,confirmPublication:true});
+ const altered=f.job().document;altered.variants[11].front.layers[0].x=.4;
+ f.db.prepare('UPDATE factory_studio_jobs SET document=? WHERE id=?').run(JSON.stringify(altered),j.id);await f.tick();
+ assert.equal(f.job().state,'failed');assert.equal(f.counts().puts,0);assert(!f.calls.some(c=>c.method==='PUT'&&c.url.includes('/contents/')));
 });

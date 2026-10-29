@@ -1,9 +1,9 @@
 export function compatiblePrintArea(a,b){return !!a&&!!b&&a.width===b.width&&a.height===b.height&&a.dpi===b.dpi;}
 export function productUpdateTarget(product,publishedIds=new Set()){
- return product.state==='published'||publishedIds.has(String(product.supplierId))?'store':'mockups';
+ return 'mockups';
 }
 export function canPublishSavedUpdate(job,revision,dirty){
- return !dirty&&job?.state==='completed'&&job.target==='mockups'&&job.printfulUpdated&&job.images?.length>0&&job.revision===revision;
+ return !dirty&&job?.revision===revision&&(job.state==='completed'&&job.target==='mockups'&&job.images?.length>0||job.state==='failed'&&job.target==='store'&&!job.ownerApproved&&/Explicit owner approval/.test(job.error||''));
 }
 export function draftSaveStatus(status,revision,{currentRevision=revision,busy=false,dirty=false}={}){
  if(currentRevision!==revision||busy||dirty)return 'obsolete';

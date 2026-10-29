@@ -341,3 +341,14 @@ test('supplier reconciliation checks the live external ID before clearing a stal
  const r=await f.api('publishing/reconcile',{job:item.job,operation:'supplier',outcome:'check',verified:true});assert.equal(r.status,200);assert.equal(f.counts().creates,0);assert.equal(f.db.prepare("SELECT 1 FROM factory_publish_operations WHERE job=? AND operation='supplier'").get(item.job),undefined);
  await f.basic('/resume',{id:item.id});await f.step();assert.equal(f.counts().creates,1);
 });
+
+
+test('legacy batch approval cannot publish a Basic product without individual owner review',async t=>{
+ const f=await fixture(t),item=await f.start();await f.preview(item);
+ f.db.prepare("UPDATE factory_basic_items SET decision='approved',status='publishing' WHERE id=?").run(item.id);
+ const held=f.service.basic.beforePublication(item.job);assert.match(held.wait,/individual product/);assert.equal(f.manifest(),null);
+ assert.equal((await f.basic()).data.active.canApprove,true);
+ assert.equal((await f.basic('/approve',{id:item.id,confirm:true})).status,200);
+ assert.equal(f.service.basic.beforePublication(item.job),null);
+ assert.ok(f.db.prepare('SELECT fingerprint FROM factory_owner_publications WHERE job=?').get(item.job));
+});

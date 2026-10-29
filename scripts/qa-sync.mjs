@@ -2,7 +2,7 @@ import {mkdtemp,writeFile,readFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
-import {sync} from './sync-printful.mjs';
+import {sync,normalize} from './sync-printful.mjs';
 import {enrich} from './sync-product-information.mjs';
 import {printfulClient} from './printful-client.mjs';
 let time=0,reads=0;const cooldowns=[];
@@ -21,6 +21,7 @@ const fetcher=async url=>{
 };
 try{
  process.chdir(dir);
+ await writeFile('products.json',JSON.stringify({products:[{...normalize(dataset[0]),name:'Our design'}]}));
  await writeFile('catalog-copy.json',JSON.stringify({products:{1:{name:'Our design',variants:[{id:'wrong'}]}}}));
  await sync({token:'fixture',fetcher});
  const first=JSON.parse(await readFile('products.json','utf8'));
@@ -29,12 +30,12 @@ try{
  dataset=[detail(1,[variant(11,31,'out_of_stock'),variant(12,32,'active')]),detail(2,[variant(21,40)])];
  await sync({token:'fixture',fetcher});
  const second=JSON.parse(await readFile('products.json','utf8'));
- assert.equal(second.products.length,2);assert.equal(second.products[0].variants[0].price,31);assert.equal(second.products[0].variants[0].availability,'out_of_stock');
+ assert.equal(second.products.length,1);assert.equal(second.products[0].variants[0].price,25);assert.equal(second.products[0].variants[0].availability,'out_of_stock');
  assert(second.lastSyncedAt>first.lastSyncedAt);
  await writeFile('pricing-overrides.json',JSON.stringify({prices:{11:55}}));
- await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products[0].variants[0].price,55);
+ await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products[0].variants[0].price,25);
  const factoryDetail=detail(3,[variant(31,39.99)]);factoryDetail.sync_product.external_id='midnight-factory-test';dataset.push(factoryDetail);await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products.some(p=>p.id==='3'),false,'Unapproved supplier drafts stay private');
- await writeFile('factory-listings.json',JSON.stringify({products:{3:{id:'3',name:'Approved factory tee',description:'Approved description',factoryExternalId:'midnight-factory-test',image:'https://example.com/mockup.png',images:['https://example.com/mockup.png'],variants:[{id:'31',catalogVariantId:131,size:'M',color:'Black',colorCode:'#000000',supplierBaseColor:'White',currency:'USD',price:39.99,availability:'active',image:'https://example.com/variant-mockup.png',images:['https://example.com/variant-mockup.png']}]}}}));await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products.find(p=>p.id==='3').description,'Approved description');const approvedVariant=JSON.parse(await readFile('products.json','utf8')).products.find(p=>p.id==='3').variants[0];assert.equal(approvedVariant.color,'Black');assert.equal(approvedVariant.supplierBaseColor,'White');assert.equal(approvedVariant.image,'https://example.com/variant-mockup.png');assert.deepEqual(approvedVariant.images,['https://example.com/variant-mockup.png'],'factory variant mockups survive catalog import');
+ await writeFile('factory-listings.json',JSON.stringify({products:{3:{id:'3',name:'Approved factory tee',description:'Approved description',factoryExternalId:'midnight-factory-test',publicationApproval:{state:'approved',revision:'midnight-factory-test'},image:'https://example.com/mockup.png',images:['https://example.com/mockup.png'],variants:[{id:'31',catalogVariantId:131,size:'M',color:'Black',colorCode:'#000000',supplierBaseColor:'White',currency:'USD',price:39.99,availability:'active',image:'https://example.com/variant-mockup.png',images:['https://example.com/variant-mockup.png']}]}}}));await sync({token:'fixture',fetcher});assert.equal(JSON.parse(await readFile('products.json','utf8')).products.find(p=>p.id==='3').description,'Approved description');const approvedVariant=JSON.parse(await readFile('products.json','utf8')).products.find(p=>p.id==='3').variants[0];assert.equal(approvedVariant.color,'Black');assert.equal(approvedVariant.supplierBaseColor,'White');assert.equal(approvedVariant.image,'https://example.com/variant-mockup.png');assert.deepEqual(approvedVariant.images,['https://example.com/variant-mockup.png'],'factory variant mockups survive catalog import');
  // Exercise the complete sync plus enrichment path, not just the importer.
  const enrichedRead=async url=>{const path=new URL(url).pathname;if(path.startsWith('/store/products/')){const row=dataset.find(x=>String(x.sync_product.id)===path.split('/').pop());return Response.json({code:200,result:{...row,sync_variants:row.sync_variants.map(v=>({...v,product:{product_id:700}}))}});}return Response.json({code:200,result:{product:{id:700,title:'All-Over Print T-Shirt',description:'Cotton shirt'},variants:dataset.flatMap(p=>p.sync_variants.map(v=>({id:v.variant_id,size:'M',color:'White',color_code:'#ffffff'})))}});};
  await enrich({token:'fixture',fetcher:enrichedRead});const enriched=JSON.parse(await readFile('products.json','utf8')),printed=enriched.products.find(p=>p.id==='3').variants[0];assert.equal(printed.color,'Black','Enrichment preserves the approved printed color');assert.equal(printed.colorCode,'#000000');assert.equal(printed.supplierBaseColor,'White');assert.equal(printed.price,39.99);assert.equal(enriched.products[0].variants[0].color,'White','Ordinary supplier colors still refresh');assert.equal(JSON.parse(await readFile('product-information.json','utf8')).products['700'].catalogVariants[0].color,'White','Supplier specifications remain factual');
@@ -44,5 +45,5 @@ try{
  failure=false;dataset=[];await assert.rejects(sync({token:'fixture',fetcher}),/No publishable/);assert.equal(await readFile('products.json','utf8'),good);
  await assert.rejects(sync({token:'',fetcher}),/Configure/);assert.equal(await readFile('products.json','utf8'),good);
  dataset=[detail(3,[variant(31)])];dataset[0].sync_product.external_id='midnight-factory-test';await writeFile('factory-listings.json',JSON.stringify({products:{},withdrawn:['3']}));await sync({token:'fixture',fetcher});assert.deepEqual(JSON.parse(await readFile('products.json','utf8')).products,[]);
- console.log('PASS: new products, changed prices/availability, protected variants, retail overrides, honest sync timestamps, failure preservation.');
+ console.log('PASS: new unapproved products held, approved price/media snapshots preserved, stock refreshed, protected variants, retail overrides, honest sync timestamps, failure preservation.');
 }finally{process.chdir(cwd);await rm(dir,{recursive:true,force:true});}

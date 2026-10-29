@@ -21,7 +21,9 @@ export async function factoryApprovalsForImport(fetchImpl=fetch){
  if(!response.ok)throw Error('Factory receipt audit unavailable.');
  return approvedFactory(await response.json());
 }
-export function mediaImportAllowed(product){return !product?.studioRevision;}
+// Supplier files can contain a private revision. Only the owner-approved
+// studio publishing path may replace public photos or introduce a listing.
+export function mediaImportAllowed(product){return false;}
 export function requests(product,detail,mapping,factory=false){
  return [...new Set(product.variants.map(v=>v.color))].flatMap(color=>{
   const retail=product.variants.find(v=>v.color===color&&v.size==='M')||product.variants.find(v=>v.color===color),source=detail.sync_variants.find(v=>String(v.id)===retail.id&&v.variant_id===retail.catalogVariantId);
@@ -90,6 +92,7 @@ export async function run(){
  const details=new Map();ledger.catalogAudit={supplierProducts:summaries.length,eligible:0,importedPreviews:0,held:[],checkedAt:new Date().toISOString()};
  for(const summary of summaries){const id=String(summary.id);if(summary.is_ignored||withdrawn.has(id)||exclusions.has(id))continue;
   try{const detail=await api('store/products/'+id);details.set(id,detail);const p=normalize(detail);if(!p)continue;const factory=detail.sync_product.external_id?.startsWith('midnight-factory-'),prior=manifest.products[id];
+   if(!mediaImportAllowed(prior))continue;
    if(factory&&detail.sync_product.external_id!==(approved.get(id)?.external||prior?.factoryExternalId))continue;
    if(factory&&!prior)continue;if(!mediaImportAllowed(prior)||!mediaImportAllowed(catalog.products.find(p=>p.id===id)))continue;ledger.catalogAudit.eligible++;
    const views=supplierPreviews(p,detail,factory),signature=digest(views);if(!views.length||photos.products[id]?.supplierPreviews===signature)continue;
@@ -110,6 +113,7 @@ export async function run(){
  for(const summary of summaries){if(Date.now()>deadline)break;const id=String(summary.id);if(summary.is_ignored||withdrawn.has(id)||exclusions.has(id))continue;
   try{
    const detail=details.get(id)||await api('store/products/'+id),p=normalize(detail);if(!p)continue;const external=detail.sync_product.external_id,isFactory=typeof external==='string'&&external.startsWith('midnight-factory-'),approval=approved.get(id),prior=manifest.products[id];
+   if(!mediaImportAllowed(prior))continue;
    if(isFactory&&external!==(approval?.external||prior?.factoryExternalId))continue;
    if(!mediaImportAllowed(prior)||!mediaImportAllowed(catalog.products.find(p=>p.id===id)))continue;
    if(approval&&p.catalogProductId!==approval.product)throw Error('Factory receipt product ID changed.');
