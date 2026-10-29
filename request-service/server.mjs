@@ -1,3 +1,4 @@
+import {createPrintfulWriteGuard} from './printful-write-guard.mjs';
 import {factoryOutfitLearning} from './factory-outfit-learning.mjs';
 import {factoryProductStudio} from './factory-product-studio.mjs';
 import {factoryProductEditor} from './factory-product-editor.mjs';
@@ -85,7 +86,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
  const layoutHandler=factoryLayouts({db,auth:factoryAuth,body,send,fail,limit,origin});
  const brandingHandler=factoryBranding({db,auth:factoryAuth,body,send,fail,limit,origin});
- const diagnostics=factoryDiagnostics({clock:productionSettings.clock||Date.now,...diagnosticSettings,db,auth:factoryAuth,send,fail,limit,secrets:()=>[passwordHash,catalogToken,process.env.PRINTFUL_TOKEN,process.env.OPENAI_API_KEY,process.env.CATALOG_GITHUB_TOKEN,process.env.FACTORY_WORKER_TOKEN]}),tracked=s=>({...s,fetchImpl:diagnostics.wrapFetch(s.fetchImpl||fetch)});
+ const diagnostics=factoryDiagnostics({clock:productionSettings.clock||Date.now,...diagnosticSettings,db,auth:factoryAuth,send,fail,limit,secrets:()=>[passwordHash,catalogToken,process.env.PRINTFUL_TOKEN,process.env.OPENAI_API_KEY,process.env.CATALOG_GITHUB_TOKEN,process.env.FACTORY_WORKER_TOKEN]}),writeGuard=createPrintfulWriteGuard({clock:productionSettings.clock||Date.now}),trackedClients=new WeakMap(),trackedFetch=f=>{if(!trackedClients.has(f))trackedClients.set(f,diagnostics.wrapFetch(f===fetch?((u,o)=>writeGuard(f,u,o)):f));return trackedClients.get(f);},tracked=s=>({...s,fetchImpl:trackedFetch(s.fetchImpl||fetch)});
  const blueprintHandler=factoryBlueprints({...tracked(blueprintSettings),db,auth:factoryAuth,body,send,fail,limit,origin});
  const artworkHandler=factoryArtwork({plans:blueprintSettings.plans,db,auth:factoryAuth,body,send,fail,limit,origin});
  const factoryHandler=factoryManager({...tracked(factorySettings),db,auth:factoryAuth,body,send,fail,limit,origin});
@@ -111,7 +112,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  basicGithub=factoryBasicGithub({db,backups:githubBackups,basic:basicHandler,passwordHash,env:backupSettings.env||{},...basicGithubSettings});basicHandler.setWorkspace(basicGithub);workflow.setBasicWorkspace(basicGithub);renderingHandler.setBasic(basicHandler);
  const basicOutfits=factoryBasicOutfits({db,basic:basicHandler,auth:factoryAuth,body,send,fail,limit,origin});basicHandler.setOutfits(basicOutfits);
  const productEditor=factoryProductEditor({db,basic:basicHandler,outfits:basicOutfits,auth:factoryAuth,body,send,fail,limit,origin});
- const productStudio=factoryProductStudio({db,editor:productEditor,blueprints:blueprintHandler,workflow,basic:basicHandler,backups:githubBackups,auth:factoryAuth,body,send,fail,limit,origin});productionHandler.setStudio(productStudio);
+ const productStudio=factoryProductStudio({fetchImpl:trackedFetch(fetch),db,editor:productEditor,blueprints:blueprintHandler,workflow,basic:basicHandler,backups:githubBackups,auth:factoryAuth,body,send,fail,limit,origin});productionHandler.setStudio(productStudio);
  const outfitLearning=factoryOutfitLearning({db,basic:basicHandler,outfits:basicOutfits,studio:productStudio,auth:factoryAuth,body,send,fail,limit,origin});basicOutfits.setFollower(outfitLearning.follow);
  const githubPublisher=factoryGithubPublisher({workspace:basicGithub,db,body,send,fail,limit});
  const historyHandler=factoryHistory({publicAccess:!factoryLoginRequired,db,auth:factoryAuth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler,pipeline:pipelineHandler});
