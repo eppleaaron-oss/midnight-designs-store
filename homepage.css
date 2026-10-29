@@ -26,3 +26,5 @@
 
 /* Let the shared logo and brand text fit beside the bag on narrow screens. */
 @media(max-width:600px){body.home .nav .brand-name{min-width:0;overflow-wrap:anywhere}.home .section-head>div{min-width:0}.home .footer{overflow-wrap:anywhere}}
+/* Keep painted/inline overflow from adding horizontal scrolling to the shop. */
+body.home{overflow-x:clip}
