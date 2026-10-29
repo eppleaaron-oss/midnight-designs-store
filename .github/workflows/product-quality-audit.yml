@@ -1,0 +1,26 @@
+name: Read-only product quality audit
+on:
+  pull_request:
+    paths: ['scripts/product-quality-audit.mjs', '.github/workflows/product-quality-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify supplier files, product specifications and sizes without changing products
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+        run: node scripts/product-quality-audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: supplier-product-quality-audit
+          path: quality-audit-output
+          retention-days: 7
