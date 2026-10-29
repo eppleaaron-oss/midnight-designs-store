@@ -28,9 +28,9 @@ function fixture(){
  return {db,run,get,all,addPlan,basic,start,finish,recipes,advance:ms=>{clock+=ms;},counts:()=>({made,approved,saves}),setReady:()=>{ready=true;},failInspection:fn=>{inspectError=fn;},loseResponse:()=>{crash=true;},restart:()=>{batch=factoryBasicBatch(options);return batch;},get batch(){return batch;}};
 }
 
-test('a finite batch publishes its exact pieces, waits for cleanup, and resumes from SQLite',async t=>{
+test('a finite batch waits for individual owner review, cleanup and SQLite recovery',async t=>{
  const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();await f.batch.tick();assert.equal(f.counts().made,1);await f.batch.tick();assert.equal(f.counts().approved,0);
- f.setReady();await f.restart().tick();assert.equal(f.counts().approved,1);await f.batch.tick();assert.equal(f.counts().made,1,'Publication must retain the one active item');f.finish();await f.batch.tick();assert.equal(f.counts().made,2);
+ f.setReady();await f.restart().tick();assert.equal(f.counts().approved,0,'batch retries cannot approve a product for the owner');await f.batch.tick();assert.equal(f.counts().made,1,'Publication must retain the one active item');f.finish();await f.batch.tick();assert.equal(f.counts().made,2);
  f.setReady();await f.batch.tick();f.finish();await f.batch.tick();assert.equal(f.batch.snapshot().status,'complete');assert.equal(f.batch.snapshot().published,2);await f.start();assert.equal(f.counts().made,2,'The same request cannot create another batch');
 });
 
@@ -49,7 +49,7 @@ test('pause and cancellation preserve the active item and never authorize unrela
 });
 
 test('a crash between saving an item and its batch pointer recovers only the exact frozen request',async t=>{
- const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();f.loseResponse();await f.batch.tick();assert.equal(f.counts().made,1);f.run('DELETE FROM factory_basic_batch_items');f.run('UPDATE factory_basic_outfit_pieces SET item=NULL');f.setReady();await f.restart().tick();assert.equal(f.counts().made,1);assert.equal(f.counts().approved,1);
+ const f=fixture();t.after(()=>f.db.close());f.addPlan('p');await f.start();f.loseResponse();await f.batch.tick();assert.equal(f.counts().made,1);f.run('DELETE FROM factory_basic_batch_items');f.run('UPDATE factory_basic_outfit_pieces SET item=NULL');f.setReady();await f.restart().tick();assert.equal(f.counts().made,1);assert.equal(f.counts().approved,0,'batch retries cannot approve a product for the owner');
 });
 
 test('authorization cannot expand to an unrelated product when resuming held work',async t=>{

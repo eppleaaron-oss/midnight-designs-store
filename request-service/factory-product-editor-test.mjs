@@ -115,3 +115,11 @@ test('AI Made shows fully saved new Printful mockups while storefront confirmati
  let result;const e=factoryProductEditor({db:f.db,basic:f.basic,outfits:{snapshot:()=>({plans:[],recent:[]})},auth:()=>{},body:async()=>({}),send:(res,status,data)=>result=data,fail:()=>{},limit:()=>{},origin:'http://test',fetchImpl:async u=>({ok:true,json:async()=>u.endsWith('products.json')?{products:[{id:'123'}]}:{products:{}}})});
  await e.handle({headers:{}},{},'/api/owner/ai-factory/product-editor/media','GET');assert.equal(result.photos.products['123'].studioRevision,'ready');assert.match(result.photos.products['123'].photos[0].image,/asset\/new$/);assert.equal(result.photos.products['456'],undefined);assert.equal(result.photos.products['789'],undefined);assert.deepEqual(result.publishedIds,['123']);
 });
+
+
+test('AI Made includes non-Basic factory creations before supplier or store publication',t=>{
+ const f=fixture(t);f.db.exec("CREATE TABLE factory_jobs(id TEXT,title TEXT,status TEXT,gender TEXT,created TEXT);CREATE TABLE factory_job_audiences(job TEXT,selection TEXT);");
+ f.db.prepare('INSERT INTO factory_jobs VALUES(?,?,?,?,?)').run('new-ai','New raven jacket','queued','unisex','2026-10-28');
+ f.db.prepare('INSERT INTO factory_job_audiences VALUES(?,?)').run('new-ai',JSON.stringify({product:390,audience:'unisex',storeCollection:'New ravens'}));
+ const p=f.editor.library().products.find(p=>p.jobId==='new-ai');assert.ok(p);assert.equal(p.id,'product:new-ai');assert.equal(p.supplierId,null);assert.equal(p.state,'queued');assert.equal(p.collection,'New ravens');
+});

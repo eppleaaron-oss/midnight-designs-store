@@ -26,6 +26,7 @@ const templateStamp=(bp,variants)=>hash(JSON.stringify(variants.map(v=>[String(v
 // Printful sync files use `default` for the front of some garments.
 const supplierPanel=(v,placement)=>(v.files||[]).find(f=>f.type===placement)||(placement==='front'?(v.files||[]).find(f=>f.type==='default'):null);
 const supplierPanelType=(v,placement)=>supplierPanel(v,placement)?.type||placement;
+const approvalRecipe=d=>hash(JSON.stringify({variants:d.variants,templateStamp:d.templateStamp,fingerprint:d.fingerprint}));
 const fingerprint=d=>hash(JSON.stringify((d.sync_variants||[]).map(v=>[v.id,v.variant_id,(v.files||[]).filter(f=>f.type!=='preview').map(f=>[f.type,f.id,f.hash,f.url]),v.options||[]])));
 export function studioLayers(panel){
  if(!panel||!Array.isArray(panel.layers)||panel.layers.length>8||!(/^#[0-9a-f]{6}$/i.test(panel.background)||panel.background===null))hold('Choose a background and up to eight artwork layers.',400);
@@ -124,7 +125,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  }
  async function connection(){if(resolved)return;const stores=await pf('stores');if(!Array.isArray(stores)||stores.length!==1)hold('The Printful store must be identified before editing.');resolved=String(stores[0].id);}
  async function detail(p){await connection();if(!/^\d+$/.test(String(p?.supplierId||'')))hold('This product has not been created in Printful. Use its waiting-piece recipe editor.');const d=await pf('store/products/'+p.supplierId);if(String(d?.sync_product?.id)!==String(p.supplierId)||!d.sync_variants?.length)hold('Printful product verification failed: requested '+p.supplierId+', returned '+(d?.sync_product?.id||'no product ID')+', '+(d?.sync_variants?.length||0)+' variants. No supplier product was changed.');if(d.sync_variants.some(v=>v.product?.product_id!==p.choice.product))hold('The supplier product does not match its saved garment. No product was substituted.');return d;}
- function jobView(j){if(!j)return null;const d=JSON.parse(j.document);return {recovery:recovery(),id:j.id,supplier:j.supplier,revision:j.revision,target:j.target,state:j.state,error:j.error,updated:j.updated,next:j.next,attempts:j.attempts,expectedFiles:Object.values(d.variants||{}).reduce((n,p)=>n+Object.keys(p).length,0),fingerprint:d.finalFingerprint||null,failureStage:d.failureStage||null,canRevise:!!(j.state==='failed'&&['queued','rendering'].includes(d.failureStage)&&!d.printfulUpdated&&!d.updatedVariants?.length&&!d.tasks?.length),printfulUpdated:!!d.printfulUpdated,storeUpdated:!!d.storeUpdated,resolutionWarnings:d.resolutionWarnings||[],tasks:(d.tasks||[]).map(t=>({key:t.key,state:t.state,variants:t.variants,error:t.error||''})),images:(d.images||[]).map(i=>({...i,url:i.storeUrl||ROOT+'/asset/'+i.asset})),files:(d.outputs||[]).map(f=>({placement:f.placement,variant:f.variant,width:f.width,height:f.height,sha256:f.sha,url:ROOT+'/asset/'+f.asset}))};}
+ function jobView(j){if(!j)return null;const d=JSON.parse(j.document);return {recovery:recovery(),id:j.id,supplier:j.supplier,revision:j.revision,target:j.target,state:j.state,error:j.error,updated:j.updated,next:j.next,attempts:j.attempts,expectedFiles:Object.values(d.variants||{}).reduce((n,p)=>n+Object.keys(p).length,0),fingerprint:d.finalFingerprint||null,failureStage:d.failureStage||null,canRevise:!!(j.state==='failed'&&['queued','rendering'].includes(d.failureStage)&&!d.printfulUpdated&&!d.updatedVariants?.length&&!d.tasks?.length),awaitingApproval:j.target==='mockups'&&j.state==='completed'&&!d.storeUpdated,ownerApproved:!!d.ownerApproval,printfulUpdated:!!d.printfulUpdated,storeUpdated:!!d.storeUpdated,resolutionWarnings:d.resolutionWarnings||[],tasks:(d.tasks||[]).map(t=>({key:t.key,state:t.state,variants:t.variants,error:t.error||''})),images:(d.images||[]).map(i=>({...i,url:i.storeUrl||ROOT+'/asset/'+i.asset})),files:(d.outputs||[]).map(f=>({placement:f.placement,variant:f.variant,width:f.width,height:f.height,sha256:f.sha,url:ROOT+'/asset/'+f.asset}))};}
  async function open(id){const p=source(id);if(!p)hold('This exact saved product is unavailable.',404);const d=await detail(p),bp=blueprints.peek?.(p.choice.product)||await blueprints.load(p.choice.product,'default');
   const familyData=family(p),set=familyData.set,originals=[];
   for(const [part,a] of Object.entries(set?.parts||{})){const imported=get("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_imported_artwork'")?(get('SELECT artwork FROM factory_imported_artwork WHERE url=?',a.url+'#factoryCollection='+encodeURIComponent(set.name))||get('SELECT artwork FROM factory_imported_artwork WHERE url=?',a.url)):null,aid=a.artwork||imported?.artwork,row=aid&&get('SELECT id,name,mime,data,permissions FROM factory_artwork WHERE id=?',aid);if(row){const m=await sharp(Buffer.from(row.data)).metadata();originals.push({asset:'art:'+aid,part,name:a.name||part,width:m.width,height:m.height,contentBounds:await artworkBounds(Buffer.from(row.data)),url:'/api/owner/ai-factory/artwork/'+aid+'/file'});}else originals.push({pending:true,part,name:a.name||part,url:a.thumb||a.url});}
@@ -189,6 +190,9 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  }
  async function content(path,data,message){for(let n=0;n<3;n++){const old=await gh('/contents/'+path+'?ref=main',{missing:true});const buf=Buffer.isBuffer(data)?data:Buffer.from(JSON.stringify(data,null,2)+'\n');const expected=createHash('sha1').update('blob '+buf.length+'\0').update(buf).digest('hex');if(old?.sha===expected)return;try{await gh('/contents/'+path,{method:'PUT',body:JSON.stringify({branch:'main',message,content:buf.toString('base64'),...(old?{sha:old.sha}:{})})});return;}catch(e){if(n===2)throw e;}}}
  async function advance(j){const d=JSON.parse(j.document);
+  const approval=d.ownerApproval;
+  if(j.target!=='mockups'&&['updating_printful','publishing','verifying_store'].includes(j.state)&&(!approval||approval.revision!==j.revision||approval.recipe!==approvalRecipe(d)))hold('Explicit owner approval is required for this exact revision. Review it in AI Made before updating fulfillment or publishing.');
+  if(d.sourceJob&&get("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_jobs'")&&get("SELECT id FROM factory_jobs WHERE id=? AND status IN ('archived','failed')",d.sourceJob))hold('This source product is unfinished or rejected. Review it before publishing.');
   if(j.state==='queued'){
    const live=await pf('store/products/'+j.supplier);if(fingerprint(live)!==d.fingerprint)hold('Printful files changed since you opened this product. Reload before updating.');
    const uploads=[...new Set(Object.values(d.variants).flatMap(p=>Object.values(p).flatMap(p=>p.layers.map(l=>l.asset))).filter(a=>!a.startsWith('art:')))];
@@ -207,9 +211,10 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
     if(same){const a=get("SELECT * FROM factory_studio_assets WHERE id=? AND job=? AND kind='print'",same.asset,'studio-'+j.id);if(a?.remote&&a.sha===same.sha&&a.width===area.width&&a.height===area.height){d.outputs.push({...same,variant,placement});continue;}}
     const rendered=await renderStudioPanelIsolated(area,panel,async id=>inputs.get(id)),a=await putAsset('studio-'+j.id,'print',placement,rendered.data);await persistAsset(a);d.outputs.push({variant,placement,renderKey,asset:a.id,sha:a.sha,width:area.width,height:area.height,url:link(a)});update(j,d);if(!saves.size)saveSoon();return;
    }
-   update(j,d,'updating_printful');saveSoon();return;
+   update(j,d,j.target==='mockups'?'mockups':'updating_printful');saveSoon();return;
   }
   if(j.state==='updating_printful'){
+   if(j.target==='mockups'){update(j,d,'mockups');saveSoon();return;}
    // Persist the complete immutable intent once before a bounded batch of PUTs.
    // After a lost response/restart, GET reconciles the exact saved URLs; no
    // additional snapshot is required between replay-safe variant updates.
@@ -228,7 +233,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
     if(!d.updatedVariants.includes(id))d.updatedVariants.push(id);
    }
    if(waiting){if(submittedCount||d.updatedVariants.length!==confirmedBefore)update(j,d);run('UPDATE factory_studio_jobs SET next=? WHERE id=?',clock()+15000,j.id);return;}
-   d.printfulUpdated=true;d.finalFingerprint=fingerprint(live);const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',j.supplier);if(draft){const recipe=JSON.parse(draft.document);if(draft.revision===j.revision||recipe.fingerprint===d.fingerprint){recipe.fingerprint=d.finalFingerprint;run('UPDATE factory_studio_drafts SET document=? WHERE supplier=?',JSON.stringify(recipe),j.supplier);}}update(j,d,j.target==='printful'?'completed':'mockups');saveSoon();return;
+   d.printfulUpdated=true;d.finalFingerprint=fingerprint(live);const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',j.supplier);if(draft){const recipe=JSON.parse(draft.document);if(draft.revision===j.revision||recipe.fingerprint===d.fingerprint){recipe.fingerprint=d.finalFingerprint;run('UPDATE factory_studio_drafts SET document=? WHERE supplier=?',JSON.stringify(recipe),j.supplier);}}update(j,d,j.target==='printful'?'completed':d.tasks?.length&&d.tasks.every(t=>t.state==='saved')&&d.images?.length?'publishing':'mockups');saveSoon();return;
   }
   if(j.state==='mockups'){
    d.tasks??=[];d.images??=[];d.baseFiles??={};
@@ -258,6 +263,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    d.images.sort((a,b)=>Number(/model|men|women|couple|kids/i.test(b.style))-Number(/model|men|women|couple|kids/i.test(a.style)));update(j,d,j.target==='store'?'publishing':'completed');saveSoon();return;
   }
   if(j.state==='publishing'){
+   if(j.target!=='store'||!d.printfulUpdated||!d.images?.length||!d.tasks?.length||d.tasks.some(t=>t.state!=='saved'))hold('Publication requires owner approval, verified supplier files and completed mockups.');
    let publishedImages=0;for(const i of d.images){if(i.storeUrl)continue;const a=get('SELECT * FROM factory_studio_assets WHERE id=?',i.asset),b=await bytes(a),path='images/factory/'+j.supplier+'/'+a.sha+(a.mime==='image/png'?'.png':'.jpg');await content(path,b,'Save edited product mockup '+j.supplier);i.storeUrl='https://midnight-designs.store/'+path;update(j,d);if(++publishedImages>=assetLimit){if(!saves.size)saveSoon();return;}}
    const previousManifest=manifestTail;let releaseManifest;manifestTail=new Promise(r=>releaseManifest=r);await previousManifest;try{
    const {file,manifest}=await readManifest();if((manifest.withdrawn||[]).includes(j.supplier))hold('This product was withdrawn. Restore it explicitly before publishing.');
@@ -266,7 +272,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    if(!old?.description||!old.variants?.length)hold('A complete existing storefront listing is required. Supplier changes and mockups are saved.');
    if(old.studioRevision&&old.studioRevision!==j.id&&old.studioUpdated>d.created)hold('A newer storefront edit exists.');
    const variants=old.variants.map(v=>{const sv=d.supplier.sync_variants.find(s=>String(s.id)===String(v.id));if(!sv)hold('Storefront and Printful variants do not match.');const images=d.images.filter(i=>i.variants.includes(sv.variant_id)).map(i=>i.storeUrl);if(!images.length)hold('A storefront variant has no verified new mockup.');return {...v,image:images[0],images};});
-   const product={...old,image:d.images[0].storeUrl,images:[...new Set(d.images.map(i=>i.storeUrl))],variants,studioRevision:j.id,studioUpdated:clock()};manifest.products??={};manifest.products[j.supplier]=product;
+   const product={...old,image:d.images[0].storeUrl,images:[...new Set(d.images.map(i=>i.storeUrl))],variants,studioRevision:j.id,studioUpdated:clock(),publicationApproval:{state:'approved',revision:j.id}};manifest.products??={};manifest.products[j.supplier]=product;
    if(!product.factoryExternalId?.startsWith('midnight-factory-'))hold('This storefront product is not managed by the factory manifest. Supplier edits are retained.');
    await gh('/contents/factory-listings.json',{method:'PUT',body:JSON.stringify({branch:'main',message:'Update edited factory product '+j.supplier,content:Buffer.from(JSON.stringify(manifest,null,2)+'\n').toString('base64'),...(file?{sha:file.sha}:{})})});d.storeProduct=product;update(j,d,'verifying_store');
    }finally{releaseManifest();}saveSoon();
@@ -349,14 +355,17 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    if(!j)fail(404,'Select this product’s saved update.');
    const draft=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));
    if(j.revision!==b.revision||draft?.revision!==b.revision)fail(409,'A newer draft exists. Finish that draft before publishing.');
-   if(j.target==='store'){send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;}
    const d=JSON.parse(j.document);
-   if(j.state!=='completed'||j.target!=='mockups'||!d.printfulUpdated||!d.images?.length||d.tasks?.some(t=>t.state!=='saved'))fail(409,'Wait for this saved Printful update and its mockups to finish before publishing.');
-   const live=await detail(p);if(fingerprint(live)!==d.finalFingerprint)fail(409,'The supplier product changed after these mockups were made. Reopen and finish the current design before publishing.');
+   if(j.target==='store'){
+    if(!d.ownerApproval){d.ownerApproval={revision:j.revision,recipe:approvalRecipe(d),approvedAt:clock()};run('UPDATE factory_studio_jobs SET document=?,state=?,error=\'\',next=0,updated=? WHERE id=?',JSON.stringify(d),j.state==='failed'?d.failureStage||'queued':j.state,clock(),j.id);saveSoon();j=get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id);}
+    send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;
+   }
+   if(j.state!=='completed'||j.target!=='mockups'||!d.images?.length||d.tasks?.some(t=>t.state!=='saved'))fail(409,'Wait for this saved Printful update and its mockups to finish before publishing.');
+   const live=await detail(p);if(fingerprint(live)!==(d.finalFingerprint||d.fingerprint))fail(409,'The supplier product changed after these mockups were made. Reopen and finish the current design before publishing.');
    // Recheck after the supplier request: another tab may have saved a revision.
    if(get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',j.supplier)?.revision!==b.revision)fail(409,'A newer draft exists. Finish that draft before publishing.');
    if(get("SELECT id FROM factory_studio_jobs WHERE supplier=? AND id<>? AND state NOT IN ('completed','cancelled')",j.supplier,j.id))fail(409,'Another update is still running for this product.');
-   run("UPDATE factory_studio_jobs SET target='store',state='publishing',error='',attempts=0,next=0,updated=? WHERE id=? AND state='completed'",clock(),j.id);
+   d.ownerApproval={revision:j.revision,recipe:approvalRecipe(d),approvedAt:clock()};run("UPDATE factory_studio_jobs SET target='store',state=?,document=?,error='',attempts=0,next=0,updated=? WHERE id=? AND state='completed'",d.printfulUpdated?'publishing':'updating_printful',JSON.stringify(d),clock(),j.id);
    saveSoon();j=get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id);send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;
   }
   if(path===ROOT+'/save'||path===ROOT+'/finish'){
@@ -364,7 +373,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    if(path.endsWith('/save')){const saved=saveDocument(p,b);saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,savedInApp:true,recoveryPending:true,printfulUpdated:false});return true;}
    if(unfinished&&unfinished.state!=='failed')fail(409,'This product has an unfinished update. Your app draft can be saved, but wait for its tracked result before submitting another.');
    if(unfinished&&!jobView(unfinished).canRevise)fail(409,'The previous update reached Printful or mockup submission. Review its result and use Return to editing before submitting changed files.');
-   if(b.target==='store'&&b.confirmPublication!==true)fail(400,'Explicitly approve publishing this edited product to the store. Saving a draft or updating Printful does not approve publication.');
+   if((b.target==='store'||b.target==='printful')&&b.confirmPublication!==true)fail(400,'Explicitly approve publishing this edited product to the store. Saving a draft or updating Printful does not approve publication.');
    if(!['printful','mockups','store'].includes(b.target))fail(400,'Choose Printful only, Printful with mockups, or Printful and app store.');
    if(p.jobId&&get("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_jobs'")&&get("SELECT id FROM factory_jobs WHERE id=? AND status IN ('running','queued','retry_wait')",p.jobId))fail(409,'This product is still being processed by the factory. Save an app draft now and finish after its current production job completes.');
    const d=await detail(p);if(fingerprint(d)!==b.document?.fingerprint)fail(409,'The supplier product changed. Reload its files before finishing.');const bp=await blueprints.load(p.choice.product,'default');if(bp.source!=='live')fail(409,'Current supplier templates are required.');if(!/^(default|dtg|digital|cut-sew|sublimation|direct-to-fabric|dtfilm|uv)$/i.test(bp.effectiveTechnique||'default'))fail(409,'This product requires a dedicated embroidery or special-method editor. Its current files were retained.');
@@ -379,7 +388,12 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    // history remains; external submissions and uncertain outcomes require review.
    const previousDraft=get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if((previousDraft?.revision||0)!==b.revision)hold('This product changed in another tab. Reload before saving.');
    if(unfinished)run("UPDATE factory_studio_jobs SET state='cancelled',updated=? WHERE id=?",clock(),unfinished.id);
-   const saved=saveDocument(p,b);const id=randomUUID(),document={...saved.document,supplier:d,blueprint:bp,product:p.choice.product,sourceJob:p.jobId||null,created:clock(),resolutionWarnings:issues,outputs:[],tasks:[],images:[]};run('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)',id,String(p.supplierId),p.id,saved.revision,b.target,'queued',JSON.stringify(document),clock());saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,recoveryPending:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',id)),savedInApp:true,printfulUpdated:false});return true;
+   const saved=saveDocument(p,b);const id=randomUUID(),document={...saved.document,supplier:d,blueprint:bp,product:p.choice.product,sourceJob:p.jobId||null,created:clock(),resolutionWarnings:issues,outputs:[],tasks:[],images:[]};if(b.confirmPublication===true)document.ownerApproval={revision:saved.revision,recipe:approvalRecipe(document),approvedAt:clock()};run('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)',id,String(p.supplierId),p.id,saved.revision,b.target,'queued',JSON.stringify(document),clock());saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,recoveryPending:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',id)),savedInApp:true,printfulUpdated:false});return true;
+  }
+  if(path===ROOT+'/reject'){
+   const j=get("SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=? AND target='mockups' AND state IN ('completed','failed')",b.id,String(p.supplierId));
+   if(!j||b.confirm!==true)fail(409,'Choose a finished private preview to reject.');
+   run("UPDATE factory_studio_jobs SET state='cancelled',error='Owner rejected this private preview. Original artwork and the last approved product are retained.',updated=? WHERE id=?",clock(),j.id);saveSoon();send(res,200,{rejected:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id))});return true;
   }
   if(path===ROOT+'/cancel'){const j=get("SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=? AND state='failed'",b.id,String(p.supplierId));if(!j)fail(409,'Choose this product’s failed update.');const live=await detail(p);run("UPDATE factory_studio_jobs SET state='cancelled',updated=? WHERE id=?",clock(),j.id);const row=get('SELECT * FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if(row){const document=JSON.parse(row.document);document.fingerprint=fingerprint(live);run('UPDATE factory_studio_drafts SET document=? WHERE supplier=?',JSON.stringify(document),String(p.supplierId));}saveSoon();send(res,200,{cancelled:true,note:'The current Printful files were retained. This did not undo any confirmed supplier changes.'});return true;}
   if(path===ROOT+'/retry'){const j=get("SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=? AND state='failed'",b.id,String(p.supplierId));if(!j)fail(409,'Select this product’s failed update.');const d=JSON.parse(j.document);if(d.tasks?.some(t=>!t.key))fail(409,'A mockup request has an uncertain outcome. Reconcile its task key first.');run('UPDATE factory_studio_jobs SET state=?,attempts=0,next=0,error=\'\',updated=? WHERE id=?',d.failureStage||'queued',clock(),j.id);saveSoon();send(res,200,jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id)));return true;}
