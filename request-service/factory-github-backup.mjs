@@ -181,7 +181,7 @@ export async function prepareGithubRecovery({dbPath,env=process.env,passwordHash
   // Fresh initialization is an explicit, one-time pin to the empty
   // destination's current commit. The first snapshot advances that ref.
   if(!store.manifest&&sha(env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT)&&env.FACTORY_BACKUP_INITIALIZE_FROM_COMMIT===store.head)store.initializeBeforeListen=true;
-  else {store.restoreReceipt=await store.restore(dbPath);console.log('Factory startup restore verified: '+JSON.stringify({commit:store.restoreReceipt.commit,integrity:store.restoreReceipt.integrity,counts:store.restoreReceipt.audit.counts,bytes:store.restoreReceipt.bytes}));}
+  else {store.restoreReceipt=await store.restore(dbPath);console.log('Factory startup restore verified: '+JSON.stringify({commit:store.restoreReceipt.commit,integrity:store.restoreReceipt.integrity,counts:store.restoreReceipt.audit.counts,missingReferencedArtwork:store.restoreReceipt.audit.missingReferencedArtwork.length,recoverableRevisions:store.restoreReceipt.audit.recoverableRevisions.length,bytes:store.restoreReceipt.bytes}));}
  }else{
   await store.connect();if(store.manifest){let pin;try{pin=JSON.parse(await readFile(dbPath+'.recovery.json','utf8'));}catch{}if(pin?.head!==store.head||pin?.sha256!==store.manifest.sha256){store.hold=true;store.lineageError='Local backup lineage is missing or older than the current remote checkpoint. Local work was preserved; automatic backup writes are held for recovery review.';}}
  }

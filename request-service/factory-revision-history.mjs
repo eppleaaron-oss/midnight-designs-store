@@ -9,8 +9,9 @@ export function revisionHistory(db){
  const insert=db.prepare('INSERT OR IGNORE INTO factory_studio_revision_history(supplier,source,revision,document,digest,origin,created) VALUES(?,?,?,?,?,?,?)');
  // Completed and interrupted production jobs often retain recipes older than
  // the current draft. Recover those available compositions without replacing it.
- for(const j of db.prepare("SELECT * FROM factory_studio_jobs WHERE NOT EXISTS(SELECT 1 FROM factory_studio_revision_history h WHERE h.supplier=factory_studio_jobs.supplier AND h.revision=factory_studio_jobs.revision AND h.origin='job:'||factory_studio_jobs.id)").iterate()){
-  const d=JSON.parse(j.document);if(!d.variants)continue;const text=JSON.stringify({templateStamp:d.templateStamp||null,fingerprint:d.fingerprint,variants:d.variants});insert.run(j.supplier,j.source,j.revision,text,createHash('sha256').update(text).digest('hex'),'job:'+j.id,j.updated);
+ let recovered=0;for(const j of db.prepare("SELECT * FROM factory_studio_jobs WHERE NOT EXISTS(SELECT 1 FROM factory_studio_revision_history h WHERE h.supplier=factory_studio_jobs.supplier AND h.revision=factory_studio_jobs.revision AND h.origin='job:'||factory_studio_jobs.id)").iterate()){
+  const d=JSON.parse(j.document);if(!d.variants)continue;const text=JSON.stringify({templateStamp:d.templateStamp||null,fingerprint:d.fingerprint,variants:d.variants});recovered+=Number(insert.run(j.supplier,j.source,j.revision,text,createHash('sha256').update(text).digest('hex'),'job:'+j.id,j.updated).changes);
  }
+ if(recovered)console.log('Factory revision recovery indexed '+recovered+' retained production recipes without replacing current drafts.');
  return {list(supplier){return Array.from(db.prepare('SELECT id,revision,digest,origin,created,document FROM factory_studio_revision_history WHERE supplier=? ORDER BY revision DESC,created DESC,id DESC').iterate(String(supplier)),({document,...r})=>({...r,placements:Object.values(JSON.parse(document).variants||{}).reduce((n,p)=>n+Object.keys(p).length,0)}));},get(supplier,id){const r=db.prepare('SELECT * FROM factory_studio_revision_history WHERE supplier=? AND id=?').get(String(supplier),id);return r?{...r,document:JSON.parse(r.document)}:null;}};
 }
