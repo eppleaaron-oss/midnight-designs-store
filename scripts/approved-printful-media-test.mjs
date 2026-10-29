@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {approvedFactory,requests,candidates,splitMockupRequest,supplierPreviews,rateLimitedSubmission,mediaSupplierApi,mediaImportAllowed} from './sync-approved-printful-media.mjs';
+import {approvedFactory,factoryApprovalsForImport,requests,candidates,splitMockupRequest,supplierPreviews,rateLimitedSubmission,mediaSupplierApi,mediaImportAllowed} from './sync-approved-printful-media.mjs';
 const batch='f13ad766-3e0d-4ddd-993b-167a318d0ae2';
 test('only completed, cleaned pieces inside the authorized batch can enter the import',()=>{
  const piece={id:'one',role:'shirts',choice:{product:328},item:{closed:1,cleanup:{verified:true},status:'supplier_created',decision:'approved',job:'1be3784b-c798-4f26-b5dc-a917a65a10b9',listing:{supplier_id:'482918795'}}};
@@ -19,3 +19,5 @@ test('large option/style matrices are split below Printful’s 500-file limit wi
 test('supplier-expanded style groups can be split again without losing options or changing print files',()=>{const {p,d,m}=fixture(),j=requests(p,d,m,true)[0],parts=splitMockupRequest(j,p.id);assert.equal(parts.length,2);assert.deepEqual(parts.flatMap(x=>x.payload.options),j.payload.options);assert.equal(parts[0].payload.files,j.payload.files);assert.notEqual(parts[0].key,parts[1].key);const one={...j,payload:{...j.payload,options:['Front']}};assert.deepEqual(splitMockupRequest(one,p.id).flatMap(x=>x.payload.option_groups),one.payload.option_groups);});
 
 test('owner-edited products are excluded from both legacy preview and mockup imports',()=>{assert.equal(mediaImportAllowed({studioRevision:'saved-owner-edit'}),false);assert.equal(mediaImportAllowed({factoryExternalId:'midnight-factory-original'}),true);assert.equal(mediaImportAllowed(undefined),true);});
+
+test('private Factory access keeps new approvals closed while existing public manifests can still refresh media',async()=>{for(const status of [401,403]){let calls=0;const approved=await factoryApprovalsForImport(async()=>{calls++;return new Response('{}',{status});});assert.equal(approved.size,0);assert.equal(calls,1);}await assert.rejects(factoryApprovalsForImport(async()=>new Response('{}',{status:502})),/unavailable/);});

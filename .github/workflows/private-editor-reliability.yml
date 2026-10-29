@@ -1,0 +1,30 @@
+name: Private product editor reliability
+on:
+  pull_request:
+    paths: ['request-service/public/login*', 'request-service/public/product-studio*', 'request-service/factory-access*', 'request-service/factory-product-studio*', 'request-service/server.mjs', '.github/workflows/private-editor-reliability.yml']
+  push:
+    branches: [main]
+    paths: ['request-service/public/login*', 'request-service/public/product-studio*', 'request-service/factory-access*', 'request-service/factory-product-studio*', 'request-service/server.mjs', '.github/workflows/private-editor-reliability.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --prefix request-service
+      - run: npm test --prefix request-service
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Prove browser save, reload, four placements and same-product update
+        run: MIDNIGHT_STUDIO_BROWSER=1 node --test --test-name-pattern='browser saves' request-service/factory-product-studio-test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verified-editor-browser-flow
+          path: qa-editor-*.png
+          retention-days: 3

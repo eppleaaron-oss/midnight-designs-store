@@ -14,6 +14,13 @@ export function approvedFactory(state){
  for(const f of state.outfitQueue.plans||[])for(const p of f.pieces||[]){const i=p.item;if(!ids.has(p.id)||!i?.closed||!i.cleanup?.verified||!['supplier_created','published'].includes(i.status)||!(i.decision==='approved'||i.status==='published')||!/^\d+$/.test(i.listing?.supplier_id||'')||!/^[-a-f0-9]{36}$/.test(i.job||''))continue;out.set(String(i.listing.supplier_id),{external:'midnight-factory-'+i.job,product:p.choice.product,role:p.role,outfit:f.id,collection:f.name});}
  return out;
 }
+// Private Factory installations refresh existing approved manifests without opening owner APIs.
+export async function factoryApprovalsForImport(fetchImpl=fetch){
+ const response=await fetchImpl('https://midnight-designs-backend.onrender.com/api/owner/ai-factory/basic',{signal:AbortSignal.timeout(60000)});
+ if(response.status===401||response.status===403)return new Map();
+ if(!response.ok)throw Error('Factory receipt audit unavailable.');
+ return approvedFactory(await response.json());
+}
 export function mediaImportAllowed(product){return !product?.studioRevision;}
 export function requests(product,detail,mapping,factory=false){
  return [...new Set(product.variants.map(v=>v.color))].flatMap(color=>{
@@ -62,7 +69,7 @@ export async function run(){
  const sharp=createRequire(new URL('../request-service/package.json',import.meta.url))('sharp'),headers={Authorization:'Bearer '+token,...(process.env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':process.env.PRINTFUL_STORE_ID}:{})};
  const read=async(path,fallback)=>{try{return JSON.parse(await fs.readFile(path,'utf8'));}catch(e){if(e.code==='ENOENT')return fallback;throw e;}},write=(path,value)=>fs.writeFile(path,JSON.stringify(value,null,2)+'\n');
  const api=mediaSupplierApi({headers});
- const backend=await fetch('https://midnight-designs-backend.onrender.com/api/owner/ai-factory/basic',{signal:AbortSignal.timeout(60000)});if(!backend.ok)throw Error('Factory receipt audit unavailable.');const approved=approvedFactory(await backend.json());
+ const approved=await factoryApprovalsForImport();
  let catalog=await read('products.json',{products:[]}),photos=await read('product-photos.json',{products:{}}),manifest=await read('factory-listings.json',{products:{}}),ledger=await read('printful-media-progress.json',{engine:ENGINE,jobs:{},errors:{}}),specs=await read('product-information.json',{products:{}});ledger.errors={};
  const paths=['printful-media-progress.json','product-photos.json','factory-listings.json','products.json','product-information.json','assets/product-photos','products','sitemap.xml','shop.html'];
  async function checkpoint(message){
