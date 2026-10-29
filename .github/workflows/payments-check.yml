@@ -1,9 +1,9 @@
 name: Payment integrity
 on:
   push:
-    paths: ['request-service/**', 'checkout.js', 'master-payments.js', '.github/workflows/payments-check.yml']
+    paths: ['request-service/**', 'checkout.js', 'master-payments.js', 'checkout-availability.js', 'cart.html', 'checkout-result.html', 'shipping.html', 'returns.html', 'order-help.html', '.github/workflows/payments-check.yml']
   pull_request:
-    paths: ['request-service/**', 'checkout.js', 'master-payments.js', '.github/workflows/payments-check.yml']
+    paths: ['request-service/**', 'checkout.js', 'master-payments.js', 'checkout-availability.js', 'cart.html', 'checkout-result.html', 'shipping.html', 'returns.html', 'order-help.html', '.github/workflows/payments-check.yml']
 jobs:
   payments:
     runs-on: ubuntu-latest
@@ -17,3 +17,13 @@ jobs:
       - run: node --check checkout.js && node --check master-payments.js
       - run: npm test
         working-directory: request-service
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Verify buying, failed payment, recovery, saved artwork, fulfillment and tracking on six screen sizes
+        run: node request-service/payment-browser-test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verified-checkout-flow
+          path: qa-checkout-*.png
+          retention-days: 3
