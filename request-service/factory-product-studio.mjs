@@ -1,3 +1,4 @@
+import {revisionHistory} from './factory-revision-history.mjs';
 import {measurementLibrary,measuredAreaStamp,reviewedLayerRegion} from './factory-measured-layouts.mjs';
 import {nameFactoryProduct,compareFactorySizes} from './factory-product-identity.mjs';
 import {transferStudioLayer} from './factory-outfit-learning.mjs';
@@ -92,7 +93,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  CREATE TABLE IF NOT EXISTS factory_studio_jobs(id TEXT PRIMARY KEY,supplier TEXT NOT NULL,source TEXT NOT NULL,revision INTEGER NOT NULL,target TEXT NOT NULL,state TEXT NOT NULL,document TEXT NOT NULL,error TEXT NOT NULL DEFAULT '',attempts INTEGER NOT NULL DEFAULT 0,next INTEGER NOT NULL DEFAULT 0,updated INTEGER NOT NULL);
  CREATE UNIQUE INDEX IF NOT EXISTS factory_studio_one_product ON factory_studio_jobs(supplier) WHERE state NOT IN ('completed','cancelled');
  CREATE TABLE IF NOT EXISTS factory_studio_assets(id TEXT PRIMARY KEY,job TEXT NOT NULL,kind TEXT NOT NULL,name TEXT NOT NULL,mime TEXT NOT NULL,width INTEGER NOT NULL,height INTEGER NOT NULL,sha TEXT NOT NULL,data BLOB NOT NULL,remote TEXT,capability TEXT NOT NULL UNIQUE,created INTEGER NOT NULL);`);
- const learned=measurementLibrary(db);
+ const learned=measurementLibrary(db),history=revisionHistory(db);
  const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a);
  const assetLimit=Math.max(1,Math.min(4,Math.floor(stepAssetLimit)||4)),concurrentLimit=Math.max(1,Math.min(3,Math.floor(maxConcurrentUpdates)||3));
  const config=backups.connection?.(),assets=providedAssets||(config?new BasicGithubAssets(config,{fetchImpl,clock}):null);const byteCache=new Map(),byteReads=new Map();const busy=new Map(),served=new Map();let resolved=/^\d+$/.test(String(storeId||''))?String(storeId):null,closing=false;
@@ -175,7 +176,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   const variants=b.document.variants;if(!variants||typeof variants!=='object'||Array.isArray(variants)||Object.keys(variants).length>100)hold('Choose the exact variants to edit.',400);
   const document={templateStamp:b.document.templateStamp||null,fingerprint:b.document.fingerprint,variants:Object.fromEntries(Object.entries(variants).map(([id,panels])=>{if(!/^\d+$/.test(id)||!panels||typeof panels!=='object'||Array.isArray(panels)||Object.keys(panels).length>40)hold('Invalid variant or print panel.',400);return [id,Object.fromEntries(Object.entries(panels).map(([k,v])=>{if(!/^[-a-z0-9_]{1,60}$/i.test(k))hold('Invalid print panel.',400);return [k,studioLayers(v)];}))];}))};
   if(previous&&isDeepStrictEqual(JSON.parse(previous.document),document))return {revision:previous.revision,document,unchanged:true};
-  const revision=b.revision+1;run('INSERT INTO factory_studio_drafts VALUES(?,?,?,?,?) ON CONFLICT(supplier) DO UPDATE SET source=excluded.source,revision=excluded.revision,document=excluded.document,updated=excluded.updated',String(p.supplierId),p.id,revision,JSON.stringify(document),clock());return {revision,document};
+  const revision=Math.max(b.revision,get('SELECT coalesce(max(revision),0) n FROM factory_studio_revision_history WHERE supplier=?',String(p.supplierId)).n)+1;run('INSERT INTO factory_studio_drafts VALUES(?,?,?,?,?) ON CONFLICT(supplier) DO UPDATE SET source=excluded.source,revision=excluded.revision,document=excluded.document,updated=excluded.updated',String(p.supplierId),p.id,revision,JSON.stringify(document),clock());return {revision,document};
  }
  function update(j,d,state=j.state){run('UPDATE factory_studio_jobs SET document=?,state=?,error=\'\',attempts=0,next=0,updated=? WHERE id=?',JSON.stringify(d),state,clock(),j.id);}
  const link=a=>origin+'/factory-studio-file/'+a.capability;
@@ -358,6 +359,14 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   if(method!=='POST')fail(405,'Use POST.');if(req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'product-studio',40);const b=await body(req);
   if(path===ROOT+'/open'){send(res,200,await open(b.source));return true;}
   const p=source(b.source);if(!p?.supplierId)fail(404,'Select an existing supplier product.');
+  if(['/save','/finish','/restore-revision','/feedback','/publish','/reject'].some(a=>path===ROOT+a))await backups.assertWritable?.();
+  if(path===ROOT+'/revisions'){send(res,200,{revisions:history.list(p.supplierId),currentRevision:get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId))?.revision||0,note:'Older available drafts and production recipes are retained. A restored version becomes a new private draft.'});return true;}
+  if(path===ROOT+'/restore-revision'){
+   const latest=get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if(b.revision!==(latest?.revision||0))fail(409,'A newer draft exists. Reload before recovering an older version.');
+   const archived=Number.isSafeInteger(b.id)&&history.get(p.supplierId,b.id);if(!archived)fail(404,'Saved revision unavailable for this product.');
+   const current=await open(p.id);if(!archived.document.templateStamp||archived.document.templateStamp!==current.templateStamp)fail(409,'The supplier template or size mapping changed. This older recipe is retained, but cannot be applied automatically.');
+   const saved=saveDocument(p,{revision:b.revision,document:{...archived.document,fingerprint:current.fingerprint}});saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,recoveredFrom:archived.id,savedInApp:true,recoveryPending:true,printfulUpdated:false});return true;
+  }
   if(path===ROOT+'/original'){const set=family(p).set,part=set?.parts?.[b.part];if(!part)fail(404,'This image is not part of the product’s original hoodie design set.');const id=await workflow.sourceFile(part,set),a=get('SELECT * FROM factory_artwork WHERE id=?',id),m=await sharp(Buffer.from(a.data)).autoOrient().metadata(),size=m.autoOrient||m;send(res,200,{asset:'art:'+id,part:b.part,name:part.name||b.part,width:size.width,height:size.height,contentBounds:await artworkBounds(Buffer.from(a.data)),url:'/api/owner/ai-factory/artwork/'+id+'/file'});return true;}
   if(path===ROOT+'/upload'){if(typeof b.data!=='string'||b.data.length>7*1024*1024||!/^[-\w .()]{1,160}$/.test(b.name||''))fail(400,'Upload a named PNG, JPEG or WebP under 5 MB.');const data=Buffer.from(b.data,'base64');if(data.length>5*1024*1024)fail(413,'Upload under 5 MB.');const img=sharp(data,{limitInputPixels:40_000_000,failOn:'warning'}),m=await img.metadata();if(!['png','jpeg','webp'].includes(m.format)||m.pages>1)fail(400,'Use a single PNG, JPEG or WebP.');const normalized=await img.autoOrient().png().toBuffer(),a=await putAsset('studio-upload-'+p.supplierId,'upload',b.name,normalized);await persistAsset(a);saveSoon();send(res,201,{...assetMeta(a),contentBounds:await artworkBounds(normalized),recoveryPending:true});return true;}
   if(path===ROOT+'/feedback'){
