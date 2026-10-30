@@ -5,6 +5,7 @@ import {backup,DatabaseSync} from 'node:sqlite';
 import {createCipheriv,createDecipheriv,createHash,createHmac,hkdfSync,randomBytes} from 'node:crypto';
 import {mkdtemp,mkdir,open,rm,stat,statfs,link,readFile,writeFile,rename} from 'node:fs/promises';
 import {dirname,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {tmpdir} from 'node:os';
 import {deflate,inflateSync} from 'node:zlib';
 import {promisify} from 'node:util';
@@ -12,6 +13,7 @@ import {Worker} from 'node:worker_threads';
 const compress=promisify(deflate);
 const prepareSnapshot=(path,maxBytes)=>new Promise((resolve,reject)=>{let answered=false;const worker=new Worker(new URL('./factory-backup-worker.mjs',import.meta.url),{workerData:{path,maxBytes},env:{...process.env,SQLITE_TMPDIR:dirname(path),TMPDIR:dirname(path)}});worker.once('message',m=>{answered=true;m?.ok?resolve():reject(problem('Recovery snapshot preparation failed. The live database was preserved.'));});worker.once('error',()=>reject(problem('Recovery snapshot worker failed. The live database was preserved.')));worker.once('exit',code=>{if(code||!answered)reject(problem('Recovery snapshot preparation did not finish.'));});});
 
+const WORKSPACE_SCRATCH=fileURLToPath(new URL('../private-data/backup-scratch/',import.meta.url));
 const ROOT='factory-backup',MANIFEST=ROOT+'/latest.enc',CHUNK=4*1024*1024;
 const digest=b=>createHash('sha256').update(b).digest('hex');
 const problem=(message,status=503,extra={})=>Object.assign(Error(message),{status,...extra});
@@ -116,7 +118,7 @@ export class GithubSnapshotStore{
  }
  async assertCurrent(){if(this.hold)throw problem(this.lineageError||'Backup conflict requires owner review before another write.',503,{conflict:true});await this.connect();while(!await this.confirmHead(this.head,this.previousHead)){};}
  validateManifest(m){if(![1,2].includes(m?.format)||!Number.isSafeInteger(m.bytes)||m.bytes<512||m.bytes>this.maxBytes||!/^[a-f0-9]{64}$/.test(m.sha256)||!Array.isArray(m.chunks)||m.chunks.length!==Math.ceil(m.bytes/CHUNK)||!Number.isFinite(Date.parse(m.created)))throw problem('Backup manifest is invalid or exceeds the configured size limit.');if(m.format===2&&(!/^recovery-v2-[a-f0-9]{64}$/.test(m.release?.job)||!Number.isSafeInteger(m.release?.id)))throw problem('Backup release identity is invalid.');let size=0;for(const c of m.chunks){if(!/^[a-f0-9]{64}$/.test(c.id)||!sha(c.sha)||!Number.isSafeInteger(c.bytes)||c.bytes<1||c.bytes>CHUNK)throw problem('Backup chunk manifest is invalid.');if(m.format===2&&(!Number.isSafeInteger(c.asset)||c.asset<1||!/^[a-f0-9]{64}$/.test(c.encodedSha)||c.release!==undefined&&!validRelease(c.release)))throw problem('Backup release chunk is invalid.');size+=c.bytes;}if(size!==m.bytes)throw problem('Backup size does not match its manifest.');if(m.previousReleases!==undefined&&(!Array.isArray(m.previousReleases)||m.previousReleases.length>1024||m.previousReleases.some(r=>!validRelease(r))))throw problem('Backup retained release identities are invalid.');}
- async snapshot(db,{initialize=false,directory=this.localPath?dirname(this.localPath):tmpdir()}={}){
+ async snapshot(db,{initialize=false,directory=WORKSPACE_SCRATCH}={}){
   await this.connect();await this.privateRepository({write:!this.releaseSnapshots});
   if(this.hold)throw problem('Backup conflict requires an owner review. Existing GitHub snapshots were preserved.');
   await this.assertCurrent();
@@ -203,7 +205,7 @@ export function factoryGithubBackups({db,dbPath,auth,body,send,fail,limit,origin
   if(!checkpoint&&activeGithubStep())throw problem('The active Basic step will save its working files and checkpoint before another backup.',409);
   if(closed)throw problem('Backup service is closing.');if(restoreRunning)await restoreRunning;if(!store)throw problem(configurationError||'GitHub backups are not configured.');if(pending)return pending;
   if(clock()<retryAt)throw problem('GitHub backup is waiting before its next permitted attempt.',429);
-  const marker=changes();lastError='';pending=(async()=>{try{const saved=await store.snapshot(db,{initialize,directory:dirname(dbPath)});watermark=marker;lastSaved=saved.manifest.created;commit=saved.commit;retryAt=0;return snapshot();}catch(e){lastError=e.message;retryAt=e.retryAt||clock()+60000;throw e;}finally{pending=null;}})();return pending;
+  const marker=changes();lastError='';pending=(async()=>{try{const saved=await store.snapshot(db,{initialize,directory:WORKSPACE_SCRATCH});watermark=marker;lastSaved=saved.manifest.created;commit=saved.commit;retryAt=0;return snapshot();}catch(e){lastError=e.message;retryAt=e.retryAt||clock()+60000;throw e;}finally{pending=null;}})();return pending;
  }
  async function verifyRestore(){
   if(restoreRunning)return restoreRunning;if(!store)throw problem('GitHub backups are not configured.');restoreError='';restoreErrorKind=null;

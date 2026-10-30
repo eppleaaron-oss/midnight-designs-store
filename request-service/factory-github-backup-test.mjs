@@ -4,7 +4,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {createHash,randomBytes,scryptSync} from 'node:crypto';
 import {mkdtemp,mkdir,readdir,rm,stat,writeFile,readFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {dirname,join} from 'node:path';
 import {GithubSnapshotStore,githubBackupConfig,factoryGithubBackups,prepareGithubRecovery} from './factory-github-backup.mjs';
 import {githubWorkingFixture} from './factory-github-fixture.mjs';
 import {durableQueueStorage} from './factory-storage.mjs';
@@ -112,9 +112,10 @@ test('fresh initialization needs an exact empty-repository commit pin and cannot
 });
 test('owner-only backup controls require the same origin and status reports confirmed commits',async t=>{
  const f=await fixture(t),env={FACTORY_BACKUP_REPO:config.repo,FACTORY_BACKUP_GITHUB_TOKEN:config.token,FACTORY_BACKUP_ENCRYPTION_KEY:config.key.toString('hex')};let result;
+ let scratchDirectory;const originalSnapshot=f.store.snapshot.bind(f.store);f.store.snapshot=async(db,options)=>{scratchDirectory=options.directory;return originalSnapshot(db,options);};
  const service=factoryGithubBackups({db:f.db,dbPath:f.path,env,store:f.store,autoStart:false,origin:'https://factory.test',auth(req){if(!req.owner)throw Object.assign(Error('Owner required'),{status:401});},body:async req=>req.body||{},send(_res,status,data){result={status,data};},fail(status,message){throw Object.assign(Error(message),{status});},limit(){}});t.after(()=>service.close());
  await assert.rejects(service.handle({}, {},'/api/owner/ai-factory/storage','GET'),e=>e.status===401);await assert.rejects(service.handle({owner:true,headers:{origin:'https://evil.test'}},{},'/api/owner/ai-factory/storage/backup','POST'),e=>e.status===403);
- await service.handle({owner:true},{},'/api/owner/ai-factory/storage','GET');assert.equal(result.data.lastSaved,null);assert.equal(result.data.liveQueueStorage,false);const pending=service.save(true);assert.equal(service.snapshot().running,true);assert.equal(service.snapshot().lastSaved,null);await pending;assert.equal(service.snapshot().running,false);assert.equal(service.snapshot().commit,f.gh.head);assert.equal(service.snapshot().unsavedChanges,false);f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');assert.equal(service.snapshot().unsavedChanges,true);await service.tick();assert.equal(service.snapshot().unsavedChanges,false);
+ await service.handle({owner:true},{},'/api/owner/ai-factory/storage','GET');assert.equal(result.data.lastSaved,null);assert.equal(result.data.liveQueueStorage,false);const pending=service.save(true);assert.equal(service.snapshot().running,true);assert.equal(service.snapshot().lastSaved,null);await pending;assert.notEqual(scratchDirectory,dirname(f.path),'a temporary live DATA_PATH must not place the full backup beside it in /tmp');assert.equal(service.snapshot().running,false);assert.equal(service.snapshot().commit,f.gh.head);assert.equal(service.snapshot().unsavedChanges,false);f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');assert.equal(service.snapshot().unsavedChanges,true);await service.tick();assert.equal(service.snapshot().unsavedChanges,false);
 });
 test('configuration derives stable encryption from backend credentials and rejects invalid keys and paths',()=>{
  const hash='ab'.repeat(16)+':'+'cd'.repeat(64),env={FACTORY_BACKUP_REPO:config.repo,CATALOG_GITHUB_TOKEN:config.token};assert.deepEqual(githubBackupConfig(env,hash).key,githubBackupConfig(env,hash).key);assert.notDeepEqual(githubBackupConfig(env,hash).key,githubBackupConfig(env,'ef'.repeat(16)+':'+'cd'.repeat(64)).key);assert.equal(githubBackupConfig({}),null);for(const bad of [{...env,FACTORY_BACKUP_REPO:'https://github.com/public/repo'},{...env,FACTORY_BACKUP_ENCRYPTION_KEY:'invalid'},{...env,FACTORY_BACKUP_INTERVAL_SECONDS:'1'},{...env,CATALOG_GITHUB_TOKEN:''}])assert.throws(()=>githubBackupConfig(bad,hash));
