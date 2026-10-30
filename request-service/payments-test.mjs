@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createHmac,scryptSync} from 'node:crypto';
 import {createService} from './server.mjs';
-import {verifySignature} from './payments.mjs';
+import {verifySignature,stripeKeyMatchesMode,paymentEnvironment} from './payments.mjs';
 test('Payment integrity: server prices, shipping, capabilities, signed verification and owner isolation',async()=>{
  const origin='http://localhost:3000',secret='whsec_test',salt='ab'.repeat(16),passwordHash=salt+':'+scryptSync('owner-test',salt,64).toString('hex');
  const product={id:'shirt',name:'Moon',variants:[{id:123,price:25,currency:'USD',catalogVariantId:401,size:'M',color:'Black',availability:'active'}]};let session,requests=[],shippingFailure=false;
@@ -36,3 +36,12 @@ test('Payment integrity: server prices, shipping, capabilities, signed verificat
  }finally{await new Promise(r=>service.server.close(r));}
 });
 test('Stripe signatures reject stale, modified and missing payload authentication',()=>{const raw=Buffer.from('{}'),t=Math.floor(Date.now()/1000)-600,sig=createHmac('sha256','test').update(t+'.').update(raw).digest('hex');assert.equal(verifySignature(raw,`t=${t},v1=${sig}`,'test'),false);assert.equal(verifySignature(raw,undefined,'test'),false);});
+
+test('Restricted Stripe keys preserve strict test/live isolation',()=>{
+ for(const prefix of ['sk','rk']){assert.equal(stripeKeyMatchesMode(prefix+'_live_fixture',true),true);assert.equal(stripeKeyMatchesMode(prefix+'_live_fixture',false),false);assert.equal(stripeKeyMatchesMode(prefix+'_test_fixture',false),true);assert.equal(stripeKeyMatchesMode(prefix+'_test_fixture',true),false);}
+ for(const invalid of [undefined,'','pk_live_public','whsec_fixture','rk_other_fixture'])assert.equal(stripeKeyMatchesMode(invalid,true),false);
+});
+test('Live webhook uses the staged live endpoint secret without replacing sandbox signing',()=>{
+ const env={STRIPE_SECRET_KEY:'rk_live_fixture',STRIPE_WEBHOOK_SECRET:'whsec_sandbox',STRIPE_LIVE_WEBHOOK_SECRET:'whsec_live'};
+ assert.equal(paymentEnvironment(env).webhook,'whsec_sandbox');assert.equal(paymentEnvironment({...env,PAYMENTS_LIVE:'true'}).webhook,'whsec_live');assert.equal(paymentEnvironment({...env,PAYMENTS_LIVE:'true',STRIPE_LIVE_WEBHOOK_SECRET:''}).webhook,'whsec_sandbox');
+});
