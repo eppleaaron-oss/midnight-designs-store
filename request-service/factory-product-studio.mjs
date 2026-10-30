@@ -97,7 +97,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  const learned=measurementLibrary(db),history=revisionHistory(db);
  const get=(s,...a)=>db.prepare(s).get(...a),all=(s,...a)=>db.prepare(s).all(...a),run=(s,...a)=>db.prepare(s).run(...a);
  const assetLimit=Math.max(1,Math.min(4,Math.floor(stepAssetLimit)||4)),concurrentLimit=Math.max(1,Math.min(3,Math.floor(maxConcurrentUpdates)||3));
- const config=backups.connection?.(),assets=providedAssets||(config?new BasicGithubAssets(config,{fetchImpl,clock}):null);const byteCache=new Map(),byteReads=new Map();const busy=new Map(),served=new Map();let resolved=/^\d+$/.test(String(storeId||''))?String(storeId):null,closing=false;
+ const config=backups.connection?.(),assets=providedAssets||(config?new BasicGithubAssets(config,{fetchImpl,clock}):null);const byteCache=new Map(),byteReads=new Map();const busy=new Map(),served=new Map(),submissions=new Set();let resolved=/^\d+$/.test(String(storeId||''))?String(storeId):null,closing=false;
  const has=table=>!!get("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",table);
  const nativeItems=()=>has('factory_basic_items')&&db.prepare('PRAGMA table_info(factory_basic_items)').all().some(c=>c.name==='id');
  function trackedItem(itemId,id){if(!itemId)return null;const r=get('SELECT i.*,l.supplier_id,l.copy FROM factory_basic_items i LEFT JOIN factory_listings l ON l.job=i.job WHERE i.id=?',itemId);if(!r)return null;const recipe=JSON.parse(r.recipe),copy=r.copy?JSON.parse(r.copy):{};return {id,itemId:r.id,jobId:r.job,collection:recipe.outfitCollection||recipe.set.name,name:copy.title||recipe.name,state:r.status,supplierId:r.supplier_id,editable:false,choice:{setId:recipe.set.id,product:recipe.product,audience:recipe.audience,sizes:(recipe.variants||[]).map(v=>v.size),allowUnspecifiedAudience:recipe.allowUnspecifiedAudience===true,layout:recipe.layout?.input||null}};}
@@ -124,7 +124,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   }finally{release();}
  }
  async function pf(path,options={}){if(!token)hold('Printful is not connected.',503);const url='https://api.printful.com/'+path,request={...options,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',...(resolved?{'X-PF-Store-Id':resolved}:{}),...options.headers}};let r;
-  try{r=(!options.method||options.method==='GET')?await readPrintful(url,{...request,signal:AbortSignal.timeout(25000)},fetchImpl):await pacedSupplierWrite(url,request,path.startsWith('mockup-generator/')?writeLanes.mockup:writeLanes.sync);}catch(e){if(e.status===429)throw e;hold('The Printful connection was interrupted. Saved work is retained for retry.',503);}
+  try{r=(!options.method||options.method==='GET')?await readPrintful(url,{...request,timeoutMs:25000},fetchImpl):await pacedSupplierWrite(url,request,path.startsWith('mockup-generator/')?writeLanes.mockup:writeLanes.sync);}catch(e){if(e.status===429)throw e;hold('The Printful connection was interrupted. Saved work is retained for retry.',503);}
   let d;try{d=await r.json();}catch{d={};}if(!r.ok||d.error||Number(d.code)>=400)throw Object.assign(Error('Printful HTTP '+r.status+': '+String(d.error?.message||d.error||d.result||'Request rejected').split(token).join('[redacted]').slice(0,450)),{status:r.status===429?429:r.status>=500?503:409,providerStatus:r.status,retryAfter:Number(r.headers.get('retry-after')||60)});return d.result;
  }
  async function connection(){if(resolved)return;const stores=await pf('stores');if(!Array.isArray(stores)||stores.length!==1)hold('The Printful store must be identified before editing.');resolved=String(stores[0].id);}
@@ -398,6 +398,10 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    saveSoon();j=get('SELECT * FROM factory_studio_jobs WHERE id=?',j.id);send(res,202,{revision:draft.revision,document:JSON.parse(draft.document),job:jobView(j)});return true;
   }
   if(path===ROOT+'/save'||path===ROOT+'/finish'){
+   const submission=path===ROOT+'/finish'?String(p.supplierId):null;
+   if(submission&&submissions.has(submission))fail(409,'Finish is already validating this product. Your draft is retained; wait for the tracked result before submitting again.');
+   if(submission)submissions.add(submission);
+   try{
    const unfinished=get("SELECT * FROM factory_studio_jobs WHERE supplier=? AND state NOT IN ('completed','cancelled')",String(p.supplierId));
    if(path.endsWith('/save')){const saved=saveDocument(p,b);saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,savedInApp:true,recoveryPending:true,printfulUpdated:false});return true;}
    if(unfinished&&unfinished.state!=='failed')fail(409,'This product has an unfinished update. Your app draft can be saved, but wait for its tracked result before submitting another.');
@@ -417,7 +421,9 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
    // history remains; external submissions and uncertain outcomes require review.
    const previousDraft=get('SELECT revision FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId));if((previousDraft?.revision||0)!==b.revision)hold('This product changed in another tab. Reload before saving.');
    if(unfinished)run("UPDATE factory_studio_jobs SET state='cancelled',updated=? WHERE id=?",clock(),unfinished.id);
+   const competing=get("SELECT id FROM factory_studio_jobs WHERE supplier=? AND state NOT IN ('completed','cancelled')",String(p.supplierId));if(competing)fail(409,'This product has an unfinished update. Your app draft can be saved, but wait for its tracked result before submitting another.');
    const saved=saveDocument(p,b);const id=randomUUID(),document={...saved.document,supplier:d,blueprint:bp,product:p.choice.product,sourceJob:p.jobId||null,created:clock(),resolutionWarnings:issues,outputs:[],tasks:[],images:[]};if(b.target==='store')await saveExample(p,document,saved.revision,'approved','Owner approved this edited revision for publication.',id);if(b.confirmPublication===true)document.ownerApproval={revision:saved.revision,recipe:approvalRecipe(document),approvedAt:clock()};run('INSERT INTO factory_studio_jobs(id,supplier,source,revision,target,state,document,updated) VALUES(?,?,?,?,?,?,?,?)',id,String(p.supplierId),p.id,saved.revision,b.target,'queued',JSON.stringify(document),clock());saveSoon({supplier:String(p.supplierId),revision:saved.revision});send(res,202,{...saved,recoveryPending:true,job:jobView(get('SELECT * FROM factory_studio_jobs WHERE id=?',id)),savedInApp:true,printfulUpdated:false});return true;
+   }finally{if(submission)submissions.delete(submission);}
   }
   if(path===ROOT+'/reject'){
    const j=get("SELECT * FROM factory_studio_jobs WHERE id=? AND supplier=? AND target='mockups' AND state IN ('completed','failed')",b.id,String(p.supplierId));

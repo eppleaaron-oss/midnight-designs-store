@@ -8,6 +8,8 @@ export function createPrintfulReader({clock=Date.now,sleep=ms=>new Promise(r=>se
  return function read(url,options={},fetchImpl=fetch){
   const u=new URL(url);if(u.origin!=='https://api.printful.com'||options.method&&options.method!=='GET')throw Error('Printful reader accepts supplier GET requests only.');
   const headers=new Headers(options.headers),key=createHash('sha256').update((headers.get('authorization')||'anonymous')+'\n'+(headers.get('x-pf-store-id')||'')).digest('hex');
+  const {timeoutMs=25000,...request}=options;
+  if(!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>120000)throw Error('Invalid Printful read timeout.');
   let accounts=clients.get(fetchImpl);if(!accounts){accounts=new Map();clients.set(fetchImpl,accounts);}let state=accounts.get(key);if(!state){state={tail:Promise.resolve(),pending:new Map(),next:0,blocked:0,gap:0};accounts.set(key,state);}
   const requestKey=u.href+'\n'+(headers.get('x-pf-store-id')||'');
   if(state.pending.has(requestKey))return state.pending.get(requestKey).then(r=>r.clone());
@@ -16,7 +18,10 @@ export function createPrintfulReader({clock=Date.now,sleep=ms=>new Promise(r=>se
    if(state.blocked>clock())throw rateError();
    const delay=state.next-clock();if(delay>0)await sleep(delay);
    if(state.blocked>clock())throw rateError();
-   let r;try{r=await fetchImpl(u.href,options);}catch{throw Object.assign(Error('Printful is temporarily unreachable. The same selection can be retried.'),{status:503});}
+   // Queueing and supplier pacing are not network time. Create the timeout
+   // only when this request can actually start; preserve explicit cancellation.
+   const timeout=AbortSignal.timeout(timeoutMs),signal=request.signal?AbortSignal.any([request.signal,timeout]):timeout;
+   let r;try{signal.throwIfAborted();r=await fetchImpl(u.href,{...request,signal});}catch{throw Object.assign(Error('Printful is temporarily unreachable. The same selection can be retried.'),{status:503});}
    const limit=Number(r.headers.get('x-ratelimit-limit')),remaining=r.headers.get('x-ratelimit-remaining'),reset=Number(r.headers.get('x-ratelimit-reset'));
    if(limit>0&&Number.isFinite(limit))state.gap=Math.max(50,Math.ceil(66000/limit));
    state.next=clock()+state.gap;

@@ -712,3 +712,23 @@ test('older production recipes are discoverable after restart and restored draft
 test('a retired deployment refuses a save before acknowledging or overwriting local work',async t=>{
  const f=await fixture(t),document=await f.document();f.options.backups.assertWritable=async()=>{throw Object.assign(Error('A newer recovery writer is active.'),{status:503});};await assert.rejects(f.call('save',{source:f.p.id,revision:0,document}),/newer recovery writer/);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_drafts').get().n,0);assert.equal(f.counts().puts,0);
 });
+
+
+for(const target of ['mockups','store'])test('overlapping '+target+' Finish requests cannot queue two updates for one saved product revision',async t=>{
+ const f=await fixture(t),saved=await f.call('save',{source:f.p.id,revision:0,document:await f.document()});
+ const body={source:f.p.id,revision:saved.revision,document:saved.document,target,confirmPublication:target==='store'};
+ const results=await Promise.allSettled([f.call('finish',body),f.call('finish',body)]);
+ assert.equal(results.filter(r=>r.status==='fulfilled').length,1,'only one concurrent submission may be accepted');
+ assert.equal(results.find(r=>r.status==='rejected').reason.status,409,'a competing Finish returns an actionable conflict, not a database error');
+ assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,1,'one tracked update owns the supplier product');
+ assert.equal(f.counts().puts,0);assert.equal(f.counts().posts,0);
+});
+
+
+test('a failed Finish releases its validation lock and the exact draft can be corrected and submitted',async t=>{
+ const f=await fixture(t),d=await f.document(),bad=structuredClone(d);bad.templateStamp='changed';
+ await assert.rejects(f.call('finish',{source:f.p.id,revision:0,document:bad,target:'mockups'}),/template changed/);
+ const saved=await f.call('save',{source:f.p.id,revision:0,document:d});
+ const result=await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'mockups'});
+ assert.equal(result.job.state,'queued');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,1);
+});

@@ -39,3 +39,19 @@ test('the live owner API exposes supplier cooldown and overlapping store imports
  const ideas=factoryIdeas({db:service.db,origin,manager:{},env:{PRINTFUL_TOKEN:'independent-import-fixture'},fetchImpl:supplier,catalog:[]});
  const first=ideas.refreshPrintful();await ready;const second=ideas.refreshPrintful();release();await Promise.all([first,second]);assert.equal(lists,1);assert.equal(details,1);
 });
+
+test('queued catalog and mockup reads receive their full network timeout after pacing',async()=>{
+ const read=createPrintfulReader({sleep:async()=>{await new Promise(r=>setTimeout(r,35));}});let calls=0;
+ const impl=async(url,options)=>{calls++;assert.ok(options.signal);assert.equal(options.signal.aborted,false,'queue wait must not consume the network timeout');assert.equal(options.timeoutMs,undefined,'reader-only options never reach fetch');return Response.json({result:true},{headers:{'X-RateLimit-Limit':'120'}});};
+ await read('https://api.printful.com/products/1',{timeoutMs:10},impl);
+ const result=await read('https://api.printful.com/products/2',{timeoutMs:10},impl);
+ assert.equal(result.status,200);assert.equal(calls,2);
+});
+
+test('supplier read cancellation is honored before transmission and failed reads do not poison the lane',async()=>{
+ const read=createPrintfulReader(),controller=new AbortController();controller.abort();let calls=0;
+ const impl=async(url,{signal})=>{calls++;if(url.endsWith('/slow'))return new Promise((resolve,reject)=>{signal.addEventListener('abort',()=>reject(signal.reason),{once:true});setTimeout(resolve,30,Response.json({result:true}));});return Response.json({result:true});};
+ await assert.rejects(read('https://api.printful.com/products/cancelled',{signal:controller.signal},impl),e=>e.status===503);assert.equal(calls,0);
+ await assert.rejects(read('https://api.printful.com/products/slow',{timeoutMs:5},impl),e=>e.status===503);
+ assert.equal((await read('https://api.printful.com/products/recovered',{},impl)).status,200);assert.equal(calls,2);
+});
