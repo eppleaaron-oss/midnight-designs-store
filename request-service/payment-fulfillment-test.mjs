@@ -36,3 +36,11 @@ test('a failed recovery checkpoint blocks supplier writes and live checkout requ
  const f=await paymentFixture();t.after(()=>f.close());const c=await f.checkout();await paid(f,c);f.service().githubBackups.snapshot=()=>({configured:true});f.service().githubBackups.checkpoint=async()=>{throw Error('Storage recovery unavailable');};await f.service().payments.tick();assert.equal(posts(f,'/orders').length,0);
  const live=await paymentFixture({live:true});t.after(()=>live.close());assert.equal((await live.call('/api/checkout/config')).data.enabled,false);assert.equal((await live.call('/api/checkout/quote',live.bag)).status,503);
 });
+
+
+test('documented flat Printful SyncVariant response is accepted without weakening identity, sync or availability checks',async t=>{
+ const f=await paymentFixture();t.after(()=>f.close());
+ for(const override of [{id:999},{sync_product_id:999},{variant_id:999},{synced:false},{is_ignored:true},{availability_status:'out_of_stock'}]){f.state.variantOverride=override;assert.equal((await f.call('/api/checkout/quote',f.bag)).status,409);}
+ assert.equal(f.calls.filter(x=>new URL(x.url).pathname==='/shipping/rates').length,0,'invalid supplier identities never reach shipping or payment');
+ f.state.variantOverride={};const quote=await f.call('/api/checkout/quote',f.bag);assert.equal(quote.status,200);assert.equal(quote.data.items[0].variantId,'901');assert.equal(quote.data.items[0].size,'L');assert.equal(quote.data.subtotal,3999);assert.equal(f.sessions.size,0,'a quote never creates a payment');
+});
