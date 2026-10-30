@@ -1,6 +1,6 @@
 // Isolated provider fixtures: all Stripe/Printful traffic is simulated.
 import {createService} from './server.mjs';import {scryptSync,createHmac} from 'node:crypto';import {mkdtempSync,rmSync} from 'node:fs';import {tmpdir} from 'node:os';import {join} from 'node:path';
-export async function paymentFixture({simulation=true,live=false}={}){
+export async function paymentFixture({simulation=true,live=false,journalSettings={}}={}){
  const folder=mkdtempSync(join(tmpdir(),'midnight-payment-')),origin='http://localhost:3153',site='http://localhost:3152',secret='whsec_launch_fixture',password='launch-owner-fixture',salt='b7'.repeat(16),calls=[],sessions=new Map(),orders=new Map();let serial=0,service,base;
  const product={id:'900',name:'Raven Black Long Sleeve',image:'https://images.fixture/raven.jpg',studioRevision:'approved-raven-v7',variants:[{id:'901',catalogVariantId:401,price:39.99,currency:'USD',size:'L',color:'Black',availability:'active'}]},files=['front','back','sleeve_left','sleeve_right'].map((type,i)=>({id:1001+i,type,status:'ok',position:{area_width:1800,area_height:2400,width:1200,height:1800,top:200,left:300}}));
  const state={shippingFailure:false,wrongVariant:false,filesMissing:false,loseDraft:false,loseConfirm:false,loseSession:false,cost:'24.99',badDraft:false};
@@ -18,7 +18,7 @@ export async function paymentFixture({simulation=true,live=false}={}){
  if(u.pathname.endsWith('/line_items'))return Response.json({data:[{description:product.name+' / L / Black',quantity:1,price:{unit_amount:3999}}],has_more:false});
  const session=sessions.get(u.pathname.split('/').at(-1));if(!session)throw Error('Unexpected Stripe fixture '+address);return Response.json(session);
  }
- const settings={dbPath:join(folder,'orders.sqlite'),origin,storefrontOrigin:site,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),paymentSettings:{enabled:true,key:live?'sk_live_fixture':'sk_test_fixture',webhook:secret,printful:'fixture',storeId:'77',quoteSecret:'payment-fixture-signing-secret-32-characters',countries:['US'],live,fulfillmentSimulation:simulation},paymentFetch:remote,paymentCatalogLoader:async()=>({products:[product]})};
+ const settings={dbPath:join(folder,'orders.sqlite'),origin,storefrontOrigin:site,secure:false,passwordHash:salt+':'+scryptSync(password,salt,64).toString('hex'),paymentSettings:{enabled:true,key:live?'sk_live_fixture':'sk_test_fixture',webhook:secret,printful:'fixture',storeId:'77',quoteSecret:'payment-fixture-signing-secret-32-characters',countries:['US'],live,fulfillmentSimulation:simulation},paymentJournalSettings:journalSettings,paymentFetch:remote,paymentCatalogLoader:async()=>({products:[product]})};
  async function boot(){service=createService(settings);await new Promise(r=>service.server.listen(0,'127.0.0.1',r));base='http://127.0.0.1:'+service.server.address().port;}
  await boot();
  async function call(path,data,token){const response=await fetch(base+path,{method:data===undefined?'GET':'POST',headers:{Origin:site,...(data===undefined?{}:{'Content-Type':'application/json'}),...(token?{Authorization:'Bearer '+token}:{})},body:data===undefined?undefined:JSON.stringify(data)});return {status:response.status,data:await response.json()};}
