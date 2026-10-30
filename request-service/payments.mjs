@@ -11,12 +11,14 @@ export function verifySignature(raw,header,secret,clock=Date.now()){
  const expected=createHmac('sha256',secret).update(timestamp+'.').update(raw).digest();
  return fields.some(([k,v])=>k==='v1'&&/^[a-f0-9]{64}$/.test(v||'')&&timingSafeEqual(expected,Buffer.from(v,'hex')));
 }
+export function stripeKeyMatchesMode(key,live){return typeof key==='string'&&(live?/^(?:sk|rk)_live_/:/^(?:sk|rk)_test_/).test(key);}
+export function paymentEnvironment(env){const live=env.PAYMENTS_LIVE==='true';return {live,key:env.STRIPE_SECRET_KEY,webhook:live?(env.STRIPE_LIVE_WEBHOOK_SECRET||env.STRIPE_WEBHOOK_SECRET):env.STRIPE_WEBHOOK_SECRET};}
 export function paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings={},fetchImpl=fetch,catalogLoader,checkpoint=async()=>{},writable=async()=>{},durable=()=>false,journalConnection=()=>null,journalSettings={}}){
- const config={enabled:process.env.PAYMENTS_ENABLED==='true',key:process.env.STRIPE_SECRET_KEY,webhook:process.env.STRIPE_WEBHOOK_SECRET,printful:process.env.PRINTFUL_TOKEN,storeId:process.env.PRINTFUL_STORE_ID,quoteSecret:process.env.CHECKOUT_SIGNING_SECRET,countries:(process.env.CHECKOUT_COUNTRIES||'US').split(','),live:process.env.PAYMENTS_LIVE==='true',...settings};
+ const config={enabled:process.env.PAYMENTS_ENABLED==='true',...paymentEnvironment(process.env),printful:process.env.PRINTFUL_TOKEN,storeId:process.env.PRINTFUL_STORE_ID,quoteSecret:process.env.CHECKOUT_SIGNING_SECRET,countries:(process.env.CHECKOUT_COUNTRIES||'US').split(','),live:process.env.PAYMENTS_LIVE==='true',...settings};
  const journal=paymentJournal({db,connection:journalConnection,...journalSettings});
  const paymentCheckpoint=()=>journal.configured()?journal.checkpoint():checkpoint(),paymentWritable=async()=>journal.configured()?(await restoreOrders(),journal.assertWritable()):writable();
  const storageReady=()=>journal.configured()?journal.ready():!config.live||durable();
- const ready=()=>storageReady()&&config.enabled&&!!config.key&&!!config.webhook&&!!config.printful&&typeof config.quoteSecret==='string'&&config.quoteSecret.length>=32&&config.countries.length>0&&(config.live?config.key.startsWith('sk_live_'):config.key.startsWith('sk_test_'));
+ const ready=()=>storageReady()&&config.enabled&&!!config.key&&!!config.webhook&&!!config.printful&&typeof config.quoteSecret==='string'&&config.quoteSecret.length>=32&&config.countries.length>0&&stripeKeyMatchesMode(config.key,config.live);
  const get=(sql,...a)=>db.prepare(sql).get(...a);
  const secretKey=()=>createHash('sha256').update(config.quoteSecret||'').digest();
  const seal=payload=>{const iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',secretKey(),iv),data=Buffer.concat([cipher.update(JSON.stringify(payload)),cipher.final()]);return Buffer.concat([iv,cipher.getAuthTag(),data]).toString('base64url');};
