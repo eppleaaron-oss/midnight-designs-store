@@ -2,13 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {createHash,randomBytes,scryptSync} from 'node:crypto';
-import {mkdtemp,rm,stat,writeFile,readFile} from 'node:fs/promises';
+import {mkdtemp,mkdir,readdir,rm,stat,writeFile,readFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {GithubSnapshotStore,githubBackupConfig,factoryGithubBackups,prepareGithubRecovery} from './factory-github-backup.mjs';
 import {githubWorkingFixture} from './factory-github-fixture.mjs';
 import {durableQueueStorage} from './factory-storage.mjs';
 import {createService} from './server.mjs';
+import {canCompactSnapshot} from './factory-backup-space.mjs';
 
 const config={repo:'owner/private-data',token:'private-fixture-token',key:Buffer.alloc(32,17),maxBytes:32*1024*1024,interval:60000};
 const objectHash=b=>{const bytes=Buffer.from(b);return createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');};
@@ -204,3 +205,16 @@ test('verified recovery preserves independent layer revisions, print bytes, mock
  const {revisionHistory}=await import('./factory-revision-history.mjs'),f=await fixture(t);f.db.exec('CREATE TABLE factory_studio_drafts(supplier TEXT PRIMARY KEY,source TEXT,revision INTEGER,document TEXT,updated INTEGER);CREATE TABLE factory_studio_jobs(id TEXT,supplier TEXT,source TEXT,revision INTEGER,document TEXT,updated INTEGER);CREATE TABLE factory_print_files(id TEXT,sha256 TEXT,data BLOB);CREATE TABLE factory_mockups(id TEXT,data BLOB)');revisionHistory(f.db);
  const document={templateStamp:'exact-template',fingerprint:'original-files',variants:{11:Object.fromEntries(['front','back','sleeve_left','sleeve_right'].map(placement=>[placement,{background:'#000000',layers:[{asset:'art:raven',x:.2,y:.4,width:.25,rotation:0,mirror:false}]}]))}};f.db.prepare('INSERT INTO factory_studio_drafts VALUES(?,?,?,?,?)').run('123','piece:one',1,JSON.stringify(document),1);document.variants[11].sleeve_left.layers[0].x=.7;f.db.prepare('UPDATE factory_studio_drafts SET revision=2,document=?,updated=2').run(JSON.stringify(document));const print=randomBytes(1024),mockup=randomBytes(512);f.db.prepare('INSERT INTO factory_print_files VALUES(?,?,?)').run('print','checked',print);f.db.prepare('INSERT INTO factory_mockups VALUES(?,?)').run('mockup',mockup);await f.store.snapshot(f.db,{initialize:true});const path=join(f.dir,'complete-recovery.sqlite'),reader=new GithubSnapshotStore(config,{fetchImpl:f.gh.fetch,sleep:async()=>{}}),receipt=await reader.restore(path),restored=new DatabaseSync(path,{readOnly:true});try{assert.equal(receipt.integrity,'ok');assert.deepEqual(JSON.parse(restored.prepare('SELECT document FROM factory_studio_drafts').get().document),document);assert.equal(restored.prepare('SELECT count(*) n FROM factory_studio_revision_history').get().n,2);assert.equal(JSON.parse(restored.prepare('SELECT document FROM factory_studio_revision_history WHERE revision=1').get().document).variants[11].sleeve_left.layers[0].x,.2);assert.deepEqual(Buffer.from(restored.prepare('SELECT data FROM factory_print_files').get().data),print);assert.deepEqual(Buffer.from(restored.prepare('SELECT data FROM factory_mockups').get().data),mockup);assert.equal(restored.prepare('SELECT status FROM factory_jobs').get().status,'awaiting_review');assert.equal(receipt.audit.missingReferencedArtwork.length,0);}finally{restored.close();}
 });
+
+
+test('large backup scratch stays beside the workspace, avoids WAL amplification and cleans up failed uploads',async t=>{
+ const f=await fixture(t,{large:true}),scratch=join(f.dir,'backup-scratch');await mkdir(scratch);
+ f.db.prepare('INSERT INTO factory_artwork VALUES(?,?)').run('disposable',Buffer.alloc(8*1024*1024));f.db.prepare('DELETE FROM factory_artwork WHERE id=?').run('disposable');
+ const allocated=f.db.prepare('PRAGMA page_count').get().page_count*f.db.prepare('PRAGMA page_size').get().page_size;assert.ok(f.db.prepare('PRAGMA freelist_count').get().freelist_count>0);
+ const originalFetch=f.store.fetch;let inspected=false;f.store.fetch=async(url,options)=>{if(!inspected&&options?.method==='POST'){const folders=await readdir(scratch);assert.equal(folders.length,1);assert.match(folders[0],/^\.midnight-snapshot-/);const files=await readdir(join(scratch,folders[0]));assert.deepEqual(files,['snapshot.sqlite']);assert.ok((await stat(join(scratch,folders[0],'snapshot.sqlite'))).size<=allocated,'bounded snapshot file size');inspected=true;}return originalFetch(url,options);};
+ await f.store.snapshot(f.db,{initialize:true,directory:scratch});assert.ok(inspected);assert.deepEqual(await readdir(scratch),[]);assert.equal(f.db.prepare('PRAGMA journal_mode').get().journal_mode,'wal');assert.deepEqual(Buffer.from(f.db.prepare('SELECT data FROM factory_artwork WHERE id=?').get('raven').data),f.artwork);
+ const saved=f.store.head;f.db.prepare('UPDATE factory_jobs SET status=?').run('approved');f.gh.failRef=true;await assert.rejects(f.store.snapshot(f.db,{directory:scratch}),/HTTP 500/);assert.deepEqual(await readdir(scratch),[]);assert.equal(f.store.head,saved);
+});
+
+
+test('gigabyte compaction is held below the observed temporary-volume limit even when the host reports more space',()=>{assert.equal(canCompactSnapshot(1048899584,10*1024*1024*1024),false);assert.equal(canCompactSnapshot(16*1024*1024,512*1024*1024),true);assert.equal(canCompactSnapshot(16*1024*1024,20*1024*1024),false);});
