@@ -156,7 +156,7 @@ export function factoryIdeas({db,auth,body,send,fail,limit,origin,manager,workfl
  async function refreshStore(){
   if(!env.PRINTFUL_TOKEN){printful={state:'not_connected',error:null,checked:clock()};return;}
   const headers={Authorization:'Bearer '+env.PRINTFUL_TOKEN,...(env.PRINTFUL_STORE_ID?{'X-PF-Store-Id':env.PRINTFUL_STORE_ID}:{})};
-  const pf=async path=>{const r=await readPrintful('https://api.printful.com/'+path,{headers,signal:AbortSignal.timeout(25000)},fetchImpl);if(!r.ok)throw Error('Printful answered '+r.status+'.');return (await r.json()).result;};
+  const pf=async path=>{const r=await readPrintful('https://api.printful.com/'+path,{headers,timeoutMs:25000},fetchImpl);if(!r.ok)throw Error('Printful answered '+r.status+'.');return (await r.json()).result;};
   let storeNames={};try{const r=await fetchImpl(storefrontOrigin+'/products.json',{signal:AbortSignal.timeout(10000)});if(r.ok){const d=await r.json();for(const x of d.products||[])if(x&&x.id&&x.name)storeNames[String(x.id)]=String(x.name);}}catch{}
   try{const list=[];for(let offset=0;offset<1000;offset+=100){const page=await pf(`store/products?limit=100&offset=${offset}`);list.push(...page);if(page.length<100)break;}
    const t=now(),seen=new Set(),found=[];
