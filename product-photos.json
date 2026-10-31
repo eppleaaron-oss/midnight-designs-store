@@ -1179,30 +1179,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
-          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525494",
-            "5525525495",
-            "5525525496",
-            "5525525497",
-            "5525525498",
-            "5525525499",
-            "5525525500",
-            "5525525501",
-            "5525525502",
-            "5525525503",
-            "5525525504"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Bone Chapel Cotton-Blend Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476368662-78d9b9d16ccd8e4959a575cb.jpg",
           "sha256": "78d9b9d16ccd8e4959a575cb3901a1e09a44a6b91b8b2b5e059e90c23ac344e3",
           "view": "front",
@@ -1225,78 +1201,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Bone Chapel Cotton-Blend Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
-          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525494",
-            "5525525495",
-            "5525525496",
-            "5525525497",
-            "5525525498",
-            "5525525499",
-            "5525525500",
-            "5525525501",
-            "5525525502",
-            "5525525503",
-            "5525525504"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Bone Chapel Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
-          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525494",
-            "5525525495",
-            "5525525496",
-            "5525525497",
-            "5525525498",
-            "5525525499",
-            "5525525500",
-            "5525525501",
-            "5525525502",
-            "5525525503",
-            "5525525504"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Bone Chapel Cotton-Blend Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
-          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525494",
-            "5525525495",
-            "5525525496",
-            "5525525497",
-            "5525525498",
-            "5525525499",
-            "5525525500",
-            "5525525501",
-            "5525525502",
-            "5525525503",
-            "5525525504"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Bone Chapel Cotton-Blend Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476368662-33977-0.jpg",
@@ -1625,30 +1529,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
-          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525507",
-            "5525525508",
-            "5525525509",
-            "5525525510",
-            "5525525511",
-            "5525525512",
-            "5525525513",
-            "5525525514",
-            "5525525515",
-            "5525525516",
-            "5525525517"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Ashen Cathedral Cotton-Blend Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476368665-e66d92af0727f840409d3223.jpg",
           "sha256": "e66d92af0727f840409d322352483da278a6ab9d915041e672c6ec5ef63bc986",
           "view": "front",
@@ -1671,78 +1551,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Ashen Cathedral Cotton-Blend Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
-          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525507",
-            "5525525508",
-            "5525525509",
-            "5525525510",
-            "5525525511",
-            "5525525512",
-            "5525525513",
-            "5525525514",
-            "5525525515",
-            "5525525516",
-            "5525525517"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Ashen Cathedral Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
-          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525507",
-            "5525525508",
-            "5525525509",
-            "5525525510",
-            "5525525511",
-            "5525525512",
-            "5525525513",
-            "5525525514",
-            "5525525515",
-            "5525525516",
-            "5525525517"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Ashen Cathedral Cotton-Blend Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
-          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5525525507",
-            "5525525508",
-            "5525525509",
-            "5525525510",
-            "5525525511",
-            "5525525512",
-            "5525525513",
-            "5525525514",
-            "5525525515",
-            "5525525516",
-            "5525525517"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Ashen Cathedral Cotton-Blend Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476368665-33977-0.jpg",
@@ -2441,30 +2249,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
-          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526647533",
-            "5526647534",
-            "5526647535",
-            "5526647536",
-            "5526647537",
-            "5526647538",
-            "5526647539",
-            "5526647540",
-            "5526647541",
-            "5526647542",
-            "5526647543"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Rose Eclipse Oversized Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476553400-5ee7d5a07c5f797b57a04d5f.jpg",
           "sha256": "5ee7d5a07c5f797b57a04d5fcbde17d52a6a202a364df47c4c05265d71129e8c",
           "view": "back",
@@ -2487,78 +2271,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Rose Eclipse Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
-          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526647533",
-            "5526647534",
-            "5526647535",
-            "5526647536",
-            "5526647537",
-            "5526647538",
-            "5526647539",
-            "5526647540",
-            "5526647541",
-            "5526647542",
-            "5526647543"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Rose Eclipse Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
-          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526647533",
-            "5526647534",
-            "5526647535",
-            "5526647536",
-            "5526647537",
-            "5526647538",
-            "5526647539",
-            "5526647540",
-            "5526647541",
-            "5526647542",
-            "5526647543"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Rose Eclipse Oversized Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
-          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526647533",
-            "5526647534",
-            "5526647535",
-            "5526647536",
-            "5526647537",
-            "5526647538",
-            "5526647539",
-            "5526647540",
-            "5526647541",
-            "5526647542",
-            "5526647543"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Rose Eclipse Oversized Cotton Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476553400-51472-0.jpg",
@@ -2647,30 +2359,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
-          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526694168",
-            "5526694169",
-            "5526694170",
-            "5526694171",
-            "5526694172",
-            "5526694173",
-            "5526694174",
-            "5526694175",
-            "5526694177",
-            "5526694178",
-            "5526694179"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476559553-7859640b25c9d986a30646d8.jpg",
           "sha256": "7859640b25c9d986a30646d8d9cd70811849e3231521ca90f6cfd57beb0a02fb",
           "view": "back",
@@ -2693,78 +2381,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
-          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526694168",
-            "5526694169",
-            "5526694170",
-            "5526694171",
-            "5526694172",
-            "5526694173",
-            "5526694174",
-            "5526694175",
-            "5526694177",
-            "5526694178",
-            "5526694179"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
-          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526694168",
-            "5526694169",
-            "5526694170",
-            "5526694171",
-            "5526694172",
-            "5526694173",
-            "5526694174",
-            "5526694175",
-            "5526694177",
-            "5526694178",
-            "5526694179"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
-          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526694168",
-            "5526694169",
-            "5526694170",
-            "5526694171",
-            "5526694172",
-            "5526694173",
-            "5526694174",
-            "5526694175",
-            "5526694177",
-            "5526694178",
-            "5526694179"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476559553-51472-0.jpg",
@@ -2853,30 +2469,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
-          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526789932",
-            "5526789933",
-            "5526789934",
-            "5526789935",
-            "5526789936",
-            "5526789937",
-            "5526789938",
-            "5526789939",
-            "5526789940",
-            "5526789941",
-            "5526789942"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476570540-20f7115a601ec1a0f74a1975.jpg",
           "sha256": "20f7115a601ec1a0f74a197589b736966f954c7c8522e8b586e10f03fc78013f",
           "view": "back",
@@ -2899,78 +2491,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
-          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526789932",
-            "5526789933",
-            "5526789934",
-            "5526789935",
-            "5526789936",
-            "5526789937",
-            "5526789938",
-            "5526789939",
-            "5526789940",
-            "5526789941",
-            "5526789942"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
-          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526789932",
-            "5526789933",
-            "5526789934",
-            "5526789935",
-            "5526789936",
-            "5526789937",
-            "5526789938",
-            "5526789939",
-            "5526789940",
-            "5526789941",
-            "5526789942"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
-          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526789932",
-            "5526789933",
-            "5526789934",
-            "5526789935",
-            "5526789936",
-            "5526789937",
-            "5526789938",
-            "5526789939",
-            "5526789940",
-            "5526789941",
-            "5526789942"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476570540-51472-0.jpg",
@@ -3059,30 +2579,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
-          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526859205",
-            "5526859206",
-            "5526859207",
-            "5526859208",
-            "5526859209",
-            "5526859210",
-            "5526859211",
-            "5526859212",
-            "5526859213",
-            "5526859214",
-            "5526859215"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476580639-0c15873f4d1f37b2b616c6b9.jpg",
           "sha256": "0c15873f4d1f37b2b616c6b9c0f86849fb34edf5655c35221b9424f2bdd17a7e",
           "view": "front",
@@ -3105,78 +2601,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
-          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526859205",
-            "5526859206",
-            "5526859207",
-            "5526859208",
-            "5526859209",
-            "5526859210",
-            "5526859211",
-            "5526859212",
-            "5526859213",
-            "5526859214",
-            "5526859215"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Cathedral Warden Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
-          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526859205",
-            "5526859206",
-            "5526859207",
-            "5526859208",
-            "5526859209",
-            "5526859210",
-            "5526859211",
-            "5526859212",
-            "5526859213",
-            "5526859214",
-            "5526859215"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Cathedral Warden Cotton-Blend Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
-          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526859205",
-            "5526859206",
-            "5526859207",
-            "5526859208",
-            "5526859209",
-            "5526859210",
-            "5526859211",
-            "5526859212",
-            "5526859213",
-            "5526859214",
-            "5526859215"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Cathedral Warden Cotton-Blend Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476580639-33977-0.jpg",
@@ -3505,90 +2929,6 @@
       "catalogProductId": 388,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476596721-dcc30828c1337e112a7a6d04.jpg",
-          "sha256": "dcc30828c1337e112a7a6d0487ba12954a184d116834ed73bd34faeaa96dc8aa",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526949202"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Crimson Oath Recycled Fleece Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476596721-1578cfb126fc8edd1a19c3c0.jpg",
-          "sha256": "1578cfb126fc8edd1a19c3c05e77708c69cdd06c14c0fadddc17057fdfc10ced",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526949202"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Crimson Oath Recycled Fleece Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476596721-dcc30828c1337e112a7a6d04.jpg",
-          "sha256": "dcc30828c1337e112a7a6d0487ba12954a184d116834ed73bd34faeaa96dc8aa",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526949202"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476596721-dcc30828c1337e112a7a6d04.jpg",
-          "sha256": "dcc30828c1337e112a7a6d0487ba12954a184d116834ed73bd34faeaa96dc8aa",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526949202"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476596721-1578cfb126fc8edd1a19c3c0.jpg",
-          "sha256": "1578cfb126fc8edd1a19c3c05e77708c69cdd06c14c0fadddc17057fdfc10ced",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526949202"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476596721-1578cfb126fc8edd1a19c3c0.jpg",
-          "sha256": "1578cfb126fc8edd1a19c3c05e77708c69cdd06c14c0fadddc17057fdfc10ced",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5526949202"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve left"
-        },
-        {
           "image": "assets/product-photos/476596721-18730-0.jpg",
           "view": "front",
           "style": "Default",
@@ -3813,90 +3153,6 @@
       "catalogProductId": 388,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476636727-679f58539d68ad2ce724727c.jpg",
-          "sha256": "679f58539d68ad2ce724727c6106030ed1ee457f32426f522eba97b8b14681d1",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527191130"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476636727-3870156d6695345571dad585.jpg",
-          "sha256": "3870156d6695345571dad585e4991ba1e7194406e7640ed440fce930c1a7e986",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527191130"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476636727-679f58539d68ad2ce724727c.jpg",
-          "sha256": "679f58539d68ad2ce724727c6106030ed1ee457f32426f522eba97b8b14681d1",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527191130"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476636727-679f58539d68ad2ce724727c.jpg",
-          "sha256": "679f58539d68ad2ce724727c6106030ed1ee457f32426f522eba97b8b14681d1",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527191130"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476636727-3870156d6695345571dad585.jpg",
-          "sha256": "3870156d6695345571dad585e4991ba1e7194406e7640ed440fce930c1a7e986",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527191130"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476636727-3870156d6695345571dad585.jpg",
-          "sha256": "3870156d6695345571dad585e4991ba1e7194406e7640ed440fce930c1a7e986",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527191130"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve left"
-        },
-        {
           "image": "assets/product-photos/476636727-18730-0.jpg",
           "view": "front",
           "style": "Default",
@@ -4120,150 +3376,6 @@
       "originalImage": "https://files.cdn.printful.com/files/e2f/e2f2581e698601057b428310b6b39941_preview.png",
       "catalogProductId": 388,
       "photos": [
-        {
-          "image": "assets/hoodie-mockups/476640417-9bcdf5ad64cab6497bea6353.jpg",
-          "sha256": "9bcdf5ad64cab6497bea63533d265023ce331100e0ca05b29e62a6f908531557",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527222746",
-            "5527222750",
-            "5527222763",
-            "5527222764",
-            "5527222765",
-            "5527222766",
-            "5527222767",
-            "5527222768",
-            "5527222769",
-            "5527222770",
-            "5527222771"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Crimson Throne Recycled Fleece Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476640417-6c38d59c3bbb44a60d205e33.jpg",
-          "sha256": "6c38d59c3bbb44a60d205e330400385722be355fc40120e0b8fbe67d71638f4c",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527222746",
-            "5527222750",
-            "5527222763",
-            "5527222764",
-            "5527222765",
-            "5527222766",
-            "5527222767",
-            "5527222768",
-            "5527222769",
-            "5527222770",
-            "5527222771"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Crimson Throne Recycled Fleece Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476640417-9bcdf5ad64cab6497bea6353.jpg",
-          "sha256": "9bcdf5ad64cab6497bea63533d265023ce331100e0ca05b29e62a6f908531557",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527222746",
-            "5527222750",
-            "5527222763",
-            "5527222764",
-            "5527222765",
-            "5527222766",
-            "5527222767",
-            "5527222768",
-            "5527222769",
-            "5527222770",
-            "5527222771"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476640417-9bcdf5ad64cab6497bea6353.jpg",
-          "sha256": "9bcdf5ad64cab6497bea63533d265023ce331100e0ca05b29e62a6f908531557",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527222746",
-            "5527222750",
-            "5527222763",
-            "5527222764",
-            "5527222765",
-            "5527222766",
-            "5527222767",
-            "5527222768",
-            "5527222769",
-            "5527222770",
-            "5527222771"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476640417-6c38d59c3bbb44a60d205e33.jpg",
-          "sha256": "6c38d59c3bbb44a60d205e330400385722be355fc40120e0b8fbe67d71638f4c",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527222746",
-            "5527222750",
-            "5527222763",
-            "5527222764",
-            "5527222765",
-            "5527222766",
-            "5527222767",
-            "5527222768",
-            "5527222769",
-            "5527222770",
-            "5527222771"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476640417-6c38d59c3bbb44a60d205e33.jpg",
-          "sha256": "6c38d59c3bbb44a60d205e330400385722be355fc40120e0b8fbe67d71638f4c",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527222746",
-            "5527222750",
-            "5527222763",
-            "5527222764",
-            "5527222765",
-            "5527222766",
-            "5527222767",
-            "5527222768",
-            "5527222769",
-            "5527222770",
-            "5527222771"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve left"
-        },
         {
           "image": "assets/product-photos/476640417-10871-0.jpg",
           "view": "front",
@@ -4639,30 +3751,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
-          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527276114",
-            "5527276115",
-            "5527276116",
-            "5527276117",
-            "5527276120",
-            "5527276122",
-            "5527276123",
-            "5527276124",
-            "5527276125",
-            "5527276126",
-            "5527276127"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/476651184-d26a27e4466811ae44cc6fbe.jpg",
           "sha256": "d26a27e4466811ae44cc6fbe8be1162e8124e0aa1ecadd1482cafbf3fd84b783",
           "view": "front",
@@ -4685,78 +3773,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
-          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527276114",
-            "5527276115",
-            "5527276116",
-            "5527276117",
-            "5527276120",
-            "5527276122",
-            "5527276123",
-            "5527276124",
-            "5527276125",
-            "5527276126",
-            "5527276127"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Lantern Keeper Cotton-Blend Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
-          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527276114",
-            "5527276115",
-            "5527276116",
-            "5527276117",
-            "5527276120",
-            "5527276122",
-            "5527276123",
-            "5527276124",
-            "5527276125",
-            "5527276126",
-            "5527276127"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Lantern Keeper Cotton-Blend Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
-          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527276114",
-            "5527276115",
-            "5527276116",
-            "5527276117",
-            "5527276120",
-            "5527276122",
-            "5527276123",
-            "5527276124",
-            "5527276125",
-            "5527276126",
-            "5527276127"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Lantern Keeper Cotton-Blend Hoodie · sleeve right"
         },
         {
           "image": "assets/product-photos/476651184-33977-0.jpg",
@@ -5085,150 +4101,6 @@
       "catalogProductId": 388,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/476663020-d29575f153a600fc4a7033b4.jpg",
-          "sha256": "d29575f153a600fc4a7033b44154b54bf83b0e38907b2035bdae475cd5992da9",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527333986",
-            "5527333987",
-            "5527333988",
-            "5527333989",
-            "5527333990",
-            "5527333991",
-            "5527333992",
-            "5527333993",
-            "5527333994",
-            "5527333995",
-            "5527333996"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Crowned Wilds Recycled Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/476663020-4e16242e5b075b05d709ed7e.jpg",
-          "sha256": "4e16242e5b075b05d709ed7e5153c5955b079472a5c6028f746e4acc579f46f3",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527333986",
-            "5527333987",
-            "5527333988",
-            "5527333989",
-            "5527333990",
-            "5527333991",
-            "5527333992",
-            "5527333993",
-            "5527333994",
-            "5527333995",
-            "5527333996"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Crowned Wilds Recycled Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/476663020-d29575f153a600fc4a7033b4.jpg",
-          "sha256": "d29575f153a600fc4a7033b44154b54bf83b0e38907b2035bdae475cd5992da9",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527333986",
-            "5527333987",
-            "5527333988",
-            "5527333989",
-            "5527333990",
-            "5527333991",
-            "5527333992",
-            "5527333993",
-            "5527333994",
-            "5527333995",
-            "5527333996"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Crowned Wilds Recycled Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476663020-d29575f153a600fc4a7033b4.jpg",
-          "sha256": "d29575f153a600fc4a7033b44154b54bf83b0e38907b2035bdae475cd5992da9",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527333986",
-            "5527333987",
-            "5527333988",
-            "5527333989",
-            "5527333990",
-            "5527333991",
-            "5527333992",
-            "5527333993",
-            "5527333994",
-            "5527333995",
-            "5527333996"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Crowned Wilds Recycled Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/476663020-4e16242e5b075b05d709ed7e.jpg",
-          "sha256": "4e16242e5b075b05d709ed7e5153c5955b079472a5c6028f746e4acc579f46f3",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527333986",
-            "5527333987",
-            "5527333988",
-            "5527333989",
-            "5527333990",
-            "5527333991",
-            "5527333992",
-            "5527333993",
-            "5527333994",
-            "5527333995",
-            "5527333996"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Crowned Wilds Recycled Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/476663020-4e16242e5b075b05d709ed7e.jpg",
-          "sha256": "4e16242e5b075b05d709ed7e5153c5955b079472a5c6028f746e4acc579f46f3",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5527333986",
-            "5527333987",
-            "5527333988",
-            "5527333989",
-            "5527333990",
-            "5527333991",
-            "5527333992",
-            "5527333993",
-            "5527333994",
-            "5527333995",
-            "5527333996"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Crowned Wilds Recycled Hoodie · sleeve left"
-        },
-        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -5266,30 +4138,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/477172651-0f8a1fee938eb32198d06efa.jpg",
-          "sha256": "0f8a1fee938eb32198d06efa310e4d68b4a03da49a0a2e03ae9963b99e4de342",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5529392627",
-            "5529392628",
-            "5529392629",
-            "5529392630",
-            "5529392631",
-            "5529392632",
-            "5529392633",
-            "5529392634",
-            "5529392635",
-            "5529392636",
-            "5529392637"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Midnight Study 172651 Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/477172651-52cbc21f3b3b07ac2b16edb9.jpg",
           "sha256": "52cbc21f3b3b07ac2b16edb962d2025101f9a217a5644d88b9c1122645fb75cf",
           "view": "front",
@@ -5312,78 +4160,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Midnight Study 172651 Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/477172651-0f8a1fee938eb32198d06efa.jpg",
-          "sha256": "0f8a1fee938eb32198d06efa310e4d68b4a03da49a0a2e03ae9963b99e4de342",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5529392627",
-            "5529392628",
-            "5529392629",
-            "5529392630",
-            "5529392631",
-            "5529392632",
-            "5529392633",
-            "5529392634",
-            "5529392635",
-            "5529392636",
-            "5529392637"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Midnight Study 172651 Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/477172651-0f8a1fee938eb32198d06efa.jpg",
-          "sha256": "0f8a1fee938eb32198d06efa310e4d68b4a03da49a0a2e03ae9963b99e4de342",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5529392627",
-            "5529392628",
-            "5529392629",
-            "5529392630",
-            "5529392631",
-            "5529392632",
-            "5529392633",
-            "5529392634",
-            "5529392635",
-            "5529392636",
-            "5529392637"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Midnight Study 172651 Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/477172651-0f8a1fee938eb32198d06efa.jpg",
-          "sha256": "0f8a1fee938eb32198d06efa310e4d68b4a03da49a0a2e03ae9963b99e4de342",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5529392627",
-            "5529392628",
-            "5529392629",
-            "5529392630",
-            "5529392631",
-            "5529392632",
-            "5529392633",
-            "5529392634",
-            "5529392635",
-            "5529392636",
-            "5529392637"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Midnight Study 172651 Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46090,20 +44866,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
-          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579452049"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Raven Sanctum Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482524169-514a3d8da3a814548750d2e6.jpg",
           "sha256": "514a3d8da3a814548750d2e693bfa654d3bde793346ab2978c2072b7455f6e38",
           "view": "front",
@@ -46116,48 +44878,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Raven Sanctum Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
-          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579452049"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Raven Sanctum Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
-          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579452049"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Raven Sanctum Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
-          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579452049"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Raven Sanctum Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46187,20 +44907,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
-          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579487679"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Death’s-Head Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482531306-181d3ed250c00e869c7ccf09.jpg",
           "sha256": "181d3ed250c00e869c7ccf09de29165d95ad62ac808b07240481f2c78481ca18",
           "view": "front",
@@ -46213,48 +44919,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Death’s-Head Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
-          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579487679"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Death’s-Head Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
-          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579487679"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Death’s-Head Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
-          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579487679"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Death’s-Head Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46284,30 +44948,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
-          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579506861",
-            "5579506862",
-            "5579506863",
-            "5579506864",
-            "5579506865",
-            "5579506866",
-            "5579506867",
-            "5579506868",
-            "5579506869",
-            "5579506870",
-            "5579506871"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Abyssal Voyage Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482534817-e12d8d28ce2e44828ad44c49.jpg",
           "sha256": "e12d8d28ce2e44828ad44c4915133ce55d2c7df04997e8969270bf85b914ddeb",
           "view": "front",
@@ -46330,78 +44970,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Abyssal Voyage Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
-          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579506861",
-            "5579506862",
-            "5579506863",
-            "5579506864",
-            "5579506865",
-            "5579506866",
-            "5579506867",
-            "5579506868",
-            "5579506869",
-            "5579506870",
-            "5579506871"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Abyssal Voyage Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
-          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579506861",
-            "5579506862",
-            "5579506863",
-            "5579506864",
-            "5579506865",
-            "5579506866",
-            "5579506867",
-            "5579506868",
-            "5579506869",
-            "5579506870",
-            "5579506871"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Abyssal Voyage Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
-          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579506861",
-            "5579506862",
-            "5579506863",
-            "5579506864",
-            "5579506865",
-            "5579506866",
-            "5579506867",
-            "5579506868",
-            "5579506869",
-            "5579506870",
-            "5579506871"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Abyssal Voyage Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46464,20 +45032,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
-          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579583575"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Borrowed Time Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482544936-4a4963d7917c583da89264ce.jpg",
           "sha256": "4a4963d7917c583da89264cef2bfa38f497c5a0287bcf27f8ff920c21d99b92c",
           "view": "front",
@@ -46490,48 +45044,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Borrowed Time Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
-          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579583575"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Borrowed Time Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
-          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579583575"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Borrowed Time Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
-          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579583575"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Borrowed Time Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46561,20 +45073,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
-          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579616515"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482550296-3fd1ee6ea0c33af26dade4ed.jpg",
           "sha256": "3fd1ee6ea0c33af26dade4edd89cfda8a5b140702ca657ee5e5858ad279f0109",
           "view": "back",
@@ -46587,48 +45085,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Serpent’s Requiem Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
-          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579616515"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
-          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579616515"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
-          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579616515"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46658,20 +45114,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
-          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579641664"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Winter Wolf Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482554858-eb8521dfe5066a7dc12441e7.jpg",
           "sha256": "eb8521dfe5066a7dc12441e7b63191b50e1523f0bb8c7acf8999c7eefb46ae6b",
           "view": "front",
@@ -46684,48 +45126,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Winter Wolf Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
-          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579641664"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Winter Wolf Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
-          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579641664"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Winter Wolf Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
-          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579641664"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Winter Wolf Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46755,30 +45155,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
-          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579659876",
-            "5579659877",
-            "5579659878",
-            "5579659879",
-            "5579659880",
-            "5579659881",
-            "5579659882",
-            "5579659883",
-            "5579659884",
-            "5579659885",
-            "5579659886"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Dead Air Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482559827-aa6679512f0bc5f5f3c6f5e7.jpg",
           "sha256": "aa6679512f0bc5f5f3c6f5e77c3de16c179aba3de4d5c4982d5a848cdc6c36ae",
           "view": "front",
@@ -46801,78 +45177,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Dead Air Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
-          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579659876",
-            "5579659877",
-            "5579659878",
-            "5579659879",
-            "5579659880",
-            "5579659881",
-            "5579659882",
-            "5579659883",
-            "5579659884",
-            "5579659885",
-            "5579659886"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Dead Air Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
-          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579659876",
-            "5579659877",
-            "5579659878",
-            "5579659879",
-            "5579659880",
-            "5579659881",
-            "5579659882",
-            "5579659883",
-            "5579659884",
-            "5579659885",
-            "5579659886"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Dead Air Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
-          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579659876",
-            "5579659877",
-            "5579659878",
-            "5579659879",
-            "5579659880",
-            "5579659881",
-            "5579659882",
-            "5579659883",
-            "5579659884",
-            "5579659885",
-            "5579659886"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Dead Air Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -46912,30 +45216,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
-          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579743246",
-            "5579743248",
-            "5579743249",
-            "5579743250",
-            "5579743252",
-            "5579743253",
-            "5579743254",
-            "5579743255",
-            "5579743257",
-            "5579743258",
-            "5579743259"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Blood Moon Covenant Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482576149-a389ae9bbfb4e82d00c4e076.jpg",
           "sha256": "a389ae9bbfb4e82d00c4e07615126c6f8cdd5b204cff85b264a10da94a1ed67a",
           "view": "front",
@@ -46958,78 +45238,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Blood Moon Covenant Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
-          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579743246",
-            "5579743248",
-            "5579743249",
-            "5579743250",
-            "5579743252",
-            "5579743253",
-            "5579743254",
-            "5579743255",
-            "5579743257",
-            "5579743258",
-            "5579743259"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Blood Moon Covenant Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
-          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579743246",
-            "5579743248",
-            "5579743249",
-            "5579743250",
-            "5579743252",
-            "5579743253",
-            "5579743254",
-            "5579743255",
-            "5579743257",
-            "5579743258",
-            "5579743259"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Blood Moon Covenant Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
-          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579743246",
-            "5579743248",
-            "5579743249",
-            "5579743250",
-            "5579743252",
-            "5579743253",
-            "5579743254",
-            "5579743255",
-            "5579743257",
-            "5579743258",
-            "5579743259"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Blood Moon Covenant Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -47069,30 +45277,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
-          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579774735",
-            "5579774736",
-            "5579774737",
-            "5579774738",
-            "5579774739",
-            "5579774740",
-            "5579774741",
-            "5579774742",
-            "5579774743",
-            "5579774744",
-            "5579774745"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Astral Wanderer Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482585676-4f5563b779495910f4a117d1.jpg",
           "sha256": "4f5563b779495910f4a117d193e2a63d0acf846119a8cbd4719a18638b11dcad",
           "view": "front",
@@ -47115,78 +45299,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Astral Wanderer Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
-          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579774735",
-            "5579774736",
-            "5579774737",
-            "5579774738",
-            "5579774739",
-            "5579774740",
-            "5579774741",
-            "5579774742",
-            "5579774743",
-            "5579774744",
-            "5579774745"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Astral Wanderer Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
-          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579774735",
-            "5579774736",
-            "5579774737",
-            "5579774738",
-            "5579774739",
-            "5579774740",
-            "5579774741",
-            "5579774742",
-            "5579774743",
-            "5579774744",
-            "5579774745"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Astral Wanderer Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
-          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579774735",
-            "5579774736",
-            "5579774737",
-            "5579774738",
-            "5579774739",
-            "5579774740",
-            "5579774741",
-            "5579774742",
-            "5579774743",
-            "5579774744",
-            "5579774745"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Astral Wanderer Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -47226,150 +45338,6 @@
       "catalogProductId": 388,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482620118-f927384f68202b4b6ea14997.jpg",
-          "sha256": "f927384f68202b4b6ea1499766e2728bc3d4ca52acc0c8ffbe0c56546b5efa87",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579919015",
-            "5579919016",
-            "5579919017",
-            "5579919018",
-            "5579919019",
-            "5579919020",
-            "5579919021",
-            "5579919022",
-            "5579919023",
-            "5579919024",
-            "5579919025"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Loyalty Until Death Recycled Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482620118-f07b0adcd3b9f81399d5c965.jpg",
-          "sha256": "f07b0adcd3b9f81399d5c965a116079efd10d933d4b8f75af489c2cdfb31ea83",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579919015",
-            "5579919016",
-            "5579919017",
-            "5579919018",
-            "5579919019",
-            "5579919020",
-            "5579919021",
-            "5579919022",
-            "5579919023",
-            "5579919024",
-            "5579919025"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Loyalty Until Death Recycled Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482620118-f927384f68202b4b6ea14997.jpg",
-          "sha256": "f927384f68202b4b6ea1499766e2728bc3d4ca52acc0c8ffbe0c56546b5efa87",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579919015",
-            "5579919016",
-            "5579919017",
-            "5579919018",
-            "5579919019",
-            "5579919020",
-            "5579919021",
-            "5579919022",
-            "5579919023",
-            "5579919024",
-            "5579919025"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Loyalty Until Death Recycled Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/482620118-f927384f68202b4b6ea14997.jpg",
-          "sha256": "f927384f68202b4b6ea1499766e2728bc3d4ca52acc0c8ffbe0c56546b5efa87",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579919015",
-            "5579919016",
-            "5579919017",
-            "5579919018",
-            "5579919019",
-            "5579919020",
-            "5579919021",
-            "5579919022",
-            "5579919023",
-            "5579919024",
-            "5579919025"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Loyalty Until Death Recycled Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482620118-f07b0adcd3b9f81399d5c965.jpg",
-          "sha256": "f07b0adcd3b9f81399d5c965a116079efd10d933d4b8f75af489c2cdfb31ea83",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579919015",
-            "5579919016",
-            "5579919017",
-            "5579919018",
-            "5579919019",
-            "5579919020",
-            "5579919021",
-            "5579919022",
-            "5579919023",
-            "5579919024",
-            "5579919025"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Loyalty Until Death Recycled Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/482620118-f07b0adcd3b9f81399d5c965.jpg",
-          "sha256": "f07b0adcd3b9f81399d5c965a116079efd10d933d4b8f75af489c2cdfb31ea83",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5579919015",
-            "5579919016",
-            "5579919017",
-            "5579919018",
-            "5579919019",
-            "5579919020",
-            "5579919021",
-            "5579919022",
-            "5579919023",
-            "5579919024",
-            "5579919025"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Loyalty Until Death Recycled Hoodie · sleeve left"
-        },
-        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -47406,150 +45374,6 @@
       "originalImage": "https://files.cdn.printful.com/files/3b6/3b65538e8457f19770be9f174238e07d_preview.png",
       "catalogProductId": 388,
       "photos": [
-        {
-          "image": "assets/hoodie-mockups/482644684-19e1a864205308361034b8aa.jpg",
-          "sha256": "19e1a864205308361034b8aab1f42ef1d466631dfd1e5ed08ab7f88098be7993",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580059577",
-            "5580059578",
-            "5580059579",
-            "5580059580",
-            "5580059581",
-            "5580059582",
-            "5580059583",
-            "5580059584",
-            "5580059585",
-            "5580059586",
-            "5580059587"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Silence Is Power Recycled Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482644684-8ec765dead9537f9649db501.jpg",
-          "sha256": "8ec765dead9537f9649db501050c22d65f36ad8f167328f585b6bacde647d079",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580059577",
-            "5580059578",
-            "5580059579",
-            "5580059580",
-            "5580059581",
-            "5580059582",
-            "5580059583",
-            "5580059584",
-            "5580059585",
-            "5580059586",
-            "5580059587"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Silence Is Power Recycled Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482644684-19e1a864205308361034b8aa.jpg",
-          "sha256": "19e1a864205308361034b8aab1f42ef1d466631dfd1e5ed08ab7f88098be7993",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580059577",
-            "5580059578",
-            "5580059579",
-            "5580059580",
-            "5580059581",
-            "5580059582",
-            "5580059583",
-            "5580059584",
-            "5580059585",
-            "5580059586",
-            "5580059587"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Silence Is Power Recycled Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/482644684-19e1a864205308361034b8aa.jpg",
-          "sha256": "19e1a864205308361034b8aab1f42ef1d466631dfd1e5ed08ab7f88098be7993",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580059577",
-            "5580059578",
-            "5580059579",
-            "5580059580",
-            "5580059581",
-            "5580059582",
-            "5580059583",
-            "5580059584",
-            "5580059585",
-            "5580059586",
-            "5580059587"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Silence Is Power Recycled Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482644684-8ec765dead9537f9649db501.jpg",
-          "sha256": "8ec765dead9537f9649db501050c22d65f36ad8f167328f585b6bacde647d079",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580059577",
-            "5580059578",
-            "5580059579",
-            "5580059580",
-            "5580059581",
-            "5580059582",
-            "5580059583",
-            "5580059584",
-            "5580059585",
-            "5580059586",
-            "5580059587"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Silence Is Power Recycled Hoodie · sleeve right"
-        },
-        {
-          "image": "assets/hoodie-mockups/482644684-8ec765dead9537f9649db501.jpg",
-          "sha256": "8ec765dead9537f9649db501050c22d65f36ad8f167328f585b6bacde647d079",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580059577",
-            "5580059578",
-            "5580059579",
-            "5580059580",
-            "5580059581",
-            "5580059582",
-            "5580059583",
-            "5580059584",
-            "5580059585",
-            "5580059586",
-            "5580059587"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Silence Is Power Recycled Hoodie · sleeve left"
-        },
         {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
@@ -47588,30 +45412,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
-          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580087710",
-            "5580087711",
-            "5580087712",
-            "5580087713",
-            "5580087714",
-            "5580087715",
-            "5580087716",
-            "5580087717",
-            "5580087718",
-            "5580087719",
-            "5580087720"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Kings Never Fall Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482647761-67479b60d1da218cda9bebbf.jpg",
           "sha256": "67479b60d1da218cda9bebbf05f1a9eb9dfb8d534d63f535748ae3ee0febd992",
           "view": "front",
@@ -47634,78 +45434,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Kings Never Fall Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
-          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580087710",
-            "5580087711",
-            "5580087712",
-            "5580087713",
-            "5580087714",
-            "5580087715",
-            "5580087716",
-            "5580087717",
-            "5580087718",
-            "5580087719",
-            "5580087720"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Kings Never Fall Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
-          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580087710",
-            "5580087711",
-            "5580087712",
-            "5580087713",
-            "5580087714",
-            "5580087715",
-            "5580087716",
-            "5580087717",
-            "5580087718",
-            "5580087719",
-            "5580087720"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Kings Never Fall Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
-          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580087710",
-            "5580087711",
-            "5580087712",
-            "5580087713",
-            "5580087714",
-            "5580087715",
-            "5580087716",
-            "5580087717",
-            "5580087718",
-            "5580087719",
-            "5580087720"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Kings Never Fall Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -47745,20 +45473,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
-          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580193597"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Fate Favors the Fearless Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482668440-109ad91b38794a3e97152e86.jpg",
           "sha256": "109ad91b38794a3e97152e864eede45176b0a10f570c313896f019f7321af833",
           "view": "front",
@@ -47771,48 +45485,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Fate Favors the Fearless Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
-          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580193597"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Fate Favors the Fearless Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
-          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580193597"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Fate Favors the Fearless Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
-          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580193597"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Fate Favors the Fearless Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -47842,30 +45514,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
-          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580210606",
-            "5580210608",
-            "5580210609",
-            "5580210610",
-            "5580210611",
-            "5580210612",
-            "5580210615",
-            "5580210616",
-            "5580210617",
-            "5580210618",
-            "5580210619"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Never Surrender Oversized Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482671357-5a7ff8d75e1f7261c0d251dd.jpg",
           "sha256": "5a7ff8d75e1f7261c0d251dd963b58f4acbb9a64af38976228bb82b94db3b691",
           "view": "back",
@@ -47888,78 +45536,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Never Surrender Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
-          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580210606",
-            "5580210608",
-            "5580210609",
-            "5580210610",
-            "5580210611",
-            "5580210612",
-            "5580210615",
-            "5580210616",
-            "5580210617",
-            "5580210618",
-            "5580210619"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Never Surrender Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
-          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580210606",
-            "5580210608",
-            "5580210609",
-            "5580210610",
-            "5580210611",
-            "5580210612",
-            "5580210615",
-            "5580210616",
-            "5580210617",
-            "5580210618",
-            "5580210619"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Never Surrender Oversized Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
-          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580210606",
-            "5580210608",
-            "5580210609",
-            "5580210610",
-            "5580210611",
-            "5580210612",
-            "5580210615",
-            "5580210616",
-            "5580210617",
-            "5580210618",
-            "5580210619"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Never Surrender Oversized Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -47999,30 +45575,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482675011-8c24d105e312db9db0c74bb8.jpg",
-          "sha256": "8c24d105e312db9db0c74bb823771c5bdb39ce04cd37fd92122265e652cb21f3",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580230949",
-            "5580230950",
-            "5580230951",
-            "5580230952",
-            "5580230953",
-            "5580230954",
-            "5580230955",
-            "5580230956",
-            "5580230957",
-            "5580230958",
-            "5580230959"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "No Mercy for Betrayal Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482675011-19abf01337ef60aad50c01ec.jpg",
           "sha256": "19abf01337ef60aad50c01ecd629ee154cbff5df7d83a85d18cf84db30552d09",
           "view": "front",
@@ -48045,78 +45597,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "No Mercy for Betrayal Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482675011-8c24d105e312db9db0c74bb8.jpg",
-          "sha256": "8c24d105e312db9db0c74bb823771c5bdb39ce04cd37fd92122265e652cb21f3",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580230949",
-            "5580230950",
-            "5580230951",
-            "5580230952",
-            "5580230953",
-            "5580230954",
-            "5580230955",
-            "5580230956",
-            "5580230957",
-            "5580230958",
-            "5580230959"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "No Mercy for Betrayal Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482675011-8c24d105e312db9db0c74bb8.jpg",
-          "sha256": "8c24d105e312db9db0c74bb823771c5bdb39ce04cd37fd92122265e652cb21f3",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580230949",
-            "5580230950",
-            "5580230951",
-            "5580230952",
-            "5580230953",
-            "5580230954",
-            "5580230955",
-            "5580230956",
-            "5580230957",
-            "5580230958",
-            "5580230959"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "No Mercy for Betrayal Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482675011-8c24d105e312db9db0c74bb8.jpg",
-          "sha256": "8c24d105e312db9db0c74bb823771c5bdb39ce04cd37fd92122265e652cb21f3",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580230949",
-            "5580230950",
-            "5580230951",
-            "5580230952",
-            "5580230953",
-            "5580230954",
-            "5580230955",
-            "5580230956",
-            "5580230957",
-            "5580230958",
-            "5580230959"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "No Mercy for Betrayal Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -48156,30 +45636,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
-          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580244663",
-            "5580244664",
-            "5580244665",
-            "5580244666",
-            "5580244667",
-            "5580244668",
-            "5580244670",
-            "5580244671",
-            "5580244672",
-            "5580244673",
-            "5580244674"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Love Leaves Scars Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482676580-ddf17c09ec77a8f7413e9522.jpg",
           "sha256": "ddf17c09ec77a8f7413e9522b53fa4aadb7f56f0302f3e0034eda6fbf651ae61",
           "view": "front",
@@ -48202,78 +45658,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Love Leaves Scars Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
-          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580244663",
-            "5580244664",
-            "5580244665",
-            "5580244666",
-            "5580244667",
-            "5580244668",
-            "5580244670",
-            "5580244671",
-            "5580244672",
-            "5580244673",
-            "5580244674"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Love Leaves Scars Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
-          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580244663",
-            "5580244664",
-            "5580244665",
-            "5580244666",
-            "5580244667",
-            "5580244668",
-            "5580244670",
-            "5580244671",
-            "5580244672",
-            "5580244673",
-            "5580244674"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Love Leaves Scars Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
-          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580244663",
-            "5580244664",
-            "5580244665",
-            "5580244666",
-            "5580244667",
-            "5580244668",
-            "5580244670",
-            "5580244671",
-            "5580244672",
-            "5580244673",
-            "5580244674"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Love Leaves Scars Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -48313,30 +45697,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
-          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580254765",
-            "5580254766",
-            "5580254767",
-            "5580254768",
-            "5580254769",
-            "5580254770",
-            "5580254771",
-            "5580254772",
-            "5580254773",
-            "5580254774",
-            "5580254775"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Omens Never Lie Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482678006-4e0c8d39477b56af07b54871.jpg",
           "sha256": "4e0c8d39477b56af07b54871dbd2f76df859bf1567d267572a9f32f694bc127d",
           "view": "front",
@@ -48359,78 +45719,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Omens Never Lie Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
-          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580254765",
-            "5580254766",
-            "5580254767",
-            "5580254768",
-            "5580254769",
-            "5580254770",
-            "5580254771",
-            "5580254772",
-            "5580254773",
-            "5580254774",
-            "5580254775"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Omens Never Lie Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
-          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580254765",
-            "5580254766",
-            "5580254767",
-            "5580254768",
-            "5580254769",
-            "5580254770",
-            "5580254771",
-            "5580254772",
-            "5580254773",
-            "5580254774",
-            "5580254775"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Omens Never Lie Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
-          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580254765",
-            "5580254766",
-            "5580254767",
-            "5580254768",
-            "5580254769",
-            "5580254770",
-            "5580254771",
-            "5580254772",
-            "5580254773",
-            "5580254774",
-            "5580254775"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Omens Never Lie Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -48470,30 +45758,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
-          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580280397",
-            "5580280398",
-            "5580280399",
-            "5580280400",
-            "5580280401",
-            "5580280402",
-            "5580280403",
-            "5580280404",
-            "5580280405",
-            "5580280406",
-            "5580280407"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "All Things Fade Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482682117-ecece7011fe881df9e940e3b.jpg",
           "sha256": "ecece7011fe881df9e940e3b553c7c25ddf5c7b32c90abbab208943a65e99870",
           "view": "front",
@@ -48516,78 +45780,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "All Things Fade Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
-          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580280397",
-            "5580280398",
-            "5580280399",
-            "5580280400",
-            "5580280401",
-            "5580280402",
-            "5580280403",
-            "5580280404",
-            "5580280405",
-            "5580280406",
-            "5580280407"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "All Things Fade Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
-          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580280397",
-            "5580280398",
-            "5580280399",
-            "5580280400",
-            "5580280401",
-            "5580280402",
-            "5580280403",
-            "5580280404",
-            "5580280405",
-            "5580280406",
-            "5580280407"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "All Things Fade Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
-          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580280397",
-            "5580280398",
-            "5580280399",
-            "5580280400",
-            "5580280401",
-            "5580280402",
-            "5580280403",
-            "5580280404",
-            "5580280405",
-            "5580280406",
-            "5580280407"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "All Things Fade Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -48627,30 +45819,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
-          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580291761",
-            "5580291762",
-            "5580291763",
-            "5580291764",
-            "5580291765",
-            "5580291766",
-            "5580291767",
-            "5580291768",
-            "5580291769",
-            "5580291770",
-            "5580291771"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482685353-60220e0413215f08b83e4139.jpg",
           "sha256": "60220e0413215f08b83e4139072deac7e3f291b83c31242fe6662e5467142a0a",
           "view": "back",
@@ -48673,78 +45841,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Where Shadows Bloom Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
-          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580291761",
-            "5580291762",
-            "5580291763",
-            "5580291764",
-            "5580291765",
-            "5580291766",
-            "5580291767",
-            "5580291768",
-            "5580291769",
-            "5580291770",
-            "5580291771"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
-          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580291761",
-            "5580291762",
-            "5580291763",
-            "5580291764",
-            "5580291765",
-            "5580291766",
-            "5580291767",
-            "5580291768",
-            "5580291769",
-            "5580291770",
-            "5580291771"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
-          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580291761",
-            "5580291762",
-            "5580291763",
-            "5580291764",
-            "5580291765",
-            "5580291766",
-            "5580291767",
-            "5580291768",
-            "5580291769",
-            "5580291770",
-            "5580291771"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -48784,30 +45880,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
-          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580815659",
-            "5580815660",
-            "5580815661",
-            "5580815662",
-            "5580815663",
-            "5580815664",
-            "5580815665",
-            "5580815666",
-            "5580815667",
-            "5580815669",
-            "5580815670"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "After the Last Light Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482775311-e88dbd0371acca0378a74bf5.jpg",
           "sha256": "e88dbd0371acca0378a74bf569385f543c84f61cf5eacd96be4c09a68e8f5051",
           "view": "front",
@@ -48830,78 +45902,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "After the Last Light Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
-          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580815659",
-            "5580815660",
-            "5580815661",
-            "5580815662",
-            "5580815663",
-            "5580815664",
-            "5580815665",
-            "5580815666",
-            "5580815667",
-            "5580815669",
-            "5580815670"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "After the Last Light Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
-          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580815659",
-            "5580815660",
-            "5580815661",
-            "5580815662",
-            "5580815663",
-            "5580815664",
-            "5580815665",
-            "5580815666",
-            "5580815667",
-            "5580815669",
-            "5580815670"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "After the Last Light Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
-          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580815659",
-            "5580815660",
-            "5580815661",
-            "5580815662",
-            "5580815663",
-            "5580815664",
-            "5580815665",
-            "5580815666",
-            "5580815667",
-            "5580815669",
-            "5580815670"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "After the Last Light Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -48941,30 +45941,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
-          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580835558",
-            "5580835559",
-            "5580835560",
-            "5580835561",
-            "5580835562",
-            "5580835563",
-            "5580835564",
-            "5580835566",
-            "5580835567",
-            "5580835568",
-            "5580835569"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Beauty in Decay Oversized Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482779702-f2d40bb5a42e92218cb7da10.jpg",
           "sha256": "f2d40bb5a42e92218cb7da10822045cf6a1035cd038fe585552b20f9d0af5ff0",
           "view": "back",
@@ -48987,78 +45963,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Beauty in Decay Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
-          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580835558",
-            "5580835559",
-            "5580835560",
-            "5580835561",
-            "5580835562",
-            "5580835563",
-            "5580835564",
-            "5580835566",
-            "5580835567",
-            "5580835568",
-            "5580835569"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Beauty in Decay Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
-          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580835558",
-            "5580835559",
-            "5580835560",
-            "5580835561",
-            "5580835562",
-            "5580835563",
-            "5580835564",
-            "5580835566",
-            "5580835567",
-            "5580835568",
-            "5580835569"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Beauty in Decay Oversized Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
-          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5580835558",
-            "5580835559",
-            "5580835560",
-            "5580835561",
-            "5580835562",
-            "5580835563",
-            "5580835564",
-            "5580835566",
-            "5580835567",
-            "5580835568",
-            "5580835569"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Beauty in Decay Oversized Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -49121,30 +46025,6 @@
       "catalogProductId": 1628,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
-          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581020665",
-            "5581020666",
-            "5581020667",
-            "5581020668",
-            "5581020669",
-            "5581020670",
-            "5581020671",
-            "5581020672",
-            "5581020673",
-            "5581020674",
-            "5581020675"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Time Takes All Oversized Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482790495-8bff4f804f3ee7d5d200c6c0.jpg",
           "sha256": "8bff4f804f3ee7d5d200c6c06999d54f8a205e12dd4e6ccf33d665e572123b58",
           "view": "back",
@@ -49167,78 +46047,6 @@
           "kind": "production-mockup",
           "label": "back",
           "alt": "Time Takes All Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
-          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581020665",
-            "5581020666",
-            "5581020667",
-            "5581020668",
-            "5581020669",
-            "5581020670",
-            "5581020671",
-            "5581020672",
-            "5581020673",
-            "5581020674",
-            "5581020675"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Time Takes All Oversized Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
-          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581020665",
-            "5581020666",
-            "5581020667",
-            "5581020668",
-            "5581020669",
-            "5581020670",
-            "5581020671",
-            "5581020672",
-            "5581020673",
-            "5581020674",
-            "5581020675"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Time Takes All Oversized Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
-          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581020665",
-            "5581020666",
-            "5581020667",
-            "5581020668",
-            "5581020669",
-            "5581020670",
-            "5581020671",
-            "5581020672",
-            "5581020673",
-            "5581020674",
-            "5581020675"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Time Takes All Oversized Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -49278,20 +46086,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
-          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581063039"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "What Lies Within Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482794900-81e65b4baeb8a478b75b8fde.jpg",
           "sha256": "81e65b4baeb8a478b75b8fdebf1377fd77459ed3bbec3e219c44b891a6d5bd2a",
           "view": "front",
@@ -49304,48 +46098,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "What Lies Within Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
-          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581063039"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "What Lies Within Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
-          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581063039"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "What Lies Within Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
-          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581063039"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "What Lies Within Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
@@ -49375,30 +46127,6 @@
       "catalogProductId": 1419,
       "photos": [
         {
-          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
-          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
-          "view": "front",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581078395",
-            "5581078397",
-            "5581078398",
-            "5581078400",
-            "5581078401",
-            "5581078403",
-            "5581078404",
-            "5581078406",
-            "5581078408",
-            "5581078409",
-            "5581078411"
-          ],
-          "kind": "production-mockup",
-          "label": "front",
-          "alt": "Even in Darkness / Still Growing Cotton Hoodie · front"
-        },
-        {
           "image": "assets/hoodie-mockups/482797453-070a503d3c7472e11063a79e.jpg",
           "sha256": "070a503d3c7472e11063a79e15ade5d2d7807e9e2f5251e8eaa3404c65b41a21",
           "view": "front",
@@ -49421,78 +46149,6 @@
           "kind": "production-mockup",
           "label": "front",
           "alt": "Even in Darkness / Still Growing Cotton Hoodie · front"
-        },
-        {
-          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
-          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
-          "view": "back",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581078395",
-            "5581078397",
-            "5581078398",
-            "5581078400",
-            "5581078401",
-            "5581078403",
-            "5581078404",
-            "5581078406",
-            "5581078408",
-            "5581078409",
-            "5581078411"
-          ],
-          "kind": "production-mockup",
-          "label": "back",
-          "alt": "Even in Darkness / Still Growing Cotton Hoodie · back"
-        },
-        {
-          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
-          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
-          "view": "sleeve_left",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581078395",
-            "5581078397",
-            "5581078398",
-            "5581078400",
-            "5581078401",
-            "5581078403",
-            "5581078404",
-            "5581078406",
-            "5581078408",
-            "5581078409",
-            "5581078411"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve left",
-          "alt": "Even in Darkness / Still Growing Cotton Hoodie · sleeve left"
-        },
-        {
-          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
-          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
-          "view": "sleeve_right",
-          "style": "Default",
-          "category": "product",
-          "color": "White",
-          "storeVariantIds": [
-            "5581078395",
-            "5581078397",
-            "5581078398",
-            "5581078400",
-            "5581078401",
-            "5581078403",
-            "5581078404",
-            "5581078406",
-            "5581078408",
-            "5581078409",
-            "5581078411"
-          ],
-          "kind": "production-mockup",
-          "label": "sleeve right",
-          "alt": "Even in Darkness / Still Growing Cotton Hoodie · sleeve right"
         },
         {
           "view": "Supplier preview",
