@@ -45216,10 +45216,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
+          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Blood Moon Covenant Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482576149-a389ae9bbfb4e82d00c4e076.jpg",
           "sha256": "a389ae9bbfb4e82d00c4e07615126c6f8cdd5b204cff85b264a10da94a1ed67a",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Blood Moon Covenant Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-7b1976702a0a12a8fa570ed5.jpg",
+          "sha256": "7b1976702a0a12a8fa570ed5db2861baea4b09440c991fd5a7f4fe113bd11a31",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Blood Moon Covenant Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-068b7a351fa48c8a16edb75e.jpg",
+          "sha256": "068b7a351fa48c8a16edb75e62156347e2db7312e6f27206553207599744048d",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Blood Moon Covenant Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-875ecdf69f83a15effe28da0.jpg",
+          "sha256": "875ecdf69f83a15effe28da06ac178cfc623d65cf726f7d86f9b4a24ad368415",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Blood Moon Covenant Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-5045a2072a70016046a22a33.jpg",
+          "sha256": "5045a2072a70016046a22a33781b9f1f5c3dde32812efb9f190babd80a65b769",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Blood Moon Covenant Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-d49bbd258c7600d48ef33864.jpg",
+          "sha256": "d49bbd258c7600d48ef3386449b7eb55657d1c28b610378d072421293d784874",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Blood Moon Covenant Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-1f63698f1db206c03038585e.jpg",
+          "sha256": "1f63698f1db206c03038585e871b9653af9c0ad43cd7243a18435a7223d125a9",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45267,8 +45435,8 @@
       ],
       "supplierPreviews": "9ba3b3ad54f21f3a926f76e2884ed5aca7d26de582c0f623f695119d08121c0d",
       "hoodieRefresh": {
-        "fingerprint": "ad27ffe7966811ca4442780508a774702b9a8818e45fa136a818a71683bdebe7",
-        "checkedAt": "2026-10-31T23:04:26.487Z"
+        "fingerprint": "27b5ee8c3a1d508a8cc7c02d902ec97d7a8923caa7220919013dee67eebba39c",
+        "checkedAt": "2026-10-31T23:42:19.935Z"
       }
     },
     "482585676": {

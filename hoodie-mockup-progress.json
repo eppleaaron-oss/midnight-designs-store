@@ -1,5 +1,19 @@
 {
   "products": {
+    "482576149": {
+      "name": "Blood Moon Covenant Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:42:19.955Z"
+    },
     "482585676": {
       "name": "Astral Wanderer Cotton Hoodie",
       "state": "saved",
@@ -544,8 +558,9 @@
     },
     "f9a5ee2c399a661edd38bcfb09c365bf8a8473b875e1e298452b107a9c741083": {
       "product": "482576149",
-      "state": "pending",
-      "key": "gt-995192523"
+      "state": "downloaded",
+      "key": "gt-995192523",
+      "views": 8
     }
   },
   "requested": [
@@ -590,5 +605,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:42:04.561Z"
+  "updatedAt": "2026-10-31T23:42:19.955Z"
 }
