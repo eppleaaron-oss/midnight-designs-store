@@ -1,5 +1,19 @@
 {
   "products": {
+    "482682117": {
+      "name": "All Things Fade Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:31:56.611Z"
+    },
     "482685353": {
       "name": "Where Shadows Bloom Oversized Cotton Hoodie",
       "state": "saved",
@@ -364,8 +378,9 @@
     },
     "a13a343c857cb9a0c1c06ff810fee3820a49588a2336a24e8987c04c330f58eb": {
       "product": "482682117",
-      "state": "pending",
-      "key": "gt-995187818"
+      "state": "downloaded",
+      "key": "gt-995187818",
+      "views": 8
     }
   },
   "requested": [
@@ -410,5 +425,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:31:39.210Z"
+  "updatedAt": "2026-10-31T23:31:56.611Z"
 }

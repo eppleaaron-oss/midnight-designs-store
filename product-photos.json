@@ -45758,10 +45758,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
+          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "All Things Fade Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482682117-ecece7011fe881df9e940e3b.jpg",
           "sha256": "ecece7011fe881df9e940e3b553c7c25ddf5c7b32c90abbab208943a65e99870",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "All Things Fade Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-731df5f3ee44fd00c3c20678.jpg",
+          "sha256": "731df5f3ee44fd00c3c2067869ef339c6ef35edc909b771871177f7d2d862f06",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "All Things Fade Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-42f50b6d9800676c2abeddb8.jpg",
+          "sha256": "42f50b6d9800676c2abeddb8ba93a6a241b516d0ac3bbeb84ee6ba7aaea069e1",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "All Things Fade Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-723b9944a1fe6d46661e62dc.jpg",
+          "sha256": "723b9944a1fe6d46661e62dc41ab6cad97ef12483d731b9ef6d4e0317ff3733b",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "All Things Fade Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-aa55617519121c9e8f467cb5.jpg",
+          "sha256": "aa55617519121c9e8f467cb5a5ae5ad607dfb96ec770fb4da358304c35de9a80",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "All Things Fade Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-d96fef4b3bbb1202ae28be9c.jpg",
+          "sha256": "d96fef4b3bbb1202ae28be9cac0752617f7e91c925b5c64ff3688f81f4b5b499",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "All Things Fade Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-7dd4f5957751eab409110a85.jpg",
+          "sha256": "7dd4f5957751eab409110a8556f05285ca45ea9c9f22f1a6214bcc912d7dbcc0",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45809,8 +45977,8 @@
       ],
       "supplierPreviews": "73320786e10e3ac76a7abed227df19a5f778ed21e2b6cf60ac1247506ef54153",
       "hoodieRefresh": {
-        "fingerprint": "dd8e520aafd6c649d2ae0d33c577fc7139d77c74b57e71475a92cd979ebb12d1",
-        "checkedAt": "2026-10-31T22:53:58.342Z"
+        "fingerprint": "20365b5fbbf448ace9ce6c8670dbb08fa7a1ba3662529050cb135f8a2c10d998",
+        "checkedAt": "2026-10-31T23:31:56.585Z"
       }
     },
     "482685353": {
