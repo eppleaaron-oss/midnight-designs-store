@@ -122,8 +122,16 @@
     },
     "482644684": {
       "name": "Silence Is Power Recycled Hoodie",
-      "state": "held",
-      "error": "Supplier source for default is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 6,
+      "views": [
+        "front",
+        "back",
+        "sleeve_right",
+        "sleeve_left"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:00:48.632Z"
     },
     "482647761": {
       "name": "Kings Never Fall Cotton Hoodie",
@@ -385,8 +393,9 @@
     },
     "4eff3ade4699a5a1034c109a17db2162e5efe62b473c5db0742cd0b487be2263": {
       "product": "482644684",
-      "state": "pending",
-      "key": "gt-995172715"
+      "state": "downloaded",
+      "key": "gt-995172715",
+      "views": 6
     }
   },
   "requested": [
@@ -431,5 +440,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:00:32.483Z"
+  "updatedAt": "2026-10-31T23:00:48.632Z"
 }

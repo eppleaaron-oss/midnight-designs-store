@@ -44929,6 +44929,150 @@
       "catalogProductId": 388,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482644684-19e1a864205308361034b8aa.jpg",
+          "sha256": "19e1a864205308361034b8aab1f42ef1d466631dfd1e5ed08ab7f88098be7993",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580059577",
+            "5580059578",
+            "5580059579",
+            "5580059580",
+            "5580059581",
+            "5580059582",
+            "5580059583",
+            "5580059584",
+            "5580059585",
+            "5580059586",
+            "5580059587"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Silence Is Power Recycled Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482644684-8ec765dead9537f9649db501.jpg",
+          "sha256": "8ec765dead9537f9649db501050c22d65f36ad8f167328f585b6bacde647d079",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580059577",
+            "5580059578",
+            "5580059579",
+            "5580059580",
+            "5580059581",
+            "5580059582",
+            "5580059583",
+            "5580059584",
+            "5580059585",
+            "5580059586",
+            "5580059587"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Silence Is Power Recycled Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482644684-19e1a864205308361034b8aa.jpg",
+          "sha256": "19e1a864205308361034b8aab1f42ef1d466631dfd1e5ed08ab7f88098be7993",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580059577",
+            "5580059578",
+            "5580059579",
+            "5580059580",
+            "5580059581",
+            "5580059582",
+            "5580059583",
+            "5580059584",
+            "5580059585",
+            "5580059586",
+            "5580059587"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Silence Is Power Recycled Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/482644684-19e1a864205308361034b8aa.jpg",
+          "sha256": "19e1a864205308361034b8aab1f42ef1d466631dfd1e5ed08ab7f88098be7993",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580059577",
+            "5580059578",
+            "5580059579",
+            "5580059580",
+            "5580059581",
+            "5580059582",
+            "5580059583",
+            "5580059584",
+            "5580059585",
+            "5580059586",
+            "5580059587"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Silence Is Power Recycled Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482644684-8ec765dead9537f9649db501.jpg",
+          "sha256": "8ec765dead9537f9649db501050c22d65f36ad8f167328f585b6bacde647d079",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580059577",
+            "5580059578",
+            "5580059579",
+            "5580059580",
+            "5580059581",
+            "5580059582",
+            "5580059583",
+            "5580059584",
+            "5580059585",
+            "5580059586",
+            "5580059587"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Silence Is Power Recycled Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/482644684-8ec765dead9537f9649db501.jpg",
+          "sha256": "8ec765dead9537f9649db501050c22d65f36ad8f167328f585b6bacde647d079",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580059577",
+            "5580059578",
+            "5580059579",
+            "5580059580",
+            "5580059581",
+            "5580059582",
+            "5580059583",
+            "5580059584",
+            "5580059585",
+            "5580059586",
+            "5580059587"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Silence Is Power Recycled Hoodie · sleeve left"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44954,7 +45098,11 @@
           "sha256": "140a310f7d757e57a05cf65f936c792c58bf74c4216a25ba86f27dbe8aacab9d"
         }
       ],
-      "supplierPreviews": "677fe2c76fbbdc6f7a0c1cbd1358ab6009105c5f3209bf7401a665fa92226f9a"
+      "supplierPreviews": "677fe2c76fbbdc6f7a0c1cbd1358ab6009105c5f3209bf7401a665fa92226f9a",
+      "hoodieRefresh": {
+        "fingerprint": "0bbda5b9f072332dc8902e4281658ef1d0e7bf084ef306c0bc6805d1c4d906b8",
+        "checkedAt": "2026-10-31T23:00:48.611Z"
+      }
     },
     "482647761": {
       "name": "Kings Never Fall Cotton Hoodie",
