@@ -1,5 +1,10 @@
 {
   "products": {
+    "482675011": {
+      "name": "No Mercy for Betrayal Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482676580": {
       "name": "Love Leaves Scars Cotton Hoodie",
       "state": "held",
@@ -94,5 +99,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:39:57.857Z"
+  "updatedAt": "2026-10-31T22:40:01.039Z"
 }
