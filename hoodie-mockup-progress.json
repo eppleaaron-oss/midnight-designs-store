@@ -1,5 +1,10 @@
 {
   "products": {
+    "482531306": {
+      "name": "Death’s-Head Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482534817": {
       "name": "Abyssal Voyage Cotton Hoodie",
       "state": "held",
@@ -164,5 +169,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:38.486Z"
+  "updatedAt": "2026-10-31T22:40:41.335Z"
 }
