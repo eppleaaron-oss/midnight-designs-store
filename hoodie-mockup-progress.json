@@ -12,8 +12,16 @@
     },
     "476553400": {
       "name": "Rose Eclipse Oversized Cotton Hoodie",
-      "state": "held",
-      "error": "Accepted production panel unavailable: front_dtfabric"
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:21:37.913Z"
     },
     "476559553": {
       "name": "Midnight Requiem Oversized Cotton-Blend Hoodie",
@@ -665,8 +673,9 @@
     },
     "219bf88791b47fe8541c8f4fe4bb9f439fe826446b3b564728d6ef311a2af6a6": {
       "product": "476553400",
-      "state": "pending",
-      "key": "gt-995182668"
+      "state": "downloaded",
+      "key": "gt-995182668",
+      "views": 5
     }
   },
   "requested": [
@@ -711,5 +720,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:21:21.687Z"
+  "updatedAt": "2026-10-31T23:21:37.913Z"
 }

@@ -2193,6 +2193,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
+          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526647533",
+            "5526647534",
+            "5526647535",
+            "5526647536",
+            "5526647537",
+            "5526647538",
+            "5526647539",
+            "5526647540",
+            "5526647541",
+            "5526647542",
+            "5526647543"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Rose Eclipse Oversized Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476553400-5ee7d5a07c5f797b57a04d5f.jpg",
+          "sha256": "5ee7d5a07c5f797b57a04d5fcbde17d52a6a202a364df47c4c05265d71129e8c",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526647533",
+            "5526647534",
+            "5526647535",
+            "5526647536",
+            "5526647537",
+            "5526647538",
+            "5526647539",
+            "5526647540",
+            "5526647541",
+            "5526647542",
+            "5526647543"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Rose Eclipse Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
+          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526647533",
+            "5526647534",
+            "5526647535",
+            "5526647536",
+            "5526647537",
+            "5526647538",
+            "5526647539",
+            "5526647540",
+            "5526647541",
+            "5526647542",
+            "5526647543"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Rose Eclipse Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
+          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526647533",
+            "5526647534",
+            "5526647535",
+            "5526647536",
+            "5526647537",
+            "5526647538",
+            "5526647539",
+            "5526647540",
+            "5526647541",
+            "5526647542",
+            "5526647543"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Rose Eclipse Oversized Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476553400-9382a31f02bdad7ac87f81ae.jpg",
+          "sha256": "9382a31f02bdad7ac87f81aedf117ab62034432caf91595d316f68f8e7527ef8",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526647533",
+            "5526647534",
+            "5526647535",
+            "5526647536",
+            "5526647537",
+            "5526647538",
+            "5526647539",
+            "5526647540",
+            "5526647541",
+            "5526647542",
+            "5526647543"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Rose Eclipse Oversized Cotton Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476553400-51472-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -2267,7 +2387,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "5bd3ea29e52972cbcecfa361dc50b47e52df7612a06817987430f3bd356193a9"
+      "supplierPreviews": "5bd3ea29e52972cbcecfa361dc50b47e52df7612a06817987430f3bd356193a9",
+      "hoodieRefresh": {
+        "fingerprint": "d1084779163199fc812fa5d49b1dfb7939a8d91b9a66dfcd7a7ca70316cee797",
+        "checkedAt": "2026-10-31T23:21:37.891Z"
+      }
     },
     "476559553": {
       "name": "Midnight Requiem Oversized Cotton-Blend Hoodie",
