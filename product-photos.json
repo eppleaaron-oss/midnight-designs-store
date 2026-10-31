@@ -46086,10 +46086,108 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
+          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "What Lies Within Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482794900-81e65b4baeb8a478b75b8fde.jpg",
           "sha256": "81e65b4baeb8a478b75b8fdebf1377fd77459ed3bbec3e219c44b891a6d5bd2a",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "What Lies Within Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-121872fd44c559594e0c0585.jpg",
+          "sha256": "121872fd44c559594e0c05854500cd780565dbea0084c9adf1eebec5b5e8ad18",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "What Lies Within Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-8c99d142426db115361c5e94.jpg",
+          "sha256": "8c99d142426db115361c5e9447cc6bae78b96b365753d5e858257c47c6bb5633",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "What Lies Within Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-310257ea16321decd51b3ee8.jpg",
+          "sha256": "310257ea16321decd51b3ee8b750e330eb4318faa10883ee6a81ae33093d4006",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "What Lies Within Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-8b75b3cff4dd7e846d91ecb2.jpg",
+          "sha256": "8b75b3cff4dd7e846d91ecb211209026fac7a676c0bc81d829be72079b1e63aa",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "What Lies Within Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-b8d940c87f88a8561d27baec.jpg",
+          "sha256": "b8d940c87f88a8561d27baec011d8b68de4528847c4c7d56bad7bde3624158e1",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "What Lies Within Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-4fe034cd4a0f8024bd2ce0d8.jpg",
+          "sha256": "4fe034cd4a0f8024bd2ce0d8b0be078cc4d3cc280c9e99fa64e409ff34418da0",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -46117,8 +46215,8 @@
       ],
       "supplierPreviews": "1cfccf15967731358dd8fd365b2eb58fcbc83e8d6b901880c88b1b84370950d6",
       "hoodieRefresh": {
-        "fingerprint": "288d1c62612b271d3414b05d875f7aa6d642e9c72cf2b96573db361cfbc4144b",
-        "checkedAt": "2026-10-31T22:48:13.655Z"
+        "fingerprint": "ce76cf382c1fbaf6d97c3e05883241b1e4c287883af4816cff07f504ba7ca805",
+        "checkedAt": "2026-10-31T23:25:42.099Z"
       }
     },
     "482797453": {

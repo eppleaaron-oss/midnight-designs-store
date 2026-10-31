@@ -1,5 +1,19 @@
 {
   "products": {
+    "482794900": {
+      "name": "What Lies Within Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:25:42.125Z"
+    },
     "482797453": {
       "name": "Even in Darkness / Still Growing Cotton Hoodie",
       "state": "saved",
@@ -244,8 +258,9 @@
     },
     "19b7a12aa9e5aea471cb55127ab36b3b772af870191a4813684bdfd421f6f6f7": {
       "product": "482794900",
-      "state": "pending",
-      "key": "gt-995184774"
+      "state": "downloaded",
+      "key": "gt-995184774",
+      "views": 8
     }
   },
   "requested": [
@@ -290,5 +305,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:25:24.288Z"
+  "updatedAt": "2026-10-31T23:25:42.125Z"
 }
