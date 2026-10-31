@@ -44896,6 +44896,150 @@
       "catalogProductId": 388,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482620118-f927384f68202b4b6ea14997.jpg",
+          "sha256": "f927384f68202b4b6ea1499766e2728bc3d4ca52acc0c8ffbe0c56546b5efa87",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579919015",
+            "5579919016",
+            "5579919017",
+            "5579919018",
+            "5579919019",
+            "5579919020",
+            "5579919021",
+            "5579919022",
+            "5579919023",
+            "5579919024",
+            "5579919025"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Loyalty Until Death Recycled Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482620118-f07b0adcd3b9f81399d5c965.jpg",
+          "sha256": "f07b0adcd3b9f81399d5c965a116079efd10d933d4b8f75af489c2cdfb31ea83",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579919015",
+            "5579919016",
+            "5579919017",
+            "5579919018",
+            "5579919019",
+            "5579919020",
+            "5579919021",
+            "5579919022",
+            "5579919023",
+            "5579919024",
+            "5579919025"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Loyalty Until Death Recycled Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482620118-f927384f68202b4b6ea14997.jpg",
+          "sha256": "f927384f68202b4b6ea1499766e2728bc3d4ca52acc0c8ffbe0c56546b5efa87",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579919015",
+            "5579919016",
+            "5579919017",
+            "5579919018",
+            "5579919019",
+            "5579919020",
+            "5579919021",
+            "5579919022",
+            "5579919023",
+            "5579919024",
+            "5579919025"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Loyalty Until Death Recycled Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/482620118-f927384f68202b4b6ea14997.jpg",
+          "sha256": "f927384f68202b4b6ea1499766e2728bc3d4ca52acc0c8ffbe0c56546b5efa87",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579919015",
+            "5579919016",
+            "5579919017",
+            "5579919018",
+            "5579919019",
+            "5579919020",
+            "5579919021",
+            "5579919022",
+            "5579919023",
+            "5579919024",
+            "5579919025"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Loyalty Until Death Recycled Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482620118-f07b0adcd3b9f81399d5c965.jpg",
+          "sha256": "f07b0adcd3b9f81399d5c965a116079efd10d933d4b8f75af489c2cdfb31ea83",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579919015",
+            "5579919016",
+            "5579919017",
+            "5579919018",
+            "5579919019",
+            "5579919020",
+            "5579919021",
+            "5579919022",
+            "5579919023",
+            "5579919024",
+            "5579919025"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Loyalty Until Death Recycled Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/482620118-f07b0adcd3b9f81399d5c965.jpg",
+          "sha256": "f07b0adcd3b9f81399d5c965a116079efd10d933d4b8f75af489c2cdfb31ea83",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579919015",
+            "5579919016",
+            "5579919017",
+            "5579919018",
+            "5579919019",
+            "5579919020",
+            "5579919021",
+            "5579919022",
+            "5579919023",
+            "5579919024",
+            "5579919025"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Loyalty Until Death Recycled Hoodie · sleeve left"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44921,7 +45065,11 @@
           "sha256": "7f647110113cd9c298947678412b833d0fca7fbbdf96fd734afb6dae5c982ea7"
         }
       ],
-      "supplierPreviews": "b01e9ef28984331c9738033e09df98f18fb03f7806907271ef7ddee0267d0a89"
+      "supplierPreviews": "b01e9ef28984331c9738033e09df98f18fb03f7806907271ef7ddee0267d0a89",
+      "hoodieRefresh": {
+        "fingerprint": "c1c76a5b777cceb1f403505fd5e70daef2f6209787b824df971e5c905b513840",
+        "checkedAt": "2026-10-31T23:02:18.163Z"
+      }
     },
     "482644684": {
       "name": "Silence Is Power Recycled Hoodie",

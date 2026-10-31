@@ -117,8 +117,16 @@
     },
     "482620118": {
       "name": "Loyalty Until Death Recycled Hoodie",
-      "state": "held",
-      "error": "Supplier source for default is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 6,
+      "views": [
+        "front",
+        "back",
+        "sleeve_right",
+        "sleeve_left"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:02:18.189Z"
     },
     "482644684": {
       "name": "Silence Is Power Recycled Hoodie",
@@ -399,8 +407,9 @@
     },
     "a11fda419018d85803aff8fe100f86ab638ed0971ad2c32863c5905b816f27d0": {
       "product": "482620118",
-      "state": "pending",
-      "key": "gt-995173450"
+      "state": "downloaded",
+      "key": "gt-995173450",
+      "views": 6
     }
   },
   "requested": [
@@ -445,5 +454,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:02:05.584Z"
+  "updatedAt": "2026-10-31T23:02:18.189Z"
 }
