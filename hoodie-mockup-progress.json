@@ -83,7 +83,7 @@
     "482538815": {
       "name": "Violet Fang Cotton Hoodie",
       "state": "held",
-      "error": "Supplier source for back_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "error": "Original front_dtfabric layout (1024x1536) differs from native 6000x6000 and has no saved position. No guessed scaling was used."
     },
     "482544936": {
       "name": "Borrowed Time Cotton Hoodie",
@@ -538,5 +538,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:08:33.098Z"
+  "updatedAt": "2026-10-31T23:08:37.132Z"
 }
