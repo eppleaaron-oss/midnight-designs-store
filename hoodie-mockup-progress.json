@@ -152,8 +152,16 @@
     },
     "482678006": {
       "name": "Omens Never Lie Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T22:54:30.250Z"
     },
     "482682117": {
       "name": "All Things Fade Cotton Hoodie",
@@ -301,8 +309,9 @@
     },
     "5d26c3e4cdc547c19778d69d0d3ac196ede75b11c05dbbfa53be38eb97b3aa22": {
       "product": "482678006",
-      "state": "pending",
-      "key": "gt-995169467"
+      "state": "downloaded",
+      "key": "gt-995169467",
+      "views": 5
     }
   },
   "requested": [
@@ -347,5 +356,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:54:17.378Z"
+  "updatedAt": "2026-10-31T22:54:30.250Z"
 }

@@ -45117,6 +45117,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
+          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Omens Never Lie Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-4e0c8d39477b56af07b54871.jpg",
+          "sha256": "4e0c8d39477b56af07b54871dbd2f76df859bf1567d267572a9f32f694bc127d",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Omens Never Lie Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
+          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Omens Never Lie Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
+          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Omens Never Lie Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
+          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Omens Never Lie Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45142,7 +45262,11 @@
           "sha256": "005098271b648ad0270fdb7a733bf1fc16c096eb429e3acb565b25526abf48ab"
         }
       ],
-      "supplierPreviews": "e86335981ed5a229ab0f4c56f79e909d579987416476d18e7e45b8e5f61a8fee"
+      "supplierPreviews": "e86335981ed5a229ab0f4c56f79e909d579987416476d18e7e45b8e5f61a8fee",
+      "hoodieRefresh": {
+        "fingerprint": "67cbecb4136690c653eceea957bc02faa939747df1585923c40fc9aad6dd54c8",
+        "checkedAt": "2026-10-31T22:54:30.229Z"
+      }
     },
     "482682117": {
       "name": "All Things Fade Cotton Hoodie",
