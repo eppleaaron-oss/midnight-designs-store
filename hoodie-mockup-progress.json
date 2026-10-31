@@ -1,5 +1,11 @@
 {
   "products": {
+    "482538815": {
+      "name": "Violet Fang Cotton Hoodie",
+      "state": "held",
+      "error": "Original front_dtfabric layout (1024x1536) differs from native 6000x6000 and has no saved position. No guessed scaling was used.",
+      "checkedAt": "2026-10-31T23:46:33.159Z"
+    },
     "482544936": {
       "name": "Borrowed Time Cotton Hoodie",
       "state": "saved",
@@ -685,5 +691,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:46:28.035Z"
+  "updatedAt": "2026-10-31T23:46:33.159Z"
 }
