@@ -1,5 +1,10 @@
 {
   "products": {
+    "476636727": {
+      "name": "Blood Moon Reaper Recycled Fleece Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front"
+    },
     "476640417": {
       "name": "Crimson Throne Recycled Fleece Hoodie",
       "state": "held",
@@ -199,5 +204,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:58.760Z"
+  "updatedAt": "2026-10-31T22:41:01.542Z"
 }
