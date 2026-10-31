@@ -1,5 +1,19 @@
 {
   "products": {
+    "482550296": {
+      "name": "Serpent’s Requiem Oversized Cotton Hoodie",
+      "state": "saved",
+      "photos": 1,
+      "views": [
+        "back"
+      ],
+      "missing": [
+        "front",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:45:56.012Z"
+    },
     "482554858": {
       "name": "Winter Wolf Cotton Hoodie",
       "state": "saved",
@@ -604,8 +618,9 @@
     },
     "c416efe8f67add598902f5a5deade1a7205abea1d598311503e3c576faf814a6": {
       "product": "482550296",
-      "state": "pending",
-      "key": "gt-995194333"
+      "state": "downloaded",
+      "key": "gt-995194333",
+      "views": 1
     }
   },
   "requested": [
@@ -650,5 +665,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:45:42.584Z"
+  "updatedAt": "2026-10-31T23:45:56.012Z"
 }
