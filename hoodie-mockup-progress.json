@@ -1,5 +1,19 @@
 {
   "products": {
+    "476559553": {
+      "name": "Midnight Requiem Oversized Cotton-Blend Hoodie",
+      "state": "saved",
+      "photos": 1,
+      "views": [
+        "back"
+      ],
+      "missing": [
+        "front",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:58:54.649Z"
+    },
     "476570540": {
       "name": "Scarlet Vigil Oversized Cotton-Blend Hoodie",
       "state": "saved",
@@ -836,8 +850,9 @@
     },
     "78e97f16985e5a386c8d1b7bdb98742c9dc170d502b4ccb651e6098b09301f8b": {
       "product": "476559553",
-      "state": "pending",
-      "key": "gt-995200567"
+      "state": "downloaded",
+      "key": "gt-995200567",
+      "views": 1
     }
   },
   "requested": [
@@ -882,5 +897,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:58:44.946Z"
+  "updatedAt": "2026-10-31T23:58:54.649Z"
 }
