@@ -193,7 +193,7 @@
     "482797453": {
       "name": "Even in Darkness / Still Growing Cotton Hoodie",
       "state": "held",
-      "error": "Accepted production panel unavailable: front_dtfabric"
+      "error": "Supplier file front_dtfabric: status=ok, temporary=true, hash=false, dimensions=6000x6000."
     }
   },
   "jobs": {},
@@ -239,5 +239,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:43:28.758Z",
-  "updatedAt": "2026-10-31T22:43:28.924Z"
+  "updatedAt": "2026-10-31T22:43:31.950Z"
 }
