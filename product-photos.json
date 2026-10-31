@@ -44751,6 +44751,76 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
+          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579616515"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482550296-3fd1ee6ea0c33af26dade4ed.jpg",
+          "sha256": "3fd1ee6ea0c33af26dade4edd89cfda8a5b140702ca657ee5e5858ad279f0109",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579616515"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
+          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579616515"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
+          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579616515"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482550296-9d23c494328b5bf2989e5e25.jpg",
+          "sha256": "9d23c494328b5bf2989e5e2552b05edb6be76f69092c152af120d5ae50c7cc70",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579616515"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Serpent’s Requiem Oversized Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44766,7 +44836,11 @@
           "sha256": "ac98c425ddcb1adc813ae63d80f27d3c748c44cd5d550287ae8c02a7f71f4632"
         }
       ],
-      "supplierPreviews": "bf3c6550aadc964cf61d219c7432a396d2a320c4c1d3b0062aa599e8d218e2c6"
+      "supplierPreviews": "bf3c6550aadc964cf61d219c7432a396d2a320c4c1d3b0062aa599e8d218e2c6",
+      "hoodieRefresh": {
+        "fingerprint": "d20b808b4c82164a23116c54adb5250894c6e95243eae4096f7e8ec5b3ff4a66",
+        "checkedAt": "2026-10-31T23:07:00.201Z"
+      }
     },
     "482554858": {
       "name": "Winter Wolf Cotton Hoodie",

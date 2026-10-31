@@ -92,8 +92,16 @@
     },
     "482550296": {
       "name": "Serpent’s Requiem Oversized Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 1760x2000, expected original 6600x7500. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:07:00.226Z"
     },
     "482554858": {
       "name": "Winter Wolf Cotton Hoodie",
@@ -469,8 +477,9 @@
     },
     "045004249d7a352f0f7e30b80507d169f4dbaf560634bac0487d9258d07dda0d": {
       "product": "482550296",
-      "state": "pending",
-      "key": "gt-995175741"
+      "state": "downloaded",
+      "key": "gt-995175741",
+      "views": 5
     }
   },
   "requested": [
@@ -515,5 +524,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:06:47.461Z"
+  "updatedAt": "2026-10-31T23:07:00.226Z"
 }
