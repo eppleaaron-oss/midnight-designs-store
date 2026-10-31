@@ -1,5 +1,10 @@
 {
   "products": {
+    "482671357": {
+      "name": "Never Surrender Oversized Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482675011": {
       "name": "No Mercy for Betrayal Cotton Hoodie",
       "state": "held",
@@ -99,5 +104,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:01.039Z"
+  "updatedAt": "2026-10-31T22:40:03.864Z"
 }
