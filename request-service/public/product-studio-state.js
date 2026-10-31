@@ -86,3 +86,7 @@ export function deleteDesignLayer(panel,index){
  if(!Number.isInteger(index)||index<0||index>=panel.layers.length)throw Error('Select a design to delete.');
  const next=structuredClone(panel);next.layers.splice(index,1);return next;
 }
+
+export function currentProductPublication(published,openedAt,job){
+ return published===true||!!(Number.isFinite(openedAt)&&job?.storeUpdated===true&&job.updated>openedAt);
+}
