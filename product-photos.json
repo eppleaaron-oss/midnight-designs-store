@@ -45412,10 +45412,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
+          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Kings Never Fall Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482647761-67479b60d1da218cda9bebbf.jpg",
           "sha256": "67479b60d1da218cda9bebbf05f1a9eb9dfb8d534d63f535748ae3ee0febd992",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Kings Never Fall Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-c77c965a524ffc17adc03a6e.jpg",
+          "sha256": "c77c965a524ffc17adc03a6e8d35bc1a4f9918ad21db013e7b0dee76b5026942",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Kings Never Fall Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-3a5aa28d349c2a626ba67af2.jpg",
+          "sha256": "3a5aa28d349c2a626ba67af2aaa8757f08425caaf03b2ef3aeb4d9b2f0cc2aad",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Kings Never Fall Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-920167fb5d14da6095c0e326.jpg",
+          "sha256": "920167fb5d14da6095c0e326ff3dea3d48371283b4c7962027d9b2a8d37bfabf",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Kings Never Fall Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-9c016e4d5246b3e8ef3cd796.jpg",
+          "sha256": "9c016e4d5246b3e8ef3cd7960493082b2cd1dfdc01e87121b107665acf39c4c4",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Kings Never Fall Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-f322c113c4b7f6b4f69ea72b.jpg",
+          "sha256": "f322c113c4b7f6b4f69ea72bb0cb8b3d9037dd0d5c72efa40a2af72e6528ba4a",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Kings Never Fall Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-3e90f5c657fae34e07159078.jpg",
+          "sha256": "3e90f5c657fae34e071590788315efa028ad5a4f3ca4d590d57bceec24f89a6c",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45463,8 +45631,8 @@
       ],
       "supplierPreviews": "780186527aa448667973749add95ca724d12e4d3d4529c70b4ad3a66eb0f8e8b",
       "hoodieRefresh": {
-        "fingerprint": "6157ab62f93514c11e9239500814fa7c0d7a9536a77498981fe44682c366248e",
-        "checkedAt": "2026-10-31T23:00:16.708Z"
+        "fingerprint": "16060c46b24633552e22865274b90ba81bfbd0d01d287c7c7efeaeaba6d6006c",
+        "checkedAt": "2026-10-31T23:38:12.168Z"
       }
     },
     "482668440": {

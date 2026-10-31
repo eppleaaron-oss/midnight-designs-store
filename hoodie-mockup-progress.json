@@ -1,5 +1,19 @@
 {
   "products": {
+    "482647761": {
+      "name": "Kings Never Fall Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:38:12.188Z"
+    },
     "482668440": {
       "name": "Fate Favors the Fearless Cotton Hoodie",
       "state": "saved",
@@ -484,8 +498,9 @@
     },
     "191b0c2796bd2174468e54756bd40a71a54b63ee8c108af1d99a13a8c6cc33ef": {
       "product": "482647761",
-      "state": "pending",
-      "key": "gt-995190787"
+      "state": "downloaded",
+      "key": "gt-995190787",
+      "views": 8
     }
   },
   "requested": [
@@ -530,5 +545,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:37:54.467Z"
+  "updatedAt": "2026-10-31T23:38:12.188Z"
 }
