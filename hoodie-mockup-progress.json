@@ -37,8 +37,16 @@
     },
     "476636727": {
       "name": "Blood Moon Reaper Recycled Fleece Hoodie",
-      "state": "held",
-      "error": "Accepted production panel unavailable: front"
+      "state": "saved",
+      "photos": 6,
+      "views": [
+        "front",
+        "back",
+        "sleeve_right",
+        "sleeve_left"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:16:59.061Z"
     },
     "476640417": {
       "name": "Crimson Throne Recycled Fleece Hoodie",
@@ -595,8 +603,9 @@
     },
     "4df3fa8d8fc7e622aca0d48dd8aea70ffc2acfa32e6af1d95e1e023da7506765": {
       "product": "476636727",
-      "state": "pending",
-      "key": "gt-995180367"
+      "state": "downloaded",
+      "key": "gt-995180367",
+      "views": 6
     }
   },
   "requested": [
@@ -641,5 +650,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:16:40.110Z"
+  "updatedAt": "2026-10-31T23:16:59.061Z"
 }

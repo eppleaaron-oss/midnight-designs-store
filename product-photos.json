@@ -2981,6 +2981,90 @@
       "catalogProductId": 388,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476636727-679f58539d68ad2ce724727c.jpg",
+          "sha256": "679f58539d68ad2ce724727c6106030ed1ee457f32426f522eba97b8b14681d1",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476636727-3870156d6695345571dad585.jpg",
+          "sha256": "3870156d6695345571dad585e4991ba1e7194406e7640ed440fce930c1a7e986",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476636727-679f58539d68ad2ce724727c.jpg",
+          "sha256": "679f58539d68ad2ce724727c6106030ed1ee457f32426f522eba97b8b14681d1",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476636727-679f58539d68ad2ce724727c.jpg",
+          "sha256": "679f58539d68ad2ce724727c6106030ed1ee457f32426f522eba97b8b14681d1",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476636727-3870156d6695345571dad585.jpg",
+          "sha256": "3870156d6695345571dad585e4991ba1e7194406e7640ed440fce930c1a7e986",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476636727-3870156d6695345571dad585.jpg",
+          "sha256": "3870156d6695345571dad585e4991ba1e7194406e7640ed440fce930c1a7e986",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527191130"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Blood Moon Reaper Recycled Fleece Hoodie · sleeve left"
+        },
+        {
           "image": "assets/product-photos/476636727-18730-0.jpg",
           "view": "front",
           "style": "Default",
@@ -3193,7 +3277,11 @@
         }
       ],
       "source": "Verified saved production print files",
-      "supplierPreviews": "94518199df636958d5af8cd77a148323ad35eaa4c42d79ac13d8fceb3fea3114"
+      "supplierPreviews": "94518199df636958d5af8cd77a148323ad35eaa4c42d79ac13d8fceb3fea3114",
+      "hoodieRefresh": {
+        "fingerprint": "4fb1f033e27cd51c9dca10d6bdfc915ffc62823a5272dc73e904d774cb5b17bc",
+        "checkedAt": "2026-10-31T23:16:59.039Z"
+      }
     },
     "476640417": {
       "name": "Crimson Throne Recycled Fleece Hoodie",
