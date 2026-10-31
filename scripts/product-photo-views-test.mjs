@@ -1,9 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-const require=createRequire(import.meta.url),{productPhotoMatches:matches,productPhotosForVariant:eligible}=require('../product-photos.js');
-test('model photos retain front, back, left and right filters independently of model category',()=>{
- for(const [view,filter] of [['Front','front'],['Back','back'],['sleeve_left_dtfabric','left'],['Right side','right']]){const p={view,category:'fit'};assert(matches(p,filter));assert(matches(p,'fit'));assert(!matches(p,'other'));}
+const require=createRequire(import.meta.url),{productPhotoMatches:matches,productPhotoCoverage:coverage,productPhotosForVariant:eligible}=require('../product-photos.js');
+test('coverage never invents a front view for a back-only gallery',()=>{
+ assert.deepEqual(coverage([{view:'Back'}]),['back']);
+ assert.deepEqual(coverage([{view:'Front'},{view:'Right side'}]),['front','right']);
 });
-test('unknown angles are available without inventing a front/back label',()=>{assert(matches({view:'Supplier preview'},'other'));assert(!matches({view:'Supplier preview'},'front'));assert(!matches({view:'back',detail:true},'back'));assert(matches({detail:true},'detail'));});
-test('variant IDs match regardless of JSON number/string representation, without borrowing other sizes',()=>{const photos=[{image:'correct',storeVariantIds:[12]},{image:'wrong',storeVariantIds:['13']},{image:'shared'}];assert.deepEqual(eligible(photos,{id:'12'}).map(p=>p.image),['correct','shared']);});
+test('panel details do not masquerade as whole product sides',()=>{
+ for(const view of ['sleeve_left_dtfabric','Right sleeve','Front pocket','Back hood close-up']){
+  assert(matches({view},'other'));
+  assert.deepEqual(coverage([{view}]),[]);
+ }
+ assert(matches({view:'Left side'},'left'));
+ assert(matches({view:'Front',category:'fit'},'front'));
+ assert.deepEqual(coverage([{view:'Supplier preview'}]),[]);
+});
+
+test('variant IDs retain color/size isolation across JSON types',()=>{const photos=[{image:'correct',storeVariantIds:[12]},{image:'wrong',storeVariantIds:['13']},{image:'shared'}];assert.deepEqual(eligible(photos,{id:'12'}).map(p=>p.image),['correct','shared']);});
+test('artwork enlargement is not another camera angle',()=>{assert(!matches({view:'Back',detail:true},'back'));assert(matches({detail:true},'detail'));});

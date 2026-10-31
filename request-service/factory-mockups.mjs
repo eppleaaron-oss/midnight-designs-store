@@ -25,7 +25,7 @@ export function mockupImages(result,variant){
   for(const e of extra)add(e.url,e.title||e.option||placement,e.option_group||'Product');
  }
  if(!images.size)hold('Printful returned no mockups for the selected catalog variant.');
- if(images.size>32)hold('Printful returned more than 32 mockup images for one variant. Review the requested styles before retrying.');
+ if(images.size>256)hold('Printful returned more than 256 mockup images for one variant. Review the requested styles before retrying.');
  return [...images.values()];
 }
 

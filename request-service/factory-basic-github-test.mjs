@@ -63,3 +63,5 @@ test('exhausted attachment transport retries remain retryable without accepting 
  const store=new BasicGithubAssets(config,{sleep:async()=>{},fetchImpl:async(url,o={})=>{if(o.headers?.Accept==='application/octet-stream'){reads++;throw new DOMException('slow','TimeoutError');}return g.fetch(url,o);}});
  await assert.rejects(store.read(saved.asset,job,'print',file,sha),e=>e.status===503&&/original ID/.test(e.message));assert.equal(reads,3);assert.equal(g.assets.size,1);
 });
+
+test('working storage finds existing files beyond 1000 releases without creating duplicates',async()=>{const store=new BasicGithubAssets(config,{fetchImpl:async()=>{throw Error('unexpected network');}}),job='old-saved-job';let pages=0;store.api=async path=>{pages++;const page=Number(new URL('https://example.test'+path).searchParams.get('page'));return page<=10?Array.from({length:100},(_,i)=>({id:page*100+i,tag_name:'other-'+page+'-'+i})):[{id:9999,draft:true,tag_name:'md-basic-'+job,body:store.body(job)}];};assert.equal((await store.find(job)).id,9999);assert.equal(pages,11);});
