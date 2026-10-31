@@ -341,6 +341,10 @@
       "state": "downloaded",
       "key": "gt-995186750",
       "views": 8
+    },
+    "a57a6df7a89fec23d80651378e45b1c2780247c0bca37a58dcc95dd19802d478": {
+      "product": "482685353",
+      "state": "submitting"
     }
   },
   "requested": [
@@ -385,5 +389,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:29:48.378Z"
+  "updatedAt": "2026-10-31T23:29:54.319Z"
 }
