@@ -2,7 +2,7 @@
 
 ## Verdict
 
-**Not yet fully launch-verified.** Separate local provider simulations verify the buying and fulfillment logic without charges. Live mode is enabled, but there is no completed live payment in the account to reconcile. Automatic store order email is explicitly disabled and has no connected sender/queue in the payment pipeline. These are remaining work, not passed checks.
+**Not yet fully launch-verified.** Separate local provider simulations verify the buying and fulfillment logic without charges. Live mode is enabled, but there is no completed live payment in the account to reconcile. Automatic store order email is explicitly disabled on the running backend. This change adds a durable email queue, but its sender is not connected or live-delivery verified. These are remaining work, not passed checks.
 
 ## Read-only live evidence
 
@@ -18,7 +18,7 @@
 
 The provider fixture starts a separate local service and temporary SQLite database. It uses fake Stripe credentials, signed fixture webhooks and in-memory Stripe/Printful responses; its network adapter rejects unknown providers. This is **not an actual Stripe-hosted sandbox-card exercise**. Production settings were not switched to test mode.
 
-17 focused server tests pass:
+Focused server tests cover:
 
 | Area | Verified behavior |
 | --- | --- |
@@ -40,12 +40,14 @@ Browser exercise (Payment integrity workflow) covers product → bag → shippin
 
 Checkout compares supplier print files (IDs, placement types, options and position) with the saved published studio revision before quoting or opening payment. A supplier-only private edit cannot silently replace the public listing's approved artwork. Missing saved revisions fail closed and must be recovered; they are not silently treated as approved. Pre-studio legacy products have no immutable approved file baseline and remain a separate audit limitation.
 
+Email notice state is stored in payment_fulfillment.details and therefore in the encrypted payment journal. Retries/restarts retain event identity; provider acceptance is distinct from delivery; uncertain sends are held without replay. Real test-order email is blocked except in the isolated injected-provider fixture.
+
 Payment browser CI is pinned to Ubuntu 24.04 because the installed Playwright version cannot install Chromium on the newer ubuntu-latest runner. This change does not alter live Stripe credentials or tax settings.
 
 ## Remaining gates
 
-1. **Order emails:** implement a durable payment/shipment email outbox, connect a verified transactional sender, and prove provider acceptance and delivery separately. Cover duplicate prevention, restart recovery, bounces and uncertain outcomes. Request Center email is a separate pipeline; Stripe receipt_email is not a store confirmation/tracking system.
-2. **Owner alerts:** paid orders are visible in the protected Payments & orders list, but no proactive paid-order email/notification is connected. Verify a new paid order reaches the owner without manually searching Stripe.
+1. **Order emails:** the new durable payment/shipment outbox is tested with an injected fake provider. Connect a verified sender using ORDER_EMAIL_ENABLED=true, ORDER_EMAIL_API_KEY (or RESEND_API_KEY), ORDER_EMAIL_FROM and ORDER_OWNER_EMAIL. Prove actual provider acceptance and inbox delivery separately. Existing unconfigured notices are retained and are not silently backfilled. Request Center email is a separate pipeline; Stripe receipt_email is not a store confirmation/tracking system.
+2. **Owner alerts:** the queue now records paid-order and supplier-cost review notices, visible with their email statuses in Payments & orders. No live sender is connected. Verify a new paid order reaches the owner without manually searching Stripe.
 3. **Tax:** resolve actual registrations and product tax categorization before claiming tax collection is ready. No registration was invented.
 4. **Real Stripe sandbox:** run a separate, reachable sandbox backend with sandbox credentials/signing secret and actual hosted Stripe Checkout. Prove signed paid-event delivery even if the return page is never opened. Current local exercises simulate the provider.
 5. **Live paid order:** after the preceding gates, reconcile the first authorized genuine paid order against Stripe, the encrypted journal and the exact Printful draft. No real purchase is required for the current audit, and none was made.
@@ -56,7 +58,7 @@ Payment browser CI is pinned to Ubuntu 24.04 because the installed Playwright ve
 ## Commands
 
 ```sh
-node --test request-service/payments-test.mjs request-service/payment-fulfillment-test.mjs request-service/payment-journal-test.mjs
+node --test request-service/payments-test.mjs request-service/payment-fulfillment-test.mjs request-service/payment-journal-test.mjs request-service/payment-notifications-test.mjs
 node request-service/payment-browser-test.mjs
 ```
 
