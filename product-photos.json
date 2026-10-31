@@ -45155,10 +45155,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
+          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Dead Air Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482559827-aa6679512f0bc5f5f3c6f5e7.jpg",
           "sha256": "aa6679512f0bc5f5f3c6f5e77c3de16c179aba3de4d5c4982d5a848cdc6c36ae",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Dead Air Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-f98b36544f16e49d01dec5e3.jpg",
+          "sha256": "f98b36544f16e49d01dec5e39ba0c3eca402979569de6981a87a9d04c18caa5d",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Dead Air Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-f76895c7ac71b20d2eeea373.jpg",
+          "sha256": "f76895c7ac71b20d2eeea3734352bb2167267c705ed229b319a0ac0c56d60862",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Dead Air Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-467eaad3f35f5448b9ddcdf9.jpg",
+          "sha256": "467eaad3f35f5448b9ddcdf9d9f1031cad220d2dda286329b7e668342b42c659",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Dead Air Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-c28ddeb24870d0d4b8e568aa.jpg",
+          "sha256": "c28ddeb24870d0d4b8e568aaaae09e5669ad38b75b33ffa7f05617df50af22cc",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Dead Air Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-033fffe5c937fa78912cf864.jpg",
+          "sha256": "033fffe5c937fa78912cf864377f0c61bd75fa780d69516bcb21c61f205ed696",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Dead Air Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-4bbb2f7021e49cc30b4bfb03.jpg",
+          "sha256": "4bbb2f7021e49cc30b4bfb03f7cab335cb0e5e768f9af91bbb9228221ec9e66f",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45206,8 +45374,8 @@
       ],
       "supplierPreviews": "e53ec0893d1799d06542651a137d881d852b51dc02cde7972916cbc9af8019f2",
       "hoodieRefresh": {
-        "fingerprint": "5c7bced3213d1e6b519e3889eb4ded1f2e15d14d4dec0fa34665d49895b18790",
-        "checkedAt": "2026-10-31T23:04:58.128Z"
+        "fingerprint": "2724389b55fbf55f25d0c22700f6e1b567d4b88111756065b7d75f34a0c78e73",
+        "checkedAt": "2026-10-31T23:43:55.326Z"
       }
     },
     "482576149": {

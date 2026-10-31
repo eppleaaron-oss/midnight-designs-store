@@ -1,5 +1,19 @@
 {
   "products": {
+    "482559827": {
+      "name": "Dead Air Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:43:55.352Z"
+    },
     "482576149": {
       "name": "Blood Moon Covenant Cotton Hoodie",
       "state": "saved",
@@ -564,8 +578,9 @@
     },
     "3f69a442f4c9be39bb520bf5264ef20824a954a7b23f43707f5fb3ea85642adf": {
       "product": "482559827",
-      "state": "pending",
-      "key": "gt-995193304"
+      "state": "downloaded",
+      "key": "gt-995193304",
+      "views": 8
     }
   },
   "requested": [
@@ -610,5 +625,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:43:37.697Z"
+  "updatedAt": "2026-10-31T23:43:55.352Z"
 }
