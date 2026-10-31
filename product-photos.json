@@ -44830,6 +44830,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
+          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Blood Moon Covenant Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-a389ae9bbfb4e82d00c4e076.jpg",
+          "sha256": "a389ae9bbfb4e82d00c4e07615126c6f8cdd5b204cff85b264a10da94a1ed67a",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Blood Moon Covenant Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
+          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Blood Moon Covenant Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
+          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Blood Moon Covenant Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482576149-76574366fda258559e7436ca.jpg",
+          "sha256": "76574366fda258559e7436cab552108d019268d833618452503c201dc0589654",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579743246",
+            "5579743248",
+            "5579743249",
+            "5579743250",
+            "5579743252",
+            "5579743253",
+            "5579743254",
+            "5579743255",
+            "5579743257",
+            "5579743258",
+            "5579743259"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Blood Moon Covenant Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44855,7 +44975,11 @@
           "sha256": "9ccf7352c579cccc89971d0a7bbf2745d7da9c03c6e0072eaccfe207b530e81d"
         }
       ],
-      "supplierPreviews": "9ba3b3ad54f21f3a926f76e2884ed5aca7d26de582c0f623f695119d08121c0d"
+      "supplierPreviews": "9ba3b3ad54f21f3a926f76e2884ed5aca7d26de582c0f623f695119d08121c0d",
+      "hoodieRefresh": {
+        "fingerprint": "ad27ffe7966811ca4442780508a774702b9a8818e45fa136a818a71683bdebe7",
+        "checkedAt": "2026-10-31T23:04:26.487Z"
+      }
     },
     "482585676": {
       "name": "Astral Wanderer Cotton Hoodie",
