@@ -1,5 +1,19 @@
 {
   "products": {
+    "482685353": {
+      "name": "Where Shadows Bloom Oversized Cotton Hoodie",
+      "state": "saved",
+      "photos": 1,
+      "views": [
+        "back"
+      ],
+      "missing": [
+        "front",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:31:19.955Z"
+    },
     "482775311": {
       "name": "After the Last Light Cotton Hoodie",
       "state": "saved",
@@ -344,8 +358,9 @@
     },
     "a57a6df7a89fec23d80651378e45b1c2780247c0bca37a58dcc95dd19802d478": {
       "product": "482685353",
-      "state": "pending",
-      "key": "gt-995187573"
+      "state": "downloaded",
+      "key": "gt-995187573",
+      "views": 1
     }
   },
   "requested": [
@@ -390,5 +405,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:31:07.312Z"
+  "updatedAt": "2026-10-31T23:31:19.955Z"
 }
