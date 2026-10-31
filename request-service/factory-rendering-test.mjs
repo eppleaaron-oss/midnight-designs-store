@@ -75,10 +75,9 @@ test('owner rendering saves actual files once and holds invalid batches without 
   async function machine(operation,b={}){const r=await fetch(root+'/internal/factory/'+operation,{method:'POST',headers:{Authorization:'Bearer '+workerToken,'Content-Type':'application/json'},body:JSON.stringify({worker:'pixel-worker',...b})});return r.json();}
   await machine('heartbeat');assert.equal((await call('/api/owner/ai-factory/control',{action:'start'})).status,200);
   let working;
-  for(const stage of ['validate','supplier','files']){const lease=await machine('claim');assert.equal(lease.step,stage,lease.reason);working=lease.job;const result=await machine('step',{job:lease.job,lease:lease.lease});assert.equal(result.status,'queued',JSON.stringify(result));}
-  const profile=jobs.find(j=>j.id===working),saved=(await call('/api/owner/ai-factory/blueprints')).data.drafts.find(d=>d.id===profile.assignedTemplates[0]);assert.equal(saved.files.length,2,'worker created every required native print file from the run settings');
-  const back=saved.files.find(f=>f.placement==='back'),rendered=await fetch(root+back.url,{headers:{Cookie:cookie}});const backPixels=await pixels(Buffer.from(await rendered.arrayBuffer()));assert.deepEqual(pixel(backPixels,0,0),[0,0,0,255]);assert.deepEqual(pixel(backPixels,6,4),[255,0,0,255]);
-  const nonAop=factoryRendering({db:service.db,plans:{products:{328:{name:'DTG Unisex T-Shirt'}}}});await assert.rejects(nonAop.renderJob(working),/Live Printful/,'a print rectangle is not treated as a garment color');
+  for(const stage of ['validate','supplier','files']){const lease=await machine('claim');assert.equal(lease.step,stage,lease.reason);working=lease.job;const result=await machine('step',{job:lease.job,lease:lease.lease});if(stage==='files'){assert.equal(result.status,'waiting_input');assert.match(result.result.wait,/approved measured mapping/);}else assert.equal(result.status,'queued',JSON.stringify(result));}
+  const profile=jobs.find(j=>j.id===working),saved=(await call('/api/owner/ai-factory/blueprints')).data.drafts.find(d=>d.id===profile.assignedTemplates[0]);assert.equal(saved.files.length,0,'automatic runs cannot render an unapproved mapping; manual files above remain intact');
+  const nonAop=factoryRendering({db:service.db,plans:{products:{328:{name:'DTG Unisex T-Shirt'}}}});await assert.rejects(nonAop.renderJob(working),/approved measured mapping/,'approval admission precedes color/template mutation');
  }finally{await new Promise(resolve=>service.server.close(resolve));}
 });
 

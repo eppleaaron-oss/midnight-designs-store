@@ -1,8 +1,10 @@
 import {readFileSync} from 'node:fs';
 
-export const PLACEMENT_POLICY_VERSION='md-placement-1';
+export const PLACEMENT_POLICY_VERSION='md-placement-2';
 export const ARTWORK_KINDS=['hero','motif','strip','pattern','panel'];
 export const PLACEMENT_RULES=[
+ ['source-role','Source artwork is not a garment panel','Front/back name the original source images, separately from physical placement. Load the exact owner-approved product/technique/size profile. No generic centering, automatic role substitution, profile overrides or publication-as-layout-approval.',1],
+ ['mapping','Apply the owner artwork map through approved profiles','Hoodies, jackets, shirts and long sleeves: front source on wearer-left chest, back source on garment back; sleeves individually assigned. Pants: sleeve sources on outer-leg accents; rear separately reviewed. Shoes: front source outside, back source inside. Hats: front/rear where supported. Bandanas and face coverings: front source for worn/folded appearance. Shorts: front source on one leg, back source on the other. Tapestries: separate front-source and back-source editions. Preserve proportions, readable wording, black backgrounds, intentional space and seam/closure exclusions. Missing exact profiles hold production.',1],
  ['artwork','Classify before placement','Classify each source as a hero (scene or portrait), compact motif, narrow strip, repeatable pattern, or already composed panel. Unclassified artwork is conservatively treated as a hero. Never stretch a full scene into a sleeve strip or extract a symbol without permission.',1],
  ['composition','No automatic tiling of scenes or portraits','Use one hero per intended hero region. Never automatically tile a scene, portrait, cathedral illustration or composed panel. No lower-image restart. Repeat only a pattern explicitly approved by the owner for that exact artwork version; a model classification does not grant repeat permission.',1],
  ['composition','Keep the design set together','Use only the selected design set and its assigned source artwork. Coordinate palette and visual language across the outfit. Never borrow an unrelated source or substitute company branding for a missing graphic.',1],
