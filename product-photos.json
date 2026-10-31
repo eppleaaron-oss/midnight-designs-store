@@ -3571,6 +3571,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
+          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-d26a27e4466811ae44cc6fbe.jpg",
+          "sha256": "d26a27e4466811ae44cc6fbe8be1162e8124e0aa1ecadd1482cafbf3fd84b783",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
+          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
+          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
+          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476651184-33977-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -3885,7 +4005,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "c0a52d37521ce9290e57682583f73d2d4e0e185c0374d668cc11a97e762aeb51"
+      "supplierPreviews": "c0a52d37521ce9290e57682583f73d2d4e0e185c0374d668cc11a97e762aeb51",
+      "hoodieRefresh": {
+        "fingerprint": "7424571b5bb7c99c3de727806be5d3c9a9c561fefa35f0d6273c87fc3efd82d8",
+        "checkedAt": "2026-10-31T23:14:54.223Z"
+      }
     },
     "476663020": {
       "name": "Crowned Wilds Recycled Hoodie",
