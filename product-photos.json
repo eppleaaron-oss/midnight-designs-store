@@ -44626,6 +44626,76 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
+          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Raven Sanctum Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-514a3d8da3a814548750d2e6.jpg",
+          "sha256": "514a3d8da3a814548750d2e693bfa654d3bde793346ab2978c2072b7455f6e38",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Raven Sanctum Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
+          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Raven Sanctum Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
+          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Raven Sanctum Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
+          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Raven Sanctum Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44641,7 +44711,11 @@
           "sha256": "a1134735b7da37c6b5b84d182b787bd8064d9aeff95644cca229aea9c47ac4da"
         }
       ],
-      "supplierPreviews": "7062c49c4d66668f57c1d8e8c80ef014a3f6052a49396667a7ee4ff9dc2a5dbd"
+      "supplierPreviews": "7062c49c4d66668f57c1d8e8c80ef014a3f6052a49396667a7ee4ff9dc2a5dbd",
+      "hoodieRefresh": {
+        "fingerprint": "6841f59d8973ceae7ea1939b571c2b573ab7653cc2da891f6ab94c6426f7ae6c",
+        "checkedAt": "2026-10-31T23:11:16.211Z"
+      }
     },
     "482531306": {
       "name": "Death’s-Head Cotton Hoodie",
