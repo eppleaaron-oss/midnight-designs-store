@@ -45338,6 +45338,76 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
+          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "What Lies Within Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-81e65b4baeb8a478b75b8fde.jpg",
+          "sha256": "81e65b4baeb8a478b75b8fdebf1377fd77459ed3bbec3e219c44b891a6d5bd2a",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "What Lies Within Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
+          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "What Lies Within Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
+          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "What Lies Within Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482794900-d64e4aaf37dd67dddc48cfdb.jpg",
+          "sha256": "d64e4aaf37dd67dddc48cfdb7d3cc33b766c8013242da7bccc6215aa6f770506",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581063039"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "What Lies Within Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45353,7 +45423,11 @@
           "sha256": "19bb72abf3650fb7b75a481bea403d6c50929e6c8e6064daeeeb121ce7e9b383"
         }
       ],
-      "supplierPreviews": "1cfccf15967731358dd8fd365b2eb58fcbc83e8d6b901880c88b1b84370950d6"
+      "supplierPreviews": "1cfccf15967731358dd8fd365b2eb58fcbc83e8d6b901880c88b1b84370950d6",
+      "hoodieRefresh": {
+        "fingerprint": "288d1c62612b271d3414b05d875f7aa6d642e9c72cf2b96573db361cfbc4144b",
+        "checkedAt": "2026-10-31T22:48:13.655Z"
+      }
     },
     "482797453": {
       "name": "Even in Darkness / Still Growing Cotton Hoodie",

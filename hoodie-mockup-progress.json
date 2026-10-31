@@ -187,8 +187,16 @@
     },
     "482794900": {
       "name": "What Lies Within Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T22:48:13.678Z"
     },
     "482797453": {
       "name": "Even in Darkness / Still Growing Cotton Hoodie",
@@ -213,8 +221,9 @@
     },
     "ab1f6227d701265b9dba7fc6c1c01bb3a7645a875ed7f624a9e95fc471497b73": {
       "product": "482794900",
-      "state": "pending",
-      "key": "gt-995166239"
+      "state": "downloaded",
+      "key": "gt-995166239",
+      "views": 5
     }
   },
   "requested": [
@@ -259,5 +268,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:47:57.609Z"
+  "updatedAt": "2026-10-31T22:48:13.678Z"
 }
