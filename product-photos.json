@@ -4138,10 +4138,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/477172651-0f8a1fee938eb32198d06efa.jpg",
+          "sha256": "0f8a1fee938eb32198d06efa310e4d68b4a03da49a0a2e03ae9963b99e4de342",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Midnight Study 172651 Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/477172651-52cbc21f3b3b07ac2b16edb9.jpg",
           "sha256": "52cbc21f3b3b07ac2b16edb962d2025101f9a217a5644d88b9c1122645fb75cf",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Midnight Study 172651 Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/477172651-c5cf8dbdf2536add7e53997b.jpg",
+          "sha256": "c5cf8dbdf2536add7e53997b2b08117b3829687a1ecdd58b1c2d6c9eb7226b8b",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Midnight Study 172651 Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/477172651-0cfdf64075dc38e72483abd7.jpg",
+          "sha256": "0cfdf64075dc38e72483abd7a2ac497286882c3ac79164bda28a3e935cd1eb7d",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Midnight Study 172651 Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/477172651-792afe12d56bce7843a8f166.jpg",
+          "sha256": "792afe12d56bce7843a8f166d3484e0c1e9adbc9cbfd4fb82cf7511a6bc83b20",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Midnight Study 172651 Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/477172651-03537ccd731d3c4bc19d177c.jpg",
+          "sha256": "03537ccd731d3c4bc19d177c57f9b09bdbb2915a42a72c60af2dc116349a4f89",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Midnight Study 172651 Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/477172651-b9b8aa38a8553ac148758684.jpg",
+          "sha256": "b9b8aa38a8553ac148758684e92394624a3b250dbe8b52743ca1fb6ba93b6d19",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5529392627",
+            "5529392628",
+            "5529392629",
+            "5529392630",
+            "5529392631",
+            "5529392632",
+            "5529392633",
+            "5529392634",
+            "5529392635",
+            "5529392636",
+            "5529392637"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Midnight Study 172651 Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/477172651-b140e728a9d4c4912f4a0e9f.jpg",
+          "sha256": "b140e728a9d4c4912f4a0e9fe1f87b45ba597731f1f76c0671c8bf92435d2232",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -4189,8 +4357,8 @@
       ],
       "supplierPreviews": "54de38bc9000415f3b7e4fa6307a09e182764d8afdba28d7cff1233fee73ed04",
       "hoodieRefresh": {
-        "fingerprint": "889415f0ce7db16a141803bc240e18d0cdfe3a2ce4b537e60df0a9cf03251815",
-        "checkedAt": "2026-10-31T23:12:46.346Z"
+        "fingerprint": "5e6a0eb459d90856b30e8d8a50e1e9553192f64cacd4e902e5a6eebb6e85b3b2",
+        "checkedAt": "2026-10-31T23:50:41.692Z"
       }
     },
     "480738509": {

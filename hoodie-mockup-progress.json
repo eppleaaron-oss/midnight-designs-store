@@ -1,5 +1,19 @@
 {
   "products": {
+    "477172651": {
+      "name": "Midnight Study 172651 Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:50:41.718Z"
+    },
     "480738509": {
       "name": "Blood Moon Reaper Men's Sports Warmup Hoodie",
       "state": "held",
@@ -716,8 +730,9 @@
     },
     "38730310b1c1ad211577901e66b8a57cc15e588b1123d871a44bd85df78accd0": {
       "product": "477172651",
-      "state": "pending",
-      "key": "gt-995196650"
+      "state": "downloaded",
+      "key": "gt-995196650",
+      "views": 8
     }
   },
   "requested": [
@@ -762,5 +777,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:50:24.476Z"
+  "updatedAt": "2026-10-31T23:50:41.718Z"
 }
