@@ -138,7 +138,7 @@
     "482671357": {
       "name": "Never Surrender Oversized Cotton Hoodie",
       "state": "held",
-      "error": "Accepted production panel unavailable: front_dtfabric"
+      "error": "Supplier file front_dtfabric: status=ok, temporary=true, hash=false, dimensions=6600x7500."
     },
     "482675011": {
       "name": "No Mercy for Betrayal Cotton Hoodie",
@@ -239,5 +239,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:43:28.758Z",
-  "updatedAt": "2026-10-31T22:44:00.324Z"
+  "updatedAt": "2026-10-31T22:44:03.505Z"
 }
