@@ -687,6 +687,10 @@
       "state": "downloaded",
       "key": "gt-995195572",
       "views": 8
+    },
+    "470389a1ddc690702c2c12668a9ec40d0f03d4db1fe4530c03c7d55b348c8549": {
+      "product": "482524169",
+      "state": "submitting"
     }
   },
   "requested": [
@@ -731,5 +735,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:48:33.637Z"
+  "updatedAt": "2026-10-31T23:48:40.417Z"
 }
