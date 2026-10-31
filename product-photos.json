@@ -45084,6 +45084,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
+          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Love Leaves Scars Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-ddf17c09ec77a8f7413e9522.jpg",
+          "sha256": "ddf17c09ec77a8f7413e9522b53fa4aadb7f56f0302f3e0034eda6fbf651ae61",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Love Leaves Scars Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
+          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Love Leaves Scars Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
+          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Love Leaves Scars Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
+          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Love Leaves Scars Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45109,7 +45229,11 @@
           "sha256": "7291913a21dd3c3c0519368e2ec2c9aaa05bf6e109788346a3ff53d00cfb3f69"
         }
       ],
-      "supplierPreviews": "6329bcfb8bbd4cd2564a1d27b3ebd16f0e9ea65819fe59c31f61441adc1d29c5"
+      "supplierPreviews": "6329bcfb8bbd4cd2564a1d27b3ebd16f0e9ea65819fe59c31f61441adc1d29c5",
+      "hoodieRefresh": {
+        "fingerprint": "526dde4474b5eace1374df237a4d6191f1835ff3a8b5663c568a8c79a53cb8f9",
+        "checkedAt": "2026-10-31T22:56:03.375Z"
+      }
     },
     "482678006": {
       "name": "Omens Never Lie Cotton Hoodie",
