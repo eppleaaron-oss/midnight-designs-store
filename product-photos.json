@@ -45032,10 +45032,108 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
+          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Borrowed Time Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482544936-4a4963d7917c583da89264ce.jpg",
           "sha256": "4a4963d7917c583da89264cef2bfa38f497c5a0287bcf27f8ff920c21d99b92c",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Borrowed Time Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-1fd043ad4b57071ed207f28c.jpg",
+          "sha256": "1fd043ad4b57071ed207f28c543cf70efeacfa118b912f97941acc155b4cce8a",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Borrowed Time Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-6144aea5876ba0583006a15f.jpg",
+          "sha256": "6144aea5876ba0583006a15f9fdb5cd65a0e3ca826455bae29beb42f406b1980",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Borrowed Time Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-df98ee22bdd1fb8bcf75eb94.jpg",
+          "sha256": "df98ee22bdd1fb8bcf75eb9420223d8379f61603655aa7fe90d796f88ca975de",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Borrowed Time Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-625e1e6ddd81b8cfcb049a58.jpg",
+          "sha256": "625e1e6ddd81b8cfcb049a58e79197191025f95d3dc910cb0b5bf97905dee6d3",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Borrowed Time Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-7af0db17b4f4e1e30d5499b2.jpg",
+          "sha256": "7af0db17b4f4e1e30d5499b200f410ae92ea05a0d19b7bc87b79be05e41d1579",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Borrowed Time Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-60a7c4e3e09c86887e186187.jpg",
+          "sha256": "60a7c4e3e09c86887e18618781982e76931b04b708870a22c18d759537af8365",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45063,8 +45161,8 @@
       ],
       "supplierPreviews": "75715c0b29d2417d2ba2d833702f5557d5abb3af270df691a9de741c01e27190",
       "hoodieRefresh": {
-        "fingerprint": "411120897696e251b1fa52283d57160c019ba9105dbc4336bbb4eee423a472af",
-        "checkedAt": "2026-10-31T23:08:33.066Z"
+        "fingerprint": "48aeb3ba39be7085ac5e41ba8f2aff8efd47b7663b70ce886e902a53b828b5d5",
+        "checkedAt": "2026-10-31T23:46:28.015Z"
       }
     },
     "482550296": {

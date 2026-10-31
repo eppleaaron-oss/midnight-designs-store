@@ -1,5 +1,19 @@
 {
   "products": {
+    "482544936": {
+      "name": "Borrowed Time Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:46:28.035Z"
+    },
     "482550296": {
       "name": "Serpent’s Requiem Oversized Cotton Hoodie",
       "state": "saved",
@@ -624,8 +638,9 @@
     },
     "06585fb4d6ff49ebd5069d7d630049c2f46d11319e52fae3a344f356af1ade25": {
       "product": "482544936",
-      "state": "pending",
-      "key": "gt-995194577"
+      "state": "downloaded",
+      "key": "gt-995194577",
+      "views": 8
     }
   },
   "requested": [
@@ -670,5 +685,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:46:14.476Z"
+  "updatedAt": "2026-10-31T23:46:28.035Z"
 }
