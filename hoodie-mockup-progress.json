@@ -1,5 +1,10 @@
 {
   "products": {
+    "482775311": {
+      "name": "After the Last Light Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482779702": {
       "name": "Beauty in Decay Oversized Cotton Hoodie",
       "state": "held",
@@ -69,5 +74,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:39:43.684Z"
+  "updatedAt": "2026-10-31T22:39:46.488Z"
 }
