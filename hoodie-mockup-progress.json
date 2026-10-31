@@ -1,5 +1,10 @@
 {
   "products": {
+    "482779702": {
+      "name": "Beauty in Decay Oversized Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482783901": {
       "name": "Still Waters Run Deep Cotton Hoodie",
       "state": "held",
@@ -64,5 +69,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:39:40.936Z"
+  "updatedAt": "2026-10-31T22:39:43.684Z"
 }
