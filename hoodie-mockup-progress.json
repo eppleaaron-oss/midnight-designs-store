@@ -1,5 +1,10 @@
 {
   "products": {
+    "476553400": {
+      "name": "Rose Eclipse Oversized Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "476559553": {
       "name": "Midnight Requiem Oversized Cotton-Blend Hoodie",
       "state": "held",
@@ -224,5 +229,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:41:12.814Z"
+  "updatedAt": "2026-10-31T22:41:15.589Z"
 }
