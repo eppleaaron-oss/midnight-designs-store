@@ -80,3 +80,9 @@ test('Printful 429 delays a known rejected submission without claiming acceptanc
  try{await assert.rejects(f.execute(),/rate limit/);assert.equal(f.snapshot().generating,false);assert.equal(f.snapshot().tasks[0].task_key,null);assert.equal(f.db.prepare('SELECT count(*) n FROM factory_publish_operations').get().n,0);assert.equal((await f.execute()).defer,true);f.advance(59999);await f.execute();assert.equal(attempts,1);f.advance(1);await f.execute();assert.equal(attempts,2);assert.equal(f.snapshot().generating,true);}
  finally{f.close();}
 });
+
+test('complete supplier view sets are retained beyond the old 32-image ceiling',()=>{
+ const extra=Array.from({length:40},(_,i)=>({url:s3+'angle-'+i+'.jpg',title:'Supplier angle '+i}));
+ const images=mockupImages({mockups:[{variant_ids:[101],placement:'front',mockup_url:s3+'primary.jpg',extra}]},101);
+ assert.equal(images.length,41);
+});
