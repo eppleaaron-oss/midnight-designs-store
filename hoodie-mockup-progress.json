@@ -1,5 +1,10 @@
 {
   "products": {
+    "476663020": {
+      "name": "Crowned Wilds Recycled Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front"
+    },
     "477172651": {
       "name": "Midnight Study 172651 Cotton Hoodie",
       "state": "held",
@@ -184,5 +189,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:49.820Z"
+  "updatedAt": "2026-10-31T22:40:52.855Z"
 }
