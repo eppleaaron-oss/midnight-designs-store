@@ -1,5 +1,19 @@
 {
   "products": {
+    "482585676": {
+      "name": "Astral Wanderer Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:41:50.037Z"
+    },
     "482620118": {
       "name": "Loyalty Until Death Recycled Hoodie",
       "state": "held",
@@ -524,8 +538,9 @@
     },
     "210f8f540510853db6abc9ca177b11b146c5cf78f7f18c103e60db733a4d5949": {
       "product": "482585676",
-      "state": "pending",
-      "key": "gt-995192279"
+      "state": "downloaded",
+      "key": "gt-995192279",
+      "views": 8
     }
   },
   "requested": [
@@ -570,5 +585,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:41:32.622Z"
+  "updatedAt": "2026-10-31T23:41:50.037Z"
 }

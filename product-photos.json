@@ -45277,10 +45277,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
+          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Astral Wanderer Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482585676-4f5563b779495910f4a117d1.jpg",
           "sha256": "4f5563b779495910f4a117d193e2a63d0acf846119a8cbd4719a18638b11dcad",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Astral Wanderer Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-1d076213e5b6c2404bb67c79.jpg",
+          "sha256": "1d076213e5b6c2404bb67c799ab3b08b26c4bad9c5780f3c6f17629e878aed2a",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Astral Wanderer Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-1a84786a089c4a6846d0f2d7.jpg",
+          "sha256": "1a84786a089c4a6846d0f2d7167d0ca111249bca686907c0cf59c076dca8790c",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Astral Wanderer Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-21e56f9955bdc06c16e6a2b0.jpg",
+          "sha256": "21e56f9955bdc06c16e6a2b06d83a8d8e59f584f00fcf3b9412659effc614820",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Astral Wanderer Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-a845fd1be75ffd7c187b03ba.jpg",
+          "sha256": "a845fd1be75ffd7c187b03ba13b34ff2a1dd32ffcb4a55b760e5e205b6b53e81",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Astral Wanderer Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-e7af4e6f9b9618d81402ed8f.jpg",
+          "sha256": "e7af4e6f9b9618d81402ed8f49bc90aea6e78bc1b89e121bf87ee826b3e8e995",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Astral Wanderer Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-a06cd450f5d66fa3cd0e3a26.jpg",
+          "sha256": "a06cd450f5d66fa3cd0e3a26b0044cede4f35efb640586263df99006cc9cb102",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45328,8 +45496,8 @@
       ],
       "supplierPreviews": "0b1fae0fa92bcf7d08d202ce6400e69598e2c3062f7fb10764246f74e9bf857c",
       "hoodieRefresh": {
-        "fingerprint": "021072bee8f467660465e7335566aca4649c546de23fdac495d25b1412a4d9d7",
-        "checkedAt": "2026-10-31T23:02:50.025Z"
+        "fingerprint": "1c242b23e71ed25c224840a36e6217dc7a786a8cb7eb0c6bf980f9387dcc082e",
+        "checkedAt": "2026-10-31T23:41:50.017Z"
       }
     },
     "482620118": {
