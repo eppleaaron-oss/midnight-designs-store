@@ -44962,6 +44962,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
+          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Kings Never Fall Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-67479b60d1da218cda9bebbf.jpg",
+          "sha256": "67479b60d1da218cda9bebbf05f1a9eb9dfb8d534d63f535748ae3ee0febd992",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Kings Never Fall Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
+          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Kings Never Fall Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
+          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Kings Never Fall Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482647761-41a22f2e2442de3001d62b3f.jpg",
+          "sha256": "41a22f2e2442de3001d62b3fc215e29930ca619cdc4a8141241e54a174fc7320",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580087710",
+            "5580087711",
+            "5580087712",
+            "5580087713",
+            "5580087714",
+            "5580087715",
+            "5580087716",
+            "5580087717",
+            "5580087718",
+            "5580087719",
+            "5580087720"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Kings Never Fall Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44987,7 +45107,11 @@
           "sha256": "a312d0a3b3788060c202b57d3758b3a14b29863cf1757071c6e27c18130ded1b"
         }
       ],
-      "supplierPreviews": "780186527aa448667973749add95ca724d12e4d3d4529c70b4ad3a66eb0f8e8b"
+      "supplierPreviews": "780186527aa448667973749add95ca724d12e4d3d4529c70b4ad3a66eb0f8e8b",
+      "hoodieRefresh": {
+        "fingerprint": "6157ab62f93514c11e9239500814fa7c0d7a9536a77498981fe44682c366248e",
+        "checkedAt": "2026-10-31T23:00:16.708Z"
+      }
     },
     "482668440": {
       "name": "Fate Favors the Fearless Cotton Hoodie",

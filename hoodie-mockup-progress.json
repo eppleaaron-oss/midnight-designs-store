@@ -127,8 +127,16 @@
     },
     "482647761": {
       "name": "Kings Never Fall Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:00:16.730Z"
     },
     "482668440": {
       "name": "Fate Favors the Fearless Cotton Hoodie",
@@ -371,8 +379,9 @@
     },
     "76fc1d010dc1f63583a0d96fb988102dda677f78d6f16a99121cbfdf461cb16e": {
       "product": "482647761",
-      "state": "pending",
-      "key": "gt-995172446"
+      "state": "downloaded",
+      "key": "gt-995172446",
+      "views": 5
     }
   },
   "requested": [
@@ -417,5 +426,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:00:00.610Z"
+  "updatedAt": "2026-10-31T23:00:16.730Z"
 }
