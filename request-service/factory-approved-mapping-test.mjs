@@ -13,6 +13,7 @@ test('new artwork requiring a size reduction needs a new review',async()=>{const
 test('queued AI runs stop on absent, revoked or superseded approval',()=>{
  const db=new DatabaseSync(':memory:');try{
   assert.throws(()=>assertSavedMappingApproval(db,{mappingPolicyRequired:true}),/no approved measured/);
+  assert.throws(()=>assertSavedMappingApproval(db,{assignments:[{zone:'front',artworkId:'source-front'}]}),/no approved measured/);
   db.exec('CREATE TABLE factory_placement_examples(id INTEGER,supplier TEXT,state TEXT,revision INTEGER,created INTEGER)');
   db.exec("INSERT INTO factory_placement_examples VALUES(7,'supplier','approved',3,1)");
   const plan={mappingPolicyRequired:true,numericLayout:{profileApproval:{exampleId:7,revision:3}}};

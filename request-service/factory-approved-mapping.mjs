@@ -1,7 +1,7 @@
 const hold=message=>{throw Object.assign(Error(message),{status:409});};
 
 export function assertSavedMappingApproval(db,plan){
- if(plan.mappingPolicyRequired===false||!plan.mappingPolicyRequired&&!plan.placementPolicy&&!plan.aiLayout)return;
+ if(plan.mappingPolicyRequired===false||!plan.mappingPolicyRequired&&!plan.placementPolicy&&!plan.aiLayout&&!Array.isArray(plan.assignments))return;
  const approval=plan.numericLayout?.profileApproval;
  if(!approval||!db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='factory_placement_examples'").get())hold('This queued AI product has no approved measured mapping. Review its exact product profile before rendering.');
  const row=db.prepare('SELECT * FROM factory_placement_examples WHERE id=?').get(approval.exampleId);
