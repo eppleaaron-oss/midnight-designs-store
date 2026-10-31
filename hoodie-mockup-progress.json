@@ -182,8 +182,16 @@
     },
     "482790495": {
       "name": "Time Takes All Oversized Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 1760x2000, expected original 6600x7500. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T22:49:56.014Z"
     },
     "482794900": {
       "name": "What Lies Within Cotton Hoodie",
@@ -227,8 +235,9 @@
     },
     "67801faffbeb8f9832e2d962c7e808ecede30b31880b099c655573f684dae5fd": {
       "product": "482790495",
-      "state": "pending",
-      "key": "gt-995167038"
+      "state": "downloaded",
+      "key": "gt-995167038",
+      "views": 5
     }
   },
   "requested": [
@@ -273,5 +282,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:49:30.762Z"
+  "updatedAt": "2026-10-31T22:49:56.014Z"
 }

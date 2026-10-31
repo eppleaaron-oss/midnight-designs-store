@@ -45305,6 +45305,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
+          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Time Takes All Oversized Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482790495-8bff4f804f3ee7d5d200c6c0.jpg",
+          "sha256": "8bff4f804f3ee7d5d200c6c06999d54f8a205e12dd4e6ccf33d665e572123b58",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Time Takes All Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
+          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Time Takes All Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
+          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Time Takes All Oversized Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482790495-808e65cc4b3a22aa0edf223e.jpg",
+          "sha256": "808e65cc4b3a22aa0edf223e66586b6d9a40ec071f853db2da4bae2828601527",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Time Takes All Oversized Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45330,7 +45450,11 @@
           "sha256": "b6fa9570563e3efbb42aa1b5212dba65d992e5cc6f8723b1702fbd2e3a087b66"
         }
       ],
-      "supplierPreviews": "c3fa11a25e9495af2ccf9663645004acb2704a3986e9c3b3aca48bd467ff0ffa"
+      "supplierPreviews": "c3fa11a25e9495af2ccf9663645004acb2704a3986e9c3b3aca48bd467ff0ffa",
+      "hoodieRefresh": {
+        "fingerprint": "48fb6802d64d1897f798bf479315a84a28a152d441460335cebc9a90be7e520c",
+        "checkedAt": "2026-10-31T22:49:55.991Z"
+      }
     },
     "482794900": {
       "name": "What Lies Within Cotton Hoodie",
