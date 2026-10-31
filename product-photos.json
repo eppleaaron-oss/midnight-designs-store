@@ -2579,10 +2579,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
+          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/476580639-0c15873f4d1f37b2b616c6b9.jpg",
           "sha256": "0c15873f4d1f37b2b616c6b9c0f86849fb34edf5655c35221b9424f2bdd17a7e",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-a1c25182b5dcfa087e798725.jpg",
+          "sha256": "a1c25182b5dcfa087e7987252c8b7a43c82918fee41cd8ed08c3c90127b6e05c",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-1ee912c1516618b0ee9b1d18.jpg",
+          "sha256": "1ee912c1516618b0ee9b1d18543ae7be7f26e69677dff02c07c1c0ed77385dff",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-fc36f4d43d152aca91961ea5.jpg",
+          "sha256": "fc36f4d43d152aca91961ea5c85f5957340380d709671c4cd6a3242d9b9a83d3",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-721b8019ee303b2dbdae9651.jpg",
+          "sha256": "721b8019ee303b2dbdae9651fb6b5b4c51f5ca5f48755ae449ac94422adc5a10",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-8a4c94f5a83318a4fb9c2d0c.jpg",
+          "sha256": "8a4c94f5a83318a4fb9c2d0c00efdf009d80914043c30001b3445529b82a7274",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-0787e8e90eeecd4c68776126.jpg",
+          "sha256": "0787e8e90eeecd4c68776126246e58a310658c825e568288aa9fe6563c4cfe56",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -2919,8 +3087,8 @@
       "source": "Verified finished production canvases",
       "supplierPreviews": "fd21d85c051f73d444b7ce14934fbd87e4bc04246107ecb93b84ce2613a85a01",
       "hoodieRefresh": {
-        "fingerprint": "f113b76e980020389d9628c39278d1b82d3ec404549238e695bec7c3765366bd",
-        "checkedAt": "2026-10-31T23:19:04.267Z"
+        "fingerprint": "5574715116ca74173e75cc485841cecd3e480d5250c9a9cefa1bdb148792dce7",
+        "checkedAt": "2026-10-31T23:56:59.419Z"
       }
     },
     "476596721": {

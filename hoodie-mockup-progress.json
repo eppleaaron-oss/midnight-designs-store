@@ -1,5 +1,19 @@
 {
   "products": {
+    "476580639": {
+      "name": "Cathedral Warden Cotton-Blend Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:56:59.440Z"
+    },
     "476596721": {
       "name": "Crimson Oath Recycled Fleece Hoodie",
       "state": "held",
@@ -796,8 +810,9 @@
     },
     "9358c84cec788bf9d73db7784d62534676a473e55f80ece3697151b3876b9ed6": {
       "product": "476580639",
-      "state": "pending",
-      "key": "gt-995199630"
+      "state": "downloaded",
+      "key": "gt-995199630",
+      "views": 8
     }
   },
   "requested": [
@@ -842,5 +857,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:56:39.806Z"
+  "updatedAt": "2026-10-31T23:56:59.440Z"
 }
