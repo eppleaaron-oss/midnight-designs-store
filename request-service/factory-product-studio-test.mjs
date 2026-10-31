@@ -767,3 +767,5 @@ test('a failed Finish releases its validation lock and the exact draft can be co
  const result=await f.call('finish',{source:f.p.id,revision:saved.revision,document:saved.document,target:'mockups'});
  assert.equal(result.job.state,'queued');assert.equal(f.db.prepare('SELECT count(*) n FROM factory_studio_jobs').get().n,1);
 });
+
+test('historical publication receipts cannot relabel a currently private or withdrawn product as live',async()=>{const {currentProductPublication}=await import('./public/product-studio-state.js');assert.equal(currentProductPublication(false,1000,{storeUpdated:true,updated:900}),false);assert.equal(currentProductPublication(false,1000,{storeUpdated:true,updated:1001}),true);assert.equal(currentProductPublication(false,1000,{storeUpdated:false,updated:1001}),false);assert.equal(currentProductPublication(true,1000,{storeUpdated:true,updated:900}),true);assert.equal(currentProductPublication(false,undefined,{storeUpdated:true,updated:900}),false);});
