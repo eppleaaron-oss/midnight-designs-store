@@ -1,5 +1,10 @@
 {
   "products": {
+    "482678006": {
+      "name": "Omens Never Lie Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482682117": {
       "name": "All Things Fade Cotton Hoodie",
       "state": "held",
@@ -84,5 +89,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:39:52.017Z"
+  "updatedAt": "2026-10-31T22:39:54.803Z"
 }
