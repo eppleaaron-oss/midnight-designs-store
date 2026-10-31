@@ -45183,6 +45183,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
+          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580291761",
+            "5580291762",
+            "5580291763",
+            "5580291764",
+            "5580291765",
+            "5580291766",
+            "5580291767",
+            "5580291768",
+            "5580291769",
+            "5580291770",
+            "5580291771"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482685353-60220e0413215f08b83e4139.jpg",
+          "sha256": "60220e0413215f08b83e4139072deac7e3f291b83c31242fe6662e5467142a0a",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580291761",
+            "5580291762",
+            "5580291763",
+            "5580291764",
+            "5580291765",
+            "5580291766",
+            "5580291767",
+            "5580291768",
+            "5580291769",
+            "5580291770",
+            "5580291771"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
+          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580291761",
+            "5580291762",
+            "5580291763",
+            "5580291764",
+            "5580291765",
+            "5580291766",
+            "5580291767",
+            "5580291768",
+            "5580291769",
+            "5580291770",
+            "5580291771"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
+          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580291761",
+            "5580291762",
+            "5580291763",
+            "5580291764",
+            "5580291765",
+            "5580291766",
+            "5580291767",
+            "5580291768",
+            "5580291769",
+            "5580291770",
+            "5580291771"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482685353-e56c422d51fb70c73af2f03b.jpg",
+          "sha256": "e56c422d51fb70c73af2f03be83dbe32dbd50073c9f00c1c84a8a11f302cca53",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580291761",
+            "5580291762",
+            "5580291763",
+            "5580291764",
+            "5580291765",
+            "5580291766",
+            "5580291767",
+            "5580291768",
+            "5580291769",
+            "5580291770",
+            "5580291771"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Where Shadows Bloom Oversized Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45208,7 +45328,11 @@
           "sha256": "0bf720b9075a87345078c28071ff1d451959a3efde49838c23381b148682854b"
         }
       ],
-      "supplierPreviews": "12f517b19fa485b87e3e4dadf2af634b98c21c1426021e8649fd12578158a48e"
+      "supplierPreviews": "12f517b19fa485b87e3e4dadf2af634b98c21c1426021e8649fd12578158a48e",
+      "hoodieRefresh": {
+        "fingerprint": "3e152711e01ab64ec04df4df50386bf1026964a9f4279f859d0b88e1dcc6423f",
+        "checkedAt": "2026-10-31T22:52:25.316Z"
+      }
     },
     "482775311": {
       "name": "After the Last Light Cotton Hoodie",
