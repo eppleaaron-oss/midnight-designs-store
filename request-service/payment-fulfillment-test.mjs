@@ -44,3 +44,13 @@ test('documented flat Printful SyncVariant response is accepted without weakenin
  assert.equal(f.calls.filter(x=>new URL(x.url).pathname==='/shipping/rates').length,0,'invalid supplier identities never reach shipping or payment');
  f.state.variantOverride={};const quote=await f.call('/api/checkout/quote',f.bag);assert.equal(quote.status,200);assert.equal(quote.data.items[0].variantId,'901');assert.equal(quote.data.items[0].size,'L');assert.equal(quote.data.subtotal,3999);assert.equal(f.sessions.size,0,'a quote never creates a payment');
 });
+
+test('checkout holds private catalog states and supplier artwork differing from the published immutable revision',async t=>{
+ const f=await paymentFixture();t.after(()=>f.close());
+ for(const state of ['Draft','Needs corrections','Ready for review']){f.product.status=state;assert.equal((await f.call('/api/checkout/quote',f.bag)).status,409);}delete f.product.status;
+ f.product.approved=false;assert.equal((await f.call('/api/checkout/quote',f.bag)).status,409);delete f.product.approved;
+ f.files[2].position.left=999;assert.equal((await f.call('/api/checkout/quote',f.bag)).status,409);f.files[2].position.left=300;
+ f.files[0].id=9999;assert.equal((await f.call('/api/checkout/quote',f.bag)).status,409);f.files[0].id=1001;
+ const revision=f.product.studioRevision;f.product.studioRevision='missing-saved-release';assert.equal((await f.call('/api/checkout/quote',f.bag)).status,409);f.product.studioRevision=revision;
+ assert.equal((await f.call('/api/checkout/quote',f.bag)).status,200);assert.equal(f.sessions.size,0);assert.equal(posts(f,'/orders').length,0);
+});
