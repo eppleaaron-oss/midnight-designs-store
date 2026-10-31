@@ -1,3 +1,4 @@
+import {studioProductDetails} from '../request-service/studio-product-details.mjs';
 import {importApproved,ownerApproved} from './publication-policy.mjs';
 import {readFile,writeFile,rename} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
@@ -5,8 +6,8 @@ const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 export function applyStudioUpdates(catalog,manifest,{supplier='',revision='',excluded=[],clock=Date.now}={}){
  if(!Array.isArray(catalog.products)||!manifest.products||!Array.isArray(manifest.withdrawn||[]))throw Error('Invalid catalog or approved manifest.');
  if(supplier&&(!/^\d+$/.test(supplier)||!uuid.test(revision)))throw Error('Invalid edited product identity.');
- const candidates=supplier?[supplier]:Object.keys(manifest.products).filter(id=>ownerApproved(manifest.products[id])&&manifest.products[id].studioRevision&&(catalog.products.some(p=>p.id===id&&p.studioRevision!==manifest.products[id].studioRevision)||!catalog.products.some(p=>p.id===id)));
- const result=structuredClone(catalog),changed=[];
+ const candidates=supplier?[supplier]:Object.keys(manifest.products).filter(id=>!(manifest.withdrawn||[]).includes(id)&&!excluded.includes(id)&&ownerApproved(manifest.products[id])&&manifest.products[id].studioRevision&&(catalog.products.some(p=>p.id===id&&p.studioRevision!==manifest.products[id].studioRevision)||!catalog.products.some(p=>p.id===id)));
+ const result=structuredClone(catalog),changed=[];if(!supplier){result.products=result.products.filter(p=>{if((manifest.withdrawn||[]).includes(p.id)||excluded.includes(p.id)){changed.push(p.id);return false;}return true;});}
  for(const id of candidates){
   let p=result.products.find(p=>p.id===id);const f=manifest.products[id];
   if(!f||!uuid.test(f.studioRevision||'')||supplier&&f.studioRevision!==revision)throw Error('A matching approved existing product edit is required.');
@@ -23,7 +24,9 @@ export function applyStudioUpdates(catalog,manifest,{supplier='',revision='',exc
   if(!Array.isArray(f.images)||!f.images.length||f.images.length>256||!f.images.includes(f.image))throw Error('Edited mockup images are incomplete.');
   f.images.forEach(image);
   if(!Array.isArray(f.variants)||f.variants.length!==p.variants.length||new Set(f.variants.map(v=>v.id)).size!==p.variants.length)throw Error('Existing product variants changed.');
-  const variants=p.variants.map(v=>{const a=f.variants.find(a=>a.id===v.id);if(!a||a.catalogVariantId!==v.catalogVariantId||a.price!==v.price||a.currency!==v.currency||!Array.isArray(a.images)||!a.images.length||!a.images.includes(a.image)||a.images.some(u=>!f.images.includes(u)))throw Error('Existing variant identity, price or mockup mapping changed.');a.images.forEach(image);return {...v,image:a.image,images:a.images};});
+  const editedDetails=f.ownerEditedDetails===true&&f.detailsRevision===f.studioRevision;if(editedDetails)studioProductDetails({name:f.name,description:f.description,collections:f.collections,categoryId:f.categoryOverride,variants:Object.fromEntries(f.variants.map(v=>[v.id,{price:v.price,enabled:v.ownerAvailable!==false}]))},p.variants.map(v=>v.id));
+  const variants=p.variants.map(v=>{const a=f.variants.find(a=>a.id===v.id);if(!a||a.catalogVariantId!==v.catalogVariantId||(!editedDetails&&a.price!==v.price)||a.currency!==v.currency||!Array.isArray(a.images)||!a.images.length||!a.images.includes(a.image)||a.images.some(u=>!f.images.includes(u)))throw Error('Existing variant identity, price or mockup mapping changed.');a.images.forEach(image);return {...v,...(editedDetails?{price:a.price,ownerAvailable:a.ownerAvailable,availability:a.availability}:{}),image:a.image,images:a.images};});
+  if(editedDetails)Object.assign(p,{name:f.name,description:f.description,collections:f.collections,collectionName:f.collectionName,categoryId:f.categoryId,categoryOverride:f.categoryOverride,ownerEditedDetails:true,detailsRevision:f.detailsRevision});
   Object.assign(p,{image:f.image,images:f.images,variants,studioRevision:f.studioRevision,studioUpdated:f.studioUpdated,publicationApproval:f.publicationApproval});changed.push(id);
  }
  if(changed.length)result.updatedAt=new Date(clock()).toISOString();return {catalog:result,changed};
