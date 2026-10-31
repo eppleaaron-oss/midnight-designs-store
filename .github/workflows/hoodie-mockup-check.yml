@@ -1,0 +1,20 @@
+name: Hoodie mockup verification
+on:
+  pull_request:
+    paths: ['product-photos.js', 'product.html', 'scripts/refresh-hoodie-mockups.mjs', 'scripts/hoodie-mockups-test.mjs', 'scripts/product-photo-views-test.mjs', 'scripts/qa-hoodie-sleeves.mjs', '.github/workflows/hoodie*']
+permissions:
+  contents: read
+jobs:
+  galleries:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/hoodie-mockups-test.mjs scripts/product-photo-views-test.mjs
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-hoodie-sleeves.mjs

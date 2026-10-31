@@ -1,0 +1,41 @@
+name: Refresh hoodie front back and sleeves
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/refresh-hoodie-mockups.mjs', '.github/workflows/hoodie-mockups.yml']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: hoodie-mockup-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --prefix request-service
+      - run: node --test scripts/hoodie-mockups-test.mjs scripts/product-photo-views-test.mjs
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Generate images only from exact accepted supplier compositions
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/refresh-hoodie-mockups.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hoodie-mockup-audit
+          path: hoodie-mockup-progress.json
