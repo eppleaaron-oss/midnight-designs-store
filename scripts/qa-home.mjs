@@ -11,7 +11,8 @@ for(const [width,height] of [[320,844],[390,844],[768,1024],[1440,1000],[844,390
  await page.setViewportSize({width,height});await page.goto('http://localhost:8000/index.html');
  await page.waitForSelector('#grid .product-card');await page.locator('.opening-image').evaluate(img=>img.decode());
  assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products));
- assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Overflow at '+width);
+ const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,nodes:[...document.querySelectorAll('body *')].map(n=>({tag:n.tagName,cls:n.className,text:n.textContent?.slice(0,90),right:n.getBoundingClientRect().right,left:n.getBoundingClientRect().left})).filter(n=>n.right>innerWidth+1||n.left< -1).slice(0,15)}));
+ assert.equal(overflow.scroll>width,false,'Overflow at '+width+': '+JSON.stringify(overflow));
  const src=await page.locator('.opening-image').evaluate(img=>img.currentSrc);
  assert.ok(src.endsWith(width<=600?'skate-shop-mobile.webp':'skate-shop-banner.webp'));
  assert.equal(await page.locator('.opening-image').getAttribute('fetchpriority'),'high');
