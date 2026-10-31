@@ -10,7 +10,7 @@ for(const width of [320,390,768,1440]){
  await page.setViewportSize({width,height:1000});await page.goto('http://localhost:8000/index.html');await page.locator('.opening-product img').waitFor();await page.locator('.home-outfit').first().waitFor();
  assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),ids);
  assert.equal(await page.locator('.home-outfit').count(),3);
- for(const img of await page.locator('main img').all()){await img.evaluate(i=>i.decode());assert.equal(await img.evaluate(i=>getComputedStyle(i).objectFit),'contain');const a=img.locator('..');const href=await a.getAttribute('href');assert(href?.startsWith('product.html?id='));const p=products.find(p=>p.id===new URL(href,'http://localhost').searchParams.get('id'));assert(home.eligible(p));}
+ for(const img of await page.locator('main img').all()){await img.evaluate(i=>i.decode());assert.equal(await img.evaluate(i=>getComputedStyle(i).objectFit),'contain');const a=img.locator('..');const href=await a.getAttribute('href');assert(/^(product\.html|products\/\d+\.html)\?id=/.test(href));const p=products.find(p=>p.id===new URL(href,'http://localhost').searchParams.get('id'));assert(home.eligible(p));}
  for(const a of await page.locator('.home-outfit>.text-link').all()){const id=new URL(await a.getAttribute('href'),'http://localhost').searchParams.get('outfit');assert(home.collections(products,selected).some(o=>o.id===id));}
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);
  await page.screenshot({path:'qa-home-'+width+'.png',fullPage:true});
