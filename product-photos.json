@@ -2439,6 +2439,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
+          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-0c15873f4d1f37b2b616c6b9.jpg",
+          "sha256": "0c15873f4d1f37b2b616c6b9c0f86849fb34edf5655c35221b9424f2bdd17a7e",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
+          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
+          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476580639-8e2df2de6e2619a187383073.jpg",
+          "sha256": "8e2df2de6e2619a1873830737fda6efeb059daf0e8fa56d891429e952e4dc37d",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526859205",
+            "5526859206",
+            "5526859207",
+            "5526859208",
+            "5526859209",
+            "5526859210",
+            "5526859211",
+            "5526859212",
+            "5526859213",
+            "5526859214",
+            "5526859215"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Cathedral Warden Cotton-Blend Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476580639-33977-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -2753,7 +2873,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "fd21d85c051f73d444b7ce14934fbd87e4bc04246107ecb93b84ce2613a85a01"
+      "supplierPreviews": "fd21d85c051f73d444b7ce14934fbd87e4bc04246107ecb93b84ce2613a85a01",
+      "hoodieRefresh": {
+        "fingerprint": "f113b76e980020389d9628c39278d1b82d3ec404549238e695bec7c3765366bd",
+        "checkedAt": "2026-10-31T23:19:04.267Z"
+      }
     },
     "476596721": {
       "name": "Crimson Oath Recycled Fleece Hoodie",
