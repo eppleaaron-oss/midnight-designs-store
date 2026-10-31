@@ -45575,10 +45575,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482675011-8c24d105e312db9db0c74bb8.jpg",
+          "sha256": "8c24d105e312db9db0c74bb823771c5bdb39ce04cd37fd92122265e652cb21f3",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482675011-19abf01337ef60aad50c01ec.jpg",
           "sha256": "19abf01337ef60aad50c01ecd629ee154cbff5df7d83a85d18cf84db30552d09",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482675011-a9ec5e957315042d94f1b7bf.jpg",
+          "sha256": "a9ec5e957315042d94f1b7bf5b7294481ace9e31f9a1ac567654aa1cb61526f9",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482675011-313fb68614ebb950b18fcbca.jpg",
+          "sha256": "313fb68614ebb950b18fcbca405b0c2e5bad5725115dac975ba2e32ca4762e18",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482675011-83ab34c16ccb9ded9594463a.jpg",
+          "sha256": "83ab34c16ccb9ded9594463a1d361f2276aaa1b6ba3a2066def6611e8454761f",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482675011-b0f2591bd37114a0296c52c8.jpg",
+          "sha256": "b0f2591bd37114a0296c52c83f5da83a278640af1dc2ac0a06bb7d840cd1db16",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482675011-91f9126bf4e954c6f221c11a.jpg",
+          "sha256": "91f9126bf4e954c6f221c11a203ac5ed5fea8c526a7b1e7ce83ddbc13da54daf",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580230949",
+            "5580230950",
+            "5580230951",
+            "5580230952",
+            "5580230953",
+            "5580230954",
+            "5580230955",
+            "5580230956",
+            "5580230957",
+            "5580230958",
+            "5580230959"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "No Mercy for Betrayal Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482675011-e98e0ea513bd4d023c5a01bb.jpg",
+          "sha256": "e98e0ea513bd4d023c5a01bbbd5d2398415dd67951e84e0cdc13a83a32d97aa8",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45626,8 +45794,8 @@
       ],
       "supplierPreviews": "ff85b0295d75a5513f734731654210b8a9705effe3f494e78fa97a340839f409",
       "hoodieRefresh": {
-        "fingerprint": "d6d159814e25fa2ce6d406bdc43b5e792d0d1684b25f0e55bae58872522902d3",
-        "checkedAt": "2026-10-31T22:56:38.087Z"
+        "fingerprint": "3ff9b3232806c1a7e8e5e532aa4e57d85c3cb1b496682dabf939405942f6fa3c",
+        "checkedAt": "2026-10-31T23:35:35.347Z"
       }
     },
     "482676580": {

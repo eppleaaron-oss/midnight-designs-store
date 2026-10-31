@@ -1,5 +1,19 @@
 {
   "products": {
+    "482675011": {
+      "name": "No Mercy for Betrayal Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:35:35.365Z"
+    },
     "482676580": {
       "name": "Love Leaves Scars Cotton Hoodie",
       "state": "saved",
@@ -424,8 +438,9 @@
     },
     "7cf5818c12ce38c80c11f751c9e6295f219191cfd086ab27515d43bc4575aa1c": {
       "product": "482675011",
-      "state": "pending",
-      "key": "gt-995189681"
+      "state": "downloaded",
+      "key": "gt-995189681",
+      "views": 8
     }
   },
   "requested": [
@@ -470,5 +485,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:35:17.584Z"
+  "updatedAt": "2026-10-31T23:35:35.365Z"
 }
