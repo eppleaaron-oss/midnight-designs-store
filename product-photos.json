@@ -2357,6 +2357,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
+          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526789932",
+            "5526789933",
+            "5526789934",
+            "5526789935",
+            "5526789936",
+            "5526789937",
+            "5526789938",
+            "5526789939",
+            "5526789940",
+            "5526789941",
+            "5526789942"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476570540-20f7115a601ec1a0f74a1975.jpg",
+          "sha256": "20f7115a601ec1a0f74a197589b736966f954c7c8522e8b586e10f03fc78013f",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526789932",
+            "5526789933",
+            "5526789934",
+            "5526789935",
+            "5526789936",
+            "5526789937",
+            "5526789938",
+            "5526789939",
+            "5526789940",
+            "5526789941",
+            "5526789942"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
+          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526789932",
+            "5526789933",
+            "5526789934",
+            "5526789935",
+            "5526789936",
+            "5526789937",
+            "5526789938",
+            "5526789939",
+            "5526789940",
+            "5526789941",
+            "5526789942"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
+          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526789932",
+            "5526789933",
+            "5526789934",
+            "5526789935",
+            "5526789936",
+            "5526789937",
+            "5526789938",
+            "5526789939",
+            "5526789940",
+            "5526789941",
+            "5526789942"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476570540-3d52e14198ae67ff1e3283b3.jpg",
+          "sha256": "3d52e14198ae67ff1e3283b32e1233ef93fdafcba996e827758d94bce3e66372",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526789932",
+            "5526789933",
+            "5526789934",
+            "5526789935",
+            "5526789936",
+            "5526789937",
+            "5526789938",
+            "5526789939",
+            "5526789940",
+            "5526789941",
+            "5526789942"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Scarlet Vigil Oversized Cotton-Blend Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476570540-51472-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -2431,7 +2551,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "3db243a32d3e2c657e973f12ddad585689c6bc3834763befe86c37dcb2714864"
+      "supplierPreviews": "3db243a32d3e2c657e973f12ddad585689c6bc3834763befe86c37dcb2714864",
+      "hoodieRefresh": {
+        "fingerprint": "be69dc15c8fd1c1fe4acd1f5018cc07163469441c14f1bc9a41394d4c571811d",
+        "checkedAt": "2026-10-31T23:19:36.775Z"
+      }
     },
     "476580639": {
       "name": "Cathedral Warden Cotton-Blend Hoodie",
