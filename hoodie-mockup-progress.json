@@ -178,7 +178,7 @@
     "482783901": {
       "name": "Still Waters Run Deep Cotton Hoodie",
       "state": "held",
-      "error": "Accepted production panel unavailable: front_dtfabric"
+      "error": "Supplier file front_dtfabric: status=ok, temporary=true, hash=false, dimensions=6000x6000."
     },
     "482790495": {
       "name": "Time Takes All Oversized Cotton Hoodie",
@@ -239,5 +239,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:43:28.758Z",
-  "updatedAt": "2026-10-31T22:43:37.483Z"
+  "updatedAt": "2026-10-31T22:43:40.755Z"
 }
