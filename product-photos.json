@@ -45880,10 +45880,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
+          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "After the Last Light Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482775311-e88dbd0371acca0378a74bf5.jpg",
           "sha256": "e88dbd0371acca0378a74bf569385f543c84f61cf5eacd96be4c09a68e8f5051",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "After the Last Light Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-02a21f82f24d5f7c78e9b48c.jpg",
+          "sha256": "02a21f82f24d5f7c78e9b48c361d32517fc4357c30c1075345f2b4e8aa50d60c",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "After the Last Light Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-62b6da954bac516a4cc0ebac.jpg",
+          "sha256": "62b6da954bac516a4cc0ebaca056285d3fcaac7e87faa035652194daf6d45298",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "After the Last Light Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-291f9277bf0b9321fb3a95e6.jpg",
+          "sha256": "291f9277bf0b9321fb3a95e6873588b928693b9a28777ce539d3c7129104f2d3",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "After the Last Light Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-f66f805ea2895be9f741fb7a.jpg",
+          "sha256": "f66f805ea2895be9f741fb7aae417717f2d1a807637fcbf3bc2dc963121f01ac",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "After the Last Light Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-c51b6dc8212a9c685a4a1307.jpg",
+          "sha256": "c51b6dc8212a9c685a4a130755dfe79aebddd4dc4facd26764e32befc9aa3f44",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "After the Last Light Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-e5fbfd94e1f4264b923e9b2a.jpg",
+          "sha256": "e5fbfd94e1f4264b923e9b2a2fca210bbcba322b819f18f5b0651fab896b4f46",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45931,8 +46099,8 @@
       ],
       "supplierPreviews": "b78757e9ac066aad461d59fb5766d7e0cecc2e82b6783a3f67f6434ccce68214",
       "hoodieRefresh": {
-        "fingerprint": "7a71a99a06778a17dbfa8d7c65a8df648906ea72eb0a3131eadf157ddeef99b8",
-        "checkedAt": "2026-10-31T22:51:56.332Z"
+        "fingerprint": "e8a4258e55e8df79070b08ca95b382379f51a00b313d8c89d6972491875befa2",
+        "checkedAt": "2026-10-31T23:29:48.359Z"
       }
     },
     "482779702": {

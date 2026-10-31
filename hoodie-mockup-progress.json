@@ -1,5 +1,19 @@
 {
   "products": {
+    "482775311": {
+      "name": "After the Last Light Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:29:48.378Z"
+    },
     "482779702": {
       "name": "Beauty in Decay Oversized Cotton Hoodie",
       "state": "saved",
@@ -324,8 +338,9 @@
     },
     "d7c58d89242312d2b87dcc7041187438821b9ce53942f3efa17b0e49fff85567": {
       "product": "482775311",
-      "state": "pending",
-      "key": "gt-995186750"
+      "state": "downloaded",
+      "key": "gt-995186750",
+      "views": 8
     }
   },
   "requested": [
@@ -370,5 +385,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:29:34.146Z"
+  "updatedAt": "2026-10-31T23:29:48.378Z"
 }
