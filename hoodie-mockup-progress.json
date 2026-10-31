@@ -1,5 +1,10 @@
 {
   "products": {
+    "482550296": {
+      "name": "Serpent’s Requiem Oversized Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482554858": {
       "name": "Winter Wolf Cotton Hoodie",
       "state": "held",
@@ -144,5 +149,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:27.435Z"
+  "updatedAt": "2026-10-31T22:40:30.122Z"
 }
