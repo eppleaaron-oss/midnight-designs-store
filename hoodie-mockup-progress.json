@@ -1,5 +1,19 @@
 {
   "products": {
+    "482554858": {
+      "name": "Winter Wolf Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:44:24.062Z"
+    },
     "482559827": {
       "name": "Dead Air Cotton Hoodie",
       "state": "saved",
@@ -584,8 +598,9 @@
     },
     "ff6e34fd7a504085e1ca72c391cfd1c9a7d0f623a8d0792456b392e6c68ece19": {
       "product": "482554858",
-      "state": "pending",
-      "key": "gt-995193561"
+      "state": "downloaded",
+      "key": "gt-995193561",
+      "views": 8
     }
   },
   "requested": [
@@ -630,5 +645,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:44:09.509Z"
+  "updatedAt": "2026-10-31T23:44:24.062Z"
 }

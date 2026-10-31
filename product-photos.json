@@ -45114,10 +45114,108 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
+          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Winter Wolf Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482554858-eb8521dfe5066a7dc12441e7.jpg",
           "sha256": "eb8521dfe5066a7dc12441e7b63191b50e1523f0bb8c7acf8999c7eefb46ae6b",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Winter Wolf Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-cb864599862641c1bfc016f1.jpg",
+          "sha256": "cb864599862641c1bfc016f1d42a2f9c9b95a1be1dd1a40141c3afa4f30fc3b7",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Winter Wolf Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-3551b3253773b262e97ff42e.jpg",
+          "sha256": "3551b3253773b262e97ff42eec8ddcbe3fc402164fe4296bf3a99c6e0bed18d4",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Winter Wolf Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-9a0cd8adce9ed7400624108c.jpg",
+          "sha256": "9a0cd8adce9ed7400624108c7ef7d533c39478d474333f37c7cab370b47941b8",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Winter Wolf Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-1a4a9317096dccf339a1bdf6.jpg",
+          "sha256": "1a4a9317096dccf339a1bdf6462c3a678c893c6a62b5c76fbf21a6485006b989",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Winter Wolf Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-8cbf322a65533c9ddf509a1d.jpg",
+          "sha256": "8cbf322a65533c9ddf509a1d3164e5ea875b230dacec3570b705ed1eb408d0c7",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Winter Wolf Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-0df7e62be45897a66e204ea3.jpg",
+          "sha256": "0df7e62be45897a66e204ea37ce2eea5e465c17c3550c56892e5715e1c8aad0b",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45145,8 +45243,8 @@
       ],
       "supplierPreviews": "2ff9661253a0cae056cb93f286484b3f4863e3b40d215f5d0553f2aeda3bc7be",
       "hoodieRefresh": {
-        "fingerprint": "1353c6fbe55364b13b9a5de2a2ceed23e8ca38de1505c66f4d949676a41e0ebb",
-        "checkedAt": "2026-10-31T23:06:31.421Z"
+        "fingerprint": "550991bcb24084c771756af1678965497a0364a85a08a972c07d173917d94049",
+        "checkedAt": "2026-10-31T23:44:24.034Z"
       }
     },
     "482559827": {
