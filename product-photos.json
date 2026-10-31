@@ -1179,6 +1179,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
+          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-78d9b9d16ccd8e4959a575cb.jpg",
+          "sha256": "78d9b9d16ccd8e4959a575cb3901a1e09a44a6b91b8b2b5e059e90c23ac344e3",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
+          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
+          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
+          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476368662-33977-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -1493,7 +1613,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "e1a4f3135513d2473e0d46f0263b93cc832f8675b6f29432561bf3eb76db01b9"
+      "supplierPreviews": "e1a4f3135513d2473e0d46f0263b93cc832f8675b6f29432561bf3eb76db01b9",
+      "hoodieRefresh": {
+        "fingerprint": "09b5ba06622f3557230aafe6d58cd72a6a25f276904c2fe645f1192abbaa0433",
+        "checkedAt": "2026-10-31T23:23:50.896Z"
+      }
     },
     "476368665": {
       "name": "Ashen Cathedral Cotton-Blend Hoodie",
