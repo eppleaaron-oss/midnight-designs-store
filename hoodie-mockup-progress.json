@@ -1,5 +1,19 @@
 {
   "products": {
+    "482671357": {
+      "name": "Never Surrender Oversized Cotton Hoodie",
+      "state": "saved",
+      "photos": 1,
+      "views": [
+        "back"
+      ],
+      "missing": [
+        "front",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:36:02.272Z"
+    },
     "482675011": {
       "name": "No Mercy for Betrayal Cotton Hoodie",
       "state": "saved",
@@ -444,8 +458,9 @@
     },
     "64e63d88902973b002ae5e4d56f3c1e22b80d3b85d202baa7af69f1705d17486": {
       "product": "482671357",
-      "state": "pending",
-      "key": "gt-995189982"
+      "state": "downloaded",
+      "key": "gt-995189982",
+      "views": 1
     }
   },
   "requested": [
@@ -490,5 +505,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:35:49.497Z"
+  "updatedAt": "2026-10-31T23:36:02.272Z"
 }
