@@ -2,6 +2,15 @@
 // Join by supplier identity only: an outfit neighbour is never a preview fallback.
 window.MidnightMadeMedia={
  placement(label){const name=String(label||'').toLowerCase().replaceAll(' ','_');return name.match(/^(front|back|sleeve_left|sleeve_right|left_sleeve|right_sleeve|hood|pocket|default)(?:_(?:dtfabric|dtg|embroidery|sublimation))?(?=$|[·_])/)?name.match(/^(front|back|sleeve_left|sleeve_right|left_sleeve|right_sleeve|hood|pocket|default)/)[0]:null;},
+ reviewState(row){
+  const u=row.update,j=u?.job,hasDraft=!!u?.draftRevision;
+  if(hasDraft&&(!j||j.revision!==u.draftRevision))return 'draft';
+  if(j){if(j.state==='failed'||j.state==='cancelled')return 'needs_corrections';if(j.storeUpdated&&j.state==='completed')return row.state==='published'?'published':'approved';if(j.ownerApproved)return 'approved';if(j.state==='completed')return 'ready_for_review';return 'draft';}
+  if(row.state==='published')return 'published';
+  if(row.made?.error||/failed|blocked|error|rejected/.test(row.state))return 'needs_corrections';
+  if(row.supplierId&&['supplier_created','awaiting_review','ready_for_review'].includes(row.state))return 'ready_for_review';
+  return 'draft';
+ },
  images(row,index={}){
   const saved=index.products?.[String(row.supplierId)];
   const edited=!!saved?.studioRevision&&saved.photos?.length>0;

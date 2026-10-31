@@ -8,6 +8,20 @@ import {renderArea} from './factory-rendering.mjs';
 import {renderStudioPanelIsolated,renderAreaIsolated} from './factory-studio-render-process.mjs';
 import {factoryProductStudio,renderStudioPanel,studioLayers,studioProductionPanel,studioPlacementIssues} from './factory-product-studio.mjs';
 const ROOT='/api/owner/ai-factory/product-studio';
+test('homepage selection is independent of publication and refuses private drafts and unavailable products',async t=>{
+ const f=await fixture(t),base=f.options.fetchImpl;let html='<div data-latest="true" data-featured="999" data-featured-backups="888"></div>',writes=0,dispatches=0;
+ const products=[{id:'123',variants:[{availability:'active'}]},{id:'456',studioRevision:'private',publicationApproval:{state:'draft',revision:'private'},variants:[{availability:'active'}]},{id:'789',variants:[{availability:'unavailable'}]}];
+ const {createHash}=await import('node:crypto'),catalogBytes=Buffer.from(JSON.stringify({products})),catalogSha=createHash('sha1').update('blob '+catalogBytes.length+'\0').update(catalogBytes).digest('hex');
+ f.options.fetchImpl=async(url,opts={})=>{
+  if(url.includes('/contents/products.json'))return Response.json({sha:catalogSha,size:catalogBytes.length,encoding:'none',content:''});
+  if(url.includes('/git/blobs/'+catalogSha))return Response.json({encoding:'base64',content:catalogBytes.toString('base64')});
+  if(url.includes('/contents/index.html')){if(opts.method==='PUT'){const b=JSON.parse(opts.body);assert.equal(b.sha,'homepage-current');html=Buffer.from(b.content,'base64').toString();writes++;return Response.json({});}return Response.json({sha:'homepage-current',content:Buffer.from(html).toString('base64')});}
+  if(url.endsWith('/dispatches')){dispatches++;return new Response(null,{status:204});}return base(url,opts);
+ };f.restart();
+ for(const productIds of [['456'],['789'],['999'],['123','123']])await assert.rejects(f.call('homepage',{productIds,confirm:true}),/published|distinct/);
+ assert.equal(writes,0);const result=await f.call('homepage',{productIds:['123'],confirm:true});assert.equal(result.deploymentPending,true);assert.equal(writes,1);assert.equal(dispatches,1);assert.match(html,/data-featured="123"/);assert.match(html,/data-featured-backups=""/);assert.doesNotMatch(html,/data-latest/);assert.equal(f.counts().puts,0);assert.equal(f.counts().posts,0);
+ await assert.rejects(f.call('homepage',{productIds:['123'],confirm:true},'https://unrelated.test'),/Origin/);
+});
 test('the durable store manifest lets publishing finish while a full recovery snapshot is pending',async t=>{
  const f=await fixture(t);await f.call('finish',{source:f.p.id,revision:0,document:await f.document(),target:'store',confirmPublication:true});while(f.job().state!=='publishing')await f.tick();
  f.options.backups.checkpoint=()=>new Promise(()=>{});for(let n=0;n<20&&f.job().state!=='completed';n++)await f.tick();assert.equal(f.job().state,'completed');assert.equal(f.job().document.storeUpdated,true);assert.equal(f.supplier.sync_product.id,123);

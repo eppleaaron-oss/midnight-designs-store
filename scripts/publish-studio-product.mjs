@@ -5,7 +5,7 @@ const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 export function applyStudioUpdates(catalog,manifest,{supplier='',revision='',excluded=[],clock=Date.now}={}){
  if(!Array.isArray(catalog.products)||!manifest.products||!Array.isArray(manifest.withdrawn||[]))throw Error('Invalid catalog or approved manifest.');
  if(supplier&&(!/^\d+$/.test(supplier)||!uuid.test(revision)))throw Error('Invalid edited product identity.');
- const candidates=supplier?[supplier]:Object.keys(manifest.products).filter(id=>manifest.products[id].studioRevision&&(catalog.products.some(p=>p.id===id&&p.studioRevision!==manifest.products[id].studioRevision)||!catalog.products.some(p=>p.id===id)&&ownerApproved(manifest.products[id])));
+ const candidates=supplier?[supplier]:Object.keys(manifest.products).filter(id=>ownerApproved(manifest.products[id])&&manifest.products[id].studioRevision&&(catalog.products.some(p=>p.id===id&&p.studioRevision!==manifest.products[id].studioRevision)||!catalog.products.some(p=>p.id===id)));
  const result=structuredClone(catalog),changed=[];
  for(const id of candidates){
   let p=result.products.find(p=>p.id===id);const f=manifest.products[id];
