@@ -45249,6 +45249,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
+          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580835558",
+            "5580835559",
+            "5580835560",
+            "5580835561",
+            "5580835562",
+            "5580835563",
+            "5580835564",
+            "5580835566",
+            "5580835567",
+            "5580835568",
+            "5580835569"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Beauty in Decay Oversized Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482779702-f2d40bb5a42e92218cb7da10.jpg",
+          "sha256": "f2d40bb5a42e92218cb7da10822045cf6a1035cd038fe585552b20f9d0af5ff0",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580835558",
+            "5580835559",
+            "5580835560",
+            "5580835561",
+            "5580835562",
+            "5580835563",
+            "5580835564",
+            "5580835566",
+            "5580835567",
+            "5580835568",
+            "5580835569"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Beauty in Decay Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
+          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580835558",
+            "5580835559",
+            "5580835560",
+            "5580835561",
+            "5580835562",
+            "5580835563",
+            "5580835564",
+            "5580835566",
+            "5580835567",
+            "5580835568",
+            "5580835569"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Beauty in Decay Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
+          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580835558",
+            "5580835559",
+            "5580835560",
+            "5580835561",
+            "5580835562",
+            "5580835563",
+            "5580835564",
+            "5580835566",
+            "5580835567",
+            "5580835568",
+            "5580835569"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Beauty in Decay Oversized Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482779702-d9ce8d706233a18688b11ffb.jpg",
+          "sha256": "d9ce8d706233a18688b11ffb90353e09ba7afd0ac321472198e97bc4c2f55d41",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580835558",
+            "5580835559",
+            "5580835560",
+            "5580835561",
+            "5580835562",
+            "5580835563",
+            "5580835564",
+            "5580835566",
+            "5580835567",
+            "5580835568",
+            "5580835569"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Beauty in Decay Oversized Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45274,7 +45394,11 @@
           "sha256": "acf398fb98bf94c4d32f7ca7172553107877864c3b91ed27adaf0b17826a9261"
         }
       ],
-      "supplierPreviews": "99a8c3958d644541012e0d773cb1becc929c4a191697cb9162a9271055a2ae02"
+      "supplierPreviews": "99a8c3958d644541012e0d773cb1becc929c4a191697cb9162a9271055a2ae02",
+      "hoodieRefresh": {
+        "fingerprint": "c32555ad9a3a75591d2d5571a3e41c89e92e00de7ba05c3ca138ace4fd1f789f",
+        "checkedAt": "2026-10-31T22:50:19.929Z"
+      }
     },
     "482783901": {
       "name": "Still Waters Run Deep Cotton Hoodie",
