@@ -42,8 +42,16 @@
     },
     "476640417": {
       "name": "Crimson Throne Recycled Fleece Hoodie",
-      "state": "held",
-      "error": "Accepted production panel unavailable: front"
+      "state": "saved",
+      "photos": 6,
+      "views": [
+        "front",
+        "back",
+        "sleeve_right",
+        "sleeve_left"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:15:26.250Z"
     },
     "476651184": {
       "name": "Lantern Keeper Cotton-Blend Hoodie",
@@ -581,8 +589,9 @@
     },
     "d546ea269e889de600eb586d16d35697879af1e402da8ace65e69f9f4bc0a2eb": {
       "product": "476640417",
-      "state": "pending",
-      "key": "gt-995179654"
+      "state": "downloaded",
+      "key": "gt-995179654",
+      "views": 6
     }
   },
   "requested": [
@@ -627,5 +636,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:15:07.101Z"
+  "updatedAt": "2026-10-31T23:15:26.250Z"
 }

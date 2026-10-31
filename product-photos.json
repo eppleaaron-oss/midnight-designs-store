@@ -3201,6 +3201,150 @@
       "catalogProductId": 388,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476640417-9bcdf5ad64cab6497bea6353.jpg",
+          "sha256": "9bcdf5ad64cab6497bea63533d265023ce331100e0ca05b29e62a6f908531557",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Crimson Throne Recycled Fleece Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476640417-6c38d59c3bbb44a60d205e33.jpg",
+          "sha256": "6c38d59c3bbb44a60d205e330400385722be355fc40120e0b8fbe67d71638f4c",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Crimson Throne Recycled Fleece Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476640417-9bcdf5ad64cab6497bea6353.jpg",
+          "sha256": "9bcdf5ad64cab6497bea63533d265023ce331100e0ca05b29e62a6f908531557",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476640417-9bcdf5ad64cab6497bea6353.jpg",
+          "sha256": "9bcdf5ad64cab6497bea63533d265023ce331100e0ca05b29e62a6f908531557",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476640417-6c38d59c3bbb44a60d205e33.jpg",
+          "sha256": "6c38d59c3bbb44a60d205e330400385722be355fc40120e0b8fbe67d71638f4c",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476640417-6c38d59c3bbb44a60d205e33.jpg",
+          "sha256": "6c38d59c3bbb44a60d205e330400385722be355fc40120e0b8fbe67d71638f4c",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527222746",
+            "5527222750",
+            "5527222763",
+            "5527222764",
+            "5527222765",
+            "5527222766",
+            "5527222767",
+            "5527222768",
+            "5527222769",
+            "5527222770",
+            "5527222771"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Crimson Throne Recycled Fleece Hoodie · sleeve left"
+        },
+        {
           "image": "assets/product-photos/476640417-10871-0.jpg",
           "view": "front",
           "style": "Default",
@@ -3563,7 +3707,11 @@
         }
       ],
       "source": "Verified saved production print files",
-      "supplierPreviews": "d556b760d22544e1e3bab8539c11f4ab8d9e12108e0f82fcfc78c4d4696730aa"
+      "supplierPreviews": "d556b760d22544e1e3bab8539c11f4ab8d9e12108e0f82fcfc78c4d4696730aa",
+      "hoodieRefresh": {
+        "fingerprint": "64d1adc1d59e96cadc867abd9fe2c08f08cbdbd00ea91e6d4c1e751e2645e805",
+        "checkedAt": "2026-10-31T23:15:26.219Z"
+      }
     },
     "476651184": {
       "name": "Lantern Keeper Cotton-Blend Hoodie",
