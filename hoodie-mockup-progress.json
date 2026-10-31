@@ -1,5 +1,10 @@
 {
   "products": {
+    "476368665": {
+      "name": "Ashen Cathedral Cotton-Blend Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "476553400": {
       "name": "Rose Eclipse Oversized Cotton Hoodie",
       "state": "held",
@@ -229,5 +234,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:41:15.589Z"
+  "updatedAt": "2026-10-31T22:41:18.397Z"
 }
