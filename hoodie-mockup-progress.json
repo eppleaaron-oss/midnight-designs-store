@@ -1,5 +1,19 @@
 {
   "products": {
+    "482524169": {
+      "name": "Raven Sanctum Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:50:10.020Z"
+    },
     "482531306": {
       "name": "Death’s-Head Cotton Hoodie",
       "state": "saved",
@@ -690,8 +704,9 @@
     },
     "470389a1ddc690702c2c12668a9ec40d0f03d4db1fe4530c03c7d55b348c8549": {
       "product": "482524169",
-      "state": "pending",
-      "key": "gt-995196395"
+      "state": "downloaded",
+      "key": "gt-995196395",
+      "views": 8
     }
   },
   "requested": [
@@ -736,5 +751,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:49:52.537Z"
+  "updatedAt": "2026-10-31T23:50:10.020Z"
 }

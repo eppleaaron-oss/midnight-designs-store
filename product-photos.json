@@ -44866,10 +44866,108 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482524169-d74c5c02f08746f4594a09fc.jpg",
+          "sha256": "d74c5c02f08746f4594a09fcff29e3be6e1fb2779c0417c0f899b36043ab5d7a",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Raven Sanctum Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482524169-514a3d8da3a814548750d2e6.jpg",
           "sha256": "514a3d8da3a814548750d2e693bfa654d3bde793346ab2978c2072b7455f6e38",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Raven Sanctum Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-efde3da6e6c62e520cf2219d.jpg",
+          "sha256": "efde3da6e6c62e520cf2219d96251b8173427b2e76453fcdd64a745db06ca860",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Raven Sanctum Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-39ebce07a2e4644cf7d0cb7f.jpg",
+          "sha256": "39ebce07a2e4644cf7d0cb7f27d49a677f76e49cbf24b19b07b10365ad6b1e55",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Raven Sanctum Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-53861df4d0def36c1818f093.jpg",
+          "sha256": "53861df4d0def36c1818f0933400f672af7495b0e29529a7f918e2768e815bc4",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Raven Sanctum Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-7a1535d0ec1daba4f6d3512c.jpg",
+          "sha256": "7a1535d0ec1daba4f6d3512c9a392067f1693e3491567261ee08423fa151a261",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Raven Sanctum Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-b051137192d2720970527a16.jpg",
+          "sha256": "b051137192d2720970527a164b692598d963bf46fc1507570857b1c668c051d6",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579452049"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Raven Sanctum Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482524169-392c49ad02d67c731e289234.jpg",
+          "sha256": "392c49ad02d67c731e289234ee4143d633bf3deaf36fec5525c67d6a7e14a8ee",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -44897,8 +44995,8 @@
       ],
       "supplierPreviews": "7062c49c4d66668f57c1d8e8c80ef014a3f6052a49396667a7ee4ff9dc2a5dbd",
       "hoodieRefresh": {
-        "fingerprint": "6841f59d8973ceae7ea1939b571c2b573ab7653cc2da891f6ab94c6426f7ae6c",
-        "checkedAt": "2026-10-31T23:11:16.211Z"
+        "fingerprint": "55035b4c22602a065cd7dd3e0723ecfc17903fe6571b89abadee5757e9fbf5f0",
+        "checkedAt": "2026-10-31T23:50:09.999Z"
       }
     },
     "482531306": {
