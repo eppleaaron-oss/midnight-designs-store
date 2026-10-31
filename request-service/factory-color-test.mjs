@@ -67,7 +67,7 @@ test('black fills every supported AOP panel and its native edges for each exact 
 
 test('quick production replaces a white blank with the real black variant and leaves unprinted pixels transparent',async()=>{
  const blueprint={source:'live',name:'Unisex Hoodie',catalogType:'HOODIE',effectiveTechnique:'dtg',variants:[{id:10,color:'Black',size:'M'},{id:11,color:'White',size:'M'}],printfiles:{printfiles:[{printfile_id:1,width:8,height:12,dpi:150}],variant_printfiles:[{variant_id:10,placements:{front:1,back:1}},{variant_id:11,placements:{front:1,back:1}}]},layouts:{}};
- const {db,renderer,art}=await setup(blueprint),plan={garmentColor:'Black',background:'Black',fit:'contain',assignments:[{zone:'back',artworkId:art}]};
+ const {db,renderer,art}=await setup(blueprint),plan={mappingPolicyRequired:false,garmentColor:'Black',background:'Black',fit:'contain',assignments:[{zone:'back',artworkId:art}]};
  const {job,draft}=seed(db,renderer,art,11,[{placement:'front',width:8,height:12,dpi:150},{placement:'back',width:8,height:12,dpi:150}],plan);
  const result=await renderer.renderJob(job);assert.equal(result.files.length,1);assert.equal(result.files[0].placement,'back');
  assert.equal(db.prepare('SELECT variant FROM factory_print_drafts WHERE id=?').get(draft).variant,10);

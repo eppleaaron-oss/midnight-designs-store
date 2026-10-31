@@ -1,3 +1,5 @@
+import {createRequire} from 'node:module';
+const homepagePolicy=createRequire(import.meta.url)('../homepage.js');
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp,writeFile,readFile,rm} from 'node:fs/promises';
@@ -15,7 +17,7 @@ test('AI draft and private live-product revision survive repeated catalog syncs 
  const details=[release,draft].map(p=>({sync_product:{id:Number(p.id),name:p.name,external_id:p.factoryExternalId},sync_variants:p.variants.map(v=>({...v,id:Number(v.id),variant_id:v.catalogVariantId,synced:true,availability_status:'active',retail_price:99,files:[{type:'preview',preview_url:'https://example.com/private-supplier.jpg'}]}))}));
  const fetcher=async url=>{const path=new URL(url).pathname;return Response.json({code:200,result:path==='/store/products'?details.map(d=>({id:d.sync_product.id})):details.find(d=>String(d.sync_product.id)===path.split('/').pop()),paging:{total:2}});};
  const app=await readFile(new URL('../app.js',import.meta.url),'utf8'),home=app.slice(app.indexOf('function homeProducts()'),app.indexOf('\nfunction homeHeroProduct()'));
- const select=products=>vm.runInNewContext(home+';homeProducts().map(p=>p.id)',{PRODUCTS:products,$:()=>({dataset:{latest:'true',featured:'1',featuredBackups:''}}),activeVariant:v=>v.availability==='active'});
+ const select=products=>vm.runInNewContext(home+';homeProducts().map(p=>p.id)',{MidnightHomepage:homepagePolicy,PRODUCTS:products,$:()=>({dataset:{latest:'true',featured:'1',featuredBackups:''}}),activeVariant:v=>v.availability==='active'});
  try{
   process.chdir(dir);await writeFile('products.json',JSON.stringify({products:[release]}));await writeFile('factory-listings.json',JSON.stringify({products:{1:privateEdit,2:draft}}));
   for(let attempt=0;attempt<2;attempt++){

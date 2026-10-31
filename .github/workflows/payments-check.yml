@@ -6,7 +6,7 @@ on:
     paths: ['request-service/**', 'checkout.js', 'master-payments.js', 'checkout-availability.js', 'cart.html', 'checkout-result.html', 'shipping.html', 'returns.html', 'order-help.html', '.github/workflows/payments-check.yml']
 jobs:
   payments:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
