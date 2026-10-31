@@ -44728,6 +44728,76 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
+          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Borrowed Time Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-4a4963d7917c583da89264ce.jpg",
+          "sha256": "4a4963d7917c583da89264cef2bfa38f497c5a0287bcf27f8ff920c21d99b92c",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Borrowed Time Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
+          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Borrowed Time Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
+          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Borrowed Time Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482544936-88d3f343cc6a0eeb22895f25.jpg",
+          "sha256": "88d3f343cc6a0eeb22895f25295d95e8ca427798fff516a8dc89a46cc90deea5",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579583575"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Borrowed Time Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44743,7 +44813,11 @@
           "sha256": "ff8675fbc1dd850481351671df34c86b6e948d7e889ba6cde5ab1c8b9005f1dd"
         }
       ],
-      "supplierPreviews": "75715c0b29d2417d2ba2d833702f5557d5abb3af270df691a9de741c01e27190"
+      "supplierPreviews": "75715c0b29d2417d2ba2d833702f5557d5abb3af270df691a9de741c01e27190",
+      "hoodieRefresh": {
+        "fingerprint": "411120897696e251b1fa52283d57160c019ba9105dbc4336bbb4eee423a472af",
+        "checkedAt": "2026-10-31T23:08:33.066Z"
+      }
     },
     "482550296": {
       "name": "Serpent’s Requiem Oversized Cotton Hoodie",
