@@ -1,5 +1,11 @@
 {
   "products": {
+    "482644684": {
+      "name": "Silence Is Power Recycled Hoodie",
+      "state": "held",
+      "error": "Supplier HTTP 400: You are attempting to generate 584 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request",
+      "checkedAt": "2026-10-31T23:39:27.622Z"
+    },
     "482647761": {
       "name": "Kings Never Fall Cotton Hoodie",
       "state": "saved",
@@ -504,7 +510,7 @@
     },
     "5cfa97a1b9f49b35c7d43269875bdc56e560674729f16d3924262845a56ef6e7": {
       "product": "482644684",
-      "state": "submitting"
+      "state": "uncertain"
     }
   },
   "requested": [
@@ -549,5 +555,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:38:18.330Z"
+  "updatedAt": "2026-10-31T23:39:27.622Z"
 }
