@@ -1,0 +1,24 @@
+name: Store statistics verification
+on:
+  pull_request:
+    paths: ['request-service/**', 'store-events.js', 'analytics.js', 'design-events.js', 'checkout.js', 'master.html', '.github/workflows/store-statistics.yml']
+permissions:
+  contents: read
+jobs:
+  statistics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --prefix request-service
+      - run: node --test request-service/store-statistics-test.mjs request-service/payment-fulfillment-test.mjs request-service/payment-notifications-test.mjs
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: node request-service/store-statistics-browser-test.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: store-statistics-responsive
+          path: qa-store-statistics-*.png
