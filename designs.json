@@ -5,7 +5,9 @@
     "image": "assets/designs/art-7d5ff833db11.png",
     "thumbnail": "assets/designs/art-7d5ff833db11.png",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "6d170d900f7af875928db4afc701081d9105d99677b9f6d02931eb9feeab3809"
   },
   {
     "id": "art-c0fe6a0dee55",
@@ -13,7 +15,9 @@
     "image": "assets/designs/art-c0fe6a0dee55.jpg",
     "thumbnail": "assets/designs/art-c0fe6a0dee55-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "117692cd7a11dc09191de5863ac9bbacd24675cb934d11dc618e210a446ec911"
   },
   {
     "id": "art-0963746117f9",
@@ -21,7 +25,9 @@
     "image": "assets/designs/art-0963746117f9.jpg",
     "thumbnail": "assets/designs/art-0963746117f9-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "d3bc8fd8ec8bfb8ea3a6595a4d370b0b535232270f71dc821721ac4e498ebe2b"
   },
   {
     "id": "art-03b60e4f29fb",
@@ -29,7 +35,9 @@
     "image": "assets/designs/art-03b60e4f29fb.jpg",
     "thumbnail": "assets/designs/art-03b60e4f29fb-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "509521297ae11174fe26d7074fee33d8f55aa571f781f0424b3519b01e2fda6c"
   },
   {
     "id": "art-8559196af3bc",
@@ -37,7 +45,9 @@
     "image": "assets/designs/art-8559196af3bc.jpg",
     "thumbnail": "assets/designs/art-8559196af3bc-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b1e81cb9c8a0b87a56856ea615d6affd771b14f8dc9d17c982380991e7231637"
   },
   {
     "id": "art-7b54cc0f0fac",
@@ -45,7 +55,9 @@
     "image": "assets/designs/art-7b54cc0f0fac.jpg",
     "thumbnail": "assets/designs/art-7b54cc0f0fac-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "1aaa74b0d48bc3a3c81622e09ca1c52302b1a9cf2c5266761538da8c8f38ffed"
   },
   {
     "id": "art-be2005d11ab5",
@@ -53,7 +65,9 @@
     "image": "assets/designs/art-be2005d11ab5.jpg",
     "thumbnail": "assets/designs/art-be2005d11ab5-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "d1f680b02567de37f381ca566c13fa1d80eaaf98d531fcbfb90041c38faebf23"
   },
   {
     "id": "art-bd7d23b0c914",
@@ -61,7 +75,9 @@
     "image": "assets/designs/art-bd7d23b0c914.jpg",
     "thumbnail": "assets/designs/art-bd7d23b0c914-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "4da40aa08358b98ff24afc5dd7c544a6561da8bd63d7e175b11fbd32ce58a0e4"
   },
   {
     "id": "art-a8f5baaa1414",
@@ -69,7 +85,9 @@
     "image": "assets/designs/art-a8f5baaa1414.jpg",
     "thumbnail": "assets/designs/art-a8f5baaa1414-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "814df819bff964e5c7898c0f3eee1a93273488401b86d82849e7878ee20fa8ca"
   },
   {
     "id": "art-aaf940674da7",
@@ -77,7 +95,9 @@
     "image": "assets/designs/art-aaf940674da7.jpg",
     "thumbnail": "assets/designs/art-aaf940674da7-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "9caa81591bf6752e8bc01e8f8ceb3fce716b19873274c327306b1d375769cf16"
   },
   {
     "id": "art-b723601cc2ae",
@@ -85,7 +105,9 @@
     "image": "assets/designs/art-b723601cc2ae.jpg",
     "thumbnail": "assets/designs/art-b723601cc2ae-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "670e36be64cc24071d3a3ee662693fd20a1b5fbb206cc13bbd532ed96510f2f0"
   },
   {
     "id": "art-aca4aa5d1539",
@@ -93,7 +115,9 @@
     "image": "assets/designs/art-aca4aa5d1539.jpg",
     "thumbnail": "assets/designs/art-aca4aa5d1539-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b269fe3f92c8e81ab9e9e95ae4b62af76fa6d8c54f977a4ce2c8fed5c4c5d3d8"
   },
   {
     "id": "art-954601ee989c",
@@ -101,7 +125,9 @@
     "image": "assets/designs/art-954601ee989c.jpg",
     "thumbnail": "assets/designs/art-954601ee989c-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "80fb42cecb5f1403c972670517f864a053136dc66bd0688148162b219f5fcea8"
   },
   {
     "id": "art-270a515a60f0",
@@ -109,7 +135,9 @@
     "image": "assets/designs/art-270a515a60f0.jpg",
     "thumbnail": "assets/designs/art-270a515a60f0-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "ec1ea5055dfc3509bc9130e2ac057ed4e0a1657d142256c2f6dd057ce163c06e"
   },
   {
     "id": "art-af0e96f4c5a5",
@@ -117,7 +145,9 @@
     "image": "assets/designs/art-af0e96f4c5a5.jpg",
     "thumbnail": "assets/designs/art-af0e96f4c5a5-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "c376d419986f26286f3f7ad00339fd4d58d8cb8e9ba038e45c51727c8b087d2d"
   },
   {
     "id": "art-8ab6373bf3fa",
@@ -125,7 +155,9 @@
     "image": "assets/designs/art-8ab6373bf3fa.jpg",
     "thumbnail": "assets/designs/art-8ab6373bf3fa-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "dbd532cf8c4c0f4217d035a60c2b15e6a0c68af942c1c2756c608ea6389c1aa7"
   },
   {
     "id": "art-e55e34739b0e",
@@ -133,7 +165,9 @@
     "image": "assets/designs/art-e55e34739b0e.jpg",
     "thumbnail": "assets/designs/art-e55e34739b0e-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b098d81de8f1cbb7b9f121c4eac0cf10d0f3937497b5e5876baa089631dba986"
   },
   {
     "id": "art-eb1d0afcdc2c",
@@ -141,7 +175,9 @@
     "image": "assets/designs/art-eb1d0afcdc2c.jpg",
     "thumbnail": "assets/designs/art-eb1d0afcdc2c-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "bac83c509ec9564b104524e5bd2162d6f47e40cf696bd81fbee198ea76a85a28"
   },
   {
     "id": "art-9761dedd1b7e",
@@ -149,7 +185,9 @@
     "image": "assets/designs/art-9761dedd1b7e.jpg",
     "thumbnail": "assets/designs/art-9761dedd1b7e-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "e9fc33467df6f544ad979d6ceb95c5ec53da2ad02df626d4fa095a76ff1b11ff"
   },
   {
     "id": "art-9ba10d37acee",
@@ -157,7 +195,9 @@
     "image": "assets/designs/art-9ba10d37acee.jpg",
     "thumbnail": "assets/designs/art-9ba10d37acee-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "884c36b4b87d94826e0b5c92acb531fc65e89d5add8adc8aed780bd74b1dd770"
   },
   {
     "id": "art-3ffa5afe7e51",
@@ -165,7 +205,9 @@
     "image": "assets/designs/art-3ffa5afe7e51.jpg",
     "thumbnail": "assets/designs/art-3ffa5afe7e51-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "1549b77b62b3352a9306ead8eee26aabdf2665c2582e5d9776b9c943a1a1f476"
   },
   {
     "id": "art-d04588438e51",
@@ -173,7 +215,9 @@
     "image": "assets/designs/art-d04588438e51.jpg",
     "thumbnail": "assets/designs/art-d04588438e51-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "feac081c0d304fdf559c5e73a012ddae1c03dc6d0cc7815830808500e032c537"
   },
   {
     "id": "art-dfe8db47c434",
@@ -181,7 +225,9 @@
     "image": "assets/designs/art-dfe8db47c434.jpg",
     "thumbnail": "assets/designs/art-dfe8db47c434-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "47d2549683ee8e0a4db0ccbcea8e07f8ac3c4799f83cf9e98c332d3044148176"
   },
   {
     "id": "art-d2c03391a741",
@@ -189,7 +235,9 @@
     "image": "assets/designs/art-d2c03391a741.jpg",
     "thumbnail": "assets/designs/art-d2c03391a741-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "f249fbae5c7a9efe2641ac4b00d5b51fe76b597d0ed2deb6a01861ba847e4318"
   },
   {
     "id": "art-b3c6f2d74cca",
@@ -197,7 +245,9 @@
     "image": "assets/designs/art-b3c6f2d74cca.jpg",
     "thumbnail": "assets/designs/art-b3c6f2d74cca-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "6a28ff66e4ca2c4f7801a9b62b30e713a3cd80e7d23f35476b93a50615174f84"
   },
   {
     "id": "art-2fea3ddfee94",
@@ -205,7 +255,9 @@
     "image": "assets/designs/art-2fea3ddfee94.jpg",
     "thumbnail": "assets/designs/art-2fea3ddfee94-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "4703e42966b9c99ebe94a15f9f69c3287581ee184f6bed954d297d499ba7ecd1"
   },
   {
     "id": "art-92306fade572",
@@ -213,7 +265,9 @@
     "image": "assets/designs/art-92306fade572.jpg",
     "thumbnail": "assets/designs/art-92306fade572-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "28d053cf4cb4d043f68b896d78abf6921901ab8591127b839db1002bc0bf5de8"
   },
   {
     "id": "art-7f616f7c13c6",
@@ -229,7 +283,9 @@
     "image": "assets/designs/art-4b811efcb15f.jpg",
     "thumbnail": "assets/designs/art-4b811efcb15f-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "04744c5334731b36d757c8add14d272f161cdbf7cdc7669232a46136234635fc"
   },
   {
     "id": "art-d7c832d6e3a2",
@@ -237,7 +293,9 @@
     "image": "assets/designs/art-d7c832d6e3a2.jpg",
     "thumbnail": "assets/designs/art-d7c832d6e3a2-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "afe1c67bf70df93d015c05b8eb072c61b93aa1fd00f609a9b39adafe9e25c9f8"
   },
   {
     "id": "art-2019180c3b7a",
@@ -245,7 +303,9 @@
     "image": "assets/designs/art-2019180c3b7a.jpg",
     "thumbnail": "assets/designs/art-2019180c3b7a-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "3cdd2af831e6090b63d6ca0a68ca50a51766cafb1e63f1957d5a549baf6f288b"
   },
   {
     "id": "art-477c9dfff2d5",
@@ -253,7 +313,9 @@
     "image": "assets/designs/art-477c9dfff2d5.jpg",
     "thumbnail": "assets/designs/art-477c9dfff2d5-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "c04c9067274829807ca3ebfd44da5899ee98b74b428d1055f211b474d5dc49b9"
   },
   {
     "id": "art-5d0560de8d21",
@@ -261,7 +323,9 @@
     "image": "assets/designs/art-5d0560de8d21.jpg",
     "thumbnail": "assets/designs/art-5d0560de8d21-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "86f0192e564d4e42ef5ddbde9d3172ed25c42265773ff83dc9cc23b9e8cd0703"
   },
   {
     "id": "art-94b3701c89da",
@@ -269,7 +333,9 @@
     "image": "assets/designs/art-94b3701c89da.jpg",
     "thumbnail": "assets/designs/art-94b3701c89da-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "3e6812acb8d8ab7292b921d078144681da546f58c35cdd59c20252fc8dda4649"
   },
   {
     "id": "art-cbf69d620a75",
@@ -277,7 +343,9 @@
     "image": "assets/designs/art-cbf69d620a75.jpg",
     "thumbnail": "assets/designs/art-cbf69d620a75-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "9f6ee6fe5c789a848ce2a1c818dae394bb4351df450ffe28d0ab0e846b193fc7"
   },
   {
     "id": "art-8517ba0b2e66",
@@ -285,7 +353,9 @@
     "image": "assets/designs/art-8517ba0b2e66.jpg",
     "thumbnail": "assets/designs/art-8517ba0b2e66-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "afaf3e39185275f36b13ff903461a4e5844a6fecbd12d469aa0fc7f0d0a0ce20"
   },
   {
     "id": "art-19d3473a5839",
@@ -293,7 +363,9 @@
     "image": "assets/designs/art-19d3473a5839.jpg",
     "thumbnail": "assets/designs/art-19d3473a5839-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "ea9b2990ca52ef4c412a09c3f49ca36efc28d8af154c612309c100578cb7411c"
   },
   {
     "id": "art-2ed84a541fda",
@@ -301,7 +373,9 @@
     "image": "assets/designs/art-2ed84a541fda.jpg",
     "thumbnail": "assets/designs/art-2ed84a541fda-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "f97583169d8fb3bc8b4ce504f43130fd28ad17265dff8b677433f0f06fef86e2"
   },
   {
     "id": "fallen-angel",
@@ -309,7 +383,9 @@
     "image": "assets/designs/fallen-angel.jpg",
     "thumbnail": "assets/designs/fallen-angel-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "442c66ac285d3e7003b53a42d5fdda3ed7f87c4dfbb86ff1094fbc82a9217d19"
   },
   {
     "id": "celestial-garden",
@@ -317,7 +393,9 @@
     "image": "assets/designs/celestial-garden.jpg",
     "thumbnail": "assets/designs/celestial-garden-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "6d2134739ccfac1fb192d26dbf1a47f93f050043a3fc78f8686e60e71353373f"
   },
   {
     "id": "blood-moon-reaper",
@@ -325,7 +403,9 @@
     "image": "assets/designs/blood-moon-reaper.jpg",
     "thumbnail": "assets/designs/blood-moon-reaper-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "f5d6bf43d369e153752ddfabd26992bd20878214890fb6d4be1b78a21aba3652"
   },
   {
     "id": "skull-crown",
@@ -333,7 +413,9 @@
     "image": "assets/designs/skull-crown.jpg",
     "thumbnail": "assets/designs/skull-crown-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "21858c34a494eec056ebe07a28180dde99bd7ae6bfda02a14e0c5e84dcbef64d"
   },
   {
     "id": "art-a461e4eb83a2",
@@ -341,7 +423,9 @@
     "image": "assets/designs/art-a461e4eb83a2.jpg",
     "thumbnail": "assets/designs/art-a461e4eb83a2-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "f2534508c9ea3dd54fe7a33babef97b30385c1edece90a6292f5b2d13b777a08"
   },
   {
     "id": "art-5822e734044e",
@@ -349,7 +433,9 @@
     "image": "assets/designs/art-5822e734044e.jpg",
     "thumbnail": "assets/designs/art-5822e734044e-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "0cb1d9f99b6ca5179b2882be0a32f74bebe18c2189ac93a4bd7cab4253f0f74d"
   },
   {
     "id": "art-ac4acd590ca3",
@@ -357,7 +443,9 @@
     "image": "assets/designs/art-ac4acd590ca3.jpg",
     "thumbnail": "assets/designs/art-ac4acd590ca3-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "6e29c26af06ba4ac591d43a9b15f83eea390ad9d50058fb09ca25923fae84ebd"
   },
   {
     "id": "art-3764bc31b398",
@@ -365,7 +453,9 @@
     "image": "assets/designs/art-3764bc31b398.jpg",
     "thumbnail": "assets/designs/art-3764bc31b398-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b615a8df4e4bc38474c5f5a9a52af869aed3fbbbc3dea84a38e73cce6d45789d"
   },
   {
     "id": "art-2bc5419bd35e",
@@ -373,7 +463,9 @@
     "image": "assets/designs/art-2bc5419bd35e.jpg",
     "thumbnail": "assets/designs/art-2bc5419bd35e-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "835c48553bdb75891ab92d4d610298e66a953a1386892814cf530892021e21a6"
   },
   {
     "id": "art-23d7ea5dfd42",
@@ -381,7 +473,9 @@
     "image": "assets/designs/art-23d7ea5dfd42.jpg",
     "thumbnail": "assets/designs/art-23d7ea5dfd42-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "7b99818f834fec26b94f975420a37b6005e93ff758cb90a8e1d4fa0d3dfa3392"
   },
   {
     "id": "art-01b022dcd10f",
@@ -389,7 +483,9 @@
     "image": "assets/designs/art-01b022dcd10f.jpg",
     "thumbnail": "assets/designs/art-01b022dcd10f-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "d83d360f056ac2ce1a9acabcc7e5728ead8dc4a219843c62617d0c079492715e"
   },
   {
     "id": "art-19702452ad72",
@@ -397,7 +493,9 @@
     "image": "assets/designs/art-19702452ad72.jpg",
     "thumbnail": "assets/designs/art-19702452ad72-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "df76642a286060cf8390f31cb441a208820429091833c1b6d8813d288d94fd6b"
   },
   {
     "id": "art-298121064e1b",
@@ -413,15 +511,19 @@
     "image": "assets/designs/art-0978df275d64.jpg",
     "thumbnail": "assets/designs/art-0978df275d64-thumb.jpg",
     "category": "Pocket & emblems",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "00c28ad278b3ef7bf0e0a8d1f0a67ded57eb9c2186636084f0a9af8090c6ca53"
   },
   {
     "id": "art-931fd835210d",
-    "name": "Distressed Orange Jack-o’-Lantern Emblem",
+    "name": "Distressed Orange Jack-o\u2019-Lantern Emblem",
     "image": "assets/designs/art-931fd835210d.jpg",
     "thumbnail": "assets/designs/art-931fd835210d-thumb.jpg",
     "category": "Pocket & emblems",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "863c2f7f7b6c8846ed07cec3d9506af0f0faf6f6db07bc250a874104c5f74b96"
   },
   {
     "id": "art-af6b5569e4d2",
@@ -429,7 +531,9 @@
     "image": "assets/designs/art-af6b5569e4d2.jpg",
     "thumbnail": "assets/designs/art-af6b5569e4d2-thumb.jpg",
     "category": "Pocket & emblems",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "538292386947fe55dfdbd9cb316074eaf4efda3f940890b96439d18afc24a5d1"
   },
   {
     "id": "art-55967f5d2c8f",
@@ -437,7 +541,9 @@
     "image": "assets/designs/art-55967f5d2c8f.jpg",
     "thumbnail": "assets/designs/art-55967f5d2c8f-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b02041a972731f8c40cad9296aa6d88a10ba86b4ba31f96aacd820611c15af54"
   },
   {
     "id": "art-a7f685aa5fea",
@@ -445,7 +551,9 @@
     "image": "assets/designs/art-a7f685aa5fea.jpg",
     "thumbnail": "assets/designs/art-a7f685aa5fea-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "349c04adc926fdc5c6d6a5c94638127701960ad189e162fd60bc9912af9ddc94"
   },
   {
     "id": "art-7f543a83d427",
@@ -453,7 +561,9 @@
     "image": "assets/designs/art-7f543a83d427.jpg",
     "thumbnail": "assets/designs/art-7f543a83d427-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "4c044665056675aa9a7d013ea0eacdee9c08fe7c4a5e60b90d6c7731faf8237b"
   },
   {
     "id": "art-dd3449d535c7",
@@ -461,7 +571,9 @@
     "image": "assets/designs/art-dd3449d535c7.jpg",
     "thumbnail": "assets/designs/art-dd3449d535c7-thumb.jpg",
     "category": "Pocket & emblems",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "d505a5e27de43288891b29201966ecf519849c0e8bf22bfcada0c65fa332c496"
   },
   {
     "id": "art-78c3d3d37096",
@@ -469,7 +581,9 @@
     "image": "assets/designs/art-78c3d3d37096.jpg",
     "thumbnail": "assets/designs/art-78c3d3d37096-thumb.jpg",
     "category": "Pocket & emblems",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "602b5e0a3697bcbe80d2bba824dd4dfc92c9cab3f0c27c9a7e87b0c79b60bd1e"
   },
   {
     "id": "art-81047a0c765c",
@@ -485,7 +599,9 @@
     "image": "assets/designs/art-941d0d2d0504.jpg",
     "thumbnail": "assets/designs/art-941d0d2d0504-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "24a886b510c9b06749bf4c640386cad0c255fa4c13d4c98b21aee04e2a84ea0b"
   },
   {
     "id": "art-59db8c6b4c37",
@@ -498,10 +614,12 @@
   {
     "id": "art-3f9412e00893",
     "name": "Gothic Hood Panels with Moonlit Reapers",
-    "image": "assets/designs/art-3f9412e00893.jpg",
-    "thumbnail": "assets/designs/art-3f9412e00893-thumb.jpg",
+    "image": "request-service/private-design-assets/art-3f9412e00893.jpg",
+    "thumbnail": "request-service/private-design-assets/art-3f9412e00893-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-0c794abce982",
@@ -514,10 +632,12 @@
   {
     "id": "art-b67d9cabeea8",
     "name": "Gothic Moonlit Reaper Hood Graphic",
-    "image": "assets/designs/art-b67d9cabeea8.jpg",
-    "thumbnail": "assets/designs/art-b67d9cabeea8-thumb.jpg",
+    "image": "request-service/private-design-assets/art-b67d9cabeea8.jpg",
+    "thumbnail": "request-service/private-design-assets/art-b67d9cabeea8-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-ffe65fbd1243",
@@ -525,7 +645,9 @@
     "image": "assets/designs/art-ffe65fbd1243.jpg",
     "thumbnail": "assets/designs/art-ffe65fbd1243-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "bb4686a0aa9f792b80614c6f997a4c13420b6cefb3c4a4b5066aed10c7fe5d3f"
   },
   {
     "id": "art-3f315dc305b7",
@@ -533,7 +655,9 @@
     "image": "assets/designs/art-3f315dc305b7.jpg",
     "thumbnail": "assets/designs/art-3f315dc305b7-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "eab29a349293cd7e963eccfe07096147224586015657cb0565ae8fd939059ed6"
   },
   {
     "id": "art-e834f17ab829",
@@ -546,10 +670,12 @@
   {
     "id": "art-1ea91b38738e",
     "name": "Gothic Raven Moon Hood Design",
-    "image": "assets/designs/art-1ea91b38738e.jpg",
-    "thumbnail": "assets/designs/art-1ea91b38738e-thumb.jpg",
+    "image": "request-service/private-design-assets/art-1ea91b38738e.jpg",
+    "thumbnail": "request-service/private-design-assets/art-1ea91b38738e-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-19b6647be2e7",
@@ -562,10 +688,12 @@
   {
     "id": "art-cfc34aef1bb1",
     "name": "Gothic Raven Moon Hood Half",
-    "image": "assets/designs/art-cfc34aef1bb1.jpg",
-    "thumbnail": "assets/designs/art-cfc34aef1bb1-thumb.jpg",
+    "image": "request-service/private-design-assets/art-cfc34aef1bb1.jpg",
+    "thumbnail": "request-service/private-design-assets/art-cfc34aef1bb1-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-8c9b949c43de",
@@ -594,18 +722,22 @@
   {
     "id": "art-e169f52ece18",
     "name": "Gothic Reaper Cathedral Panel",
-    "image": "assets/designs/art-e169f52ece18.jpg",
-    "thumbnail": "assets/designs/art-e169f52ece18-thumb.jpg",
+    "image": "request-service/private-design-assets/art-e169f52ece18.jpg",
+    "thumbnail": "request-service/private-design-assets/art-e169f52ece18-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-2b4811ab0ef8",
     "name": "Gothic Reaper Hood Panel with Moonlit Cathedral",
-    "image": "assets/designs/art-2b4811ab0ef8.jpg",
-    "thumbnail": "assets/designs/art-2b4811ab0ef8-thumb.jpg",
+    "image": "request-service/private-design-assets/art-2b4811ab0ef8.jpg",
+    "thumbnail": "request-service/private-design-assets/art-2b4811ab0ef8-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-675a8c814903",
@@ -621,15 +753,19 @@
     "image": "assets/designs/art-60e82862dddf.jpg",
     "thumbnail": "assets/designs/art-60e82862dddf-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "269266d17af466d7c7951041ecdd5fc387cd8c17d90cacbfcc376b9a58b120f1"
   },
   {
     "id": "art-8d0e10cd78f8",
     "name": "Gothic Reaper Moonlit Hood Panel",
-    "image": "assets/designs/art-8d0e10cd78f8.jpg",
-    "thumbnail": "assets/designs/art-8d0e10cd78f8-thumb.jpg",
+    "image": "request-service/private-design-assets/art-8d0e10cd78f8.jpg",
+    "thumbnail": "request-service/private-design-assets/art-8d0e10cd78f8-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-dfa7dd469349",
@@ -637,23 +773,29 @@
     "image": "assets/designs/art-dfa7dd469349.jpg",
     "thumbnail": "assets/designs/art-dfa7dd469349-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "f196329b5078da4536fec157c56b272d7db7999b365d17f1aed54f5dae09bc6f"
   },
   {
     "id": "art-1cf3ea30a8a0",
-    "name": "Gothic Skull and Jack-o’-Lantern Totem",
+    "name": "Gothic Skull and Jack-o\u2019-Lantern Totem",
     "image": "assets/designs/art-1cf3ea30a8a0.jpg",
     "thumbnail": "assets/designs/art-1cf3ea30a8a0-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "a473f994922be2e7534b10c56f72c3d88a2a48b6c769be7a102fd715e11b682e"
   },
   {
     "id": "art-362b4d3beca9",
     "name": "Grim Reaper Beneath the Gothic Moon",
-    "image": "assets/designs/art-362b4d3beca9.jpg",
-    "thumbnail": "assets/designs/art-362b4d3beca9-thumb.jpg",
+    "image": "request-service/private-design-assets/art-362b4d3beca9.jpg",
+    "thumbnail": "request-service/private-design-assets/art-362b4d3beca9-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-0693f21364cc",
@@ -661,7 +803,9 @@
     "image": "assets/designs/art-0693f21364cc.jpg",
     "thumbnail": "assets/designs/art-0693f21364cc-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "70eff144b9f627056eb76c86418e06210fd982715fdf08828febd027e7dd19c8"
   },
   {
     "id": "art-28d9007cc6f4",
@@ -669,7 +813,9 @@
     "image": "assets/designs/art-28d9007cc6f4.jpg",
     "thumbnail": "assets/designs/art-28d9007cc6f4-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "4c6dfe05e5e0cb89b1f96d9ac944da98c6aaadc4ad1b69e760f15ed1fd6a1272"
   },
   {
     "id": "art-9bbe6966ac39",
@@ -685,7 +831,9 @@
     "image": "assets/designs/art-c82796a39437.jpg",
     "thumbnail": "assets/designs/art-c82796a39437-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "d0b91496b37647a83dc1af9aa00fde78f2238b1a3aac3b9f83b0dff0ea8aa2dd"
   },
   {
     "id": "art-0ddcd0ac933a",
@@ -693,7 +841,9 @@
     "image": "assets/designs/art-0ddcd0ac933a.jpg",
     "thumbnail": "assets/designs/art-0ddcd0ac933a-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "eba0f7c8e92062c2d7fdddb3f7050909007b724fa0ef086d120e05a5eba22512"
   },
   {
     "id": "art-bc8c8f2b7e17",
@@ -701,7 +851,9 @@
     "image": "assets/designs/art-bc8c8f2b7e17.jpg",
     "thumbnail": "assets/designs/art-bc8c8f2b7e17-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "9a4b4574428ecd729c7cff522a82ac0c9078228d46656fa215cfc3b3c7da1d3f"
   },
   {
     "id": "art-b36f76d9a18b",
@@ -709,7 +861,9 @@
     "image": "assets/designs/art-b36f76d9a18b.jpg",
     "thumbnail": "assets/designs/art-b36f76d9a18b-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "3d05f217b784fdf63325f5f9dfa2187b1f7c3ae3e1bd5e1782705cb4f0dd6d70"
   },
   {
     "id": "art-6039295fe2d4",
@@ -717,7 +871,9 @@
     "image": "assets/designs/art-6039295fe2d4.jpg",
     "thumbnail": "assets/designs/art-6039295fe2d4-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "deaf8624905f475cbd3a52b87a7f96571cb11177ef810e8b6f4234187dd194f5"
   },
   {
     "id": "art-bd20e882efdd",
@@ -725,7 +881,9 @@
     "image": "assets/designs/art-bd20e882efdd.jpg",
     "thumbnail": "assets/designs/art-bd20e882efdd-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "1eaaaaf22ed360ddef4f261919beeb91333c5031b167891c3929300243279f71"
   },
   {
     "id": "art-901503b27de5",
@@ -733,7 +891,9 @@
     "image": "assets/designs/art-901503b27de5.jpg",
     "thumbnail": "assets/designs/art-901503b27de5-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "c1d2fb2b9a731ccb69897c0d4961bf6528c3201003c222a92ba019cae17af89e"
   },
   {
     "id": "art-a47dd33852f2",
@@ -741,7 +901,9 @@
     "image": "assets/designs/art-a47dd33852f2.jpg",
     "thumbnail": "assets/designs/art-a47dd33852f2-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "8ca71e80824a15ec646b0559c8a91f9aac746677d0f7f8d641ebbb2e37da0937"
   },
   {
     "id": "art-48f8bdcd64d7",
@@ -749,7 +911,9 @@
     "image": "assets/designs/art-48f8bdcd64d7.jpg",
     "thumbnail": "assets/designs/art-48f8bdcd64d7-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "2f9cb47ff3a03078df3d4a3404b92988e9eda12c812862201cb1007c47d941ce"
   },
   {
     "id": "art-a27fab82d306",
@@ -765,7 +929,9 @@
     "image": "assets/designs/art-e2f9ba2aa7a5.jpg",
     "thumbnail": "assets/designs/art-e2f9ba2aa7a5-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "36b2e45716ada2a95a490a80871a5d16d739cec6d29dbd75eb0fa826ecaabf36"
   },
   {
     "id": "art-dfd258e47873",
@@ -773,7 +939,9 @@
     "image": "assets/designs/art-dfd258e47873.jpg",
     "thumbnail": "assets/designs/art-dfd258e47873-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "6326ca56d0851047e8b6a9259e20e3fd0fead8e5b48decc34fe14699c6ae34f7"
   },
   {
     "id": "art-f42c57c54925",
@@ -781,7 +949,9 @@
     "image": "assets/designs/art-f42c57c54925.jpg",
     "thumbnail": "assets/designs/art-f42c57c54925-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "312084af502263a21ca98a7964b710cc59e750b010a83c34253e07b7001e9663"
   },
   {
     "id": "art-bc3576cdf946",
@@ -789,7 +959,9 @@
     "image": "assets/designs/art-bc3576cdf946.jpg",
     "thumbnail": "assets/designs/art-bc3576cdf946-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "c034cb26f2db496f1f5231bd558a296ea79f49115ef02ba2d397e27810a7eae7"
   },
   {
     "id": "art-16d75538d47d",
@@ -797,15 +969,19 @@
     "image": "assets/designs/art-16d75538d47d.jpg",
     "thumbnail": "assets/designs/art-16d75538d47d-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b79803179381ae5cf8edcfc8d1866f39636d4a70f14ee0ad4934df7ba3d91c9e"
   },
   {
     "id": "art-e616a63e4b3f",
     "name": "Mirrored Gothic Moon Hood Design",
-    "image": "assets/designs/art-e616a63e4b3f.jpg",
-    "thumbnail": "assets/designs/art-e616a63e4b3f-thumb.jpg",
+    "image": "request-service/private-design-assets/art-e616a63e4b3f.jpg",
+    "thumbnail": "request-service/private-design-assets/art-e616a63e4b3f-thumb.jpg",
     "category": "Hood panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "print-panel",
+    "visibility": "private"
   },
   {
     "id": "art-4500801aa0bb",
@@ -813,7 +989,9 @@
     "image": "assets/designs/art-4500801aa0bb.jpg",
     "thumbnail": "assets/designs/art-4500801aa0bb-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "3a4a1d3cf30e665ce52719d4fe80d09939ca38d990d4a0c9901faec6dc395bae"
   },
   {
     "id": "art-812cdbbaf172",
@@ -821,15 +999,19 @@
     "image": "assets/designs/art-812cdbbaf172.jpg",
     "thumbnail": "assets/designs/art-812cdbbaf172-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "fd934c81754cb4fb48bed45163f68d194074ddb8a3ee93dfb0ddef34f6158323"
   },
   {
     "id": "art-da3a8d4bed02",
-    "name": "Moonlit Haunted Mansion and Jack-o’-Lanterns",
+    "name": "Moonlit Haunted Mansion and Jack-o\u2019-Lanterns",
     "image": "assets/designs/art-da3a8d4bed02.jpg",
     "thumbnail": "assets/designs/art-da3a8d4bed02-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "b3474a44740f6cf4a6d2514fa3a14948f29b6ca23db49dfb15bf270f8c6a266d"
   },
   {
     "id": "art-7642e6642a46",
@@ -837,7 +1019,9 @@
     "image": "assets/designs/art-7642e6642a46.jpg",
     "thumbnail": "assets/designs/art-7642e6642a46-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "66122542e9cea81175858eecbd06baa209072fca813fd1bd218365faec7545ef"
   },
   {
     "id": "art-e555eca8ff89",
@@ -845,7 +1029,9 @@
     "image": "assets/designs/art-e555eca8ff89.jpg",
     "thumbnail": "assets/designs/art-e555eca8ff89-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "6eb1e28b8f2ec786c6181017023263c7a563310073d978ede0060623e7468a10"
   },
   {
     "id": "art-351d2138769e",
@@ -853,7 +1039,9 @@
     "image": "assets/designs/art-351d2138769e.jpg",
     "thumbnail": "assets/designs/art-351d2138769e-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "f02921508b5fcbf1d62f107437e6dc94f9ee4092b12683d1af92658b02ab40b9"
   },
   {
     "id": "art-5bf077d8547a",
@@ -861,7 +1049,9 @@
     "image": "assets/designs/art-5bf077d8547a.jpg",
     "thumbnail": "assets/designs/art-5bf077d8547a-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "95a2299533733ae0d73ad32fea4ebaff5f0b8ff248970c8e28e771ee94d1cdb2"
   },
   {
     "id": "art-e0442968fba4",
@@ -869,7 +1059,9 @@
     "image": "assets/designs/art-e0442968fba4.jpg",
     "thumbnail": "assets/designs/art-e0442968fba4-thumb.jpg",
     "category": "Celestial & gothic",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "5e09555150ffd5da755125c42f38235c67357eb4b584f0a488037a6ffcc4a5e3"
   },
   {
     "id": "art-a1942fc2693a",
@@ -877,7 +1069,9 @@
     "image": "assets/designs/art-a1942fc2693a.jpg",
     "thumbnail": "assets/designs/art-a1942fc2693a-thumb.jpg",
     "category": "Halloween & horror",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "456183e08ebf7ef424b09bd10b8e5a4feaa1791099c9a441c212edfcf8633ace"
   },
   {
     "id": "art-9e3ab2375cd8",
@@ -885,6 +1079,8 @@
     "image": "assets/designs/art-9e3ab2375cd8.jpg",
     "thumbnail": "assets/designs/art-9e3ab2375cd8-thumb.jpg",
     "category": "Sleeve panels",
-    "kind": "artwork"
+    "kind": "artwork",
+    "assetType": "original-artwork",
+    "sourceSha256": "d5494a072b1d4b746476457cd96e5f3265f52b9605c091a31a7072931c4c3974"
   }
 ]

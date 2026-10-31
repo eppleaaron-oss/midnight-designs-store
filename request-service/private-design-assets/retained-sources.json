@@ -1,0 +1,113 @@
+{
+  "note": "Source files retained outside customer Pages output. Existing feedback IDs are preserved. No garment-photo extraction was performed.",
+  "files": [
+    {
+      "designId": "art-3f9412e00893",
+      "originalPath": "assets/designs/art-3f9412e00893.jpg",
+      "retainedPath": "request-service/private-design-assets/art-3f9412e00893.jpg",
+      "sha256": "de7ec391d49b39fbbe05c562187dab3f843ca139ef3613031bf8cefe7b7231d9"
+    },
+    {
+      "designId": "art-3f9412e00893",
+      "originalPath": "assets/designs/art-3f9412e00893-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-3f9412e00893-thumb.jpg",
+      "sha256": "b93a86fbd1dc8b8c36eec33195543361891525c8cdf1957479e9fa48d8042685"
+    },
+    {
+      "designId": "art-b67d9cabeea8",
+      "originalPath": "assets/designs/art-b67d9cabeea8.jpg",
+      "retainedPath": "request-service/private-design-assets/art-b67d9cabeea8.jpg",
+      "sha256": "13c7f7d0f24c525347d3f346375a44d9947b4b6883a18a845dc7b2dbbaccc336"
+    },
+    {
+      "designId": "art-b67d9cabeea8",
+      "originalPath": "assets/designs/art-b67d9cabeea8-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-b67d9cabeea8-thumb.jpg",
+      "sha256": "bc16307f5a90b579b5e4da51d47b7468e187d8566369d5684e64beec85999b09"
+    },
+    {
+      "designId": "art-1ea91b38738e",
+      "originalPath": "assets/designs/art-1ea91b38738e.jpg",
+      "retainedPath": "request-service/private-design-assets/art-1ea91b38738e.jpg",
+      "sha256": "0dd27ef93a225c69c89aaa896c7d6678b389fac628b1239cbbee6d07820f8315"
+    },
+    {
+      "designId": "art-1ea91b38738e",
+      "originalPath": "assets/designs/art-1ea91b38738e-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-1ea91b38738e-thumb.jpg",
+      "sha256": "c118af043fc460fc353d69e40e0ce61fbda523620eb004c2e2c9c4cf4b1fafd7"
+    },
+    {
+      "designId": "art-cfc34aef1bb1",
+      "originalPath": "assets/designs/art-cfc34aef1bb1.jpg",
+      "retainedPath": "request-service/private-design-assets/art-cfc34aef1bb1.jpg",
+      "sha256": "4430df29f66a8acfb1e4258582321312f1e42549d8ccb086a29c66a5090383aa"
+    },
+    {
+      "designId": "art-cfc34aef1bb1",
+      "originalPath": "assets/designs/art-cfc34aef1bb1-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-cfc34aef1bb1-thumb.jpg",
+      "sha256": "12e6965dd0f315a5dd44e7dbe27fee854af39bb32a184a8fcb4072fd7e6f73ec"
+    },
+    {
+      "designId": "art-e169f52ece18",
+      "originalPath": "assets/designs/art-e169f52ece18.jpg",
+      "retainedPath": "request-service/private-design-assets/art-e169f52ece18.jpg",
+      "sha256": "c53dab32f6bb97eb3feb0e3f0fad09ec4f05a629d40e8ae27db0b6a0d847ac83"
+    },
+    {
+      "designId": "art-e169f52ece18",
+      "originalPath": "assets/designs/art-e169f52ece18-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-e169f52ece18-thumb.jpg",
+      "sha256": "c47b20254b80d218230eed4163b73095a44615b6ffb5ddfcd66a2e7490bbed15"
+    },
+    {
+      "designId": "art-2b4811ab0ef8",
+      "originalPath": "assets/designs/art-2b4811ab0ef8.jpg",
+      "retainedPath": "request-service/private-design-assets/art-2b4811ab0ef8.jpg",
+      "sha256": "f25bef79a2e646ffbf866b3a0c57463ade8f2f3e2e0c238983c9f2f581a5c23b"
+    },
+    {
+      "designId": "art-2b4811ab0ef8",
+      "originalPath": "assets/designs/art-2b4811ab0ef8-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-2b4811ab0ef8-thumb.jpg",
+      "sha256": "2db010ff534b6ed85dd76c352cbd76254367a44df841c6146ea58e9127ddd78f"
+    },
+    {
+      "designId": "art-8d0e10cd78f8",
+      "originalPath": "assets/designs/art-8d0e10cd78f8.jpg",
+      "retainedPath": "request-service/private-design-assets/art-8d0e10cd78f8.jpg",
+      "sha256": "5ee2cc7d13474c37ec1953b1c04dddbceef995523c758b4f7d3714ceb2efa9e1"
+    },
+    {
+      "designId": "art-8d0e10cd78f8",
+      "originalPath": "assets/designs/art-8d0e10cd78f8-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-8d0e10cd78f8-thumb.jpg",
+      "sha256": "eeba2710f923e3dd7b2d72b2f040af510d2e0bd9bd8b2e2429cb6d6e7821761e"
+    },
+    {
+      "designId": "art-362b4d3beca9",
+      "originalPath": "assets/designs/art-362b4d3beca9.jpg",
+      "retainedPath": "request-service/private-design-assets/art-362b4d3beca9.jpg",
+      "sha256": "363513c39cf4c162e08959e5a0625e5837bec9bbb0d38122c84343907f31d7bf"
+    },
+    {
+      "designId": "art-362b4d3beca9",
+      "originalPath": "assets/designs/art-362b4d3beca9-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-362b4d3beca9-thumb.jpg",
+      "sha256": "c08c6903024bcf4fd83789f45aa20c404fcc63890d167ec8e5056d541d87df68"
+    },
+    {
+      "designId": "art-e616a63e4b3f",
+      "originalPath": "assets/designs/art-e616a63e4b3f.jpg",
+      "retainedPath": "request-service/private-design-assets/art-e616a63e4b3f.jpg",
+      "sha256": "d9dade341ebe9b951fded73a104878b52e66f72a88a2ab23acbee5b51ba0dc71"
+    },
+    {
+      "designId": "art-e616a63e4b3f",
+      "originalPath": "assets/designs/art-e616a63e4b3f-thumb.jpg",
+      "retainedPath": "request-service/private-design-assets/art-e616a63e4b3f-thumb.jpg",
+      "sha256": "739f64e08eb7b1bb55cb16e36b10bc49331167cc8edefe6d545b7e784cfc8df8"
+    }
+  ]
+}

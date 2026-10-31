@@ -1,0 +1,35 @@
+name: Original artwork gallery
+on:
+  pull_request:
+    paths: ['designs.json', 'designs.html', 'design-gallery.*', 'design-catalog-merge.js', 'request-design.*', 'catalog-browse.js', 'studio.js', 'request-service/private-design-assets/**', 'scripts/qa-original-design-gallery.mjs', 'scripts/design-catalog-merge-test.mjs', '.github/workflows/original-design-gallery.yml']
+permissions:
+  contents: read
+jobs:
+  originals:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/design-catalog-merge-test.mjs
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Ensure production panels are excluded from customer output
+        run: |
+          test ! -d _site/request-service
+          python3 - <<'PY'
+          import json,pathlib
+          data=json.load(open('request-service/private-design-assets/retained-sources.json'))
+          for row in data['files']:
+              assert not pathlib.Path('_site',row['originalPath']).exists()
+              assert not pathlib.Path('_site',row['retainedPath']).exists()
+          PY
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - name: Verify original cards and family/request behavior
+        run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-original-design-gallery.mjs

@@ -44,6 +44,7 @@ window.MidnightBrowse=({products,renderProducts,productPrice,activeVariant})=>{
    const text=[p.name,p.description,p.category,browseCategory(p),...(p.collections||[]),...(p.artworkColors||[]),...p.variants.flatMap(v=>[v.name,v.size,v.color])].join(' ').toLowerCase();
    if(terms.some(t=>!text.includes(t))||($('category').value&&browseCategory(p)!==$('category').value))return false;
    if($('collectionFilter').value&&!(p.collections||[]).includes($('collectionFilter').value))return false;
+   const linkedIds=new URLSearchParams(location.search).get('products');if(linkedIds&&!linkedIds.split(',').includes(String(p.id)))return false;
    if($('paletteFilter').value&&!(p.artworkColors||[]).includes($('paletteFilter').value))return false;
    const variantFilter=!!($('sizeFilter').value||$('colorFilter').value);
    const variants=p.variants.filter(v=>(!$('sizeFilter').value||v.size===$('sizeFilter').value)&&(!$('colorFilter').value||v.color===$('colorFilter').value));

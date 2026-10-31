@@ -1,18 +1,35 @@
 (function(root){
 'use strict';
-// Only the public, owner-approved storefront catalog is an eligible source.
-function mergeDesignCatalog(artworks,products){
- const groups=new Map();
- for(const p of products){
-  if(!p||!p.id||!p.image||!Array.isArray(p.variants)||!p.variants.length||p.published===false||p.approved===false||['draft','rejected','failed','pending'].includes(p.status))continue;
-  const collection=p.collectionName||(p.collections||[])[0]||'';
-  const key=collection?'collection:'+collection.toLowerCase():'product:'+p.id;
-  if(!groups.has(key))groups.set(key,{id:'catalog-'+encodeURIComponent(key),name:collection||p.name,image:p.image,thumbnail:p.image,category:'Available on clothing',kind:'reference',catalogDesign:true,productIds:[],tags:[],shopUrl:collection?'shop.html?collection='+encodeURIComponent(collection):'products/'+encodeURIComponent(p.id)+'.html'});
-  const d=groups.get(key);d.productIds.push(String(p.id));d.tags.push(p.name,p.category||'');
-  // Prefer the original source garment over an accessory when available.
-  if(String(p.id)===String(p.sourceProductId)||(!d.hero&&['hoodies','jackets'].includes(p.categoryId))){d.image=p.image;d.thumbnail=p.image;d.hero=true;}
- }
- return [...groups.values(),...artworks];
+const privateStates=new Set(['draft','needs corrections','needs_corrections','needs-corrections','ready for review','ready_for_review','ready-for-review','rejected','failed','pending','hold']);
+const privateKinds=new Set(['reference','mockup','product-mockup','print-panel','template-guide']);
+function isOriginalArtwork(a){
+ if(!a?.id||a.kind!=='artwork'||privateKinds.has(a.assetType)||a.visibility==='private'||a.approved===false||privateStates.has(String(a.status||'').toLowerCase()))return false;
+ return typeof a.image==='string'&&/^assets\/(designs|originals)\/[a-zA-Z0-9_.-]+\.(png|jpe?g|webp)$/i.test(a.image);
 }
-if(typeof module==='object'&&module.exports)module.exports={mergeDesignCatalog};else root.mergeDesignCatalog=mergeDesignCatalog;
+function mergeDesignCatalog(artworks,products=[]){
+ const families=new Map(),seen=new Map();
+ for(const a of artworks){
+  if(!isOriginalArtwork(a))continue;
+  // Only an explicit family key groups distinct originals. Similar names or
+  // colors are not evidence that two designs belong to the same hoodie.
+  const key=String(a.familyId||a.designFamilyId||a.id),identity=(a.familyId||a.designFamilyId?key+':':'')+(a.sourceSha256||a.image);
+  if(seen.has(identity)){const existing=seen.get(identity);existing.aliasIds=[...new Set([...(existing.aliasIds||[]),a.id])];continue;}
+  const member={...a,sourceRole:a.sourceRole||'artwork'};seen.set(identity,member);
+  if(!families.has(key))families.set(key,{...a,familyId:key,name:a.familyName||a.name,kind:'artwork',members:[],productIds:[],shopUrl:null});
+  families.get(key).members.push(member);
+ }
+ for(const d of families.values()){
+  const hero=d.members.find(a=>a.sourceRole==='front')||d.members[0];
+  d.id=hero.id;d.image=hero.image;d.thumbnail=/^assets\/(designs|originals)\/[a-zA-Z0-9_.-]+\.(png|jpe?g|webp)$/i.test(hero.thumbnail||'')?hero.thumbnail:hero.image;
+  const artworkIds=new Set(d.members.flatMap(a=>[a.id,...(a.aliasIds||[])]));
+  const matched=products.filter(p=>p?.id&&p.published!==false&&p.approved!==false&&p.visibility!=='private'&&!privateStates.has(String(p.status||'').toLowerCase())&&Array.isArray(p.variants)&&p.variants.length&&(
+   [p.designFamilyId,p.artworkFamilyId,p.collectionId].some(id=>id!==undefined&&String(id)===d.familyId)||
+   [...(p.designIds||[]),...(p.artworkIds||[])].some(id=>artworkIds.has(String(id)))||
+   d.members.some(a=>a.sourceProductId!==undefined&&String(a.sourceProductId)===String(p.sourceProductId||p.id))));
+  d.productIds=[...new Set(matched.map(p=>String(p.id)))];
+  if(d.productIds.length){const collections=[...new Set(matched.map(p=>p.collectionName||(p.collections||[])[0]).filter(Boolean))];d.shopUrl=collections.length===1?'shop.html?collection='+encodeURIComponent(collections[0]):'shop.html?products='+encodeURIComponent(d.productIds.join(','));}
+ }
+ return [...families.values()];
+}
+if(typeof module==='object'&&module.exports)module.exports={mergeDesignCatalog,isOriginalArtwork};else {root.mergeDesignCatalog=mergeDesignCatalog;root.isOriginalArtwork=isOriginalArtwork;}
 })(globalThis);

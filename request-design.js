@@ -3,6 +3,8 @@
 const $=id=>document.getElementById(id),form=$('designRequest');let files=[],urls=[],brief='',subject='',requestRecord=null,lastSignature='';
 function clear(){urls.forEach(URL.revokeObjectURL);urls=[];files=[];$('references').value='';$('referencePreviews').replaceChildren();$('clearReferences').hidden=true;}
 function invalidate(){$('requestReview').hidden=true;brief='';$('requestStatus').textContent='';}
+const selectedDesignId=new URLSearchParams(location.search).get('design');
+if(selectedDesignId)fetch('designs.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(designs=>{const art=designs.find(d=>d.id===selectedDesignId&&window.isOriginalArtwork?.(d));if(!art)throw Error();if(!$('idea').value.trim())$('idea').value='I would like a custom piece using '+(art.familyName||art.name)+'. Original artwork ID: '+art.id+'.'+(art.familyId?' Design family ID: '+art.familyId+'.':'');$('requestStatus').textContent='Original artwork selected: '+art.name+'. Describe your custom piece below. Nothing has been submitted.';}).catch(()=>{$('requestStatus').textContent='The selected original artwork is unavailable. Describe your request or choose another design.';});
 form.addEventListener('input',invalidate);form.addEventListener('change',invalidate);
 $('references').addEventListener('change',()=>{
  const selected=[...$('references').files];clear();
