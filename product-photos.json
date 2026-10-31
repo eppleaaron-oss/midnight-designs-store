@@ -3893,6 +3893,150 @@
       "catalogProductId": 388,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476663020-d29575f153a600fc4a7033b4.jpg",
+          "sha256": "d29575f153a600fc4a7033b44154b54bf83b0e38907b2035bdae475cd5992da9",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Crowned Wilds Recycled Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476663020-4e16242e5b075b05d709ed7e.jpg",
+          "sha256": "4e16242e5b075b05d709ed7e5153c5955b079472a5c6028f746e4acc579f46f3",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Crowned Wilds Recycled Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476663020-d29575f153a600fc4a7033b4.jpg",
+          "sha256": "d29575f153a600fc4a7033b44154b54bf83b0e38907b2035bdae475cd5992da9",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Crowned Wilds Recycled Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476663020-d29575f153a600fc4a7033b4.jpg",
+          "sha256": "d29575f153a600fc4a7033b44154b54bf83b0e38907b2035bdae475cd5992da9",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Crowned Wilds Recycled Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476663020-4e16242e5b075b05d709ed7e.jpg",
+          "sha256": "4e16242e5b075b05d709ed7e5153c5955b079472a5c6028f746e4acc579f46f3",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Crowned Wilds Recycled Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476663020-4e16242e5b075b05d709ed7e.jpg",
+          "sha256": "4e16242e5b075b05d709ed7e5153c5955b079472a5c6028f746e4acc579f46f3",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527333986",
+            "5527333987",
+            "5527333988",
+            "5527333989",
+            "5527333990",
+            "5527333991",
+            "5527333992",
+            "5527333993",
+            "5527333994",
+            "5527333995",
+            "5527333996"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Crowned Wilds Recycled Hoodie · sleeve left"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -3918,7 +4062,11 @@
           "sha256": "a6c7dca2e7a04f625367de15d1b5189be13ab94ce955d427137e19e320ffc9b7"
         }
       ],
-      "supplierPreviews": "59404e06cbb046b3c8642e07422e764623ae92d59fe74743c2ac36dfc8c4b2be"
+      "supplierPreviews": "59404e06cbb046b3c8642e07422e764623ae92d59fe74743c2ac36dfc8c4b2be",
+      "hoodieRefresh": {
+        "fingerprint": "e368368b6e98bcb376ddcfcbc7175c945e05b1b901c9e353188bedcc07fb4f38",
+        "checkedAt": "2026-10-31T23:13:18.035Z"
+      }
     },
     "477172651": {
       "name": "Midnight Study 172651 Cotton Hoodie",
