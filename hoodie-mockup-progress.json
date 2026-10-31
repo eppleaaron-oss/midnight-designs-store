@@ -1,5 +1,10 @@
 {
   "products": {
+    "482794900": {
+      "name": "What Lies Within Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482797453": {
       "name": "Even in Darkness / Still Growing Cotton Hoodie",
       "state": "held",
@@ -49,5 +54,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:39:32.155Z"
+  "updatedAt": "2026-10-31T22:39:35.058Z"
 }
