@@ -1,5 +1,10 @@
 {
   "products": {
+    "477172651": {
+      "name": "Midnight Study 172651 Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "480738509": {
       "name": "Blood Moon Reaper Men's Sports Warmup Hoodie",
       "state": "held",
@@ -179,5 +184,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:46.930Z"
+  "updatedAt": "2026-10-31T22:40:49.820Z"
 }
