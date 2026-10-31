@@ -1,51 +1,22 @@
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const products=JSON.parse(fs.readFileSync('products.json')).products;
-const active=p=>p.variants.some(v=>v.availability==='active'&&v.size?.trim());
-const home=fs.readFileSync('index.html','utf8'),selectedIds=[...new Set([...home.matchAll(/data-featured(?:-backups)?="([^"]*)"/g)].flatMap(m=>m[1].split(',')).filter(Boolean))];
-const featured=list=>selectedIds.map(id=>list.find(p=>p.id===id&&active(p))).filter(Boolean).slice(0,4).map(p=>p.id);
-const browser=await chromium.launch(), page=await browser.newPage(), errors=[];
-page.on('pageerror',e=>errors.push(e.message));
-for(const [width,height] of [[320,844],[390,844],[768,1024],[1440,1000],[844,390]]){
- await page.setViewportSize({width,height});await page.goto('http://localhost:8000/index.html');
- await page.waitForSelector('#grid .product-card');await page.locator('.opening-image').evaluate(img=>img.decode());
- assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products));
- const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,nodes:[...document.querySelectorAll('body *')].map(n=>({tag:n.tagName,cls:n.className,text:n.textContent?.slice(0,90),right:n.getBoundingClientRect().right,left:n.getBoundingClientRect().left})).filter(n=>n.right>innerWidth+1||n.left< -1).slice(0,15)}));
- assert.equal(overflow.scroll>width,false,'Overflow at '+width+': '+JSON.stringify(overflow));
- const src=await page.locator('.opening-image').evaluate(img=>img.currentSrc);
- assert.ok(src.endsWith(width<=600?'skate-shop-mobile.webp':'skate-shop-banner.webp'));
- assert.equal(await page.locator('.opening-image').getAttribute('fetchpriority'),'high');
- assert.equal(await page.locator('.hero-actions a[href="shop.html"]').count(),1);
- assert.ok((await page.locator('.hero-actions a').boundingBox()).height>=44);
- for(const nav of await page.locator('.links a').all())assert.equal(await nav.isVisible(),true);
- for(const tile of await page.locator('.category-tile').all()){
-  await tile.locator('img').evaluate(img=>img.decode());
-  const href=await tile.getAttribute('href');assert.ok(fs.existsSync(href.split('?')[0]));
- }
- for(const card of await page.locator('#grid .product-card').all()){
-  const id=await card.getAttribute('data-product-id'),product=products.find(p=>p.id===id);
-  assert.ok(product);assert.ok((await card.locator('.price').innerText()).includes('$'));
-  assert.equal(new URL(await card.locator('.product-image').getAttribute('href'),'http://localhost').searchParams.get('id'),id);
- }
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url),home=require('../homepage.js'),products=JSON.parse(fs.readFileSync('products.json')).products;
+const html=fs.readFileSync('index.html','utf8'),ids=html.match(/data-featured="([^"]*)"/)[1].split(','),selected=home.selections(products,ids);
+assert.deepEqual(selected.map(p=>p.categoryId),['hoodies','pants','tees','shoes']);assert.equal(home.collections(products,selected).length,3);
+const browser=await chromium.launch(),page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+for(const width of [320,390,768,1440]){
+ await page.setViewportSize({width,height:1000});await page.goto('http://localhost:8000/index.html');await page.locator('.opening-product img').waitFor();await page.locator('.home-outfit').first().waitFor();
+ assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),ids);
+ assert.equal(await page.locator('.home-outfit').count(),3);
+ for(const img of await page.locator('main img').all()){await img.evaluate(i=>i.decode());assert.equal(await img.evaluate(i=>getComputedStyle(i).objectFit),'contain');const a=img.locator('..');const href=await a.getAttribute('href');assert(/^(product\.html|products\/\d+\.html)\?id=/.test(href));const p=products.find(p=>p.id===new URL(href,'http://localhost').searchParams.get('id'));assert(home.eligible(p));}
+ for(const a of await page.locator('.home-outfit>.text-link').all()){const id=new URL(await a.getAttribute('href'),'http://localhost').searchParams.get('outfit');assert(home.collections(products,selected).some(o=>o.id===id));}
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);
  await page.screenshot({path:'qa-home-'+width+'.png',fullPage:true});
 }
-await page.locator('.category-tile').first().click();await page.waitForSelector('.product-card');
-assert.ok((await page.locator('#grid .product-card h3').allTextContents()).every(name=>/hoodie/i.test(name)));
-await page.route('**/products.json',r=>r.fulfill({json:{products:[...products].reverse()}}));
-await page.goto('http://localhost:8000/index.html');await page.waitForSelector('#grid .product-card');
-assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products));
+const extra={...structuredClone(products[0]),id:'99999999',name:'New but unfeatured'};
+await page.route('**/products.json',r=>r.fulfill({json:{products:[extra,...products].reverse()}}));await page.goto('http://localhost:8000/index.html');await page.locator('.opening-product').waitFor();assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),ids);
 await page.unroute('**/products.json');
-const extra={...structuredClone(products[0]),id:'999999999999',name:'Newly published but not featured'};
-await page.route('**/products.json',r=>r.fulfill({json:{products:[extra,...products]}}));
-await page.goto('http://localhost:8000/index.html');await page.waitForSelector('#grid .product-card');
-assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products),'A new publication must not become a homepage selection');
-await page.unroute('**/products.json');
-const unavailable=structuredClone(products);for(const p of unavailable)for(const v of p.variants)v.availability='not_available';
-await page.route('**/products.json',r=>r.fulfill({json:{products:unavailable}}));
-await page.goto('http://localhost:8000/index.html');await page.getByText('No matching pieces.',{exact:true}).waitFor();
-assert.equal(await page.locator('#grid .product-card').count(),0);assert.equal(await page.locator('.opening-image').isVisible(),true);
-await page.unroute('**/products.json');await page.route('**/products.json',r=>r.fulfill({status:503,body:'Unavailable'}));
-await page.goto('http://localhost:8000/index.html');await page.getByText('The collection could not load.',{exact:true}).waitFor();
-assert.equal(await page.locator('.hero-actions a').isVisible(),true);assert.deepEqual(errors,[]);
-await browser.close();console.log('PASS: skate-shop banner crops, owner-selected products, responsive layout, category filters, price links, catalog reordering and unavailable/error states.');
+const held=products.map(p=>ids.includes(p.id)?{...p,approved:false}:p);await page.route('**/products.json',r=>r.fulfill({json:{products:held}}));await page.goto('http://localhost:8000/index.html');await page.getByRole('heading',{name:'The next chapter is coming.'}).waitFor();assert.equal(await page.locator('main img').count(),0,'unapproved selections cannot leak through hero or outfits');
+await page.unroute('**/products.json');await page.route('**/products.json',r=>r.fulfill({status:503}));await page.goto('http://localhost:8000/index.html');await page.getByText('The collection could not load.',{exact:true}).waitFor();assert.equal(await page.locator('main img').count(),0);assert.deepEqual(errors,[]);await browser.close();console.log('PASS: manual featured mix, exact product/collection image links, 4 responsive widths, no auto-feature on sync, held and failed catalog states.');

@@ -1,0 +1,25 @@
+name: Homepage catalog refresh
+on:
+  pull_request:
+    paths: ['homepage.js', 'homepage.css', 'index.html', 'app.js', 'scripts/qa-home.mjs', 'scripts/homepage-selection-test.mjs', '.github/workflows/homepage-refresh.yml']
+permissions:
+  contents: read
+jobs:
+  homepage:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/homepage-selection-test.mjs
+      - run: npm install --no-save playwright@1.58.2
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8000 &
+          node scripts/qa-home.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: homepage-responsive-previews
+          path: qa-home-*.png
