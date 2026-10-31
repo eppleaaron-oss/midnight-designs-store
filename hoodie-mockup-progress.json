@@ -1,5 +1,11 @@
 {
   "products": {
+    "480738509": {
+      "name": "Blood Moon Reaper Men's Sports Warmup Hoodie",
+      "state": "held",
+      "error": "Original front layout (2000x2000) differs from native 4374x5386 and has no saved position. No guessed scaling was used.",
+      "checkedAt": "2026-10-31T23:50:13.589Z"
+    },
     "482524169": {
       "name": "Raven Sanctum Cotton Hoodie",
       "state": "saved",
@@ -751,5 +757,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:50:10.020Z"
+  "updatedAt": "2026-10-31T23:50:13.589Z"
 }
