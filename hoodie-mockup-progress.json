@@ -1,5 +1,10 @@
 {
   "products": {
+    "482676580": {
+      "name": "Love Leaves Scars Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482678006": {
       "name": "Omens Never Lie Cotton Hoodie",
       "state": "held",
@@ -89,5 +94,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:39:54.803Z"
+  "updatedAt": "2026-10-31T22:39:57.857Z"
 }
