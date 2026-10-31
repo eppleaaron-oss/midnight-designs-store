@@ -1,5 +1,10 @@
 {
   "products": {
+    "482524169": {
+      "name": "Raven Sanctum Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482531306": {
       "name": "Death’s-Head Cotton Hoodie",
       "state": "held",
@@ -169,5 +174,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:41.335Z"
+  "updatedAt": "2026-10-31T22:40:44.111Z"
 }
