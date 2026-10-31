@@ -45697,10 +45697,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482678006-dc6fa7f29afec13c68d10014.jpg",
+          "sha256": "dc6fa7f29afec13c68d100147ee4f9121edacede1db2284d9704c4757e7801fc",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Omens Never Lie Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482678006-4e0c8d39477b56af07b54871.jpg",
           "sha256": "4e0c8d39477b56af07b54871dbd2f76df859bf1567d267572a9f32f694bc127d",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Omens Never Lie Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-1df3525c04d5f546f8f80c20.jpg",
+          "sha256": "1df3525c04d5f546f8f80c203703006b58967726815da85b9e29e3025db8b25f",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Omens Never Lie Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-a03ee9c1d21d93d9a0e910b5.jpg",
+          "sha256": "a03ee9c1d21d93d9a0e910b5311269ecf7be27c471c03af093521ad3e9eab1be",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Omens Never Lie Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-866f70bb4db7c32d04ce2e8e.jpg",
+          "sha256": "866f70bb4db7c32d04ce2e8eb1f2b3153b2a84b80f6404aa49b3c044f1fba1f9",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Omens Never Lie Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-d628fbdf274bd5d58f7c1420.jpg",
+          "sha256": "d628fbdf274bd5d58f7c1420b9ac7fe98ed32b3f73f97d8aa0f8e11b73fffd09",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Omens Never Lie Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-2459f22a81887f2444530369.jpg",
+          "sha256": "2459f22a81887f244453036917260152c858f44b9086b56f1ddb4356d6b5c52a",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580254765",
+            "5580254766",
+            "5580254767",
+            "5580254768",
+            "5580254769",
+            "5580254770",
+            "5580254771",
+            "5580254772",
+            "5580254773",
+            "5580254774",
+            "5580254775"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Omens Never Lie Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482678006-99e38a29f92b1a3861e89869.jpg",
+          "sha256": "99e38a29f92b1a3861e898694749b3fe5b502392f63b036dcea8880730a34adc",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45748,8 +45916,8 @@
       ],
       "supplierPreviews": "e86335981ed5a229ab0f4c56f79e909d579987416476d18e7e45b8e5f61a8fee",
       "hoodieRefresh": {
-        "fingerprint": "67cbecb4136690c653eceea957bc02faa939747df1585923c40fc9aad6dd54c8",
-        "checkedAt": "2026-10-31T22:54:30.229Z"
+        "fingerprint": "28715736a170843d3a1644abefb82a35fbd6da31a6232f82bc19505d35f12198",
+        "checkedAt": "2026-10-31T23:33:26.735Z"
       }
     },
     "482682117": {
