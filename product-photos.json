@@ -45018,6 +45018,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
+          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580210606",
+            "5580210608",
+            "5580210609",
+            "5580210610",
+            "5580210611",
+            "5580210612",
+            "5580210615",
+            "5580210616",
+            "5580210617",
+            "5580210618",
+            "5580210619"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Never Surrender Oversized Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482671357-5a7ff8d75e1f7261c0d251dd.jpg",
+          "sha256": "5a7ff8d75e1f7261c0d251dd963b58f4acbb9a64af38976228bb82b94db3b691",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580210606",
+            "5580210608",
+            "5580210609",
+            "5580210610",
+            "5580210611",
+            "5580210612",
+            "5580210615",
+            "5580210616",
+            "5580210617",
+            "5580210618",
+            "5580210619"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Never Surrender Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
+          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580210606",
+            "5580210608",
+            "5580210609",
+            "5580210610",
+            "5580210611",
+            "5580210612",
+            "5580210615",
+            "5580210616",
+            "5580210617",
+            "5580210618",
+            "5580210619"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Never Surrender Oversized Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
+          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580210606",
+            "5580210608",
+            "5580210609",
+            "5580210610",
+            "5580210611",
+            "5580210612",
+            "5580210615",
+            "5580210616",
+            "5580210617",
+            "5580210618",
+            "5580210619"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Never Surrender Oversized Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482671357-25b6fdff610c1ec387c052f6.jpg",
+          "sha256": "25b6fdff610c1ec387c052f6ed5d108805ca0501905647c3c88cb3da3450fc6f",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580210606",
+            "5580210608",
+            "5580210609",
+            "5580210610",
+            "5580210611",
+            "5580210612",
+            "5580210615",
+            "5580210616",
+            "5580210617",
+            "5580210618",
+            "5580210619"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Never Surrender Oversized Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45043,7 +45163,11 @@
           "sha256": "a98f47f2e69b9dc409b6f18a0717edc573c1fc2848fa0a19eb9e4a0e56a6e499"
         }
       ],
-      "supplierPreviews": "145630a64929945853ccc5c49614134ee22fd508723bbbd538c199a9cea088e4"
+      "supplierPreviews": "145630a64929945853ccc5c49614134ee22fd508723bbbd538c199a9cea088e4",
+      "hoodieRefresh": {
+        "fingerprint": "cb47c5130e180da54287e70ca8e93c07ba036438d3865765fb80cc77dc0a0484",
+        "checkedAt": "2026-10-31T22:58:08.548Z"
+      }
     },
     "482675011": {
       "name": "No Mercy for Betrayal Cotton Hoodie",

@@ -137,8 +137,16 @@
     },
     "482671357": {
       "name": "Never Surrender Oversized Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 1760x2000, expected original 6600x7500. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T22:58:08.578Z"
     },
     "482675011": {
       "name": "No Mercy for Betrayal Cotton Hoodie",
@@ -343,8 +351,9 @@
     },
     "493cb11a66d8d4ed44e4bfcbf8d7f6ac38048e5682c3c6d495ee1915d0c63f06": {
       "product": "482671357",
-      "state": "pending",
-      "key": "gt-995171529"
+      "state": "downloaded",
+      "key": "gt-995171529",
+      "views": 5
     }
   },
   "requested": [
@@ -389,5 +398,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:57:55.492Z"
+  "updatedAt": "2026-10-31T22:58:08.578Z"
 }
