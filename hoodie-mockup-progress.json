@@ -1,5 +1,19 @@
 {
   "products": {
+    "482779702": {
+      "name": "Beauty in Decay Oversized Cotton Hoodie",
+      "state": "saved",
+      "photos": 1,
+      "views": [
+        "back"
+      ],
+      "missing": [
+        "front",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:29:11.852Z"
+    },
     "482783901": {
       "name": "Still Waters Run Deep Cotton Hoodie",
       "state": "saved",
@@ -304,8 +318,9 @@
     },
     "d343bda3f9dd9b3e8c82fe04731e230c82f9d004a066ccbe975ce607a008ee3f": {
       "product": "482779702",
-      "state": "pending",
-      "key": "gt-995186471"
+      "state": "downloaded",
+      "key": "gt-995186471",
+      "views": 1
     }
   },
   "requested": [
@@ -350,5 +365,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:29:02.317Z"
+  "updatedAt": "2026-10-31T23:29:11.852Z"
 }
