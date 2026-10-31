@@ -8,6 +8,7 @@ const rules=[['shoes',/\b(?:shoes?|sneakers?|footwear|boots?)\b/i],['bags',/\b(?
 const aliases={shirts:'tees',footwear:'shoes',facewear:'face-coverings',sweatshirts:'crewnecks',outerwear:'jackets','hoodies & sweatshirts':'hoodies'};
 function title(p){return catalogTitles[p.catalogProductId]||p.supplierCatalogTitle||p.catalogTitle||'';}
 function categoryId(p){
+ if(p.ownerEditedDetails&&categories[p.categoryOverride])return p.categoryOverride;
  const exact=title(p);if(exact){const r=rules.find(r=>r[1].test(exact));return r?r[0]:'other';}
  if(categories[p.categoryId])return p.categoryId;
  const raw=String(p.category||'').toLowerCase();const key=Object.keys(categories).find(k=>categories[k].toLowerCase()===raw)||aliases[raw];if(key)return key;
@@ -17,15 +18,15 @@ function categoryId(p){
 function category(p){return categories[categoryId(p)];}
 function cleanCollection(name){return String(name||'').replace(/\s+matching collection$/i,'').trim();}
 function outfit(p){return outfits.find(o=>o[0]===p.outfitId||o[0]===p.collectionId||o[1]===String(p.sourceProductId||'').replace(/^pf:/,'')||o[1]===String(p.id));}
-function collectionName(p){const o=outfit(p);if(o)return o[2];const explicit=cleanCollection(p.collectionName||'');if(explicit&&!/^untitled\b/i.test(explicit))return explicit;const named=(p.collections||[]).map(cleanCollection).find(n=>n&&!/^untitled\b/i.test(n));if(named)return named;return '';}
+function collectionName(p){if(p.ownerEditedDetails&&typeof p.collectionName==='string')return p.collectionName.trim();const o=outfit(p);if(o)return o[2];const explicit=cleanCollection(p.collectionName||'');if(explicit&&!/^untitled\b/i.test(explicit))return explicit;const named=(p.collections||[]).map(cleanCollection).find(n=>n&&!/^untitled\b/i.test(n));if(named)return named;return '';}
 function pieceTitle(p){return title(p).replace(/^All[ -]Over Print\s+/i,'').replace(/\bUnisex\s+/i,'').replace(/High Top/g,'High-Top').replace(/Men[’']s/g,'Men’s').replace(/Women[’']s/g,'Women’s').trim();}
 function generic(name){return !name||/^untitled\b/i.test(name)||/^(?:all[ -]over print\s+)?(?:unisex\s+)?(?:(?:oversized|recycled|cotton|fleece)\s+)*(?:hoodie|shirt|sweatshirt)$/i.test(name);}
 function normalize(p){
  const result={...p},o=outfit(p),family=collectionName(p),part=pieceTitle(p);result.categoryId=categoryId(p);result.category=category(p);if(title(p))result.catalogTitle=title(p);
- if(o){result.collectionId=o[0];result.collectionName=o[2];result.sourceProductId=o[1];result.outfitId=p.outfitId||o[0];}
+ if(o){result.collectionId=o[0];result.collectionName=p.ownerEditedDetails?family:o[2];result.sourceProductId=o[1];result.outfitId=p.outfitId||o[0];}
  else if(family){result.collectionName=family;result.collectionId=p.collectionId||p.outfitId||'collection:'+family.toLowerCase().replace(/[^a-z0-9]+/g,'-');}
- if(family){result.collections=[...new Set([family,...(p.collections||[]).filter(n=>!/^untitled\b/i.test(n)&&!/(?:matching collection)$/i.test(n))])];}
- if((generic(p.name)||o)&&part){const prefix=family||'Midnight Study '+String(p.id||p.sourceProductId||p.catalogProductId||'').replace(/^pf:/,'').slice(-6);result.name=prefix+' '+part;}
+ if(family&&!p.ownerEditedDetails){result.collections=[...new Set([family,...(p.collections||[]).filter(n=>!/^untitled\b/i.test(n)&&!/(?:matching collection)$/i.test(n))])];}
+ if(!p.ownerEditedDetails&&(generic(p.name)||o)&&part){const prefix=family||'Midnight Study '+String(p.id||p.sourceProductId||p.catalogProductId||'').replace(/^pf:/,'').slice(-6);result.name=prefix+' '+part;}
  if(/^untitled\b/i.test(result.name||''))result.name='Midnight Study '+String(p.id||'').slice(-6)+' '+(part||result.category);
  if(/^untitled\b/i.test(p.description||'')&&family)result.description=p.description.replace(/^Untitled.*? artwork on /i,family+' artwork on ');
  if(/^untitled\b/i.test(result.description||'')&&family)result.description=result.description.replace(/^Untitled[^.\n]*(?=\.|$)/i,result.name);
