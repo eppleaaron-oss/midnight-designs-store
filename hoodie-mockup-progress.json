@@ -1,5 +1,11 @@
 {
   "products": {
+    "476640417": {
+      "name": "Crimson Throne Recycled Fleece Hoodie",
+      "state": "held",
+      "error": "Supplier HTTP 400: You are attempting to generate 584 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request",
+      "checkedAt": "2026-10-31T23:54:03.024Z"
+    },
     "476651184": {
       "name": "Lantern Keeper Cotton-Blend Hoodie",
       "state": "saved",
@@ -766,7 +772,7 @@
     },
     "ee36405fa8c03d5192c52df7a56da110f7039448d24eca86a8315372171aaa85": {
       "product": "476640417",
-      "state": "submitting"
+      "state": "uncertain"
     }
   },
   "requested": [
@@ -811,5 +817,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:52:51.407Z"
+  "updatedAt": "2026-10-31T23:54:03.024Z"
 }
