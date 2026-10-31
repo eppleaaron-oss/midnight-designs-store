@@ -44797,6 +44797,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
+          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Dead Air Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-aa6679512f0bc5f5f3c6f5e7.jpg",
+          "sha256": "aa6679512f0bc5f5f3c6f5e77c3de16c179aba3de4d5c4982d5a848cdc6c36ae",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Dead Air Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
+          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Dead Air Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
+          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Dead Air Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482559827-354281c410f5a953f5752eba.jpg",
+          "sha256": "354281c410f5a953f5752eba49602e4fa58b50e10d340390426d80765ff42fbe",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579659876",
+            "5579659877",
+            "5579659878",
+            "5579659879",
+            "5579659880",
+            "5579659881",
+            "5579659882",
+            "5579659883",
+            "5579659884",
+            "5579659885",
+            "5579659886"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Dead Air Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44822,7 +44942,11 @@
           "sha256": "a48bd1bb14ffc4d25d98e18f85fa45c8aba8ec5fac54c4f01b737e968578c414"
         }
       ],
-      "supplierPreviews": "e53ec0893d1799d06542651a137d881d852b51dc02cde7972916cbc9af8019f2"
+      "supplierPreviews": "e53ec0893d1799d06542651a137d881d852b51dc02cde7972916cbc9af8019f2",
+      "hoodieRefresh": {
+        "fingerprint": "5c7bced3213d1e6b519e3889eb4ded1f2e15d14d4dec0fa34665d49895b18790",
+        "checkedAt": "2026-10-31T23:04:58.128Z"
+      }
     },
     "482576149": {
       "name": "Blood Moon Covenant Cotton Hoodie",

@@ -102,8 +102,16 @@
     },
     "482559827": {
       "name": "Dead Air Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:04:58.151Z"
     },
     "482576149": {
       "name": "Blood Moon Covenant Cotton Hoodie",
@@ -441,8 +449,9 @@
     },
     "74e29278909710debe4d734f69252c48a4da7db7fef4ef54500439cf90fca34e": {
       "product": "482559827",
-      "state": "pending",
-      "key": "gt-995174737"
+      "state": "downloaded",
+      "key": "gt-995174737",
+      "views": 5
     }
   },
   "requested": [
@@ -487,5 +496,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:04:42.450Z"
+  "updatedAt": "2026-10-31T23:04:58.151Z"
 }
