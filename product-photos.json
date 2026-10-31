@@ -46025,6 +46025,30 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482790495-fafc60aa98d5d7a912975948.jpg",
+          "sha256": "fafc60aa98d5d7a912975948cb4a8f84d9a7807ba6121cd587043c45eef087a2",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581020665",
+            "5581020666",
+            "5581020667",
+            "5581020668",
+            "5581020669",
+            "5581020670",
+            "5581020671",
+            "5581020672",
+            "5581020673",
+            "5581020674",
+            "5581020675"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Time Takes All Oversized Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482790495-8bff4f804f3ee7d5d200c6c0.jpg",
           "sha256": "8bff4f804f3ee7d5d200c6c06999d54f8a205e12dd4e6ccf33d665e572123b58",
           "view": "back",
@@ -46076,8 +46100,8 @@
       ],
       "supplierPreviews": "c3fa11a25e9495af2ccf9663645004acb2704a3986e9c3b3aca48bd467ff0ffa",
       "hoodieRefresh": {
-        "fingerprint": "48fb6802d64d1897f798bf479315a84a28a152d441460335cebc9a90be7e520c",
-        "checkedAt": "2026-10-31T22:49:55.991Z"
+        "fingerprint": "486169ef274661d84b4d1510b14f30ec74e8e029c72244301ec84b99679dd819",
+        "checkedAt": "2026-10-31T23:27:06.930Z"
       }
     },
     "482794900": {
