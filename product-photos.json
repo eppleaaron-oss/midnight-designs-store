@@ -44649,6 +44649,76 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
+          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Death’s-Head Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-181d3ed250c00e869c7ccf09.jpg",
+          "sha256": "181d3ed250c00e869c7ccf09de29165d95ad62ac808b07240481f2c78481ca18",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Death’s-Head Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
+          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Death’s-Head Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
+          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Death’s-Head Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
+          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Death’s-Head Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44664,7 +44734,11 @@
           "sha256": "b4a760326066238fe785a4edafa95d09276bb073661725d23a0f71e5ed5b1392"
         }
       ],
-      "supplierPreviews": "cb6a9cba22e868e52fe117f33acd90eaca3bf16262935aa20e96e36e980a9268"
+      "supplierPreviews": "cb6a9cba22e868e52fe117f33acd90eaca3bf16262935aa20e96e36e980a9268",
+      "hoodieRefresh": {
+        "fingerprint": "4aaae755742099b1f71db97150a65ff50d5190fb86059bedbbcb7c9dba341389",
+        "checkedAt": "2026-10-31T23:10:41.341Z"
+      }
     },
     "482534817": {
       "name": "Abyssal Voyage Cotton Hoodie",

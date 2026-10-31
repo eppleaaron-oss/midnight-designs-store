@@ -72,8 +72,16 @@
     },
     "482531306": {
       "name": "Death’s-Head Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:10:41.365Z"
     },
     "482534817": {
       "name": "Abyssal Voyage Cotton Hoodie",
@@ -511,8 +519,9 @@
     },
     "80523dd7d5f413649838cf11d32ba6c4446cf39684a479bf1062948022b13e79": {
       "product": "482531306",
-      "state": "pending",
-      "key": "gt-995177404"
+      "state": "downloaded",
+      "key": "gt-995177404",
+      "views": 5
     }
   },
   "requested": [
@@ -557,5 +566,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:10:25.416Z"
+  "updatedAt": "2026-10-31T23:10:41.365Z"
 }
