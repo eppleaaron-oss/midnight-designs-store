@@ -1,5 +1,10 @@
 {
   "products": {
+    "476580639": {
+      "name": "Cathedral Warden Cotton-Blend Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "476596721": {
       "name": "Crimson Oath Recycled Fleece Hoodie",
       "state": "held",
@@ -209,5 +214,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:41:04.284Z"
+  "updatedAt": "2026-10-31T22:41:07.112Z"
 }
