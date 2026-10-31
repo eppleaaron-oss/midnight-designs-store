@@ -30,7 +30,7 @@ Focused server tests cover:
 | Approval | Draft/review/private/rejected states blocked; unknown saved artwork release blocked |
 | Printful | One unconfirmed draft; immutable files/variants/quantity/address checked; unknown outcomes reconciled without another create |
 | Supplier charge | Owner must confirm exact draft ID, cost and version; changed costs rejected; lost confirmation reconciled without a second charge |
-| Order access | Receipt capability required; private recipient details and print files excluded from customer response |
+| Order access | Receipt capability required; paid receipt exposes a saveable private tracking link; private recipient details and print files excluded from customer response |
 | Tracking | Split shipments, tracking persistence and safe HTTPS URLs after restart |
 | Test/live isolation | Test payments cannot create/charge real production; simulation only with injected provider adapter |
 
