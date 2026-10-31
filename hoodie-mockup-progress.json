@@ -199,7 +199,8 @@
   "jobs": {
     "f6d85d1a05e422382454f6a9338d47da1cb97e21698fbd45e77fcfd3205e6795": {
       "product": "482797453",
-      "state": "submitting"
+      "state": "pending",
+      "key": "gt-995165983"
     }
   },
   "requested": [
@@ -244,5 +245,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:47:23.711Z"
+  "updatedAt": "2026-10-31T22:47:25.878Z"
 }
