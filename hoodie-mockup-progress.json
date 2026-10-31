@@ -1,5 +1,19 @@
 {
   "products": {
+    "476570540": {
+      "name": "Scarlet Vigil Oversized Cotton-Blend Hoodie",
+      "state": "saved",
+      "photos": 1,
+      "views": [
+        "back"
+      ],
+      "missing": [
+        "front",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:58:26.475Z"
+    },
     "476580639": {
       "name": "Cathedral Warden Cotton-Blend Hoodie",
       "state": "saved",
@@ -816,8 +830,9 @@
     },
     "e4549677f5b3e52a653bf6ce62231672c2ec6586e1b36a22d042da6ab6c55c92": {
       "product": "476570540",
-      "state": "pending",
-      "key": "gt-995200339"
+      "state": "downloaded",
+      "key": "gt-995200339",
+      "views": 1
     }
   },
   "requested": [
@@ -862,5 +877,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:58:13.102Z"
+  "updatedAt": "2026-10-31T23:58:26.475Z"
 }
