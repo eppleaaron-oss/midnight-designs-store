@@ -44774,6 +44774,76 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
+          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Winter Wolf Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-eb8521dfe5066a7dc12441e7.jpg",
+          "sha256": "eb8521dfe5066a7dc12441e7b63191b50e1523f0bb8c7acf8999c7eefb46ae6b",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Winter Wolf Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
+          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Winter Wolf Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
+          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Winter Wolf Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482554858-f7e2633054438330e800c658.jpg",
+          "sha256": "f7e2633054438330e800c658ca0bac5f13ce6298082cf7563a77f9cc72c9158b",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579641664"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Winter Wolf Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44789,7 +44859,11 @@
           "sha256": "d6d3a95d172bde8286d8809cf4d108dd4812596a5f33049c6b55890151123f77"
         }
       ],
-      "supplierPreviews": "2ff9661253a0cae056cb93f286484b3f4863e3b40d215f5d0553f2aeda3bc7be"
+      "supplierPreviews": "2ff9661253a0cae056cb93f286484b3f4863e3b40d215f5d0553f2aeda3bc7be",
+      "hoodieRefresh": {
+        "fingerprint": "1353c6fbe55364b13b9a5de2a2ceed23e8ca38de1505c66f4d949676a41e0ebb",
+        "checkedAt": "2026-10-31T23:06:31.421Z"
+      }
     },
     "482559827": {
       "name": "Dead Air Cotton Hoodie",
