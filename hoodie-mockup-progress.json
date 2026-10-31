@@ -1,5 +1,10 @@
 {
   "products": {
+    "482585676": {
+      "name": "Astral Wanderer Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482620118": {
       "name": "Loyalty Until Death Recycled Hoodie",
       "state": "held",
@@ -124,5 +129,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:15.582Z"
+  "updatedAt": "2026-10-31T22:40:18.525Z"
 }
