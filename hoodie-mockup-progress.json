@@ -1,5 +1,10 @@
 {
   "products": {
+    "482620118": {
+      "name": "Loyalty Until Death Recycled Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front"
+    },
     "482644684": {
       "name": "Silence Is Power Recycled Hoodie",
       "state": "held",
@@ -119,5 +124,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:12.780Z"
+  "updatedAt": "2026-10-31T22:40:15.582Z"
 }
