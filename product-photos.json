@@ -44863,6 +44863,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
+          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Astral Wanderer Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-4f5563b779495910f4a117d1.jpg",
+          "sha256": "4f5563b779495910f4a117d193e2a63d0acf846119a8cbd4719a18638b11dcad",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Astral Wanderer Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
+          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Astral Wanderer Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
+          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Astral Wanderer Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482585676-d0128310ab2027e8690d70dd.jpg",
+          "sha256": "d0128310ab2027e8690d70dda0f0edf03b5e809a23744cef85df2477b09a7953",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579774735",
+            "5579774736",
+            "5579774737",
+            "5579774738",
+            "5579774739",
+            "5579774740",
+            "5579774741",
+            "5579774742",
+            "5579774743",
+            "5579774744",
+            "5579774745"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Astral Wanderer Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44888,7 +45008,11 @@
           "sha256": "202efd3bfff3f9edd9294376ec1dc852de4cea5a2987998513d9eabd7b8faddd"
         }
       ],
-      "supplierPreviews": "0b1fae0fa92bcf7d08d202ce6400e69598e2c3062f7fb10764246f74e9bf857c"
+      "supplierPreviews": "0b1fae0fa92bcf7d08d202ce6400e69598e2c3062f7fb10764246f74e9bf857c",
+      "hoodieRefresh": {
+        "fingerprint": "021072bee8f467660465e7335566aca4649c546de23fdac495d25b1412a4d9d7",
+        "checkedAt": "2026-10-31T23:02:50.025Z"
+      }
     },
     "482620118": {
       "name": "Loyalty Until Death Recycled Hoodie",
