@@ -118,7 +118,7 @@
     "482620118": {
       "name": "Loyalty Until Death Recycled Hoodie",
       "state": "held",
-      "error": "Supplier file front: status=ok, temporary=true, hash=false, dimensions=6000x6000."
+      "error": "Supplier source for default is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
     },
     "482644684": {
       "name": "Silence Is Power Recycled Hoodie",
@@ -239,5 +239,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:45:20.137Z",
-  "updatedAt": "2026-10-31T22:46:05.138Z"
+  "updatedAt": "2026-10-31T22:46:07.789Z"
 }
