@@ -44907,10 +44907,108 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482531306-3d8473f19fcfb0a4c26772bd.jpg",
+          "sha256": "3d8473f19fcfb0a4c26772bd52af303a45f729f0bfbd9365432e6c21676c9433",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Death’s-Head Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482531306-181d3ed250c00e869c7ccf09.jpg",
           "sha256": "181d3ed250c00e869c7ccf09de29165d95ad62ac808b07240481f2c78481ca18",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Death’s-Head Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-bf2de8a1bf16ddc7e3409d17.jpg",
+          "sha256": "bf2de8a1bf16ddc7e3409d173555f51da9fe1177ecf182e28d4c8dc2f27addf1",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Death’s-Head Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-865f10f8d8f8eb92db8785dc.jpg",
+          "sha256": "865f10f8d8f8eb92db8785dcf2ceb517f5358c85dc8a421c3c7c4c7de927dd20",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Death’s-Head Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-981f434c97c221dea78356b2.jpg",
+          "sha256": "981f434c97c221dea78356b2687607b943f6fbf3a07a8e448673b05f4aeaabd6",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Death’s-Head Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-1d0ec8429802cf9770451a11.jpg",
+          "sha256": "1d0ec8429802cf9770451a110c1e648fd9b875e736f5bce1746141a37f92e180",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Death’s-Head Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-b32d4dcc10db62e97bb05c80.jpg",
+          "sha256": "b32d4dcc10db62e97bb05c80c83d417ec7909570d22c678300be4839a88b2357",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579487679"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Death’s-Head Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482531306-cef1ef91fedb4f1fc37822f7.jpg",
+          "sha256": "cef1ef91fedb4f1fc37822f7ac4f4441e2d22d20f40f4352d17b4ba38d5af0dc",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -44938,8 +45036,8 @@
       ],
       "supplierPreviews": "cb6a9cba22e868e52fe117f33acd90eaca3bf16262935aa20e96e36e980a9268",
       "hoodieRefresh": {
-        "fingerprint": "4aaae755742099b1f71db97150a65ff50d5190fb86059bedbbcb7c9dba341389",
-        "checkedAt": "2026-10-31T23:10:41.341Z"
+        "fingerprint": "0a31eb85ca71d0ac8962670546cf734233c02714dd5817d04bea743683398e08",
+        "checkedAt": "2026-10-31T23:48:33.616Z"
       }
     },
     "482534817": {
