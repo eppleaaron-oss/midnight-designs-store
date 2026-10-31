@@ -301,7 +301,8 @@
     },
     "5d26c3e4cdc547c19778d69d0d3ac196ede75b11c05dbbfa53be38eb97b3aa22": {
       "product": "482678006",
-      "state": "submitting"
+      "state": "pending",
+      "key": "gt-995169467"
     }
   },
   "requested": [
@@ -346,5 +347,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:54:02.498Z"
+  "updatedAt": "2026-10-31T22:54:17.378Z"
 }
