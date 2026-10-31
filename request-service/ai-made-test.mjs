@@ -3,6 +3,17 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 function media(fetch=()=>{}){const context={window:{},location:{origin:'https://backend.test'},URL,AbortSignal,fetch};vm.runInNewContext(readFileSync(new URL('./public/ai-made-data.js',import.meta.url),'utf8'),context);return context.window.MidnightMadeMedia;}
+test('review status follows the latest private revision rather than an older published product',()=>{
+ const m=media(),row={state:'published',supplierId:'123'};
+ assert.equal(m.reviewState(row),'published');
+ row.update={draftRevision:2,job:{revision:1,state:'completed',storeUpdated:true}};assert.equal(m.reviewState(row),'draft');
+ row.update.job={revision:2,state:'failed'};assert.equal(m.reviewState(row),'needs_corrections');
+ row.update.job={revision:2,state:'completed',awaitingApproval:true};assert.equal(m.reviewState(row),'ready_for_review');
+ row.update.job={revision:2,state:'publishing',ownerApproved:true};assert.equal(m.reviewState(row),'approved');
+ row.update.job={revision:2,state:'completed',storeUpdated:true};assert.equal(m.reviewState(row),'published');
+ assert.equal(m.reviewState({state:'supplier_created',supplierId:'456'}),'ready_for_review');
+ assert.equal(m.reviewState({state:'queued'}),'draft');
+});
 test('gallery wording distinguishes new verified mockups from an earlier product revision',()=>{
  const m=media(),row={supplierId:'123',update:{job:{id:'current',state:'verifying_store',revision:2},draftRevision:2}},index={products:{123:{studioRevision:'current'}}};
  assert.match(m.photoNote(row,index),/completed Printful mockups/);assert.match(m.updateStatus(row.update),/verifying store/);index.products['123'].studioRevision='older';assert.match(m.photoNote(row,index),/do not confirm this draft/);

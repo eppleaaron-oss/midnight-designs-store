@@ -8,3 +8,9 @@ export function importApproved(product,previous){
  // Preserve pre-policy releases already on the public store. This cannot approve a new revision or ID.
  return !!previous&&String(previous.id)===String(product?.id)&&previous.factoryExternalId===product.factoryExternalId&&previous.studioRevision===product.studioRevision;
 }
+
+// A private candidate cannot replace or remove the last approved public release.
+export function releaseForImport(candidate,previous){
+ if(candidate&&ownerApproved(candidate)&&!(previous?.studioUpdated>candidate.studioUpdated))return candidate;
+ return previous&&importApproved(previous,previous)?previous:null;
+}
