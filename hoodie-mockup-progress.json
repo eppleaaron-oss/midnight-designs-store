@@ -1,5 +1,19 @@
 {
   "products": {
+    "482534817": {
+      "name": "Abyssal Voyage Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:48:01.263Z"
+    },
     "482538815": {
       "name": "Violet Fang Cotton Hoodie",
       "state": "held",
@@ -650,8 +664,9 @@
     },
     "92bdf2616ed6deb378329fff1ed705b0ff175c6eb5a214df2b8706d3d2217530": {
       "product": "482534817",
-      "state": "pending",
-      "key": "gt-995195333"
+      "state": "downloaded",
+      "key": "gt-995195333",
+      "views": 8
     }
   },
   "requested": [
@@ -696,5 +711,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:47:47.610Z"
+  "updatedAt": "2026-10-31T23:48:01.263Z"
 }

@@ -44948,10 +44948,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
+          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Abyssal Voyage Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482534817-e12d8d28ce2e44828ad44c49.jpg",
           "sha256": "e12d8d28ce2e44828ad44c4915133ce55d2c7df04997e8969270bf85b914ddeb",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Abyssal Voyage Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-c125ea8a50c979b9629135e9.jpg",
+          "sha256": "c125ea8a50c979b9629135e9b4d7d99be50f8547f45ee2cf56d8decdf127a1ab",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Abyssal Voyage Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-254c78a41404d22f722b6053.jpg",
+          "sha256": "254c78a41404d22f722b6053eeeeaf8ea26103c465a266fd0e3c829047124bb8",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Abyssal Voyage Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-bf3f5f2df1522f46b8b4b1da.jpg",
+          "sha256": "bf3f5f2df1522f46b8b4b1da3cbcb1ef4551d594d837b92ef6137cc165206bb3",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Abyssal Voyage Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-98fe5c4c4ad16c26a6facfd5.jpg",
+          "sha256": "98fe5c4c4ad16c26a6facfd5653e418ce042cbe737b095b38c94082dcb2e3f9b",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Abyssal Voyage Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-0423db45b998fc886a57fb64.jpg",
+          "sha256": "0423db45b998fc886a57fb6478db57a40ba158844346a8d5424da8eea47ce513",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Abyssal Voyage Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-3ad75aa5d2873fce8ccaedde.jpg",
+          "sha256": "3ad75aa5d2873fce8ccaedde289eeeb2718787d85f77ac021187a0da95d19f8b",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -44999,8 +45167,8 @@
       ],
       "supplierPreviews": "ad6474a94830a6cbfe64c9841d8990ce92aedc511a6adc845107053e9d767b37",
       "hoodieRefresh": {
-        "fingerprint": "892e957f9e3593a320fb8765a2733b964e256c6434ad1fcfda58b86dffadf2f8",
-        "checkedAt": "2026-10-31T23:09:08.318Z"
+        "fingerprint": "966234e2b4cdf6b084e2d20ee83e303eed51023077d929d8c9d8a5ca20d9661f",
+        "checkedAt": "2026-10-31T23:48:01.245Z"
       }
     },
     "482538815": {
