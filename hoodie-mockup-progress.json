@@ -1,5 +1,10 @@
 {
   "products": {
+    "482647761": {
+      "name": "Kings Never Fall Cotton Hoodie",
+      "state": "held",
+      "error": "Accepted production panel unavailable: front_dtfabric"
+    },
     "482668440": {
       "name": "Fate Favors the Fearless Cotton Hoodie",
       "state": "held",
@@ -109,5 +114,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:39:27.896Z",
-  "updatedAt": "2026-10-31T22:40:06.750Z"
+  "updatedAt": "2026-10-31T22:40:09.789Z"
 }
