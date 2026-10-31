@@ -1,5 +1,19 @@
 {
   "products": {
+    "476651184": {
+      "name": "Lantern Keeper Cotton-Blend Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:52:43.837Z"
+    },
     "476663020": {
       "name": "Crowned Wilds Recycled Hoodie",
       "state": "held",
@@ -746,8 +760,9 @@
     },
     "32fd4ddd385dbace33568e4977f0940fbfb9c7bda0eb78fe2f9f3a7cb05debe3": {
       "product": "476651184",
-      "state": "pending",
-      "key": "gt-995197669"
+      "state": "downloaded",
+      "key": "gt-995197669",
+      "views": 8
     }
   },
   "requested": [
@@ -792,5 +807,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:52:29.570Z"
+  "updatedAt": "2026-10-31T23:52:43.837Z"
 }

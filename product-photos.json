@@ -3751,10 +3751,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476651184-11aab457fa7cb394e8fd8677.jpg",
+          "sha256": "11aab457fa7cb394e8fd86772c7333061e2a2e1c77d8256e46ff30f60eac52ba",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/476651184-d26a27e4466811ae44cc6fbe.jpg",
           "sha256": "d26a27e4466811ae44cc6fbe8be1162e8124e0aa1ecadd1482cafbf3fd84b783",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-980ffc4a0f17536bef744213.jpg",
+          "sha256": "980ffc4a0f17536bef744213229de96c718e12051ed39ed3a6f43729d444c7f9",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-b2b0574fd336c6cdc9f72369.jpg",
+          "sha256": "b2b0574fd336c6cdc9f72369330944be49b9c14774cfb5436e8ba8ad332f0c60",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-57285e76178fdac458ca714a.jpg",
+          "sha256": "57285e76178fdac458ca714a583d204a3087483f64cda2b9d2cf6e430dc28ef6",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-8bc1a809f32cfb7efbedff7a.jpg",
+          "sha256": "8bc1a809f32cfb7efbedff7aa90b1732eff4b4af83cbcac4f0b45acd7e484c9e",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-af8ed9f3de5b0dc4f1d88e6f.jpg",
+          "sha256": "af8ed9f3de5b0dc4f1d88e6fb7ecd00dfbb628c10cab22b2169ccf80ebaa6eb6",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5527276114",
+            "5527276115",
+            "5527276116",
+            "5527276117",
+            "5527276120",
+            "5527276122",
+            "5527276123",
+            "5527276124",
+            "5527276125",
+            "5527276126",
+            "5527276127"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Lantern Keeper Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476651184-738bcdc03c0bf0d450fcd3ba.jpg",
+          "sha256": "738bcdc03c0bf0d450fcd3ba7e0e8c80a6e45fce0ba729762577ce12920a203b",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -4091,8 +4259,8 @@
       "source": "Verified finished production canvases",
       "supplierPreviews": "c0a52d37521ce9290e57682583f73d2d4e0e185c0374d668cc11a97e762aeb51",
       "hoodieRefresh": {
-        "fingerprint": "7424571b5bb7c99c3de727806be5d3c9a9c561fefa35f0d6273c87fc3efd82d8",
-        "checkedAt": "2026-10-31T23:14:54.223Z"
+        "fingerprint": "c421393dcd6579c27d04595263d9d495f749eba64a89fbc6ba639d10dc020023",
+        "checkedAt": "2026-10-31T23:52:43.811Z"
       }
     },
     "476663020": {
