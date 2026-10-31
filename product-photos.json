@@ -46002,6 +46002,118 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482783901-13553e6815bc0cf3c24c2171.jpg",
+          "sha256": "13553e6815bc0cf3c24c21713cfad1e4b988461db9cba2880d16c96d5e6d49a3",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Still Waters Run Deep Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-aad9012d4e493747e91b3141.jpg",
+          "sha256": "aad9012d4e493747e91b314172379aeb170fdadac15640acfae8b7112fb44c5c",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Still Waters Run Deep Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-09773ec2450be4e1925419e9.jpg",
+          "sha256": "09773ec2450be4e1925419e980f28e41aa04d7de39c9fac6b6a93a2d7a2e314e",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Still Waters Run Deep Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-6726b19f1fb03846925ff524.jpg",
+          "sha256": "6726b19f1fb03846925ff52444a4269f3f32e673e0cc1fc6155241ac23ea40cf",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Still Waters Run Deep Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-8995f4215f891603ac72d880.jpg",
+          "sha256": "8995f4215f891603ac72d880dd3ba06096ffe736ee1697a32aad3b2091c1364e",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Still Waters Run Deep Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-d7133d2ac23607469648acc1.jpg",
+          "sha256": "d7133d2ac23607469648acc16291f33e5288b0a918c44370b5d77f1f684c2b0e",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Still Waters Run Deep Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-d3a24b341c5eed0ebe6f521f.jpg",
+          "sha256": "d3a24b341c5eed0ebe6f521fc465c7de111695d39652adc96551364878b6005a",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Still Waters Run Deep Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482783901-6fb1917da185156818c77e1d.jpg",
+          "sha256": "6fb1917da185156818c77e1dff2d9949c687da3dbb3ba29a5f65fa9bcb8d9323",
+          "view": "front",
+          "style": "Duet",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580907298"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Still Waters Run Deep Cotton Hoodie · front"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -46017,7 +46129,11 @@
           "sha256": "35f7b9498969b56cc5f3e731b0635d839c1bdcc4d98948560b75e39dbce18f67"
         }
       ],
-      "supplierPreviews": "367105c89f4f1e898993f58001b0bf4bc0f4f261bdca51bfafe520aad97b90d5"
+      "supplierPreviews": "367105c89f4f1e898993f58001b0bf4bc0f4f261bdca51bfafe520aad97b90d5",
+      "hoodieRefresh": {
+        "fingerprint": "937c977a80ac0cd23b035cac2981022ac2800289c26c9c1e42d3d3d056e7df7e",
+        "checkedAt": "2026-10-31T23:27:46.933Z"
+      }
     },
     "482790495": {
       "name": "Time Takes All Oversized Cotton Hoodie",

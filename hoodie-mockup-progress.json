@@ -1,5 +1,19 @@
 {
   "products": {
+    "482783901": {
+      "name": "Still Waters Run Deep Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:27:46.952Z"
+    },
     "482790495": {
       "name": "Time Takes All Oversized Cotton Hoodie",
       "state": "saved",
@@ -284,8 +298,9 @@
     },
     "9223775c751eda0758250277d9e6988228276996fde93a7eff79c8b83b6b3217": {
       "product": "482783901",
-      "state": "pending",
-      "key": "gt-995185754"
+      "state": "downloaded",
+      "key": "gt-995185754",
+      "views": 8
     }
   },
   "requested": [
@@ -330,5 +345,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:27:29.273Z"
+  "updatedAt": "2026-10-31T23:27:46.952Z"
 }
