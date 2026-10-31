@@ -1501,6 +1501,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
+          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525507",
+            "5525525508",
+            "5525525509",
+            "5525525510",
+            "5525525511",
+            "5525525512",
+            "5525525513",
+            "5525525514",
+            "5525525515",
+            "5525525516",
+            "5525525517"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Ashen Cathedral Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368665-e66d92af0727f840409d3223.jpg",
+          "sha256": "e66d92af0727f840409d322352483da278a6ab9d915041e672c6ec5ef63bc986",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525507",
+            "5525525508",
+            "5525525509",
+            "5525525510",
+            "5525525511",
+            "5525525512",
+            "5525525513",
+            "5525525514",
+            "5525525515",
+            "5525525516",
+            "5525525517"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Ashen Cathedral Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
+          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525507",
+            "5525525508",
+            "5525525509",
+            "5525525510",
+            "5525525511",
+            "5525525512",
+            "5525525513",
+            "5525525514",
+            "5525525515",
+            "5525525516",
+            "5525525517"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Ashen Cathedral Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
+          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525507",
+            "5525525508",
+            "5525525509",
+            "5525525510",
+            "5525525511",
+            "5525525512",
+            "5525525513",
+            "5525525514",
+            "5525525515",
+            "5525525516",
+            "5525525517"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Ashen Cathedral Cotton-Blend Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368665-e3f4d39473d8ea1475dddeb9.jpg",
+          "sha256": "e3f4d39473d8ea1475dddeb9b85e76fbbe429b5ddea05fdf09c5eeb7c2299d32",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525507",
+            "5525525508",
+            "5525525509",
+            "5525525510",
+            "5525525511",
+            "5525525512",
+            "5525525513",
+            "5525525514",
+            "5525525515",
+            "5525525516",
+            "5525525517"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Ashen Cathedral Cotton-Blend Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476368665-33977-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -1815,7 +1935,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "271cd07ca05bfa913e13979caf48245a255e99d61e3e7dd6a414e6a827883e41"
+      "supplierPreviews": "271cd07ca05bfa913e13979caf48245a255e99d61e3e7dd6a414e6a827883e41",
+      "hoodieRefresh": {
+        "fingerprint": "9e25b65133bd08d37fcad3b2245a310b6c13d2a6e2255e4075265a91e0671d48",
+        "checkedAt": "2026-10-31T23:23:20.442Z"
+      }
     },
     "476394293": {
       "name": "Rose Cathedral Utility Backpack",

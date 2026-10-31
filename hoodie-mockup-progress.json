@@ -7,8 +7,16 @@
     },
     "476368665": {
       "name": "Ashen Cathedral Cotton-Blend Hoodie",
-      "state": "held",
-      "error": "Accepted production panel unavailable: front_dtfabric"
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:23:20.465Z"
     },
     "476553400": {
       "name": "Rose Eclipse Oversized Cotton Hoodie",
@@ -679,8 +687,9 @@
     },
     "f8a485f26304a114adbab26217e006e5ad019e3c502c72a7c8a94183dddcf0a0": {
       "product": "476368665",
-      "state": "pending",
-      "key": "gt-995183442"
+      "state": "downloaded",
+      "key": "gt-995183442",
+      "views": 5
     }
   },
   "requested": [
@@ -725,5 +734,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:22:54.697Z"
+  "updatedAt": "2026-10-31T23:23:20.465Z"
 }
