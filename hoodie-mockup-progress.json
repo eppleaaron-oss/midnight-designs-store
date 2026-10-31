@@ -1,5 +1,11 @@
 {
   "products": {
+    "476596721": {
+      "name": "Crimson Oath Recycled Fleece Hoodie",
+      "state": "held",
+      "error": "Supplier HTTP 400: You are attempting to generate 584 files. The maximum files you can generate per request is 500. To reduce the amount of files generated per request, please reduce the amount of `variant_ids`, `option_groups` and/or `options` in the request",
+      "checkedAt": "2026-10-31T23:56:08.000Z"
+    },
     "476636727": {
       "name": "Blood Moon Reaper Recycled Fleece Hoodie",
       "state": "held",
@@ -786,7 +792,7 @@
     },
     "9fdbd1014a9bba5c06626724d50fcf78ded605aecb4b043d7fbc4f764adf3b2d": {
       "product": "476596721",
-      "state": "submitting"
+      "state": "uncertain"
     }
   },
   "requested": [
@@ -831,5 +837,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:54:41.446Z"
+  "updatedAt": "2026-10-31T23:56:08.000Z"
 }
