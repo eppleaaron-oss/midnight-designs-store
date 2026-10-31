@@ -1,5 +1,20 @@
 {
-  "products": {},
+  "products": {
+    "482797453": {
+      "name": "Even in Darkness / Still Growing Cotton Hoodie",
+      "state": "saved",
+      "photos": 8,
+      "views": [
+        "back",
+        "front"
+      ],
+      "missing": [
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "checkedAt": "2026-10-31T23:25:16.175Z"
+    }
+  },
   "jobs": {
     "f6d85d1a05e422382454f6a9338d47da1cb97e21698fbd45e77fcfd3205e6795": {
       "product": "482797453",
@@ -223,8 +238,9 @@
     },
     "b5bf07aa30bb6fee8758fa38c6c43e7344ef9a681de48fd79fac28121a1aac34": {
       "product": "482797453",
-      "state": "pending",
-      "key": "gt-995184497"
+      "state": "downloaded",
+      "key": "gt-995184497",
+      "views": 8
     }
   },
   "requested": [
@@ -269,5 +285,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T23:24:38.297Z",
-  "updatedAt": "2026-10-31T23:24:48.319Z"
+  "updatedAt": "2026-10-31T23:25:16.175Z"
 }
