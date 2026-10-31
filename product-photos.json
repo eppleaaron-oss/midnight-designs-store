@@ -2275,6 +2275,126 @@
       "catalogProductId": 1628,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
+          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526694168",
+            "5526694169",
+            "5526694170",
+            "5526694171",
+            "5526694172",
+            "5526694173",
+            "5526694174",
+            "5526694175",
+            "5526694177",
+            "5526694178",
+            "5526694179"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476559553-7859640b25c9d986a30646d8.jpg",
+          "sha256": "7859640b25c9d986a30646d8d9cd70811849e3231521ca90f6cfd57beb0a02fb",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526694168",
+            "5526694169",
+            "5526694170",
+            "5526694171",
+            "5526694172",
+            "5526694173",
+            "5526694174",
+            "5526694175",
+            "5526694177",
+            "5526694178",
+            "5526694179"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
+          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526694168",
+            "5526694169",
+            "5526694170",
+            "5526694171",
+            "5526694172",
+            "5526694173",
+            "5526694174",
+            "5526694175",
+            "5526694177",
+            "5526694178",
+            "5526694179"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
+          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526694168",
+            "5526694169",
+            "5526694170",
+            "5526694171",
+            "5526694172",
+            "5526694173",
+            "5526694174",
+            "5526694175",
+            "5526694177",
+            "5526694178",
+            "5526694179"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476559553-53bdc47b35e725e6a21b46af.jpg",
+          "sha256": "53bdc47b35e725e6a21b46afb3c57d1821701dee9dfaf7ca2b280f3fec01703e",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526694168",
+            "5526694169",
+            "5526694170",
+            "5526694171",
+            "5526694172",
+            "5526694173",
+            "5526694174",
+            "5526694175",
+            "5526694177",
+            "5526694178",
+            "5526694179"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Midnight Requiem Oversized Cotton-Blend Hoodie · sleeve right"
+        },
+        {
           "image": "assets/product-photos/476559553-51472-0.jpg",
           "view": "front_dtfabric",
           "style": "Default",
@@ -2349,7 +2469,11 @@
         }
       ],
       "source": "Verified finished production canvases",
-      "supplierPreviews": "4c7aaedcf8bd24bd58cdb803fc0fcd085fd55e3420a20595e6e4438a0118be57"
+      "supplierPreviews": "4c7aaedcf8bd24bd58cdb803fc0fcd085fd55e3420a20595e6e4438a0118be57",
+      "hoodieRefresh": {
+        "fingerprint": "b857e5e78c00d238865739ba1b7e9190bc0f31308199bc4eb86dd94608d1f357",
+        "checkedAt": "2026-10-31T23:21:08.996Z"
+      }
     },
     "476570540": {
       "name": "Scarlet Vigil Oversized Cotton-Blend Hoodie",
