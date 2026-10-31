@@ -45216,6 +45216,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
+          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "After the Last Light Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-e88dbd0371acca0378a74bf5.jpg",
+          "sha256": "e88dbd0371acca0378a74bf569385f543c84f61cf5eacd96be4c09a68e8f5051",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "After the Last Light Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
+          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "After the Last Light Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
+          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "After the Last Light Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482775311-f648e5f7c310d676e1d28a21.jpg",
+          "sha256": "f648e5f7c310d676e1d28a21e64d32b25b46535ad734e979511561a7e9faa418",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580815659",
+            "5580815660",
+            "5580815661",
+            "5580815662",
+            "5580815663",
+            "5580815664",
+            "5580815665",
+            "5580815666",
+            "5580815667",
+            "5580815669",
+            "5580815670"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "After the Last Light Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45241,7 +45361,11 @@
           "sha256": "b00ab41cd2e7e4e4c9b925294470376aa99005026e341ba2ab26debee23ad345"
         }
       ],
-      "supplierPreviews": "b78757e9ac066aad461d59fb5766d7e0cecc2e82b6783a3f67f6434ccce68214"
+      "supplierPreviews": "b78757e9ac066aad461d59fb5766d7e0cecc2e82b6783a3f67f6434ccce68214",
+      "hoodieRefresh": {
+        "fingerprint": "7a71a99a06778a17dbfa8d7c65a8df648906ea72eb0a3131eadf157ddeef99b8",
+        "checkedAt": "2026-10-31T22:51:56.332Z"
+      }
     },
     "482779702": {
       "name": "Beauty in Decay Oversized Cotton Hoodie",
