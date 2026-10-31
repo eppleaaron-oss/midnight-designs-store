@@ -45473,10 +45473,108 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
+          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482668440-109ad91b38794a3e97152e86.jpg",
           "sha256": "109ad91b38794a3e97152e864eede45176b0a10f570c313896f019f7321af833",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-f345e3483d4ce1b058e35231.jpg",
+          "sha256": "f345e3483d4ce1b058e352314d61180641b4b01fd8d988057dfbd7d164e72d6d",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-967bd60af07d3d02503dad56.jpg",
+          "sha256": "967bd60af07d3d02503dad566350848e69cf10a1b5c4298bef5a3131791ab9f5",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-db22de0e003b771439ecba07.jpg",
+          "sha256": "db22de0e003b771439ecba07def8e47e21e700af505f617bd0f0e68f0bea437b",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-c08e4356a5df5665e0a1c47b.jpg",
+          "sha256": "c08e4356a5df5665e0a1c47b105bda064fc718bd167e95f8a1d623a1ce4f52c2",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-b292c71f71c3edbfd87228d8.jpg",
+          "sha256": "b292c71f71c3edbfd87228d8ba4a3214635f000e69da21dcada6c0a77c4cef15",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-ab24a82909af07b9495fe855.jpg",
+          "sha256": "ab24a82909af07b9495fe855cc2e8e4533408a779e0749025cdd7cc912098ae4",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45504,8 +45602,8 @@
       ],
       "supplierPreviews": "f42f363fb44e268467d9afbe6e3d782ccb67b5103fa3b298f67fba4927443e9c",
       "hoodieRefresh": {
-        "fingerprint": "a4b17d75d6925243cd60cfdb61182bd8ad5f77f50536b91f0e6006772571fa14",
-        "checkedAt": "2026-10-31T22:58:40.602Z"
+        "fingerprint": "57dacd9abcbef5ced3ba6c61c2b7f691e9f9106fe5986d5c0e2fd21c144bd1fd",
+        "checkedAt": "2026-10-31T23:37:40.214Z"
       }
     },
     "482671357": {
