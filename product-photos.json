@@ -44672,6 +44672,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
+          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Abyssal Voyage Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-e12d8d28ce2e44828ad44c49.jpg",
+          "sha256": "e12d8d28ce2e44828ad44c4915133ce55d2c7df04997e8969270bf85b914ddeb",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Abyssal Voyage Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
+          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Abyssal Voyage Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
+          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Abyssal Voyage Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482534817-c4fec648e39d4fca66bca41e.jpg",
+          "sha256": "c4fec648e39d4fca66bca41e80624273192a0ed934e18d9b552a5bc85bbd5241",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5579506861",
+            "5579506862",
+            "5579506863",
+            "5579506864",
+            "5579506865",
+            "5579506866",
+            "5579506867",
+            "5579506868",
+            "5579506869",
+            "5579506870",
+            "5579506871"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Abyssal Voyage Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -44697,7 +44817,11 @@
           "sha256": "92952a48300c322f324bf83c6f9d5bf934c9b93d6b8e934ca8ae1a2b90aca771"
         }
       ],
-      "supplierPreviews": "ad6474a94830a6cbfe64c9841d8990ce92aedc511a6adc845107053e9d767b37"
+      "supplierPreviews": "ad6474a94830a6cbfe64c9841d8990ce92aedc511a6adc845107053e9d767b37",
+      "hoodieRefresh": {
+        "fingerprint": "892e957f9e3593a320fb8765a2733b964e256c6434ad1fcfda58b86dffadf2f8",
+        "checkedAt": "2026-10-31T23:09:08.318Z"
+      }
     },
     "482538815": {
       "name": "Violet Fang Cotton Hoodie",

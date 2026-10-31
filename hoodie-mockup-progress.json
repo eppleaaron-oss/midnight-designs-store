@@ -77,8 +77,16 @@
     },
     "482534817": {
       "name": "Abyssal Voyage Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:09:08.343Z"
     },
     "482538815": {
       "name": "Violet Fang Cotton Hoodie",
@@ -497,8 +505,9 @@
     },
     "f504442b3df18b927331f0758df7eee1ea52321a62d6a4a435473b159175afc2": {
       "product": "482534817",
-      "state": "pending",
-      "key": "gt-995176714"
+      "state": "downloaded",
+      "key": "gt-995176714",
+      "views": 5
     }
   },
   "requested": [
@@ -543,5 +552,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:08:52.374Z"
+  "updatedAt": "2026-10-31T23:09:08.343Z"
 }
