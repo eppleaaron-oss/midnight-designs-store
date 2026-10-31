@@ -45361,6 +45361,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
+          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581078395",
+            "5581078397",
+            "5581078398",
+            "5581078400",
+            "5581078401",
+            "5581078403",
+            "5581078404",
+            "5581078406",
+            "5581078408",
+            "5581078409",
+            "5581078411"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Even in Darkness / Still Growing Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482797453-070a503d3c7472e11063a79e.jpg",
+          "sha256": "070a503d3c7472e11063a79e15ade5d2d7807e9e2f5251e8eaa3404c65b41a21",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581078395",
+            "5581078397",
+            "5581078398",
+            "5581078400",
+            "5581078401",
+            "5581078403",
+            "5581078404",
+            "5581078406",
+            "5581078408",
+            "5581078409",
+            "5581078411"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Even in Darkness / Still Growing Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
+          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581078395",
+            "5581078397",
+            "5581078398",
+            "5581078400",
+            "5581078401",
+            "5581078403",
+            "5581078404",
+            "5581078406",
+            "5581078408",
+            "5581078409",
+            "5581078411"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Even in Darkness / Still Growing Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
+          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581078395",
+            "5581078397",
+            "5581078398",
+            "5581078400",
+            "5581078401",
+            "5581078403",
+            "5581078404",
+            "5581078406",
+            "5581078408",
+            "5581078409",
+            "5581078411"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Even in Darkness / Still Growing Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482797453-f600fc1e3ef49edf28a41cd9.jpg",
+          "sha256": "f600fc1e3ef49edf28a41cd9658ff374503ee6136340f75b940ee1e63a349b0e",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5581078395",
+            "5581078397",
+            "5581078398",
+            "5581078400",
+            "5581078401",
+            "5581078403",
+            "5581078404",
+            "5581078406",
+            "5581078408",
+            "5581078409",
+            "5581078411"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Even in Darkness / Still Growing Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45386,7 +45506,11 @@
           "sha256": "3404bcfb83effaa7fb9e282545532a0205ed8865425d1d8c8bf47500a87ed1ef"
         }
       ],
-      "supplierPreviews": "903a773eec5d287231368c0ba408a574b38f62fde9fb9c4d30afad51d6207794"
+      "supplierPreviews": "903a773eec5d287231368c0ba408a574b38f62fde9fb9c4d30afad51d6207794",
+      "hoodieRefresh": {
+        "fingerprint": "5d90520b9623334da5e4e4ee62925aa9b63c4c24f9a9e8d2277c951d3e9d8ce8",
+        "checkedAt": "2026-10-31T22:47:51.436Z"
+      }
     },
     "482918795": {
       "name": "Rose Eclipse Oversized Cotton T-Shirt",
