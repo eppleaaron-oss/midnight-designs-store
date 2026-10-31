@@ -45636,10 +45636,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482676580-9968c7528591748ff1dc12de.jpg",
+          "sha256": "9968c7528591748ff1dc12deb5cac4d060399157432467a1a2428e7c20a55e51",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Love Leaves Scars Cotton Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/482676580-ddf17c09ec77a8f7413e9522.jpg",
           "sha256": "ddf17c09ec77a8f7413e9522b53fa4aadb7f56f0302f3e0034eda6fbf651ae61",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Love Leaves Scars Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-0b01fb5594e94b28ec16c17a.jpg",
+          "sha256": "0b01fb5594e94b28ec16c17a435da98c2a3138619a3b085a2725690a086ff756",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Love Leaves Scars Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-c7202d57d785b1fa5154132d.jpg",
+          "sha256": "c7202d57d785b1fa5154132d7ab8901f05f5a722c37c667526fbcdb3c902f448",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Love Leaves Scars Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-b7c02b4cae548bd7cd3ce990.jpg",
+          "sha256": "b7c02b4cae548bd7cd3ce9906ead9ef4ace7f99bc0cd41846b4b3f2560c528b9",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Love Leaves Scars Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-ec7dbb81243476721f41348a.jpg",
+          "sha256": "ec7dbb81243476721f41348a3985e6d40be355a61044a25c97b219599794135f",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Love Leaves Scars Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-dc7a1d4062b828e5b21eb2d8.jpg",
+          "sha256": "dc7a1d4062b828e5b21eb2d853fe6a7ef006f5e143967abb7157ceb3271c99e5",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580244663",
+            "5580244664",
+            "5580244665",
+            "5580244666",
+            "5580244667",
+            "5580244668",
+            "5580244670",
+            "5580244671",
+            "5580244672",
+            "5580244673",
+            "5580244674"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Love Leaves Scars Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482676580-5523a064e7400aae628e4cfd.jpg",
+          "sha256": "5523a064e7400aae628e4cfdfd2734534a6ef9e5d4f34098ef23204c278b2071",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -45687,8 +45855,8 @@
       ],
       "supplierPreviews": "6329bcfb8bbd4cd2564a1d27b3ebd16f0e9ea65819fe59c31f61441adc1d29c5",
       "hoodieRefresh": {
-        "fingerprint": "526dde4474b5eace1374df237a4d6191f1835ff3a8b5663c568a8c79a53cb8f9",
-        "checkedAt": "2026-10-31T22:56:03.375Z"
+        "fingerprint": "8eae0b123750fabd137bc14599fc9f8ffc17c484b37b95e6a69882fc87e8bf5e",
+        "checkedAt": "2026-10-31T23:33:58.210Z"
       }
     },
     "482678006": {
