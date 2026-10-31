@@ -3,13 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const products=JSON.parse(fs.readFileSync('products.json')).products;
 const active=p=>p.variants.some(v=>v.availability==='active'&&v.size?.trim());
-const latest=list=>list.filter(active).sort((a,b)=>Number(b.id)-Number(a.id)).slice(0,4).map(p=>p.id);
+const home=fs.readFileSync('index.html','utf8'),selectedIds=[...new Set([...home.matchAll(/data-featured(?:-backups)?="([^"]*)"/g)].flatMap(m=>m[1].split(',')).filter(Boolean))];
+const featured=list=>selectedIds.map(id=>list.find(p=>p.id===id&&active(p))).filter(Boolean).slice(0,4).map(p=>p.id);
 const browser=await chromium.launch(), page=await browser.newPage(), errors=[];
 page.on('pageerror',e=>errors.push(e.message));
 for(const [width,height] of [[320,844],[390,844],[768,1024],[1440,1000],[844,390]]){
  await page.setViewportSize({width,height});await page.goto('http://localhost:8000/index.html');
  await page.waitForSelector('#grid .product-card');await page.locator('.opening-image').evaluate(img=>img.decode());
- assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),latest([...products]));
+ assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products));
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Overflow at '+width);
  const src=await page.locator('.opening-image').evaluate(img=>img.currentSrc);
  assert.ok(src.endsWith(width<=600?'skate-shop-mobile.webp':'skate-shop-banner.webp'));
@@ -32,7 +33,12 @@ await page.locator('.category-tile').first().click();await page.waitForSelector(
 assert.ok((await page.locator('#grid .product-card h3').allTextContents()).every(name=>/hoodie/i.test(name)));
 await page.route('**/products.json',r=>r.fulfill({json:{products:[...products].reverse()}}));
 await page.goto('http://localhost:8000/index.html');await page.waitForSelector('#grid .product-card');
-assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),latest([...products]));
+assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products));
+await page.unroute('**/products.json');
+const extra={...structuredClone(products[0]),id:'999999999999',name:'Newly published but not featured'};
+await page.route('**/products.json',r=>r.fulfill({json:{products:[extra,...products]}}));
+await page.goto('http://localhost:8000/index.html');await page.waitForSelector('#grid .product-card');
+assert.deepEqual(await page.locator('#grid .product-card').evaluateAll(nodes=>nodes.map(n=>n.dataset.productId)),featured(products),'A new publication must not become a homepage selection');
 await page.unroute('**/products.json');
 const unavailable=structuredClone(products);for(const p of unavailable)for(const v of p.variants)v.availability='not_available';
 await page.route('**/products.json',r=>r.fulfill({json:{products:unavailable}}));
@@ -41,4 +47,4 @@ assert.equal(await page.locator('#grid .product-card').count(),0);assert.equal(a
 await page.unroute('**/products.json');await page.route('**/products.json',r=>r.fulfill({status:503,body:'Unavailable'}));
 await page.goto('http://localhost:8000/index.html');await page.getByText('The collection could not load.',{exact:true}).waitFor();
 assert.equal(await page.locator('.hero-actions a').isVisible(),true);assert.deepEqual(errors,[]);
-await browser.close();console.log('PASS: skate-shop banner crops, latest available products, responsive layout, category filters, price links, catalog reordering and unavailable/error states.');
+await browser.close();console.log('PASS: skate-shop banner crops, owner-selected products, responsive layout, category filters, price links, catalog reordering and unavailable/error states.');
