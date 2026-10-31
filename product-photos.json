@@ -45150,6 +45150,126 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
+          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "All Things Fade Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-ecece7011fe881df9e940e3b.jpg",
+          "sha256": "ecece7011fe881df9e940e3b553c7c25ddf5c7b32c90abbab208943a65e99870",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "All Things Fade Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
+          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "All Things Fade Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
+          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "All Things Fade Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482682117-7693430ef5dfe78c6bc8a795.jpg",
+          "sha256": "7693430ef5dfe78c6bc8a795e7a631bbd099ac9239ab4e32de0b75dd43ed32c2",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580280397",
+            "5580280398",
+            "5580280399",
+            "5580280400",
+            "5580280401",
+            "5580280402",
+            "5580280403",
+            "5580280404",
+            "5580280405",
+            "5580280406",
+            "5580280407"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "All Things Fade Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45175,7 +45295,11 @@
           "sha256": "43ea523aa3135253f7246541f0e926c06c7c80bd3e65fe04248ab14f99b931cb"
         }
       ],
-      "supplierPreviews": "73320786e10e3ac76a7abed227df19a5f778ed21e2b6cf60ac1247506ef54153"
+      "supplierPreviews": "73320786e10e3ac76a7abed227df19a5f778ed21e2b6cf60ac1247506ef54153",
+      "hoodieRefresh": {
+        "fingerprint": "dd8e520aafd6c649d2ae0d33c577fc7139d77c74b57e71475a92cd979ebb12d1",
+        "checkedAt": "2026-10-31T22:53:58.342Z"
+      }
     },
     "482685353": {
       "name": "Where Shadows Bloom Oversized Cotton Hoodie",
