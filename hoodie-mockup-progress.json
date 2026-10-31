@@ -32,8 +32,16 @@
     },
     "476596721": {
       "name": "Crimson Oath Recycled Fleece Hoodie",
-      "state": "held",
-      "error": "Accepted production panel unavailable: front"
+      "state": "saved",
+      "photos": 6,
+      "views": [
+        "front",
+        "back",
+        "sleeve_right",
+        "sleeve_left"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T23:17:34.107Z"
     },
     "476636727": {
       "name": "Blood Moon Reaper Recycled Fleece Hoodie",
@@ -609,8 +617,9 @@
     },
     "0ae4d724ab9984be34b62859eeeb4e64e3c5ba58004a940a1bc6b6dc101dae81": {
       "product": "476596721",
-      "state": "pending",
-      "key": "gt-995180650"
+      "state": "downloaded",
+      "key": "gt-995180650",
+      "views": 6
     }
   },
   "requested": [
@@ -655,5 +664,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T23:17:11.901Z"
+  "updatedAt": "2026-10-31T23:17:34.107Z"
 }

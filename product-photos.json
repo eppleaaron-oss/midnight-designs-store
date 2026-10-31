@@ -2761,6 +2761,90 @@
       "catalogProductId": 388,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476596721-dcc30828c1337e112a7a6d04.jpg",
+          "sha256": "dcc30828c1337e112a7a6d0487ba12954a184d116834ed73bd34faeaa96dc8aa",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Crimson Oath Recycled Fleece Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476596721-1578cfb126fc8edd1a19c3c0.jpg",
+          "sha256": "1578cfb126fc8edd1a19c3c05e77708c69cdd06c14c0fadddc17057fdfc10ced",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Crimson Oath Recycled Fleece Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476596721-dcc30828c1337e112a7a6d04.jpg",
+          "sha256": "dcc30828c1337e112a7a6d0487ba12954a184d116834ed73bd34faeaa96dc8aa",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476596721-dcc30828c1337e112a7a6d04.jpg",
+          "sha256": "dcc30828c1337e112a7a6d0487ba12954a184d116834ed73bd34faeaa96dc8aa",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/476596721-1578cfb126fc8edd1a19c3c0.jpg",
+          "sha256": "1578cfb126fc8edd1a19c3c05e77708c69cdd06c14c0fadddc17057fdfc10ced",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve right"
+        },
+        {
+          "image": "assets/hoodie-mockups/476596721-1578cfb126fc8edd1a19c3c0.jpg",
+          "sha256": "1578cfb126fc8edd1a19c3c05e77708c69cdd06c14c0fadddc17057fdfc10ced",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5526949202"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Crimson Oath Recycled Fleece Hoodie · sleeve left"
+        },
+        {
           "image": "assets/product-photos/476596721-18730-0.jpg",
           "view": "front",
           "style": "Default",
@@ -2973,7 +3057,11 @@
         }
       ],
       "source": "Verified saved production print files",
-      "supplierPreviews": "3c2fb4c945a3b61e2f343637656e8d4f504f0e287e830857e9d8a0d7e5dc9b15"
+      "supplierPreviews": "3c2fb4c945a3b61e2f343637656e8d4f504f0e287e830857e9d8a0d7e5dc9b15",
+      "hoodieRefresh": {
+        "fingerprint": "52d313a43ba669d46c3492c3053dd531067b9cbe891f7cc9e8e8fb652b780c08",
+        "checkedAt": "2026-10-31T23:17:34.085Z"
+      }
     },
     "476636727": {
       "name": "Blood Moon Reaper Recycled Fleece Hoodie",
