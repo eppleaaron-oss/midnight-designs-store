@@ -132,8 +132,16 @@
     },
     "482668440": {
       "name": "Fate Favors the Fearless Cotton Hoodie",
-      "state": "held",
-      "error": "Supplier source for front_dtfabric is 2000x2000, expected original 6000x6000. A resized preview cannot replace a production file."
+      "state": "saved",
+      "photos": 5,
+      "views": [
+        "front",
+        "back",
+        "sleeve_left",
+        "sleeve_right"
+      ],
+      "missing": [],
+      "checkedAt": "2026-10-31T22:58:40.626Z"
     },
     "482671357": {
       "name": "Never Surrender Oversized Cotton Hoodie",
@@ -357,8 +365,9 @@
     },
     "12e0c1788629961ed497d50c9cb73e7d86480e3f71e838a80c79881feeed896e": {
       "product": "482668440",
-      "state": "pending",
-      "key": "gt-995171800"
+      "state": "downloaded",
+      "key": "gt-995171800",
+      "views": 5
     }
   },
   "requested": [
@@ -403,5 +412,5 @@
     "476368662"
   ],
   "startedAt": "2026-10-31T22:47:19.255Z",
-  "updatedAt": "2026-10-31T22:58:27.394Z"
+  "updatedAt": "2026-10-31T22:58:40.626Z"
 }

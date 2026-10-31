@@ -44995,6 +44995,76 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
+          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
+          "view": "front",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-109ad91b38794a3e97152e86.jpg",
+          "sha256": "109ad91b38794a3e97152e864eede45176b0a10f570c313896f019f7321af833",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
+          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
+          "view": "back",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
+          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
+          "view": "sleeve_left",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve left",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · sleeve left"
+        },
+        {
+          "image": "assets/hoodie-mockups/482668440-1a7bf42037d4cc2906ea407c.jpg",
+          "sha256": "1a7bf42037d4cc2906ea407c42550b62c43309ad2470255b1b0b0e083cb23f0d",
+          "view": "sleeve_right",
+          "style": "Default",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5580193597"
+          ],
+          "kind": "production-mockup",
+          "label": "sleeve right",
+          "alt": "Fate Favors the Fearless Cotton Hoodie · sleeve right"
+        },
+        {
           "view": "Supplier preview",
           "style": "Saved Printful mockup",
           "category": "product",
@@ -45010,7 +45080,11 @@
           "sha256": "ca0ee4a6875f52de1dbe55aebc8f9e5f2e8d62f84a412990582bfb24ee70827c"
         }
       ],
-      "supplierPreviews": "f42f363fb44e268467d9afbe6e3d782ccb67b5103fa3b298f67fba4927443e9c"
+      "supplierPreviews": "f42f363fb44e268467d9afbe6e3d782ccb67b5103fa3b298f67fba4927443e9c",
+      "hoodieRefresh": {
+        "fingerprint": "a4b17d75d6925243cd60cfdb61182bd8ad5f77f50536b91f0e6006772571fa14",
+        "checkedAt": "2026-10-31T22:58:40.602Z"
+      }
     },
     "482671357": {
       "name": "Never Surrender Oversized Cotton Hoodie",
