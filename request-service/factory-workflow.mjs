@@ -8,14 +8,17 @@ import {variantAreas} from './factory-blueprints.mjs';
 import {audienceMatches} from './factory-audiences.mjs';
 import {garmentColorCapability,fabricColorMatches} from './factory-color.mjs';
 import {garmentColors} from './factory-rendering.mjs';
+import {basicSizing} from './factory-basic-sizing.mjs';
+import {loadApprovedMapping} from './factory-approved-mapping.mjs';
 
 // All idea-room products enter the same leased production queue. This module never
 // creates a supplier product, places an order, or grants publishing approval.
-export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publishing,storageDurable=false,fetchImpl=fetch}){
+export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publishing,storageDurable=false,requireApprovedProfiles=true,fetchImpl=fetch}){
  db.exec(`CREATE TABLE IF NOT EXISTS factory_imported_artwork(url TEXT PRIMARY KEY,artwork TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS factory_supplier_quotes(job TEXT NOT NULL,variant INTEGER NOT NULL,cents INTEGER NOT NULL,currency TEXT NOT NULL,source TEXT NOT NULL,created TEXT NOT NULL,PRIMARY KEY(job,variant));`);
  const get=(s,...a)=>db.prepare(s).get(...a),run=(s,...a)=>db.prepare(s).run(...a),now=()=>new Date().toISOString();
  let basicWorkspace=null;const sourceReads=new Map();
+ const sizing=requireApprovedProfiles?basicSizing({db,workflow:{sourceFile:(...a)=>sourceFile(...a)}}):null;
  const hold=message=>{throw Object.assign(Error(message),{status:409});};
  function sourceFile(part,set){const key=JSON.stringify([part.artwork||part.url,set.name]);if(sourceReads.has(key))return sourceReads.get(key);const work=sourceImport(part,set);sourceReads.set(key,work);work.finally(()=>{if(sourceReads.get(key)===work)sourceReads.delete(key);}).catch(()=>{});return work;}
  async function sourceImport(part,set){
@@ -33,7 +36,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
  async function enqueue({idea,set,piece,brief,aiLayout=false,variantIds=null,fixedRecipe=false,outfitId=null,storeCollection=null,numericLayout=null}){
   if(!storageDurable&&!(fixedRecipe&&basicWorkspace?.ready()))hold('Persistent factory storage must be attached before starting production.');
   const existing=get('SELECT job,printful_id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog);
-  if(existing?.job&&get('SELECT id FROM factory_jobs WHERE id=?',existing.job))return existing.job;
+  if(existing?.job&&get('SELECT id FROM factory_jobs WHERE id=?',existing.job)&&!requireApprovedProfiles)return existing.job;
   if(existing?.printful_id)hold('This item already exists in Printful. Review the existing product; a duplicate will not be created.');
   const product=await manager.productDetails(piece.catalog),blueprint=await blueprints.load(piece.catalog,'default');
   if(blueprint.source!=='live')hold('Live Printful blueprint verification failed. The stored snapshot cannot start automatic production.');
@@ -45,6 +48,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   const variants=[...bySize.values()];if(!variants.length)hold('Printful has no available variants for this product.');
   const audience=piece.audience||(['unisex','men','women','children'].find(a=>product.audiences.includes(a)));
   if(!audience||!audienceMatches(product,audience,{allowUnspecified:piece.allowUnspecifiedAudience===true}))hold('Choose an audience supported by this supplier product.');
+  if(requireApprovedProfiles){numericLayout=await loadApprovedMapping({product:{set,product,variants,audience,role:piece.role},blueprint,sizing,input:numericLayout?.input||null});aiLayout=false;fixedRecipe=true;if(existing?.job){const previous=JSON.parse(get('SELECT plan FROM factory_render_plans WHERE job=?',existing.job)?.plan||'{}');if(JSON.stringify(previous.numericLayout?.profileApproval)!==JSON.stringify(numericLayout.profileApproval))hold('The existing queued item needs its approved profile reconciled. A duplicate will not be created.');return existing.job;}}
   const placements={},ids=[];let collection=null;
   for(const part of numericLayout?numericLayout.bindings.filter(s=>s.part).map(s=>({...set.parts[s.part],area:s.panel})):piece.placements){if(!numericLayout&&/^pocket(?:_|$)/.test(part.area)&&piece.pocketReviewed!==true)continue;if(!numericLayout&&part.part&&/^(?:pocket|belt|waistband|collar|top|bottom)(?:_|$)/.test(part.area)&&panelKind(part.part)!==panelKind(part.area))hold('Structural panels need their own artwork assignment; a front scene or sleeve cannot be substituted.');const id=await sourceFile(part,set),row=checkedArtwork(db,id);if(!row.effectivePermissions.reuse)hold('Enable Reuse for the assigned artwork.');if(collection&&row.collection!==collection)hold('Every piece must use artwork from one collection.');collection=row.collection;ids.push(id);placements[part.area]={artworkId:id,fit:'contain',scale:100,x:0,y:0,rotation:0,mirror:false,tile:false,spacing:0,protect:!JSON.parse(row.permissions).modify&&!JSON.parse(row.permissions).recolor,recolor:null,...(fixedRecipe?{withoutEnlargement:true}:{})};}
   if(!ids.length)hold('Assign at least one original artwork file.');
@@ -65,7 +69,7 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   db.exec('BEGIN IMMEDIATE');try{
    if(get('SELECT count(*) n FROM factory_print_drafts').n+drafts.length>500)hold('Blueprint storage limit reached. Archive unused product blueprints.');
    for(const d of drafts)run('INSERT INTO factory_print_drafts VALUES(?,?,?,?,?,?,?,?)',d.id,copy.title.slice(0,100),piece.catalog,d.variant,blueprint.effectiveTechnique||blueprint.technique,JSON.stringify(d.areas),'live',now());
-   manager.insertJob(prepared);rendering.savePlan(prepared.id,{placementPolicy:{version:PLACEMENT_POLICY_VERSION,guide:placementGuide(piece.catalog)},...(numericLayout?{numericLayout}:{}),background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout,artworkEdits:fixedRecipe?{enabled:false}:rendering.artworkRules()});publishing.saveCopy(prepared.id,copy);if(numericLayout)run('INSERT INTO factory_job_layouts(job,category,layout,created) VALUES(?,?,?,?) ON CONFLICT(job) DO UPDATE SET layout=excluded.layout',prepared.id,piece.role,JSON.stringify(numericLayout),now());
+   manager.insertJob(prepared);rendering.savePlan(prepared.id,{mappingPolicyRequired:requireApprovedProfiles,placementPolicy:{version:PLACEMENT_POLICY_VERSION,guide:placementGuide(piece.catalog)},...(numericLayout?{numericLayout}:{}),background:aop?(garmentColors[color]||color):null,colorMode:aop?'print':'fabric',placements,garmentColor:color,colorCapability:capability,continueAcrossPanels:false,aiLayout,artworkEdits:fixedRecipe?{enabled:false}:rendering.artworkRules()});publishing.saveCopy(prepared.id,copy);if(numericLayout)run('INSERT INTO factory_job_layouts(job,category,layout,created) VALUES(?,?,?,?) ON CONFLICT(job) DO UPDATE SET layout=excluded.layout',prepared.id,piece.role,JSON.stringify(numericLayout),now());
    for(const v of variants){const numeric=Number(v.price);if(v.price!==null&&v.price!==undefined&&String(v.price).trim()&&Number.isFinite(numeric)&&numeric>0&&v.currency==='USD')run('INSERT INTO factory_supplier_quotes VALUES(?,?,?,?,?,?)',prepared.id,v.id,Math.round(numeric*100),'USD','Printful catalog product '+piece.catalog,now());}
    const madeId=existing?get('SELECT id FROM idea_made WHERE idea=? AND catalog=?',idea.id,piece.catalog).id:randomUUID();
    run("INSERT INTO idea_made(id,idea,set_id,set_name,catalog,category,name,status,created,updated,job) VALUES(?,?,?,?,?,?,?,'queued',?,?,?) ON CONFLICT(idea,catalog) DO UPDATE SET job=excluded.job,status='queued',error=NULL,updated=excluded.updated",madeId,idea.id,set.id,set.name,piece.catalog,piece.role,copy.title,now(),now(),prepared.id);
@@ -73,5 +77,5 @@ export function factoryWorkflow({db,manager,blueprints,artwork,rendering,publish
   }catch(e){db.exec('ROLLBACK');throw e;}
   return prepared.id;
  }
- return {sourceFile,setBasicWorkspace(w){basicWorkspace=w;},enqueue,ready:()=>storageDurable};
+ return {sourceFile,requiresApprovedProfiles:requireApprovedProfiles,setBasicWorkspace(w){basicWorkspace=w;},enqueue,ready:()=>storageDurable};
 }

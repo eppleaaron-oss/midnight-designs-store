@@ -199,7 +199,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
   try{const manifest=JSON.parse(Buffer.from(encoded,'base64'));if(path==='products.json'?!Array.isArray(manifest.products):!manifest.products||typeof manifest.products!=='object'||Array.isArray(manifest.products))hold('The saved store manifest is invalid.');return {file,manifest};}catch(e){if(e.status)throw e;hold('The saved store manifest could not be decoded. No listing was replaced.');}
  }
  async function content(path,data,message){for(let n=0;n<3;n++){const old=await gh('/contents/'+path+'?ref=main',{missing:true});const buf=Buffer.isBuffer(data)?data:Buffer.from(JSON.stringify(data,null,2)+'\n');const expected=createHash('sha1').update('blob '+buf.length+'\0').update(buf).digest('hex');if(old?.sha===expected)return;try{await gh('/contents/'+path,{method:'PUT',body:JSON.stringify({branch:'main',message,content:buf.toString('base64'),...(old?{sha:old.sha}:{})})});return;}catch(e){if(n===2)throw e;}}}
- async function advance(j){const d=JSON.parse(j.document);
+ async function advance(j){const d=JSON.parse(j.document);if(d.learnedFrom){const reference=get('SELECT * FROM factory_studio_jobs WHERE id=?',d.learnedFrom),approval=reference&&learned.list().find(r=>r.supplier===reference.supplier);if(!approval||approval.state!=='approved'||approval.example.job!==reference.id||approval.revision!==reference.revision)hold('The source layout approval changed. Review this AI transfer before continuing.');}
   const approval=d.ownerApproval;
   if(j.target!=='mockups'&&['updating_printful','publishing','verifying_store'].includes(j.state)&&(!approval||approval.revision!==j.revision||approval.recipe!==approvalRecipe(d)))hold('Explicit owner approval is required for this exact revision. Review it in AI Made before updating fulfillment or publishing.');
   if(d.sourceJob&&get("SELECT 1 FROM sqlite_master WHERE type='table' AND name='factory_jobs'")&&get("SELECT id FROM factory_jobs WHERE id=? AND status IN ('archived','failed')",d.sourceJob))hold('This source product is unfinished or rejected. Review it before publishing.');
@@ -314,7 +314,7 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  function learningExamples(){
   const seen=new Set(),result=[],feedback=learned.list();
   for(const j of all("SELECT j.* FROM factory_studio_jobs j JOIN factory_studio_drafts d ON d.supplier=j.supplier AND d.revision=j.revision WHERE j.state='completed' ORDER BY j.updated DESC")){
-   const d=JSON.parse(j.document),decision=feedback.find(r=>r.supplier===j.supplier),approved=decision?.state==='approved'&&decision.example.job===j.id;if(decision&&decision.state!=='approved')continue;if(seen.has(d.product)||d.learnedFrom||!d.printfulUpdated&&!approved||!d.images?.length||!d.sourceJob)continue;
+   const d=JSON.parse(j.document),decision=feedback.find(r=>r.supplier===j.supplier),approved=decision?.state==='approved'&&decision.example.job===j.id;if(!approved)continue;if(seen.has(d.product)||d.learnedFrom||!d.images?.length||!d.sourceJob)continue;
    const p=source(j.source);if(!p)continue;seen.add(d.product);result.push({product:d.product,job:j.id,revision:j.revision,supplier:j.supplier,name:p.name,collection:p.collection,image:ROOT+'/asset/'+d.images[0].asset});
   }return result;
  }
@@ -322,11 +322,12 @@ export function factoryProductStudio({db,editor,blueprints,workflow,basic,backup
  async function followExample(id,exampleId){
   const p=source(id),reference=get("SELECT * FROM factory_studio_jobs WHERE id=? AND state='completed'",exampleId);
   if(!p?.supplierId||!reference)hold('The product or completed placement example is unavailable.');
+  const approvedFeedback=learned.list().find(r=>r.supplier===reference.supplier);if(!approvedFeedback||approvedFeedback.state!=='approved'||approvedFeedback.example.job!==reference.id||approvedFeedback.revision!==reference.revision)hold('Explicit owner approval of this exact measured layout revision is required before AI reuse.');
   const prior=get("SELECT * FROM factory_studio_jobs WHERE supplier=? ORDER BY updated DESC,rowid DESC LIMIT 1",String(p.supplierId));
   if(prior){if(JSON.parse(prior.document).learnedFrom===exampleId)return learningJob(prior.id);hold('This product already has an owner update. Keep that update and review it before continuing.');}
   if(get('SELECT supplier FROM factory_studio_drafts WHERE supplier=?',String(p.supplierId)))hold('This product has an owner draft. It will not be overwritten.');
   const ref=JSON.parse(reference.document),rp=source(reference.source);
-  const feedback=learned.list().find(r=>r.supplier===reference.supplier);if(feedback&&feedback.state!=='approved')hold('This placement example was rejected or corrected. Choose its latest approved revision.');if(feedback?.example.issues.length)hold('Review this example before automatic transfer: '+feedback.example.issues.join(' '));
+  const feedback=learned.list().find(r=>r.supplier===reference.supplier);if(!feedback||feedback.state!=='approved'||feedback.example.job!==reference.id||feedback.revision!==reference.revision)hold('Explicit owner approval of this exact measured layout revision is required before AI reuse.');if(feedback&&feedback.state!=='approved')hold('This placement example was rejected or corrected. Choose its latest approved revision.');if(feedback?.example.issues.length)hold('Review this example before automatic transfer: '+feedback.example.issues.join(' '));
   if(ref.product!==p.choice.product||!rp||!ref.printfulUpdated&&!(feedback?.state==='approved'&&feedback.example.job===reference.id))hold('Placement examples must match the exact supplier product.');
   if(p.jobId&&get("SELECT id FROM factory_jobs WHERE id=? AND status IN ('queued','running','retry_wait')",p.jobId))hold('Wait for the supplier product checkpoint to finish.');
   const referenceSet=family(rp).set,targetSet=family(p).set;if(!referenceSet||!targetSet)hold('Both original hoodie design sets are required.');

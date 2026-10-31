@@ -41,7 +41,7 @@ export function measurementLibrary(db){
   for(const v of p.variants){const recorded=r.example.variants.find(x=>x.variant===v.id);if(recorded)for(const [placement,panel]of Object.entries(first.panels))if(recorded.panels[placement]?.layers.length!==panel.layers.length)reasons.push('Sizes have different layer counts; review each size before transferring.');}
   if(!slots.length)reasons.push('This example contains no artwork layers.');
   for(const v of p.variants)for(const s of slots)if(!s.measurements[v.id])reasons.push('A selected size has no matching layer.');
-  return {number:1000+r.id,exampleId:r.id,version:BASIC_LAYOUT_VERSION,name:r.name+' · approved measurements',category:p.role,pattern:false,slots,compatible:!reasons.length,reasons:[...new Set(reasons)],needsReviewedMap:true,examplePreview:r.example.variants,feedback:r.note,revision:r.revision};
+  return {number:1000+r.id,exampleId:r.id,approvedAt:new Date(r.created).toISOString(),supplierProductId:r.supplier,version:BASIC_LAYOUT_VERSION,name:r.name+' · approved measurements',category:p.role,pattern:false,slots,compatible:!reasons.length,reasons:[...new Set(reasons)],needsReviewedMap:true,examplePreview:r.example.variants,feedback:r.note,revision:r.revision};
  });}
  };
 }
