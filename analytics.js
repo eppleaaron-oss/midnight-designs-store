@@ -1,5 +1,6 @@
 (()=>{
 'use strict';
+if(!document.querySelector('script[data-store-tracking]')){const s=document.createElement('script');s.src=new URL('store-events.js?v=1',document.currentScript?.src||document.baseURI).href;s.dataset.storeTracking='true';document.head.append(s);}
 const CHOICE='midnightAnalyticsConsentV1',ACTIVITY='midnightAnalyticsCartV1',RETENTION=7*24*60*60*1000;
 let config={},enabled=false,started=false,timer=null,lastCartSignature='',seen=new Set();
 const eligible=()=>/\/(?:index\.html|shop\.html|cart\.html|product\.html|products\/\d+\.html)?$/.test(location.pathname);
