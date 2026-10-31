@@ -1,8 +1,9 @@
 (function(root){
 'use strict';
+const privateStates=new Set(['draft','needs corrections','needs_corrections','needs-corrections','ready for review','ready_for_review','ready-for-review','rejected','failed','pending','hold']);
 const privateKinds=new Set(['reference','mockup','product-mockup','print-panel','template-guide']);
 function isOriginalArtwork(a){
- if(!a?.id||a.kind!=='artwork'||privateKinds.has(a.assetType)||a.visibility==='private'||a.approved===false)return false;
+ if(!a?.id||a.kind!=='artwork'||privateKinds.has(a.assetType)||a.visibility==='private'||a.approved===false||privateStates.has(String(a.status||'').toLowerCase()))return false;
  return typeof a.image==='string'&&/^assets\/(designs|originals)\/[a-zA-Z0-9_.-]+\.(png|jpe?g|webp)$/i.test(a.image);
 }
 function mergeDesignCatalog(artworks,products=[]){
@@ -21,7 +22,7 @@ function mergeDesignCatalog(artworks,products=[]){
   const hero=d.members.find(a=>a.sourceRole==='front')||d.members[0];
   d.id=hero.id;d.image=hero.image;d.thumbnail=/^assets\/(designs|originals)\/[a-zA-Z0-9_.-]+\.(png|jpe?g|webp)$/i.test(hero.thumbnail||'')?hero.thumbnail:hero.image;
   const artworkIds=new Set(d.members.flatMap(a=>[a.id,...(a.aliasIds||[])]));
-  const matched=products.filter(p=>p?.id&&p.published!==false&&p.approved!==false&&!['draft','rejected','failed','pending','needs_corrections','hold'].includes(p.status)&&Array.isArray(p.variants)&&p.variants.length&&(
+  const matched=products.filter(p=>p?.id&&p.published!==false&&p.approved!==false&&p.visibility!=='private'&&!privateStates.has(String(p.status||'').toLowerCase())&&Array.isArray(p.variants)&&p.variants.length&&(
    [p.designFamilyId,p.artworkFamilyId,p.collectionId].some(id=>id!==undefined&&String(id)===d.familyId)||
    [...(p.designIds||[]),...(p.artworkIds||[])].some(id=>artworkIds.has(String(id)))||
    d.members.some(a=>a.sourceProductId!==undefined&&String(a.sourceProductId)===String(p.sourceProductId||p.id))));

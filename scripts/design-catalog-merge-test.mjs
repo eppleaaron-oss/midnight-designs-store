@@ -12,7 +12,7 @@ test('explicit family and source roles group without confusing source back with 
  assert.equal(family.name,'Rose Eclipse');assert.equal(family.id,'front');assert.equal(family.image,data[2].image);assert.deepEqual(family.members.map(a=>a.sourceRole),['sleeve_left','back','front']);assert.deepEqual(family.productIds,['1']);assert.equal(family.shopUrl,'shop.html?collection=Rose%20Eclipse');
 });
 test('mockups, templates, cutouts and private images cannot leak through catalog merge or failed catalog refresh',()=>{
- for(const a of [art('mockup',{kind:'reference'}),art('panel',{assetType:'print-panel'}),art('guide',{assetType:'template-guide'}),art('private',{visibility:'private'}),art('wrong',{image:'images/factory/1.jpg'}),art('remote',{image:'https://files.printful.com/front.jpg'})])assert.equal(isOriginalArtwork(a),false);
+ for(const a of [art('mockup',{kind:'reference'}),art('panel',{assetType:'print-panel'}),art('guide',{assetType:'template-guide'}),art('private',{visibility:'private'}),art('draft',{status:'Draft'}),art('review',{status:'Ready for review'}),art('wrong',{image:'images/factory/1.jpg'}),art('remote',{image:'https://files.printful.com/front.jpg'})])assert.equal(isOriginalArtwork(a),false);
  assert.deepEqual(mergeDesignCatalog([art('panel',{assetType:'print-panel'})],[]),[]);
 });
 test('exact duplicate originals collapse with legacy IDs retained; similar names never imply a family',()=>{
