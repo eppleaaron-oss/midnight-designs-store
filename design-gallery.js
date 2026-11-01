@@ -19,7 +19,7 @@ function artworkThemes(d){
  const themes=['','Words & Meaning','Roses & Thorns','Skulls & Reapers','Cathedrals','Moonlight','Retro Horror'];
  theme=themes.includes(params.get('theme'))?params.get('theme'):'';
  if(params.get('sort')==='liked')$('designSort').value='liked';
- for(const value of themes){const button=node('button','',value||'All');button.type='button';button.dataset.theme=value;button.onclick=()=>{theme=value;limit=batch;render();};$('designThemes').append(button);}
+ for(const value of themes){const button=node('button','',value||'All artwork');button.type='button';button.dataset.theme=value;button.onclick=()=>{theme=value;limit=batch;render();};$('designThemes').append(button);}
  function liked(){try{return JSON.parse(localStorage.getItem('midnightDesignVotes')||'{}')||{};}catch{return {};}}
  function open(d){
   active=d;const familyUrl=new URL(location.href);familyUrl.searchParams.set('family',d.familyId);familyUrl.searchParams.set('design',d.id);history.replaceState(history.state,'',familyUrl);$('designLarge').src=d.image;$('designLarge').alt=d.name;$('designTitle').textContent=d.name;
@@ -33,15 +33,14 @@ function artworkThemes(d){
  function render(){
   const tokens=$('designSearch').value.toLowerCase().trim().split(/\s+/).filter(Boolean),votes=liked();
   let list=designs.map((d,index)=>({d,index})).filter(({d})=>(!theme||artworkThemes(d).includes(theme))&&tokens.every(t=>[d.name,d.description,d.category,...(d.tags||[]),...artworkThemes(d)].join(' ').toLowerCase().includes(t)));
-  list.sort((a,b)=>{if($('designSort').value==='liked'){const diff=Number(votes[b.d.id]==='like')-Number(votes[a.d.id]==='like');if(diff)return diff;}const x=Date.parse(a.d.createdAt||''),y=Date.parse(b.d.createdAt||'');return Number.isFinite(x)&&Number.isFinite(y)?y-x:a.index-b.index;});
+  list.sort((a,b)=>{if($('designSort').value==='liked'){const diff=Number(votes[b.d.id]==='like')-Number(votes[a.d.id]==='like');if(diff)return diff;}const x=Date.parse(a.d.createdAt||''),y=Date.parse(b.d.createdAt||'');if(Number.isFinite(x)&&Number.isFinite(y)&&x!==y)return y-x;const linked=d=>Math.max(0,...d.productIds.map(Number).filter(Number.isFinite));return linked(b.d)-linked(a.d)||a.index-b.index;});
   window.midnightDesignVotes?.resetCardListeners();$('designGrid').replaceChildren();
   for(const {d} of list.slice(0,limit)){
    const card=node('article','artwork-card'),preview=node('button','art-card');preview.type='button';preview.setAttribute('aria-label','View design — '+d.name);
    const img=node('img');img.src=d.thumbnail||d.image;img.alt=d.name;img.loading='lazy';preview.append(img);preview.onclick=()=>open(d);
    card.append(preview,node('h3','',d.name));
-   const choose=node('a','btn outline','USE FOR A CUSTOM REQUEST');choose.href='request-design.html?design='+encodeURIComponent(d.id)+'&family='+encodeURIComponent(d.familyId);card.append(choose);
-   if(d.shopUrl){const shop=node('a','btn outline','SHOP THIS DESIGN');shop.href=d.shopUrl;card.append(shop);}
-   const view=node('button','artwork-view','VIEW DESIGN');view.type='button';view.onclick=()=>open(d);card.append(view);
+   const view=node('button','btn outline artwork-view','VIEW ARTWORK');view.type='button';view.onclick=()=>open(d);card.append(view);
+   if(d.shopUrl){const shop=node('a','btn outline artwork-shop','SHOP MATCHING PIECES');shop.href=d.shopUrl;card.append(shop);}else{const unavailable=node('button','btn outline artwork-unlinked','NO LINKED PIECES YET');unavailable.type='button';unavailable.disabled=true;unavailable.title='Matching published products have not been linked to this artwork.';card.append(unavailable);}
    const votes=window.midnightDesignVotes?.controls(d);if(votes){card.append(votes);const rate=node('button','artwork-rate','Rate artwork');rate.type='button';rate.onclick=()=>{open(d);$('ratingSection').scrollIntoView({block:'start'});};card.append(rate);}
    $('designGrid').append(card);
   }
