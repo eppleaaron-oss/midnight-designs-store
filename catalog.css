@@ -38,3 +38,10 @@
 @media(max-width:600px){.shop .nav{padding:14px 5%}.shop .nav .brand,.shop .nav .brand-name{font-size:29px}.collection-banner{display:flex;flex-direction:column-reverse}.collection-banner-copy{position:static;padding:24px 6%;background:#121819;pointer-events:auto}.collection-banner h1{font-size:42px;line-height:1;letter-spacing:-.035em}.collection-banner h1 br{display:none}.collection-banner .eyebrow{display:block}.collection-banner-copy>p:last-child{font-size:13px;margin:12px 0 0}.store-campaign-art{height:auto;aspect-ratio:628/230}.browse-toolbar{grid-template-columns:1fr auto;gap:10px}.browse-toolbar .catalog-search{grid-column:1/-1}.browse-sort{grid-row:2;grid-column:1}.browse-toolbar #browseFilters{grid-row:2;grid-column:2}.browse-toolbar .catalog-status{grid-row:3}.shop .catalog-search input,.browse-sort select{font-size:16px}.shop .catalog-extra-filters{grid-template-columns:1fr}.shop .product-body h3{font-size:12px}.shop .price{font-size:12px}.store-artwork-banner{margin-top:8px}.category-tabs{margin-top:0}.shop .nav .links{padding-top:12px}}
 
 .shop .collection-banner h1{font-size:clamp(30px,3.6vw,52px)}.shop .store-title-line{white-space:nowrap}@media(max-width:600px){.shop .collection-banner h1{font-size:clamp(30px,7.9vw,42px)}}
+
+/* Show one complete product view at a time; transparent mockups must not blend. */
+.shop .product-image img{mix-blend-mode:normal;transition:none}
+.shop .product-image.show-second-view>img:not(.product-second-view){visibility:hidden}
+@media(hover:hover) and (pointer:fine){
+ .shop .product-image.has-second-view:is(:hover,:focus-visible)>img:not(.product-second-view){visibility:hidden}
+}
