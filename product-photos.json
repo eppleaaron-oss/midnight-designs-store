@@ -1179,10 +1179,178 @@
       "catalogProductId": 1419,
       "photos": [
         {
+          "image": "assets/hoodie-mockups/476368662-78a10f425dabd0ab8d8b4b83.jpg",
+          "sha256": "78a10f425dabd0ab8d8b4b83edd8d9108c0a009d0152ec359c7e4025ceb9eb1b",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · back"
+        },
+        {
           "image": "assets/hoodie-mockups/476368662-78d9b9d16ccd8e4959a575cb.jpg",
           "sha256": "78d9b9d16ccd8e4959a575cb3901a1e09a44a6b91b8b2b5e059e90c23ac344e3",
           "view": "front",
           "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-822b443ba6d5a333e8c3c10f.jpg",
+          "sha256": "822b443ba6d5a333e8c3c10f0484c322ddf0f33f90804b7ca12eb1dc57960950",
+          "view": "back",
+          "style": "Ghost",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-a769400ab9adec9d3f636dc8.jpg",
+          "sha256": "a769400ab9adec9d3f636dc8a89b3c862fbabeed6e049189116b4fb7bf5e6e82",
+          "view": "back",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-215256a254920a84d26e4b52.jpg",
+          "sha256": "215256a254920a84d26e4b52b34b4f3c77c841d425b2813da97b22ea12d8840b",
+          "view": "front",
+          "style": "Men's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-8952d859db5771c0e240184b.jpg",
+          "sha256": "8952d859db5771c0e240184becfe41c5a672d9b4783561464ed9395ac4152d3d",
+          "view": "front",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "front",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · front"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-7efec4b12e644f5ba9dc1fb3.jpg",
+          "sha256": "7efec4b12e644f5ba9dc1fb346445369741db8d4fbef363590d4ca0e707af732",
+          "view": "back",
+          "style": "Women's",
+          "category": "product",
+          "color": "White",
+          "storeVariantIds": [
+            "5525525494",
+            "5525525495",
+            "5525525496",
+            "5525525497",
+            "5525525498",
+            "5525525499",
+            "5525525500",
+            "5525525501",
+            "5525525502",
+            "5525525503",
+            "5525525504"
+          ],
+          "kind": "production-mockup",
+          "label": "back",
+          "alt": "Bone Chapel Cotton-Blend Hoodie · back"
+        },
+        {
+          "image": "assets/hoodie-mockups/476368662-721bee351bb8a93bc941bcf8.jpg",
+          "sha256": "721bee351bb8a93bc941bcf888f51e9e0874ab8056d8437233a12d813f0c6f47",
+          "view": "front",
+          "style": "Duet",
           "category": "product",
           "color": "White",
           "storeVariantIds": [
@@ -1519,8 +1687,8 @@
       "source": "Verified finished production canvases",
       "supplierPreviews": "e1a4f3135513d2473e0d46f0263b93cc832f8675b6f29432561bf3eb76db01b9",
       "hoodieRefresh": {
-        "fingerprint": "09b5ba06622f3557230aafe6d58cd72a6a25f276904c2fe645f1192abbaa0433",
-        "checkedAt": "2026-10-31T23:23:50.896Z"
+        "fingerprint": "b8e19652b282fa3bc36d85af07efb4d537959effdc30dd4cf33c4ef06599cb1f",
+        "checkedAt": "2026-11-01T00:02:41.725Z"
       }
     },
     "476368665": {
