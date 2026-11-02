@@ -1,6 +1,16 @@
 # Stripe checkout setup
 
-The storefront uses hosted Stripe Checkout, Printful shipping quotes, server-verified catalog prices, Stripe-backed order records, and signed Stripe webhooks. The Master dashboard displays the latest 100 Stripe sessions belonging to this store after owner sign-in. Payment confirmation does not automatically submit an order to Printful. Fulfill verified live paid orders manually in Printful; never fulfill test or pending orders.
+The storefront uses hosted Stripe Checkout, Printful shipping quotes, server-verified catalog prices, Stripe-backed order records, and signed Stripe webhooks. The Master dashboard displays the latest 100 Stripe sessions belonging to this store after owner sign-in.
+
+## How an order flows
+
+1. The customer pays on Stripe's hosted checkout.
+2. The signed Stripe webhook (and a background check every minute) confirms the payment directly with Stripe.
+3. For a verified **live** payment, the backend creates an unconfirmed Printful **draft** order (`confirm=false`) with the exact paid items, print files and address. Nothing is charged by Printful yet.
+4. The owner opens Master dashboard > Payments & orders, reviews the draft and its Printful cost, and clicks confirm. Only then does Printful charge and start production.
+5. The backend keeps checking Printful and shows shipments and tracking on the customer's private order page.
+
+Test-mode payments never create or charge real Printful orders. The manual confirm in step 4 is deliberate: it stops a changed supplier cost or a bad order from being charged without the owner seeing it.
 
 ## Connect the backend
 
@@ -19,7 +29,14 @@ CHECKOUT_SIGNING_SECRET=at-least-32-random-characters-kept-permanently
 CHECKOUT_COUNTRIES=US
 PAYMENTS_ENABLED=true
 PAYMENTS_LIVE=false
+# Optional order emails (customer confirmation/tracking + owner alerts) via Resend
+ORDER_EMAIL_ENABLED=true
+ORDER_EMAIL_API_KEY=re_...
+ORDER_EMAIL_FROM=orders@midnight-designs.store
+ORDER_OWNER_EMAIL=midnightdesign107@gmail.com
 ```
+
+The Printful token must be a private token with order access (View and manage orders) and store product access (View and manage store products). A read-only token can show the catalog but cannot create drafts or publish products. `ORDER_EMAIL_FROM` must be on a domain verified with the email provider.
 
 `APP_ORIGIN` is the private service origin. The supported storefront origin defaults to `https://midnight-designs.store`. `CHECKOUT_COUNTRIES` is a comma-separated uppercase country list. Only enable countries you actually serve. Secrets belong on the backend, never in browser JavaScript, the public repository, or chat.
 
@@ -34,7 +51,7 @@ Prices and availability are loaded from published `products.json` on the server,
 
 Payment confirmation fetches the matching session directly from Stripe and verifies its store proof and exact amounts. Webhooks independently require a valid Stripe signature. A redirect alone cannot mark an order paid. Failed/cancelled checkout retains the bag. Receipt access uses an unguessable token and contains no delivery/contact details; those are visible only to the authenticated owner. Share confirmation links only with the purchaser.
 
-Refunds, disputes, transactional email, shipment tracking and automatic Printful fulfillment are not automated by this change. Manage refunds and disputes in Stripe and verify provider status before fulfillment. The owner list checks Stripe’s latest charge for full and partial refunds. Fulfillment still requires manual reconciliation. Keep CHECKOUT_SIGNING_SECRET unchanged: encrypted quotes and store identity proofs depend on it. Losing or replacing it prevents the app from reading older order proofs; Stripe still retains its records.
+Refunds and disputes are not automated. Manage them in Stripe and cancel the matching Printful draft or order yourself. The owner list checks Stripe’s latest charge for full and partial refunds. Order emails send only when the ORDER_EMAIL settings above are set. Keep CHECKOUT_SIGNING_SECRET unchanged: encrypted quotes and store identity proofs depend on it. Losing or replacing it prevents the app from reading older order proofs; Stripe still retains its records.
 
 Run `cd request-service && npm test` to check the existing private request system and payment integrity tests. The integration suite validates pricing, shipping failures, receipt authorization, changed prices, retry payload stability, forged webhooks, incorrect amounts/modes, duplicate events, pending payments and owner isolation.
 
