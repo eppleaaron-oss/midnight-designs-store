@@ -5,3 +5,4 @@ body.home{background:#101517;color:#e9dfc8;font-family:Georgia,serif}.home *{box
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 .home .nav .brand-logo{display:none}.home .brand>.brand-name{font:400 15px Georgia,serif;letter-spacing:.4em}.home .campaign-section-heading h2,.home .campaign-look h2{text-transform:none}.campaign-promo>div{background:#101517e8}.campaign-promo-right>div{background:#101517e8}@media(max-width:760px){.home .brand>.brand-name{font-size:12px;letter-spacing:.26em}}
+@media(max-width:760px){body.home .nav .links{flex-wrap:wrap;gap:8px}body.home .nav .links a{flex:1 1 30%;letter-spacing:.1em}}
