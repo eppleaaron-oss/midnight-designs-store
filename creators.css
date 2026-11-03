@@ -10,7 +10,7 @@ body.creators{background:#101517;color:#e9dfc8;font-family:Georgia,serif}
 .creators .links a[aria-current=page]{text-decoration:underline;text-underline-offset:6px}
 .creators .pill{border:0;background:transparent}
 .creator-hero{max-width:1500px;margin:0 auto;position:relative}
-.creator-banner{display:block;width:100%;aspect-ratio:3/1;object-fit:cover;border-bottom:1px solid #817b6a;background:#0b0d0e}
+.creator-banner{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover;border-bottom:1px solid #817b6a;background:#0b0d0e}
 .creator-id{display:flex;align-items:flex-end;gap:28px;padding:0 5%;margin-top:-90px;position:relative}
 .creator-avatar{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #101517;background:#0b0d0e;flex:none;box-shadow:0 0 0 1px #817b6a}
 .creator-name{padding-bottom:10px}
@@ -42,9 +42,8 @@ body.creators{background:#101517;color:#e9dfc8;font-family:Georgia,serif}
 .creators .brand>.brand-name{font-size:12px;letter-spacing:.26em}
 .creators .links{order:3;width:100%;justify-content:space-between;gap:8px}
 .creators .links a{font-size:9px;letter-spacing:.08em}
-.creator-banner{aspect-ratio:2/1}
-.creator-id{flex-direction:column;align-items:flex-start;gap:12px;margin-top:-56px}
-.creator-avatar{width:112px;height:112px}
+.creator-id{flex-direction:column;align-items:flex-start;gap:12px;margin-top:18px}
+.creator-avatar{width:104px;height:104px}
 .creator-body{grid-template-columns:1fr;gap:28px;margin-top:24px}
 .creator-bio p{font-size:18px}
 .creators .footer-support{flex-wrap:wrap;gap:16px}
