@@ -14,12 +14,12 @@ function artworkThemes(d){
  let designs;try{const r=await fetch('designs.json',{cache:'no-cache'});if(!r.ok)throw Error();designs=await r.json();if(!Array.isArray(designs))throw Error();}catch{$('designGrid').append(node('p','error','The artwork could not load. Please refresh and try again.'));return;}
  const rawArtwork=designs;designs=window.mergeDesignCatalog(rawArtwork,[]);let catalogUnavailable=false;
  try{const r=await fetch('products.json',{cache:'no-cache'});if(!r.ok)throw Error();const catalog=await r.json();if(!Array.isArray(catalog.products))throw Error();designs=window.mergeDesignCatalog(rawArtwork,catalog.products);}catch{catalogUnavailable=true;}
- let theme='',limit=12,active=null;const batch=12;
+ let theme='',limit=6,active=null;const batch=6;
  const params=new URLSearchParams(location.search);$('designSearch').value=params.get('q')||'';
  const themes=['','Words & Meaning','Roses & Thorns','Skulls & Reapers','Cathedrals','Moonlight','Retro Horror'];
  theme=themes.includes(params.get('theme'))?params.get('theme'):'';
  if(params.get('sort')==='liked')$('designSort').value='liked';
- for(const value of themes){const button=node('button','',value||'All artwork');button.type='button';button.dataset.theme=value;button.onclick=()=>{theme=value;limit=batch;render();};$('designThemes').append(button);}
+ for(const value of themes){const button=node('button','',value||'All');button.type='button';button.dataset.theme=value;button.onclick=()=>{theme=value;limit=batch;render();};$('designThemes').append(button);}
  function liked(){try{return JSON.parse(localStorage.getItem('midnightDesignVotes')||'{}')||{};}catch{return {};}}
  function open(d){
   active=d;const familyUrl=new URL(location.href);familyUrl.searchParams.set('family',d.familyId);familyUrl.searchParams.set('design',d.id);history.replaceState(history.state,'',familyUrl);$('designLarge').src=d.image;$('designLarge').alt=d.name;$('designTitle').textContent=d.name;
@@ -39,8 +39,8 @@ function artworkThemes(d){
    const card=node('article','artwork-card'),preview=node('button','art-card');preview.type='button';preview.setAttribute('aria-label','View design — '+d.name);
    const img=node('img');img.src=d.thumbnail||d.image;img.alt=d.name;img.loading='lazy';preview.append(img);preview.onclick=()=>open(d);
    card.append(preview,node('h3','',d.name));
-   const view=node('button','btn outline artwork-view','VIEW ARTWORK');view.type='button';view.onclick=()=>open(d);card.append(view);
-   if(d.shopUrl){const shop=node('a','btn outline artwork-shop','SHOP MATCHING PIECES');shop.href=d.shopUrl;card.append(shop);}else{const unavailable=node('button','btn outline artwork-unlinked','NO LINKED PIECES YET');unavailable.type='button';unavailable.disabled=true;unavailable.title='Matching published products have not been linked to this artwork.';card.append(unavailable);}
+   const view=node('button','btn outline artwork-view','VIEW DESIGN');view.type='button';view.onclick=()=>open(d);card.append(view);
+   const choose=node('a','btn artwork-choose','CHOOSE THIS DESIGN');choose.href='request-design.html?design='+encodeURIComponent(d.id)+'&family='+encodeURIComponent(d.familyId);card.append(choose);
    const votes=window.midnightDesignVotes?.controls(d);if(votes){card.append(votes);const rate=node('button','artwork-rate','Rate artwork');rate.type='button';rate.onclick=()=>{open(d);$('ratingSection').scrollIntoView({block:'start'});};card.append(rate);}
    $('designGrid').append(card);
   }
