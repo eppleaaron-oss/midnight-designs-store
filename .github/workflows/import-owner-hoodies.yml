@@ -1,0 +1,45 @@
+name: Import owner selected new hoodies
+on:
+  push:
+    branches: [main]
+    paths: ['owner-hoodie-import.json', 'scripts/import-owner-hoodies.mjs', '.github/workflows/import-owner-hoodies.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  import:
+    if: github.actor == github.repository_owner && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Import only the owner selected saved hoodies
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+          PRINTFUL_PRODUCTS_ENDPOINT: ${{ vars.PRINTFUL_PRODUCTS_ENDPOINT }}
+        run: node scripts/import-owner-hoodies.mjs
+      - name: Build product pages
+        run: node scripts/build-search-pages.mjs
+      - name: Save verified hoodie additions
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add products.json product-information.json owner-hoodie-import-report.json assets/product-photos/owner-hoodies products sitemap.xml shop.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish the seven new saved Printful hoodies requested by the owner'
+            git push origin HEAD:main
+          fi
+      - name: Publish and verify exact catalog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/publish-catalog.mjs
