@@ -29,20 +29,6 @@ jobs:
           const endpoint=process.env.PRINTFUL_PRODUCTS_ENDPOINT||'store';
           const live=JSON.parse(await readFile('products.json','utf8')).products;
           const known=new Set(live.map(p=>String(p.id)));
-          const candidates=[];
-          for(let offset=0;;){
-            const page=await get(endpoint+'/products?limit=100&offset='+offset);
-            for(const p of page.result){
-              if(!known.has(String(p.id))&&/hoodie/i.test(p.name)){
-                const detail=(await get(endpoint+'/products/'+p.id)).result;
-                const product=normalize(detail);
-                candidates.push({id:String(p.id),name:p.name,ignored:p.is_ignored,externalId:detail.sync_product?.external_id,variants:product?.variants.length||0,product});
-              }
-            }
-            offset+=page.result.length;
-            if(!page.result.length||offset>=(page.paging?.total??offset))break;
-          }
-          candidates.sort((a,b)=>Number(b.id)-Number(a.id));
-          console.log('HOODIE_AUDIT '+JSON.stringify(candidates));
-          console.log('STORE_COUNT '+live.length);
+          const page=await get(endpoint+'/products?limit=8&offset=0');
+          console.log('NEWEST_EIGHT_SUMMARIES '+JSON.stringify(page.result.map(p=>({id:String(p.id),name:p.name,listed:known.has(String(p.id)),ignored:p.is_ignored}))));
           NODE
