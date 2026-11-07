@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-30T22:28:40.242Z",
-  "lastSyncedAt": "2026-10-30T22:28:40.242Z",
+  "updatedAt": "2026-11-07T00:14:06.796Z",
+  "lastSyncedAt": "2026-11-07T00:14:06.796Z",
   "products": [
     {
       "id": "484288453",
@@ -29401,6 +29401,1035 @@
       "collectionName": "Roses & Moonlight",
       "collectionId": "collection:roses-moonlight",
       "supplierCatalogTitle": "All-Over Print Unisex Cotton Sweatshirt"
+    },
+    {
+      "id": "490162548",
+      "catalogProductId": 1419,
+      "name": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490162548.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490162548.png"
+      ],
+      "variants": [
+        {
+          "id": "5624444129",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444130",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444132",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / S",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444133",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / M",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444134",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / L",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444135",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444136",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444138",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444139",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444140",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624444141",
+          "name": "**Unseen Scars — Gothic Skull & Crimson Rose Hoodie** / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490162548-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490162548-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie. A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "supplierPreview": "https://files.cdn.printful.com/files/90b/90b23c247685d1b81a6d2abcf84f157d_preview.png"
+    },
+    {
+      "id": "490155944",
+      "catalogProductId": 1419,
+      "name": "What Remains — Gothic Skull & Rose Hourglass Hood",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490155944.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490155944.png"
+      ],
+      "variants": [
+        {
+          "id": "5624419912",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419913",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419914",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / S",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419915",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / M",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419916",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / L",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419917",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419918",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419919",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419920",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419921",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624419922",
+          "name": "What Remains — Gothic Skull & Rose Hourglass Hood / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490155944-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490155944-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "What Remains — Gothic Skull & Rose Hourglass Hood. A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "supplierPreview": "https://files.cdn.printful.com/files/a5a/a5ab8305c00a1e9c56dde25e5690ae37_preview.png"
+    },
+    {
+      "id": "490151031",
+      "catalogProductId": 1419,
+      "name": "Love Through the Thorns",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490151031.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490151031.png"
+      ],
+      "variants": [
+        {
+          "id": "5624384777",
+          "name": "Love Through the Thorns ???????? / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384778",
+          "name": "Love Through the Thorns ???????? / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384779",
+          "name": "Love Through the Thorns ???????? / S",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384780",
+          "name": "Love Through the Thorns ???????? / M",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384781",
+          "name": "Love Through the Thorns ???????? / L",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384782",
+          "name": "Love Through the Thorns ???????? / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384783",
+          "name": "Love Through the Thorns ???????? / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384784",
+          "name": "Love Through the Thorns ???????? / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384785",
+          "name": "Love Through the Thorns ???????? / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384786",
+          "name": "Love Through the Thorns ???????? / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624384787",
+          "name": "Love Through the Thorns ???????? / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490151031-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490151031-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "Love Through the Thorns. A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "supplierPreview": "https://files.cdn.printful.com/files/702/702bed643e41fcd47a40362825188305_preview.png"
+    },
+    {
+      "id": "490142353",
+      "catalogProductId": 1419,
+      "name": "Beyond the Frame — Vintage Gothic Ivy Hoodie",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490142353.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490142353.png"
+      ],
+      "variants": [
+        {
+          "id": "5624283047",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283049",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283051",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / S",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283053",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / M",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283054",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / L",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283055",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283056",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283058",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283060",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283061",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624283062",
+          "name": "**Beyond the Frame — Vintage Gothic Ivy Hoodie** / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490142353-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490142353-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "Beyond the Frame — Vintage Gothic Ivy Hoodie. A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "supplierPreview": "https://files.cdn.printful.com/files/f89/f8971c8bebebbbe5229a2d5134d55329_preview.png"
+    },
+    {
+      "id": "490123181",
+      "catalogProductId": 1628,
+      "name": "Midnight Study 123181 Oversized Cotton Hoodie",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490123181.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490123181.png"
+      ],
+      "variants": [
+        {
+          "id": "5624210431",
+          "name": "Oversized Cotton Hoodie / 2XS",
+          "price": 73,
+          "currency": "USD",
+          "catalogVariantId": 51469,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210432",
+          "name": "Oversized Cotton Hoodie / XS",
+          "price": 73,
+          "currency": "USD",
+          "catalogVariantId": 51470,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210437",
+          "name": "Oversized Cotton Hoodie / S",
+          "price": 73,
+          "currency": "USD",
+          "catalogVariantId": 51471,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210438",
+          "name": "Oversized Cotton Hoodie / M",
+          "price": 73,
+          "currency": "USD",
+          "catalogVariantId": 51472,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210439",
+          "name": "Oversized Cotton Hoodie / L",
+          "price": 73,
+          "currency": "USD",
+          "catalogVariantId": 51473,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210440",
+          "name": "Oversized Cotton Hoodie / XL",
+          "price": 73,
+          "currency": "USD",
+          "catalogVariantId": 51474,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210441",
+          "name": "Oversized Cotton Hoodie / 2XL",
+          "price": 76,
+          "currency": "USD",
+          "catalogVariantId": 51475,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210442",
+          "name": "Oversized Cotton Hoodie / 3XL",
+          "price": 78.5,
+          "currency": "USD",
+          "catalogVariantId": 51476,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210444",
+          "name": "Oversized Cotton Hoodie / 4XL",
+          "price": 81,
+          "currency": "USD",
+          "catalogVariantId": 51477,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210446",
+          "name": "Oversized Cotton Hoodie / 5XL",
+          "price": 83.5,
+          "currency": "USD",
+          "catalogVariantId": 51478,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624210448",
+          "name": "Oversized Cotton Hoodie / 6XL",
+          "price": 86,
+          "currency": "USD",
+          "catalogVariantId": 51479,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Oversized Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490123181-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490123181-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "Midnight Study 123181 Oversized Cotton Hoodie. A heavyweight cotton-blend hoodie with an oversized shape, dropped shoulders and a soft-touch finish. Bold all-over artwork brings the Midnight Designs look to an everyday layer.",
+      "supplierPreview": "https://files.cdn.printful.com/files/ba8/ba81f143912c22bcc24fc6e4d13be705_preview.png"
+    },
+    {
+      "id": "490106374",
+      "catalogProductId": 1419,
+      "name": "Midnight Study 106374 Cotton Hoodie",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490106374.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490106374.png"
+      ],
+      "variants": [
+        {
+          "id": "5624088886",
+          "name": "Unisex cotton hoodie / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088887",
+          "name": "Unisex cotton hoodie / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088888",
+          "name": "Unisex cotton hoodie / S",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088889",
+          "name": "Unisex cotton hoodie / M",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088890",
+          "name": "Unisex cotton hoodie / L",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088891",
+          "name": "Unisex cotton hoodie / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088892",
+          "name": "Unisex cotton hoodie / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088893",
+          "name": "Unisex cotton hoodie / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088894",
+          "name": "Unisex cotton hoodie / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088895",
+          "name": "Unisex cotton hoodie / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624088896",
+          "name": "Unisex cotton hoodie / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490106374-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490106374-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "Midnight Study 106374 Cotton Hoodie. A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "supplierPreview": "https://files.cdn.printful.com/files/464/464552ea60c04d23aa895c2dbf06f3a9_preview.png"
+    },
+    {
+      "id": "490096011",
+      "catalogProductId": 1419,
+      "name": "Vintage Gothic Rose Hoodie",
+      "category": "Hoodies",
+      "image": "assets/product-photos/owner-hoodies/490096011.png",
+      "images": [
+        "assets/product-photos/owner-hoodies/490096011.png"
+      ],
+      "variants": [
+        {
+          "id": "5624039511",
+          "name": "Vintage Gothic Rose Hoodie / 2XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33974,
+          "size": "2XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039512",
+          "name": "Vintage Gothic Rose Hoodie / XS",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33975,
+          "size": "XS",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039513",
+          "name": "Vintage Gothic Rose Hoodie / S",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33976,
+          "size": "S",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039514",
+          "name": "Vintage Gothic Rose Hoodie / M",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33977,
+          "size": "M",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039515",
+          "name": "Vintage Gothic Rose Hoodie / L",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33978,
+          "size": "L",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039516",
+          "name": "Vintage Gothic Rose Hoodie / XL",
+          "price": 60.5,
+          "currency": "USD",
+          "catalogVariantId": 33979,
+          "size": "XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039518",
+          "name": "Vintage Gothic Rose Hoodie / 2XL",
+          "price": 63,
+          "currency": "USD",
+          "catalogVariantId": 33980,
+          "size": "2XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039519",
+          "name": "Vintage Gothic Rose Hoodie / 3XL",
+          "price": 66,
+          "currency": "USD",
+          "catalogVariantId": 33981,
+          "size": "3XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039520",
+          "name": "Vintage Gothic Rose Hoodie / 4XL",
+          "price": 68.5,
+          "currency": "USD",
+          "catalogVariantId": 33982,
+          "size": "4XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039521",
+          "name": "Vintage Gothic Rose Hoodie / 5XL",
+          "price": 71,
+          "currency": "USD",
+          "catalogVariantId": 33983,
+          "size": "5XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        },
+        {
+          "id": "5624039522",
+          "name": "Vintage Gothic Rose Hoodie / 6XL",
+          "price": 73.5,
+          "currency": "USD",
+          "catalogVariantId": 33984,
+          "size": "6XL",
+          "color": "White",
+          "colorCode": "#ffffff",
+          "availability": "active"
+        }
+      ],
+      "categoryId": "hoodies",
+      "catalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "ownerEditedDetails": true,
+      "supplierCatalogTitle": "All-Over Print Unisex Cotton Hoodie",
+      "studioRevision": "owner-printful-import-490096011-20261107",
+      "publicationApproval": {
+        "state": "approved",
+        "revision": "owner-printful-import-490096011-20261107",
+        "approvedAt": "2026-11-07T00:14:06.796Z",
+        "source": "Owner requested publication of the seven saved new Printful hoodies; eighth remains a draft"
+      },
+      "createdAt": "2026-11-07T00:14:06.796Z",
+      "description": "Vintage Gothic Rose Hoodie. A cotton-blend hoodie with a relaxed unisex fit, dropped shoulders and a roomy front pocket. Finished with the Midnight Designs artwork shown in the product photos.",
+      "supplierPreview": "https://files.cdn.printful.com/files/ac4/ac478bb64574de8ff3df6a87512df35d_preview.png"
     }
   ]
 }

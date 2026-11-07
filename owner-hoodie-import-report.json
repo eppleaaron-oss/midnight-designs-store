@@ -1,0 +1,155 @@
+{
+  "importedAt": "2026-11-07T00:14:06.796Z",
+  "beforeCount": 180,
+  "afterCount": 187,
+  "unchangedOtherProducts": 180,
+  "products": [
+    {
+      "id": "490162548",
+      "name": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 60.5,
+      "maximumPrice": 73.5,
+      "image": "assets/product-photos/owner-hoodies/490162548.png"
+    },
+    {
+      "id": "490155944",
+      "name": "What Remains — Gothic Skull & Rose Hourglass Hood",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 60.5,
+      "maximumPrice": 73.5,
+      "image": "assets/product-photos/owner-hoodies/490155944.png"
+    },
+    {
+      "id": "490151031",
+      "name": "Love Through the Thorns",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 60.5,
+      "maximumPrice": 73.5,
+      "image": "assets/product-photos/owner-hoodies/490151031.png"
+    },
+    {
+      "id": "490142353",
+      "name": "Beyond the Frame — Vintage Gothic Ivy Hoodie",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 60.5,
+      "maximumPrice": 73.5,
+      "image": "assets/product-photos/owner-hoodies/490142353.png"
+    },
+    {
+      "id": "490123181",
+      "name": "Midnight Study 123181 Oversized Cotton Hoodie",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 73,
+      "maximumPrice": 86,
+      "image": "assets/product-photos/owner-hoodies/490123181.png"
+    },
+    {
+      "id": "490106374",
+      "name": "Midnight Study 106374 Cotton Hoodie",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 60.5,
+      "maximumPrice": 73.5,
+      "image": "assets/product-photos/owner-hoodies/490106374.png"
+    },
+    {
+      "id": "490096011",
+      "name": "Vintage Gothic Rose Hoodie",
+      "variants": 11,
+      "sizes": [
+        "2XS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL"
+      ],
+      "minimumPrice": 60.5,
+      "maximumPrice": 73.5,
+      "image": "assets/product-photos/owner-hoodies/490096011.png"
+    }
+  ]
+}
