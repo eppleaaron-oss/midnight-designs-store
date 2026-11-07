@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci --prefix request-service
-      - run: node --test request-service/store-statistics-test.mjs request-service/payment-fulfillment-test.mjs request-service/payment-notifications-test.mjs
+      - run: node --test request-service/store-statistics-detail-test.mjs request-service/store-statistics-test.mjs request-service/payment-fulfillment-test.mjs request-service/payment-notifications-test.mjs
       - run: npm install --no-save playwright@1.58.2
       - run: npx playwright install --with-deps chromium
       - run: node request-service/store-statistics-browser-test.mjs
