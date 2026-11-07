@@ -66,3 +66,16 @@ test('sign-in preserves the exact editor product, selected placement and variant
  assert.equal(ownerLoginDestination('?next=https://evil.test'),null);assert.equal(ownerLoginDestination('?next=product-studio&source=//evil.test&placement=../secret&variant=x'),'/product-studio');
  const helper=await c.call('/login-destination.js');assert.equal(helper.status,200);assert.match(helper.headers.get('content-type'),/javascript/);
 });
+
+test('statistics sign-in returns owners to statistics and never inherits the open Factory exemption',async t=>{
+ const {ownerLoginDestination,ownerSignInLocation}=await import('./public/login-destination.js');
+ assert.equal(ownerLoginDestination('?next=analytics'),'/analytics.html');
+ assert.equal(ownerSignInLocation(new URL('https://owner.test/analytics.html')),'/login?next=analytics');
+ for(const mode of [true,false]){
+  const c=await service(t,mode),r=await c.call('/analytics.html');assert.equal(r.status,302);assert.equal(r.headers.get('location'),'/login?next=analytics');
+  const login=await c.call(r.headers.get('location'));assert.equal(login.status,200);assert.match(await login.text(),/id="loginPassword"/);
+  assert.equal((await c.call('/api/owner/store-statistics')).status,401);
+  const signed=await c.call('/api/owner/login',{password}),cookie=signed.headers.get('set-cookie').split(';')[0];
+  assert.equal((await c.call('/analytics.html',undefined,{Cookie:cookie})).status,200);
+ }
+});
