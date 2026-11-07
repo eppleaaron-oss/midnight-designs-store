@@ -54,7 +54,7 @@ function render(d){
  $('exportStoreStats').disabled=false;$('exportProductCsv').disabled=false;
 }
 async function refresh(e){e?.preventDefault();const request=++sequence;controller?.abort();controller=new AbortController();const status=$('storeStatsStatus');status.textContent='Loading verified store statistics…';$('refreshStoreStats').disabled=true;
- try{const r=await fetch('/api/owner/store-statistics?period='+encodeURIComponent($('analyticsPeriod').value)+'&device='+encodeURIComponent($('analyticsDevice').value),{cache:'no-store',signal:controller.signal});const d=await r.json();if(!r.ok)throw Error(d.error||'Statistics unavailable.');if(request!==sequence)return;render(d);status.className='';status.textContent='Verified saved records · Updated '+new Date(d.generatedAt).toLocaleString();}
+ try{const r=await fetch('/api/owner/store-statistics?period='+encodeURIComponent($('analyticsPeriod').value)+'&device='+encodeURIComponent($('analyticsDevice').value),{cache:'no-store',signal:controller.signal});const d=await r.json();if(!r.ok)throw Error(d.error||'Statistics unavailable.');if(request!==sequence)return;if(!d?.traffic||!d?.sales||!d?.conversion||!Array.isArray(d.popular)||!Array.isArray(d.bestSellers)||!Array.isArray(d.collections))throw Error('The statistics service returned an incomplete report.');render(d);status.className='';status.textContent='Verified saved records · Updated '+new Date(d.generatedAt).toLocaleString();}
  catch(e){if(e.name==='AbortError'||request!==sequence)return;status.className='stats-error';status.textContent=e.message+' No missing metric has been replaced with zero.'+(current?' Showing the last successful report from '+new Date(current.generatedAt).toLocaleString()+'; its filters are shown below.':'');}
  finally{if(request===sequence)$('refreshStoreStats').disabled=false;}
 }
@@ -67,4 +67,3 @@ $('exportStoreStats').onclick=()=>{if(current)download(JSON.stringify(current,nu
 $('exportProductCsv').onclick=()=>{if(!current)return;const safe=value=>{let s=String(value??'');if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';},rows=[['Product ID','Product','Views','Visible seconds','Clicks','Bag actions','Gross paid units','Current all-time likes','Current all-time dislikes','Report period','Traffic cohort','Generated at'],...activityRows().map(r=>[r.id,r.name,r.views,r.seconds||0,r.clicks,r.adds,r.bought||0,r.likes||0,r.dislikes||0,current.period,current.device,current.generatedAt])];download(rows.map(r=>r.map(safe).join(',')).join('\r\n'),'text/csv;charset=utf-8','midnight-product-activity.csv');};
 refresh();
 })();
-

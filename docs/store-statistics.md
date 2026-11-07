@@ -24,3 +24,9 @@ The owner-only `/analytics.html` page now starts with a store-wide report; exist
 This requires both frontend collector and backend report/payment-fact support. The running backend is separate from GitHub Pages. Do not call the report live merely because frontend assets have deployed. Preserve a verified recoverable artwork backup before replacing the backend; its last observed storage state had an upload running and unsaved edits. Until the backend update is safely deployed, the new report must show a useful unavailable error, never invented zero totals.
 
 The event tables and feedback use the main SQLite backup. Verified sales/refund facts use the independent encrypted payment journal. Neither is a substitute for persistent always-on storage or backup verification.
+
+## Owner overview update
+
+The overview adds an immediately preceding equal-length period comparison (unavailable for the all-retained period), daily UTC browsing and sales totals, average merchandise order value, retained-history visitor cohorts, page and screen-size breakdowns, catalog availability, and searchable/sortable/paginated product activity. Every current catalog product appears even without recorded activity. CSV exports include all matching product rows; JSON includes the complete report. Formula-leading CSV fields are quoted and neutralized. Existing artwork controls remain in an expandable section.
+
+Sales remain independent of device filters; time scopes are visible next to the report. Profit, abandoned carts, demographics and pre-collection history remain explicitly unavailable. A failed refresh keeps the last successful report and labels it stale rather than inventing zeros. No new tracking attributes or supplier/payment writes are introduced.
