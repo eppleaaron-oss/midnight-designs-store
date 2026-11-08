@@ -72588,7 +72588,7 @@
       "studioRevision": "owner-printful-import-490155944-20261107",
       "originalImage": "assets/product-photos/owner-hoodies/490155944.png",
       "sourceFingerprint": "7ec81769d19d6f6570b2d3bda5a062b00289a2c9f5f428388f7c65defe0a5fdb",
-      "updatedAt": "2026-11-08T00:39:21.542Z",
+      "updatedAt": "2026-11-08T00:48:07.340Z",
       "photos": [
         {
           "image": "assets/product-photos/seven-new-hoodies/490155944-503095fec9f6302f8353.jpg",
@@ -72893,8 +72893,8 @@
         {
           "image": "assets/product-photos/seven-new-hoodies/490155944-622b12ff08f4d4c65572.jpg",
           "sha256": "622b12ff08f4d4c65572ab6d788a0ba9efe850fb3a98a20d50888ff28b6c04b8",
-          "view": "overview",
-          "style": "Supplier",
+          "view": "front",
+          "style": "Flat",
           "category": "product",
           "color": "White",
           "catalogVariantId": 33977,
@@ -72912,8 +72912,8 @@
             "5624419922"
           ],
           "kind": "production-mockup",
-          "label": "Supplier overview · Supplier",
-          "alt": "What Remains — Gothic Skull & Rose Hourglass Hood · Supplier overview · Supplier"
+          "label": "Front · Flat",
+          "alt": "What Remains — Gothic Skull & Rose Hourglass Hood · Front · Flat"
         }
       ]
     },
