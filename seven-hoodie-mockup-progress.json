@@ -1,5 +1,31 @@
 {
   "products": {
+    "490096011": {
+      "name": "Vintage Gothic Rose Hoodie",
+      "fingerprint": "23bec7188116691d91ffe9a4653d02d551dc061bda4ccad95810f43f75a99e9e",
+      "studioRevision": "owner-printful-import-490096011-20261107",
+      "status": "submitting",
+      "groups": [
+        "Duet",
+        "Flat",
+        "Ghost",
+        "Men's",
+        "Women's"
+      ],
+      "options": [
+        "Back",
+        "Front",
+        "Hood",
+        "Inside Label",
+        "Label Panel",
+        "Left Front",
+        "Left Sleeve",
+        "Pocket",
+        "Right Back",
+        "Right Sleeve"
+      ],
+      "requestHash": "d9678ca8c51d9056bb61947bbedc014fc81448a8e82d167319f6e84667f74602"
+    },
     "490106374": {
       "name": "Midnight Study 106374 Cotton Hoodie",
       "fingerprint": "fdf894e23b97860be22357126c96507e05916c28ccad2dce412d172a99bb8657",
