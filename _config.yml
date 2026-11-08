@@ -1,4 +1,8 @@
 # Publish customer pages only. Source is public; this is deployment isolation, not repository secrecy.
+# Jekyll excludes `request-service*` by prefix, including the public connection file.
+# Include only this exact public file; the private backend directory stays excluded.
+include:
+  - request-service-config.json
 exclude:
   - master.html
   - master.js
@@ -40,3 +44,4 @@ exclude:
   - request-service
 
   - master-analytics-link.js
+

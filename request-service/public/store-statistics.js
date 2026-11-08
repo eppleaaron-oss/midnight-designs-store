@@ -65,5 +65,9 @@ for(const id of ['storeProductSearch','storeProductSort'])$(id).addEventListener
 $('storeProductPrevious').onclick=()=>{productPage--;renderProducts();};$('storeProductNext').onclick=()=>{productPage++;renderProducts();};
 $('exportStoreStats').onclick=()=>{if(current)download(JSON.stringify(current,null,2),'application/json','midnight-store-statistics.json');};
 $('exportProductCsv').onclick=()=>{if(!current)return;const safe=value=>{let s=String(value??'');if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';},rows=[['Product ID','Product','Views','Visible seconds','Clicks','Bag actions','Gross paid units','Current all-time likes','Current all-time dislikes','Report period','Traffic cohort','Generated at'],...activityRows().map(r=>[r.id,r.name,r.views,r.seconds||0,r.clicks,r.adds,r.bought||0,r.likes||0,r.dislikes||0,current.period,current.device,current.generatedAt])];download(rows.map(r=>r.map(safe).join(',')).join('\r\n'),'text/csv;charset=utf-8','midnight-product-activity.csv');};
+// Keep the report current while the owner watches incoming traffic.
+setInterval(()=>{if(!document.hidden&&!$('refreshStoreStats').disabled)refresh();},30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!$('refreshStoreStats').disabled)refresh();});
 refresh();
 })();
+
