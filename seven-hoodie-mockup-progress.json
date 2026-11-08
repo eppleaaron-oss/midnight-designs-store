@@ -52,18 +52,17 @@
         "back",
         "front",
         "left_front",
-        "right_back",
-        "overview"
+        "right_back"
       ],
       "styles": [
         "Flat",
         "Ghost",
         "Men's",
         "Women's",
-        "Duet",
-        "Supplier"
+        "Duet"
       ],
-      "completedAt": "2026-11-08T00:42:08.049Z"
+      "completedAt": "2026-11-08T00:48:37.084Z",
+      "metadataVersion": 2
     },
     "490151031": {
       "name": "Love Through the Thorns",

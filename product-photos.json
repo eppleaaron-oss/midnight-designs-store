@@ -71922,7 +71922,7 @@
       "studioRevision": "owner-printful-import-490142353-20261107",
       "originalImage": "assets/product-photos/owner-hoodies/490142353.png",
       "sourceFingerprint": "c11a0dba27b76f9c585488432c4613870bf62b9be61b1a700add1623c293b38f",
-      "updatedAt": "2026-11-08T00:42:08.013Z",
+      "updatedAt": "2026-11-08T00:48:37.045Z",
       "photos": [
         {
           "image": "assets/product-photos/seven-new-hoodies/490142353-b036a6051b67a6f5f1c4.jpg",
@@ -72227,8 +72227,8 @@
         {
           "image": "assets/product-photos/seven-new-hoodies/490142353-081b9317c40d893e8a54.jpg",
           "sha256": "081b9317c40d893e8a54f194798bdc421824ddc4cb9ac24ff0ff27e32be066a9",
-          "view": "overview",
-          "style": "Supplier",
+          "view": "front",
+          "style": "Flat",
           "category": "product",
           "color": "White",
           "catalogVariantId": 33977,
@@ -72246,8 +72246,8 @@
             "5624283062"
           ],
           "kind": "production-mockup",
-          "label": "Supplier overview · Supplier",
-          "alt": "Beyond the Frame — Vintage Gothic Ivy Hoodie · Supplier overview · Supplier"
+          "label": "Front · Flat",
+          "alt": "Beyond the Frame — Vintage Gothic Ivy Hoodie · Front · Flat"
         }
       ]
     },
