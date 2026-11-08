@@ -1,5 +1,31 @@
 {
   "products": {
+    "490142353": {
+      "name": "Beyond the Frame — Vintage Gothic Ivy Hoodie",
+      "fingerprint": "c11a0dba27b76f9c585488432c4613870bf62b9be61b1a700add1623c293b38f",
+      "studioRevision": "owner-printful-import-490142353-20261107",
+      "status": "submitting",
+      "groups": [
+        "Duet",
+        "Flat",
+        "Ghost",
+        "Men's",
+        "Women's"
+      ],
+      "options": [
+        "Back",
+        "Front",
+        "Hood",
+        "Inside Label",
+        "Label Panel",
+        "Left Front",
+        "Left Sleeve",
+        "Pocket",
+        "Right Back",
+        "Right Sleeve"
+      ],
+      "requestHash": "c8645ce483d8a3614d8cb9a1dbdaadfed48b5293e08bda1551bf7fd74cdfa953"
+    },
     "490151031": {
       "name": "Love Through the Thorns",
       "fingerprint": "4829bbac139b5329f0292ae59dee19e4dd639df0061bd521952dede98d37058e",
