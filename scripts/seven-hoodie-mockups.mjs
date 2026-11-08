@@ -36,7 +36,7 @@ for(const id of ids){
  let d=await api('/store/products/'+id),sig=signature(d);
  if(String(d.sync_product.id)!==id||!d.sync_variants.every(v=>v.files.some(f=>f.type==='preview'&&f.preview_url===p.supplierPreview)))throw Error('Supplier revision mismatch '+id);
  let state=ledger.products[id];
- if(state?.status==='complete'&&state.fingerprint===sig){console.log(id+' already complete: '+state.photoCount);continue;}
+ if(state?.status==='complete'&&state.fingerprint===sig&&state.metadataVersion===2){console.log(id+' already complete: '+state.photoCount);continue;}
  if(state&&state.fingerprint!==sig)throw Error('Source changed; owner review required '+id);
  if(new Set(d.sync_variants.map(layout)).size!==1)throw Error('Variant artwork differs '+id);
  const v=d.sync_variants.find(v=>v.size==='M')||d.sync_variants[0];
@@ -74,11 +74,10 @@ for(const id of ids){
  await sleep(10000);
  }
  if(result?.status!=='completed')throw Error('Mockup still pending '+id);
- console.log('TASK VIEWS '+id+' '+JSON.stringify(result.mockups));
  const candidates=[];
  for(const mock of result.mockups||[]){
  for(const extra of mock.extra||[])if(extra.url)candidates.push({url:extra.url,style:extra.option_group||'Supplier',view:view(extra.option||extra.title||'overview'),label:extra.option||extra.title||'Supplier overview'});
- if(mock.mockup_url&&!candidates.some(c=>c.url===mock.mockup_url))candidates.push({url:mock.mockup_url,style:'Supplier',view:'overview',label:'Supplier overview'});
+ if(mock.mockup_url&&!candidates.some(c=>c.url===mock.mockup_url))candidates.push({url:mock.mockup_url,style:'Flat',view:/-front-[a-f0-9]+\.jpg(?:\?|$)/i.test(mock.mockup_url)?'front':/-back-[a-f0-9]+\.jpg(?:\?|$)/i.test(mock.mockup_url)?'back':'overview',label:/-front-[a-f0-9]+\.jpg(?:\?|$)/i.test(mock.mockup_url)?'Front':/-back-[a-f0-9]+\.jpg(?:\?|$)/i.test(mock.mockup_url)?'Back':'Supplier overview'});
  }
  if(!candidates.length)throw Error('No returned mockups '+id);
  const photos=[],seen=new Set();
@@ -98,7 +97,7 @@ for(const id of ids){
  galleries.products[id]={...(galleries.products[id]||{}),studioRevision:p.studioRevision,originalImage:p.image,sourceFingerprint:sig,updatedAt:new Date().toISOString(),photos};
  latest.images=[p.image,...photos.map(x=>x.image)];cat.lastSyncedAt=new Date().toISOString();
  await write('product-photos.json',galleries);await write('products.json',cat);
- state.status='complete';state.photoCount=photos.length;state.views=[...new Set(photos.map(p=>p.view))];state.styles=[...new Set(photos.map(p=>p.style))];state.completedAt=new Date().toISOString();
+ state.status='complete';state.metadataVersion=2;state.photoCount=photos.length;state.views=[...new Set(photos.map(p=>p.view))];state.styles=[...new Set(photos.map(p=>p.style))];state.completedAt=new Date().toISOString();
  await write(ledgerPath,ledger);checkpoint('Attach all supplier mockups to approved hoodie '+id);
  console.log(JSON.stringify({id,photoCount:photos.length,views:state.views,styles:state.styles}));
 }
