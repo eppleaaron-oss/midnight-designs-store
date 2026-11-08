@@ -19,16 +19,16 @@ jobs:
       - run: node --test scripts/store-tracking-test.mjs
       - name: Verify Jekyll publishes the public connection without backend files
         run: |
-          mkdir -p /tmp/tracking-fixture/request-service
-          cp _config.yml request-service-config.json /tmp/tracking-fixture/
-          echo 'private backend' > /tmp/tracking-fixture/request-service/private.txt
-          echo 'fixture' > /tmp/tracking-fixture/index.html
+          mkdir -p tracking-fixture/request-service
+          cp _config.yml request-service-config.json tracking-fixture/
+          echo 'private backend' > tracking-fixture/request-service/private.txt
+          echo 'fixture' > tracking-fixture/index.html
       - uses: actions/jekyll-build-pages@v1
         with:
-          source: /tmp/tracking-fixture
-          destination: /tmp/tracking-built
+          source: tracking-fixture
+          destination: tracking-built
       - name: Check public and private output
         run: |
-          test -f /tmp/tracking-built/request-service-config.json
-          test ! -e /tmp/tracking-built/request-service/private.txt
-          node -e "const c=JSON.parse(require('fs').readFileSync('/tmp/tracking-built/request-service-config.json'));if(c.url!=='https://midnight-designs-backend.onrender.com')throw Error('Wrong store backend')"
+          test -f tracking-built/request-service-config.json
+          test ! -e tracking-built/request-service/private.txt
+          node -e "const c=JSON.parse(require('fs').readFileSync('tracking-built/request-service-config.json'));if(c.url!=='https://midnight-designs-backend.onrender.com')throw Error('Wrong store backend')"
