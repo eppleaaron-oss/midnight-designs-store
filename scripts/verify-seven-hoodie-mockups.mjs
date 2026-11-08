@@ -25,3 +25,17 @@ for(const p of current.products){
 }
 for(const [id,entry] of Object.entries(oldGallery.products))if(!ids.includes(id))assert.deepEqual(gallery.products[id],entry);
 console.log('PASS: seven complete galleries, every variant linked, permanent image checksums match; all other products and all prices/options/revisions unchanged.');
+
+if(process.argv.includes('--live')){
+ const base='https://midnight-designs.store/';
+ const actual=await (await fetch(base+'product-photos.json?verify='+Date.now(),{cache:'no-store'})).json();
+ for(const id of ids)assert.deepEqual(actual.products[id],gallery.products[id]);
+ const photos=ids.flatMap(id=>gallery.products[id].photos);
+ for(let start=0;start<photos.length;start+=4)await Promise.all(photos.slice(start,start+4).map(async photo=>{
+  const response=await fetch(new URL(photo.image,base),{signal:AbortSignal.timeout(60000)});
+  assert.equal(response.status,200,photo.image);
+  const bytes=Buffer.from(await response.arrayBuffer());
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),photo.sha256,photo.image);
+ }));
+ console.log('PASS: live galleries and all '+photos.length+' permanent images match saved checksums.');
+}
