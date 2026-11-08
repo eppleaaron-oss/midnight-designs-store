@@ -1,5 +1,25 @@
 {
   "products": {
+    "490123181": {
+      "name": "Midnight Study 123181 Oversized Cotton Hoodie",
+      "fingerprint": "6bffbbaed0a0187f9eb17def616d15da259a56d20b556e305e9ec028b6516f53",
+      "studioRevision": "owner-printful-import-490123181-20261107",
+      "status": "submitting",
+      "groups": [
+        "Flat"
+      ],
+      "options": [
+        "Back",
+        "Front",
+        "Hood",
+        "Inside label",
+        "Label panel",
+        "Left sleeve",
+        "Pocket",
+        "Right sleeve"
+      ],
+      "requestHash": "9a4f4e359f7176b9c73c07adb9443628fe3f1c930d60bbac5d4baab74807614a"
+    },
     "490142353": {
       "name": "Beyond the Frame — Vintage Gothic Ivy Hoodie",
       "fingerprint": "c11a0dba27b76f9c585488432c4613870bf62b9be61b1a700add1623c293b38f",
