@@ -71918,6 +71918,64 @@
         }
       ]
     },
+    "490123181": {
+      "studioRevision": "owner-printful-import-490123181-20261107",
+      "originalImage": "assets/product-photos/owner-hoodies/490123181.png",
+      "sourceFingerprint": "6bffbbaed0a0187f9eb17def616d15da259a56d20b556e305e9ec028b6516f53",
+      "updatedAt": "2026-11-08T00:48:41.547Z",
+      "photos": [
+        {
+          "image": "assets/product-photos/seven-new-hoodies/490123181-b76d2a47aec742d2913b.jpg",
+          "sha256": "b76d2a47aec742d2913b9f30ecbcaf387c17f4a1d98acd5460972fa33040e081",
+          "view": "back",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51472,
+          "storeVariantIds": [
+            "5624210431",
+            "5624210432",
+            "5624210437",
+            "5624210438",
+            "5624210439",
+            "5624210440",
+            "5624210441",
+            "5624210442",
+            "5624210444",
+            "5624210446",
+            "5624210448"
+          ],
+          "kind": "production-mockup",
+          "label": "Back · Flat",
+          "alt": "Midnight Study 123181 Oversized Cotton Hoodie · Back · Flat"
+        },
+        {
+          "image": "assets/product-photos/seven-new-hoodies/490123181-63eb0554c2931f994b77.jpg",
+          "sha256": "63eb0554c2931f994b771bac5933ff5182792f6594ba6ff2a3f633963abd3b28",
+          "view": "front",
+          "style": "Flat",
+          "category": "product",
+          "color": "White",
+          "catalogVariantId": 51472,
+          "storeVariantIds": [
+            "5624210431",
+            "5624210432",
+            "5624210437",
+            "5624210438",
+            "5624210439",
+            "5624210440",
+            "5624210441",
+            "5624210442",
+            "5624210444",
+            "5624210446",
+            "5624210448"
+          ],
+          "kind": "production-mockup",
+          "label": "Front · Flat",
+          "alt": "Midnight Study 123181 Oversized Cotton Hoodie · Front · Flat"
+        }
+      ]
+    },
     "490142353": {
       "studioRevision": "owner-printful-import-490142353-20261107",
       "originalImage": "assets/product-photos/owner-hoodies/490142353.png",
