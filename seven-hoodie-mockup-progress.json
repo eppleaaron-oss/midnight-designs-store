@@ -4,7 +4,7 @@
       "name": "Love Through the Thorns",
       "fingerprint": "4829bbac139b5329f0292ae59dee19e4dd639df0061bd521952dede98d37058e",
       "studioRevision": "owner-printful-import-490151031-20261107",
-      "status": "submitting",
+      "status": "pending",
       "groups": [
         "Duet",
         "Flat",
@@ -24,7 +24,8 @@
         "Right Back",
         "Right Sleeve"
       ],
-      "requestHash": "ccb62962a0497d93e9fd326844d63ca07302314ae3f210caff3f5d6c3c81c16d"
+      "requestHash": "ccb62962a0497d93e9fd326844d63ca07302314ae3f210caff3f5d6c3c81c16d",
+      "taskKey": "gt-1000004734"
     },
     "490155944": {
       "name": "What Remains — Gothic Skull & Rose Hourglass Hood",
