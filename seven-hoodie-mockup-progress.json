@@ -184,18 +184,17 @@
         "back",
         "front",
         "left_front",
-        "right_back",
-        "overview"
+        "right_back"
       ],
       "styles": [
         "Flat",
         "Ghost",
         "Men's",
         "Women's",
-        "Duet",
-        "Supplier"
+        "Duet"
       ],
-      "completedAt": "2026-11-08T00:38:28.811Z"
+      "completedAt": "2026-11-08T00:47:52.309Z",
+      "metadataVersion": 2
     }
   }
 }

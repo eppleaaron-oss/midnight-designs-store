@@ -72921,7 +72921,7 @@
       "studioRevision": "owner-printful-import-490162548-20261107",
       "originalImage": "assets/product-photos/owner-hoodies/490162548.png",
       "sourceFingerprint": "32eee9fed518e915c7ad99bf6cbf5a8e850d785efb35a4c86710b5311b81d09c",
-      "updatedAt": "2026-11-08T00:38:28.770Z",
+      "updatedAt": "2026-11-08T00:47:52.266Z",
       "photos": [
         {
           "image": "assets/product-photos/seven-new-hoodies/490162548-8b4cabd46bab535af0d7.jpg",
@@ -73226,8 +73226,8 @@
         {
           "image": "assets/product-photos/seven-new-hoodies/490162548-63314556d41d75755608.jpg",
           "sha256": "63314556d41d75755608807a4d197f58b90b2e4cac2561725fa33a261af0dd2b",
-          "view": "overview",
-          "style": "Supplier",
+          "view": "front",
+          "style": "Flat",
           "category": "product",
           "color": "White",
           "catalogVariantId": 33977,
@@ -73245,8 +73245,8 @@
             "5624444141"
           ],
           "kind": "production-mockup",
-          "label": "Supplier overview · Supplier",
-          "alt": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie · Supplier overview · Supplier"
+          "label": "Front · Flat",
+          "alt": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie · Front · Flat"
         }
       ]
     }
