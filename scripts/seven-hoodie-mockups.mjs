@@ -74,6 +74,7 @@ for(const id of ids){
  await sleep(10000);
  }
  if(result?.status!=='completed')throw Error('Mockup still pending '+id);
+ console.log('TASK VIEWS '+id+' '+JSON.stringify(result.mockups));
  const candidates=[];
  for(const mock of result.mockups||[]){
  for(const extra of mock.extra||[])if(extra.url)candidates.push({url:extra.url,style:extra.option_group||'Supplier',view:view(extra.option||extra.title||'overview'),label:extra.option||extra.title||'Supplier overview'});
