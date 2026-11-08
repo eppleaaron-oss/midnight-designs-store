@@ -4,7 +4,7 @@
       "name": "Vintage Gothic Rose Hoodie",
       "fingerprint": "23bec7188116691d91ffe9a4653d02d551dc061bda4ccad95810f43f75a99e9e",
       "studioRevision": "owner-printful-import-490096011-20261107",
-      "status": "submitting",
+      "status": "pending",
       "groups": [
         "Duet",
         "Flat",
@@ -24,7 +24,8 @@
         "Right Back",
         "Right Sleeve"
       ],
-      "requestHash": "d9678ca8c51d9056bb61947bbedc014fc81448a8e82d167319f6e84667f74602"
+      "requestHash": "d9678ca8c51d9056bb61947bbedc014fc81448a8e82d167319f6e84667f74602",
+      "taskKey": "gt-1000011313"
     },
     "490106374": {
       "name": "Midnight Study 106374 Cotton Hoodie",
