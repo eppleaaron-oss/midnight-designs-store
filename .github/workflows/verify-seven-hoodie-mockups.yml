@@ -1,0 +1,40 @@
+name: Verify seven hoodie galleries on the live store
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verify-seven-hoodie-mockups.yml']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/verify-seven-hoodie-mockups.mjs
+      - run: node scripts/build-search-pages.mjs
+      - name: Save product page refresh
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add products sitemap.xml shop.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh product pages with all seven hoodie mockup galleries'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Publish and verify storefront
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/publish-catalog.mjs
