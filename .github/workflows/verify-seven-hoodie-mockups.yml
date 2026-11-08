@@ -38,3 +38,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: node scripts/publish-catalog.mjs
+      - name: Verify every permanent image on the live store
+        run: node scripts/verify-seven-hoodie-mockups.mjs --live
