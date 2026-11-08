@@ -1,0 +1,42 @@
+name: All mockups for seven owner-approved hoodies
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/seven-hoodie-mockups.yml']
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: printful-catalog
+  cancel-in-progress: false
+jobs:
+  mockups:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --prefix request-service
+      - run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Generate and permanently attach every available view
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+        run: node scripts/seven-hoodie-mockups.mjs
+      - name: Publish and verify storefront
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/publish-catalog.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seven-hoodie-mockup-progress
+          path: seven-hoodie-mockup-progress.json
