@@ -96,18 +96,17 @@
         "back",
         "front",
         "left_front",
-        "right_back",
-        "overview"
+        "right_back"
       ],
       "styles": [
         "Flat",
         "Ghost",
         "Men's",
         "Women's",
-        "Duet",
-        "Supplier"
+        "Duet"
       ],
-      "completedAt": "2026-11-08T00:41:14.863Z"
+      "completedAt": "2026-11-08T00:48:22.505Z",
+      "metadataVersion": 2
     },
     "490155944": {
       "name": "What Remains — Gothic Skull & Rose Hourglass Hood",
