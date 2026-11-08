@@ -4,7 +4,7 @@
       "name": "Midnight Study 106374 Cotton Hoodie",
       "fingerprint": "fdf894e23b97860be22357126c96507e05916c28ccad2dce412d172a99bb8657",
       "studioRevision": "owner-printful-import-490106374-20261107",
-      "status": "pending",
+      "status": "complete",
       "groups": [
         "Duet",
         "Flat",
@@ -25,7 +25,23 @@
         "Right Sleeve"
       ],
       "requestHash": "1aa72fc78eab71883825c5a212e436d27ea1106a8f00012c495cb2f6755d5cf2",
-      "taskKey": "gt-1000010679"
+      "taskKey": "gt-1000010679",
+      "metadataVersion": 2,
+      "photoCount": 13,
+      "views": [
+        "back",
+        "front",
+        "left_front",
+        "right_back"
+      ],
+      "styles": [
+        "Flat",
+        "Ghost",
+        "Men's",
+        "Women's",
+        "Duet"
+      ],
+      "completedAt": "2026-11-08T00:49:34.161Z"
     },
     "490123181": {
       "name": "Midnight Study 123181 Oversized Cotton Hoodie",
