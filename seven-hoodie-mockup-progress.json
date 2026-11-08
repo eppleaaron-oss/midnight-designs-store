@@ -4,7 +4,7 @@
       "name": "Beyond the Frame — Vintage Gothic Ivy Hoodie",
       "fingerprint": "c11a0dba27b76f9c585488432c4613870bf62b9be61b1a700add1623c293b38f",
       "studioRevision": "owner-printful-import-490142353-20261107",
-      "status": "submitting",
+      "status": "pending",
       "groups": [
         "Duet",
         "Flat",
@@ -24,7 +24,8 @@
         "Right Back",
         "Right Sleeve"
       ],
-      "requestHash": "c8645ce483d8a3614d8cb9a1dbdaadfed48b5293e08bda1551bf7fd74cdfa953"
+      "requestHash": "c8645ce483d8a3614d8cb9a1dbdaadfed48b5293e08bda1551bf7fd74cdfa953",
+      "taskKey": "gt-1000005219"
     },
     "490151031": {
       "name": "Love Through the Thorns",
