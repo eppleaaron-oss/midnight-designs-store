@@ -4,7 +4,7 @@
       "name": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie",
       "fingerprint": "32eee9fed518e915c7ad99bf6cbf5a8e850d785efb35a4c86710b5311b81d09c",
       "studioRevision": "owner-printful-import-490162548-20261107",
-      "status": "pending",
+      "status": "complete",
       "groups": [
         "Duet",
         "Flat",
@@ -25,7 +25,24 @@
         "Right Sleeve"
       ],
       "requestHash": "fffea5f8360aedb125235a161539cef5c15a91d528484982af4d52d6d705c18c",
-      "taskKey": "gt-1000003174"
+      "taskKey": "gt-1000003174",
+      "photoCount": 13,
+      "views": [
+        "back",
+        "front",
+        "left_front",
+        "right_back",
+        "overview"
+      ],
+      "styles": [
+        "Flat",
+        "Ghost",
+        "Men's",
+        "Women's",
+        "Duet",
+        "Supplier"
+      ],
+      "completedAt": "2026-11-08T00:38:28.811Z"
     }
   }
 }
