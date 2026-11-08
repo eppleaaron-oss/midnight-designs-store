@@ -4,7 +4,7 @@
       "name": "What Remains — Gothic Skull & Rose Hourglass Hood",
       "fingerprint": "7ec81769d19d6f6570b2d3bda5a062b00289a2c9f5f428388f7c65defe0a5fdb",
       "studioRevision": "owner-printful-import-490155944-20261107",
-      "status": "pending",
+      "status": "complete",
       "groups": [
         "Duet",
         "Flat",
@@ -25,7 +25,24 @@
         "Right Sleeve"
       ],
       "requestHash": "f965413914b0980e363fc85527d7e17babd9766f3645eaad5036879ac3638f6c",
-      "taskKey": "gt-1000003709"
+      "taskKey": "gt-1000003709",
+      "photoCount": 13,
+      "views": [
+        "back",
+        "front",
+        "left_front",
+        "right_back",
+        "overview"
+      ],
+      "styles": [
+        "Flat",
+        "Ghost",
+        "Men's",
+        "Women's",
+        "Duet",
+        "Supplier"
+      ],
+      "completedAt": "2026-11-08T00:39:21.584Z"
     },
     "490162548": {
       "name": "Unseen Scars — Gothic Skull & Crimson Rose Hoodie",
