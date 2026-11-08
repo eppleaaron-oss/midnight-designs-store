@@ -1,0 +1,37 @@
+name: Audit seven hoodie mockup sources
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/audit-seven-hoodie-media.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Inspect the seven approved products and exact templates
+        env:
+          PRINTFUL_TOKEN: ${{ secrets.PRINTFUL_TOKEN }}
+          PRINTFUL_STORE_ID: ${{ vars.PRINTFUL_STORE_ID }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import {printfulClient} from './scripts/printful-client.mjs';
+          const api=printfulClient({token:process.env.PRINTFUL_TOKEN,storeId:process.env.PRINTFUL_STORE_ID});
+          const ids=JSON.parse(await fs.readFile('owner-hoodie-import.json','utf8')).productIds;
+          if(ids.length!==7)throw Error('Expected exactly the seven approved hoodies');
+          const catalog=JSON.parse(await fs.readFile('products.json','utf8')).products;
+          const cats=new Map();
+          for(const id of ids){
+            const p=catalog.find(p=>p.id===id);if(!p)throw Error('Published hoodie missing');
+            const d=(await api('store/products/'+id)).result;
+            console.log('HOODIE_SOURCE '+JSON.stringify({id,name:p.name,image:p.image,revision:p.studioRevision,supplierPreview:p.supplierPreview,syncProduct:d.sync_product,variants:d.sync_variants.map(v=>({id:v.id,variant_id:v.variant_id,synced:v.synced,availability:v.availability_status,color:v.color,size:v.size,options:v.options,files:v.files})),publishedVariants:p.variants}));
+            cats.set(p.catalogProductId,p.variants.map(v=>v.catalogVariantId));
+          }
+          for(const [id,variants]of cats){const d=(await api('mockup-generator/printfiles/'+id)).result;console.log('HOODIE_TEMPLATE '+JSON.stringify({id,...d,variant_printfiles:d.variant_printfiles?.filter(v=>variants.includes(v.variant_id))}));}
+          NODE
