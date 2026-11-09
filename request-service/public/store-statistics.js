@@ -6,7 +6,7 @@ const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).
 const duration=n=>{if(n===null||n===undefined)return 'No data yet';n=Math.round(n);const h=Math.floor(n/3600),m=Math.floor(n%3600/60),s=n%60;return h?h+'h '+m+'m':m?m+'m '+s+'s':s+'s';};
 let current=null,sequence=0,controller=null,productPage=0;
 let sessionExpired = false;
-let appliedFilters = new URLSearchParams({period: '30', device: 'all', include: 'artwork'});
+let appliedFilters = new URLSearchParams({period: '30', device: 'all', include: 'artwork', group: 'auto', compare: 'previous'});
 const requiredCounts = {
   traffic: ['visitors', 'sessions', 'pageViews'],
   shopping: ['productClicks', 'productViews', 'addToBag', 'checkoutStarts'],
@@ -27,7 +27,8 @@ function validateReport(report) {
       !['operations', 'feedback', 'coverage'].every(key => report[key] && typeof report[key] === 'object') ||
       !['popular', 'bestSellers', 'collections'].every(key => Array.isArray(report[key])) ||
       !report.window?.startDate || !report.window?.endDate || !report.window?.today ||
-      !report.artwork?.coverage || !Array.isArray(report.traffic.sources) || !numeric(report.testOrdersExcluded) ||
+      !Array.isArray(report.trend) || !['hour','day','week','month'].includes(report.grouping) ||
+      (report.comparison && !Array.isArray(report.comparison.trend)) || !report.artwork?.coverage || !Array.isArray(report.traffic.sources) || !numeric(report.testOrdersExcluded) ||
       !report.popular.every(row => row && typeof row.name === 'string' &&
         ['views', 'clicks', 'adds'].every(key => numeric(row[key])))) {
     throw new Error('The statistics service returned an incomplete report.');
@@ -57,14 +58,109 @@ function table(target,rows,columns,limit=30){const box=$(target);box.replaceChil
  if(rows.length>limit)box.append(node('p','Top '+limit+' of '+rows.length+' shown. Full data is included in the report download.'));
 }
 function cards(target,values){const box=$(target);box.replaceChildren();for(const [label,value,note]of values){const card=node('article');card.className='analytics-card';card.append(node('span',label),node('strong',value));if(note)card.append(node('small',note));box.append(card);}}
-function comparison(key){const c=current.comparison?.[key];if(!c)return 'Comparison unavailable for this reporting window';if(c.change===null)return 'Previous window: '+(key==='revenue'?money(c.previous):number(c.previous))+' · percentage change unavailable';return (c.change>0?'+':'')+c.change.toFixed(1)+'% vs previous window';}
-function renderTrend(){const rows=current?.daily;if(!rows){$('storeTrend').replaceChildren(node('p','Daily history is unavailable from this backend version.'));return;}
- const key=$('storeTrendMetric').value,currency=['revenue','refunds'].includes(key),format=currency?money:number,max=Math.max(0,...rows.map(r=>r[key]||0)),box=$('storeTrend');box.replaceChildren();
- const chart=node('div');chart.className=rows.length>90?'stats-chart stats-chart-dense':'stats-chart';chart.setAttribute('role','img');chart.setAttribute('aria-label',$('storeTrendMetric').selectedOptions[0].textContent+' by Mountain Time date. Exact values in the table below.');
- for(const r of rows){const col=node('div');col.className='stats-chart-column';const bar=node('span');bar.className='stats-chart-bar';bar.style.height=(max?100*(r[key]||0)/max:0)+'%';col.title=r.date+': '+format(r[key]||0);col.append(bar);chart.append(col);}box.append(chart);
- const axis=node('div');axis.className='stats-chart-axis';axis.append(node('span',rows[0]?.date||''),node('span',max?'Peak '+format(max):'No recorded activity'),node('span',rows.at(-1)?.date||''));box.append(axis);
- const details=node('details'),summary=node('summary','View exact daily values');details.append(summary);const wrap=node('div');wrap.className='stats-table-wrap';const t=node('table');t.className='analytics-table';const h=node('tr');for(const text of ['Date (MT)','Visitors','Sessions','Page views','Paid orders','Merchandise revenue','Refunds observed'])h.append(node('th',text));t.append(h);for(const r of rows){const tr=node('tr');for(const value of [r.date,r.visitors,r.sessions,r.pageViews,r.orders,money(r.revenue),money(r.refunds)])tr.append(node('td',value));t.append(tr);}wrap.append(t);details.append(wrap);box.append(details);
+function comparison(key) {
+  const baseline = current.comparison;
+  const metric = baseline?.[key];
+  if (!metric) return '';
+  if (metric.previous === null) return baseline.label + ' traffic unavailable';
+  const previous = key === 'revenue' ? money(metric.previous) : number(metric.previous);
+  if (metric.change === null) return baseline.label + ' · ' + previous + ' · percentage unavailable';
+  return (metric.change > 0 ? '+' : '') + metric.change.toFixed(1) + '% vs ' + baseline.label.toLowerCase() + ' (' + previous + ')';
 }
+
+function trendRangeLabel(range) {
+  const dates = range.startDate === range.endDate ? range.startDate : range.startDate + ' to ' + range.endDate;
+  if (current.window.startDate !== current.window.today || current.window.endDate !== current.window.today) return dates;
+  const time = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Denver', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+  }).format(Date.parse(range.end) - 1);
+  return dates + ' through ' + time;
+}
+
+function trendTable(rows) {
+  const details = node('details');
+  details.append(node('summary', 'View exact values'));
+  // Build the table only when opened, especially for long hourly reports.
+  details.addEventListener('toggle', () => {
+    if (!details.open || details.querySelector('table')) return;
+    const wrap = node('div');
+    wrap.className = 'stats-table-wrap';
+    const t = node('table');
+    t.className = 'analytics-table';
+    const head = node('thead');
+    const header = node('tr');
+    for (const label of ['Period (MT)', 'Visitors', 'Sessions', 'Page views', 'Paid orders', 'Merchandise revenue', 'Refunds observed']) {
+      const cell = node('th', label);
+      cell.scope = 'col';
+      header.append(cell);
+    }
+    head.append(header);
+    const body = node('tbody');
+    for (const row of rows) {
+      const tr = node('tr');
+      for (const value of [row.label, row.visitors, row.sessions, row.pageViews, row.orders, money(row.revenue), money(row.refunds)]) {
+        tr.append(node('td', value ?? 'Unavailable'));
+      }
+      body.append(tr);
+    }
+    t.append(head, body);
+    wrap.append(t);
+    details.append(wrap);
+  });
+  return details;
+}
+
+function renderTrend() {
+  const box = $('storeTrend');
+  box.replaceChildren();
+  if (!current?.trend) {
+    box.append(node('p', 'Trend history is unavailable.'));
+    return;
+  }
+  const metric = $('storeTrendMetric');
+  const key = metric.value;
+  const format = ['revenue', 'refunds'].includes(key) ? money : number;
+  const baseline = current.comparison;
+  const series = [{title:'Selected range', range:current.window, rows:current.trend}];
+  if (baseline) series.push({title:baseline.label, range:baseline, rows:baseline.trend});
+  const max = series.reduce((peak, item) => item.rows.reduce((value, row) => Math.max(value, row[key] ?? 0), peak), 0);
+  const grouping = current.grouping;
+  $('analyticsGrouping').options[0].textContent = 'Automatic · ' + grouping[0].toUpperCase() + grouping.slice(1);
+  if ($('analyticsGrouping').value !== 'auto') $('analyticsGrouping').options[0].textContent = 'Automatic';
+  if (baseline?.trend.some(row => row[key] !== null)) box.append(node('p', 'Both charts use the same scale.'));
+  for (const [index, item] of series.entries()) {
+    const region = node('div');
+    region.className = 'stats-trend-series';
+    region.append(node('h4', item.title), node('p', trendRangeLabel(item.range)));
+    if (item.rows.every(row => row[key] === null)) {
+      region.append(node('p', 'Traffic comparison is outside the retained browsing history.'));
+    } else {
+      const chart = node('div');
+      chart.className = 'stats-chart';
+      if (item.rows.length > 90) chart.classList.add('stats-chart-dense');
+      if (index) chart.classList.add('stats-comparison-chart');
+      chart.setAttribute('role','img');
+      chart.setAttribute('aria-label',item.title+' · '+metric.selectedOptions[0].textContent+' by '+grouping+' in Mountain Time');
+      for (const row of item.rows) {
+        const col = node('div');
+        col.className = 'stats-chart-column';
+        const bar = node('span');
+        bar.className = 'stats-chart-bar';
+        bar.style.height = (max ? 100 * row[key] / max : 0) + '%';
+        col.title = row.label + ' · ' + format(row[key]);
+        col.append(bar);
+        chart.append(col);
+      }
+      const axis = node('div');
+      axis.className = 'stats-chart-axis';
+      axis.append(node('span',item.rows[0]?.label||''),node('span',max?'Scale max '+format(max):'No recorded activity'),node('span',item.rows.at(-1)?.label||''));
+      region.append(chart, axis);
+    }
+    region.append(trendTable(item.rows));
+    box.append(region);
+  }
+}
+
 function activityRows(){if(!current)return [];const q=$('storeProductSearch').value.trim().toLowerCase(),key=$('storeProductSort').value;return current.popular.filter(r=>(r.name+' '+r.id).toLowerCase().includes(q)).sort((a,b)=>(b[key]||0)-(a[key]||0)||a.name.localeCompare(b.name));}
 function renderProducts(){const rows=activityRows(),pages=Math.max(1,Math.ceil(rows.length/20));productPage=Math.min(productPage,pages-1);table('storePopular',rows.slice(productPage*20,(productPage+1)*20),[['Product',r=>r.name],['Stable ID',r=>r.id],['Views',r=>r.views],['Time looking',r=>duration(r.seconds||0)],['Clicks',r=>r.clicks],['Bag actions',r=>r.adds],['Bought',r=>r.bought||0],['Likes',r=>r.likes||0],['Dislikes',r=>r.dislikes||0]]);
  $('storeProductCount').textContent=rows.length?'Showing '+(productPage*20+1)+'–'+Math.min((productPage+1)*20,rows.length)+' of '+rows.length+' products':'No matching products';$('storeProductPrevious').disabled=productPage===0;$('storeProductNext').disabled=productPage>=pages-1;
@@ -144,6 +240,10 @@ async function refresh(event) {
       showSignIn();
       return;
     }
+    if (response.status === 400) {
+      const problem = await response.json();
+      throw new Error(problem.error || 'Choose a valid date range and grouping.');
+    }
     if (!response.ok) throw new Error('Store statistics could not load.');
     const report = await response.json();
     if (request !== sequence) return;
@@ -184,7 +284,10 @@ function download(content,type,name){const u=URL.createObjectURL(new Blob([conte
 function applyFilters(event) {
   event?.preventDefault();
   const period = $('analyticsPeriod').value;
-  const filters = new URLSearchParams({period, device: $('analyticsDevice').value, include: 'artwork'});
+  const filters = new URLSearchParams({
+    period, device: $('analyticsDevice').value, include: 'artwork',
+    group: $('analyticsGrouping').value, compare: $('analyticsCompare').value,
+  });
   if (period === 'custom') {
     if (!$('analyticsFilters').reportValidity()) return;
     const start = $('analyticsStart').value;
@@ -220,6 +323,12 @@ for (const button of presets) button.addEventListener('click', () => {
 });
 for (const id of ['analyticsStart','analyticsEnd']) {
   $(id).addEventListener('input', () => $('analyticsEnd').setCustomValidity(''));
+}
+for (const [id, key] of [['analyticsGrouping', 'group'], ['analyticsCompare', 'compare']]) {
+  $(id).addEventListener('change', () => {
+    appliedFilters.set(key, $(id).value);
+    refresh();
+  });
 }
 $('refreshStoreStats').onclick = refresh;
 $('analyticsFilters').addEventListener('submit', applyFilters);
