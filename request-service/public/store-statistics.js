@@ -127,7 +127,7 @@ function renderTrend() {
   const grouping = current.grouping;
   $('analyticsGrouping').options[0].textContent = 'Automatic · ' + grouping[0].toUpperCase() + grouping.slice(1);
   if ($('analyticsGrouping').value !== 'auto') $('analyticsGrouping').options[0].textContent = 'Automatic';
-  if (baseline) box.append(node('p', 'Both charts use the same scale.'));
+  if (baseline?.trend.some(row => row[key] !== null)) box.append(node('p', 'Both charts use the same scale.'));
   for (const [index, item] of series.entries()) {
     const region = node('div');
     region.className = 'stats-trend-series';
