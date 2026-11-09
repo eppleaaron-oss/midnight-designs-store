@@ -12,6 +12,15 @@ function stop(){seen.clear();pending=[];persist();clearTimeout(retryTimer);retry
 const tag=value=>/^[a-z0-9][a-z0-9._-]{0,79}$/i.test(value||'')?value.toLowerCase():'';
 const direct={source:'direct',campaign:'',post:''};
 let activeSession;
+const ownerTestKey='midnightOwnerTestTab';
+let ownerTest=location.hash==='#midnight-owner-test';
+try{
+ if(ownerTest){
+  sessionStorage.setItem(ownerTestKey,'1');
+  window.history.replaceState(window.history.state,'',location.pathname+location.search);
+ }
+ ownerTest=sessionStorage.getItem(ownerTestKey)==='1';
+}catch{}
 function landing(){
  const query=new URLSearchParams(location.search);
  const source=tag(query.get('utm_source'));
@@ -38,13 +47,13 @@ function context(){
    const entry=landing(),saved=tab||(entry.continued?read(sessionKey):null);
    const previous=saved?.attribution||direct;
    const sameTag=entry.tags&&['source','campaign','post'].every(key=>entry.tags[key]===previous[key]);
-   const reuse=!activeSession&&current(saved)&&(entry.tags?sameTag:entry.continued);
-   activeSession=reuse?saved:{id:uuid(),attribution:entry.tags||(entry.referral?{...direct,source:entry.referral}:direct)};
+   const reuse=!activeSession&&current(saved)&&Boolean(saved.ownerTest)===ownerTest&&(entry.tags?sameTag:entry.continued);
+   activeSession=reuse?saved:{id:uuid(),ownerTest,attribution:entry.tags||(entry.referral?{...direct,source:entry.referral}:direct)};
   }
   activeSession.at=now;
   localStorage.setItem(sessionKey,JSON.stringify(activeSession));
   try{sessionStorage.setItem(sessionKey,JSON.stringify(activeSession));}catch{}
-  return {consented:true,visitorId:visitor,sessionId:activeSession.id,...(activeSession.attribution||direct)};
+  return {consented:true,visitorId:visitor,sessionId:activeSession.id,ownerTest,...(activeSession.attribution||direct)};
  }catch{return null;}
 }
 async function drain(){
@@ -58,7 +67,7 @@ async function drain(){
  catch{clearTimeout(retryTimer);retryTimer=setTimeout(()=>{retryTimer=null;drain();},Math.min(60000,1000*2**Math.min(attempt++,6)));}
  finally{sending=false;}
 }
-function event(type,productId,extra){const c=context();if(!c)return;const once=['page_view','product_view','checkout_start'].includes(type),dedup=c.sessionId+':'+type+':'+(productId||'')+':'+page;if(once&&seen.has(dedup))return;if(once)seen.add(dedup);pending.push({at:Date.now(),payload:{eventId:uuid(),visitorId:c.visitorId,sessionId:c.sessionId,type,page,source:c.source,campaign:c.campaign,post:c.post,device:innerWidth<768?'phone':innerWidth<1025?'tablet':'desktop',...(productId?{productId}:{}),...(extra||{})}});pending=pending.slice(-100);persist();drain();}
+function event(type,productId,extra){const c=context();if(!c)return;const once=['page_view','product_view','checkout_start'].includes(type),dedup=c.sessionId+':'+type+':'+(productId||'')+':'+page;if(once&&seen.has(dedup))return;if(once)seen.add(dedup);pending.push({at:Date.now(),payload:{eventId:uuid(),visitorId:c.visitorId,sessionId:c.sessionId,type,page,test:c.ownerTest,source:c.source,campaign:c.campaign,post:c.post,device:innerWidth<768?'phone':innerWidth<1025?'tablet':'desktop',...(productId?{productId}:{}),...(extra||{})}});pending=pending.slice(-100);persist();drain();}
 const currentProduct=()=>page==='product'?document.body.dataset.productId||new URLSearchParams(location.search).get('id')||location.pathname.match(/products\/(\d+)\.html/)?.[1]||null:null;
 let shownSince=document.visibilityState==='visible'?Date.now():null,shownMs=0,sentSeconds=0;
 function flushTime(){if(shownSince!==null){shownMs+=Date.now()-shownSince;shownSince=document.visibilityState==='visible'?Date.now():null;}if(!allowed()||!endpoint){shownMs=0;return;}const seconds=Math.min(1800-sentSeconds,Math.floor(shownMs/1000));if(seconds<1)return;shownMs-=seconds*1000;sentSeconds+=seconds;event('page_time',currentProduct(),{seconds});}
@@ -67,7 +76,7 @@ setInterval(()=>{if(document.visibilityState==='visible')flushTime();},15000);
 function start(){if(!allowed()){stop();return;}drain();event('page_view');const id=currentProduct();if(id)event('product_view',id);}
 window.MidnightStoreTracking={context};
 document.addEventListener('click',e=>{const a=e.target.closest?.('a[href]');if(!a||!a.closest('.product-card,.home-outfit-images,.opening-product,.hero-product'))return;try{const u=new URL(a.href);if(u.origin!==location.origin)return;const id=u.searchParams.get('id')||u.pathname.match(/products\/(\d+)\.html/)?.[1];if(id)event('product_click',id);}catch{}});
-document.addEventListener('midnight:commerce',e=>{if(e.detail?.event==='add_to_cart')for(const item of e.detail.items||[])event('add_to_bag',String(item.item_id));});document.addEventListener('midnight:checkout-start',()=>event('checkout_start'));
+document.addEventListener('midnight:commerce',e=>{if(e.detail?.event==='add_to_cart')for(const item of e.detail.items||[])event('add_to_bag',String(item.item_id));});document.addEventListener('midnight:checkout-start',e=>event('checkout_start',null,{test:ownerTest||e.detail?.testMode===true}));
 window.addEventListener('storage',e=>{if(e.key===consentKey)start();});window.addEventListener('midnight:analytics-consent',start);
 let configuring=false,configurationAttempt=0;
 async function connect(){

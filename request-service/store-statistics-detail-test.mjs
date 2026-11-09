@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {statisticsDetail} from './store-statistics-detail.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {shoppingJourney, statisticsDetail} from './store-statistics-detail.mjs';
 import {reportingRange} from './reporting-range.mjs';
 const rangeFor = (period, now) => reportingRange(new URLSearchParams({period}), now);
 test('period comparison, Mountain Time day grouping and refunds keep independent time scopes',()=>{
@@ -29,13 +29,17 @@ test('journey counts ordered steps per session and keeps direct checkout outside
     event('only-visit', 'page_view'),
     event('direct', 'checkout_start'),
   ];
-  const report = statisticsDetail({
-    range: rangeFor('7', now), device: 'phone', events,
-    previousEvents: [], earlierVisitors: new Set(), liveOrders: [], catalog: new Map(),
-  });
-  assert.deepEqual(report.journey.map(step => [step.sessions, step.noNext]), [
-    [3, 1], [2, 1], [1, 0], [1, null],
+  const journey = shoppingJourney(events, [
+    {session:'paid-1',checkoutSession:'full'}, {session:'paid-1',checkoutSession:'full'},
+    {session:'paid-2',checkoutSession:'full'}, {session:'paid-3',checkoutSession:'direct'},
+    {session:'legacy',checkoutSession:null},
   ]);
+  assert.deepEqual(journey.map(step => [step.sessions, step.noNext, step.orders]), [
+    [3, 1, null], [2, 1, null], [1, 0, null], [1, 0, null], [1, null, 2],
+  ]);
+  assert.equal(journey[1].nextPercent,50);
+  assert.equal(journey[3].nextPercent,100);
+  assert.equal(shoppingJourney([],[])[0].nextPercent,null);
 });
 
 test('Mountain Time presets and exact dates cross both daylight saving changes', () => {
