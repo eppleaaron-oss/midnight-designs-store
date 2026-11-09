@@ -1,6 +1,5 @@
-const DAY=86400000;
+import {REPORTING_ZONE, mountainDate, shiftDate} from './reporting-range.mjs';
 const unique=(rows,key)=>new Set(rows.map(r=>r[key])).size;
-const date=at=>new Date(at).toISOString().slice(0,10);
 const sum=(rows,key)=>rows.reduce((n,r)=>n+(r[key]||0),0);
 function shoppingJourney(events) {
   const steps = [
@@ -28,18 +27,30 @@ function shoppingJourney(events) {
   }));
 }
 
-export function statisticsDetail({now,start,period,device,events,previousEvents,earlierVisitors,liveOrders,catalog}){
- const duration=now-start,previousStart=start-duration,previousOrders=liveOrders.filter(o=>o.sale.paidAt>=previousStart&&o.sale.paidAt<start),paid=liveOrders.filter(o=>o.sale.paidAt>=start&&o.sale.paidAt<=now);
+export function statisticsDetail({range,device,events,previousEvents,earlierVisitors,liveOrders,catalog}){
+ const {start,end,startDate,endDate,today,previousStart}=range;
+ const previousOrders=liveOrders.filter(o=>previousStart!==null&&o.sale.paidAt>=previousStart&&o.sale.paidAt<start);
+ const paid=liveOrders.filter(o=>o.sale.paidAt>=start&&o.sale.paidAt<end);
  const visits=events.filter(e=>e.type==='page_view'),oldVisits=previousEvents.filter(e=>e.type==='page_view');
  const metric=(n,b)=>({current:n,previous:b,change:b?100*(n-b)/b:null});
  const currentGross=paid.reduce((n,o)=>n+o.sale.subtotal,0),oldGross=previousOrders.reduce((n,o)=>n+o.sale.subtotal,0);
- const comparison=period==='all'?null:{label:'Immediately preceding equal-length window',start:new Date(previousStart).toISOString(),end:new Date(start).toISOString(),visitors:metric(unique(visits,'visitor'),unique(oldVisits,'visitor')),sessions:metric(unique(visits,'session'),unique(oldVisits,'session')),orders:metric(paid.length,previousOrders.length),revenue:metric(currentGross,oldGross)};
- const trend=new Map();for(let at=Date.parse(date(start));at<=now;at+=DAY)trend.set(date(at),{date:date(at),visitors:0,sessions:0,pageViews:0,orders:0,revenue:0,refunds:0});
- for(const [key,row]of trend){const dayVisits=visits.filter(e=>date(e.at)===key);row.visitors=unique(dayVisits,'visitor');row.sessions=unique(dayVisits,'session');row.pageViews=dayVisits.length;}
- for(const o of paid){const row=trend.get(date(o.sale.paidAt));if(row){row.orders++;row.revenue+=o.sale.subtotal;}}
- for(const o of liveOrders)for(const refund of o.sale.refundEvents||[])if(refund.at>=start&&refund.at<=now){const row=trend.get(date(refund.at));if(row)row.refunds+=refund.amount;}
+ const comparison=previousStart===null?null:{label:'Previous Mountain Time calendar range',start:new Date(previousStart).toISOString(),end:new Date(start).toISOString(),visitors:metric(unique(visits,'visitor'),unique(oldVisits,'visitor')),sessions:metric(unique(visits,'session'),unique(oldVisits,'session')),orders:metric(paid.length,previousOrders.length),revenue:metric(currentGross,oldGross)};
+ const trend=new Map();
+ for(let date=startDate;date<=endDate;date=shiftDate(date,1)){
+   trend.set(date,{date,visitors:new Set(),sessions:new Set(),pageViews:0,orders:0,revenue:0,refunds:0});
+ }
+ for(const visit of visits){
+   const row=trend.get(mountainDate(visit.at));
+   if(!row)continue;
+   row.visitors.add(visit.visitor);
+   row.sessions.add(visit.session);
+   row.pageViews++;
+ }
+ for(const o of paid){const row=trend.get(mountainDate(o.sale.paidAt));if(row){row.orders++;row.revenue+=o.sale.subtotal;}}
+ for(const o of liveOrders)for(const refund of o.sale.refundEvents||[])if(refund.at>=start&&refund.at<end){const row=trend.get(mountainDate(refund.at));if(row)row.refunds+=refund.amount;}
+ const daily=[...trend.values()].map(row=>({...row,visitors:row.visitors.size,sessions:row.sessions.size}));
  const devices=[...new Set(visits.map(e=>e.device))].map(device=>{const rows=visits.filter(e=>e.device===device);return {device,visitors:unique(rows,'visitor'),sessions:unique(rows,'session'),pageViews:rows.length};}).sort((a,b)=>b.sessions-a.sessions);
  const pages=[...new Set(events.map(e=>e.page))].map(page=>{const rows=events.filter(e=>e.page===page),views=rows.filter(e=>e.type==='page_view');return {page,views:views.length,visitors:unique(views,'visitor'),seconds:sum(rows.filter(e=>e.type==='page_time'),'seconds')};}).sort((a,b)=>b.views-a.views);
  const catalogProducts=[...catalog.values()];
- return {journey:shoppingJourney(events),window:{start:new Date(start).toISOString(),end:new Date(now).toISOString(),timezone:'UTC',salesDeviceFilter:'All devices'},comparison,daily:[...trend.values()],devices,pages,averageOrderValue:paid.length?Math.round(currentGross/paid.length):null,observedVisitors:{firstObserved:[...new Set(visits.map(e=>e.visitor))].filter(v=>!earlierVisitors.has(v)).length,returning:[...new Set(visits.map(e=>e.visitor))].filter(v=>earlierVisitors.has(v)).length,label:'First observed / seen earlier in retained consented browsing history; not new or returning customers.'},catalog:{products:catalogProducts.length,variants:catalogProducts.reduce((n,p)=>n+p.variants.length,0),availableVariants:catalogProducts.reduce((n,p)=>n+p.variants.filter(v=>v.availability==='active'&&v.ownerAvailable!==false&&v.size&&v.price>0).length,0)},unavailableMetrics:['Profit and margin: supplier costs, payment fees and other business expenses are not reconciled here.','Abandoned carts: a checkout start without an attributed purchase is not proof of abandonment.','All-customer conversion, demographics and locations: consented browsing is incomplete and these attributes are not collected.','Historical visits before tracking and visits outside the 180-day retention window cannot be reconstructed.'],scope:{traffic:device==='all'?'All consenting screen-size cohorts':'Consenting '+device+' screen-size cohort',sales:'All devices, verified live payments in the selected period',operations:'All saved verified live paid orders',reactions:'Current all-time choices'}};
+ return {journey:shoppingJourney(events),window:{start:new Date(start).toISOString(),end:new Date(end).toISOString(),startDate,endDate,today,timezone:REPORTING_ZONE,salesDeviceFilter:'All devices'},comparison,daily,devices,pages,averageOrderValue:paid.length?Math.round(currentGross/paid.length):null,observedVisitors:{firstObserved:[...new Set(visits.map(e=>e.visitor))].filter(v=>!earlierVisitors.has(v)).length,returning:[...new Set(visits.map(e=>e.visitor))].filter(v=>earlierVisitors.has(v)).length,label:'First observed / seen earlier in retained consented browsing history; not new or returning customers.'},catalog:{products:catalogProducts.length,variants:catalogProducts.reduce((n,p)=>n+p.variants.length,0),availableVariants:catalogProducts.reduce((n,p)=>n+p.variants.filter(v=>v.availability==='active'&&v.ownerAvailable!==false&&v.size&&v.price>0).length,0)},unavailableMetrics:['Profit and margin: supplier costs, payment fees and other business expenses are not reconciled here.','Abandoned carts: a checkout start without an attributed purchase is not proof of abandonment.','All-customer conversion, demographics and locations: consented browsing is incomplete and these attributes are not collected.','Historical visits before tracking and visits outside the retention window cannot be reconstructed.'],scope:{traffic:device==='all'?'All consenting screen-size cohorts':'Consenting '+device+' screen-size cohort',sales:'All devices, verified live payments in the selected period',operations:'Verified live orders paid in the selected range',reactions:'Current choices updated in the selected range'}};
 }
