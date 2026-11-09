@@ -5,13 +5,13 @@ import vm from 'node:vm';
 import {webcrypto} from 'node:crypto';
 const code=await fs.readFile(new URL('../store-events.js',import.meta.url),'utf8');
 const storage=(entries=[])=>{const m=new Map(entries);return {getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k)};};
-async function fixture({path='/',configStatuses=[200],eventStatuses=[],local=storage(),session=storage(),privacy=false}={}){
+async function fixture({path='/',configStatuses=[200],eventStatuses=[],local=storage(),session=storage(),privacy=false,referrer='https://l.facebook.com/l.php?secret=excluded',navigationType='navigate'}={}){
  let now=100000,warnings=0;const timers=[],intervals=[],sent=[],configURLs=[],docEvents={},winEvents={};
- const document={baseURI:'https://midnight-designs.store'+path,currentScript:{src:'https://midnight-designs.store/store-events.js?v=3'},body:{dataset:{}},referrer:'https://l.facebook.com/l.php?secret=excluded',visibilityState:'visible',addEventListener:(k,f)=>(docEvents[k]??=[]).push(f)};
+ const document={baseURI:'https://midnight-designs.store'+path,currentScript:{src:'https://midnight-designs.store/store-events.js?v=3'},body:{dataset:{}},referrer,visibilityState:'visible',addEventListener:(k,f)=>(docEvents[k]??=[]).push(f)};
  const window={addEventListener:(k,f)=>(winEvents[k]??=[]).push(f)};
  class Clock extends Date {static now(){return now;}}
  const fetch=async (url,options)=>{if(!options?.method){configURLs.push(String(url));const status=configStatuses.shift()??200;return {ok:status===200,status,json:async()=>({url:'https://midnight-designs-backend.onrender.com'})};}sent.push(JSON.parse(options.body));const status=eventStatuses.shift()??200;return {ok:status===200,status};};
- vm.runInNewContext(code,{window,document,location:new URL('https://midnight-designs.store'+path),navigator:{globalPrivacyControl:privacy},localStorage:local,sessionStorage:session,crypto:{getRandomValues:webcrypto.getRandomValues.bind(webcrypto)},URL,URLSearchParams,Date:Clock,AbortSignal,fetch,innerWidth:390,console:{warn:()=>warnings++},setTimeout:(fn,ms)=>{const x={fn,ms};timers.push(x);return x;},clearTimeout:x=>{if(x)x.cancelled=true;},setInterval:(fn,ms)=>{intervals.push({fn,ms});return intervals.length;}});
+ vm.runInNewContext(code,{window,document,location:new URL('https://midnight-designs.store'+path),navigator:{globalPrivacyControl:privacy},localStorage:local,sessionStorage:session,crypto:{getRandomValues:webcrypto.getRandomValues.bind(webcrypto)},URL,URLSearchParams,Date:Clock,performance:{getEntriesByType:()=>[{type:navigationType}]},AbortSignal,fetch,innerWidth:390,console:{warn:()=>warnings++},setTimeout:(fn,ms)=>{const x={fn,ms};timers.push(x);return x;},clearTimeout:x=>{if(x)x.cancelled=true;},setInterval:(fn,ms)=>{intervals.push({fn,ms});return intervals.length;}});
  const settle=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};
  const emit=async (target,key,value={})=>{for(const fn of (target==='document'?docEvents:winEvents)[key]||[])fn(value);await settle();};
  await settle();
@@ -25,6 +25,22 @@ test('Facebook landing and new hoodie events reach configured backend; nested pa
  assert.match(f.sent[0].visitorId,/^[a-f0-9-]{36}$/);assert.equal(f.sent[0].device,'phone');
  assert.ok(!JSON.stringify(f.sent).includes('secret'));assert.ok(!JSON.stringify(f.sent).includes('l.php'));
 });
+test('campaign and post follow store navigation while a fresh untagged entry starts direct',async()=>{
+ const landing=await fixture({path:'/shop.html?utm_source=facebook&utm_campaign=Hoodies&utm_content=Rose-Video',referrer:'https://www.instagram.com/'});
+ const product=await fixture({path:'/product.html?id=490162548',referrer:'https://midnight-designs.store/shop.html',local:landing.local,session:landing.session});
+ const bag=await fixture({path:'/cart.html',referrer:'https://midnight-designs.store/product.html',local:landing.local,session:landing.session});
+ await bag.emit('document','midnight:checkout-start');
+ for(const event of [...landing.sent,...product.sent,...bag.sent]){
+  assert.equal(event.sessionId,landing.sent[0].sessionId);
+  assert.equal(event.source,'facebook');
+  assert.equal(event.campaign,'hoodies');
+  assert.equal(event.post,'rose-video');
+ }
+ assert.ok(bag.sent.some(event=>event.type==='checkout_start'));
+ const direct=await fixture({path:'/shop.html',referrer:'',local:landing.local,session:landing.session});
+ assert.equal(direct.sent[0].source,'direct');
+ assert.notEqual(direct.sent[0].sessionId,landing.sent[0].sessionId);
+});
 test('missing configuration retries and starts counting after recovery',async()=>{
  const f=await fixture({configStatuses:[404,200]});assert.equal(f.sent.length,0);assert.equal(f.warnings(),1);
  await f.retry();assert.equal(f.sent.length,1);assert.equal(f.sent[0].type,'page_view');
@@ -37,7 +53,7 @@ test('temporary supplier-independent backend failure replays same event UUID and
 });
 test('unacknowledged events survive reload without being re-keyed',async()=>{
  const a=await fixture({eventStatuses:[503]}),id=a.sent[0].eventId;
- const b=await fixture({local:a.local,session:a.session});
+ const b=await fixture({local:a.local,session:a.session,navigationType:'reload'});
  assert.equal(b.sent[0].eventId,id);assert.equal(b.sent[0].visitorId,a.sent[0].visitorId);
  assert.equal(b.session.getItem('midnightStorePendingV1'),null);
 });
