@@ -1,4 +1,4 @@
-import {REPORTING_ZONE, mountainDate, shiftDate} from './reporting-range.mjs';
+import {REPORTING_ZONE, mountainDate, mountainMidnight, shiftDate} from './reporting-range.mjs';
 const unique=(rows,key)=>new Set(rows.map(r=>r[key])).size;
 const sum=(rows,key)=>rows.reduce((n,r)=>n+(r[key]||0),0);
 function shoppingJourney(events) {
@@ -44,11 +44,12 @@ function bucketDate(date, grouping) {
   return date;
 }
 
-function trendSeries(range, grouping, visits, orders, trafficAvailable = true) {
+function trendSeries(range, grouping, visits, orders, trafficAvailable = true, history = null) {
   const {start, end, startDate, endDate} = range;
   const hourly = grouping === 'hour';
   const keyAt = at => hourly ? Math.floor(at / HOUR) * HOUR : bucketDate(mountainDate(at), grouping);
   const buckets = new Map();
+  const archived = new Map((history?.archived || []).map(row => [row.date, row]));
   const add = (key, date, label) => buckets.set(key, {
     date, label, visitors: new Set(), sessions: new Set(), pageViews: 0,
     orders: 0, revenue: 0, refunds: 0,
@@ -70,12 +71,35 @@ function trendSeries(range, grouping, visits, orders, trafficAvailable = true) {
       }
     }
   }
-  if (trafficAvailable) for (const visit of visits) {
+  if (trafficAvailable || history) for (const visit of visits) {
+    if (archived.has(mountainDate(visit.at))) continue;
     const row = buckets.get(keyAt(visit.at));
     if (!row) continue;
     row.visitors.add(visit.visitor);
     row.sessions.add(visit.session);
     row.pageViews++;
+  }
+  if (history) {
+    const hasDay = date => history.startedOn && date >= history.startedOn && mountainMidnight(date) >= history.cutoff;
+    if (hourly) {
+      for (const row of buckets.values()) {
+        const at = Date.parse(row.date);
+        const date = mountainDate(at);
+        if (!history.startedOn || date < history.startedOn || at < history.cutoff) row.missingTraffic = true;
+      }
+    } else {
+      for (let date = startDate; date <= endDate; date = shiftDate(date, 1)) {
+        const row = buckets.get(bucketDate(date, grouping));
+        const saved = archived.get(date);
+        if (saved) {
+          row.pageViews += saved.pageViews;
+          if (grouping === 'day') row.archived = saved;
+          else row.missingDistinct = true;
+        } else if (!hasDay(date)) {
+          row.missingTraffic = true;
+        }
+      }
+    }
   }
   for (const order of orders) {
     if (order.sale.paidAt >= start && order.sale.paidAt < end) {
@@ -88,33 +112,38 @@ function trendSeries(range, grouping, visits, orders, trafficAvailable = true) {
     }
   }
   return [...buckets.values()].map(row => ({
-    ...row,
-    visitors: trafficAvailable ? row.visitors.size : null,
-    sessions: trafficAvailable ? row.sessions.size : null,
-    pageViews: trafficAvailable ? row.pageViews : null,
+    date: row.date,
+    label: row.label,
+    orders: row.orders,
+    revenue: row.revenue,
+    refunds: row.refunds,
+    visitors: (history || trafficAvailable) && !row.missingTraffic && !row.missingDistinct ? (row.archived?.visitors ?? row.visitors.size) : null,
+    sessions: (history || trafficAvailable) && !row.missingTraffic && !row.missingDistinct ? (row.archived?.sessions ?? row.sessions.size) : null,
+    pageViews: (history || trafficAvailable) && !row.missingTraffic ? row.pageViews : null,
   }));
 }
 
-export function statisticsDetail({range,device,events,previousEvents,earlierVisitors,liveOrders,catalog}){
+export function statisticsDetail({range,device,events,previousEvents,earlierVisitors,liveOrders,catalog,selectedHistory,baselineHistory}){
  const {start,end,startDate,endDate,today,grouping,baseline}=range;
  const paid=liveOrders.filter(o=>o.sale.paidAt>=start&&o.sale.paidAt<end);
  const visits=events.filter(e=>e.type==='page_view'),oldVisits=previousEvents.filter(e=>e.type==='page_view');
  const metric=(current,previous)=>({current,previous,change:previous>0?100*(current-previous)/previous:null});
  const currentGross=sum(paid.map(o=>o.sale),'subtotal');
- const daily=trendSeries(range,'day',visits,liveOrders);
- const trend=grouping==='day'?daily:trendSeries(range,grouping,visits,liveOrders);
+ const daily=trendSeries(range,'day',visits,liveOrders,true,selectedHistory);
+ const trend=grouping==='day'?daily:trendSeries(range,grouping,visits,liveOrders,true,selectedHistory);
  let comparison=null;
  if(baseline){
    const previousOrders=liveOrders.filter(o=>o.sale.paidAt>=baseline.start&&o.sale.paidAt<baseline.end);
+   const trafficAvailable=baseline.trafficAvailable&&(!baselineHistory||Boolean(baselineHistory.startedOn&&baseline.startDate>=baselineHistory.startedOn));
    comparison={
      mode:baseline.mode,label:baseline.label,startDate:baseline.startDate,endDate:baseline.endDate,
      start:new Date(baseline.start).toISOString(),end:new Date(baseline.end).toISOString(),
-     trafficAvailable:baseline.trafficAvailable,
-     visitors:metric(unique(visits,'visitor'),baseline.trafficAvailable?unique(oldVisits,'visitor'):null),
-     sessions:metric(unique(visits,'session'),baseline.trafficAvailable?unique(oldVisits,'session'):null),
+     trafficAvailable,
+     visitors:metric(unique(visits,'visitor'),trafficAvailable?unique(oldVisits,'visitor'):null),
+     sessions:metric(unique(visits,'session'),trafficAvailable?unique(oldVisits,'session'):null),
      orders:metric(paid.length,previousOrders.length),
      revenue:metric(currentGross,sum(previousOrders.map(o=>o.sale),'subtotal')),
-     trend:trendSeries(baseline,grouping,oldVisits,liveOrders,baseline.trafficAvailable),
+     trend:trendSeries(baseline,grouping,oldVisits,liveOrders,trafficAvailable,baselineHistory),
    };
  }
  const devices=[...new Set(visits.map(e=>e.device))].map(device=>{const rows=visits.filter(e=>e.device===device);return {device,visitors:unique(rows,'visitor'),sessions:unique(rows,'session'),pageViews:rows.length};}).sort((a,b)=>b.sessions-a.sessions);

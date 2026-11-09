@@ -106,3 +106,54 @@ test('hourly chart keeps both repeated hours on the fall DST day', () => {
   assert.notEqual(repeated[0].label,repeated[1].label);
   assert.equal(report.comparison,null);
 });
+
+test('daily traffic and tracking start survive a database backup and raw-event expiry', async () => {
+  const {DatabaseSync, backup} = await import('node:sqlite');
+  const {mkdtemp, rm} = await import('node:fs/promises');
+  const {tmpdir} = await import('node:os');
+  const {join} = await import('node:path');
+  const {storeStatistics} = await import('./store-statistics.mjs');
+  const folder = await mkdtemp(join(tmpdir(), 'store-history-'));
+  const db = new DatabaseSync(':memory:');
+  let restored;
+  let now = Date.parse('2026-11-02T08:00:00Z');
+  const options = {products: async () => new Map(), orders: () => [], clock: () => now};
+  const day = '2026-11-01';
+  const selected = (group, start=day, end=day) => reportingRange(
+    new URLSearchParams({period:'custom',start,end,group,compare:'off'}), now);
+  try {
+    db.exec('CREATE TABLE product_votes(product TEXT,choice TEXT,updated TEXT)');
+    storeStatistics({db,...options});
+    const insert = db.prepare("INSERT INTO store_events(id,visitor,session,type,source,page,device,at) VALUES(?,'browser','session',?,'direct','home',?,?)");
+    insert.run('a','page_view','phone',Date.parse('2026-11-01T07:30:00Z'));
+    insert.run('b','page_view','desktop',Date.parse('2026-11-01T08:30:00Z'));
+    insert.run('c','checkout_start','phone',Date.parse('2026-11-02T06:59:00Z'));
+    const original = storeStatistics({db,...options});
+    const before = await original.report(selected('day'));
+    assert.equal(before.history.startedOn, day);
+    assert.equal(before.daily[0].visitors, 1);
+    assert.equal(before.daily[0].pageViews, 2);
+
+    const file = join(folder, 'restored.sqlite');
+    await backup(db, file);
+    restored = new DatabaseSync(file);
+    restored.exec('DELETE FROM store_events');
+    now = Date.parse('2027-06-01T18:00:00Z');
+    const recovered = storeStatistics({db:restored,...options});
+    const after = await recovered.report(selected('day'));
+    assert.equal(after.history.startedOn, day);
+    assert.equal(after.traffic.pageViews, 2);
+    assert.equal(after.shopping.checkoutStarts, 1);
+    assert.equal(after.daily[0].visitors, 1);
+    assert.equal(after.daily[0].sessions, 1);
+    assert.equal((await recovered.report(selected('day'),'phone')).daily[0].pageViews, 1);
+    assert.equal((await recovered.report(selected('month'))).trend[0].pageViews, 2);
+    assert.equal((await recovered.report(selected('month'))).trend[0].visitors, null);
+    assert.equal((await recovered.report(selected('hour'))).trend[0].pageViews, null);
+    assert.equal((await recovered.report(selected('day','2026-10-31','2026-10-31'))).daily[0].pageViews, null);
+  } finally {
+    restored?.close();
+    db.close();
+    await rm(folder,{recursive:true,force:true});
+  }
+});
