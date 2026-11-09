@@ -194,11 +194,20 @@ function render(d){
    table('storeJourney', d.journey, [
      ['Tracked step', row => row.label],
      ['Sessions reached', row => number(row.sessions)],
-     ['No next step recorded', row => row.noNext === null ? 'Final tracked step' : number(row.noNext)],
+     ['Reached next step', row => row.nextPercent == null ? '—' : row.nextPercent.toFixed(1)+'%'],
+     ['No next step recorded', row => row.noNext === null ? '—' : number(row.noNext)],
+     ['Confirmed orders', row => row.orders == null ? '—' : number(row.orders)],
    ]);
  } else {
    $('storeJourney').replaceChildren(node('p', 'Shopping journey data is unavailable.'));
  }
+ const funnel=d.funnel;
+ const funnelNotes=funnel?[
+   funnel.includeTests?'Owner and test sessions are included. '+number(funnel.testOrders)+' confirmed Stripe test orders in this range.':number(funnel.excludedSessions)+' marked owner or test sessions excluded from the funnel.',
+   number(funnel.paidOrdersOutsideFunnel)+' confirmed orders outside the tracked sequence across all screen sizes.',
+   'Orders without a matching session still appear in the sales totals. Funnel steps use up to 180 days of raw browsing events.',
+ ]:[];
+ $('storeFunnelNote').textContent=funnelNotes.join(' ');
  table('storeDevices',d.devices||[],[['Screen-size cohort',r=>r.device],['Visitors',r=>r.visitors],['Sessions',r=>r.sessions],['Page views',r=>r.pageViews]]);
  table('storePages',d.pages||[],[['Page',r=>r.page],['Views',r=>r.views],['Visitors',r=>r.visitors],['Visible time',r=>duration(r.seconds)]]);
  rankings();renderProducts();renderTrend();
@@ -300,6 +309,7 @@ function applyFilters(event) {
   const filters = new URLSearchParams({
     period, device: $('analyticsDevice').value, include: 'artwork',
     group: $('analyticsGrouping').value, compare: $('analyticsCompare').value,
+    tests: $('includeFunnelTests').checked ? 'show' : 'hide',
   });
   if (period === 'custom') {
     if (!$('analyticsFilters').reportValidity()) return;
@@ -376,6 +386,10 @@ $('storeTrackedLink').addEventListener('submit', async event => {
     output.select();
     status.textContent = 'Tracked link is ready. Copy it from the selected field.';
   }
+});
+$('includeFunnelTests').addEventListener('change', () => {
+  appliedFilters.set('tests', $('includeFunnelTests').checked ? 'show' : 'hide');
+  refresh();
 });
 $('refreshStoreStats').onclick = refresh;
 $('analyticsFilters').addEventListener('submit', applyFilters);

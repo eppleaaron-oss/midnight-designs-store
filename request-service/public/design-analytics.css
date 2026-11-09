@@ -113,3 +113,5 @@
 .stats-trend-series p { margin: .35rem 0; }
 .stats-trend-series + .stats-trend-series { border-top: 1px solid #493934; padding-top: 1rem; }
 .stats-comparison-chart .stats-chart-bar { background: linear-gradient(#b9a189,#756452); }
+
+.statistics-page #includeFunnelTests { min-height: auto; vertical-align: middle; accent-color: #a25058; }
