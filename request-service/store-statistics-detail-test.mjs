@@ -10,3 +10,28 @@ test('empty denominators and missing history remain unavailable, not fabricated 
  const d=statisticsDetail({now:Date.now(),start:Date.now()-86400000,period:'all',device:'all',events:[],previousEvents:[],earlierVisitors:new Set(),liveOrders:[],catalog:new Map()});
  assert.equal(d.comparison,null);assert.equal(d.averageOrderValue,null);assert.equal(d.devices.length,0);assert(d.unavailableMetrics.some(s=>s.startsWith('Profit')));
 });
+
+test('journey counts ordered steps per session and keeps direct checkout outside the ordered sequence', () => {
+  const now = Date.parse('2026-11-09T12:00:00Z');
+  const event = (session, type) => ({
+    session, visitor: session, type, page: 'shop', device: 'phone', at: now,
+  });
+  const events = [
+    event('full', 'page_view'),
+    event('full', 'product_view'),
+    event('full', 'product_view'),
+    event('full', 'add_to_bag'),
+    event('full', 'checkout_start'),
+    event('browsed', 'page_view'),
+    event('browsed', 'product_view'),
+    event('only-visit', 'page_view'),
+    event('direct', 'checkout_start'),
+  ];
+  const report = statisticsDetail({
+    now, start: now - 86400000, period: '7', device: 'phone', events,
+    previousEvents: [], earlierVisitors: new Set(), liveOrders: [], catalog: new Map(),
+  });
+  assert.deepEqual(report.journey.map(step => [step.sessions, step.noNext]), [
+    [3, 1], [2, 1], [1, 0], [1, null],
+  ]);
+});
