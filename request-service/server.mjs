@@ -90,7 +90,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const feedbackProducts=feedbackCatalog({local:()=>JSON.parse(readFileSync(new URL('../products.json',import.meta.url),'utf8')).products,remote:feedbackCatalogLoader||(secure?async()=>{const r=await fetch(storefrontOrigin+'/products.json?feedback='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Catalog unavailable');return (await r.json()).products;}:null),ttl:feedbackCatalogLoader?0:60000});
  const reviewHandler=productReviews({db,products:feedbackProducts,auth,body,send,fail,limit,origin,storefrontOrigin});
  const payments=paymentSystem({db,origin,storefrontOrigin,body,send,fail,limit,auth,settings:paymentSettings,fetchImpl:paymentFetch,catalogLoader:paymentCatalogLoader,checkpoint:()=>requestCheckpoint(),writable:()=>githubBackups.assertWritable(),durable:()=>githubBackups.snapshot().configured||durableQueueStorage(dbPath),journalConnection:()=>githubBackups.connection(),journalSettings:paymentJournalSettings});
- const storeStats=storeStatistics({db,products:feedbackProducts,orders:()=>payments.analyticsOrders(),auth,body,send,fail,limit,origin,storefrontOrigin});
+ const storeStats=storeStatistics({db,products:feedbackProducts,orders:()=>payments.analyticsOrders(),artworkReport:designStats.report,auth,body,send,fail,limit,origin,storefrontOrigin});
  const catalogHandler=catalogManagement({db,origin,storefrontOrigin,passwordHash,body,send,fail,limit,token:catalogToken,fetchImpl:catalogFetch});
  const layoutHandler=factoryLayouts({db,auth:factoryAuth,body,send,fail,limit,origin});
  const brandingHandler=factoryBranding({db,auth:factoryAuth,body,send,fail,limit,origin});

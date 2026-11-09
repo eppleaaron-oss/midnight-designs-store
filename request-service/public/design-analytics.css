@@ -82,3 +82,25 @@
   border: 1px solid var(--line, #4f3b3d);
   border-radius: .5rem;
 }
+
+.stats-date-bar {
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+  margin: 0 0 .5rem;
+  padding: .6rem 0 0;
+  border: 0;
+}
+.stats-date-bar legend { font-weight: 600; }
+.stats-date-options, .stats-custom-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.stats-date-options button[aria-pressed="true"] {
+  border-color: #d4a7a9;
+  background: #503033;
+}
+.stats-custom-dates { margin-top: .75rem; }
+.stats-custom-dates label { flex: 1 1 11rem; min-inline-size: 0; }
+.stats-custom-dates input { box-sizing: border-box; max-inline-size: 100%; color-scheme: dark; }
+.stats-chart-dense { gap: 0; }

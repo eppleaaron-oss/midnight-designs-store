@@ -11,3 +11,33 @@ test('review and request retries appear once as feedback without exposing custom
 test('time on store adds visible seconds per visit and per product; bad durations are rejected',async t=>{const f=await paymentFixture();t.after(()=>f.close());const visitor=randomUUID(),a=randomUUID(),b=randomUUID();await send(f,event(visitor,a));await send(f,event(visitor,b));const timed=(session,seconds,product)=>({...event(visitor,session,'page_time',product),seconds});await send(f,timed(a,30));const twice=await send(f,timed(a,90,'900'));await send(f,twice);await send(f,timed(b,60));for(const seconds of [0,1801,2.5,'60',undefined])assert.equal((await f.call('/api/store-events',timed(a,seconds))).status,400);const r=await report(f);assert.equal(r.traffic.totalSeconds,180);assert.equal(r.traffic.averageVisitSeconds,90);const p=r.popular.find(x=>x.id==='900');assert.equal(p.seconds,90);assert.equal(p.bought,0);await f.reboot();assert.equal((await report(f)).traffic.totalSeconds,180);});
 
 test('every catalog product is discoverable before it receives tracked activity',async t=>{const f=await paymentFixture();t.after(()=>f.close());const r=await report(f);const p=r.popular.find(p=>p.id==='900');assert(p);assert.equal(p.views,0);assert.equal(p.adds,0);assert.equal(p.bought,0);assert.equal(r.catalog.products,1);assert.equal(r.averageOrderValue,null);assert.equal(r.comparison.revenue.change,null);});
+
+test('a single custom Mountain Time range bounds traffic, artwork and reactions', async t => {
+  const fixture = await paymentFixture();
+  t.after(() => fixture.close());
+  const db = fixture.service().db;
+  const start = Date.parse('2025-03-09T07:00:00Z');
+  const end = Date.parse('2025-03-10T06:00:00Z');
+  for (const at of [start - 1, start, end - 1, end]) {
+    const id = randomUUID();
+    db.prepare("INSERT INTO store_events(id,visitor,session,type,source,page,device,at) VALUES(?,?,?,'page_view','direct','home','phone',?)")
+      .run(id, id, id, at);
+    db.prepare("INSERT INTO design_events VALUES(?,'fixture-art','','visitor','view','phone',?)")
+      .run(id, at);
+    db.prepare("INSERT INTO product_votes VALUES('900',?,'like',?)").run(id, new Date(at).toISOString());
+    db.prepare("INSERT INTO design_votes VALUES('fixture-art',?,'like',?)").run(id, new Date(at).toISOString());
+  }
+  const owner = await fixture.login();
+  const range = 'period=custom&start=2025-03-09&end=2025-03-09';
+  const result = await fixture.call('/api/owner/store-statistics?include=artwork&' + range, undefined, owner);
+  assert.equal(result.status, 200, JSON.stringify(result.data));
+  const report = result.data;
+  assert.equal(report.traffic.pageViews, 2);
+  assert.equal(report.artwork.coverage.events, 2);
+  assert.equal(report.artwork.likes[0].count, 2);
+  assert.equal(report.popular.find(p => p.id === '900').likes, 2);
+  assert.equal(report.feedback.designLikes, 2);
+  assert.deepEqual(report.daily.map(day => [day.date, day.pageViews]), [['2025-03-09', 2]]);
+  assert.equal(report.window.timezone, 'America/Denver');
+  assert.equal((await fixture.call('/api/owner/store-statistics?period=custom&start=2025-03-10&end=2025-03-09', undefined, owner)).status, 400);
+});
