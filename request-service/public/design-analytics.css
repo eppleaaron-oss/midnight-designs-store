@@ -104,3 +104,12 @@
 .stats-custom-dates label { flex: 1 1 11rem; min-inline-size: 0; }
 .stats-custom-dates input { box-sizing: border-box; max-inline-size: 100%; color-scheme: dark; }
 .stats-chart-dense { gap: 0; }
+
+.stats-trend-controls { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .75rem; }
+.stats-trend-controls label { flex: 1 1 12rem; min-inline-size: 0; }
+.stats-trend-controls select { width: 100%; }
+.stats-trend-series { min-inline-size: 0; margin-block: 1rem; }
+.stats-trend-series h4 { margin: 0 0 .3rem; }
+.stats-trend-series p { margin: .35rem 0; }
+.stats-trend-series + .stats-trend-series { border-top: 1px solid #493934; padding-top: 1rem; }
+.stats-comparison-chart .stats-chart-bar { background: linear-gradient(#b9a189,#756452); }

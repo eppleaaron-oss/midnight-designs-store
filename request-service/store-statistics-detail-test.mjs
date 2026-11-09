@@ -54,3 +54,55 @@ test('Mountain Time presets and exact dates cross both daylight saving changes',
   assert.throws(() => custom('2026-11-08','2026-11-07'),RangeError);
   assert.throws(() => custom('2026-11-09','2026-11-09'),RangeError);
 });
+
+test('Today uses hourly buckets and compares the same Mountain Time clock across DST', () => {
+  const now = Date.parse('2026-03-09T16:30:00Z'); // 10:30 MDT
+  const range = rangeFor('today', now);
+  assert.equal(range.grouping, 'hour');
+  assert.equal(new Date(range.baseline.end - 1).toISOString(), '2026-03-08T16:30:00.000Z');
+  const beforeSwitch = rangeFor('today', Date.parse('2026-03-08T16:30:00Z'));
+  assert.equal(new Date(beforeSwitch.baseline.end - 1).toISOString(), '2026-03-07T17:30:00.000Z');
+  const year = reportingRange(new URLSearchParams({period:'today',compare:'year'}), Date.parse('2024-02-29T19:15:00Z'));
+  assert.equal(year.baseline.startDate, '2023-02-28');
+  assert.equal(new Date(year.baseline.end - 1).toISOString(), '2023-02-28T19:15:00.000Z');
+});
+
+test('grouped traffic deduplicates visitors and comparison respects its clock cutoff', () => {
+  const now = Date.parse('2026-11-09T16:00:00Z');
+  const range = reportingRange(new URLSearchParams({period:'today',group:'week'}), now);
+  const visit = (at, session) => ({type:'page_view', at, visitor:'same-browser', session, page:'home', device:'phone'});
+  const orders = [range.baseline.end - 1, range.baseline.end].map(paidAt => ({sale:{paidAt,subtotal:2500}}));
+  const report = statisticsDetail({
+    range, device:'all', events:[visit(range.start,'a'),visit(range.start+3600000,'b')],
+    previousEvents:[], earlierVisitors:new Set(), liveOrders:orders, catalog:new Map(),
+  });
+  assert.equal(report.trend[0].date,'2026-11-09');
+  assert.equal(report.trend[0].visitors,1);
+  assert.equal(report.trend[0].sessions,2);
+  assert.equal(report.comparison.orders.previous,1);
+  assert.equal(report.comparison.trend[0].orders,1);
+  assert.equal(rangeFor('7',now).grouping,'day');
+  assert.equal(rangeFor('90',now).grouping,'week');
+  assert.equal(rangeFor('365',now).grouping,'month');
+  const lastYear = reportingRange(new URLSearchParams({period:'30',compare:'year'}), now);
+  const historical = statisticsDetail({
+    range:lastYear, device:'all', events:[], previousEvents:[], earlierVisitors:new Set(),
+    liveOrders:[], catalog:new Map(),
+  });
+  assert.equal(historical.comparison.visitors.previous,null);
+  assert.equal(historical.comparison.trend[0].sessions,null);
+  assert.equal(historical.comparison.trend[0].orders,0);
+});
+
+test('hourly chart keeps both repeated hours on the fall DST day', () => {
+  const range = reportingRange(new URLSearchParams({period:'custom',start:'2026-11-01',end:'2026-11-01',compare:'off'}), Date.parse('2026-11-09T16:00:00Z'));
+  const report = statisticsDetail({
+    range, device:'all', events:[], previousEvents:[], earlierVisitors:new Set(),
+    liveOrders:[], catalog:new Map(),
+  });
+  assert.equal(report.trend.length,25);
+  const repeated = report.trend.filter(row => row.label.includes('01:00'));
+  assert.equal(repeated.length,2);
+  assert.notEqual(repeated[0].label,repeated[1].label);
+  assert.equal(report.comparison,null);
+});
