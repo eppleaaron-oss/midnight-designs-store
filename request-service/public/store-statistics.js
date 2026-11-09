@@ -167,6 +167,7 @@ function renderProducts(){const rows=activityRows(),pages=Math.max(1,Math.ceil(r
  $('storeProductCount').textContent=rows.length?'Showing '+(productPage*20+1)+'–'+Math.min((productPage+1)*20,rows.length)+' of '+rows.length+' products':'No matching products';$('storeProductPrevious').disabled=productPage===0;$('storeProductNext').disabled=productPage>=pages-1;
 }
 function rankings(){const key=$('storeRanking').value;table('storeBestSellers',[...current.bestSellers].sort((a,b)=>b[key]-a[key]),[['Product',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);table('storeCollections',[...current.collections].sort((a,b)=>b[key]-a[key]),[['Collection',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);}
+const sourceLabel=source=>source==='direct'?'Direct / Unknown':source==='facebook'?'Facebook':source==='instagram'?'Instagram':source;
 function render(d){
  current=d;const ratio=d.conversion.visitors;
  const rawCount=value=>d.history?.rawAvailable===false?'Unavailable':number(value);
@@ -180,9 +181,14 @@ function render(d){
  cards('storeAudience',d.observedVisitors?[['First observed in period',d.observedVisitors.firstObserved],['Seen in earlier retained visits',d.observedVisitors.returning]]:[['Visitor history','Unavailable']]);
  if(d.observedVisitors)$('storeAudience').append(node('p',d.observedVisitors.label));
  table('storeSources', [...d.traffic.sources].sort((a,b) => b.sessions-a.sessions), [
-   ['Traffic source', r => r.source === 'direct' ? 'Direct or unknown' : r.source],
+   ['Traffic source', r => sourceLabel(r.source)],
    ['Sessions', r => number(r.sessions)],
    ['Share of sessions', r => d.traffic.sessions ? (100*r.sessions/d.traffic.sessions).toFixed(1)+'%' : 'Unavailable'],
+ ]);
+ table('storeAttribution',d.traffic.attribution||[],[
+   ['Source',r=>sourceLabel(r.source)],['Campaign',r=>r.campaign||'—'],['Post',r=>r.post||'—'],
+   ['Sessions',r=>number(r.sessions)],['Viewed product',r=>number(r.productViewSessions)],
+   ['Added to bag',r=>number(r.bagSessions)],['Started checkout',r=>number(r.checkoutSessions)],
  ]);
  if (Array.isArray(d.journey)) {
    table('storeJourney', d.journey, [
@@ -337,6 +343,40 @@ for (const [id, key] of [['analyticsGrouping', 'group'], ['analyticsCompare', 'c
     refresh();
   });
 }
+const storefront = 'https://midnight-designs.store';
+const linkTag = value => value.trim().toLowerCase().replace(/[^a-z0-9._-]+/g, '-').replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, '');
+$('storeTrackedLink').addEventListener('submit', async event => {
+  event.preventDefault();
+  const status = $('trackedStatus'), output = $('trackedResult');
+  $('trackedResultLabel').hidden = true;
+  let link;
+  try {
+    link = new URL($('trackedDestination').value.trim(), storefront);
+    if (link.protocol !== 'https:' || !['midnight-designs.store','www.midnight-designs.store'].includes(link.host) ||
+        link.username || link.password ||
+        !/^\/(?:index\.html|shop\.html|product\.html|products\/\d+\.html|designs\.html|outfits\.html|custom\.html)?$/.test(link.pathname)) {
+      throw new Error('Enter a Midnight Designs storefront page or product link.');
+    }
+    link.hostname = 'midnight-designs.store';
+    for (const [id, param] of [['trackedSource','utm_source'],['trackedCampaign','utm_campaign'],['trackedPost','utm_content']]) {
+      const value = linkTag($(id).value);
+      if (!value || (param === 'utm_source' && value === 'direct')) throw new Error('Enter a source, campaign, and post using letters or numbers.');
+      link.searchParams.set(param, value);
+    }
+  } catch (error) {
+    status.textContent = error instanceof TypeError ? 'Enter a valid Midnight Designs storefront link.' : error.message;
+    return;
+  }
+  output.value = link.href;
+  $('trackedResultLabel').hidden = false;
+  try {
+    await navigator.clipboard.writeText(output.value);
+    status.textContent = 'Tracked link copied.';
+  } catch {
+    output.select();
+    status.textContent = 'Tracked link is ready. Copy it from the selected field.';
+  }
+});
 $('refreshStoreStats').onclick = refresh;
 $('analyticsFilters').addEventListener('submit', applyFilters);
 $('storeRanking').onchange=()=>{if(current)rankings();};$('storeTrendMetric').onchange=renderTrend;

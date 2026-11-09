@@ -3,10 +3,36 @@ const f=await paymentFixture(),root=resolve('.'),server=createServer(async(req,r
 await context.addInitScript(visitor=>{localStorage.setItem('midnightDesignAnalyticsConsentV1',JSON.stringify({value:'allow'}));localStorage.setItem('midnightDesignAnalyticsVisitorV1',visitor);},visitor);
 await context.route('**/*',async route=>{const req=route.request(),u=new URL(req.url());if(u.origin===site&&u.pathname==='/request-service-config.json')return route.fulfill({json:{url:'https://statistics.fixture'}});if(u.origin===site&&u.pathname==='/products.json')return route.fulfill({json:{products:[f.product]}});if(u.origin===site&&u.pathname==='/analytics-config.json')return route.fulfill({json:{measurementId:null}});if(u.origin==='https://statistics.fixture'){const r=await f.call(u.pathname+u.search,req.method()==='POST'?req.postDataJSON():undefined);return route.fulfill({status:r.status,json:r.data});}if(u.origin===site||u.origin===f.base())return route.continue();return route.abort();});
 try{
- await page.goto(site+'/shop.html');await page.locator('.product-card .product-image').first().waitFor();await page.waitForFunction(()=>!!window.MidnightStoreTracking);await page.locator('.product-card .product-image').first().click();await page.locator('#add:enabled').waitFor();await page.getByRole('button',{name:'Add to bag',exact:false}).click();await page.locator('#productNotice').waitFor();
+ await page.goto(site+'/shop.html?utm_source=Facebook&utm_campaign=November-Hoodies&utm_content=Rose-Video',{referer:'https://www.instagram.com/'});await page.locator('.product-card .product-image').first().waitFor();await page.waitForFunction(()=>!!window.MidnightStoreTracking);await page.locator('.product-card .product-image').first().click();await page.locator('#add:enabled').waitFor();await page.getByRole('button',{name:'Add to bag',exact:false}).click();await page.locator('#productNotice').waitFor();
+ await page.waitForFunction(()=>window.MidnightStoreTracking?.context()?.campaign==='november-hoodies');
+ await page.locator('a[href="cart.html"]').first().click();
+ await page.waitForFunction(()=>window.MidnightStoreTracking?.context()?.post==='rose-video');
+ await page.evaluate(()=>document.dispatchEvent(new Event('midnight:checkout-start')));
+ await page.waitForFunction(()=>!sessionStorage.getItem('midnightStorePendingV1'));
+ await page.goto(site+'/checkout-result.html',{referer:'https://checkout.stripe.com/'});
+ await page.waitForFunction(()=>window.MidnightStoreTracking?.context()?.post==='rose-video');
+ const fallback=await context.newPage();
+ await fallback.goto(site+'/shop.html',{referer:'https://l.facebook.com/'});
+ await fallback.waitForFunction(()=>window.MidnightStoreTracking?.context()?.source==='l.facebook.com');
+ await fallback.waitForFunction(()=>!sessionStorage.getItem('midnightStorePendingV1'));
+ await fallback.goto(site+'/shop.html');
+ await fallback.waitForFunction(()=>window.MidnightStoreTracking?.context()?.source==='direct');
+ await fallback.waitForFunction(()=>!sessionStorage.getItem('midnightStorePendingV1'));
+ await fallback.close();
  const v={eventId:randomUUID(),visitorId:visitor,sessionId:randomUUID(),type:'product_click',productId:'900',source:'direct',page:'shop',device:'phone'};await f.call('/api/store-events',v);await f.call('/api/store-events',v);await f.call('/api/product-votes',{productId:'900',voterId:visitor,choice:'like'});await f.call('/api/product-votes',{productId:'900',voterId:visitor,choice:'like'});const c=await f.checkout();c.session.payment_status='paid';await f.webhook(c.session);await f.webhook(c.session);
  await context.request.post(f.base()+'/api/owner/login',{headers:{Origin:'http://localhost:3153'},data:{password:'launch-owner-fixture'}});await page.goto(f.base()+'/analytics.html');await page.getByText('Verified saved records',{exact:false}).waitFor();assert.match(await page.locator('#storeSales').innerText(),/Verified paid orders\s*0/);assert.match(await page.locator('#storeSales').innerText(),/Test orders excluded\s*1/);await page.getByText('Traffic & shopping totals',{exact:true}).click();assert.match(await page.locator('#storeTraffic').innerText(),/Product-card clicks\s*2/);assert.match(await page.locator('#storePopular').innerText(),/Raven Black Long Sleeve\t900\t1\t0s\t2\t1\t0\t1\t0/);await page.getByText('Product and collection sales',{exact:true}).click();
  assert.equal(await page.locator('#storeBestSellers').innerText(),'No recorded data.');
  assert.match(await page.locator('#storeJourney').innerText(),/Viewed a product\s+1/);
- assert.match(await page.locator('#storeOverview').innerText(),/Average merchandise order\s*Unavailable/);assert.equal(await page.locator('#storeTrend .stats-chart').count(),1);assert.match(await page.locator('#storeTrackingStart').innerText(),/^Tracking started on /);assert.equal(await page.locator('#exportProductCsv').isEnabled(),true);await page.locator('#storeProductSearch').fill('not-a-product');assert.equal(await page.locator('#storeProductCount').innerText(),'No matching products');await page.locator('#storeProductSearch').fill('');await page.locator('#storeProductSort').selectOption('adds');for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:1000});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);await page.screenshot({path:'qa-store-statistics-'+width+'.png',fullPage:true});}assert.deepEqual(errors,[]);console.log('PASS real storefront visit/card click/add-to-bag, duplicate event and reaction, test-paid exclusion, owner statistics and four responsive widths.');
+ assert.match(await page.locator('#storeOverview').innerText(),/Average merchandise order\s*Unavailable/);assert.equal(await page.locator('#storeTrend .stats-chart').count(),1);assert.match(await page.locator('#storeTrackingStart').innerText(),/^Tracking started on /);assert.equal(await page.locator('#exportProductCsv').isEnabled(),true);
+ const attribution=page.locator('#storeAttribution');
+ assert.match(await attribution.innerText(),/Facebook\tnovember-hoodies\trose-video\t1\t1\t1\t1/);
+ assert.match(await attribution.innerText(),/Facebook\t—\t—\t1\t0\t0\t0/);
+ assert.match(await attribution.innerText(),/Direct \/ Unknown\t—\t—\t1\t0\t0\t0/);
+ await page.locator('#trackedDestination').fill('/product.html?id=900');
+ await page.locator('#trackedCampaign').fill('November Hoodies');
+ await page.locator('#trackedPost').fill('Rose Video');
+ await page.getByRole('button',{name:'Copy tracked link'}).click();
+ await page.locator('#trackedResult').waitFor();
+ assert.equal(await page.locator('#trackedResult').inputValue(),'https://midnight-designs.store/product.html?id=900&utm_source=facebook&utm_campaign=november-hoodies&utm_content=rose-video');
+ await page.locator('#storeProductSearch').fill('not-a-product');assert.equal(await page.locator('#storeProductCount').innerText(),'No matching products');await page.locator('#storeProductSearch').fill('');await page.locator('#storeProductSort').selectOption('adds');for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:1000});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);await page.screenshot({path:'qa-store-statistics-'+width+'.png',fullPage:true});}assert.deepEqual(errors,[]);console.log('PASS real storefront visit/card click/add-to-bag, duplicate event and reaction, test-paid exclusion, owner statistics and four responsive widths.');
 }finally{await browser.close();await new Promise(r=>server.close(r));await f.close();}

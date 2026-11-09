@@ -3,14 +3,50 @@
 const paths={'/':'home','/index.html':'home','/shop.html':'shop','/product.html':'product','/designs.html':'designs','/outfits.html':'outfits','/cart.html':'bag','/checkout-result.html':'checkout-result','/custom.html':'custom'},page=paths[location.pathname]||(/^\/products\/\d+\.html$/.test(location.pathname)?'product':null);if(!page)return;
 const base=new URL('.',document.currentScript?.src||document.baseURI);
 const consentKey='midnightDesignAnalyticsConsentV1',visitorKey='midnightDesignAnalyticsVisitorV1',sessionKey='midnightStoreSessionV1',queueKey='midnightStorePendingV1',seen=new Set();
-let endpoint=null,visitor=null,session=null,sending=false,retryTimer=null,attempt=0;
+let endpoint=null,visitor=null,sending=false,retryTimer=null,attempt=0;
 const read=k=>{try{return JSON.parse(localStorage.getItem(k)||'null');}catch{return null;}},allowed=()=>navigator.globalPrivacyControl!==true&&navigator.doNotTrack!=='1'&&read(consentKey)?.value!=='deny';
 const uuid=()=>typeof crypto.randomUUID==='function'?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=crypto.getRandomValues(new Uint8Array(1))[0]&15;return(c==='x'?r:(r&3)|8).toString(16);});
 let pending=[];try{const saved=JSON.parse(sessionStorage.getItem(queueKey)||'[]');if(Array.isArray(saved))pending=saved.filter(x=>x?.payload&&typeof x.at==='number'&&Date.now()-x.at<86400000).slice(-100);}catch{}
 function persist(){try{if(pending.length)sessionStorage.setItem(queueKey,JSON.stringify(pending));else sessionStorage.removeItem(queueKey);}catch{}}
-function stop(){seen.clear();pending=[];persist();clearTimeout(retryTimer);retryTimer=null;try{localStorage.removeItem(sessionKey);}catch{}}
-function context(){if(!allowed()||!endpoint)return null;try{visitor=localStorage.getItem(visitorKey);if(!/^[a-f0-9-]{36}$/.test(visitor||'')){visitor=uuid();localStorage.setItem(visitorKey,visitor);}const saved=read(sessionKey);session=saved&&/^[a-f0-9-]{36}$/.test(saved.id||'')&&Date.now()-saved.at<1800000?saved.id:uuid();localStorage.setItem(sessionKey,JSON.stringify({id:session,at:Date.now()}));return {consented:true,visitorId:visitor,sessionId:session};}catch{return null;}}
-function source(){try{const host=new URL(document.referrer).hostname;return host&&host!==location.hostname?host:'direct';}catch{return 'direct';}}
+function stop(){seen.clear();pending=[];persist();clearTimeout(retryTimer);retryTimer=null;activeSession=null;try{localStorage.removeItem(sessionKey);}catch{}try{sessionStorage.removeItem(sessionKey);}catch{}}
+const tag=value=>/^[a-z0-9][a-z0-9._-]{0,79}$/i.test(value||'')?value.toLowerCase():'';
+const direct={source:'direct',campaign:'',post:''};
+let activeSession;
+function landing(){
+ const query=new URLSearchParams(location.search);
+ const source=tag(query.get('utm_source'));
+ let referrer;
+ try{const url=new URL(document.referrer);if(['https:','http:'].includes(url.protocol))referrer=url;}catch{}
+ const sameStore=referrer&&referrer.hostname.replace(/^www\./,'')===location.hostname.replace(/^www\./,'');
+ const paymentReturn=page==='checkout-result'&&(!referrer||referrer.hostname==='checkout.stripe.com');
+ return {
+  tags:source?{source,campaign:tag(query.get('utm_campaign')),post:tag(query.get('utm_content'))}:null,
+  referral:!sameStore&&!paymentReturn?referrer?.hostname:null,
+  continued:sameStore||paymentReturn||performance.getEntriesByType('navigation')[0]?.type==='reload',
+ };
+}
+function context(){
+ if(!allowed()||!endpoint)return null;
+ try{
+  visitor=localStorage.getItem(visitorKey);
+  if(!/^[a-f0-9-]{36}$/.test(visitor||'')){visitor=uuid();localStorage.setItem(visitorKey,visitor);}
+  const now=Date.now();
+  const current=s=>s&&/^[a-f0-9-]{36}$/.test(s.id||'')&&now-s.at<1800000;
+  if(!current(activeSession)){
+   let tab;
+   try{tab=JSON.parse(sessionStorage.getItem(sessionKey)||'null');}catch{}
+   const entry=landing(),saved=tab||(entry.continued?read(sessionKey):null);
+   const previous=saved?.attribution||direct;
+   const sameTag=entry.tags&&['source','campaign','post'].every(key=>entry.tags[key]===previous[key]);
+   const reuse=!activeSession&&current(saved)&&(entry.tags?sameTag:entry.continued);
+   activeSession=reuse?saved:{id:uuid(),attribution:entry.tags||(entry.referral?{...direct,source:entry.referral}:direct)};
+  }
+  activeSession.at=now;
+  localStorage.setItem(sessionKey,JSON.stringify(activeSession));
+  try{sessionStorage.setItem(sessionKey,JSON.stringify(activeSession));}catch{}
+  return {consented:true,visitorId:visitor,sessionId:activeSession.id,...(activeSession.attribution||direct)};
+ }catch{return null;}
+}
 async function drain(){
  if(sending||!endpoint||!pending.length)return;if(!allowed()){stop();return;}sending=true;
  try{while(pending.length&&allowed()){
@@ -22,7 +58,7 @@ async function drain(){
  catch{clearTimeout(retryTimer);retryTimer=setTimeout(()=>{retryTimer=null;drain();},Math.min(60000,1000*2**Math.min(attempt++,6)));}
  finally{sending=false;}
 }
-function event(type,productId,extra){const c=context();if(!c)return;const once=['page_view','product_view','checkout_start'].includes(type),dedup=c.sessionId+':'+type+':'+(productId||'')+':'+page;if(once&&seen.has(dedup))return;if(once)seen.add(dedup);pending.push({at:Date.now(),payload:{eventId:uuid(),visitorId:c.visitorId,sessionId:c.sessionId,type,page,source:source(),device:innerWidth<768?'phone':innerWidth<1025?'tablet':'desktop',...(productId?{productId}:{}),...(extra||{})}});pending=pending.slice(-100);persist();drain();}
+function event(type,productId,extra){const c=context();if(!c)return;const once=['page_view','product_view','checkout_start'].includes(type),dedup=c.sessionId+':'+type+':'+(productId||'')+':'+page;if(once&&seen.has(dedup))return;if(once)seen.add(dedup);pending.push({at:Date.now(),payload:{eventId:uuid(),visitorId:c.visitorId,sessionId:c.sessionId,type,page,source:c.source,campaign:c.campaign,post:c.post,device:innerWidth<768?'phone':innerWidth<1025?'tablet':'desktop',...(productId?{productId}:{}),...(extra||{})}});pending=pending.slice(-100);persist();drain();}
 const currentProduct=()=>page==='product'?document.body.dataset.productId||new URLSearchParams(location.search).get('id')||location.pathname.match(/products\/(\d+)\.html/)?.[1]||null:null;
 let shownSince=document.visibilityState==='visible'?Date.now():null,shownMs=0,sentSeconds=0;
 function flushTime(){if(shownSince!==null){shownMs+=Date.now()-shownSince;shownSince=document.visibilityState==='visible'?Date.now():null;}if(!allowed()||!endpoint){shownMs=0;return;}const seconds=Math.min(1800-sentSeconds,Math.floor(shownMs/1000));if(seconds<1)return;shownMs-=seconds*1000;sentSeconds+=seconds;event('page_time',currentProduct(),{seconds});}
