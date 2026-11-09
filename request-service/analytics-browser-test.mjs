@@ -1,6 +1,7 @@
 import {chromium} from 'playwright';import assert from 'node:assert/strict';import {scryptSync,randomUUID} from 'node:crypto';import {readFileSync} from 'node:fs';import {createService} from './server.mjs';
 const origin='http://localhost:3034',salt='cd'.repeat(16),password='analytics-browser-fixture',passwordHash=salt+':'+scryptSync(password,salt,64).toString('hex');const {server}=createService({dbPath:':memory:',origin,passwordHash,secure:false});await new Promise(r=>server.listen(3034,r));const browser=await chromium.launch(),page=await browser.newPage();
 try{const designs=JSON.parse(readFileSync(new URL('./design-catalog.json',import.meta.url))).filter(d=>d.kind!=='reference'),products=JSON.parse(readFileSync(new URL('./product-catalog.json',import.meta.url))),designId=designs[0].id,productId=products[0].id;await page.goto(origin+'/analytics.html');assert.equal(new URL(page.url()).pathname,'/login');assert.equal(new URL(page.url()).search,'?next=analytics');await page.locator('#loginPassword').fill('incorrect-statistics-password');await page.locator('#loginSubmit').click();await page.getByText('Sign-in failed.',{exact:true}).waitFor();assert.equal(new URL(page.url()).pathname,'/login');await page.locator('#loginPassword').fill(password);await page.locator('#loginSubmit').click();await page.waitForURL(origin+'/analytics.html');await page.getByText('No activity in this date range',{exact:true}).waitFor();
+ await page.getByText('Tracking start date appears after the first recorded visit.',{exact:true}).waitFor();
  await page.route('**/api/owner/store-statistics?*', route => route.fulfill({
    status: 200, json: {traffic: {}, sales: {}, shopping: {}}
  }));
@@ -22,16 +23,19 @@ try{const designs=JSON.parse(readFileSync(new URL('./design-catalog.json',import
  assert.match(await page.locator('#storeScope').textContent(),new RegExp(yesterday+' to '+yesterday+' · Mountain Time'));
  await page.getByRole('button',{name:'Today',exact:true}).click();
  await page.getByText('No activity in this date range',{exact:true}).waitFor();
+ await page.getByRole('combobox',{name:'Show trend',exact:true}).selectOption('orders');
  await page.locator('#storeTrend .stats-chart[aria-label*="by hour"]').first().waitFor({state:'attached'});
  await page.getByLabel('Group by',{exact:true}).selectOption('day');
  await page.locator('#storeTrend .stats-chart[aria-label*="by day"]').first().waitFor({state:'attached'});
+ await page.getByRole('combobox',{name:'Show trend',exact:true}).selectOption('sessions');
  await page.getByLabel('Compare',{exact:true}).selectOption('year');
- await page.getByText('Traffic comparison is outside the retained browsing history.',{exact:true}).waitFor({state:'attached'});
+ await page.getByText('Traffic comparison is unavailable for this range and grouping.',{exact:true}).waitFor({state:'attached'});
  await page.getByLabel('Compare',{exact:true}).selectOption('off');
  await page.waitForFunction(()=>document.querySelectorAll('#storeTrend .stats-trend-series').length===1);
  await page.getByRole('button',{name:'Yesterday',exact:true}).click();
  await page.getByText('No activity in this date range',{exact:true}).waitFor();
  assert.equal(await page.locator('#storeTrend .stats-trend-series').count(),1);
+ await page.getByRole('combobox',{name:'Show trend',exact:true}).selectOption('orders');
  assert.match(await page.locator('#storeTrend .stats-chart').getAttribute('aria-label'),/by day/);
  await page.getByRole('button',{name:'Today',exact:true}).click();
  await page.getByText('No activity in this date range',{exact:true}).waitFor();

@@ -1,3 +1,4 @@
+import {mountainDate, mountainMidnight, shiftDate} from './reporting-range.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {paymentFixture} from './payment-fixture.mjs';
 const event=(visitor,session,type='page_view',product)=>({eventId:randomUUID(),visitorId:visitor,sessionId:session,type,page:product?'product':'home',source:'search.example',device:'phone',...(product?{productId:product}:{})});
 async function send(f,p){const r=await f.call('/api/store-events',p);assert.equal(r.status,200);return p;}
@@ -16,8 +17,10 @@ test('a single custom Mountain Time range bounds traffic, artwork and reactions'
   const fixture = await paymentFixture();
   t.after(() => fixture.close());
   const db = fixture.service().db;
-  const start = Date.parse('2025-03-09T07:00:00Z');
-  const end = Date.parse('2025-03-10T06:00:00Z');
+  const day = shiftDate(mountainDate(Date.now()), -2);
+  const following = shiftDate(day, 1);
+  const start = mountainMidnight(day);
+  const end = mountainMidnight(following);
   for (const at of [start - 1, start, end - 1, end]) {
     const id = randomUUID();
     db.prepare("INSERT INTO store_events(id,visitor,session,type,source,page,device,at) VALUES(?,?,?,'page_view','direct','home','phone',?)")
@@ -27,8 +30,9 @@ test('a single custom Mountain Time range bounds traffic, artwork and reactions'
     db.prepare("INSERT INTO product_votes VALUES('900',?,'like',?)").run(id, new Date(at).toISOString());
     db.prepare("INSERT INTO design_votes VALUES('fixture-art',?,'like',?)").run(id, new Date(at).toISOString());
   }
+  await fixture.reboot();
   const owner = await fixture.login();
-  const range = 'period=custom&start=2025-03-09&end=2025-03-09';
+  const range = new URLSearchParams({period:'custom', start:day, end:day});
   const result = await fixture.call('/api/owner/store-statistics?include=artwork&' + range, undefined, owner);
   assert.equal(result.status, 200, JSON.stringify(result.data));
   const report = result.data;
@@ -37,7 +41,7 @@ test('a single custom Mountain Time range bounds traffic, artwork and reactions'
   assert.equal(report.artwork.likes[0].count, 2);
   assert.equal(report.popular.find(p => p.id === '900').likes, 2);
   assert.equal(report.feedback.designLikes, 2);
-  assert.deepEqual(report.daily.map(day => [day.date, day.pageViews]), [['2025-03-09', 2]]);
+  assert.deepEqual(report.daily.map(day => [day.date, day.pageViews]), [[day, 2]]);
   assert.equal(report.window.timezone, 'America/Denver');
   assert.equal((await fixture.call('/api/owner/store-statistics?period=custom&start=2025-03-10&end=2025-03-09', undefined, owner)).status, 400);
 });

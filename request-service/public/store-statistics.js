@@ -133,7 +133,7 @@ function renderTrend() {
     region.className = 'stats-trend-series';
     region.append(node('h4', item.title), node('p', trendRangeLabel(item.range)));
     if (item.rows.every(row => row[key] === null)) {
-      region.append(node('p', 'Traffic comparison is outside the retained browsing history.'));
+      region.append(node('p', index ? 'Traffic comparison is unavailable for this range and grouping.' : 'No recorded traffic coverage for the selected range.'));
     } else {
       const chart = node('div');
       chart.className = 'stats-chart';
@@ -146,8 +146,8 @@ function renderTrend() {
         col.className = 'stats-chart-column';
         const bar = node('span');
         bar.className = 'stats-chart-bar';
-        bar.style.height = (max ? 100 * row[key] / max : 0) + '%';
-        col.title = row.label + ' · ' + format(row[key]);
+        bar.style.height = (max && row[key] !== null ? 100 * row[key] / max : 0) + '%';
+        col.title = row.label + ' · ' + (row[key] === null ? 'Unavailable' : format(row[key]));
         col.append(bar);
         chart.append(col);
       }
@@ -155,6 +155,7 @@ function renderTrend() {
       axis.className = 'stats-chart-axis';
       axis.append(node('span',item.rows[0]?.label||''),node('span',max?'Scale max '+format(max):'No recorded activity'),node('span',item.rows.at(-1)?.label||''));
       region.append(chart, axis);
+      if (item.rows.some(row => row[key] === null)) region.append(node('p', 'Blank periods have unavailable traffic data.'));
     }
     region.append(trendTable(item.rows));
     box.append(region);
@@ -168,8 +169,9 @@ function renderProducts(){const rows=activityRows(),pages=Math.max(1,Math.ceil(r
 function rankings(){const key=$('storeRanking').value;table('storeBestSellers',[...current.bestSellers].sort((a,b)=>b[key]-a[key]),[['Product',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);table('storeCollections',[...current.collections].sort((a,b)=>b[key]-a[key]),[['Collection',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);}
 function render(d){
  current=d;const ratio=d.conversion.visitors;
- cards('storeOverview',[['Consenting visitors',number(d.traffic.visitors),comparison('visitors')],['Sessions',number(d.traffic.sessions),comparison('sessions')],['Merchandise revenue',money(d.sales.merchandiseGross),comparison('revenue')],['Verified paid orders',number(d.sales.paidOrders),comparison('orders')],['Average merchandise order',d.averageOrderValue===null||d.averageOrderValue===undefined?'Unavailable':money(d.averageOrderValue),'Merchandise revenue ÷ paid orders; excludes shipping and tax'],['Observed visitor conversion',ratio.percent===null?'Unavailable':ratio.percent.toFixed(2)+'%',ratio.numerator+' attributed buying browsers / '+ratio.denominator+' consenting visitors']]);
- cards('storeTraffic',[['Consenting visitors',d.traffic.visitors],['Sessions',d.traffic.sessions],['Page views',d.traffic.pageViews],['Average time per visit',duration(d.traffic.averageVisitSeconds)],['Total time on store',duration(d.traffic.totalSeconds||0)],['Product-card clicks',d.shopping.productClicks],['Product views',d.shopping.productViews],['Add-to-bag actions',d.shopping.addToBag],['Checkout starts',d.shopping.checkoutStarts]]);
+ const rawCount=value=>d.history?.rawAvailable===false?'Unavailable':number(value);
+ cards('storeOverview',[['Consenting visitors',rawCount(d.traffic.visitors),comparison('visitors')],['Sessions',rawCount(d.traffic.sessions),comparison('sessions')],['Merchandise revenue',money(d.sales.merchandiseGross),comparison('revenue')],['Verified paid orders',number(d.sales.paidOrders),comparison('orders')],['Average merchandise order',d.averageOrderValue===null||d.averageOrderValue===undefined?'Unavailable':money(d.averageOrderValue),'Merchandise revenue ÷ paid orders; excludes shipping and tax'],['Observed visitor conversion',ratio.percent===null?'Unavailable':ratio.percent.toFixed(2)+'%',ratio.numerator+' attributed buying browsers / '+ratio.denominator+' consenting visitors']]);
+ cards('storeTraffic',[['Consenting visitors',rawCount(d.traffic.visitors)],['Sessions',rawCount(d.traffic.sessions)],['Page views',d.traffic.pageViews],['Average time per visit',duration(d.traffic.averageVisitSeconds)],['Total time on store',duration(d.traffic.totalSeconds||0)],['Product-card clicks',d.shopping.productClicks],['Product views',d.shopping.productViews],['Add-to-bag actions',d.shopping.addToBag],['Checkout starts',d.shopping.checkoutStarts]]);
  cards('storeSales',[['Verified paid orders',d.sales.paidOrders],['Gross paid units',d.sales.units],['Merchandise revenue',money(d.sales.merchandiseGross)],['Total payments incl. shipping/tax',money(d.sales.paidTotal)],['Shipping collected',money(d.sales.shipping)],['Tax collected',money(d.sales.tax)],['Refunds observed in period',money(d.sales.refunds)],['Test orders excluded',d.testOrdersExcluded,'Verified test orders in the selected dates']]);
  const opLabels={awaitingApproval:'Awaiting owner approval',production:'In production',shipping:'Shipped (cumulative)',failures:'Failed, held or unknown',unmapped:'Other saved status'};
  cards('storeOperations',Object.entries(d.operations).map(([k,v])=>[opLabels[k]||k,v]));
@@ -206,9 +208,14 @@ function render(d){
  const dates=d.window;
  $('storeScope').textContent=dates.startDate+' to '+dates.endDate+' · Mountain Time · '+(d.scope?.traffic||d.device)+' · Sales across all screen sizes.';
  const note=$('storeRetentionNote');
+ const history=d.history;
+ const started=$('storeTrackingStart');
+ const formattedDate=date=>new Intl.DateTimeFormat('en-US',{timeZone:'UTC',dateStyle:'medium'}).format(new Date(date+'T00:00:00Z'));
+ started.textContent=history?.startedOn?'Tracking started on '+formattedDate(history.startedOn):'Tracking start date appears after the first recorded visit.';
  const retention=d.coverage.retentionDays;
- note.hidden=!(retention && Date.parse(d.generatedAt)-Date.parse(dates.start)>retention*86400000);
- note.textContent='Browsing and artwork events are retained for up to '+retention+' days. Earlier dates may have incomplete traffic data.';
+ note.hidden=!(history?.startedOn&&(dates.startDate<history.startedOn||Date.parse(d.generatedAt)-Date.parse(dates.start)>retention*86400000));
+ const daily=history?.archiveStartedOn?'Saved daily totals begin '+formattedDate(history.archiveStartedOn)+'. ':'';
+ note.textContent=daily+'Dates before tracking began or without saved history show unavailable traffic. Use Day for archived visitor and session counts, or Page views for longer trends. Unique totals and detailed breakdowns use retained raw events.';
  for(const id of ['analyticsStart','analyticsEnd'])$(id).max=dates.today;
  document.dispatchEvent(new CustomEvent('midnight:artwork-report',{detail:d.artwork}));
  $('exportStoreStats').disabled=false;$('exportProductCsv').disabled=false;

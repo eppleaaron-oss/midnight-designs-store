@@ -25,7 +25,7 @@ function validDate(date) {
     Number.isFinite(Date.parse(date)) && shiftDate(date, 0) === date;
 }
 
-function midnight(date) {
+export function mountainMidnight(date) {
   const utc = Date.parse(date + 'T00:00:00Z');
   // Denver's offset at UTC midnight is also the offset at local midnight.
   const offset = offsetFormatter.formatToParts(utc).find(part => part.type === 'timeZoneName').value;
@@ -45,8 +45,8 @@ function timeOfDay(at) {
 }
 
 function throughSameClock(date, now) {
-  const dayStart = midnight(date);
-  const nextStart = midnight(shiftDate(date, 1));
+  const dayStart = mountainMidnight(date);
+  const nextStart = mountainMidnight(shiftDate(date, 1));
   const clock = timeOfDay(now);
   const first = dayStart + clock;
   const second = nextStart - DAY + clock;
@@ -76,8 +76,8 @@ export function reportingRange(params, now) {
     startDate = shiftDate(endDate, 1 - days);
   }
   const days = (Date.parse(endDate) - Date.parse(startDate)) / DAY + 1;
-  const start = midnight(startDate);
-  const end = Math.min(midnight(shiftDate(endDate, 1)), now + 1);
+  const start = mountainMidnight(startDate);
+  const end = Math.min(mountainMidnight(shiftDate(endDate, 1)), now + 1);
   const requestedGrouping = params.get('group') || 'auto';
   if (!['auto', 'hour', 'day', 'week', 'month'].includes(requestedGrouping)) {
     throw new RangeError('Choose Hour, Day, Week or Month.');
@@ -101,10 +101,10 @@ export function reportingRange(params, now) {
     const previous = compare === 'previous';
     const from = previous ? shiftDate(startDate, -days) : lastYear(startDate);
     const to = previous ? shiftDate(startDate, -1) : lastYear(endDate);
-    const comparisonStart = midnight(from);
+    const comparisonStart = mountainMidnight(from);
     const comparisonEnd = days === 1 && endDate === today
       ? throughSameClock(to, now)
-      : midnight(shiftDate(to, 1));
+      : mountainMidnight(shiftDate(to, 1));
     baseline = {
       mode: compare,
       label: previous ? 'Previous period' : 'Same dates last year',
