@@ -5,6 +5,49 @@ const number=n=>new Intl.NumberFormat('en-US').format(n);
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n/100);
 const duration=n=>{if(n===null||n===undefined)return 'No data yet';n=Math.round(n);const h=Math.floor(n/3600),m=Math.floor(n%3600/60),s=n%60;return h?h+'h '+m+'m':m?m+'m '+s+'s':s+'s';};
 let current=null,sequence=0,controller=null,productPage=0;
+let sessionExpired = false;
+const requiredCounts = {
+  traffic: ['visitors', 'sessions', 'pageViews'],
+  shopping: ['productClicks', 'productViews', 'addToBag', 'checkoutStarts'],
+  sales: ['paidOrders', 'units', 'merchandiseGross', 'paidTotal', 'shipping', 'tax', 'refunds'],
+};
+
+function validateReport(report) {
+  const numeric = value => typeof value === 'number' && Number.isFinite(value);
+  for (const [section, keys] of Object.entries(requiredCounts)) {
+    if (!keys.every(key => numeric(report?.[section]?.[key]))) {
+      throw new Error('The statistics service returned an incomplete report.');
+    }
+  }
+  const ratio = report.conversion?.visitors;
+  if (!ratio || !numeric(ratio.numerator) || !numeric(ratio.denominator) ||
+      !(ratio.percent === null || numeric(ratio.percent)) ||
+      !Number.isFinite(Date.parse(report.generatedAt)) ||
+      !['operations', 'feedback', 'coverage'].every(key => report[key] && typeof report[key] === 'object') ||
+      !['popular', 'bestSellers', 'collections'].every(key => Array.isArray(report[key])) ||
+      !Array.isArray(report.traffic.sources) || !numeric(report.testOrdersExcluded) ||
+      !report.popular.every(row => row && typeof row.name === 'string' &&
+        ['views', 'clicks', 'adds'].every(key => numeric(row[key])))) {
+    throw new Error('The statistics service returned an incomplete report.');
+  }
+}
+
+function showSignIn() {
+  sessionExpired = true;
+  sequence++;
+  controller?.abort();
+  current = null;
+  $('storeReport').hidden = true;
+  $('storeStatsEmpty').hidden = true;
+  $('storeStatsStatus').className = 'stats-error';
+  $('storeStatsStatus').textContent = 'Your owner session expired.';
+  $('storeStatsSignIn').hidden = false;
+  $('refreshStoreStats').hidden = true;
+  $('exportStoreStats').disabled = true;
+  $('exportProductCsv').disabled = true;
+}
+document.addEventListener('midnight:owner-session-expired', showSignIn);
+
 function table(target,rows,columns,limit=30){const box=$(target);box.replaceChildren();if(!rows.length){box.append(node('p','No recorded data.'));return;}
  const wrap=node('div');wrap.className='stats-table-wrap';wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','Scrollable data table');
  const t=node('table');t.className='analytics-table';const head=node('thead'),h=node('tr');for(const [label]of columns){const th=node('th',label);th.scope='col';h.append(th);}head.append(h);t.append(head);const body=node('tbody');
@@ -37,7 +80,20 @@ function render(d){
  cards('storeAudience',d.observedVisitors?[['First observed in period',d.observedVisitors.firstObserved],['Seen in earlier retained visits',d.observedVisitors.returning]]:[['Visitor history','Unavailable']]);
  if(d.observedVisitors)$('storeAudience').append(node('p',d.observedVisitors.label));
  cards('storeCatalog',d.catalog?[['Listed products',d.catalog.products],['Store variants',d.catalog.variants],['Available variants',d.catalog.availableVariants]]:[['Catalog totals','Unavailable']]);
- table('storeSources',[...d.traffic.sources].sort((a,b)=>b.sessions-a.sessions),[['Traffic source',r=>r.source],['Sessions',r=>r.sessions]]);
+ table('storeSources', [...d.traffic.sources].sort((a,b) => b.sessions-a.sessions), [
+   ['Traffic source', r => r.source === 'direct' ? 'Direct or unknown' : r.source],
+   ['Sessions', r => number(r.sessions)],
+   ['Share of sessions', r => d.traffic.sessions ? (100*r.sessions/d.traffic.sessions).toFixed(1)+'%' : 'Unavailable'],
+ ]);
+ if (Array.isArray(d.journey)) {
+   table('storeJourney', d.journey, [
+     ['Tracked step', row => row.label],
+     ['Sessions reached', row => number(row.sessions)],
+     ['No next step recorded', row => row.noNext === null ? 'Final tracked step' : number(row.noNext)],
+   ]);
+ } else {
+   $('storeJourney').replaceChildren(node('p', 'Shopping journey data is unavailable.'));
+ }
  table('storeDevices',d.devices||[],[['Screen-size cohort',r=>r.device],['Visitors',r=>r.visitors],['Sessions',r=>r.sessions],['Page views',r=>r.pageViews]]);
  table('storePages',d.pages||[],[['Page',r=>r.page],['Views',r=>r.views],['Visitors',r=>r.visitors],['Visible time',r=>duration(r.seconds)]]);
  rankings();renderProducts();renderTrend();
@@ -53,10 +109,65 @@ function render(d){
  $('storeScope').textContent=(d.window?new Date(d.window.start).toLocaleString()+' → '+new Date(d.window.end).toLocaleString()+' · ':'')+'Traffic: '+(d.scope?.traffic||d.device)+' · Sales: all devices · Orders: all saved live paid orders · Reactions: all time.';
  $('exportStoreStats').disabled=false;$('exportProductCsv').disabled=false;
 }
-async function refresh(e){e?.preventDefault();const request=++sequence;controller?.abort();controller=new AbortController();const status=$('storeStatsStatus');status.textContent='Loading verified store statistics…';$('refreshStoreStats').disabled=true;
- try{const r=await fetch('/api/owner/store-statistics?period='+encodeURIComponent($('analyticsPeriod').value)+'&device='+encodeURIComponent($('analyticsDevice').value),{cache:'no-store',signal:controller.signal});if(r.status===401){location.replace('/login?next=analytics');return;}const d=await r.json();if(!r.ok)throw Error(d.error||'Statistics unavailable.');if(request!==sequence)return;if(!d?.traffic||!d?.sales||!d?.conversion||!Array.isArray(d.popular)||!Array.isArray(d.bestSellers)||!Array.isArray(d.collections))throw Error('The statistics service returned an incomplete report.');render(d);status.className='';status.textContent='Verified saved records · Updated '+new Date(d.generatedAt).toLocaleString();}
- catch(e){if(e.name==='AbortError'||request!==sequence)return;status.className='stats-error';status.textContent=(e.name==='SyntaxError'?'The statistics service did not return a valid report. Please retry.':e.message)+' No missing metric has been replaced with zero.'+(current?' Showing the last successful report from '+new Date(current.generatedAt).toLocaleString()+'; its filters are shown below.':'');}
- finally{if(request===sequence)$('refreshStoreStats').disabled=false;}
+async function refresh(event) {
+  event?.preventDefault();
+  if (sessionExpired) return;
+  const request = ++sequence;
+  controller?.abort();
+  const active = new AbortController();
+  controller = active;
+  const previous = current;
+  const button = $('refreshStoreStats');
+  const status = $('storeStatsStatus');
+  status.className = '';
+  status.textContent = 'Loading store statistics…';
+  button.hidden = false;
+  button.disabled = true;
+  $('storeStatsReload').hidden = true;
+  const timeout = setTimeout(() => active.abort(), 20000);
+  try {
+    const filters = new URLSearchParams({period: $('analyticsPeriod').value, device: $('analyticsDevice').value});
+    const response = await fetch('/api/owner/store-statistics?' + filters, {
+      cache: 'no-store',
+      signal: active.signal,
+    });
+    if (request !== sequence) return;
+    if (response.status === 401 || response.status === 403) {
+      showSignIn();
+      return;
+    }
+    if (!response.ok) throw new Error('Store statistics could not load.');
+    const report = await response.json();
+    if (request !== sequence) return;
+    validateReport(report);
+    render(report);
+    $('storeReport').hidden = false;
+    $('storeStatsEmpty').hidden = Boolean(
+      report.traffic.pageViews || report.traffic.totalSeconds ||
+      Object.values(report.shopping).some(value => value > 0) ||
+      report.sales.paidOrders || report.sales.refunds ||
+      ['productReviews', 'designRatings', 'appComments', 'customRequests'].some(key => report.feedback[key] > 0)
+    );
+    button.textContent = 'Refresh';
+    status.textContent = 'Verified saved records · Updated ' + new Date(report.generatedAt).toLocaleString();
+  } catch (error) {
+    if (request !== sequence) return;
+    if (current !== previous && previous) render(previous);
+    current = previous;
+    $('storeReport').hidden = !previous;
+    $('storeStatsEmpty').hidden = true;
+    button.textContent = 'Retry';
+    status.className = 'stats-error';
+    const reason = error.name === 'AbortError' ? 'Store statistics took too long to load.'
+      : error.name === 'SyntaxError' ? 'The statistics service returned an unreadable report.'
+      : error.message;
+    status.textContent = reason + (previous
+      ? ' Showing the last successful report from ' + new Date(previous.generatedAt).toLocaleString() + '.'
+      : '');
+  } finally {
+    clearTimeout(timeout);
+    if (request === sequence) button.disabled = false;
+  }
 }
 function download(content,type,name){const u=URL.createObjectURL(new Blob([content],{type})),a=node('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
 $('refreshStoreStats').onclick=refresh;$('analyticsFilters').addEventListener('submit',refresh);

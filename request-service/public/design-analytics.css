@@ -73,3 +73,12 @@
 @media(max-width:450px){.statistics-page main{padding:18px 12px 40px}.statistics-page header{padding:16px 12px;flex-direction:column;gap:6px}.statistics-page .analytics-filters,.stats-product-controls{grid-template-columns:1fr}.statistics-page .analytics-card{padding:14px}.statistics-page .analytics-card strong{font-size:25px}.statistics-page details{padding:12px}.stats-pagination{gap:8px}.stats-pagination button{padding:8px}.stats-chart{height:150px}.stats-toolbar>div{display:grid;grid-template-columns:1fr 1fr;width:100%}.stats-toolbar button:last-child{grid-column:1/-1}.stats-nav{gap:12px 18px}.statistics-page .analytics-columns{gap:16px}}
 
 .statistics-page .stats-artwork .analytics-table{min-width:0;table-layout:fixed}.statistics-page .analytics-columns>div{min-width:0}.statistics-page .stats-artwork .analytics-table td{overflow-wrap:anywhere}
+
+.statistics-page [hidden] { display: none !important; }
+.statistics-page #storeStatsSignIn,
+.statistics-page #storeStatsReload { display: inline-block; margin-block: .25rem .75rem; }
+.statistics-page #storeStatsEmpty {
+  padding: 1rem;
+  border: 1px solid var(--line, #4f3b3d);
+  border-radius: .5rem;
+}
