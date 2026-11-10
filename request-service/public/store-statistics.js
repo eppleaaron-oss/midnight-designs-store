@@ -182,6 +182,29 @@ function renderProducts(){const rows=activityRows(),pages=Math.max(1,Math.ceil(r
 }
 function rankings(){const key=$('storeRanking').value;table('storeBestSellers',[...current.bestSellers].sort((a,b)=>b[key]-a[key]),[['Product',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);table('storeCollections',[...current.collections].sort((a,b)=>b[key]-a[key]),[['Collection',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);}
 const sourceLabel=source=>source==='direct'?'Direct / Unknown':source==='facebook'?'Facebook':source==='instagram'?'Instagram':source;
+function renderBags(bags) {
+ const hasData=Boolean(bags?.observations);
+ cards('storeBagTotals',[
+  ['Last seen with items',hasData?number(bags.savedBags):'—','One latest recorded bag per browser'],
+  ['Units saved',hasData?number(bags.units):'—'],
+  ['Sessions with items saved',hasData?number(bags.sessionsWithBag):'—'],
+  ['Sessions that opened a bag with items',hasData?number(bags.openedSessions):'—'],
+  ['Bags seen again in a later session',hasData?number(bags.returningBags):'—'],
+  ['Bags observed being emptied',hasData?number(bags.clearedBags):'—'],
+ ]);
+ $('storeBagNote').textContent=hasData
+  ? 'Bag contents reflect the last observation in the selected period. A saved bag may have changed since then.'
+  : 'No bag observations in the selected dates and screen size. Bags appear when the store observes them.';
+ table('storeBagProducts',bags?.products||[],[
+  ['Product',r=>r.name],['Stable ID',r=>r.id],['Saved bags',r=>number(r.bags)],['Units',r=>number(r.units)],
+ ]);
+ const format=new Intl.DateTimeFormat('en-US',{dateStyle:'medium',timeStyle:'short',timeZone:'America/Denver'});
+ table('storeRecentBags',bags?.recent||[],[
+  ['Bag reference',r=>r.reference+(r.test?' · Test':'')],['Last observed (MT)',r=>format.format(new Date(r.at))],
+  ['Screen size',r=>r.device],['Source',r=>sourceLabel(r.source)],
+  ['Items',r=>r.items.slice(0,8).map(i=>i.name+' × '+i.quantity).join(', ')+(r.items.length>8?' + '+(r.items.length-8)+' more':'')],
+ ]);
+}
 function render(d){
  current=d;const ratio=d.conversion.visitors;
  const rawCount=value=>d.history?.rawAvailable===false?'Unavailable':number(value);
@@ -235,7 +258,7 @@ function render(d){
  $('storeProductScope').textContent=(source==='all'?'All sources':sourceLabel(source))+' · '+$('analyticsDevice').selectedOptions[0].textContent+
    '. Browsing activity uses retained raw data (up to 180 days). Source or device filters use verified live orders with matching checkout traffic.'+
    (productScope?.unattributedOrders?' '+number(productScope.unattributedOrders)+' orders lacked checkout attribution for these filters.':'');
- rankings();renderProducts();renderTrend();
+ rankings();renderProducts();renderTrend();renderBags(d.bags);
  $('storeConversion').replaceChildren(...Object.entries(d.conversion).filter(([,v])=>v&&typeof v==='object').map(([key,v])=>node('p',(key==='productViewers'?'Product-viewer conversion':'Visitor conversion')+': '+(v.percent===null?'Unavailable':v.percent.toFixed(2)+'%')+' ('+v.numerator+' attributed buying browsers / '+v.denominator+' consenting '+(key==='productViewers'?'product viewers':'visitors')+')')),...[d.conversion.label,d.unattributedOrders+' paid orders without an observed consenting visitor in this cohort.'].map(s=>node('p',s)));
  $('storeCoverage').replaceChildren(...Object.entries(d.coverage).map(([k,v])=>node('p',k.replace(/([a-z])([A-Z])/g,'$1 $2')+': '+v)));
  $('storeUnavailable').replaceChildren(...(d.unavailableMetrics||['Profit, abandoned carts and customer demographics are not available.']).map(s=>node('p',s)));
@@ -298,7 +321,7 @@ async function refresh(event) {
     render(report);
     $('storeReport').hidden = false;
     $('storeStatsEmpty').hidden = Boolean(
-      report.traffic.pageViews || report.traffic.totalSeconds ||
+      report.traffic.pageViews || report.traffic.totalSeconds || report.bags?.observations ||
       Object.values(report.shopping).some(value => value > 0) ||
       report.sales.paidOrders || report.sales.refunds ||
       report.artwork.coverage.events || report.artwork.coverage.structuredRequests ||

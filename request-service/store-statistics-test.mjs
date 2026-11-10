@@ -83,3 +83,31 @@ test('owner browsing and Stripe test orders are hidden from the funnel until req
  assert.equal(expanded.data.funnel.testOrders,1);
  assert.equal(expanded.data.sales.paidOrders,0);
 });
+
+test('saved bags count browser state, later sessions, clears and the test filter',async t=>{
+ const f=await paymentFixture();t.after(()=>f.close());
+ const visitor=randomUUID(),first=randomUUID(),second=randomUUID(),owner=randomUUID();
+ const snapshot=(session,items,extra={})=>({...event(visitor,session,'bag_state'),page:'bag',items,...extra});
+ const initial=await send(f,snapshot(first,[['900',2]]));
+ await send(f,initial);
+ await send(f,snapshot(second,[['900',3]]));
+ await send(f,snapshot(owner,[['900',8]],{test:true}));
+ const token=await f.login();
+ const get=async(query='')=>(await f.call('/api/owner/store-statistics?'+query,undefined,token)).data;
+ const saved=await get();
+ assert.equal(saved.bags.observations,2);
+ assert.equal(saved.bags.savedBags,1);
+ assert.equal(saved.bags.units,3);
+ assert.equal(saved.bags.returningBags,1);
+ assert.equal(saved.bags.openedSessions,2);
+ assert.equal(saved.bags.recent[0].items[0].quantity,3);
+ assert.ok(!JSON.stringify(saved.bags).includes(visitor));
+ assert.equal((await get('tests=show')).bags.savedBags,2);
+ assert.equal((await get('device=desktop')).bags.savedBags,0);
+ await send(f,snapshot(second,[]));
+ await send(f,snapshot(first,[['900',1]],{observedAt:Date.now()-60000}));
+ const cleared=(await get()).bags;
+ assert.equal(cleared.savedBags,0);
+ assert.equal(cleared.clearedBags,1);
+ assert.equal((await f.call('/api/store-events',snapshot(second,[['900',-1]]))).status,400);
+});
