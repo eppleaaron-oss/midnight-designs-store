@@ -24,6 +24,8 @@ try{
  assert.equal(await page.locator('#storeBestSellers').innerText(),'No recorded data.');
  assert.match(await page.locator('#storeJourney').innerText(),/Viewed a product\s+1/);
  assert.match(await page.locator('#storeOverview').innerText(),/Average merchandise order\s*Unavailable/);assert.equal(await page.locator('#storeTrend .stats-chart').count(),1);assert.match(await page.locator('#storeTrackingStart').innerText(),/^Tracking started on /);assert.equal(await page.locator('#exportProductCsv').isEnabled(),true);
+ assert.match(await page.locator('#storeBagProducts').innerText(),/Raven Black Long Sleeve\t900\t1\t1/);
+ assert.match(await page.locator('#storeRecentBags').innerText(),/Raven Black Long Sleeve × 1/);
  const attribution=page.locator('#storeAttribution');
  assert.match(await attribution.innerText(),/Facebook\tnovember-hoodies\trose-video\t1\t1\t1\t1/);
  assert.match(await attribution.innerText(),/Facebook\t—\t—\t1\t0\t0\t0/);
@@ -62,6 +64,7 @@ try{
  const includeTests=page.getByRole('checkbox',{name:'Include owner and test sessions'});
  await includeTests.check();
  await page.getByText(/Owner and test sessions are included/).waitFor();
+ assert.match(await page.locator('#storeRecentBags').innerText(),/· Test/);
  assert.match(await attribution.innerText(),/Facebook\tnovember-hoodies\tunseen-scars-phone-test\t1\t1\t1\t1\t1/);
  await page.locator('#storeProductSource').selectOption('facebook');
  await page.getByText(/^Facebook · Phone-sized/).waitFor();

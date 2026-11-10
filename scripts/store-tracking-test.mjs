@@ -80,3 +80,17 @@ test('publication retains only exact public connection file alongside private ba
  assert.match(config,/\n  - request-service\n/);
 });
 
+
+test('observes persisted bags, changes, and clearing without sending variant IDs',async()=>{
+ const f=await fixture();
+ f.local.setItem('midnightCartV2',JSON.stringify([{productId:'900',variantId:'901',qty:2},{productId:'900',variantId:'902',qty:1}]));
+ await f.emit('document','midnight:commerce',{detail:{event:'cart_update'}});
+ await f.emit('document','midnight:commerce',{detail:{event:'cart_update'}});
+ const restored=await fixture({path:'/cart.html',local:f.local});
+ assert.deepEqual(restored.sent.find(row=>row.type==='bag_state').items,[['900',3]]);
+ f.local.removeItem('midnightCartV2');
+ await f.emit('window','midnight:bag-changed');
+ const states=f.sent.filter(row=>row.type==='bag_state');
+ assert.deepEqual(states.map(row=>row.items),[[['900',3]],[]]);
+ assert.equal(JSON.stringify(states).includes('variantId'),false);
+});
