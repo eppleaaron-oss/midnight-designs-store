@@ -44,6 +44,7 @@ try{
  await ownerTab.getByRole('button',{name:'Add to bag',exact:false}).click();
  await ownerTab.locator('#productNotice').waitFor();
  await ownerTab.locator('a[href="cart.html"]').first().click();
+ await ownerTab.locator('#bagDelivery > summary').click();
  await ownerTab.locator('#shippingForm').waitFor();
  for(const [name,value] of Object.entries(f.bag.recipient)){
    if(name!=='country_code'&&value)await ownerTab.locator('#shippingForm [name="'+name+'"]').fill(value);
