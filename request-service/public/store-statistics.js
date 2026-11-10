@@ -162,8 +162,22 @@ function renderTrend() {
   }
 }
 
-function activityRows(){if(!current)return [];const q=$('storeProductSearch').value.trim().toLowerCase(),key=$('storeProductSort').value;return current.popular.filter(r=>(r.name+' '+r.id).toLowerCase().includes(q)).sort((a,b)=>(b[key]||0)-(a[key]||0)||a.name.localeCompare(b.name));}
-function renderProducts(){const rows=activityRows(),pages=Math.max(1,Math.ceil(rows.length/20));productPage=Math.min(productPage,pages-1);table('storePopular',rows.slice(productPage*20,(productPage+1)*20),[['Product',r=>r.name],['Stable ID',r=>r.id],['Views',r=>r.views],['Time looking',r=>duration(r.seconds||0)],['Clicks',r=>r.clicks],['Bag actions',r=>r.adds],['Bought',r=>r.bought||0],['Likes',r=>r.likes||0],['Dislikes',r=>r.dislikes||0]]);
+const productSearch=()=> $('storeProductSearch').value.trim().toLowerCase();
+const productMatches=(row,query)=>[row.name,row.id,...(row.designs||[]).flatMap(d=>[d.name,d.id])].some(value=>String(value).toLowerCase().includes(query));
+const sessionRate=(count,total)=>total?number(count)+' / '+number(total)+' ('+(100*count/total).toFixed(1)+'%)':'—';
+function activityRows(){if(!current)return [];const q=productSearch(),key=$('storeProductSort').value;return current.popular.filter(r=>productMatches(r,q)).sort((a,b)=>(b[key]||0)-(a[key]||0)||a.name.localeCompare(b.name));}
+function renderProducts(){const rows=activityRows(),pages=Math.max(1,Math.ceil(rows.length/20));productPage=Math.min(productPage,pages-1);table('storePopular',rows.slice(productPage*20,(productPage+1)*20),[
+ ['Product',r=>r.name],['Stable ID',r=>r.id],['Designs',r=>r.designs?.map(d=>d.name).join(', ')||'—'],
+ ['Views',r=>r.views],['Bag adds',r=>r.adds],['Paid units',r=>r.bought],['Gross sales',r=>money(r.revenue||0)],
+ ['View → bag',r=>sessionRate(r.bagViewSessions,r.viewSessions)],['View → paid',r=>sessionRate(r.paidViewSessions,r.viewSessions)],
+ ['Time looking',r=>duration(r.seconds||0)],['Clicks',r=>r.clicks],['Likes',r=>r.likes||0],['Dislikes',r=>r.dislikes||0],
+ ]);
+ const query=productSearch();
+ const designs=(current?.productReport?.designs||[]).filter(r=>productMatches(r,query)||r.products.some(p=>productMatches(p,query)));
+ table('storeDesignSales',designs,[
+   ['Design',r=>r.name],['Linked products',r=>r.products.map(p=>p.name).join(', ')],['Views',r=>r.views],
+   ['Bag adds',r=>r.adds],['Paid units',r=>r.bought],['Gross sales',r=>money(r.revenue)],
+ ]);
  $('storeProductCount').textContent=rows.length?'Showing '+(productPage*20+1)+'–'+Math.min((productPage+1)*20,rows.length)+' of '+rows.length+' products':'No matching products';$('storeProductPrevious').disabled=productPage===0;$('storeProductNext').disabled=productPage>=pages-1;
 }
 function rankings(){const key=$('storeRanking').value;table('storeBestSellers',[...current.bestSellers].sort((a,b)=>b[key]-a[key]),[['Product',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);table('storeCollections',[...current.collections].sort((a,b)=>b[key]-a[key]),[['Collection',r=>r.name],['Stable ID',r=>r.id],['Paid units',r=>r.units],['Gross revenue',r=>money(r.revenue)]]);}
@@ -189,6 +203,7 @@ function render(d){
    ['Source',r=>sourceLabel(r.source)],['Campaign',r=>r.campaign||'—'],['Post',r=>r.post||'—'],
    ['Sessions',r=>number(r.sessions)],['Viewed product',r=>number(r.productViewSessions)],
    ['Added to bag',r=>number(r.bagSessions)],['Started checkout',r=>number(r.checkoutSessions)],
+   ...(d.funnel?.includeTests?[['Test sessions',r=>number(r.testSessions||0)]]:[]),
  ]);
  if (Array.isArray(d.journey)) {
    table('storeJourney', d.journey, [
@@ -210,6 +225,16 @@ function render(d){
  $('storeFunnelNote').textContent=funnelNotes.join(' ');
  table('storeDevices',d.devices||[],[['Screen-size cohort',r=>r.device],['Visitors',r=>r.visitors],['Sessions',r=>r.sessions],['Page views',r=>r.pageViews]]);
  table('storePages',d.pages||[],[['Page',r=>r.page],['Views',r=>r.views],['Visitors',r=>r.visitors],['Visible time',r=>duration(r.seconds)]]);
+ const productScope=d.productReport;
+ const sourceSelect=$('storeProductSource');
+ const source=productScope?.source||'all';
+ const sources=new Set(productScope?.sources||[]);
+ if(source!=='all')sources.add(source);
+ sourceSelect.replaceChildren(new Option('All sources','all'),...[...sources].filter(s=>s!=='all').map(s=>new Option(sourceLabel(s),s)));
+ sourceSelect.value=source;
+ $('storeProductScope').textContent=(source==='all'?'All sources':sourceLabel(source))+' · '+$('analyticsDevice').selectedOptions[0].textContent+
+   '. Browsing activity uses retained raw data (up to 180 days). Source or device filters use verified live orders with matching checkout traffic.'+
+   (productScope?.unattributedOrders?' '+number(productScope.unattributedOrders)+' orders lacked checkout attribution for these filters.':'');
  rankings();renderProducts();renderTrend();
  $('storeConversion').replaceChildren(...Object.entries(d.conversion).filter(([,v])=>v&&typeof v==='object').map(([key,v])=>node('p',(key==='productViewers'?'Product-viewer conversion':'Visitor conversion')+': '+(v.percent===null?'Unavailable':v.percent.toFixed(2)+'%')+' ('+v.numerator+' attributed buying browsers / '+v.denominator+' consenting '+(key==='productViewers'?'product viewers':'visitors')+')')),...[d.conversion.label,d.unattributedOrders+' paid orders without an observed consenting visitor in this cohort.'].map(s=>node('p',s)));
  $('storeCoverage').replaceChildren(...Object.entries(d.coverage).map(([k,v])=>node('p',k.replace(/([a-z])([A-Z])/g,'$1 $2')+': '+v)));
@@ -309,7 +334,7 @@ function applyFilters(event) {
   const filters = new URLSearchParams({
     period, device: $('analyticsDevice').value, include: 'artwork',
     group: $('analyticsGrouping').value, compare: $('analyticsCompare').value,
-    tests: $('includeFunnelTests').checked ? 'show' : 'hide',
+    tests: $('includeFunnelTests').checked ? 'show' : 'hide', productSource: $('storeProductSource').value,
   });
   if (period === 'custom') {
     if (!$('analyticsFilters').reportValidity()) return;
@@ -377,6 +402,7 @@ $('storeTrackedLink').addEventListener('submit', async event => {
     status.textContent = error instanceof TypeError ? 'Enter a valid Midnight Designs storefront link.' : error.message;
     return;
   }
+  if ($('trackedOwnerTest').checked) link.hash = 'midnight-owner-test';
   output.value = link.href;
   $('trackedResultLabel').hidden = false;
   try {
@@ -391,13 +417,18 @@ $('includeFunnelTests').addEventListener('change', () => {
   appliedFilters.set('tests', $('includeFunnelTests').checked ? 'show' : 'hide');
   refresh();
 });
+$('storeProductSource').addEventListener('change', () => {
+  productPage = 0;
+  appliedFilters.set('productSource', $('storeProductSource').value);
+  refresh();
+});
 $('refreshStoreStats').onclick = refresh;
 $('analyticsFilters').addEventListener('submit', applyFilters);
 $('storeRanking').onchange=()=>{if(current)rankings();};$('storeTrendMetric').onchange=renderTrend;
 for(const id of ['storeProductSearch','storeProductSort'])$(id).addEventListener(id==='storeProductSearch'?'input':'change',()=>{productPage=0;renderProducts();});
 $('storeProductPrevious').onclick=()=>{productPage--;renderProducts();};$('storeProductNext').onclick=()=>{productPage++;renderProducts();};
 $('exportStoreStats').onclick=()=>{if(current)download(JSON.stringify(current,null,2),'application/json','midnight-store-statistics.json');};
-$('exportProductCsv').onclick=()=>{if(!current)return;const safe=value=>{let s=String(value??'');if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';},rows=[['Product ID','Product','Views','Visible seconds','Clicks','Bag actions','Gross paid units','Likes updated in range','Dislikes updated in range','Start date (MT)','End date (MT)','Traffic cohort','Generated at'],...activityRows().map(r=>[r.id,r.name,r.views,r.seconds||0,r.clicks,r.adds,r.bought||0,r.likes||0,r.dislikes||0,current.window.startDate,current.window.endDate,current.device,current.generatedAt])];download(rows.map(r=>r.map(safe).join(',')).join('\r\n'),'text/csv;charset=utf-8','midnight-product-activity.csv');};
+$('exportProductCsv').onclick=()=>{if(!current)return;const safe=value=>{let s=String(value??'');if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';},rows=[['Product ID','Product','Designs','Views','View sessions','Bag view sessions','Paid view sessions','Visible seconds','Clicks','Bag actions','Gross paid units','Gross merchandise sales (USD cents)','Source','Likes updated in range','Dislikes updated in range','Start date (MT)','End date (MT)','Traffic cohort','Generated at'],...activityRows().map(r=>[r.id,r.name,(r.designs||[]).map(d=>d.name).join(', '),r.views,r.viewSessions,r.bagViewSessions,r.paidViewSessions,r.seconds||0,r.clicks,r.adds,r.bought||0,r.revenue||0,current.productReport?.source||'all',r.likes||0,r.dislikes||0,current.window.startDate,current.window.endDate,current.device,current.generatedAt])];download(rows.map(r=>r.map(safe).join(',')).join('\r\n'),'text/csv;charset=utf-8','midnight-product-activity.csv');};
 // Keep the report current while the owner watches incoming traffic.
 setInterval(()=>{if(!document.hidden&&!$('refreshStoreStats').disabled)refresh();},30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!$('refreshStoreStats').disabled)refresh();});

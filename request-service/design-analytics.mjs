@@ -50,5 +50,11 @@ export function designAnalytics({db,designCatalog,products,auth,body,send,fail,l
   if(path==='/api/owner/design-links'){auth(req,null,true);if(method==='GET'){send(res,200,all('SELECT * FROM design_product_links'));return true;}if(method!=='POST'||req.headers.origin!==origin)fail(403,'Origin rejected.');limit(req,'design-links',100);const b=await body(req);auth(req,null,true);if(!catalog.has(b?.productId)||!designs.has(b?.designId)||!['add','remove'].includes(b.action))fail(400,'Choose a valid product and artwork.');if(b.action==='add')run('INSERT OR IGNORE INTO design_product_links VALUES(?,?)',b.productId,b.designId);else run('DELETE FROM design_product_links WHERE product=? AND design=?',b.productId,b.designId);send(res,200,{ok:true});return true;}
   return false;
  }
- return {handle,recordRequest,report};
+ function productDesigns(){
+  return all('SELECT product,design FROM design_product_links ORDER BY design').flatMap(link=>{
+   const design=designs.get(link.design);
+   return design?[{product:link.product,id:link.design,name:design.name||link.design}]:[];
+  });
+ }
+ return {handle,recordRequest,report,productDesigns};
 }

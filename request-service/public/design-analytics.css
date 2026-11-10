@@ -59,7 +59,7 @@
 .statistics-page .stats-table-wrap{border:1px solid #463630;border-radius:6px}
 .statistics-page .stats-table-wrap+p{font-size:11px}
 #storePopular .analytics-table{min-width:850px}
-.stats-product-controls{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
+.stats-product-controls{display:grid;grid-template-columns:minmax(0,2fr) repeat(2,minmax(0,1fr));gap:16px;margin-bottom:16px}
 .stats-pagination{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:14px}
 .stats-pagination p{margin:0;font-size:12px}
 .stats-pagination button{background:transparent;font-size:12px}
@@ -115,3 +115,5 @@
 .stats-comparison-chart .stats-chart-bar { background: linear-gradient(#b9a189,#756452); }
 
 .statistics-page #includeFunnelTests { min-height: auto; vertical-align: middle; accent-color: #a25058; }
+
+.statistics-page .stats-test-option input { min-height: auto; vertical-align: middle; accent-color: #a25058; }
