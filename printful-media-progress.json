@@ -74758,18 +74758,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-11-11T19:49:19.319Z",
+  "updatedAt": "2026-11-11T19:53:43.894Z",
   "catalogAudit": {
     "supplierProducts": 205,
     "eligible": 0,
     "importedPreviews": 0,
-    "held": [
-      {
-        "id": "487647421",
-        "error": "fetch failed"
-      }
-    ],
-    "checkedAt": "2026-11-11T06:58:51.741Z"
+    "held": [],
+    "checkedAt": "2026-11-11T19:49:37.765Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
