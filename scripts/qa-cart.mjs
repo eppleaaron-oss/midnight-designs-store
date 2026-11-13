@@ -3,7 +3,7 @@ const products=JSON.parse(fs.readFileSync('products.json')).products;const p=pro
 const browser=await chromium.launch();const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
 const row=(p,v)=>page.locator('.item').filter({has:page.locator('[data-key="'+p.id+':'+v.id+'"]')});const item=(p,v)=>page.locator('[data-key="'+p.id+':'+v.id+'"]');
 async function add(product,variant){await page.goto(base+'product.html?id='+product.id);await page.waitForSelector('#add:not([disabled])');await page.locator('#variant').selectOption(String(variant.id));await page.locator('#add').click();}
-await add(p,v);await add(p,v);await add(p,other);await add(second,sv);await page.goto(base+'cart.html');await page.waitForSelector('.item');assert.equal(await page.locator('.item').count(),3);assert.equal(await item(p,v).locator('input').inputValue(),'2');assert.ok((await item(p,v).innerText()).includes('Size: '+v.size));assert.ok((await item(second,sv).innerText()).includes('Color / base: '+(sv.color||'Printed design as pictured')));const expected=v.price*2+other.price+sv.price;assert.equal(Math.round(Number((await page.locator('#total').innerText()).replace(/[^0-9.]/g,''))*100),Math.round(expected*100));
+await add(p,v);await add(p,v);await add(p,other);await add(second,sv);await page.goto(base+'cart.html');await page.waitForSelector('.item');assert.equal(await page.locator('.item').count(),3);assert.equal(await item(p,v).locator('input').inputValue(),'2');assert.ok((await item(p,v).innerText()).includes('Size: '+v.size));assert.ok((await item(second,sv).innerText()).includes('Color: '+(sv.color||'Printed design as pictured')));const expected=v.price*2+other.price+sv.price;assert.equal(Math.round(Number((await page.locator('#total').innerText()).replace(/[^0-9.]/g,''))*100),Math.round(expected*100));
 await item(p,v).locator('input').fill('3');await page.reload();await page.waitForSelector('.item');assert.equal(await item(p,v).locator('input').inputValue(),'3');
 for(const invalid of ['0','100','1.5']){await item(p,v).locator('input').fill(invalid);await item(p,v).locator('input').dispatchEvent('change');assert.equal(await item(p,v).locator('input').inputValue(),'3');}
 const tab=await context.newPage();await tab.goto(base+'cart.html');await tab.waitForSelector('.item');await tab.locator('[data-key="'+p.id+':'+v.id+'"] input').fill('4');await page.waitForFunction(()=>document.querySelector('.item input')?.value==='4');await tab.locator('[data-key="'+p.id+':'+other.id+'"] button[aria-label^="Remove "]').click();await page.waitForFunction(()=>document.querySelectorAll('.item').length===2);await tab.close();
@@ -14,3 +14,27 @@ await page.evaluate(({key,p,v})=>localStorage.setItem(key,JSON.stringify([{id:'b
 const photos=JSON.parse(fs.readFileSync('product-photos.json')).products;const bagImage=await page.locator('.item img').getAttribute('src');const gallery=photos[p.id];const candidates=gallery?.originalImage===p.image?gallery.photos.filter(photo=>photo.storeVariantIds.includes(v.id)):[];const expectedPhoto=candidates.find(photo=>photo.category==='product'&&/front/i.test(photo.view))||candidates.find(photo=>photo.category==='product')||candidates[0];assert.equal(bagImage,new URL(expectedPhoto?.image||p.image,base).href);await page.screenshot({path:'qa-cart-desktop.png',fullPage:true});await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.screenshot({path:'qa-cart-mobile.png',fullPage:true});await page.locator('.item').getByRole('button',{name:/^Remove /}).click();await page.reload();await page.waitForSelector('#items .notice');assert.equal(await page.locator('.item').count(),0);
 await page.evaluate(key=>localStorage.setItem(key,'{broken'),key);await page.reload();await page.waitForSelector('#items .notice');assert.equal(await page.locator('.item').count(),0);assert.ok((await page.locator('#cartStatus').innerText()).includes('could not be read'));
 assert.deepEqual(errors,[]);await browser.close();console.log('Reliable bag: correct variants, quantities, subtotal, refresh, immediate save, invalid quantities, tab sync, save failure, catalog price refresh, unavailable options, duplicate/corrupt data and mobile layout passed.');
+
+const phoneBrowser=await chromium.launch();
+try {
+ const phone=await phoneBrowser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+ await phone.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());
+ const hoodie=products.find(product=>product.id==='490162548');
+ const size=hoodie.variants.find(variant=>variant.size==='M'&&variant.availability==='active');
+ assert.equal(size.color,'White');
+ await phone.goto(base+'products/'+hoodie.id+'.html?utm_source=qa#midnight-owner-test');
+ const option=phone.locator('#variant option[value="'+size.id+'"]');
+ await option.waitFor({state:'attached'});
+ assert.match(await option.textContent(),/Black print/);
+ await phone.locator('#variant').selectOption(String(size.id));
+ await phone.locator('#add').click();
+ assert.match(await phone.locator('#productNotice').textContent(),/Black print/);
+ await phone.locator('a[href="cart.html"], a[href="../cart.html"]').first().click();
+ const bagLine=phone.locator('[data-key="'+hoodie.id+':'+size.id+'"] .cart-option');
+ await bagLine.waitFor();
+ assert.match(await bagLine.textContent(),/Size: M · Color: Black print/);
+ assert.equal(await phone.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ console.log('PASS phone-sized Unseen Scars product and bag show Black print with the original White fulfillment variant ID.');
+} finally {
+ await phoneBrowser.close();
+}

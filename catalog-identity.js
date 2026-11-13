@@ -40,6 +40,10 @@ const apparel=['2XS','XXS','XS','S','M','L','XL','2XL','XXL','3XL','4XL','5XL','
 function compareSizes(a,b){a=String(a);b=String(b);const num=s=>s.match(/^(?:(?:US|UK|EU)\s*(?:men|women|youth)?\s*)?(\d+(?:\.\d+)?)(?:\s*[MW])?$/i);const x=num(a),y=num(b);if(x&&y)return Number(x[1])-Number(y[1])||a.localeCompare(b,undefined,{numeric:true});const i=apparel.indexOf(a),j=apparel.indexOf(b);return (i<0?99:i)-(j<0?99:j)||a.localeCompare(b,undefined,{numeric:true});}
 function sortedVariants(p){return [...(p.variants||[])].sort((a,b)=>compareSizes(a.size||'',b.size||'')||String(a.color||'').localeCompare(String(b.color||'')));}
 function sizeLabel(p,size){return size?(p.sizeSystem?p.sizeSystem+' '+size:String(size)):'Size unverified';}
-const api={catalogTitles,outfits,categories,categoryId,category,title,collectionName,normalize,compareSizes,sortedVariants,sizeLabel};
+function colorLabel(product, variant) {
+ const isUnseenScars = String(product?.id ?? product) === '490162548';
+ return isUnseenScars && variant?.color === 'White' ? 'Black print' : (variant?.color || 'Printed design as pictured');
+}
+const api={colorLabel,catalogTitles,outfits,categories,categoryId,category,title,collectionName,normalize,compareSizes,sortedVariants,sizeLabel};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.MidnightCatalog=api;
 })(globalThis);
