@@ -74758,13 +74758,13 @@
     }
   },
   "errors": {},
-  "updatedAt": "2026-11-16T22:27:18.609Z",
+  "updatedAt": "2026-11-16T22:32:47.859Z",
   "catalogAudit": {
     "supplierProducts": 205,
     "eligible": 0,
     "importedPreviews": 0,
     "held": [],
-    "checkedAt": "2026-11-15T19:03:21.184Z"
+    "checkedAt": "2026-11-16T22:27:39.555Z"
   },
   "retryAt": "2026-10-21T15:04:59.106Z"
 }
