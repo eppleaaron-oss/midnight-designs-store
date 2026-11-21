@@ -1,3 +1,4 @@
+import {factoryTapestries} from './factory-tapestries.mjs';
 import {storeStatistics} from './store-statistics.mjs';
 import {createPrintfulWriteGuard} from './printful-write-guard.mjs';
 import {factoryOutfitLearning} from './factory-outfit-learning.mjs';
@@ -124,6 +125,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
  const productEditor=factoryProductEditor({db,basic:basicHandler,outfits:basicOutfits,auth:factoryAuth,body,send,fail,limit,origin});
  const productStudio=factoryProductStudio({fetchImpl:trackedFetch(fetch),db,editor:productEditor,blueprints:blueprintHandler,workflow,basic:basicHandler,backups:githubBackups,auth:factoryAuth,body,send,fail,limit,origin});productionHandler.setStudio(productStudio);
  const outfitLearning=factoryOutfitLearning({db,basic:basicHandler,outfits:basicOutfits,studio:productStudio,auth:factoryAuth,body,send,fail,limit,origin});basicOutfits.setFollower(outfitLearning.follow);
+ const tapestries=factoryTapestries({db,auth,body,send,fail,limit,origin,checkpoint:requestCheckpoint});
  const githubPublisher=factoryGithubPublisher({workspace:basicGithub,db,body,send,fail,limit});
  const historyHandler=factoryHistory({publicAccess:!factoryLoginRequired,db,auth:factoryAuth,body,send,fail,limit,origin,publishing:publishingHandler,support:supportHandler,pipeline:pipelineHandler});
  const startedAt=new Date().toISOString();
@@ -133,6 +135,7 @@ export function createService({dbPath,origin,passwordHash,secure=true,designCata
   try{
    const url=new URL(req.url,origin),path=url.pathname,method=req.method;
    if(await githubPublisher.handle(req,res,path,method))return;
+   if(await tapestries.handle(req,res,path,method))return;
    if(await productStudio.handle(req,res,path,method,url))return;
    if(await productEditor.handle(req,res,path,method))return;
    if(await outfitLearning.handle(req,res,path,method))return;
